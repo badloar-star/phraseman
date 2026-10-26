@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-21:intro1:r2": {
+          "ru": "Одна рубашка: is.",
+          "uk": "Одна сорочка: is."
+        },
+        "en:lesson-28:session-21:intro1:r3": {
+          "ru": "Здесь нужна is made.",
+          "uk": "Тут потрібна is made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-21:intro2:r2": {
+          "ru": "После will нужна be.",
+          "uk": "Після will потрібна be."
+        },
+        "en:lesson-28:session-21:intro2:r3": {
+          "ru": "Здесь нужна sent.",
+          "uk": "Тут потрібна sent."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-21:intro3:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-28:session-21:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3be511a9e3ced563b685b5509aa63bed568db0d436567c4ad67e2fce69ac4442"
+}

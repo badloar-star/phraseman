@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-15:i01",
+    "correctText": "sender",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i02",
+    "correctText": "Where do I write the sender's name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i03",
+    "correctText": "I would like to send this parcel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i04",
+    "correctText": "The parcel was weighed this morning.",
+    "correctResponseId": "en:lesson-28:session-15:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i05",
+    "correctText": "recipient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i06",
+    "correctText": "Does the recipient need to sign?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i07",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-15:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i08",
+    "correctText": "I wish the queue were shorter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i09",
+    "correctText": "postmark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i10",
+    "correctText": "The date on the postmark is clear.",
+    "correctResponseId": "en:lesson-28:session-15:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i12",
+    "correctText": "How long will delivery take?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i13",
+    "correctText": "airmail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i14",
+    "correctText": "Can I send this letter by airmail?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i15",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i16",
+    "correctText": "The address was checked at the counter.",
+    "correctResponseId": "en:lesson-28:session-15:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i17",
+    "correctText": "Stamps are sold at this counter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i18",
+    "correctText": "Could I have a receipt, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i19",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-15:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i20",
+    "correctText": "The box was sealed with tape.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-15:i21",
+    "correctText": "Can I track the parcel?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-54:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте сусідам свою допомогу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте сусідам свою допомогу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i01:audio",
+          "transcript": "How can I help?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How can I help?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — communal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — communal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i02:audio",
+          "transcript": "communal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-54:i02:r1",
+            "targetText": "communal",
+            "meaningByLocale": {
+              "ru": "Общий, совместно используемый. О месте или вещи, которыми пользуется группа людей.",
+              "uk": "Спільний, призначений для спільного користування. Про місце чи річ, якими користується група людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "communal",
+          "definitionByLocale": {
+            "ru": "Общий, совместно используемый. О месте или вещи, которыми пользуется группа людей.",
+            "uk": "Спільний, призначений для спільного користування. Про місце чи річ, якими користується група людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i03:r1",
+          "text": "This is a communal garden."
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i03:r2",
+          "text": "This is a private garden."
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i03:r3",
+          "text": "This is a small garden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i03:audio",
+          "transcript": "This is a communal garden."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-54:i03:r1",
+            "targetText": "This is a communal garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i03:r2",
+            "targetText": "This is a private garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i03:r3",
+            "targetText": "This is a small garden.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a communal garden.",
+              "uk": "У записі звучить This is a communal garden."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a communal garden.",
+              "uk": "У записі звучить This is a communal garden."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть сусідові, де лежать позичені інструменти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть сусідові, де лежать позичені інструменти.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tools we borrowed are in the shed.",
+        "localizedMeaning": {
+          "ru": "Скажите соседу, где находятся одолженные инструменты.",
+          "uk": "Скажіть сусідові, де лежать позичені інструменти."
+        },
+        "orderedTokens": [
+          "The",
+          "tools",
+          "we",
+          "borrowed",
+          "are",
+          "in",
+          "the",
+          "shed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви із сусідами позичили ці інструменти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i05:r1",
+          "text": "we borrowed"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i05:r2",
+          "text": "we borrowed them"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i05:r3",
+          "text": "us borrowed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви із сусідами позичили ці інструменти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с соседями одолжили эти инструменты.",
+          "uk": "Ви із сусідами позичили ці інструменти."
+        },
+        "gappedTargetPhrase": "The tools ___ are in the shed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-54:i05:r1",
+            "text": "we borrowed"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i05:r2",
+            "text": "we borrowed them"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i05:r3",
+            "text": "us borrowed"
+          }
+        ],
+        "testedDimension": "Ви із сусідами позичили ці інструменти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Ви із сусідами позичили ці інструменти.",
+            "feedbackByLocale": {
+              "ru": "Them повторяет инструменты.",
+              "uk": "Them повторює інструменти."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Ви із сусідами позичили ці інструменти.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель we.",
+              "uk": "Потрібен виконавець we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — graffiti",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — graffiti",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i06:audio",
+          "transcript": "graffiti"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-54:i06:r1",
+            "targetText": "graffiti",
+            "meaningByLocale": {
+              "ru": "Граффити. Надписи или рисунки на стенах и других поверхностях в общественных местах.",
+              "uk": "Графіті. Написи або малюнки на стінах та інших поверхнях у громадських місцях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "graffiti",
+          "definitionByLocale": {
+            "ru": "Граффити. Надписи или рисунки на стенах и других поверхностях в общественных местах.",
+            "uk": "Графіті. Написи або малюнки на стінах та інших поверхнях у громадських місцях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть сусідові, що на стіні є графіті.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть сусідові, що на стіні є графіті.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i07:audio",
+          "transcript": "There is graffiti on the wall."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is graffiti on the wall.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто пофарбував лавку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто пофарбував лавку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i08:audio",
+          "transcript": "The bench was painted by our neighbour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bench was painted by our neighbour.",
+        "orderedTokens": [
+          "The",
+          "bench",
+          "was",
+          "painted",
+          "by",
+          "our",
+          "neighbour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лавку пофарбував ваш сусід.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i09:r2",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i09:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лавку пофарбував ваш сусід.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скамейку покрасил ваш сосед.",
+          "uk": "Лавку пофарбував ваш сусід."
+        },
+        "gappedTargetPhrase": "The bench was painted ___ our neighbour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-54:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i09:r2",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i09:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Лавку пофарбував ваш сусід.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Лавку пофарбував ваш сусід.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя после was painted вводим через by.",
+              "uk": "Виконавця після was painted вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Лавку пофарбував ваш сусід.",
+            "feedbackByLocale": {
+              "ru": "Нужна связка by, а не who.",
+              "uk": "Потрібна зв’язка by, а не who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — initiative",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — initiative",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i10:audio",
+          "transcript": "initiative"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-54:i10:r1",
+            "targetText": "initiative",
+            "meaningByLocale": {
+              "ru": "Инициатива, начатое полезное дело. Здесь — совместная затея соседей по улучшению двора.",
+              "uk": "Ініціатива, розпочата корисна справа. Тут — спільний задум сусідів щодо поліпшення подвір’я."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "initiative",
+          "definitionByLocale": {
+            "ru": "Инициатива, начатое полезное дело. Здесь — совместная затея соседей по улучшению двора.",
+            "uk": "Ініціатива, розпочата корисна справа. Тут — спільний задум сусідів щодо поліпшення подвір’я."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i11:r1",
+          "text": "Who started this initiative?"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i11:r2",
+          "text": "Who started this conversation?"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i11:r3",
+          "text": "Who started this argument?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i11:audio",
+          "transcript": "Who started this initiative?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-54:i11:r1",
+            "targetText": "Who started this initiative?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i11:r2",
+            "targetText": "Who started this conversation?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i11:r3",
+            "targetText": "Who started this argument?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Who started this initiative?",
+              "uk": "У записі звучить Who started this initiative?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Who started this initiative?",
+              "uk": "У записі звучить Who started this initiative?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте принести рукавички.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте принести рукавички.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can bring some gloves.",
+        "localizedMeaning": {
+          "ru": "Предложите принести перчатки.",
+          "uk": "Запропонуйте принести рукавички."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "bring",
+          "some",
+          "gloves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eyesore",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eyesore",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i13:audio",
+          "transcript": "eyesore"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-54:i13:r1",
+            "targetText": "eyesore",
+            "meaningByLocale": {
+              "ru": "Вещь, которая портит вид. Некрасивый или запущенный объект, на который неприятно смотреть.",
+              "uk": "Річ, яка псує вигляд. Некрасивий або занедбаний об’єкт, на який неприємно дивитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eyesore",
+          "definitionByLocale": {
+            "ru": "Вещь, которая портит вид. Некрасивый или запущенный объект, на который неприятно смотреть.",
+            "uk": "Річ, яка псує вигляд. Некрасивий або занедбаний об’єкт, на який неприємно дивитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що зламаний паркан псує вигляд.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що зламаний паркан псує вигляд.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i14:audio",
+          "transcript": "That broken fence is an eyesore."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That broken fence is an eyesore.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-54:i15:p1",
+            "target": "initiative",
+            "meaningByLocale": {
+              "ru": "инициатива",
+              "uk": "ініціатива"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-54:i15:p2",
+            "target": "communal",
+            "meaningByLocale": {
+              "ru": "совместно используемый",
+              "uk": "призначений для спільного користування"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-54:i15:p3",
+            "target": "graffiti",
+            "meaningByLocale": {
+              "ru": "надписи или рисунки на стенах",
+              "uk": "написи або малюнки на стінах"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-54:i15:p4",
+            "target": "eyesore",
+            "meaningByLocale": {
+              "ru": "вещь, которая портит вид",
+              "uk": "річ, яка псує вигляд"
+            }
+          }
+        ],
+        "leftColumn": [
+          "initiative",
+          "communal",
+          "graffiti",
+          "eyesore"
+        ],
+        "rightColumn": [
+          "ініціатива",
+          "призначений для спільного користування",
+          "написи або малюнки на стінах",
+          "річ, яка псує вигляд"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На подвір’ї мешканці саджають квіти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На подвір’ї мешканці саджають квіти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Во дворе жители сажают цветы.",
+          "uk": "На подвір’ї мешканці саджають квіти."
+        },
+        "gappedTargetPhrase": "This is the courtyard ___ we plant flowers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-54:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "На подвір’ї мешканці саджають квіти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i16:r2",
+            "correct": false,
+            "testedDimension": "На подвір’ї мешканці саджають квіти.",
+            "feedbackByLocale": {
+              "ru": "Для места действия нужно where.",
+              "uk": "Для місця дії потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i16:r3",
+            "correct": false,
+            "testedDimension": "На подвір’ї мешканці саджають квіти.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, не принадлежность.",
+              "uk": "Тут місце, не належність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: сад спільний чи приватний?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i17:r1",
+          "text": "This is a communal garden."
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i17:r2",
+          "text": "This is a private garden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i17:audioA",
+        "en:lesson-29:session-54:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: сад спільний чи приватний?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This is a communal garden.",
+        "contrastB": "This is a private garden.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-54:i17:audioA",
+          "transcript": "This is a communal garden."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-54:i17:audioB",
+          "transcript": "This is a private garden."
+        },
+        "testedPhoneticContrast": "Послухайте: сад спільний чи приватний?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: сад спільний чи приватний?",
+            "feedbackByLocale": {
+              "ru": "Звучит communal — общий.",
+              "uk": "Звучить communal — спільний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де ви саджаєте квіти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де ви саджаєте квіти.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i18:audio",
+          "transcript": "This is the courtyard where we plant flowers."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the courtyard where we plant flowers.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "courtyard",
+          "where",
+          "we",
+          "plant",
+          "flowers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте сусіда, коли всі починають роботу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-54:i19:audio"
+      ],
+      "accessibilityLabel": "Запитайте сусіда, коли всі починають роботу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-54:i19:audio",
+          "transcript": "What time are we starting?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time are we starting?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сусід приніс інструменти для роботи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-54:i20:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i20:r2",
+          "text": "who he"
+        },
+        {
+          "responseId": "en:lesson-29:session-54:i20:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусід приніс інструменти для роботи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сосед принёс инструменты для работы.",
+          "uk": "Сусід приніс інструменти для роботи."
+        },
+        "gappedTargetPhrase": "He is the neighbour ___ brought the tools.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-54:i20:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i20:r2",
+            "text": "who he"
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i20:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Сусід приніс інструменти для роботи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-54:i20:r2",
+            "correct": false,
+            "testedDimension": "Сусід приніс інструменти для роботи.",
+            "feedbackByLocale": {
+              "ru": "Who уже называет исполнителя; he лишнее.",
+              "uk": "Who вже називає виконавця; he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-54:i20:r3",
+            "correct": false,
+            "testedDimension": "Сусід приніс інструменти для роботи.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-54:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте сусідам за участь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте сусідам за участь.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for joining us.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите соседей за участие.",
+          "uk": "Подякуйте сусідам за участь."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "joining",
+          "us"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "06db31d9a6035f5a8fc136954bbbed6a659111a7237048f6ca4a840ca1ab7e88"
+}

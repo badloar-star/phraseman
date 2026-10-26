@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-12:intro1:r2": {
+          "ru": "С is в основной части здесь нужно isn’t.",
+          "uk": "З is в основній частині тут потрібно isn’t."
+        },
+        "en:lesson-31:session-12:intro1:r3": {
+          "ru": "Чай заменяем на it.",
+          "uk": "Чай замінюємо на it."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-12:intro2:r2": {
+          "ru": "После where порядок the cups are.",
+          "uk": "Після where порядок the cups are."
+        },
+        "en:lesson-31:session-12:intro2:r3": {
+          "ru": "Множественное cups требует are.",
+          "uk": "Множина cups потребує are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-12:intro3:r2": {
+          "ru": "После was нужна форма made.",
+          "uk": "Після was потрібна форма made."
+        },
+        "en:lesson-31:session-12:intro3:r3": {
+          "ru": "Tea требует was.",
+          "uk": "Tea потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bb87da468dadf075d01e5104ace3cf47860afc2b5d9195e0c6d58b262c70e991"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-52:i01",
+    "correctText": "Can this be repaired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i02",
+    "correctText": "darn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i03",
+    "correctText": "Could you darn this sock?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i04",
+    "correctText": "I repaired",
+    "correctResponseId": "en:lesson-29:session-52:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i05",
+    "correctText": "The sock I repaired is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i06",
+    "correctText": "bobbin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i07",
+    "correctText": "Where is the bobbin?",
+    "correctResponseId": "en:lesson-29:session-52:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i08",
+    "correctText": "She is the woman who shortened my sleeves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i09",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i10",
+    "correctText": "tack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i11",
+    "correctText": "Could you tack the fabric first?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i12",
+    "correctText": "This thread is the right colour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i13",
+    "correctText": "seamstress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i14",
+    "correctText": "The seamstress shortened my sleeves.",
+    "correctResponseId": "en:lesson-29:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i15",
+    "correctText": "en:lesson-29:session-52:i15:p1=darn\nen:lesson-29:session-52:i15:p2=tack\nen:lesson-29:session-52:i15:p3=bobbin\nen:lesson-29:session-52:i15:p4=seamstress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i16",
+    "correctText": "Where is the bobbin?",
+    "correctResponseId": "en:lesson-29:session-52:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i17",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-52:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i18",
+    "correctText": "This is the shop where they repair clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i19",
+    "correctText": "These sleeves are too long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i20",
+    "correctText": "When can I collect it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-52:i21",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-52:i21:r1"
+  }
+]

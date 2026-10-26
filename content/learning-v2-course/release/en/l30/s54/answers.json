@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-54:i01",
+    "correctText": "train",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i02",
+    "correctText": "He said the train was late.",
+    "correctResponseId": "en:lesson-30:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i03",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i04",
+    "correctText": "ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i05",
+    "correctText": "He asked me to show my ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i06",
+    "correctText": "He asked us to wait by the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i07",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-30:session-54:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i08",
+    "correctText": "platform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i09",
+    "correctText": "I asked where the platform was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i10",
+    "correctText": "He asked if we needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i11",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i12",
+    "correctText": "seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i13",
+    "correctText": "He said the seat was free.",
+    "correctResponseId": "en:lesson-30:session-54:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i14",
+    "correctText": "I wish the train were faster.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i15",
+    "correctText": "The ticket I bought is in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i16",
+    "correctText": "not to leave",
+    "correctResponseId": "en:lesson-30:session-54:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i17",
+    "correctText": "He said he was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i18",
+    "correctText": "He asked us to wait.",
+    "correctResponseId": "en:lesson-30:session-54:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i19",
+    "correctText": "He said the train was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i20",
+    "correctText": "my ticket was",
+    "correctResponseId": "en:lesson-30:session-54:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-54:i21",
+    "correctText": "I asked him to help me with my bag.",
+    "correctResponseId": null
+  }
+]

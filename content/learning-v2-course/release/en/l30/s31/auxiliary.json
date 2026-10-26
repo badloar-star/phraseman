@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-31:intro1:r2": {
+          "ru": "В таком порядке перед me нужен told, не said.",
+          "uk": "У такому порядку перед me потрібне told, не said."
+        },
+        "en:lesson-30:session-31:intro1:r3": {
+          "ru": "После told перед me не ставим to.",
+          "uk": "Після told перед me не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-31:intro2:r2": {
+          "ru": "После asked me перед show нужно to.",
+          "uk": "Після asked me перед show потрібне to."
+        },
+        "en:lesson-30:session-31:intro2:r3": {
+          "ru": "После asked здесь нужна форма me.",
+          "uk": "Після asked тут потрібна форма me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-31:intro3:r2": {
+          "ru": "В этом желании о ситуации сейчас нужна форма had.",
+          "uk": "У цьому бажанні про ситуацію зараз потрібна форма had."
+        },
+        "en:lesson-30:session-31:intro3:r3": {
+          "ru": "Того, у кого место, здесь обозначаем подлежащим I.",
+          "uk": "Того, у кого місце, тут позначаємо підметом I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "28831e9c62adc7a82f68e82b3b98b8f296bf02f77003f7f312cf55deca811caa"
+}

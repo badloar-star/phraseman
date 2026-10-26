@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-47:intro1:r2": {
+          "ru": "С delivery здесь нужна is.",
+          "uk": "З delivery тут потрібна is."
+        },
+        "en:lesson-28:session-47:intro1:r3": {
+          "ru": "После is нужна included.",
+          "uk": "Після is потрібна included."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-47:intro2:r2": {
+          "ru": "Перед removed нужна be.",
+          "uk": "Перед removed потрібна be."
+        },
+        "en:lesson-28:session-47:intro2:r3": {
+          "ru": "После be нужна removed.",
+          "uk": "Після be потрібна removed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-47:intro3:r2": {
+          "ru": "Между will и assembled нужна be.",
+          "uk": "Між will та assembled потрібна be."
+        },
+        "en:lesson-28:session-47:intro3:r3": {
+          "ru": "После will be нужна assembled.",
+          "uk": "Після will be потрібна assembled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bf18a732007eb7cf81e46eb792732b34223b9d3d0cacab348514bd2636b3668f"
+}

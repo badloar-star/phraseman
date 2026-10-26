@@ -1,0 +1,1077 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-10:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи відкритий зал після ремонту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи відкритий зал після ремонту.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i01:audio",
+          "transcript": "Is the gym open now?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is the gym open now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sportswear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sportswear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i02:audio",
+          "transcript": "sportswear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i02:r1",
+            "targetText": "sportswear",
+            "meaningByLocale": {
+              "ru": "Спортивная одежда.",
+              "uk": "Спортивний одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sportswear",
+          "definitionByLocale": {
+            "ru": "Спортивная одежда.",
+            "uk": "Спортивний одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i03:r1",
+          "text": "My sportswear was left in the changing room."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i03:r2",
+          "text": "My sportswear was left in the car."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i03:r3",
+          "text": "My bag was left in the changing room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i03:audio",
+          "transcript": "My sportswear was left in the changing room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i03:r1",
+            "targetText": "My sportswear was left in the changing room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i03:r2",
+            "targetText": "My sportswear was left in the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i03:r3",
+            "targetText": "My bag was left in the changing room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sportswear was left in the changing room.",
+              "uk": "У записі звучить My sportswear was left in the changing room."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sportswear was left in the changing room.",
+              "uk": "У записі звучить My sportswear was left in the changing room."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть допомогти знайти ваші речі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть допомогти знайти ваші речі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you help me find my things?",
+        "localizedMeaning": {
+          "ru": "Попросите помочь найти ваши вещи.",
+          "uk": "Попросіть допомогти знайти ваші речі."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "help",
+          "me",
+          "find",
+          "my",
+          "things"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Шафки замінили минулого тижня. Виберіть форму для кількох шафок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i05:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i05:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i05:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шафки замінили минулого тижня. Виберіть форму для кількох шафок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Шкафчики заменили на прошлой неделе. Выберите форму для нескольких шкафчиков.",
+          "uk": "Шафки замінили минулого тижня. Виберіть форму для кількох шафок."
+        },
+        "gappedTargetPhrase": "The lockers ___ replaced last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-10:i05:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i05:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i05:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Шафки замінили минулого тижня. Виберіть форму для кількох шафок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Шафки замінили минулого тижня. Виберіть форму для кількох шафок.",
+            "feedbackByLocale": {
+              "ru": "Lockers — несколько: were.",
+              "uk": "Lockers — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Шафки замінили минулого тижня. Виберіть форму для кількох шафок.",
+            "feedbackByLocale": {
+              "ru": "О прошлом здесь говорим were replaced.",
+              "uk": "Про минуле тут говоримо were replaced."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — barbell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — barbell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i06:audio",
+          "transcript": "barbell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i06:r1",
+            "targetText": "barbell",
+            "meaningByLocale": {
+              "ru": "Штанга: длинный гриф с грузами для силовых упражнений.",
+              "uk": "Штанга: довгий гриф із вантажами для силових вправ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barbell",
+          "definitionByLocale": {
+            "ru": "Штанга: длинный гриф с грузами для силовых упражнений.",
+            "uk": "Штанга: довгий гриф із вантажами для силових вправ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть працівника показати, де розташована штанга.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть працівника показати, де розташована штанга.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you show me the barbell?",
+        "localizedMeaning": {
+          "ru": "Попросите сотрудника показать, где находится штанга.",
+          "uk": "Попросіть працівника показати, де розташована штанга."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "show",
+          "me",
+          "the",
+          "barbell"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i08:r1",
+          "text": "The equipment is cleaned every evening."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i08:r2",
+          "text": "The equipment is cleaned every morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i08:r3",
+          "text": "The windows are cleaned every evening."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i08:audio",
+          "transcript": "The equipment is cleaned every evening."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i08:r1",
+            "targetText": "The equipment is cleaned every evening.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i08:r2",
+            "targetText": "The equipment is cleaned every morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i08:r3",
+            "targetText": "The windows are cleaned every evening.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The equipment is cleaned every evening.",
+              "uk": "У записі звучить The equipment is cleaned every evening."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The equipment is cleaned every evening.",
+              "uk": "У записі звучить The equipment is cleaned every evening."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви вперше в цьому залі. Повідомте працівникові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Ви вперше в цьому залі. Повідомте працівникові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i09:audio",
+          "transcript": "This is my first time here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is my first time here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kettlebell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kettlebell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i10:audio",
+          "transcript": "kettlebell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i10:r1",
+            "targetText": "kettlebell",
+            "meaningByLocale": {
+              "ru": "Гиря: тяжёлый спортивный снаряд с ручкой.",
+              "uk": "Гиря: важкий спортивний снаряд із ручкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kettlebell",
+          "definitionByLocale": {
+            "ru": "Гиря: тяжёлый спортивный снаряд с ручкой.",
+            "uk": "Гиря: важкий спортивний снаряд із ручкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цю гирю доставили вчора. Завершіть опис доставки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i11:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i11:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i11:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цю гирю доставили вчора. Завершіть опис доставки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эта гиря была доставлена вчера. Завершите описание доставки.",
+          "uk": "Цю гирю доставили вчора. Завершіть опис доставки."
+        },
+        "gappedTargetPhrase": "This kettlebell ___ delivered yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-10:i11:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i11:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i11:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Цю гирю доставили вчора. Завершіть опис доставки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Цю гирю доставили вчора. Завершіть опис доставки.",
+            "feedbackByLocale": {
+              "ru": "Один предмет в прошлом: was.",
+              "uk": "Один предмет у минулому: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Цю гирю доставили вчора. Завершіть опис доставки.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was delivered.",
+              "uk": "Тут потрібна was delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте працівника, чи є легша.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте працівника, чи є легша.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a lighter one?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудника, есть ли более лёгкая.",
+          "uk": "Запитайте працівника, чи є легша."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "lighter",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leotard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leotard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i13:audio",
+          "transcript": "leotard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i13:r1",
+            "targetText": "leotard",
+            "meaningByLocale": {
+              "ru": "Гимнастический купальник: облегающая цельная одежда для гимнастики или танцев.",
+              "uk": "Гімнастичний купальник: обтислий суцільний одяг для гімнастики або танців."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leotard",
+          "definitionByLocale": {
+            "ru": "Гимнастический купальник: облегающая цельная одежда для гимнастики или танцев.",
+            "uk": "Гімнастичний купальник: обтислий суцільний одяг для гімнастики або танців."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i14:r1",
+          "text": "My leotard was found in the dance studio."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i14:r2",
+          "text": "My leotard was found in the changing room."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i14:r3",
+          "text": "My towel was found in the dance studio."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i14:audio",
+          "transcript": "My leotard was found in the dance studio."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i14:r1",
+            "targetText": "My leotard was found in the dance studio.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i14:r2",
+            "targetText": "My leotard was found in the changing room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i14:r3",
+            "targetText": "My towel was found in the dance studio.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My leotard was found in the dance studio.",
+              "uk": "У записі звучить My leotard was found in the dance studio."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My leotard was found in the dance studio.",
+              "uk": "У записі звучить My leotard was found in the dance studio."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Упізнали свою річ. Підтвердьте, що вона ваша.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Упізнали свою річ. Підтвердьте, що вона ваша.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i15:audio",
+          "transcript": "Yes, that is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yes, that is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора заняття вже почалося до вашого приходу. Доповніть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i16:r1",
+          "text": "started"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i16:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i16:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора заняття вже почалося до вашого приходу. Доповніть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера занятие уже началось к вашему приходу. Дополните более раннее действие.",
+          "uk": "Учора заняття вже почалося до вашого приходу. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "The class had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-10:i16:r1",
+            "text": "started"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i16:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i16:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Учора заняття вже почалося до вашого приходу. Доповніть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i16:r2",
+            "correct": false,
+            "testedDimension": "Учора заняття вже почалося до вашого приходу. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна started.",
+              "uk": "Після had потрібна started."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i16:r3",
+            "correct": false,
+            "testedDimension": "Учора заняття вже почалося до вашого приходу. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Для завершённого начала используем had started.",
+              "uk": "Для початку, що вже відбувся, використовуємо had started."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви хотіли б жити ближче до центру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б жити ближче до центру.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I lived closer.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы жить ближе к центру.",
+          "uk": "Ви хотіли б жити ближче до центру."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "lived",
+          "closer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i18:r1",
+          "text": "The floor was cleaned this morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i18:r2",
+          "text": "The floor was repaired this morning."
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i18:r3",
+          "text": "The roof was cleaned this morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i18:audio",
+          "transcript": "The floor was cleaned this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-10:i18:r1",
+            "targetText": "The floor was cleaned this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i18:r2",
+            "targetText": "The floor was repaired this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i18:r3",
+            "targetText": "The roof was cleaned this morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor was cleaned this morning.",
+              "uk": "У записі звучить The floor was cleaned this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor was cleaned this morning.",
+              "uk": "У записі звучить The floor was cleaned this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зберігають килимки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зберігають килимки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i19:audio",
+          "transcript": "The mats are kept near the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The mats are kept near the door.",
+        "orderedTokens": [
+          "The",
+          "mats",
+          "are",
+          "kept",
+          "near",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Речі знайдено. Скажіть, що тепер готові: сьогодні розминка почалася з пошуків сумки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-10:i20:audio"
+      ],
+      "accessibilityLabel": "Речі знайдено. Скажіть, що тепер готові: сьогодні розминка почалася з пошуків сумки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-10:i20:audio",
+          "transcript": "I am ready now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-10:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ці рушники перуть щодня. Виберіть форму для кількох рушників.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-10:i21:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i21:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-10:i21:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ці рушники перуть щодня. Виберіть форму для кількох рушників.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти полотенца стирают каждый день. Выберите форму для нескольких полотенец.",
+          "uk": "Ці рушники перуть щодня. Виберіть форму для кількох рушників."
+        },
+        "gappedTargetPhrase": "These towels ___ washed every day.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-10:i21:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i21:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i21:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ці рушники перуть щодня. Виберіть форму для кількох рушників.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-10:i21:r2",
+            "correct": false,
+            "testedDimension": "Ці рушники перуть щодня. Виберіть форму для кількох рушників.",
+            "feedbackByLocale": {
+              "ru": "Towels — несколько: are.",
+              "uk": "Towels — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-10:i21:r3",
+            "correct": false,
+            "testedDimension": "Ці рушники перуть щодня. Виберіть форму для кількох рушників.",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь are.",
+              "uk": "Am використовується з I; тут are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1858ac71f79b73108f301da315328e23bbad77963e79075a2dd77b222c6a079b"
+}

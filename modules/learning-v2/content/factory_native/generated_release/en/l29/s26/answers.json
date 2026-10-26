@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-26:i01",
+    "correctText": "The player who scored the goal is over there.",
+    "correctResponseId": "en:lesson-29:session-26:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i02",
+    "correctText": "captain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i03",
+    "correctText": "Who is the captain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i04",
+    "correctText": "The player who I know lives nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i05",
+    "correctText": "striker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i06",
+    "correctText": "The striker scored twice.",
+    "correctResponseId": "en:lesson-29:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i07",
+    "correctText": "scored",
+    "correctResponseId": "en:lesson-29:session-26:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i08",
+    "correctText": "What time does the match start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i09",
+    "correctText": "defender",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i10",
+    "correctText": "My brother is a defender.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i11",
+    "correctText": "I know",
+    "correctResponseId": "en:lesson-29:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i12",
+    "correctText": "What is the score?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i13",
+    "correctText": "midfielder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i14",
+    "correctText": "The midfielder passed the ball.",
+    "correctResponseId": "en:lesson-29:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i15",
+    "correctText": "en:lesson-29:session-26:i15:p1=captain\nen:lesson-29:session-26:i15:p2=striker\nen:lesson-29:session-26:i15:p3=defender\nen:lesson-29:session-26:i15:p4=midfielder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i16",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-26:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i17",
+    "correctText": "The striker scored twice.",
+    "correctResponseId": "en:lesson-29:session-26:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i18",
+    "correctText": "The game was stopped by the referee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i19",
+    "correctText": "Let us sit in the shade.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-26:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-26:i21",
+    "correctText": "Our team won the match.",
+    "correctResponseId": null
+  }
+]

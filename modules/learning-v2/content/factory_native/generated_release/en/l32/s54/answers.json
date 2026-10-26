@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-54:i01",
+    "correctText": "house",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i02",
+    "correctText": "The house is quiet, so it might be empty.",
+    "correctResponseId": "en:lesson-32:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i04",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i05",
+    "correctText": "The door can't be open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i06",
+    "correctText": "gift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i07",
+    "correctText": "The gift I brought is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i08",
+    "correctText": "brought",
+    "correctResponseId": "en:lesson-32:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i09",
+    "correctText": "The house is quiet, so it might be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i10",
+    "correctText": "It can’t be open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i12",
+    "correctText": "room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i13",
+    "correctText": "The room must be warm.",
+    "correctResponseId": "en:lesson-32:session-54:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i14",
+    "correctText": "The room must be warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i15",
+    "correctText": "This is the gift I brought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-54:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i17",
+    "correctText": "The house is quiet, so it might be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i18",
+    "correctText": "The house is quiet, so it might be empty.",
+    "correctResponseId": "en:lesson-32:session-54:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i19",
+    "correctText": "The door can't be open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-54:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-54:i21",
+    "correctText": "The house is quiet, so it could be empty.",
+    "correctResponseId": null
+  }
+]

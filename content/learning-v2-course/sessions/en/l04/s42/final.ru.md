@@ -12,12 +12,12 @@
 
 ### Дождь на остановке
 
-Вы стоите на остановке, дождь усиливается, а сумка уже совсем мокрая. Нужна крыша со скамейкой, чтобы спокойно переждать автобус. bus shelter — «остановочный павильон». Один павильон — Is there a bus shelter near here? — «Рядом есть остановочный павильон?»
+На остановке усиливается дождь, и вы ищете укрытие. Bus shelter — «остановочный павильон». Is there a bus shelter near here? — «Рядом есть остановочный павильон?» Начинаем вопрос с Is there, затем называем один павильон — a bus shelter — и добавляем near here: «здесь поблизости».
 
 **Сотрудник станции стоит рядом. Спросите его, есть ли рядом остановочный павильон.**
 
 - ✅ **Is there a bus shelter near here?**
-- ❌ There is a bus shelter near here? — *Вопрос о наличии начинают с Is there, а не с There is.*
+- ❌ Are there a bus shelter near here? — *С a bus shelter в единственном числе нужно Is there.*
 - ❌ Is there bus shelter near here? — *Павильон один, поэтому перед bus shelter нужно a.*
 
 ---
@@ -26,13 +26,13 @@
 
 ### Очередь у кассы
 
-У кассы длинная очередь, а поезд скоро уйдёт. Сотрудник говорит, что на платформе стоят аппараты, где билет покупают сами. ticket machine — «автомат для билетов». Вы не видите ни одного и спрашиваете про несколько: Are there any ticket machines on the platform?
+У кассы длинная очередь, а поезд скоро уйдёт. Вы хотите купить билет в автомате и уточняете у сотрудника, есть ли автоматы на платформе. Ticket machine — «автомат для билетов». Are there any ticket machines on the platform? — «На платформе есть автоматы для билетов?» Сначала ставим Are there, затем any ticket machines и место — on the platform. С ticket machines во множественном числе нужно are.
 
 **Спросите сотрудника, есть ли на платформе автоматы для билетов.**
 
 - ✅ **Are there any ticket machines on the platform?**
 - ❌ Is there any ticket machines on the platform? — *Автоматов несколько, поэтому вопрос начинают с Are there, а не с Is there.*
-- ❌ Are there any ticket machine on the platform? — *После any слово ставят во множественном числе: ticket machines.*
+- ❌ Are there any ticket machine on the platform? — *После Are there any здесь нужна форма множественного числа ticket machines.*
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Вход на платформу
 
-Сотрудник спрашивает, что вы видите у входа на платформу. Вы замечаете высокую вращающуюся перекладину, которая пропускает людей строго по одному. turnstile — «турникет». Он один, поэтому: There is a turnstile near the entrance — «Рядом со входом есть турникет».
+Сотрудник станции по телефону спрашивает, что вы видите возле входа. Вы замечаете турникет. Turnstile — «турникет». There is a turnstile near the entrance — «Возле входа есть турникет». Начинаем с There is, затем называем один предмет — a turnstile — и место: near the entrance.
 
 **Сотрудник ждёт ответа. Скажите ему, что рядом со входом есть турникет.**
 

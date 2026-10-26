@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять причину темноты, говорить о понимании ситуации и рассказывать о ремонте.",
+    "uk": "пояснювати причину темряви, говорити про розуміння ситуації й розповідати про ремонт."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почему в комнате было темно",
+        "uk": "Чому в кімнаті було темно"
+      },
+      "bodyByLocale": {
+        "ru": "Вечером вы вошли в комнату, где не работала лампа. Объясните: The room was dark because the lamp was broken — в комнате было темно, потому что лампа была сломана. Соберите The room was dark + because + the lamp was broken. После because идёт целая причина со своим участником the lamp и формой was.",
+        "uk": "Увечері ви зайшли до кімнати, де не працювала лампа. Поясніть: The room was dark because the lamp was broken — у кімнаті було темно, бо лампа була зламана. Складіть The room was dark + because + the lamp was broken. Після because йде ціла причина зі своїм учасником the lamp і формою was."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-30:intro1:r1",
+              "text": "The room was dark because the lamp was broken."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro1:r2",
+              "text": "The room was dark because of the lamp was broken."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro1:r3",
+              "text": "The room was dark because the lamp were broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-30:intro1:r1",
+              "text": "The room was dark because the lamp was broken."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro1:r2",
+              "text": "The room was dark because of the lamp was broken."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro1:r3",
+              "text": "The room was dark because the lamp were broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я понимаю, почему свет выключен",
+        "uk": "Я розумію, чому світло вимкнене"
+      },
+      "bodyByLocale": {
+        "ru": "Анна уже спит, и Бен выключил свет, чтобы ей не мешать. Вы понимаете причину: I understand why the light is off — я понимаю, почему свет выключен. Соберите I understand + why + the light + is off. После why сохраняем порядок the light is off.",
+        "uk": "Анна вже спить, і Бен вимкнув світло, щоб їй не заважати. Ви розумієте причину: I understand why the light is off — я розумію, чому світло вимкнене. Складіть I understand + why + the light + is off. Після why зберігаємо порядок the light is off."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-30:intro2:r1",
+              "text": "I understand why the light is off."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro2:r2",
+              "text": "I understand why is the light off."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro2:r3",
+              "text": "I understand why the light are off."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-30:intro2:r1",
+              "text": "I understand why the light is off."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro2:r2",
+              "text": "I understand why is the light off."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro2:r3",
+              "text": "I understand why the light are off."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто починил лампу",
+        "uk": "Хто полагодив лампу"
+      },
+      "bodyByLocale": {
+        "ru": "На следующий день лампа снова работает: её починил Бен. Начните с лампы: The lamp was fixed by Ben — лампу починил Бен. Соберите The lamp + was + fixed + by Ben. Was fixed показывает, что сделали с лампой; by Ben называет исполнителя.",
+        "uk": "Наступного дня лампа знову працює: її полагодив Бен. Почніть із лампи: The lamp was fixed by Ben — лампу полагодив Бен. Складіть The lamp + was + fixed + by Ben. Was fixed показує, що зробили з лампою; by Ben називає виконавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-30:intro3:r1",
+              "text": "The lamp was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro3:r2",
+              "text": "The lamp were fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro3:r3",
+              "text": "The lamp was fix by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-30:intro3:r1",
+              "text": "The lamp was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro3:r2",
+              "text": "The lamp were fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-30:intro3:r3",
+              "text": "The lamp was fix by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cd3b27208aa03ea98e544a81013071f546877f483f7c92cc6ed2b902b18e1a97"
+}

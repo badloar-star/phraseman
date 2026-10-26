@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-44:intro1:r2": {
+          "ru": "Needs не выполняет заданный сдвиг в прошлое.",
+          "uk": "Needs не виконує заданий зсув у минуле."
+        },
+        "en:lesson-30:session-44:intro1:r3": {
+          "ru": "Здесь нужна форма needed.",
+          "uk": "Тут потрібна форма needed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-44:intro2:r2": {
+          "ru": "После asked используем me.",
+          "uk": "Після asked використовуємо me."
+        },
+        "en:lesson-30:session-44:intro2:r3": {
+          "ru": "Перед close нужно to.",
+          "uk": "Перед close потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-44:intro3:r2": {
+          "ru": "Для такого желания используем were lighter.",
+          "uk": "Для такого бажання використовуємо were lighter."
+        },
+        "en:lesson-30:session-44:intro3:r3": {
+          "ru": "Здесь нужна форма were, не be.",
+          "uk": "Тут потрібна форма were, не be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a398fd03bd14f804cb91bec7d4ace4224deea64c9849ef2f3fa283b819eaae72"
+}

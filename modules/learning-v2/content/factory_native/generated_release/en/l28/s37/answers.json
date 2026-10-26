@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-37:i01",
+    "correctText": "Where is the entrance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i02",
+    "correctText": "inventor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i03",
+    "correctText": "The inventor lived in this town.",
+    "correctResponseId": "en:lesson-28:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i04",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-37:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i05",
+    "correctText": "The new room will be opened tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i06",
+    "correctText": "invention",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i07",
+    "correctText": "This is a useful invention.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i08",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i09",
+    "correctText": "The model was repaired yesterday.",
+    "correctResponseId": "en:lesson-28:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i10",
+    "correctText": "exhibit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i11",
+    "correctText": "How old is this exhibit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i12",
+    "correctText": "stayed",
+    "correctResponseId": "en:lesson-28:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i13",
+    "correctText": "The tour had started by the time I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i14",
+    "correctText": "interactive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i15",
+    "correctText": "This exhibit is interactive.",
+    "correctResponseId": "en:lesson-28:session-37:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i16",
+    "correctText": "en:lesson-28:session-37:i16:p1=inventor\nen:lesson-28:session-37:i16:p2=invention\nen:lesson-28:session-37:i16:p3=exhibit\nen:lesson-28:session-37:i16:p4=interactive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i17",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-37:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i18",
+    "correctText": "Can I take photos in this room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i19",
+    "correctText": "This door must be kept closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i20",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-37:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-37:i21",
+    "correctText": "What time does the museum close?",
+    "correctResponseId": null
+  }
+]

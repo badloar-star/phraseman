@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать звуки, уточнить их источник и договориться о дальнейших действиях.",
+    "uk": "як назвати звуки, уточнити їхнє джерело й домовитися про подальші дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какой стул шумит",
+        "uk": "Який стілець шумить"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед по комнате спрашивает, какой стул издаёт неприятный звук. Скажите: The chair that makes that noise is mine — стул, который издаёт этот звук, мой. Соберите The chair + that makes that noise + is mine. После The chair добавьте that makes that noise: это указывает на нужный стул. Затем закончите основную мысль словами is mine. Внутри уточнения that заменяет стул, поэтому it после него не добавляем.",
+        "uk": "Сусід по кімнаті запитує, який стілець видає неприємний звук. Скажіть: The chair that makes that noise is mine — стілець, який видає цей звук, мій. Складіть The chair + that makes that noise + is mine. Після The chair додайте that makes that noise: це вказує на потрібний стілець. Потім завершіть основну думку словами is mine. Усередині уточнення that замінює стілець, тому it після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-07:intro1:r1",
+              "text": "The chair that makes that noise is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro1:r2",
+              "text": "The chair that it makes that noise is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro1:r3",
+              "text": "The chair that make that noise is mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-07:intro1:r1",
+              "text": "The chair that makes that noise is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro1:r2",
+              "text": "The chair that it makes that noise is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro1:r3",
+              "text": "The chair that make that noise is mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто починил полку",
+        "uk": "Хто полагодив полицю"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, кто починил полку после её падения. Ответьте: The shelf was repaired by my neighbour — полку починил мой сосед. Соберите The shelf + was repaired + by my neighbour. После The shelf поставьте was и repaired, третью форму repair. Часть by my neighbour указывает человека, который выполнил ремонт.",
+        "uk": "Друг запитує, хто полагодив полицю після її падіння. Дайте відповідь: The shelf was repaired by my neighbour — полицю полагодив мій сусід. Складіть The shelf + was repaired + by my neighbour. Після The shelf поставте was та repaired, третю форму repair. Частина by my neighbour вказує людину, яка виконала ремонт."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-07:intro2:r1",
+              "text": "The shelf was repaired by my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro2:r2",
+              "text": "The shelf was repaired from my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro2:r3",
+              "text": "The shelf was repair by my neighbour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-07:intro2:r1",
+              "text": "The shelf was repaired by my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro2:r2",
+              "text": "The shelf was repaired from my neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro2:r3",
+              "text": "The shelf was repair by my neighbour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если шум продолжится",
+        "uk": "Якщо шум триватиме"
+      },
+      "bodyByLocale": {
+        "ru": "В съёмной квартире слышен постоянный шум, и вы решаете, когда позвонить хозяину. Скажите: If the noise continues, I will call the owner — если шум продолжится, я позвоню хозяину. Соберите If the noise continues + I will call the owner. В условии после If используйте continues. Во второй части поставьте I will call: это ваше действие при продолжении шума. Между частями нужна запятая.",
+        "uk": "В орендованій квартирі чути постійний шум, і ви вирішуєте, коли зателефонувати господареві. Скажіть: If the noise continues, I will call the owner — якщо шум триватиме, я зателефоную господареві. Складіть If the noise continues + I will call the owner. В умові після If використайте continues. У другій частині поставте I will call: це ваша дія, якщо шум не припиниться. Між частинами потрібна кома."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-07:intro3:r1",
+              "text": "If the noise continues, I will call the owner."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro3:r2",
+              "text": "If the noise will continue, I will call the owner."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro3:r3",
+              "text": "If the noise continues, I will called the owner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-07:intro3:r1",
+              "text": "If the noise continues, I will call the owner."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro3:r2",
+              "text": "If the noise will continue, I will call the owner."
+            },
+            {
+              "responseId": "en:lesson-29:session-07:intro3:r3",
+              "text": "If the noise continues, I will called the owner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ad14d4b7e21723f2a75ccde74d4d319c976db4d9ff54883af4bc2c42e6ce8472"
+}

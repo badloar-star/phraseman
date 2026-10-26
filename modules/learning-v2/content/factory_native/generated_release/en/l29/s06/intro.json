@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать занятия, узнать о тренере и свободных местах.",
+    "uk": "як назвати заняття, дізнатися про тренера й вільні місця."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти тренера",
+        "uk": "Знайти тренера"
+      },
+      "bodyByLocale": {
+        "ru": "На стойке спортивного центра вас спрашивают, кого вы ждёте. Ответьте: I am waiting for the coach who called me — я жду тренера, который мне позвонил. Соберите I am waiting for the coach + who called me. Сразу после the coach добавьте who called me: это уточняет нужного тренера. Who уже называет человека, который позвонил, поэтому he или she после него не добавляем.",
+        "uk": "На стійці спортивного центру вас запитують, кого ви чекаєте. Дайте відповідь: I am waiting for the coach who called me — я чекаю тренера, який мені зателефонував. Складіть I am waiting for the coach + who called me. Одразу після the coach додайте who called me: це уточнює потрібного тренера. Who вже називає людину, яка зателефонувала, тому he або she після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-06:intro1:r1",
+              "text": "I am waiting for the coach who called me."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro1:r2",
+              "text": "I am waiting for the coach who he called me."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro1:r3",
+              "text": "I am waiting for the coach which called me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-06:intro1:r1",
+              "text": "I am waiting for the coach who called me."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro1:r2",
+              "text": "I am waiting for the coach who he called me."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro1:r3",
+              "text": "I am waiting for the coach which called me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто проводит занятие",
+        "uk": "Хто проводить заняття"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте, кто ведёт занятие в спортивном центре. Сотрудник отвечает: The class is taught by a local coach — занятие проводит местный тренер. Соберите The class + is taught + by a local coach. После The class поставьте is и taught, третью форму teach. Часть by a local coach называет того, кто проводит занятие.",
+        "uk": "Ви дізнаєтеся, хто веде заняття в спортивному центрі. Працівник відповідає: The class is taught by a local coach — заняття проводить місцевий тренер. Складіть The class + is taught + by a local coach. Після The class поставте is та taught, третю форму teach. Частина by a local coach називає того, хто проводить заняття."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-06:intro2:r1",
+              "text": "The class is taught by a local coach."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro2:r2",
+              "text": "The class is taught from a local coach."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro2:r3",
+              "text": "The class is teach by a local coach."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-06:intro2:r1",
+              "text": "The class is taught by a local coach."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro2:r2",
+              "text": "The class is taught from a local coach."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro2:r3",
+              "text": "The class is teach by a local coach."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нет свободных мест",
+        "uk": "Немає вільних місць"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не знаете, есть ли места в выбранной группе. Скажите: If the class is full, I will choose another one — если группа заполнена, я выберу другую. Соберите If the class is full + I will choose another one. В условии после If поставьте is. Во второй части используйте I will choose: это ваше решение на случай отсутствия мест. Между частями поставьте запятую.",
+        "uk": "Ви ще не знаєте, чи є місця в обраній групі. Скажіть: If the class is full, I will choose another one — якщо група заповнена, я виберу іншу. Складіть If the class is full + I will choose another one. В умові після If поставте is. У другій частині використайте I will choose: це ваше рішення на випадок відсутності місць. Між частинами поставте кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-06:intro3:r1",
+              "text": "If the class is full, I will choose another one."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro3:r2",
+              "text": "If the class will be full, I will choose another one."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro3:r3",
+              "text": "If the class is full, I will chose another one."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-06:intro3:r1",
+              "text": "If the class is full, I will choose another one."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro3:r2",
+              "text": "If the class will be full, I will choose another one."
+            },
+            {
+              "responseId": "en:lesson-29:session-06:intro3:r3",
+              "text": "If the class is full, I will chose another one."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "274ac787a1bc0cf1797774417edb35bb27b8ff0522ed6a3a2cbc096b7eb81a54"
+}

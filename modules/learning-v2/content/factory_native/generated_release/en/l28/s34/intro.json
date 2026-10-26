@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "как говорить об авторах фильма, понять условия входа и обсудить показ.",
+    "uk": "як говорити про авторів фільму, зрозуміти умови входу й обговорити показ."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто сделал фильм",
+        "uk": "Хто зробив фільм"
+      },
+      "bodyByLocale": {
+        "ru": "Перед показом ведущая рассказывает о фильме: The film was made by local students — фильм сделали местные студенты. Соберите The film + was made + by + local students. The film was made описывает действие над фильмом. By local students называет тех, кто его сделал. Перед исполнителями нужна by; форма was относится к одному фильму, а не к числу студентов.",
+        "uk": "Перед показом ведуча розповідає про фільм: The film was made by local students — фільм зробили місцеві студенти. Складіть The film + was made + by + local students. The film was made описує дію над фільмом. By local students називає тих, хто його зробив. Перед виконавцями потрібна by; форма was стосується одного фільму, а не кількості студентів."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-34:intro1:r1",
+              "text": "The film was made by local students."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro1:r2",
+              "text": "The film was made of local students."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro1:r3",
+              "text": "The film was made local students."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-34:intro1:r1",
+              "text": "The film was made by local students."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro1:r2",
+              "text": "The film was made of local students."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro1:r3",
+              "text": "The film was made local students."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Билет нужно забронировать",
+        "uk": "Квиток потрібно забронювати"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите попасть на небольшой показ. На объявлении указано, что билеты необходимо забронировать заранее: Tickets must be booked — билеты необходимо забронировать. Начните с Tickets, затем must be, после него booked. Соберите Tickets + must + be + booked. Must передаёт требование организаторов; booked — форма book с окончанием -ed.",
+        "uk": "Ви хочете потрапити на невеликий показ. В оголошенні вказано, що квитки необхідно забронювати заздалегідь: Tickets must be booked — квитки необхідно забронювати. Почніть із Tickets, потім must be, після нього booked. Складіть Tickets + must + be + booked. Must передає вимогу організаторів; booked — форма book із закінченням -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-34:intro2:r1",
+              "text": "Tickets must be booked."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro2:r2",
+              "text": "Tickets must booked."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro2:r3",
+              "text": "Tickets must be book."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-34:intro2:r1",
+              "text": "Tickets must be booked."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro2:r2",
+              "text": "Tickets must booked."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro2:r3",
+              "text": "Tickets must be book."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мелкие субтитры",
+        "uk": "Дрібні субтитри"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сидите далеко от экрана и с трудом читаете субтитры. Скажите: I wish the subtitles were bigger — жаль, что субтитры не крупнее. Соберите I wish + the subtitles + were + bigger. После I wish назовите то, что хотели бы изменить: the subtitles. Were bigger выражает желаемую ситуацию сейчас, а не размер субтитров в прошлом.",
+        "uk": "Ви сидите далеко від екрана й насилу читаєте субтитри. Скажіть: I wish the subtitles were bigger — шкода, що субтитри не більші. Складіть I wish + the subtitles + were + bigger. Після I wish назвіть те, що хотіли б змінити: the subtitles. Were bigger виражає бажану ситуацію зараз, а не розмір субтитрів у минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-34:intro3:r1",
+              "text": "I wish the subtitles were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro3:r2",
+              "text": "I wish the subtitles are bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro3:r3",
+              "text": "I wish the subtitles will be bigger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-34:intro3:r1",
+              "text": "I wish the subtitles were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro3:r2",
+              "text": "I wish the subtitles are bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-34:intro3:r3",
+              "text": "I wish the subtitles will be bigger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "18b78bc1d64f0e4c9ff35a61d4e564289282525b540697a335474b104d0680f2"
+}

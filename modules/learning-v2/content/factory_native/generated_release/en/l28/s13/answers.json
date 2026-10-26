@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-13:i01",
+    "correctText": "subtitles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i02",
+    "correctText": "Does the film have subtitles?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i03",
+    "correctText": "Tickets are checked at the entrance.",
+    "correctResponseId": "en:lesson-28:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i04",
+    "correctText": "Two tickets, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i05",
+    "correctText": "sitcom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i07",
+    "correctText": "Can we sit together?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i08",
+    "correctText": "What time does the film start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i09",
+    "correctText": "interval",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i10",
+    "correctText": "There is a short interval halfway through.",
+    "correctResponseId": "en:lesson-28:session-13:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i12",
+    "correctText": "The tickets had sold out by the time we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i13",
+    "correctText": "animation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i14",
+    "correctText": "The animation is beautiful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i15",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-13:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i16",
+    "correctText": "The film was shown yesterday.",
+    "correctResponseId": "en:lesson-28:session-13:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i17",
+    "correctText": "I wish the sound were louder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i18",
+    "correctText": "Excuse me, may I get past?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i19",
+    "correctText": "started",
+    "correctResponseId": "en:lesson-28:session-13:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i20",
+    "correctText": "The film was made near my home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-13:i21",
+    "correctText": "Did you enjoy the film?",
+    "correctResponseId": null
+  }
+]

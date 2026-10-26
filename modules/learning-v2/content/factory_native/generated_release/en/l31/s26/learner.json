@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hungry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hungry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i01:audio",
+          "transcript": "hungry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-26:i01:r1",
+            "targetText": "hungry",
+            "meaningByLocale": {
+              "ru": "Голодный. Повторение знакомого слова.",
+              "uk": "Голодний. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hungry",
+          "definitionByLocale": {
+            "ru": "Голодный. Повторение знакомого слова.",
+            "uk": "Голодний. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i02:r1",
+          "text": "I ate because I was hungry."
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i02:r2",
+          "text": "I ate because I was bored."
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i02:r3",
+          "text": "I ate because I was cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i02:audio",
+          "transcript": "I ate because I was hungry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-26:i02:r1",
+            "targetText": "I ate because I was hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i02:r2",
+            "targetText": "I ate because I was bored.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i02:r3",
+            "targetText": "I ate because I was cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I ate because I was hungry.",
+              "uk": "У записі звучить I ate because I was hungry."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I ate because I was hungry.",
+              "uk": "У записі звучить I ate because I was hungry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы поели, потому что были голодны. Выберите связку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i03:r1",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i03:r2",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы поели, потому что были голодны. Выберите связку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поели, потому что были голодны. Выберите связку.",
+          "uk": "Ви поїли, бо були голодні. Виберіть сполучник."
+        },
+        "gappedTargetPhrase": "I ate ___ I was hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-26:i03:r1",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i03:r2",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Вы поели, потому что были голодны. Выберите связку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы поели, потому что были голодны. Выберите связку.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью I was hungry нужно because без of.",
+              "uk": "Перед цілою частиною I was hungry потрібне because без of."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы поели, потому что были голодны. Выберите связку.",
+            "feedbackByLocale": {
+              "ru": "Of не связывает эти части.",
+              "uk": "Of не пов’язує ці частини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i04:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-26:i04:r1",
+            "targetText": "soup",
+            "meaningByLocale": {
+              "ru": "Суп. Повторение знакомого слова.",
+              "uk": "Суп. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soup",
+          "definitionByLocale": {
+            "ru": "Суп. Повторение знакомого слова.",
+            "uk": "Суп. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Суп готов. Добавьте отрицательное уточнение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп готов. Добавьте отрицательное уточнение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soup is ready, isn't it?",
+        "localizedMeaning": {
+          "ru": "Суп готов. Добавьте отрицательное уточнение.",
+          "uk": "Суп готовий. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "soup",
+          "is",
+          "ready,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна приготовила суп. Начните с супа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Анна приготовила суп. Начните с супа.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i06:audio",
+          "transcript": "The soup was made by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soup was made by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the soup ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-26:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i07:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i07:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i08:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-26:i08:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где хлеб.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где хлеб.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the bread is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где хлеб.",
+          "uk": "Ввічливо запитайте, де хліб."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "bread",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что хлеб свежий. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что хлеб свежий. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i10:audio",
+          "transcript": "I know that the bread is fresh."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the bread is fresh.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна приготовила суп. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна приготовила суп. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна приготовила суп. Выберите предлог перед её именем.",
+          "uk": "Анна приготувала суп. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The soup was made ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-26:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна приготовила суп. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна приготовила суп. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна приготовила суп. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i12:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-26:i12:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "Уставший. Повторение знакомого слова.",
+              "uk": "Втомлений. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "Уставший. Повторение знакомого слова.",
+            "uk": "Втомлений. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i13:r1",
+          "text": "Ben left because he was tired."
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i13:r2",
+          "text": "Ben left because he was hungry."
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i13:r3",
+          "text": "Ben left because he was cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i13:audio",
+          "transcript": "Ben left because he was tired."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-26:i13:r1",
+            "targetText": "Ben left because he was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i13:r2",
+            "targetText": "Ben left because he was hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i13:r3",
+            "targetText": "Ben left because he was cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Ben left because he was tired.",
+              "uk": "У записі звучить Ben left because he was tired."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Ben left because he was tired.",
+              "uk": "У записі звучить Ben left because he was tired."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен сказал: «Я устал». Перескажите со сдвигом am в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Бен сказал: «Я устал». Перескажите со сдвигом am в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i14:audio",
+          "transcript": "He said he was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что понимаете, почему Бен ушёл.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что понимаете, почему Бен ушёл.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand why Ben left.",
+        "localizedMeaning": {
+          "ru": "Скажите, что понимаете, почему Бен ушёл.",
+          "uk": "Скажіть, що розумієте, чому Бен пішов."
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "Ben",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите друга, знает ли он, горячий ли суп.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i16:r1",
+          "text": "the soup is"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i16:r2",
+          "text": "is the soup"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i16:r3",
+          "text": "the soup are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга, знает ли он, горячий ли суп.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, горячий ли суп.",
+          "uk": "Запитайте друга, чи знає він, чи гарячий суп."
+        },
+        "gappedTargetPhrase": "Do you know if ___ hot?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-26:i16:r1",
+            "text": "the soup is"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i16:r2",
+            "text": "is the soup"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i16:r3",
+            "text": "the soup are"
+          }
+        ],
+        "testedDimension": "Спросите друга, знает ли он, горячий ли суп.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i16:r2",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, горячий ли суп.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the soup is.",
+              "uk": "Після if порядок the soup is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i16:r3",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, горячий ли суп.",
+            "feedbackByLocale": {
+              "ru": "Soup требует is.",
+              "uk": "Soup потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На улице дождь, и вы едите в помещении. Назовите дождь причиной.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "На улице дождь, и вы едите в помещении. Назовите дождь причиной.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i17:audio",
+          "transcript": "We are eating inside because of the rain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are eating inside because of the rain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: Бен ушёл, потому что устал или проголодался?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i18:r1",
+          "text": "Ben left because he was tired."
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i18:r2",
+          "text": "Ben left because he was hungry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i18:audioA",
+        "en:lesson-31:session-26:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: Бен ушёл, потому что устал или проголодался?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Ben left because he was tired.",
+        "contrastB": "Ben left because he was hungry.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-26:i18:audioA",
+          "transcript": "Ben left because he was tired."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-26:i18:audioB",
+          "transcript": "Ben left because he was hungry."
+        },
+        "testedPhoneticContrast": "Послушайте: Бен ушёл, потому что устал или проголодался?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: Бен ушёл, потому что устал или проголодался?",
+            "feedbackByLocale": {
+              "ru": "Звучит tired — устал.",
+              "uk": "Звучить tired — втомився."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину ухода Бена. Начните с Ben left.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину ухода Бена. Начните с Ben left.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i19:audio",
+          "transcript": "Ben left because he was tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ben left because he was tired.",
+        "orderedTokens": [
+          "Ben",
+          "left",
+          "because",
+          "he",
+          "was",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-26:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-26:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+          "uk": "Суп не холодний. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The soup isn't cold, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-26:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-26:i20:r2",
+            "correct": false,
+            "testedDimension": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Soup требует is.",
+              "uk": "Soup потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-26:i20:r3",
+            "correct": false,
+            "testedDimension": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Бен устал. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-26:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Бен устал. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-26:i21:audio",
+          "transcript": "I understand why Ben is tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Ben is tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "738018c2167fcadb972ac63348c871cc74e095b5a677f382b248a055bbdb7267"
+}

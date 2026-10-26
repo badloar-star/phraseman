@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-16:intro1:r2": {
+          "ru": "Перед dog для связи с владельцем нужна whose.",
+          "uk": "Перед dog для зв’язку з власником потрібна whose."
+        },
+        "en:lesson-29:session-16:intro1:r3": {
+          "ru": "Whose уже выражает принадлежность, his лишнее.",
+          "uk": "Whose вже виражає належність, his зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-16:intro2:r2": {
+          "ru": "Организатора вводит by.",
+          "uk": "Організатора позначає by."
+        },
+        "en:lesson-29:session-16:intro2:r3": {
+          "ru": "После was здесь нужна organised.",
+          "uk": "Після was тут потрібна organised."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-16:intro3:r2": {
+          "ru": "В этом условии после if используем get без will.",
+          "uk": "У цій умові після if використовуємо get без will."
+        },
+        "en:lesson-29:session-16:intro3:r3": {
+          "ru": "После will нужна начальная форма go.",
+          "uk": "Після will потрібна початкова форма go."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "38225d1e3e330cfb7e31c073299f421bed881ad9cf24d5a9e86cc72158b144f5"
+}

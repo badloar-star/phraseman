@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — subtitles",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — subtitles",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i01:audio",
+          "transcript": "subtitles"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i01:r1",
+            "targetText": "subtitles",
+            "meaningByLocale": {
+              "ru": "Субтитры: текст реплик на экране. Это форма множественного числа; один субтитр — a subtitle.",
+              "uk": "Субтитри: текст реплік на екрані. Це форма множини; один субтитр — a subtitle."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "subtitles",
+          "definitionByLocale": {
+            "ru": "Субтитры: текст реплик на экране. Это форма множественного числа; один субтитр — a subtitle.",
+            "uk": "Субтитри: текст реплік на екрані. Це форма множини; один субтитр — a subtitle."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть, чи є у фільму субтитри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи є у фільму субтитри.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does the film have subtitles?",
+        "localizedMeaning": {
+          "ru": "Уточните, есть ли у фильма субтитры.",
+          "uk": "Уточніть, чи є у фільму субтитри."
+        },
+        "orderedTokens": [
+          "Does",
+          "the",
+          "film",
+          "have",
+          "subtitles"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i03:r1",
+          "text": "Tickets are checked at the entrance."
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i03:r2",
+          "text": "Tickets are checked at the exit."
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i03:r3",
+          "text": "Bags are checked at the entrance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i03:audio",
+          "transcript": "Tickets are checked at the entrance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i03:r1",
+            "targetText": "Tickets are checked at the entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i03:r2",
+            "targetText": "Tickets are checked at the exit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i03:r3",
+            "targetText": "Bags are checked at the entrance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Tickets are checked at the entrance.",
+              "uk": "У записі звучить Tickets are checked at the entrance."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Tickets are checked at the entrance.",
+              "uk": "У записі звучить Tickets are checked at the entrance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть два квитки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i04:audio"
+      ],
+      "accessibilityLabel": "Попросіть два квитки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i04:audio",
+          "transcript": "Two tickets, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Two tickets, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sitcom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sitcom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i05:audio",
+          "transcript": "sitcom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i05:r1",
+            "targetText": "sitcom",
+            "meaningByLocale": {
+              "ru": "Ситком: комедийный сериал с постоянными героями.",
+              "uk": "Ситком: комедійний серіал із постійними героями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sitcom",
+          "definitionByLocale": {
+            "ru": "Ситком: комедийный сериал с постоянными героями.",
+            "uk": "Ситком: комедійний серіал із постійними героями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви розповідаєте про ситком, знятий минулого року.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розповідаєте про ситком, знятий минулого року.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете о ситкоме, снятом в прошлом году.",
+          "uk": "Ви розповідаєте про ситком, знятий минулого року."
+        },
+        "gappedTargetPhrase": "This sitcom ___ made last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-13:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви розповідаєте про ситком, знятий минулого року.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про ситком, знятий минулого року.",
+            "feedbackByLocale": {
+              "ru": "Один сериал в прошлом: was.",
+              "uk": "Один серіал у минулому: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про ситком, знятий минулого року.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was made.",
+              "uk": "Тут потрібна was made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про те, чи можна сісти поруч.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про те, чи можна сісти поруч.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i07:audio",
+          "transcript": "Can we sit together?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can we sit together?",
+        "orderedTokens": [
+          "Can",
+          "we",
+          "sit",
+          "together"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, коли починається фільм.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Запитайте, коли починається фільм.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i08:audio",
+          "transcript": "What time does the film start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time does the film start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — interval",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — interval",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i09:audio",
+          "transcript": "interval"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i09:r1",
+            "targetText": "interval",
+            "meaningByLocale": {
+              "ru": "Перерыв между частями представления или показа.",
+              "uk": "Перерва між частинами вистави або показу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interval",
+          "definitionByLocale": {
+            "ru": "Перерыв между частями представления или показа.",
+            "uk": "Перерва між частинами вистави або показу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i10:r1",
+          "text": "There is a short interval halfway through."
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i10:r2",
+          "text": "There is a long interval halfway through."
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i10:r3",
+          "text": "There is a short interview halfway through."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i10:audio",
+          "transcript": "There is a short interval halfway through."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i10:r1",
+            "targetText": "There is a short interval halfway through.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i10:r2",
+            "targetText": "There is a long interval halfway through.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i10:r3",
+            "targetText": "There is a short interview halfway through.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a short interval halfway through.",
+              "uk": "У записі звучить There is a short interval halfway through."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a short interval halfway through.",
+              "uk": "У записі звучить There is a short interval halfway through."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б зручніші крісла.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i11:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i11:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б зручніші крісла.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы более удобные кресла.",
+          "uk": "Ви хотіли б зручніші крісла."
+        },
+        "gappedTargetPhrase": "I wish the seats ___ more comfortable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-13:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i11:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i11:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви хотіли б зручніші крісла.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б зручніші крісла.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем после wish: were.",
+              "uk": "Бажання про теперішнє після wish: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б зручніші крісла.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Учора квитки продали до вашого приходу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора квитки продали до вашого приходу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tickets had sold out by the time we arrived.",
+        "localizedMeaning": {
+          "ru": "Вчера билеты продали до вашего прихода.",
+          "uk": "Учора квитки продали до вашого приходу."
+        },
+        "orderedTokens": [
+          "The",
+          "tickets",
+          "had",
+          "sold",
+          "out",
+          "by",
+          "the",
+          "time",
+          "we",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — animation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — animation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i13:audio",
+          "transcript": "animation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i13:r1",
+            "targetText": "animation",
+            "meaningByLocale": {
+              "ru": "Анимация: создание движущихся изображений; также такие изображения в фильме.",
+              "uk": "Анімація: створення рухомих зображень; також такі зображення у фільмі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "animation",
+          "definitionByLocale": {
+            "ru": "Анимация: создание движущихся изображений; также такие изображения в фильме.",
+            "uk": "Анімація: створення рухомих зображень; також такі зображення у фільмі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похваліть анімацію у фільмі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Похваліть анімацію у фільмі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i14:audio",
+          "transcript": "The animation is beautiful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The animation is beautiful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У цьому кінотеатрі квитки продають через інтернет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i15:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i15:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i15:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У цьому кінотеатрі квитки продають через інтернет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом кинотеатре билеты продают через интернет.",
+          "uk": "У цьому кінотеатрі квитки продають через інтернет."
+        },
+        "gappedTargetPhrase": "Tickets ___ sold online.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-13:i15:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i15:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i15:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "У цьому кінотеатрі квитки продають через інтернет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "У цьому кінотеатрі квитки продають через інтернет.",
+            "feedbackByLocale": {
+              "ru": "Tickets — несколько: are.",
+              "uk": "Tickets — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i15:r3",
+            "correct": false,
+            "testedDimension": "У цьому кінотеатрі квитки продають через інтернет.",
+            "feedbackByLocale": {
+              "ru": "Am подходит к I; здесь are.",
+              "uk": "Am підходить до I; тут are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i16:r1",
+          "text": "The film was shown yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i16:r2",
+          "text": "The film was shown last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i16:r3",
+          "text": "The play was shown yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i16:audio",
+          "transcript": "The film was shown yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-13:i16:r1",
+            "targetText": "The film was shown yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i16:r2",
+            "targetText": "The film was shown last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i16:r3",
+            "targetText": "The play was shown yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The film was shown yesterday.",
+              "uk": "У записі звучить The film was shown yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The film was shown yesterday.",
+              "uk": "У записі звучить The film was shown yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви погано чуєте. Хотілося б гучнішого звуку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви погано чуєте. Хотілося б гучнішого звуку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish the sound were louder.",
+        "localizedMeaning": {
+          "ru": "Вы плохо слышите. Хотелось бы более громкого звука.",
+          "uk": "Ви погано чуєте. Хотілося б гучнішого звуку."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "the",
+          "sound",
+          "were",
+          "louder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сусіда пропустити вас до місця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i18:audio"
+      ],
+      "accessibilityLabel": "Попросіть сусіда пропустити вас до місця.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i18:audio",
+          "transcript": "Excuse me, may I get past?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me, may I get past?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фільм уже почався до вашого приходу вчора. Завершіть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-13:i19:r1",
+          "text": "started"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i19:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-28:session-13:i19:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фільм уже почався до вашого приходу вчора. Завершіть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Фильм уже начался к вашему приходу вчера. Завершите более раннее действие.",
+          "uk": "Фільм уже почався до вашого приходу вчора. Завершіть ранішу дію."
+        },
+        "gappedTargetPhrase": "The film had ___ by the time we arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-13:i19:r1",
+            "text": "started"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i19:r2",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i19:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Фільм уже почався до вашого приходу вчора. Завершіть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-13:i19:r2",
+            "correct": false,
+            "testedDimension": "Фільм уже почався до вашого приходу вчора. Завершіть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна started.",
+              "uk": "Після had потрібна started."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-13:i19:r3",
+            "correct": false,
+            "testedDimension": "Фільм уже почався до вашого приходу вчора. Завершіть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had started.",
+              "uk": "Тут використовуємо had started."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зняли фільм.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зняли фільм.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i20:audio",
+          "transcript": "The film was made near my home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The film was made near my home.",
+        "orderedTokens": [
+          "The",
+          "film",
+          "was",
+          "made",
+          "near",
+          "my",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після сеансу запитайте друга про враження.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-13:i21:audio"
+      ],
+      "accessibilityLabel": "Після сеансу запитайте друга про враження.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-13:i21:audio",
+          "transcript": "Did you enjoy the film?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you enjoy the film?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "16668b280703ec43896530ad82e9cede41b5e6d5de6c6e4108b2b38326fa34b7"
+}

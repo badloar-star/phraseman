@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "как попросить заштопать носок, временно закрепить ткань, найти шпульку и объяснить задачу швее.",
+    "uk": "як попросити заштопати шкарпетку, тимчасово закріпити тканину, знайти шпульку та пояснити завдання швачці."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Носок, который вы починили",
+        "uk": "Шкарпетка, яку ви полагодили"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре починенный носок. Скажите: The sock I repaired is ready — носок, который я починил, готов. Соберите The sock + I repaired + is ready. I называет того, кто чинил, а sock — починенную вещь. Поэтому that перед I можно опустить; it после repaired не добавляем.",
+        "uk": "Ви показуєте сестрі полагоджену шкарпетку. Скажіть: The sock I repaired is ready — шкарпетка, яку я полагодив, готова. Складіть The sock + I repaired + is ready. I називає того, хто лагодив, а sock — полагоджену річ. Тому that перед I можна пропустити; it після repaired не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-52:intro1:r1",
+              "text": "The sock I repaired is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro1:r2",
+              "text": "The sock I repaired it is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro1:r3",
+              "text": "The sock me repaired is ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-52:intro1:r1",
+              "text": "The sock I repaired is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro1:r2",
+              "text": "The sock I repaired it is ready."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro1:r3",
+              "text": "The sock me repaired is ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто укоротил рукава",
+        "uk": "Хто вкоротив рукави"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре женщину, которая укоротила вам рукава. Скажите: She is the woman who shortened my sleeves — это женщина, которая укоротила мои рукава. Соберите She is the woman + who shortened my sleeves. Who здесь обозначает того, кто выполнил действие. Поэтому who оставляем, а she после него не добавляем.",
+        "uk": "Ви показуєте сестрі жінку, яка вкоротила вам рукави. Скажіть: She is the woman who shortened my sleeves — це жінка, яка вкоротила мої рукави. Складіть She is the woman + who shortened my sleeves. Who тут позначає того, хто виконав дію. Тому who залишаємо, а she після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-52:intro2:r1",
+              "text": "She is the woman who shortened my sleeves."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro2:r2",
+              "text": "She is the woman shortened my sleeves."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro2:r3",
+              "text": "She is the woman who she shortened my sleeves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-52:intro2:r1",
+              "text": "She is the woman who shortened my sleeves."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro2:r2",
+              "text": "She is the woman shortened my sleeves."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro2:r3",
+              "text": "She is the woman who she shortened my sleeves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Куда отнести куртку",
+        "uk": "Куди віднести куртку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет починить куртку, и вы показываете мастерскую, где чинят одежду. Скажите: This is the shop where they repair clothes — это мастерская, где чинят одежду. Соберите This is the shop + where + they repair clothes. Where связывает действие с местом. После where сохраняем порядок they repair clothes, без вопросительного do.",
+        "uk": "Друг хоче полагодити куртку, і ви показуєте майстерню, де лагодять одяг. Скажіть: This is the shop where they repair clothes — це майстерня, де лагодять одяг. Складіть This is the shop + where + they repair clothes. Where пов’язує дію з місцем. Після where зберігаємо порядок they repair clothes, без питального do."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-52:intro3:r1",
+              "text": "This is the shop where they repair clothes."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro3:r2",
+              "text": "This is the shop where do they repair clothes."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro3:r3",
+              "text": "This is the shop who they repair clothes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-52:intro3:r1",
+              "text": "This is the shop where they repair clothes."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro3:r2",
+              "text": "This is the shop where do they repair clothes."
+            },
+            {
+              "responseId": "en:lesson-29:session-52:intro3:r3",
+              "text": "This is the shop who they repair clothes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1892e7a063fd36485b0b5e4316148cb598cda1733db88cea3f1ebaba497929ba"
+}

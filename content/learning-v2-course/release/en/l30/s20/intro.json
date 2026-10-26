@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать просьбы и вопросы, уточнять предмет; повторите сообщения и желание.",
+    "uk": "переказувати прохання й запитання, уточнювати предмет; повторите повідомлення та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Передать просьбу продавца",
+        "uk": "Передати прохання продавця"
+      },
+      "bodyByLocale": {
+        "ru": "Вы принесли в магазин неисправный чайник. Продавец попросил вас показать чек. Расскажите другу: He asked me to show the receipt — он попросил меня показать чек. Соберите He + asked + me + to show the receipt. Me обозначает вас, к кому обратились. После этого ставим to и действие show.",
+        "uk": "Ви принесли до магазину несправний чайник. Продавець попросив вас показати чек. Розкажіть другові: He asked me to show the receipt — він попросив мене показати чек. Складіть He + asked + me + to show the receipt. Me позначає вас, до кого звернулися. Після цього ставимо to й дію show."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-20:intro1:r1",
+              "text": "He asked me to show the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro1:r2",
+              "text": "He asked me show the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro1:r3",
+              "text": "He asked I to show the receipt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-20:intro1:r1",
+              "text": "He asked me to show the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro1:r2",
+              "text": "He asked me show the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro1:r3",
+              "text": "He asked I to show the receipt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить, какой чайник",
+        "uk": "Уточнити, який чайник"
+      },
+      "bodyByLocale": {
+        "ru": "У продавца несколько чайников. Уточните, что сломан именно тот, который вы купили: The kettle I bought is broken — чайник, который я купил, сломан. Соберите The kettle + I bought + is broken. В части I bought уже есть тот, кто покупал: I. Слово that перед I можно опустить, потому что kettle здесь обозначает купленный предмет.",
+        "uk": "У продавця кілька чайників. Уточніть, що зламаний саме той, який ви купили: The kettle I bought is broken — чайник, який я купив, зламаний. Складіть The kettle + I bought + is broken. У частині I bought уже є той, хто купував: I. Слово that перед I можна опустити, бо kettle тут позначає куплений предмет."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-20:intro2:r1",
+              "text": "The kettle I bought is broken."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro2:r2",
+              "text": "The kettle bought I is broken."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro2:r3",
+              "text": "The kettle I bought are broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-20:intro2:r1",
+              "text": "The kettle I bought is broken."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro2:r2",
+              "text": "The kettle bought I is broken."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro2:r3",
+              "text": "The kettle I bought are broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Передать вопрос о чеке",
+        "uk": "Передати запитання про чек"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец спросил вас, есть ли у вас чек. Вечером расскажите об этом другу: He asked if I had the receipt — он спросил, был ли у меня чек. Соберите He + asked + if + I + had the receipt. If вводит вопрос «есть ли», а дальше идёт обычный порядок: I перед had.",
+        "uk": "Продавець запитав вас, чи є у вас чек. Увечері розкажіть про це другові: He asked if I had the receipt — він запитав, чи був у мене чек. Складіть He + asked + if + I + had the receipt. If вводить запитання «чи є», а далі йде звичайний порядок: I перед had."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-20:intro3:r1",
+              "text": "He asked if I had the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro3:r2",
+              "text": "He asked if did I have the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro3:r3",
+              "text": "He asked if me had the receipt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-20:intro3:r1",
+              "text": "He asked if I had the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro3:r2",
+              "text": "He asked if did I have the receipt."
+            },
+            {
+              "responseId": "en:lesson-30:session-20:intro3:r3",
+              "text": "He asked if me had the receipt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2cf5c1bd068e13187290b3ad901941cf1ce27ee2b2a6139e01ec3ce5d2106fc5"
+}

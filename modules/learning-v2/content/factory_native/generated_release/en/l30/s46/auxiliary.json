@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-46:intro1:r2": {
+          "ru": "Is не выполняет заданный сдвиг.",
+          "uk": "Is не виконує заданий зсув."
+        },
+        "en:lesson-30:session-46:intro1:r3": {
+          "ru": "Нужна форма was, не be.",
+          "uk": "Потрібна форма was, не be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-46:intro2:r2": {
+          "ru": "После asked нужно me.",
+          "uk": "Після asked потрібне me."
+        },
+        "en:lesson-30:session-46:intro2:r3": {
+          "ru": "После asked me перед spell нужно to.",
+          "uk": "Після asked me перед spell потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-46:intro3:r2": {
+          "ru": "В пересказе нужен порядок I lived, без did.",
+          "uk": "У переказі потрібен порядок I lived, без did."
+        },
+        "en:lesson-30:session-46:intro3:r3": {
+          "ru": "Нужна форма lived, не living.",
+          "uk": "Потрібна форма lived, не living."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b74842ac823f136d7a52d91025514e89e68ce1efdf2723dfc78c6048b425dc54"
+}

@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pickle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pickle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i01:audio",
+          "transcript": "pickle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-12:i01:r1",
+            "targetText": "pickle",
+            "meaningByLocale": {
+              "ru": "Маринованный огурец. В этом значении слово особенно часто используют при заказе бутербродов и бургеров.",
+              "uk": "Маринований огірок. У цьому значенні слово особливо часто використовують, замовляючи бутерброди й бургери."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pickle",
+          "definitionByLocale": {
+            "ru": "Маринованный огурец. В этом значении слово особенно часто используют при заказе бутербродов и бургеров.",
+            "uk": "Маринований огірок. У цьому значенні слово особливо часто використовують, замовляючи бутерброди й бургери."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i02:r1",
+          "text": "Could I have a pickle with my sandwich?"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i02:r2",
+          "text": "Could I have a tomato with my sandwich?"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i02:r3",
+          "text": "Could I have a pickle with my salad?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i02:audio",
+          "transcript": "Could I have a pickle with my sandwich?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-12:i02:r1",
+            "targetText": "Could I have a pickle with my sandwich?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i02:r2",
+            "targetText": "Could I have a tomato with my sandwich?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i02:r3",
+            "targetText": "Could I have a pickle with my salad?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I have a pickle with my sandwich?",
+              "uk": "У записі звучить Could I have a pickle with my sandwich?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could I have a pickle with my sandwich?",
+              "uk": "У записі звучить Could I have a pickle with my sandwich?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите назвать владельца миски.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите назвать владельца миски.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i03:audio",
+          "transcript": "Whose bowl is this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose bowl is this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ищете женщину, чья миска на столе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i04:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i04:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i04:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете женщину, чья миска на столе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете женщину, чья миска на столе.",
+          "uk": "Ви шукаєте жінку, чия миска на столі."
+        },
+        "gappedTargetPhrase": "Who is the woman ___ bowl is on the table?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-12:i04:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i04:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i04:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Вы ищете женщину, чья миска на столе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы ищете женщину, чья миска на столе.",
+            "feedbackByLocale": {
+              "ru": "Для связи владельца с bowl нужна whose.",
+              "uk": "Для зв’язку власника з bowl потрібна whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы ищете женщину, чья миска на столе.",
+            "feedbackByLocale": {
+              "ru": "Her не добавляем: whose уже выражает принадлежность.",
+              "uk": "Her не додаємо: whose вже виражає належність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sauerkraut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sauerkraut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i05:audio",
+          "transcript": "sauerkraut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-12:i05:r1",
+            "targetText": "sauerkraut",
+            "meaningByLocale": {
+              "ru": "Квашеная капуста. Нарезанная капуста с кислым вкусом, полученным при брожении.",
+              "uk": "Квашена капуста. Нарізана капуста з кислим смаком, отриманим під час бродіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sauerkraut",
+          "definitionByLocale": {
+            "ru": "Квашеная капуста. Нарезанная капуста с кислым вкусом, полученным при брожении.",
+            "uk": "Квашена капуста. Нарізана капуста з кислим смаком, отриманим під час бродіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите гостю квашеную капусту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Предложите гостю квашеную капусту.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i06:audio",
+          "transcript": "Would you like some sauerkraut?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you like some sauerkraut?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто приготовил салат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто приготовил салат.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i07:audio",
+          "transcript": "The salad was made by my friend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The salad was made by my friend.",
+        "orderedTokens": [
+          "The",
+          "salad",
+          "was",
+          "made",
+          "by",
+          "my",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы слышите о миске или тарелке?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i08:r1",
+          "text": "The woman whose bowl is here is outside."
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i08:r2",
+          "text": "The woman whose plate is here is outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i08:audioA",
+        "en:lesson-29:session-12:i08:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы слышите о миске или тарелке?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The woman whose bowl is here is outside.",
+        "contrastB": "The woman whose plate is here is outside.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-12:i08:audioA",
+          "transcript": "The woman whose bowl is here is outside."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-12:i08:audioB",
+          "transcript": "The woman whose plate is here is outside."
+        },
+        "testedPhoneticContrast": "Послушайте: вы слышите о миске или тарелке?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы слышите о миске или тарелке?",
+            "feedbackByLocale": {
+              "ru": "В записи bowl — миска.",
+              "uk": "У записі bowl — миска."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tahini",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tahini",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i09:audio",
+          "transcript": "tahini"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-12:i09:r1",
+            "targetText": "tahini",
+            "meaningByLocale": {
+              "ru": "Кунжутная паста. Густая паста из измельчённых семян кунжута, которую добавляют в соусы и другие блюда.",
+              "uk": "Кунжутна паста. Густа паста з подрібненого насіння кунжуту, яку додають до соусів та інших страв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tahini",
+          "definitionByLocale": {
+            "ru": "Кунжутная паста. Густая паста из измельчённых семян кунжута, которую добавляют в соусы и другие блюда.",
+            "uk": "Кунжутна паста. Густа паста з подрібненого насіння кунжуту, яку додають до соусів та інших страв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите передать кунжутную пасту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите передать кунжутную пасту.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you pass the tahini?",
+        "localizedMeaning": {
+          "ru": "Попросите передать кунжутную пасту.",
+          "uk": "Попросіть передати кунжутну пасту."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "pass",
+          "the",
+          "tahini"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Салат приготовил ваш друг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i11:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i11:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Салат приготовил ваш друг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Салат приготовил ваш друг.",
+          "uk": "Салат приготував ваш друг."
+        },
+        "gappedTargetPhrase": "The salad was made ___ my friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-12:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i11:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i11:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Салат приготовил ваш друг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Салат приготовил ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия здесь вводит by.",
+              "uk": "Виконавця дії тут позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Салат приготовил ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Для человека, приготовившего салат, нужна by.",
+              "uk": "Для людини, яка приготувала салат, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i12:r1",
+          "text": "If we need more bread, I will bring some."
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i12:r2",
+          "text": "If we need more milk, I will bring some."
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i12:r3",
+          "text": "If we need more bread, I will buy some."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i12:audio",
+          "transcript": "If we need more bread, I will bring some."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-12:i12:r1",
+            "targetText": "If we need more bread, I will bring some.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i12:r2",
+            "targetText": "If we need more milk, I will bring some.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i12:r3",
+            "targetText": "If we need more bread, I will buy some.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит If we need more bread, I will bring some.",
+              "uk": "У записі звучить If we need more bread, I will bring some."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит If we need more bread, I will bring some.",
+              "uk": "У записі звучить If we need more bread, I will bring some."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vinaigrette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vinaigrette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i13:audio",
+          "transcript": "vinaigrette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-12:i13:r1",
+            "targetText": "vinaigrette",
+            "meaningByLocale": {
+              "ru": "Заправка из масла и уксуса. Жидкая заправка для салата; это не название свекольного салата.",
+              "uk": "Заправка з олії та оцту. Рідка заправка для салату; це не назва бурякового салату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vinaigrette",
+          "definitionByLocale": {
+            "ru": "Заправка из масла и уксуса. Жидкая заправка для салата; это не название свекольного салата.",
+            "uk": "Заправка з олії та оцту. Рідка заправка для салату; це не назва бурякового салату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что для салата есть заправка из масла и уксуса.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите, что для салата есть заправка из масла и уксуса.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i14:audio",
+          "transcript": "There is some vinaigrette for the salad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is some vinaigrette for the salad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините добавки с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините добавки с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-12:i15:p1",
+            "target": "pickle",
+            "meaningByLocale": {
+              "ru": "маринованный огурец",
+              "uk": "маринований огірок"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-12:i15:p2",
+            "target": "sauerkraut",
+            "meaningByLocale": {
+              "ru": "квашеная капуста",
+              "uk": "квашена капуста"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-12:i15:p3",
+            "target": "tahini",
+            "meaningByLocale": {
+              "ru": "кунжутная паста",
+              "uk": "кунжутна паста"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-12:i15:p4",
+            "target": "vinaigrette",
+            "meaningByLocale": {
+              "ru": "заправка из масла и уксуса",
+              "uk": "заправка з олії та оцту"
+            }
+          }
+        ],
+        "leftColumn": [
+          "pickle",
+          "sauerkraut",
+          "tahini",
+          "vinaigrette"
+        ],
+        "rightColumn": [
+          "маринованный огурец",
+          "квашеная капуста",
+          "кунжутная паста",
+          "заправка из масла и уксуса"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообещайте принести хлеб, если он понадобится.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i16:r1",
+          "text": "need"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i16:r2",
+          "text": "will need"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i16:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте принести хлеб, если он понадобится.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте принести хлеб, если он понадобится.",
+          "uk": "Пообіцяйте принести хліб, якщо він знадобиться."
+        },
+        "gappedTargetPhrase": "If we ___ more bread, I will bring some.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-12:i16:r1",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i16:r2",
+            "text": "will need"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i16:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Пообещайте принести хлеб, если он понадобится.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i16:r2",
+            "correct": false,
+            "testedDimension": "Пообещайте принести хлеб, если он понадобится.",
+            "feedbackByLocale": {
+              "ru": "После if здесь нужна need без will.",
+              "uk": "Після if тут потрібна need без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i16:r3",
+            "correct": false,
+            "testedDimension": "Пообещайте принести хлеб, если он понадобится.",
+            "feedbackByLocale": {
+              "ru": "В условии нужна личная форма need.",
+              "uk": "В умові потрібна особова форма need."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите заправку отдельно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите заправку отдельно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i17:audio",
+          "transcript": "Could I have the dressing on the side?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have the dressing on the side?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте просьбу о чистой ложке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте просьбу о чистой ложке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i18:audio",
+          "transcript": "Could you bring a clean spoon?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you bring a clean spoon?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "bring",
+          "a",
+          "clean",
+          "spoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, какой салат вы хотите: тот, который приготовил друг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-12:i19:r1",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i19:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-12:i19:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, какой салат вы хотите: тот, который приготовил друг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, какой салат вы хотите: тот, который приготовил друг.",
+          "uk": "Уточніть, який салат ви хочете: той, який приготував друг."
+        },
+        "gappedTargetPhrase": "I want the salad ___ was made by my friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-12:i19:r1",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i19:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i19:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточните, какой салат вы хотите: тот, который приготовил друг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-12:i19:r2",
+            "correct": false,
+            "testedDimension": "Уточните, какой салат вы хотите: тот, который приготовил друг.",
+            "feedbackByLocale": {
+              "ru": "Для салата как предмета используем that.",
+              "uk": "Для салату як предмета використовуємо that."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-12:i19:r3",
+            "correct": false,
+            "testedDimension": "Уточните, какой салат вы хотите: тот, который приготовил друг.",
+            "feedbackByLocale": {
+              "ru": "Здесь уточнение после the salad вводит that.",
+              "uk": "Тут уточнення після the salad вводить that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что сначала хотите маленькую порцию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что сначала хотите маленькую порцию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like a small portion first.",
+        "localizedMeaning": {
+          "ru": "Скажите, что сначала хотите маленькую порцию.",
+          "uk": "Скажіть, що спочатку хочете маленьку порцію."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "a small portion first"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-12:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите друга за обед.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-12:i21:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите друга за обед.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-12:i21:audio",
+          "transcript": "Thank you for bringing lunch."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for bringing lunch.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0f5bb68478f35bab801550209b8fb59a0b3edcb0e9cbd49dc232eab6392de291"
+}

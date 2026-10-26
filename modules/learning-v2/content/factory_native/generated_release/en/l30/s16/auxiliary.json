@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-16:intro1:r2": {
+          "ru": "В пересказе нужен порядок the bus was.",
+          "uk": "У переказі потрібен порядок the bus was."
+        },
+        "en:lesson-30:session-16:intro1:r3": {
+          "ru": "Один автобус: the bus was.",
+          "uk": "Один автобус: the bus was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-16:intro2:r2": {
+          "ru": "С she здесь нужна форма was.",
+          "uk": "Із she тут потрібна форма was."
+        },
+        "en:lesson-30:session-16:intro2:r3": {
+          "ru": "Нужна законченная часть she was cold.",
+          "uk": "Потрібна завершена частина she was cold."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-16:intro3:r2": {
+          "ru": "Для такого желания здесь используем were, не is.",
+          "uk": "Для такого бажання тут використовуємо were, не is."
+        },
+        "en:lesson-30:session-16:intro3:r3": {
+          "ru": "После it нужна форма were, не being.",
+          "uk": "Після it потрібна форма were, не being."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "94971f842b00a6abd23b52768998fd216c71b98568647584d90a0caa931c37ed"
+}

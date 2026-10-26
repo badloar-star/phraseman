@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-52:intro1:r2": {
+          "ru": "Нужна полная часть we waited.",
+          "uk": "Потрібна повна частина we waited."
+        },
+        "en:lesson-31:session-52:intro1:r3": {
+          "ru": "Для прошлого действия используем waited.",
+          "uk": "Для минулої дії використовуємо waited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-52:intro2:r2": {
+          "ru": "Для прошлого действия нужна форма sat.",
+          "uk": "Для минулої дії потрібна форма sat."
+        },
+        "en:lesson-31:session-52:intro2:r3": {
+          "ru": "После we и в прошлом используем sat.",
+          "uk": "Після we й у минулому використовуємо sat."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-52:intro3:r2": {
+          "ru": "После if порядок this table is free.",
+          "uk": "Після if порядок this table is free."
+        },
+        "en:lesson-31:session-52:intro3:r3": {
+          "ru": "Один table требует is.",
+          "uk": "Один table потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ce589cc70da2f5ebe10e6e1034c8121955d3561ef13fca0fd341936a07c8fe5d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "как описать работу с украшениями в настоящем, прошлом и будущем, выразить желание и связать события.",
+    "uk": "як описати роботу з прикрасами в теперішньому, минулому й майбутньому, висловити бажання та пов’язати події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кольцо после чистки",
+        "uk": "Каблучка після чищення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы забираете кольцо из мастерской и спрашиваете, почистили ли его. Сотрудник отвечает: Your ring was cleaned this morning — ваше кольцо почистили сегодня утром. Соберите Your ring + was cleaned + this morning. Ring — один предмет, поэтому was. Cleaned после was описывает выполненное действие над кольцом. Последняя часть указывает время.",
+        "uk": "Ви забираєте каблучку з майстерні й запитуєте, чи почистили її. Працівник відповідає: Your ring was cleaned this morning — вашу каблучку почистили сьогодні вранці. Складіть Your ring + was cleaned + this morning. Ring — один предмет, тому was. Cleaned після was описує виконану дію над каблучкою. Остання частина вказує час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-18:intro1:r1",
+              "text": "Your ring was cleaned this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro1:r2",
+              "text": "Your ring were cleaned this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro1:r3",
+              "text": "Your ring was cleaning this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-18:intro1:r1",
+              "text": "Your ring was cleaned this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro1:r2",
+              "text": "Your ring were cleaned this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro1:r3",
+              "text": "Your ring was cleaning this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ремонт завтра",
+        "uk": "Ремонт завтра"
+      },
+      "bodyByLocale": {
+        "ru": "Вы оставляете сломанный браслет в мастерской. Сотрудник обещает: The bracelet will be repaired tomorrow — браслет отремонтируют завтра. Соберите The bracelet + will be + repaired + tomorrow. Will be repaired говорит о будущем действии над браслетом. После will обязательно be, затем repaired — форма repair с окончанием -ed.",
+        "uk": "Ви залишаєте зламаний браслет у майстерні. Працівник обіцяє: The bracelet will be repaired tomorrow — браслет відремонтують завтра. Складіть The bracelet + will be + repaired + tomorrow. Will be repaired говорить про майбутню дію над браслетом. Після will обов’язково be, потім repaired — форма repair із закінченням -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-18:intro2:r1",
+              "text": "The bracelet will be repaired tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro2:r2",
+              "text": "The bracelet will repaired tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro2:r3",
+              "text": "The bracelet will be repair tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-18:intro2:r1",
+              "text": "The bracelet will be repaired tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro2:r2",
+              "text": "The bracelet will repaired tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro2:r3",
+              "text": "The bracelet will be repair tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Слишком дорого",
+        "uk": "Занадто дорого"
+      },
+      "bodyByLocale": {
+        "ru": "Вам понравилось кольцо, но оно дороже, чем вы рассчитывали. Скажите другу: I wish this ring were cheaper — хотелось бы, чтобы это кольцо стоило дешевле. Соберите I wish + this ring + were + cheaper. Were после I wish выражает желаемое положение сейчас. Cheaper — дешевле. Вы не рассказываете о прошлом, а выражаете желание.",
+        "uk": "Вам сподобалася каблучка, але вона дорожча, ніж ви розраховували. Скажіть другові: I wish this ring were cheaper — хотілося б, щоб ця каблучка коштувала дешевше. Складіть I wish + this ring + were + cheaper. Were після I wish виражає бажаний стан зараз. Cheaper — дешевша. Ви не розповідаєте про минуле, а висловлюєте бажання."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-18:intro3:r1",
+              "text": "I wish this ring were cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro3:r2",
+              "text": "I wish this ring is cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro3:r3",
+              "text": "I wish this ring be cheaper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-18:intro3:r1",
+              "text": "I wish this ring were cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro3:r2",
+              "text": "I wish this ring is cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-18:intro3:r3",
+              "text": "I wish this ring be cheaper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9f4e552144cd27fd1e2f3843f471e9c12e36ee3c65202d250db40025d94b4f2b"
+}

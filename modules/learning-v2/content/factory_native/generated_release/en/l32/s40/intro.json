@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Анна поднимает полотенце за край и удивляется его весу. Вы ещё не проверили, сухое ли оно. The towel is heavy, so it might be wet. — Полотенце тяжёлое, поэтому оно, возможно, мокрое. Соберите The towel is heavy + so + it might be wet. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием wet нужна связка be.",
+        "uk": "Анна піднімає рушник за край і дивується його вазі. Ви ще не перевірили, чи він сухий. The towel is heavy, so it might be wet. — Рушник важкий, тому він, можливо, мокрий. Складіть The towel is heavy + so + it might be wet. До so назвіть спостереження, після so — можливий висновок із might. Перед станом wet потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-40:intro1:r1",
+              "text": "The towel is heavy, so it might be wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro1:r2",
+              "text": "The towel is heavy, so it might is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro1:r3",
+              "text": "The towel is heavy, so it might to be wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-40:intro1:r1",
+              "text": "The towel is heavy, so it might be wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro1:r2",
+              "text": "The towel is heavy, so it might is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro1:r3",
+              "text": "The towel is heavy, so it might to be wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите, что вода доходит только до середины прозрачной бутылки. The bottle can't be full. — Бутылка не может быть полной. Соберите The bottle + can’t + be + full. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед full здесь нужна связка be.",
+        "uk": "Ви бачите, що вода сягає лише середини прозорої пляшки. The bottle can't be full. — Пляшка не може бути повною. Складіть The bottle + can’t + be + full. Спостереження виключає названий стан. Can’t виражає цей висновок; перед full тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-40:intro2:r1",
+              "text": "The bottle can't be full."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro2:r2",
+              "text": "The bottle can't is full."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro2:r3",
+              "text": "The bottle can't to be full."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-40:intro2:r1",
+              "text": "The bottle can't be full."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro2:r2",
+              "text": "The bottle can't is full."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro2:r3",
+              "text": "The bottle can't to be full."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The bag I packed is small. — Сумка, которую я собрал, маленькая. Соберите The bag + I packed + is small. Часть I packed уточняет bag. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The bag I packed is small. — Сумка, яку я зібрав, маленька. Складіть The bag + I packed + is small. Частина I packed уточнює bag. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-40:intro3:r1",
+              "text": "The bag I packed is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro3:r2",
+              "text": "The bag I packed it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro3:r3",
+              "text": "The bag I packing is small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-40:intro3:r1",
+              "text": "The bag I packed is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro3:r2",
+              "text": "The bag I packed it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-40:intro3:r3",
+              "text": "The bag I packing is small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf55ce318157999b0e32f23459e1cd13da89f78400a414a4799dc19e27cd0bf6"
+}

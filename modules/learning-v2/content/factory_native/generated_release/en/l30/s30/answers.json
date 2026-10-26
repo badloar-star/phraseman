@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-30:i01",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i02",
+    "correctText": "She asked me to buy some milk.",
+    "correctResponseId": "en:lesson-30:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i03",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i04",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i05",
+    "correctText": "He told me the bread was fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i06",
+    "correctText": "She asked me to take a bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i07",
+    "correctText": "list",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i08",
+    "correctText": "my list was",
+    "correctResponseId": "en:lesson-30:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i09",
+    "correctText": "The list I wrote is short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i10",
+    "correctText": "He asked if I needed a bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i11",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i12",
+    "correctText": "eggs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i13",
+    "correctText": "She asked me to buy six eggs.",
+    "correctResponseId": "en:lesson-30:session-30:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i14",
+    "correctText": "I wish the shop were closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i15",
+    "correctText": "The cheese I bought is tasty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i16",
+    "correctText": "not to buy",
+    "correctResponseId": "en:lesson-30:session-30:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i17",
+    "correctText": "He told me the apples were sweet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i18",
+    "correctText": "She asked me to pour the milk.",
+    "correctResponseId": "en:lesson-30:session-30:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i19",
+    "correctText": "He said the shop was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-30:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-30:i21",
+    "correctText": "He asked me to put the milk in the fridge.",
+    "correctResponseId": null
+  }
+]

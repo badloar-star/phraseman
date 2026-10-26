@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-36:intro1:r2": {
+          "ru": "Guitar уже называет одолженную вещь, it лишнее.",
+          "uk": "Guitar вже називає позичену річ, it зайве."
+        },
+        "en:lesson-29:session-36:intro1:r3": {
+          "ru": "Одолжили вы: I borrowed, не me borrowed.",
+          "uk": "Позичили ви: I borrowed, не me borrowed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-36:intro2:r2": {
+          "ru": "Чью гитару — whose guitar, не who guitar.",
+          "uk": "Чию гітару — whose guitar, не who guitar."
+        },
+        "en:lesson-29:session-36:intro2:r3": {
+          "ru": "Whose уже показывает принадлежность; his лишнее.",
+          "uk": "Whose вже показує належність; his зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-36:intro3:r2": {
+          "ru": "В уточнении нужно we played, без did.",
+          "uk": "В уточненні потрібне we played, без did."
+        },
+        "en:lesson-29:session-36:intro3:r3": {
+          "ru": "Для места выступления используем where.",
+          "uk": "Для місця виступу використовуємо where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "37262f96056f7c5d2de725dc12e4f02b155d44c268fb89bcfe0027ba4c5cfd25"
+}

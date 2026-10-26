@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-20:i01",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i02",
+    "correctText": "He asked me to show the receipt.",
+    "correctResponseId": "en:lesson-30:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i03",
+    "correctText": "to open",
+    "correctResponseId": "en:lesson-30:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i04",
+    "correctText": "broken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i05",
+    "correctText": "The kettle I bought is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i06",
+    "correctText": "He asked me to wait here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i07",
+    "correctText": "the box was",
+    "correctResponseId": "en:lesson-30:session-20:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i08",
+    "correctText": "He asked if I had the receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i09",
+    "correctText": "kettle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i10",
+    "correctText": "He told me not to use the kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i11",
+    "correctText": "refund",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i12",
+    "correctText": "I asked for a refund.",
+    "correctResponseId": "en:lesson-30:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i13",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-20:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i14",
+    "correctText": "He said the manager was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i15",
+    "correctText": "The receipt I brought is in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i16",
+    "correctText": "not to throw",
+    "correctResponseId": "en:lesson-30:session-20:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i17",
+    "correctText": "I wish I lived closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i18",
+    "correctText": "He asked me to wait.",
+    "correctResponseId": "en:lesson-30:session-20:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i19",
+    "correctText": "She said I could get a refund.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i20",
+    "correctText": "I was",
+    "correctResponseId": "en:lesson-30:session-20:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-20:i21",
+    "correctText": "She asked me to keep the receipt.",
+    "correctResponseId": null
+  }
+]

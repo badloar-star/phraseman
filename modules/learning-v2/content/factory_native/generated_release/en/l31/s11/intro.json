@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "уточнять детали короткими вопросами, спрашивать о месте и пересказывать слова.",
+    "uk": "уточнювати деталі короткими запитаннями, запитувати про місце й переказувати слова."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Суп горячий, правда?",
+        "uk": "Суп гарячий, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помогаете Анне накрыть на стол. От супа идёт пар, и вы уточняете: The soup is hot, isn’t it? — суп горячий, правда? Соберите The soup is hot + isn’t + it. После утверждения с is здесь ставим отрицательное isn’t. Soup заменяем на it.",
+        "uk": "Ви допомагаєте Анні накрити на стіл. Від супу йде пара, і ви уточнюєте: The soup is hot, isn’t it? — суп гарячий, правда? Складіть The soup is hot + isn’t + it. Після твердження з is тут ставимо заперечне isn’t. Soup замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-11:intro1:r1",
+              "text": "The soup is hot, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro1:r2",
+              "text": "The soup is hot, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro1:r3",
+              "text": "The soup is hot, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-11:intro1:r1",
+              "text": "The soup is hot, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro1:r2",
+              "text": "The soup is hot, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro1:r3",
+              "text": "The soup is hot, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где миски",
+        "uk": "Де миски"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите разлить суп и ищете миски. Спросите Анну: Do you know where the bowls are? — ты не знаешь, где миски? Соберите Do you know + where + the bowls + are. После where называем предметы перед are. Мисок несколько, поэтому are.",
+        "uk": "Ви хочете розлити суп і шукаєте миски. Запитайте Анну: Do you know where the bowls are? — ти не знаєш, де миски? Складіть Do you know + where + the bowls + are. Після where називаємо предмети перед are. Мисок кілька, тому are."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-11:intro2:r1",
+              "text": "Do you know where the bowls are?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro2:r2",
+              "text": "Do you know where are the bowls?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro2:r3",
+              "text": "Do you know where the bowls is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-11:intro2:r1",
+              "text": "Do you know where the bowls are?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro2:r2",
+              "text": "Do you know where are the bowls?"
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro2:r3",
+              "text": "Do you know where the bowls is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто приготовил суп",
+        "uk": "Хто приготував суп"
+      },
+      "bodyByLocale": {
+        "ru": "Анна приготовила суп. Расскажите гостю, начиная с супа: The soup was made by Anna — суп приготовила Анна. Соберите The soup + was + made + by Anna. Was made описывает действие над супом; made — форма make для этой конструкции. By Anna называет того, кто готовил.",
+        "uk": "Анна приготувала суп. Розкажіть гостю, починаючи із супу: The soup was made by Anna — суп приготувала Анна. Складіть The soup + was + made + by Anna. Was made описує дію над супом; made — форма make для цієї конструкції. By Anna називає того, хто готував."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-11:intro3:r1",
+              "text": "The soup was made by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro3:r2",
+              "text": "The soup was make by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro3:r3",
+              "text": "The soup were made by Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-11:intro3:r1",
+              "text": "The soup was made by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro3:r2",
+              "text": "The soup was make by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-11:intro3:r3",
+              "text": "The soup were made by Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "76b7ccbd1c84b3d9c3dfd7fc095835bbeeb436f5ac0264bd2c2fdd20f70e2ebc"
+}

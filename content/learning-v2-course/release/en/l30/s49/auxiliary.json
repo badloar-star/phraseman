@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-49:intro1:r2": {
+          "ru": "Is не выполняет заданный сдвиг.",
+          "uk": "Is не виконує заданий зсув."
+        },
+        "en:lesson-30:session-49:intro1:r3": {
+          "ru": "Нужна форма was.",
+          "uk": "Потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-49:intro2:r2": {
+          "ru": "После asked используем me.",
+          "uk": "Після asked використовуємо me."
+        },
+        "en:lesson-30:session-49:intro2:r3": {
+          "ru": "После asked me перед bring нужно to.",
+          "uk": "Після asked me перед bring потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-49:intro3:r2": {
+          "ru": "Для такого желания используем were warmer.",
+          "uk": "Для такого бажання використовуємо were warmer."
+        },
+        "en:lesson-30:session-49:intro3:r3": {
+          "ru": "Здесь нужна форма were.",
+          "uk": "Тут потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "07ae73ddd0c2796375bdfbfaa8a464670255491ebf01864f5b1d24a097b50f37"
+}

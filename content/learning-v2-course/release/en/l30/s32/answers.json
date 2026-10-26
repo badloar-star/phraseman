@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-32:i01",
+    "correctText": "dog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i02",
+    "correctText": "She told me the dog was friendly.",
+    "correctResponseId": "en:lesson-30:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i03",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i04",
+    "correctText": "lead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i05",
+    "correctText": "She asked me to take the lead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i06",
+    "correctText": "I asked him to help me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i07",
+    "correctText": "the lead was",
+    "correctResponseId": "en:lesson-30:session-32:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i08",
+    "correctText": "bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i09",
+    "correctText": "The bowl you gave me is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i10",
+    "correctText": "She asked me to fill the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i11",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-30:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i12",
+    "correctText": "gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i13",
+    "correctText": "She asked me to keep the gate closed.",
+    "correctResponseId": "en:lesson-30:session-32:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i14",
+    "correctText": "I wish the park were closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i15",
+    "correctText": "The ball I found is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i16",
+    "correctText": "not to open",
+    "correctResponseId": "en:lesson-30:session-32:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i17",
+    "correctText": "She asked if I needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i18",
+    "correctText": "She asked me to wash the bowl.",
+    "correctResponseId": "en:lesson-30:session-32:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i19",
+    "correctText": "She said the dog was asleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-32:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-32:i21",
+    "correctText": "She asked me to bring the lead back.",
+    "correctResponseId": null
+  }
+]

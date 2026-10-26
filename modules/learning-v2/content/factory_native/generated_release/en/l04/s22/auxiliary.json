@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro1:r2": {
-          "ru": "Морковок несколько, поэтому нужно aren't, а не isn't.",
-          "uk": "Морквин кілька, тому потрібно aren't, а не isn't."
+          "ru": "Carrots стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Carrots стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-22:intro1:r3": {
           "ru": "В отрицании вместо some нужно any: There aren't any carrots.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro2:r2": {
-          "ru": "Печенья несколько, поэтому на конце biscuits, а не biscuit.",
-          "uk": "Печива кілька, тому наприкінці biscuits, а не biscuit."
+          "ru": "После aren’t any здесь нужна форма множественного числа biscuits.",
+          "uk": "Після aren’t any тут потрібна форма множини biscuits."
         },
         "en:lesson-04:session-22:intro2:r3": {
           "ru": "Чтобы сказать «нет», нужно aren't: There aren't any biscuits.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro3:r2": {
-          "ru": "Сосисок несколько, поэтому нужно aren't, а не isn't.",
-          "uk": "Сосисок кілька, тому потрібно aren't, а не isn't."
+          "ru": "Sausages стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Sausages стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-22:intro3:r3": {
-          "ru": "Сосисок несколько, поэтому на конце sausages, а не sausage.",
-          "uk": "Сосисок кілька, тому наприкінці sausages, а не sausage."
+          "ru": "После aren’t any здесь нужна форма множественного числа sausages.",
+          "uk": "Після aren’t any тут потрібна форма множини sausages."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "613699e1f01603250736da24257c5cdb90943e24bfd6ed92cf2a6e0bf1afeaa4"
+  "auxiliaryFingerprint": "2fa0bf9b629ca7556dcc3307a5ca4abf681e8a24a736c29b7df07baae02c5849"
 }

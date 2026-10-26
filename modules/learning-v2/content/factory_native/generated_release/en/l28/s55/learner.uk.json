@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-55:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що у вас запис на третю годину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що у вас запис на третю годину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i01:audio",
+          "transcript": "I have an appointment at three."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have an appointment at three.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nailbrush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nailbrush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i02:audio",
+          "transcript": "nailbrush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-55:i02:r1",
+            "targetText": "nailbrush",
+            "meaningByLocale": {
+              "ru": "Щётка для ногтей. Небольшая щётка для очищения ногтей и кожи рядом с ними.",
+              "uk": "Щітка для нігтів. Невелика щітка для очищення нігтів і шкіри поряд із ними."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nailbrush",
+          "definitionByLocale": {
+            "ru": "Щётка для ногтей. Небольшая щётка для очищения ногтей и кожи рядом с ними.",
+            "uk": "Щітка для нігтів. Невелика щітка для очищення нігтів і шкіри поряд із ними."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть маленьку щітку для нігтів.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть маленьку щітку для нігтів.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a small nailbrush?",
+        "localizedMeaning": {
+          "ru": "Попросите маленькую щётку для ногтей.",
+          "uk": "Попросіть маленьку щітку для нігтів."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "small",
+          "nailbrush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чому перенесли ваш запис.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i04:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i04:r2",
+          "text": "did"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i04:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чому перенесли ваш запис.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, почему перенесли вашу запись.",
+          "uk": "Запитайте, чому перенесли ваш запис."
+        },
+        "gappedTargetPhrase": "Why ___ my appointment changed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-55:i04:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i04:r2",
+            "text": "did"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i04:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Запитайте, чому перенесли ваш запис.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чому перенесли ваш запис.",
+            "feedbackByLocale": {
+              "ru": "Пассив в прошедшем: was changed.",
+              "uk": "Пасив у минулому: was changed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чому перенесли ваш запис.",
+            "feedbackByLocale": {
+              "ru": "С одной записью my appointment нужна was.",
+              "uk": "З одним записом my appointment потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i05:r1",
+          "text": "The price is shown on the bottle."
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i05:r2",
+          "text": "The price is shown on the box."
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i05:r3",
+          "text": "The name is shown on the bottle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i05:audio",
+          "transcript": "The price is shown on the bottle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-55:i05:r1",
+            "targetText": "The price is shown on the bottle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i05:r2",
+            "targetText": "The price is shown on the box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i05:r3",
+            "targetText": "The name is shown on the bottle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The price is shown on the bottle.",
+              "uk": "У записі звучить The price is shown on the bottle."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The price is shown on the bottle.",
+              "uk": "У записі звучить The price is shown on the bottle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cuticle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cuticle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i06:audio",
+          "transcript": "cuticle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-55:i06:r1",
+            "targetText": "cuticle",
+            "meaningByLocale": {
+              "ru": "Кутикула. Тонкая кожица у основания ногтя.",
+              "uk": "Кутикула. Тонка шкірка біля основи нігтя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuticle",
+          "definitionByLocale": {
+            "ru": "Кутикула. Тонкая кожица у основания ногтя.",
+            "uk": "Кутикула. Тонка шкірка біля основи нігтя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи продають олію для кутикули.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи продають олію для кутикули.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i07:audio",
+          "transcript": "Do you sell cuticle oil?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you sell cuticle oil?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте обіцянку підтвердити запис.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте обіцянку підтвердити запис.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i08:audio",
+          "transcript": "Your appointment will be confirmed tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Your appointment will be confirmed tomorrow.",
+        "orderedTokens": [
+          "Your",
+          "appointment",
+          "will",
+          "be",
+          "confirmed",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи можна зняти старий колір.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i09:r1",
+          "text": "removed"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i09:r2",
+          "text": "remove"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i09:r3",
+          "text": "removing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна зняти старий колір.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли снять старый цвет.",
+          "uk": "Запитайте, чи можна зняти старий колір."
+        },
+        "gappedTargetPhrase": "Can this colour be ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-55:i09:r1",
+            "text": "removed"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i09:r2",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i09:r3",
+            "text": "removing"
+          }
+        ],
+        "testedDimension": "Запитайте, чи можна зняти старий колір.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можна зняти старий колір.",
+            "feedbackByLocale": {
+              "ru": "После be нужна removed.",
+              "uk": "Після be потрібна removed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можна зняти старий колір.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем be removed.",
+              "uk": "Тут використовуємо be removed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hangnail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hangnail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i10:audio",
+          "transcript": "hangnail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-55:i10:r1",
+            "targetText": "hangnail",
+            "meaningByLocale": {
+              "ru": "Заусенец. Небольшой оторвавшийся край кожи возле ногтя.",
+              "uk": "Задирка. Невеликий відірваний край шкіри біля нігтя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hangnail",
+          "definitionByLocale": {
+            "ru": "Заусенец. Небольшой оторвавшийся край кожи возле ногтя.",
+            "uk": "Задирка. Невеликий відірваний край шкіри біля нігтя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що у вас задирка на великому пальці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що у вас задирка на великому пальці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i11:audio",
+          "transcript": "I have a hangnail on my thumb."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have a hangnail on my thumb.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i12:r1",
+          "text": "My nails were painted by my sister."
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i12:r2",
+          "text": "My nails were painted by my friend."
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i12:r3",
+          "text": "My nails were painted by my mother."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i12:audio",
+          "transcript": "My nails were painted by my sister."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-55:i12:r1",
+            "targetText": "My nails were painted by my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i12:r2",
+            "targetText": "My nails were painted by my friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i12:r3",
+            "targetText": "My nails were painted by my mother.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My nails were painted by my sister.",
+              "uk": "У записі звучить My nails were painted by my sister."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My nails were painted by my sister.",
+              "uk": "У записі звучить My nails were painted by my sister."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотілося б мати більшу сумку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотілося б мати більшу сумку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы иметь сумку побольше.",
+          "uk": "Вам хотілося б мати більшу сумку."
+        },
+        "gappedTargetPhrase": "I wish I ___ a bigger bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-55:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Вам хотілося б мати більшу сумку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i13:r2",
+            "correct": false,
+            "testedDimension": "Вам хотілося б мати більшу сумку.",
+            "feedbackByLocale": {
+              "ru": "Для желания о настоящем после wish нужна had.",
+              "uk": "Для бажання щодо теперішнього після wish потрібна had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i13:r3",
+            "correct": false,
+            "testedDimension": "Вам хотілося б мати більшу сумку.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем wish I had.",
+              "uk": "Тут використовуємо wish I had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — acetone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — acetone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i14:audio",
+          "transcript": "acetone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-55:i14:r1",
+            "targetText": "acetone",
+            "meaningByLocale": {
+              "ru": "Ацетон. Вещество, которое входит в состав некоторых средств для снятия лака.",
+              "uk": "Ацетон. Речовина, що входить до складу деяких засобів для зняття лаку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "acetone",
+          "definitionByLocale": {
+            "ru": "Ацетон. Вещество, которое входит в состав некоторых средств для снятия лака.",
+            "uk": "Ацетон. Речовина, що входить до складу деяких засобів для зняття лаку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи містить цей засіб ацетон.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи містить цей засіб ацетон.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does this remover contain acetone?",
+        "localizedMeaning": {
+          "ru": "Спросите, содержит ли это средство ацетон.",
+          "uk": "Запитайте, чи містить цей засіб ацетон."
+        },
+        "orderedTokens": [
+          "Does",
+          "this",
+          "remover",
+          "contain",
+          "acetone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-55:i16:p1",
+            "target": "nailbrush",
+            "meaningByLocale": {
+              "ru": "щётка для ногтей",
+              "uk": "щітка для нігтів"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-55:i16:p2",
+            "target": "cuticle",
+            "meaningByLocale": {
+              "ru": "кутикула",
+              "uk": "кутикула"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-55:i16:p3",
+            "target": "hangnail",
+            "meaningByLocale": {
+              "ru": "заусенец",
+              "uk": "задирка"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-55:i16:p4",
+            "target": "acetone",
+            "meaningByLocale": {
+              "ru": "ацетон",
+              "uk": "ацетон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nailbrush",
+          "cuticle",
+          "hangnail",
+          "acetone"
+        ],
+        "rightColumn": [
+          "щітка для нігтів",
+          "кутикула",
+          "задирка",
+          "ацетон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: запис перенесли чи скасували?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i17:r1",
+          "text": "My appointment was changed."
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i17:r2",
+          "text": "My appointment was cancelled."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i17:audioA",
+        "en:lesson-28:session-55:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: запис перенесли чи скасували?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "My appointment was changed.",
+        "contrastB": "My appointment was cancelled.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-28:session-55:i17:audioA",
+          "transcript": "My appointment was changed."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-28:session-55:i17:audioB",
+          "transcript": "My appointment was cancelled."
+        },
+        "testedPhoneticContrast": "Послухайте: запис перенесли чи скасували?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: запис перенесли чи скасували?",
+            "feedbackByLocale": {
+              "ru": "В записи changed — изменили.",
+              "uk": "У записі changed — змінили."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати темніший колір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i18:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати темніший колір.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i18:audio",
+          "transcript": "Could you show me a darker colour?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me a darker colour?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже оплатили покупки, коли друг зателефонував.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-55:i19:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i19:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-55:i19:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже оплатили покупки, коли друг зателефонував.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже оплатили покупки, когда друг позвонил.",
+          "uk": "Ви вже оплатили покупки, коли друг зателефонував."
+        },
+        "gappedTargetPhrase": "I ___ paid by the time my friend called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-55:i19:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i19:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i19:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ви вже оплатили покупки, коли друг зателефонував.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-55:i19:r2",
+            "correct": false,
+            "testedDimension": "Ви вже оплатили покупки, коли друг зателефонував.",
+            "feedbackByLocale": {
+              "ru": "Более раннее действие: had paid.",
+              "uk": "Раніша дія: had paid."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-55:i19:r3",
+            "correct": false,
+            "testedDimension": "Ви вже оплатили покупки, коли друг зателефонував.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had paid.",
+              "uk": "Тут потрібна had paid."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, як продається набір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як продається набір.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i20:audio",
+          "transcript": "The set is sold in a small bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The set is sold in a small bag.",
+        "orderedTokens": [
+          "The",
+          "set",
+          "is",
+          "sold",
+          "in",
+          "a",
+          "small",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, скільки часу триватиме манікюр.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-55:i21:audio"
+      ],
+      "accessibilityLabel": "Запитайте, скільки часу триватиме манікюр.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-55:i21:audio",
+          "transcript": "How long will the manicure take?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long will the manicure take?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "78391c90a477a658024390fd354a1cc1a1facce516c24230dfb65e33f30d6689"
+}

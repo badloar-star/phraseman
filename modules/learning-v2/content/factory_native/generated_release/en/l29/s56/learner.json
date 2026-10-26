@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-56:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо откажитесь от предложения.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Вежливо откажитесь от предложения.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i01:audio",
+          "transcript": "No, thank you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, thank you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pushy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pushy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i02:audio",
+          "transcript": "pushy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-56:i02:r1",
+            "targetText": "pushy",
+            "meaningByLocale": {
+              "ru": "Навязчивый, напористый. О человеке, который давит на других, чтобы добиться своего.",
+              "uk": "Нав’язливий, настирливий. Про людину, яка тисне на інших, щоб домогтися свого."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pushy",
+          "definitionByLocale": {
+            "ru": "Навязчивый, напористый. О человеке, который давит на других, чтобы добиться своего.",
+            "uk": "Нав’язливий, настирливий. Про людину, яка тисне на інших, щоб домогтися свого."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i03:r1",
+          "text": "That seller is very pushy."
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i03:r2",
+          "text": "That seller is very polite."
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i03:r3",
+          "text": "That seller is very quiet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i03:audio",
+          "transcript": "That seller is very pushy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-56:i03:r1",
+            "targetText": "That seller is very pushy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i03:r2",
+            "targetText": "That seller is very polite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i03:r3",
+            "targetText": "That seller is very quiet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That seller is very pushy.",
+              "uk": "У записі звучить That seller is very pushy."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That seller is very pushy.",
+              "uk": "У записі звучить That seller is very pushy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите другу, что полученное предложение кажется странным.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу, что полученное предложение кажется странным.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The offer I received seems strange.",
+        "localizedMeaning": {
+          "ru": "Скажите другу, что полученное предложение кажется странным.",
+          "uk": "Скажіть другові, що отримана пропозиція здається дивною."
+        },
+        "orderedTokens": [
+          "The",
+          "offer",
+          "I",
+          "received",
+          "seems",
+          "strange"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы получили странное предложение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i05:r1",
+          "text": "I received"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i05:r2",
+          "text": "I received it"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i05:r3",
+          "text": "me received"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы получили странное предложение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы получили странное предложение.",
+          "uk": "Ви отримали дивну пропозицію."
+        },
+        "gappedTargetPhrase": "The offer ___ seems strange.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-56:i05:r1",
+            "text": "I received"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i05:r2",
+            "text": "I received it"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i05:r3",
+            "text": "me received"
+          }
+        ],
+        "testedDimension": "Вы получили странное предложение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы получили странное предложение.",
+            "feedbackByLocale": {
+              "ru": "It повторяет предложение.",
+              "uk": "It повторює пропозицію."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы получили странное предложение.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I.",
+              "uk": "Потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scam",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scam",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i06:audio",
+          "transcript": "scam"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-56:i06:r1",
+            "targetText": "scam",
+            "meaningByLocale": {
+              "ru": "Обманная схема, мошенничество. Уловка, с помощью которой пытаются выманить деньги или что-то ценное.",
+              "uk": "Шахрайська схема, обман. Хитрість, за допомогою якої намагаються виманити гроші або щось цінне."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scam",
+          "definitionByLocale": {
+            "ru": "Обманная схема, мошенничество. Уловка, с помощью которой пытаются выманить деньги или что-то ценное.",
+            "uk": "Шахрайська схема, обман. Хитрість, за допомогою якої намагаються виманити гроші або щось цінне."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите другу, что это похоже на обман.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите другу, что это похоже на обман.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i07:audio",
+          "transcript": "This sounds like a scam."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This sounds like a scam.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто предложил вам билет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто предложил вам билет.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i08:audio",
+          "transcript": "That is the man who offered me a ticket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is the man who offered me a ticket.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "the",
+          "man",
+          "who",
+          "offered",
+          "me",
+          "a",
+          "ticket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мужчина предложил вам билет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i09:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i09:r2",
+          "text": "who he"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i09:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мужчина предложил вам билет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мужчина предложил вам билет.",
+          "uk": "Чоловік запропонував вам квиток."
+        },
+        "gappedTargetPhrase": "That is the man ___ offered me a ticket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-56:i09:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i09:r2",
+            "text": "who he"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i09:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Мужчина предложил вам билет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Мужчина предложил вам билет.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя; he лишнее.",
+              "uk": "Who вже позначає виконавця; he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Мужчина предложил вам билет.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bogus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bogus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i10:audio",
+          "transcript": "bogus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-56:i10:r1",
+            "targetText": "bogus",
+            "meaningByLocale": {
+              "ru": "Фальшивый, ненастоящий. О том, что выдают за настоящее или достоверное, хотя это не так.",
+              "uk": "Фальшивий, несправжній. Про те, що видають за справжнє чи достовірне, хоча це не так."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bogus",
+          "definitionByLocale": {
+            "ru": "Фальшивый, ненастоящий. О том, что выдают за настоящее или достоверное, хотя это не так.",
+            "uk": "Фальшивий, несправжній. Про те, що видають за справжнє чи достовірне, хоча це не так."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i11:r1",
+          "text": "The ticket might be bogus."
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i11:r2",
+          "text": "The ticket might be expensive."
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i11:r3",
+          "text": "The ticket might be damaged."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i11:audio",
+          "transcript": "The ticket might be bogus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-56:i11:r1",
+            "targetText": "The ticket might be bogus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i11:r2",
+            "targetText": "The ticket might be expensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i11:r3",
+            "targetText": "The ticket might be damaged.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ticket might be bogus.",
+              "uk": "У записі звучить The ticket might be bogus."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ticket might be bogus.",
+              "uk": "У записі звучить The ticket might be bogus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите продавцу, что вы не заинтересованы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите продавцу, что вы не заинтересованы.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not interested.",
+        "localizedMeaning": {
+          "ru": "Скажите продавцу, что вы не заинтересованы.",
+          "uk": "Скажіть продавцеві, що ви не зацікавлені."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "interested"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — deceive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deceive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i13:audio",
+          "transcript": "deceive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-56:i13:r1",
+            "targetText": "deceive",
+            "meaningByLocale": {
+              "ru": "Обманывать, вводить в заблуждение. Намеренно заставлять другого поверить в то, что неправда.",
+              "uk": "Обманювати, вводити в оману. Навмисно змушувати іншого повірити в те, що є неправдою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deceive",
+          "definitionByLocale": {
+            "ru": "Обманывать, вводить в заблуждение. Намеренно заставлять другого поверить в то, что неправда.",
+            "uk": "Обманювати, вводити в оману. Навмисно змушувати іншого повірити в те, що є неправдою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга, пытается ли продавец обмануть вас обоих.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Спросите друга, пытается ли продавец обмануть вас обоих.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i14:audio",
+          "transcript": "Is he trying to deceive us?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is he trying to deceive us?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-56:i15:p1",
+            "target": "scam",
+            "meaningByLocale": {
+              "ru": "обманная схема",
+              "uk": "шахрайська схема"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-56:i15:p2",
+            "target": "bogus",
+            "meaningByLocale": {
+              "ru": "фальшивый",
+              "uk": "фальшивий"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-56:i15:p3",
+            "target": "pushy",
+            "meaningByLocale": {
+              "ru": "навязчивый",
+              "uk": "нав’язливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-56:i15:p4",
+            "target": "deceive",
+            "meaningByLocale": {
+              "ru": "вводить в заблуждение",
+              "uk": "вводити в оману"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scam",
+          "bogus",
+          "pushy",
+          "deceive"
+        ],
+        "rightColumn": [
+          "обманная схема",
+          "фальшивый",
+          "навязчивый",
+          "вводить в заблуждение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы показываете кассу, где продают билеты.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете кассу, где продают билеты.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете кассу, где продают билеты.",
+          "uk": "Ви показуєте касу, де продають квитки."
+        },
+        "gappedTargetPhrase": "This is the office ___ they sell tickets.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-56:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Вы показываете кассу, где продают билеты.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы показываете кассу, где продают билеты.",
+            "feedbackByLocale": {
+              "ru": "Для места продажи нужно where.",
+              "uk": "Для місця продажу потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы показываете кассу, где продают билеты.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, не принадлежность.",
+              "uk": "Тут місце, не належність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: продавец навязчивый или вежливый?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i17:r1",
+          "text": "That seller is very pushy."
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i17:r2",
+          "text": "That seller is very polite."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i17:audioA",
+        "en:lesson-29:session-56:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: продавец навязчивый или вежливый?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "That seller is very pushy.",
+        "contrastB": "That seller is very polite.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-56:i17:audioA",
+          "transcript": "That seller is very pushy."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-56:i17:audioB",
+          "transcript": "That seller is very polite."
+        },
+        "testedPhoneticContrast": "Послушайте: продавец навязчивый или вежливый?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: продавец навязчивый или вежливый?",
+            "feedbackByLocale": {
+              "ru": "Звучит pushy — навязчивый.",
+              "uk": "Звучить pushy — нав’язливий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где продают билеты.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где продают билеты.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i18:audio",
+          "transcript": "This is the office where they sell tickets."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the office where they sell tickets.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "office",
+          "where",
+          "they",
+          "sell",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите другу спросить в кассе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-56:i19:audio"
+      ],
+      "accessibilityLabel": "Предложите другу спросить в кассе.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-56:i19:audio",
+          "transcript": "Let us ask at the ticket office."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us ask at the ticket office.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг дал вам полезный совет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-56:i20:r1",
+          "text": "you gave me"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i20:r2",
+          "text": "you gave me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-56:i20:r3",
+          "text": "your gave me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг дал вам полезный совет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг дал вам полезный совет.",
+          "uk": "Друг дав вам корисну пораду."
+        },
+        "gappedTargetPhrase": "The advice ___ was helpful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-56:i20:r1",
+            "text": "you gave me"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i20:r2",
+            "text": "you gave me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i20:r3",
+            "text": "your gave me"
+          }
+        ],
+        "testedDimension": "Друг дал вам полезный совет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-56:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг дал вам полезный совет.",
+            "feedbackByLocale": {
+              "ru": "It повторяет совет.",
+              "uk": "It повторює пораду."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-56:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг дал вам полезный совет.",
+            "feedbackByLocale": {
+              "ru": "Нужно you, не your.",
+              "uk": "Потрібне you, не your."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите друга за предупреждение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите друга за предупреждение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for warning me.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите друга за предупреждение.",
+          "uk": "Подякуйте другові за попередження."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "warning",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a328b038aa98f9bd846c559ac584b62146f14ec10a3f8a71096e3d66c6bf476d"
+}

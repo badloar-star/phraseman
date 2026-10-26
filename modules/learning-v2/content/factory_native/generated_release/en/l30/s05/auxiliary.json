@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-05:intro1:r2": {
+          "ru": "С she здесь нужна форма was.",
+          "uk": "Із she тут потрібна форма was."
+        },
+        "en:lesson-30:session-05:intro1:r3": {
+          "ru": "Нужно she was, не she being.",
+          "uk": "Потрібне she was, не she being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-05:intro2:r2": {
+          "ru": "Для такого желания о настоящем используем lived.",
+          "uk": "Для такого бажання про теперішнє використовуємо lived."
+        },
+        "en:lesson-30:session-05:intro2:r3": {
+          "ru": "Нужно I lived, не I living.",
+          "uk": "Потрібне I lived, не I living."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-05:intro3:r2": {
+          "ru": "В уточнении нужна форма sent, не sending.",
+          "uk": "В уточненні потрібна форма sent, не sending."
+        },
+        "en:lesson-30:session-05:intro3:r3": {
+          "ru": "Одно сообщение: the message was.",
+          "uk": "Одне повідомлення: the message was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0490da5f8241842c8589d17a62a77f37d9efd1fa1fc70e91200cb5e3f0c2988d"
+}

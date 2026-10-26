@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i01:audio",
+          "transcript": "room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-35:i01:r1",
+            "targetText": "room",
+            "meaningByLocale": {
+              "ru": "Комната. Повторение знакомого слова.",
+              "uk": "Кімната. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room",
+          "definitionByLocale": {
+            "ru": "Комната. Повторение знакомого слова.",
+            "uk": "Кімната. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i02:r1",
+          "text": "The room is dark, so it might be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i02:r2",
+          "text": "The room is dark, so it must be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i02:r3",
+          "text": "The room is dark, so it can't be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i02:audio",
+          "transcript": "The room is dark, so it might be empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-35:i02:r1",
+            "targetText": "The room is dark, so it might be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i02:r2",
+            "targetText": "The room is dark, so it must be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i02:r3",
+            "targetText": "The room is dark, so it can't be empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room is dark, so it might be empty.",
+              "uk": "У записі звучить The room is dark, so it might be empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room is dark, so it might be empty.",
+              "uk": "У записі звучить The room is dark, so it might be empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы видите, что в соседней комнате не горит свет, но ещё не входили туда. Комната тёмная, поэтому она может быть пустой.",
+          "uk": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою."
+        },
+        "gappedTargetPhrase": "The room is dark, so it might ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-35:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lamp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lamp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i04:audio",
+          "transcript": "lamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-35:i04:r1",
+            "targetText": "lamp",
+            "meaningByLocale": {
+              "ru": "Лампа. Повторение знакомого слова.",
+              "uk": "Лампа. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lamp",
+          "definitionByLocale": {
+            "ru": "Лампа. Повторение знакомого слова.",
+            "uk": "Лампа. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна думає, що лампа зовсім не працює, але ви вмикаєте її, і вона нормально світить. Лампа не може бути зламаною.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна думає, що лампа зовсім не працює, але ви вмикаєте її, і вона нормально світить. Лампа не може бути зламаною.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The lamp can't be broken.",
+        "localizedMeaning": {
+          "ru": "Анна думает, что лампа совсем не работает, но вы включаете её, и она нормально светит. Лампа не может быть сломанной.",
+          "uk": "Анна думає, що лампа зовсім не працює, але ви вмикаєте її, і вона нормально світить. Лампа не може бути зламаною."
+        },
+        "orderedTokens": [
+          "The",
+          "lamp",
+          "can't",
+          "be",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — book",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — book",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i06:audio",
+          "transcript": "book"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-35:i06:r1",
+            "targetText": "book",
+            "meaningByLocale": {
+              "ru": "Книга. Повторение знакомого слова.",
+              "uk": "Книжка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "book",
+          "definitionByLocale": {
+            "ru": "Книга. Повторение знакомого слова.",
+            "uk": "Книжка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Книжка, яку я позичив, коротка. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Книжка, яку я позичив, коротка. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i07:audio",
+          "transcript": "The book I borrowed is short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The book I borrowed is short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i08:r1",
+          "text": "borrowed"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i08:r2",
+          "text": "borrowed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i08:r3",
+          "text": "borrowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Книга, которую я взял почитать, короткая. Уточните предмет без лишнего местоимения.",
+          "uk": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The book I ___ is short.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-35:i08:r1",
+            "text": "borrowed"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i08:r2",
+            "text": "borrowed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i08:r3",
+            "text": "borrowing"
+          }
+        ],
+        "testedDimension": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма borrowed.",
+              "uk": "Потрібна минула форма borrowed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою. Почніть із The room is dark.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою. Почніть із The room is dark.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The room is dark, so it might be empty.",
+        "localizedMeaning": {
+          "ru": "Вы видите, что в соседней комнате не горит свет, но ещё не входили туда. Комната тёмная, поэтому она может быть пустой. Начните с The room is dark.",
+          "uk": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. Кімната темна, тому вона може бути порожньою. Почніть із The room is dark."
+        },
+        "orderedTokens": [
+          "The",
+          "room",
+          "is",
+          "dark,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна думає, що лампа зовсім не працює, але ви вмикаєте її, і вона нормально світить. Скажіть висновок, замінивши The lamp займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Анна думає, що лампа зовсім не працює, але ви вмикаєте її, і вона нормально світить. Скажіть висновок, замінивши The lamp займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i10:audio",
+          "transcript": "It can’t be broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лампа не може бути зламаною. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампа не може бути зламаною. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Лампа не может быть сломанной. Выберите форму после can’t.",
+          "uk": "Лампа не може бути зламаною. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The lamp can't ___ broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-35:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Лампа не може бути зламаною. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Лампа не може бути зламаною. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Лампа не може бути зламаною. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i12:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-35:i12:r1",
+            "targetText": "chair",
+            "meaningByLocale": {
+              "ru": "Кресло. Повторение знакомого слова.",
+              "uk": "Крісло. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chair",
+          "definitionByLocale": {
+            "ru": "Кресло. Повторение знакомого слова.",
+            "uk": "Крісло. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i13:r1",
+          "text": "The chair must be comfortable."
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i13:r2",
+          "text": "The chair may be comfortable."
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i13:r3",
+          "text": "The chair could be comfortable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i13:audio",
+          "transcript": "The chair must be comfortable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-35:i13:r1",
+            "targetText": "The chair must be comfortable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i13:r2",
+            "targetText": "The chair may be comfortable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i13:r3",
+            "targetText": "The chair could be comfortable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair must be comfortable.",
+              "uk": "У записі звучить The chair must be comfortable."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair must be comfortable.",
+              "uk": "У записі звучить The chair must be comfortable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i14:audio",
+          "transcript": "The chair must be comfortable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chair must be comfortable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть предмет Анні: почніть із This is, потім назвіть the book й уточнення I borrowed. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть предмет Анні: почніть із This is, потім назвіть the book й уточнення I borrowed. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the book I borrowed.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the book и уточнение I borrowed. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the book й уточнення I borrowed. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "book",
+          "I",
+          "borrowed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кімната темна, тому вона може бути порожньою. Поєднайте ознаку й припущення словом «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кімната темна, тому вона може бути порожньою. Поєднайте ознаку й припущення словом «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Комната тёмная, поэтому она может быть пустой. Соедините признак и предположение словом «поэтому».",
+          "uk": "Кімната темна, тому вона може бути порожньою. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The room is dark, ___ it might be empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-35:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Кімната темна, тому вона може бути порожньою. Поєднайте ознаку й припущення словом «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i16:r2",
+            "correct": false,
+            "testedDimension": "Кімната темна, тому вона може бути порожньою. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i16:r3",
+            "correct": false,
+            "testedDimension": "Кімната темна, тому вона може бути порожньою. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна запитує, на чому ґрунтується ваше припущення. Кімната темна, тому вона може бути порожньою. Дайте відповідь, починаючи з The room is dark.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Анна запитує, на чому ґрунтується ваше припущення. Кімната темна, тому вона може бути порожньою. Дайте відповідь, починаючи з The room is dark.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i17:audio",
+          "transcript": "The room is dark, so it might be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The room is dark, so it might be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: названо можливість чи впевнений висновок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i18:r1",
+          "text": "The room is dark, so it might be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i18:r2",
+          "text": "The room is dark, so it must be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i18:audioA",
+        "en:lesson-32:session-35:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: названо можливість чи впевнений висновок?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The room is dark, so it might be empty.",
+        "contrastB": "The room is dark, so it must be empty.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-35:i18:audioA",
+          "transcript": "The room is dark, so it might be empty."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-35:i18:audioB",
+          "transcript": "The room is dark, so it must be empty."
+        },
+        "testedPhoneticContrast": "Послухайте: названо можливість чи впевнений висновок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: названо можливість чи впевнений висновок?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який варіант виключений.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який варіант виключений.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i19:audio",
+          "transcript": "The lamp can't be broken."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The lamp can't be broken.",
+        "orderedTokens": [
+          "The",
+          "lamp",
+          "can't",
+          "be",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-35:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-35:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна села в кресло, довольно улыбнулась и вытянула ноги. Вы сами ещё не сидели в нём. Кресло, должно быть, удобное.",
+          "uk": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне."
+        },
+        "gappedTargetPhrase": "The chair must ___ comfortable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-35:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-35:i20:r2",
+            "correct": false,
+            "testedDimension": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-35:i20:r3",
+            "correct": false,
+            "testedDimension": "Анна сіла в крісло, задоволено усміхнулася й витягнула ноги. Ви самі ще не сиділи в ньому. Крісло, напевно, зручне.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-35:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Кімната темна, тому вона може бути порожньою. Назвіть ту саму можливість із could замість might. Почніть із The room is dark.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-35:i21:audio"
+      ],
+      "accessibilityLabel": "Кімната темна, тому вона може бути порожньою. Назвіть ту саму можливість із could замість might. Почніть із The room is dark.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-35:i21:audio",
+          "transcript": "The room is dark, so it could be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The room is dark, so it could be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7369cf2f74c8f01a7aa857e2a958cee36836c03aa45d1b8fc6ec2b9e8e718c53"
+}

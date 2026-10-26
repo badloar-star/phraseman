@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-03:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-41:intro1:r2": {
-          "ru": "О кассире вы говорите впервые, поэтому a: A cashier is here.",
-          "uk": "Про касира ви говорите вперше, тому a: A cashier is here."
+          "ru": "После A cashier нужно is.",
+          "uk": "Після A cashier потрібне is."
         },
         "en:lesson-03:session-41:intro1:r3": {
           "ru": "Кассир один, поэтому нужно is: A cashier is here.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-03:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-41:intro3:r2": {
-          "ru": "Ошибку вы уже назвали, вы оба знаете, о какой речь, поэтому the: The mistake is here.",
-          "uk": "Помилку ви вже назвали, ви обоє знаєте, про яку мова, тому the: The mistake is here."
+          "ru": "После The mistake нужно is.",
+          "uk": "Після The mistake потрібне is."
         },
         "en:lesson-03:session-41:intro3:r3": {
           "ru": "Ошибка одна, поэтому нужно is: The mistake is here.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f5235a2b2743137f64d7c5bf7b2b3bc159d9751b32f020f9ec15995eb943f4c7"
+  "auxiliaryFingerprint": "22681449e39764524b360b8015ba645445f1610fb35de6d8b0fc15b0fa8458e2"
 }

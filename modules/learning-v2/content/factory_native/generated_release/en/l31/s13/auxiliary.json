@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-13:intro1:r2": {
+          "ru": "Одна shirt требует is it.",
+          "uk": "Одна shirt потребує is it."
+        },
+        "en:lesson-31:session-13:intro1:r3": {
+          "ru": "Одну рубашку заменяем на it.",
+          "uk": "Одну сорочку замінюємо на it."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-13:intro2:r2": {
+          "ru": "После when нужен порядок the machine finishes, без does.",
+          "uk": "Після when потрібен порядок the machine finishes, без does."
+        },
+        "en:lesson-31:session-13:intro2:r3": {
+          "ru": "С the machine нужна форма finishes.",
+          "uk": "З the machine потрібна форма finishes."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-13:intro3:r2": {
+          "ru": "Для заданного сдвига нужна форма needed.",
+          "uk": "Для заданого зсуву потрібна форма needed."
+        },
+        "en:lesson-31:session-13:intro3:r3": {
+          "ru": "Здесь нужна форма needed, не needing.",
+          "uk": "Тут потрібна форма needed, не needing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9212fc9310b2c6ddc5fad837bb200869951117d8603c3673a224004e1c3235ee"
+}

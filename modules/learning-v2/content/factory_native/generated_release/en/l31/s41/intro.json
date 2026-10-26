@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "называть цель через to + глагол и so that + целую часть предложения.",
+    "uk": "називати мету через to + дієслово та so that + цілу частину речення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пошёл, чтобы купить хлеб",
+        "uk": "Пішов, щоб купити хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, зачем вы ходили в магазин. Вам нужен был хлеб: I went to the shop to buy bread — я пошёл в магазин, чтобы купить хлеб. Соберите I went to the shop + to + buy bread. После to называем цель глаголом в начальной форме: buy. И в магазин пошли, и купить собирались вы.",
+        "uk": "Друг запитує, навіщо ви ходили до крамниці. Вам був потрібен хліб: I went to the shop to buy bread — я пішов до крамниці, щоб купити хліб. Складіть I went to the shop + to + buy bread. Після to називаємо мету дієсловом у початковій формі: buy. І до крамниці пішли, і купити збиралися ви."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-41:intro1:r1",
+              "text": "I went to the shop to buy bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro1:r2",
+              "text": "I went to the shop to bought bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro1:r3",
+              "text": "I went to the shop for buy bread."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-41:intro1:r1",
+              "text": "I went to the shop to buy bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro1:r2",
+              "text": "I went to the shop to bought bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro1:r3",
+              "text": "I went to the shop for buy bread."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записал, чтобы помнить",
+        "uk": "Записав, щоб пам’ятати"
+      },
+      "bodyByLocale": {
+        "ru": "Вам назвали адрес, и вы записали его, чтобы не забыть: I wrote the address so that I could remember it — я записал адрес, чтобы помнить его. Соберите I wrote the address + so that + I could remember it. После so that идёт целая часть: кто — I, мог что сделать — could remember it.",
+        "uk": "Вам назвали адресу, і ви записали її, щоб не забути: I wrote the address so that I could remember it — я записав адресу, щоб пам’ятати її. Складіть I wrote the address + so that + I could remember it. Після so that йде ціла частина: хто — I, міг що зробити — could remember it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-41:intro2:r1",
+              "text": "I wrote the address so that I could remember it."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro2:r2",
+              "text": "I wrote the address so that could remember it."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro2:r3",
+              "text": "I wrote the address so that I could remembered it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-41:intro2:r1",
+              "text": "I wrote the address so that I could remember it."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro2:r2",
+              "text": "I wrote the address so that could remember it."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro2:r3",
+              "text": "I wrote the address so that I could remembered it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Открыл дверь для Анны",
+        "uk": "Відчинив двері для Анни"
+      },
+      "bodyByLocale": {
+        "ru": "У Анны заняты руки, и вы открыли ей дверь: I opened the door so that Anna could come in — я открыл дверь, чтобы Анна могла войти. Соберите I opened the door + so that + Anna could come in. Первое действие сделали вы; цель относится к Анне. Поэтому после so that называем другого участника — Anna.",
+        "uk": "В Анни зайняті руки, і ви відчинили їй двері: I opened the door so that Anna could come in — я відчинив двері, щоб Анна могла ввійти. Складіть I opened the door + so that + Anna could come in. Першу дію зробили ви; мета стосується Анни. Тому після so that називаємо іншого учасника — Anna."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-41:intro3:r1",
+              "text": "I opened the door so that Anna could come in."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro3:r2",
+              "text": "I opened the door to Anna come in."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro3:r3",
+              "text": "I opened the door so that Anna could came in."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-41:intro3:r1",
+              "text": "I opened the door so that Anna could come in."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro3:r2",
+              "text": "I opened the door to Anna come in."
+            },
+            {
+              "responseId": "en:lesson-31:session-41:intro3:r3",
+              "text": "I opened the door so that Anna could came in."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "73a62b154271052e659e057a7b321a5f75c7031d01dc62cdccb3af39b96d6033"
+}

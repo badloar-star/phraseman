@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "как уточнить, какую фотографию или вещь вы имеете в виду, без that или who перед исполнителем действия.",
+    "uk": "як уточнити, яку фотографію чи річ ви маєте на увазі, без that або who перед виконавцем дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найденная фотография",
+        "uk": "Знайдена фотографія"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли старую фотографию и показываете её сестре. Скажите: The photo I found is in this album — фотография, которую я нашёл, в этом альбоме. Соберите The photo + I found + is in this album. В уточнении I found уже есть исполнитель I. Фотографию нашли, поэтому that перед I можно опустить. После found не добавляем it: речь всё ещё о той же фотографии.",
+        "uk": "Ви знайшли стару фотографію й показуєте її сестрі. Скажіть: The photo I found is in this album — фотографія, яку я знайшов, у цьому альбомі. Складіть The photo + I found + is in this album. В уточненні I found уже є виконавець I. Фотографію знайшли, тому that перед I можна пропустити. Після found не додаємо it: йдеться все ще про ту саму фотографію."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-33:intro1:r1",
+              "text": "The photo I found is in this album."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro1:r2",
+              "text": "The photo I found it is in this album."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro1:r3",
+              "text": "The photo me found is in this album."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-33:intro1:r1",
+              "text": "The photo I found is in this album."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro1:r2",
+              "text": "The photo I found it is in this album."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro1:r3",
+              "text": "The photo me found is in this album."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кого вы узнали",
+        "uk": "Кого ви впізнали"
+      },
+      "bodyByLocale": {
+        "ru": "На семейном снимке вы узнаёте женщину, с которой познакомились вчера. Скажите: The woman I met yesterday is my aunt — женщина, с которой я познакомился вчера, моя тётя. Соберите The woman + I met yesterday + is my aunt. Внутри уточнения действие выполняет I, а woman называет человека, которого встретили. Поэтому who перед I можно опустить; her после met не требуется.",
+        "uk": "На сімейному знімку ви впізнаєте жінку, з якою познайомилися вчора. Скажіть: The woman I met yesterday is my aunt — жінка, з якою я познайомився вчора, моя тітка. Складіть The woman + I met yesterday + is my aunt. Усередині уточнення дію виконує I, а woman називає людину, яку зустріли. Тому who перед I можна пропустити; her після met не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-33:intro2:r1",
+              "text": "The woman I met yesterday is my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro2:r2",
+              "text": "The woman I met her yesterday is my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro2:r3",
+              "text": "The woman me met yesterday is my aunt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-33:intro2:r1",
+              "text": "The woman I met yesterday is my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro2:r2",
+              "text": "The woman I met her yesterday is my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro2:r3",
+              "text": "The woman me met yesterday is my aunt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подарок от бабушки",
+        "uk": "Подарунок від бабусі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете брату кольцо, подаренное бабушкой. Скажите: The ring Grandma gave me is gold — кольцо, которое мне подарила бабушка, золотое. Соберите The ring + Grandma gave me + is gold. Grandma — кто подарил, me — кому. That перед Grandma можно опустить: ring уже называет подаренную вещь. Me оставляем, потому что оно указывает получателя.",
+        "uk": "Ви показуєте братові каблучку, подаровану бабусею. Скажіть: The ring Grandma gave me is gold — каблучка, яку мені подарувала бабуся, золота. Складіть The ring + Grandma gave me + is gold. Grandma — хто подарував, me — кому. That перед Grandma можна пропустити: ring уже називає подаровану річ. Me залишаємо, тому що воно вказує одержувача."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-33:intro3:r1",
+              "text": "The ring Grandma gave me is gold."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro3:r2",
+              "text": "The ring Grandma gave me it is gold."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro3:r3",
+              "text": "The ring Grandma give me is gold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-33:intro3:r1",
+              "text": "The ring Grandma gave me is gold."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro3:r2",
+              "text": "The ring Grandma gave me it is gold."
+            },
+            {
+              "responseId": "en:lesson-29:session-33:intro3:r3",
+              "text": "The ring Grandma give me is gold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d60ef60a113147d70f188708ab5026e7e8a5e18962ced0e87cd8e53a6f5b3fec"
+}

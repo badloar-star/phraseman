@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-25:intro1:r2": {
+          "ru": "Между can и reused нужно be.",
+          "uk": "Між can і reused потрібне be."
+        },
+        "en:lesson-28:session-25:intro1:r3": {
+          "ru": "Здесь нужна reused.",
+          "uk": "Тут потрібна reused."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-25:intro2:r2": {
+          "ru": "После must нужна be, не are.",
+          "uk": "Після must потрібна be, не are."
+        },
+        "en:lesson-28:session-25:intro2:r3": {
+          "ru": "Здесь нужна sorted.",
+          "uk": "Тут потрібна sorted."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-25:intro3:r2": {
+          "ru": "После should нужно be.",
+          "uk": "Після should потрібне be."
+        },
+        "en:lesson-28:session-25:intro3:r3": {
+          "ru": "Здесь нужна washed.",
+          "uk": "Тут потрібна washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "108a3f39bfd7787d7034eeec630f1894576145f50deddcf0a28fa4c048663ff3"
+}

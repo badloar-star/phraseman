@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "говорить, что знаете, уточнять состояние вещей и пересказывать слова.",
+    "uk": "говорити, що знаєте, уточнювати стан речей і переказувати слова."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, где пальто",
+        "uk": "Я знаю, де пальто"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь гулять с Анной в холодный день. Она ищет пальто, а вы видели его у двери. Скажите: I know where the coat is — я знаю, где пальто. Соберите I know + where + the coat + is. После where идёт порядок утверждения the coat is, потому что вы сообщаете, что знаете.",
+        "uk": "Ви збираєтеся гуляти з Анною холодного дня. Вона шукає пальто, а ви бачили його біля дверей. Скажіть: I know where the coat is — я знаю, де пальто. Складіть I know + where + the coat + is. Після where йде порядок твердження the coat is, бо ви повідомляєте, що знаєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-18:intro1:r1",
+              "text": "I know where the coat is."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro1:r2",
+              "text": "I know where is the coat."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro1:r3",
+              "text": "I know where the coat are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-18:intro1:r1",
+              "text": "I know where the coat is."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro1:r2",
+              "text": "I know where is the coat."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro1:r3",
+              "text": "I know where the coat are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Перчатки тёплые, правда?",
+        "uk": "Рукавички теплі, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Анна надевает перчатки. Они кажутся вам тёплыми; уточните: Your gloves are warm, aren’t they? — твои перчатки тёплые, правда? Соберите Your gloves are warm + aren’t + they. После утвердительного are здесь ставим отрицательное aren’t. Несколько перчаток заменяем на they.",
+        "uk": "Анна надягає рукавички. Вони здаються вам теплими; уточніть: Your gloves are warm, aren’t they? — твої рукавички теплі, правда? Складіть Your gloves are warm + aren’t + they. Після стверджувального are тут ставимо заперечне aren’t. Кілька рукавичок замінюємо на they."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-18:intro2:r1",
+              "text": "Your gloves are warm, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro2:r2",
+              "text": "Your gloves are warm, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro2:r3",
+              "text": "Your gloves are warm, aren't it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-18:intro2:r1",
+              "text": "Your gloves are warm, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro2:r2",
+              "text": "Your gloves are warm, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro2:r3",
+              "text": "Your gloves are warm, aren't it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вчера пальто было мокрым",
+        "uk": "Учора пальто було мокрим"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера Анна сказала вам: «Пальто мокрое». Перескажите её слова, сдвинув is в прошлое: She said the coat was wet — она сказала, что пальто мокрое. Соберите She said + the coat + was + wet. She обозначает Анну; was заменяет is при заданном сдвиге времени.",
+        "uk": "Учора Анна сказала вам: «Пальто мокре». Перекажіть її слова, зсунувши is у минуле: She said the coat was wet — вона сказала, що пальто мокре. Складіть She said + the coat + was + wet. She позначає Анну; was замінює is за заданого зсуву часу."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-18:intro3:r1",
+              "text": "She said the coat was wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro3:r2",
+              "text": "She said the coat were wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro3:r3",
+              "text": "She said the coat be wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-18:intro3:r1",
+              "text": "She said the coat was wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro3:r2",
+              "text": "She said the coat were wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-18:intro3:r3",
+              "text": "She said the coat be wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ef0fcdb60eaea01d35ba9372d4a9f39b64dbae66c6a738f2cddd2f8b9ac64cb8"
+}

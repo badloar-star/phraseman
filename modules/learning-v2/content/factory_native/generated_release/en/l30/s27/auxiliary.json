@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-27:intro1:r2": {
+          "ru": "В этом порядке перед me нужен told, не said.",
+          "uk": "У цьому порядку перед me потрібне told, не said."
+        },
+        "en:lesson-30:session-27:intro1:r3": {
+          "ru": "После told перед me не ставим to.",
+          "uk": "Після told перед me не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-27:intro2:r2": {
+          "ru": "В пересказе используем I had, без did перед I.",
+          "uk": "У переказі використовуємо I had, без did перед I."
+        },
+        "en:lesson-30:session-27:intro2:r3": {
+          "ru": "Тот, у кого насос, — I, не me.",
+          "uk": "Той, у кого насос, — I, не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-27:intro3:r2": {
+          "ru": "В уточнении сначала I, затем lent you.",
+          "uk": "В уточненні спочатку I, потім lent you."
+        },
+        "en:lesson-30:session-27:intro3:r3": {
+          "ru": "Один pump требует is, не are.",
+          "uk": "Один pump потребує is, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5828932b89616ca1297c54f66375dd91d448618cba4c84835067db41606c4079"
+}

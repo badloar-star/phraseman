@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-07:i01",
+    "correctText": "ovenproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i02",
+    "correctText": "Is this dish ovenproof?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i03",
+    "correctText": "The instructions are printed on the box.",
+    "correctResponseId": "en:lesson-28:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i04",
+    "correctText": "Could you show me a smaller one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i05",
+    "correctText": "heatproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i06",
+    "correctText": "Is the handle heatproof?",
+    "correctResponseId": "en:lesson-28:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i07",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-28:session-07:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i08",
+    "correctText": "I wish this pan were lighter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i09",
+    "correctText": "stackable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i10",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-07:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i11",
+    "correctText": "I would like three bowls, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i12",
+    "correctText": "The lids are sold separately.",
+    "correctResponseId": "en:lesson-28:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i13",
+    "correctText": "stainless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i14",
+    "correctText": "The spoons are made of stainless steel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i15",
+    "correctText": "Can these go in the dishwasher?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i16",
+    "correctText": "arrived",
+    "correctResponseId": "en:lesson-28:session-07:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i17",
+    "correctText": "The dishes are kept on the top shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i18",
+    "correctText": "Could you hold the door open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i19",
+    "correctText": "I wish we had more shelves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i20",
+    "correctText": "The plates are made of glass.",
+    "correctResponseId": "en:lesson-28:session-07:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-07:i21",
+    "correctText": "Thanks for helping me.",
+    "correctResponseId": null
+  }
+]

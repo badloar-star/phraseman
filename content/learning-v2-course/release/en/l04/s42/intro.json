@@ -15,8 +15,8 @@
         "uk": "Дощ на зупинці"
       },
       "bodyByLocale": {
-        "ru": "Вы стоите на остановке, дождь усиливается, а сумка уже совсем мокрая. Нужна крыша со скамейкой, чтобы спокойно переждать автобус. bus shelter — «остановочный павильон». Один павильон — Is there a bus shelter near here? — «Рядом есть остановочный павильон?»",
-        "uk": "Ви стоїте на зупинці, дощ посилюється, а сумка вже геть мокра. Потрібен дах із лавкою, щоб спокійно перечекати автобус. bus shelter — «зупинковий павільйон». Один павільйон — Is there a bus shelter near here? — «Поруч є зупинковий павільйон?»"
+        "ru": "На остановке усиливается дождь, и вы ищете укрытие. Bus shelter — «остановочный павильон». Is there a bus shelter near here? — «Рядом есть остановочный павильон?» Начинаем вопрос с Is there, затем называем один павильон — a bus shelter — и добавляем near here: «здесь поблизости».",
+        "uk": "На зупинці посилюється дощ, і ви шукаєте укриття. Bus shelter — «зупинковий павільйон». Is there a bus shelter near here? — «Поруч є зупинковий павільйон?» Починаємо запитання з Is there, потім називаємо один павільйон — a bus shelter — і додаємо near here: «тут поблизу»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-42:intro1:q",
@@ -32,7 +32,7 @@
             },
             {
               "responseId": "en:lesson-04:session-42:intro1:r2",
-              "text": "There is a bus shelter near here?"
+              "text": "Are there a bus shelter near here?"
             },
             {
               "responseId": "en:lesson-04:session-42:intro1:r3",
@@ -46,7 +46,7 @@
             },
             {
               "responseId": "en:lesson-04:session-42:intro1:r2",
-              "text": "There is a bus shelter near here?"
+              "text": "Are there a bus shelter near here?"
             },
             {
               "responseId": "en:lesson-04:session-42:intro1:r3",
@@ -69,8 +69,8 @@
         "uk": "Черга біля каси"
       },
       "bodyByLocale": {
-        "ru": "У кассы длинная очередь, а поезд скоро уйдёт. Сотрудник говорит, что на платформе стоят аппараты, где билет покупают сами. ticket machine — «автомат для билетов». Вы не видите ни одного и спрашиваете про несколько: Are there any ticket machines on the platform?",
-        "uk": "У каси довга черга, а потяг скоро відійде. Працівник каже, що на платформі стоять апарати, де квиток купують самі. ticket machine — «автомат для квитків». Ви не бачите жодного й питаєте про кілька: Are there any ticket machines on the platform?"
+        "ru": "У кассы длинная очередь, а поезд скоро уйдёт. Вы хотите купить билет в автомате и уточняете у сотрудника, есть ли автоматы на платформе. Ticket machine — «автомат для билетов». Are there any ticket machines on the platform? — «На платформе есть автоматы для билетов?» Сначала ставим Are there, затем any ticket machines и место — on the platform. С ticket machines во множественном числе нужно are.",
+        "uk": "Біля каси довга черга, а потяг скоро відійде. Ви хочете купити квиток в автоматі й уточнюєте у працівника, чи є автомати на платформі. Ticket machine — «автомат для квитків». Are there any ticket machines on the platform? — «На платформі є автомати для квитків?» Спочатку ставимо Are there, потім any ticket machines і місце — on the platform. З ticket machines у множині потрібне are."
       },
       "question": {
         "interactionId": "en:lesson-04:session-42:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Вхід на платформу"
       },
       "bodyByLocale": {
-        "ru": "Сотрудник спрашивает, что вы видите у входа на платформу. Вы замечаете высокую вращающуюся перекладину, которая пропускает людей строго по одному. turnstile — «турникет». Он один, поэтому: There is a turnstile near the entrance — «Рядом со входом есть турникет».",
-        "uk": "Працівник питає, що ви бачите біля входу на платформу. Ви помічаєте високу обертову перекладину, яка пропускає людей строго по одному. turnstile — «турнікет». Він один, тому: There is a turnstile near the entrance — «Поруч зі входом є турнікет»."
+        "ru": "Сотрудник станции по телефону спрашивает, что вы видите возле входа. Вы замечаете турникет. Turnstile — «турникет». There is a turnstile near the entrance — «Возле входа есть турникет». Начинаем с There is, затем называем один предмет — a turnstile — и место: near the entrance.",
+        "uk": "Працівник станції телефоном питає, що ви бачите біля входу. Ви помічаєте турнікет. Turnstile — «турнікет». There is a turnstile near the entrance — «Біля входу є турнікет». Починаємо з There is, потім називаємо один предмет — a turnstile — і місце: near the entrance."
       },
       "question": {
         "interactionId": "en:lesson-04:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "01af170a9ae4939efb54fcb6f79b66a0defc708ead94e313fc9bd4b42715ba8f"
+  "introFingerprint": "cebf5ff517901e5d21a1ad560bf14ecd07bb9baa0a8af15d056c7671ae5c330d"
 }

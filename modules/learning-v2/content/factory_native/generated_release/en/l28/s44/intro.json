@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "как найти нужный отдел, задать вопрос об уходе и понять обещание продавца.",
+    "uk": "як знайти потрібний відділ, поставити запитання про догляд і зрозуміти обіцянку продавця."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить способ мытья",
+        "uk": "Уточнити спосіб миття"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбрали миску и не знаете, подходит ли она для посудомоечной машины. Спросите: Can this be washed in a dishwasher? — можно мыть это в посудомоечной машине? Соберите Can + this + be washed + in a dishwasher? Начните вопрос с Can, затем назовите предмет словом this. После него поставьте be и washed, третью форму wash: действие выполняют над предметом. В конце укажите, где его хотят мыть.",
+        "uk": "Ви вибрали миску й не знаєте, чи підходить вона для посудомийної машини. Запитайте: Can this be washed in a dishwasher? — чи можна мити це в посудомийній машині? Складіть Can + this + be washed + in a dishwasher? Почніть запитання з Can, потім назвіть предмет словом this. Після нього поставте be та washed, третю форму wash: дію виконують над предметом. Наприкінці вкажіть, де його хочуть мити."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-44:intro1:r1",
+              "text": "Can this be washed in a dishwasher?"
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro1:r2",
+              "text": "Can this washed in a dishwasher?"
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro1:r3",
+              "text": "Can this be wash in a dishwasher?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-44:intro1:r1",
+              "text": "Can this be washed in a dishwasher?"
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro1:r2",
+              "text": "Can this washed in a dishwasher?"
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro1:r3",
+              "text": "Can this be wash in a dishwasher?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дождаться доставки",
+        "uk": "Дочекатися доставки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заказали тяжёлый набор тарелок. Продавец обещает: The plates will be delivered on Friday — тарелки доставят в пятницу. Соберите The plates + will be + delivered + on Friday. Сначала назовите тарелки, затем поставьте will be и delivered, третью форму deliver. Так вы говорите о будущем действии над покупкой. On Friday сообщает день доставки.",
+        "uk": "Ви замовили важкий набір тарілок. Продавець обіцяє: The plates will be delivered on Friday — тарілки доставлять у п’ятницю. Складіть The plates + will be + delivered + on Friday. Спочатку назвіть тарілки, потім поставте will be та delivered, третю форму deliver. Так ви говорите про майбутню дію з покупкою. On Friday повідомляє день доставки."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-44:intro2:r1",
+              "text": "The plates will be delivered on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro2:r2",
+              "text": "The plates will delivered on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro2:r3",
+              "text": "The plates will be deliver on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-44:intro2:r1",
+              "text": "The plates will be delivered on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro2:r2",
+              "text": "The plates will delivered on Friday."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro2:r3",
+              "text": "The plates will be deliver on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рассказать о покупке",
+        "uk": "Розповісти про покупку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает ваши необычные чашки. Вы рассказываете об их изготовлении: These cups were made by hand — эти чашки сделали вручную. Соберите These cups + were + made + by hand. Начните с These cups. Чашек несколько, поэтому выберите were; затем добавьте made, третью форму make. Were made сообщает о завершённом действии над чашками. By hand означает «вручную».",
+        "uk": "Друг помічає ваші незвичайні чашки. Ви розповідаєте про їх виготовлення: These cups were made by hand — ці чашки зробили вручну. Складіть These cups + were + made + by hand. Почніть із These cups. Чашок кілька, тому виберіть were; потім додайте made, третю форму make. Were made повідомляє про завершену дію з чашками. By hand означає «вручну»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-44:intro3:r1",
+              "text": "These cups were made by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro3:r2",
+              "text": "These cups was made by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro3:r3",
+              "text": "These cups were make by hand."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-44:intro3:r1",
+              "text": "These cups were made by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro3:r2",
+              "text": "These cups was made by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-44:intro3:r3",
+              "text": "These cups were make by hand."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "be6565c8209cf1d09861c00d9c14f0fe311e27d1890296808f9e7a2b64f57526"
+}

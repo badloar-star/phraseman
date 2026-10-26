@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-45:i01",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i02",
+    "correctText": "The milk smells strange, so it might be bad.",
+    "correctResponseId": "en:lesson-32:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i04",
+    "correctText": "box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i05",
+    "correctText": "The box can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i06",
+    "correctText": "apple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i07",
+    "correctText": "The apple I chose is green.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i08",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-32:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i09",
+    "correctText": "The milk smells strange, so it might be bad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i10",
+    "correctText": "It can’t be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i12",
+    "correctText": "ice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i13",
+    "correctText": "The ice must be cold.",
+    "correctResponseId": "en:lesson-32:session-45:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i14",
+    "correctText": "The ice must be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i15",
+    "correctText": "This is the apple I chose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-45:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i17",
+    "correctText": "The milk smells strange, so it might be bad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i18",
+    "correctText": "The milk smells strange, so it might be bad.",
+    "correctResponseId": "en:lesson-32:session-45:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i19",
+    "correctText": "The box can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-45:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-45:i21",
+    "correctText": "The milk smells strange, so it could be bad.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-36:i01",
+    "correctText": "busy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i02",
+    "correctText": "I visited Anna although I was busy.",
+    "correctResponseId": "en:lesson-31:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i03",
+    "correctText": "although",
+    "correctResponseId": "en:lesson-31:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i04",
+    "correctText": "flowers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i05",
+    "correctText": "Could you tell me where the flowers are?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i06",
+    "correctText": "card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i07",
+    "correctText": "The card was written by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i09",
+    "correctText": "I understand why Anna is smiling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i10",
+    "correctText": "I know where the card is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i12",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i13",
+    "correctText": "I know why the door is open.",
+    "correctResponseId": "en:lesson-31:session-36:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i14",
+    "correctText": "He said the flowers were beautiful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i15",
+    "correctText": "I visited Anna although I was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i16",
+    "correctText": "Anna is",
+    "correctResponseId": "en:lesson-31:session-36:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i17",
+    "correctText": "Anna is smiling because she is happy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i18",
+    "correctText": "I visited Anna although I was busy.",
+    "correctResponseId": "en:lesson-31:session-36:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i19",
+    "correctText": "I visited Anna although I was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-36:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-36:i21",
+    "correctText": "The door was opened by Ben.",
+    "correctResponseId": null
+  }
+]

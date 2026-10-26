@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-30:intro1:r2": {
+          "ru": "После must нужна be.",
+          "uk": "Після must потрібна be."
+        },
+        "en:lesson-28:session-30:intro1:r3": {
+          "ru": "Здесь нужна kept.",
+          "uk": "Тут потрібна kept."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-30:intro2:r2": {
+          "ru": "С bread здесь нужна was.",
+          "uk": "Із bread тут потрібна was."
+        },
+        "en:lesson-28:session-30:intro2:r3": {
+          "ru": "Здесь нужна baked.",
+          "uk": "Тут потрібна baked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-30:intro3:r2": {
+          "ru": "После will нужна be.",
+          "uk": "Після will потрібна be."
+        },
+        "en:lesson-28:session-30:intro3:r3": {
+          "ru": "Здесь нужна delivered.",
+          "uk": "Тут потрібна delivered."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e4a7325dc18a4b2c730a52bf4c211738ca933dd05e0c770ec052605c7876880"
+}

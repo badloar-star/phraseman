@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "отвергать невозможный вариант, делать вывод по признакам и уточнять предмет.",
+    "uk": "відкидати неможливий варіант, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Исключаем вариант",
+        "uk": "Відкидаємо варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Через стекло вы видите внутри людей. Анна думает, что в комнате никого нет. The room can't be empty. — Комната не может быть пустой. Соберите The room + can't + be + empty. Здесь описываем состояние: перед empty нужна связка be. Can’t исключает этот вариант по указанным признакам.",
+        "uk": "Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. The room can't be empty. — Кімната не може бути порожньою. Складіть The room + can't + be + empty. Тут описуємо стан: перед empty потрібна зв’язка be. Can’t відкидає цей варіант за вказаними ознаками."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-27:intro1:r1",
+              "text": "The room can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro1:r2",
+              "text": "The room can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro1:r3",
+              "text": "The room can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-27:intro1:r1",
+              "text": "The room can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro1:r2",
+              "text": "The room can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro1:r3",
+              "text": "The room can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Анна долго шла под сильным дождём без зонта. Вы делаете вывод о её пальто. The coat must be wet. — Пальто, должно быть, мокрое. Соберите The coat + must + be + wet. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. The coat must be wet. — Пальто, напевно, мокре. Складіть The coat + must + be + wet. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-27:intro2:r1",
+              "text": "The coat must be wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro2:r2",
+              "text": "The coat must is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro2:r3",
+              "text": "The coat must to be wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-27:intro2:r1",
+              "text": "The coat must be wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro2:r2",
+              "text": "The coat must is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro2:r3",
+              "text": "The coat must to be wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "В доме вам дали полотенце вытереться. Вы показываете использованное полотенце хозяину. The towel I used is wet. — Полотенце, которым я воспользовался, мокрое. Соберите The towel + I used + is wet. Часть I used уточняет towel. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "У будинку вам дали рушник витертися. Ви показуєте використаний рушник господарю. The towel I used is wet. — Рушник, яким я скористався, мокрий. Складіть The towel + I used + is wet. Частина I used уточнює towel. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-27:intro3:r1",
+              "text": "The towel I used is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro3:r2",
+              "text": "The towel I used it is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro3:r3",
+              "text": "The towel I using is wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-27:intro3:r1",
+              "text": "The towel I used is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro3:r2",
+              "text": "The towel I used it is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-27:intro3:r3",
+              "text": "The towel I using is wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2feb3ff4ac3dbee3e79ba72be71444eb806b6da5a15592fbb51dc75116c11e42"
+}

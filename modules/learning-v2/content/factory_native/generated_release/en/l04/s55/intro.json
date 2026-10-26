@@ -15,8 +15,8 @@
         "uk": "Спізнюємося на автобус"
       },
       "bodyByLocale": {
-        "ru": "Подруга опаздывает на автобус, а идёт домой кружным путём. Вы знаете дорогу, которая идёт напрямую и экономит десять минут. shortcut — «короткий путь». Он один и проходит между парком и библиотекой: There is a shortcut between the park and the library.",
-        "uk": "Подруга спізнюється на автобус, а йде додому околицею. Ви знаєте дорогу, яка йде навпростець і заощаджує десять хвилин. shortcut — «короткий шлях». Він один і проходить між парком і бібліотекою: There is a shortcut between the park and the library."
+        "ru": "Подруга опаздывает на автобус и идёт к остановке кружным путём. Вы знаете дорогу, которая идёт напрямую и экономит десять минут. shortcut — «короткий путь». There is a shortcut between the park and the library — «Между парком и библиотекой есть короткий путь». Сначала ставим There is, затем называем путь — a shortcut — и место: between the park and the library. Два ориентира после between соединяем словом and.",
+        "uk": "Подруга спізнюється на автобус і йде до зупинки обхідним шляхом. Ви знаєте дорогу, яка йде навпростець і заощаджує десять хвилин. shortcut — «короткий шлях». There is a shortcut between the park and the library — «Між парком і бібліотекою є короткий шлях». Спочатку ставимо There is, потім називаємо шлях — a shortcut — і місце: between the park and the library. Два орієнтири після between поєднуємо словом and."
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Подалі від машин"
       },
       "bodyByLocale": {
-        "ru": "Подруга не хочет идти по шоссе рядом с машинами и спрашивает, как пройти пешком. Вы думаете об узкой дорожке в траве, по которой ходят только люди. footpath — «пешая тропа». Вы не уверены и спрашиваете у прохожего: Is there a footpath between the park and the school?",
-        "uk": "Подруга не хоче йти по шосе поруч із машинами й питає, як пройти пішки. Ви думаєте про вузьку доріжку в траві, по якій ходять лише люди. footpath — «піша стежка». Ви не впевнені й питаєте в перехожого: Is there a footpath between the park and the school?"
+        "ru": "Подруга не хочет идти по шоссе рядом с машинами и спрашивает, как пройти пешком. Вы думаете об узкой дорожке в траве, по которой ходят только люди. footpath — «пешая тропа». Is there a footpath between the park and the school? — «Между парком и школой есть пешая тропа?» Чтобы узнать о наличии тропы, ставим Is there, затем a footpath и место — between the park and the school.",
+        "uk": "Подруга не хоче йти по шосе поруч із машинами й питає, як пройти пішки. Ви думаєте про вузьку доріжку в траві, по якій ходять лише люди. footpath — «піша стежка». Is there a footpath between the park and the school? — «Між парком і школою є піша стежка?» Щоб дізнатися про наявність стежки, ставимо Is there, потім a footpath і місце — between the park and the school."
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro2:q",
@@ -90,7 +90,7 @@
             },
             {
               "responseId": "en:lesson-04:session-55:intro2:r3",
-              "text": "There is a footpath between the park and the school?"
+              "text": "Is there footpath between the park and the school?"
             }
           ],
           "uk": [
@@ -104,7 +104,7 @@
             },
             {
               "responseId": "en:lesson-04:session-55:intro2:r3",
-              "text": "There is a footpath between the park and the school?"
+              "text": "Is there footpath between the park and the school?"
             }
           ]
         },
@@ -123,8 +123,8 @@
         "uk": "Після дощу"
       },
       "bodyByLocale": {
-        "ru": "Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». Таких ям нет совсем, поэтому aren’t any: There aren’t any puddles on the footpath.",
-        "uk": "Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». Таких ям немає зовсім, тому aren’t any: There aren’t any puddles on the footpath."
+        "ru": "Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». There aren’t any puddles on the footpath — «На тропе нет луж». Начинаем с There aren’t any, затем называем то, чего нет, во множественном числе — puddles — и место: on the footpath. Aren’t означает are not, а any в этом отрицании подчёркивает, что луж нет совсем.",
+        "uk": "Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». There aren’t any puddles on the footpath — «На стежці немає калюж». Починаємо з There aren’t any, потім називаємо те, чого немає, у множині — puddles — і місце: on the footpath. Aren’t означає are not, а any в цьому запереченні підкреслює, що калюж немає зовсім."
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ac4e861d58d96181671d7bc33ef294b8dd44337b00832790353ce8fe9570c194"
+  "introFingerprint": "360f89fb1dffad7271bbc1c7ec67ff5e9926b4533384e28ce655930378b5b146"
 }

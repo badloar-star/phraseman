@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cafe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cafe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i01:audio",
+          "transcript": "cafe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-51:i01:r1",
+            "targetText": "cafe",
+            "meaningByLocale": {
+              "ru": "Кафе. Повторение знакомого слова.",
+              "uk": "Кафе. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cafe",
+          "definitionByLocale": {
+            "ru": "Кафе. Повторение знакомого слова.",
+            "uk": "Кафе. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i02:r1",
+          "text": "The cafe is busy, so it might be popular."
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i02:r2",
+          "text": "The cafe is busy, so it must be popular."
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i02:r3",
+          "text": "The cafe is busy, so it can't be popular."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i02:audio",
+          "transcript": "The cafe is busy, so it might be popular."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-51:i02:r1",
+            "targetText": "The cafe is busy, so it might be popular.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i02:r2",
+            "targetText": "The cafe is busy, so it must be popular.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i02:r3",
+            "targetText": "The cafe is busy, so it can't be popular.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cafe is busy, so it might be popular.",
+              "uk": "У записі звучить The cafe is busy, so it might be popular."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cafe is busy, so it might be popular.",
+              "uk": "У записі звучить The cafe is busy, so it might be popular."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы впервые пришли в кафе и видите много посетителей. Вы предполагаете, что это популярное место. В кафе много людей, поэтому оно, возможно, популярное.",
+          "uk": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне."
+        },
+        "gappedTargetPhrase": "The cafe is busy, so it might ___ popular.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-51:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i04:audio",
+          "transcript": "table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-51:i04:r1",
+            "targetText": "table",
+            "meaningByLocale": {
+              "ru": "Стол. Повторение знакомого слова.",
+              "uk": "Стіл. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "table",
+          "definitionByLocale": {
+            "ru": "Стол. Повторение знакомого слова.",
+            "uk": "Стіл. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Стіл не може бути порожнім.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Стіл не може бути порожнім.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The table can't be empty.",
+        "localizedMeaning": {
+          "ru": "Анна считает, что на столе ничего нет, но вы видите на нём чашки и тарелки. Стол не может быть пустым.",
+          "uk": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Стіл не може бути порожнім."
+        },
+        "orderedTokens": [
+          "The",
+          "table",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i06:audio",
+          "transcript": "cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-51:i06:r1",
+            "targetText": "cake",
+            "meaningByLocale": {
+              "ru": "Пирог. Повторение знакомого слова.",
+              "uk": "Пиріг. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cake",
+          "definitionByLocale": {
+            "ru": "Пирог. Повторение знакомого слова.",
+            "uk": "Пиріг. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пиріг, який я вибрав, солодкий. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Пиріг, який я вибрав, солодкий. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i07:audio",
+          "transcript": "The cake I chose is sweet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cake I chose is sweet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i08:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i08:r2",
+          "text": "chose it"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i08:r3",
+          "text": "choosing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пирог, который я выбрал, сладкий. Уточните предмет без лишнего местоимения.",
+          "uk": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The cake I ___ is sweet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-51:i08:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i08:r2",
+            "text": "chose it"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i08:r3",
+            "text": "choosing"
+          }
+        ],
+        "testedDimension": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма chose.",
+              "uk": "Потрібна минула форма chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне. Почніть із The cafe is busy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне. Почніть із The cafe is busy.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cafe is busy, so it might be popular.",
+        "localizedMeaning": {
+          "ru": "Вы впервые пришли в кафе и видите много посетителей. Вы предполагаете, что это популярное место. В кафе много людей, поэтому оно, возможно, популярное. Начните с The cafe is busy.",
+          "uk": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. У кафе багато людей, тому воно, можливо, популярне. Почніть із The cafe is busy."
+        },
+        "orderedTokens": [
+          "The",
+          "cafe",
+          "is",
+          "busy,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "popular"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стіл не може бути порожнім. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стіл не може бути порожнім. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стол не может быть пустым. Выберите форму после can’t.",
+          "uk": "Стіл не може бути порожнім. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The table can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-51:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Стіл не може бути порожнім. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Стіл не може бути порожнім. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Стіл не може бути порожнім. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coffee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coffee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i12:audio",
+          "transcript": "coffee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-51:i12:r1",
+            "targetText": "coffee",
+            "meaningByLocale": {
+              "ru": "Кофе. Повторение знакомого слова.",
+              "uk": "Кава. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coffee",
+          "definitionByLocale": {
+            "ru": "Кофе. Повторение знакомого слова.",
+            "uk": "Кава. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i13:r1",
+          "text": "The coffee must be hot."
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i13:r2",
+          "text": "The coffee may be hot."
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i13:r3",
+          "text": "The coffee could be hot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i13:audio",
+          "transcript": "The coffee must be hot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-51:i13:r1",
+            "targetText": "The coffee must be hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i13:r2",
+            "targetText": "The coffee may be hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i13:r3",
+            "targetText": "The coffee could be hot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coffee must be hot.",
+              "uk": "У записі звучить The coffee must be hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coffee must be hot.",
+              "uk": "У записі звучить The coffee must be hot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i14:audio",
+          "transcript": "The coffee must be hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coffee must be hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть предмет Анні: почніть із This is, потім назвіть the cake й уточнення I chose. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть предмет Анні: почніть із This is, потім назвіть the cake й уточнення I chose. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the cake I chose.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the cake и уточнение I chose. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the cake й уточнення I chose. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "cake",
+          "I",
+          "chose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У кафе багато людей, тому воно, можливо, популярне. Поєднайте ознаку й припущення словом «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У кафе багато людей, тому воно, можливо, популярне. Поєднайте ознаку й припущення словом «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В кафе много людей, поэтому оно, возможно, популярное. Соедините признак и предположение словом «поэтому».",
+          "uk": "У кафе багато людей, тому воно, можливо, популярне. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The cafe is busy, ___ it might be popular.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-51:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "У кафе багато людей, тому воно, можливо, популярне. Поєднайте ознаку й припущення словом «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i16:r2",
+            "correct": false,
+            "testedDimension": "У кафе багато людей, тому воно, можливо, популярне. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i16:r3",
+            "correct": false,
+            "testedDimension": "У кафе багато людей, тому воно, можливо, популярне. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна запитує, на чому ґрунтується ваше припущення. У кафе багато людей, тому воно, можливо, популярне. Дайте відповідь, починаючи з The cafe is busy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Анна запитує, на чому ґрунтується ваше припущення. У кафе багато людей, тому воно, можливо, популярне. Дайте відповідь, починаючи з The cafe is busy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i17:audio",
+          "transcript": "The cafe is busy, so it might be popular."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cafe is busy, so it might be popular.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: названо можливість чи впевнений висновок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i18:r1",
+          "text": "The cafe is busy, so it might be popular."
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i18:r2",
+          "text": "The cafe is busy, so it must be popular."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i18:audioA",
+        "en:lesson-32:session-51:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: названо можливість чи впевнений висновок?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The cafe is busy, so it might be popular.",
+        "contrastB": "The cafe is busy, so it must be popular.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-51:i18:audioA",
+          "transcript": "The cafe is busy, so it might be popular."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-51:i18:audioB",
+          "transcript": "The cafe is busy, so it must be popular."
+        },
+        "testedPhoneticContrast": "Послухайте: названо можливість чи впевнений висновок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: названо можливість чи впевнений висновок?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який варіант виключений.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який варіант виключений.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i19:audio",
+          "transcript": "The table can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The table can't be empty.",
+        "orderedTokens": [
+          "The",
+          "table",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-51:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-51:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "От только что принесённого кофе поднимается пар. Вы ещё не пробовали его. Кофе, должно быть, горячий.",
+          "uk": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча."
+        },
+        "gappedTargetPhrase": "The coffee must ___ hot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-51:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-51:i20:r2",
+            "correct": false,
+            "testedDimension": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-51:i20:r3",
+            "correct": false,
+            "testedDimension": "Від щойно принесеної кави піднімається пара. Ви ще не куштували її. Кава, напевно, гаряча.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-51:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У кафе багато людей, тому воно, можливо, популярне. Назвіть ту саму можливість із could замість might. Почніть із The cafe is busy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-51:i21:audio"
+      ],
+      "accessibilityLabel": "У кафе багато людей, тому воно, можливо, популярне. Назвіть ту саму можливість із could замість might. Почніть із The cafe is busy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-51:i21:audio",
+          "transcript": "The cafe is busy, so it could be popular."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cafe is busy, so it could be popular.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ab31f3ff461b7774955c7abd8acb955846f17705ffde504aeb40644794011ed4"
+}

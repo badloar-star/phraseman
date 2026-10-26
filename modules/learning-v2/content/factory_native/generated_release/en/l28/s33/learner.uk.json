@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sculptor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sculptor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i01:audio",
+          "transcript": "sculptor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i01:r1",
+            "targetText": "sculptor",
+            "meaningByLocale": {
+              "ru": "Скульптор. Художник, который создаёт скульптуры.",
+              "uk": "Скульптор. Художник, який створює скульптури."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sculptor",
+          "definitionByLocale": {
+            "ru": "Скульптор. Художник, который создаёт скульптуры.",
+            "uk": "Скульптор. Художник, який створює скульптури."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, хто зробив статую.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, хто зробив статую.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The statue was made by a sculptor.",
+        "localizedMeaning": {
+          "ru": "Скажите, кто сделал статую.",
+          "uk": "Скажіть, хто зробив статую."
+        },
+        "orderedTokens": [
+          "The",
+          "statue",
+          "was",
+          "made",
+          "by",
+          "a",
+          "sculptor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви називаєте людину, яка написала картину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i03:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i03:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i03:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви називаєте людину, яка написала картину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете человека, который написал картину.",
+          "uk": "Ви називаєте людину, яка написала картину."
+        },
+        "gappedTargetPhrase": "It was painted ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-33:i03:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i03:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i03:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Ви називаєте людину, яка написала картину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви називаєте людину, яка написала картину.",
+            "feedbackByLocale": {
+              "ru": "Перед исполнителем нужна by.",
+              "uk": "Перед виконавцем потрібна by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви називаєте людину, яка написала картину.",
+            "feedbackByLocale": {
+              "ru": "Здесь by my sister называет исполнителя.",
+              "uk": "Тут by my sister називає виконавця."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i04:r1",
+          "text": "The pictures were drawn by her."
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i04:r2",
+          "text": "The pictures were drawn by him."
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i04:r3",
+          "text": "The pictures were drawn by them."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i04:audio",
+          "transcript": "The pictures were drawn by her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i04:r1",
+            "targetText": "The pictures were drawn by her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i04:r2",
+            "targetText": "The pictures were drawn by him.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i04:r3",
+            "targetText": "The pictures were drawn by them.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pictures were drawn by her.",
+              "uk": "У записі звучить The pictures were drawn by her."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pictures were drawn by her.",
+              "uk": "У записі звучить The pictures were drawn by her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — illustrator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — illustrator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i05:audio",
+          "transcript": "illustrator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i05:r1",
+            "targetText": "illustrator",
+            "meaningByLocale": {
+              "ru": "Иллюстратор. Художник, который делает рисунки к книгам, статьям и другим текстам.",
+              "uk": "Ілюстратор. Художник, який робить малюнки до книжок, статей та інших текстів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "illustrator",
+          "definitionByLocale": {
+            "ru": "Иллюстратор. Художник, который делает рисунки к книгам, статьям и другим текстам.",
+            "uk": "Ілюстратор. Художник, який робить малюнки до книжок, статей та інших текстів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що малюнки зробив ілюстратор.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що малюнки зробив ілюстратор.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i06:audio",
+          "transcript": "The pictures were drawn by an illustrator."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pictures were drawn by an illustrator.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже говорили про художницю. Скажіть, що вона зробила цю роботу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i07:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i07:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i07:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже говорили про художницю. Скажіть, що вона зробила цю роботу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже говорили о художнице. Скажите, что она сделала эту работу.",
+          "uk": "Ви вже говорили про художницю. Скажіть, що вона зробила цю роботу."
+        },
+        "gappedTargetPhrase": "It was made by ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-33:i07:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i07:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i07:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Ви вже говорили про художницю. Скажіть, що вона зробила цю роботу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i07:r2",
+            "correct": false,
+            "testedDimension": "Ви вже говорили про художницю. Скажіть, що вона зробила цю роботу.",
+            "feedbackByLocale": {
+              "ru": "После by используем her, а не she.",
+              "uk": "Після by використовуємо her, а не she."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i07:r3",
+            "correct": false,
+            "testedDimension": "Ви вже говорили про художницю. Скажіть, що вона зробила цю роботу.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна her: исполнитель действия.",
+              "uk": "Тут потрібна her: виконавець дії."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто написав книжку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто написав книжку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i08:audio",
+          "transcript": "The book was written by my friend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The book was written by my friend.",
+        "orderedTokens": [
+          "The",
+          "book",
+          "was",
+          "written",
+          "by",
+          "my",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, хто зробив цю роботу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Уточніть, хто зробив цю роботу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i09:audio",
+          "transcript": "Who made this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who made this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cartoonist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cartoonist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i10:audio",
+          "transcript": "cartoonist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i10:r1",
+            "targetText": "cartoonist",
+            "meaningByLocale": {
+              "ru": "Карикатурист. Художник, который рисует карикатуры или комиксы.",
+              "uk": "Карикатурист. Художник, який малює карикатури або комікси."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cartoonist",
+          "definitionByLocale": {
+            "ru": "Карикатурист. Художник, который рисует карикатуры или комиксы.",
+            "uk": "Карикатурист. Художник, який малює карикатури або комікси."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i11:r1",
+          "text": "This was drawn by a cartoonist."
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i11:r2",
+          "text": "This was drawn by an illustrator."
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i11:r3",
+          "text": "This was made by a sculptor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i11:audio",
+          "transcript": "This was drawn by a cartoonist."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i11:r1",
+            "targetText": "This was drawn by a cartoonist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i11:r2",
+            "targetText": "This was drawn by an illustrator.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i11:r3",
+            "targetText": "This was made by a sculptor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This was drawn by a cartoonist.",
+              "uk": "У записі звучить This was drawn by a cartoonist."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This was drawn by a cartoonist.",
+              "uk": "У записі звучить This was drawn by a cartoonist."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви називаєте інструмент, яким написана картина.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i12:r1",
+          "text": "with"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i12:r2",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви називаєте інструмент, яким написана картина.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете инструмент, которым написана картина.",
+          "uk": "Ви називаєте інструмент, яким написана картина."
+        },
+        "gappedTargetPhrase": "It was painted ___ a brush.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-33:i12:r1",
+            "text": "with"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i12:r2",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Ви називаєте інструмент, яким написана картина.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви називаєте інструмент, яким написана картина.",
+            "feedbackByLocale": {
+              "ru": "Инструмент здесь вводит with.",
+              "uk": "Інструмент тут вводить with."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви називаєте інструмент, яким написана картина.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна with a brush.",
+              "uk": "Тут потрібна with a brush."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ваша сестра намалювала це. Використайте конструкцію з by.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ваша сестра намалювала це. Використайте конструкцію з by.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i13:audio",
+          "transcript": "This was drawn by my sister."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This was drawn by my sister.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — animator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — animator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i14:audio",
+          "transcript": "animator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i14:r1",
+            "targetText": "animator",
+            "meaningByLocale": {
+              "ru": "Художник-аниматор. Создаёт движущиеся изображения, например для мультфильмов.",
+              "uk": "Художник-аніматор. Створює рухомі зображення, наприклад для мультфільмів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "animator",
+          "definitionByLocale": {
+            "ru": "Художник-аниматор. Создаёт движущиеся изображения, например для мультфильмов.",
+            "uk": "Художник-аніматор. Створює рухомі зображення, наприклад для мультфільмів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що фільм зробив один аніматор.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що фільм зробив один аніматор.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The film was made by one animator.",
+        "localizedMeaning": {
+          "ru": "Скажите, что фильм сделал один аниматор.",
+          "uk": "Скажіть, що фільм зробив один аніматор."
+        },
+        "orderedTokens": [
+          "The",
+          "film",
+          "was",
+          "made",
+          "by",
+          "one",
+          "animator"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте професії з назвами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте професії з назвами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-33:i16:p1",
+            "target": "sculptor",
+            "meaningByLocale": {
+              "ru": "скульптор",
+              "uk": "скульптор"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-33:i16:p2",
+            "target": "illustrator",
+            "meaningByLocale": {
+              "ru": "иллюстратор",
+              "uk": "ілюстратор"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-33:i16:p3",
+            "target": "cartoonist",
+            "meaningByLocale": {
+              "ru": "карикатурист",
+              "uk": "карикатурист"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-33:i16:p4",
+            "target": "animator",
+            "meaningByLocale": {
+              "ru": "художник-аниматор",
+              "uk": "художник-аніматор"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sculptor",
+          "illustrator",
+          "cartoonist",
+          "animator"
+        ],
+        "rightColumn": [
+          "скульптор",
+          "ілюстратор",
+          "карикатурист",
+          "художник-аніматор"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ці малюнки продав сам художник. Назвіть, хто виконав дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i17:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i17:r2",
+          "text": "with"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i17:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ці малюнки продав сам художник. Назвіть, хто виконав дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера эти рисунки продал сам художник. Назовите, кто выполнил действие.",
+          "uk": "Учора ці малюнки продав сам художник. Назвіть, хто виконав дію."
+        },
+        "gappedTargetPhrase": "The drawings were sold ___ the artist.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-33:i17:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i17:r2",
+            "text": "with"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i17:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Учора ці малюнки продав сам художник. Назвіть, хто виконав дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i17:r2",
+            "correct": false,
+            "testedDimension": "Учора ці малюнки продав сам художник. Назвіть, хто виконав дію.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя здесь вводит by.",
+              "uk": "Виконавця тут вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i17:r3",
+            "correct": false,
+            "testedDimension": "Учора ці малюнки продав сам художник. Назвіть, хто виконав дію.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by the artist.",
+              "uk": "Тут потрібна by the artist."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i18:r1",
+          "text": "The exhibition was opened by the mayor."
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i18:r2",
+          "text": "The exhibition was opened by the artist."
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i18:r3",
+          "text": "The exhibition was opened by the teacher."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i18:audio",
+          "transcript": "The exhibition was opened by the mayor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-33:i18:r1",
+            "targetText": "The exhibition was opened by the mayor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i18:r2",
+            "targetText": "The exhibition was opened by the artist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i18:r3",
+            "targetText": "The exhibition was opened by the teacher.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The exhibition was opened by the mayor.",
+              "uk": "У записі звучить The exhibition was opened by the mayor."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i18:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The exhibition was opened by the mayor.",
+              "uk": "У записі звучить The exhibition was opened by the mayor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто зробив фотографії.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто зробив фотографії.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i19:audio",
+          "transcript": "The photos were taken by my brother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The photos were taken by my brother.",
+        "orderedTokens": [
+          "The",
+          "photos",
+          "were",
+          "taken",
+          "by",
+          "my",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорите про групу дітей: цю картину зробили вони.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-33:i20:r1",
+          "text": "them"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i20:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-28:session-33:i20:r3",
+          "text": "their"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорите про групу дітей: цю картину зробили вони.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите о группе детей: эту картину сделали они.",
+          "uk": "Ви говорите про групу дітей: цю картину зробили вони."
+        },
+        "gappedTargetPhrase": "It was made by ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-33:i20:r1",
+            "text": "them"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i20:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i20:r3",
+            "text": "their"
+          }
+        ],
+        "testedDimension": "Ви говорите про групу дітей: цю картину зробили вони.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-33:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви говорите про групу дітей: цю картину зробили вони.",
+            "feedbackByLocale": {
+              "ru": "После by нужна them.",
+              "uk": "Після by потрібна them."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-33:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви говорите про групу дітей: цю картину зробили вони.",
+            "feedbackByLocale": {
+              "ru": "Здесь them называет исполнителей.",
+              "uk": "Тут them називає виконавців."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-33:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що цю роботу зробив ваш друг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-33:i21:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що цю роботу зробив ваш друг.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-33:i21:audio",
+          "transcript": "This was made by my friend."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This was made by my friend.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3ff5c89bdeb07799b9039ed89676e04bbb6f2300727deee4d017d25e53f20a15"
+}

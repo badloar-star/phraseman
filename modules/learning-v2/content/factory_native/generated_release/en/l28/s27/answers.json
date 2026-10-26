@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-27:i01",
+    "correctText": "hatchback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i02",
+    "correctText": "I would like a small hatchback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i04",
+    "correctText": "The mirror was damaged yesterday.",
+    "correctResponseId": "en:lesson-28:session-27:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i05",
+    "correctText": "convertible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i06",
+    "correctText": "Do you have a convertible?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i07",
+    "correctText": "en:lesson-28:session-27:i07:p1=hatchback\nen:lesson-28:session-27:i07:p2=convertible\nen:lesson-28:session-27:i07:p3=van\nen:lesson-28:session-27:i07:p4=car",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i08",
+    "correctText": "The car will be washed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i10",
+    "correctText": "unleaded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i11",
+    "correctText": "This car takes unleaded petrol.",
+    "correctResponseId": "en:lesson-28:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i12",
+    "correctText": "How do I open the fuel cap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i13",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-27:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i14",
+    "correctText": "coolant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i15",
+    "correctText": "Could you check the coolant?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i16",
+    "correctText": "The car can be returned here.",
+    "correctResponseId": "en:lesson-28:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i17",
+    "correctText": "prepared",
+    "correctResponseId": "en:lesson-28:session-27:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i18",
+    "correctText": "Could you write that on the form?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i19",
+    "correctText": "The keys must be returned.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i20",
+    "correctText": "What time should I bring it back?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-27:i21",
+    "correctText": "Could I have a copy, please?",
+    "correctResponseId": null
+  }
+]

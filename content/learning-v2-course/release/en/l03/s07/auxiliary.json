@@ -36,11 +36,11 @@
           "uk": "Перед wardrobe потрібне a: It's a wardrobe."
         },
         "en:lesson-03:session-07:intro3:r3": {
-          "ru": "С not выходит «Это не платяной шкаф». А он стоит у стены: It's a wardrobe.",
-          "uk": "З not виходить «Це не шафа для одягу». А вона стоїть біля стіни: It's a wardrobe."
+          "ru": "С not выходит «Это не платяной шкаф». В ситуации речь именно о платяном шкафе: It's a wardrobe.",
+          "uk": "З not виходить «Це не шафа для одягу». У ситуації йдеться саме про шафу для одягу: It's a wardrobe."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b333b0f7d86f24cec2474a0e086a6c222009125624a40f8752a778809c10603e"
+  "auxiliaryFingerprint": "c5462cd3a66263ad31b1fe2f486992fc6fde1bec74647a4d509c0e1d68de75c7"
 }

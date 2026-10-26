@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-31:i01",
+    "correctText": "teether",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i02",
+    "correctText": "I am looking for a teether.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i03",
+    "correctText": "The label must not be removed.",
+    "correctResponseId": "en:lesson-28:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i04",
+    "correctText": "Can this part be replaced?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i05",
+    "correctText": "sleepsuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i06",
+    "correctText": "This sleepsuit is made of cotton.",
+    "correctResponseId": "en:lesson-28:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i07",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-31:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i08",
+    "correctText": "What age is this for?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i09",
+    "correctText": "romper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i10",
+    "correctText": "Do you have a larger romper?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i12",
+    "correctText": "Your gift will be wrapped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i13",
+    "correctText": "Do you have it in white?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i14",
+    "correctText": "steriliser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i15",
+    "correctText": "The steriliser was replaced.",
+    "correctResponseId": "en:lesson-28:session-31:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i16",
+    "correctText": "en:lesson-28:session-31:i16:p1=teether\nen:lesson-28:session-31:i16:p2=sleepsuit\nen:lesson-28:session-31:i16:p3=romper\nen:lesson-28:session-31:i16:p4=steriliser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i17",
+    "correctText": "arrived",
+    "correctResponseId": "en:lesson-28:session-31:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i18",
+    "correctText": "Could you show me the instructions?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i19",
+    "correctText": "The size should be checked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-31:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-31:i21",
+    "correctText": "It is a gift.",
+    "correctResponseId": null
+  }
+]

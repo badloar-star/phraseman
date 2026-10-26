@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать вопрос о месте и сообщение, уточнять найденную вещь.",
+    "uk": "переказувати запитання про місце й повідомлення, уточнювати знайдену річ."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Папа спросил про фотографию",
+        "uk": "Тато запитав про фотографію"
+      },
+      "bodyByLocale": {
+        "ru": "Вы разбирали старые вещи. Папа спросил вас: «Где твоя фотография?» Перескажите: He asked where my photo was — он спросил, где моя фотография. Соберите He + asked + where + my photo + was. После where в пересказе сначала называем предмет my photo, затем ставим was.",
+        "uk": "Ви розбирали старі речі. Тато запитав вас: «Де твоя фотографія?» Перекажіть: He asked where my photo was — він запитав, де моя фотографія. Складіть He + asked + where + my photo + was. Після where в переказі спочатку називаємо предмет my photo, потім ставимо was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-50:intro1:r1",
+              "text": "He asked where my photo was."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro1:r2",
+              "text": "He asked where was my photo."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro1:r3",
+              "text": "He asked where my photo were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-50:intro1:r1",
+              "text": "He asked where my photo was."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro1:r2",
+              "text": "He asked where was my photo."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro1:r3",
+              "text": "He asked where my photo were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предупреждение о коробке",
+        "uk": "Попередження про коробку"
+      },
+      "bodyByLocale": {
+        "ru": "Папа сообщил вам, что коробка тяжёлая. Передайте это через told: He told me the box was heavy — он сказал мне, что коробка тяжёлая. Соберите He + told + me + the box was heavy. После told сразу ставим получателя me, без to, затем само сообщение.",
+        "uk": "Тато повідомив вам, що коробка важка. Передайте це через told: He told me the box was heavy — він сказав мені, що коробка важка. Складіть He + told + me + the box was heavy. Після told відразу ставимо одержувача me, без to, потім саме повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-50:intro2:r1",
+              "text": "He told me the box was heavy."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro2:r2",
+              "text": "He told to me the box was heavy."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro2:r3",
+              "text": "He said me the box was heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-50:intro2:r1",
+              "text": "He told me the box was heavy."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro2:r2",
+              "text": "He told to me the box was heavy."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro2:r3",
+              "text": "He said me the box was heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какая фотография старая",
+        "uk": "Яка фотографія стара"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли фотографию среди вещей. Скажите: The photo I found is old — фотография, которую я нашёл, старая. Соберите The photo + I found + is old. I found уточняет фотографию: I — тот, кто нашёл, photo — найденный предмет. Поэтому that перед I можно опустить.",
+        "uk": "Ви знайшли фотографію серед речей. Скажіть: The photo I found is old — фотографія, яку я знайшов, стара. Складіть The photo + I found + is old. I found уточнює фотографію: I — той, хто знайшов, photo — знайдений предмет. Тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-50:intro3:r1",
+              "text": "The photo I found is old."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro3:r2",
+              "text": "The photo found I is old."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro3:r3",
+              "text": "The photo I found are old."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-50:intro3:r1",
+              "text": "The photo I found is old."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro3:r2",
+              "text": "The photo found I is old."
+            },
+            {
+              "responseId": "en:lesson-30:session-50:intro3:r3",
+              "text": "The photo I found are old."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a29a53b44c5704c64c0d767646ad36d5fbbcca842a7037ac21d7b24eaae9ce6f"
+}

@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — motive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — motive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i01:audio",
+          "transcript": "motive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-14:i01:r1",
+            "targetText": "motive",
+            "meaningByLocale": {
+              "ru": "Мотив, побуждение. Причина, по которой человек что-то делает.",
+              "uk": "Мотив, спонука. Причина, через яку людина щось робить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "motive",
+          "definitionByLocale": {
+            "ru": "Мотив, побуждение. Причина, по которой человек что-то делает.",
+            "uk": "Мотив, спонука. Причина, через яку людина щось робить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i02:r1",
+          "text": "He asked what the motive was."
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i02:r2",
+          "text": "He asked what the problem was."
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i02:r3",
+          "text": "He asked what the price was."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i02:audio",
+          "transcript": "He asked what the motive was."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-14:i02:r1",
+            "targetText": "He asked what the motive was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i02:r2",
+            "targetText": "He asked what the problem was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i02:r3",
+            "targetText": "He asked what the price was.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked what the motive was.",
+              "uk": "У записі звучить He asked what the motive was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked what the motive was.",
+              "uk": "У записі звучить He asked what the motive was."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос сестры: знали ли вы ответ?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос сестры: знали ли вы ответ?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked if I knew the answer.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос сестры: знали ли вы ответ?",
+          "uk": "Передайте запитання сестри: чи знали ви відповідь?"
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "knew",
+          "the",
+          "answer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил о мотиве героя фильма.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i04:r1",
+          "text": "the motive was"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i04:r2",
+          "text": "was the motive"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i04:r3",
+          "text": "the motive were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил о мотиве героя фильма.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил о мотиве героя фильма.",
+          "uk": "Друг запитав про мотив героя фільму."
+        },
+        "gappedTargetPhrase": "He asked what ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-14:i04:r1",
+            "text": "the motive was"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i04:r2",
+            "text": "was the motive"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i04:r3",
+            "text": "the motive were"
+          }
+        ],
+        "testedDimension": "Друг спросил о мотиве героя фильма.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил о мотиве героя фильма.",
+            "feedbackByLocale": {
+              "ru": "Внутри пересказа нужен порядок the motive was.",
+              "uk": "Усередині переказу потрібен порядок the motive was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил о мотиве героя фильма.",
+            "feedbackByLocale": {
+              "ru": "С the motive здесь используем was.",
+              "uk": "Із the motive тут використовуємо was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alibi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alibi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i05:audio",
+          "transcript": "alibi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-14:i05:r1",
+            "targetText": "alibi",
+            "meaningByLocale": {
+              "ru": "Алиби. Доказательство или объяснение того, что человек был в другом месте, когда произошло преступление.",
+              "uk": "Алібі. Доказ або пояснення того, що людина була в іншому місці, коли стався злочин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alibi",
+          "definitionByLocale": {
+            "ru": "Алиби. Доказательство или объяснение того, что человек был в другом месте, когда произошло преступление.",
+            "uk": "Алібі. Доказ або пояснення того, що людина була в іншому місці, коли стався злочин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра спросила, было ли у героя алиби. Передайте её вопрос.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Сестра спросила, было ли у героя алиби. Передайте её вопрос.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i06:audio",
+          "transcript": "She asked if he had an alibi."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked if he had an alibi.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о мотиве.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о мотиве.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i07:audio",
+          "transcript": "He asked what the motive was."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked what the motive was.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "what",
+          "the",
+          "motive",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните книгу, которую друг одолжил вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i08:r1",
+          "text": "lent"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i08:r2",
+          "text": "lending"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i08:r3",
+          "text": "lends"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните книгу, которую друг одолжил вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните книгу, которую друг одолжил вам.",
+          "uk": "Уточніть книжку, яку друг позичив вам."
+        },
+        "gappedTargetPhrase": "The book you ___ me was exciting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-14:i08:r1",
+            "text": "lent"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i08:r2",
+            "text": "lending"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i08:r3",
+            "text": "lends"
+          }
+        ],
+        "testedDimension": "Уточните книгу, которую друг одолжил вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточните книгу, которую друг одолжил вам.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма lent, не lending.",
+              "uk": "Потрібна форма lent, не lending."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточните книгу, которую друг одолжил вам.",
+            "feedbackByLocale": {
+              "ru": "Lends не сочетается с you; о данной вам книге здесь говорим lent.",
+              "uk": "Lends не поєднується з you; про дану вам книжку тут кажемо lent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — culprit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — culprit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i09:audio",
+          "transcript": "culprit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-14:i09:r1",
+            "targetText": "culprit",
+            "meaningByLocale": {
+              "ru": "Виновник. Человек, совершивший преступление или проступок.",
+              "uk": "Винуватець. Людина, яка вчинила злочин або проступок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "culprit",
+          "definitionByLocale": {
+            "ru": "Виновник. Человек, совершивший преступление или проступок.",
+            "uk": "Винуватець. Людина, яка вчинила злочин або проступок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i10:r1",
+          "text": "He asked if I knew the culprit."
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i10:r2",
+          "text": "He asked if I knew the actor."
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i10:r3",
+          "text": "He asked if I knew the writer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i10:audio",
+          "transcript": "He asked if I knew the culprit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-14:i10:r1",
+            "targetText": "He asked if I knew the culprit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i10:r2",
+            "targetText": "He asked if I knew the actor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i10:r3",
+            "targetText": "He asked if I knew the writer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if I knew the culprit.",
+              "uk": "У записі звучить He asked if I knew the culprit."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if I knew the culprit.",
+              "uk": "У записі звучить He asked if I knew the culprit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотели бы знать ответ на загадку сейчас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Вы хотели бы знать ответ на загадку сейчас.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i11:audio",
+          "transcript": "I wish I knew the answer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I knew the answer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — detective",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — detective",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i12:audio",
+          "transcript": "detective"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-14:i12:r1",
+            "targetText": "detective",
+            "meaningByLocale": {
+              "ru": "Детектив, сыщик. Человек, который расследует преступления и ищет доказательства.",
+              "uk": "Детектив, сищик. Людина, яка розслідує злочини й шукає докази."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "detective",
+          "definitionByLocale": {
+            "ru": "Детектив, сыщик. Человек, который расследует преступления и ищет доказательства.",
+            "uk": "Детектив, сищик. Людина, яка розслідує злочини й шукає докази."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что детектив нашёл ключ к разгадке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите, что детектив нашёл ключ к разгадке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i13:audio",
+          "transcript": "The detective found a clue."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The detective found a clue.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-14:i14:p1",
+            "target": "motive",
+            "meaningByLocale": {
+              "ru": "мотив",
+              "uk": "мотив"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-14:i14:p2",
+            "target": "alibi",
+            "meaningByLocale": {
+              "ru": "алиби",
+              "uk": "алібі"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-14:i14:p3",
+            "target": "culprit",
+            "meaningByLocale": {
+              "ru": "виновник",
+              "uk": "винуватець"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-14:i14:p4",
+            "target": "detective",
+            "meaningByLocale": {
+              "ru": "сыщик",
+              "uk": "сищик"
+            }
+          }
+        ],
+        "leftColumn": [
+          "motive",
+          "alibi",
+          "culprit",
+          "detective"
+        ],
+        "rightColumn": [
+          "мотив",
+          "алиби",
+          "виновник",
+          "сыщик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос сестры о наличии алиби у героя.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос сестры о наличии алиби у героя.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked if he had an alibi.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос сестры о наличии алиби у героя.",
+          "uk": "Передайте запитання сестри про наявність алібі в героя."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "he",
+          "had",
+          "an",
+          "alibi"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра спросила, знали ли вы ответ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i16:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i16:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спросила, знали ли вы ответ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила, знали ли вы ответ.",
+          "uk": "Сестра запитала, чи знали ви відповідь."
+        },
+        "gappedTargetPhrase": "She asked ___ I knew the answer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-14:i16:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i16:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Сестра спросила, знали ли вы ответ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i16:r2",
+            "correct": false,
+            "testedDimension": "Сестра спросила, знали ли вы ответ.",
+            "feedbackByLocale": {
+              "ru": "Вопрос да или нет передаём через if.",
+              "uk": "Запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i16:r3",
+            "correct": false,
+            "testedDimension": "Сестра спросила, знали ли вы ответ.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте; здесь спрашивали, знаете ли вы ответ.",
+              "uk": "Where запитує про місце; тут запитували, чи знаєте ви відповідь."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг уверенно угадал виновника — уже третьего за вечер. Передайте его вопрос: знали ли вы виновника?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Друг уверенно угадал виновника — уже третьего за вечер. Передайте его вопрос: знали ли вы виновника?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i17:audio",
+          "transcript": "He asked if I knew the culprit."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked if I knew the culprit.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о том, знали ли вы ответ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о том, знали ли вы ответ.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i18:audio",
+          "transcript": "She asked if I knew the answer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked if I knew the answer.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "knew",
+          "the",
+          "answer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: детектив нашёл ключ к разгадке или ключ от двери?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i19:r1",
+          "text": "The detective found a clue."
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i19:r2",
+          "text": "The detective found a key."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i19:audioA",
+        "en:lesson-30:session-14:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: детектив нашёл ключ к разгадке или ключ от двери?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The detective found a clue.",
+        "contrastB": "The detective found a key.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-14:i19:audioA",
+          "transcript": "The detective found a clue."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-14:i19:audioB",
+          "transcript": "The detective found a key."
+        },
+        "testedPhoneticContrast": "Послушайте: детектив нашёл ключ к разгадке или ключ от двери?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: детектив нашёл ключ к разгадке или ключ от двери?",
+            "feedbackByLocale": {
+              "ru": "Звучит clue — подсказка, ключ к разгадке.",
+              "uk": "Звучить clue — підказка, ключ до розгадки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сейчас не знаете ответ, но хотели бы знать.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-14:i20:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i20:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-30:session-14:i20:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сейчас не знаете ответ, но хотели бы знать.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сейчас не знаете ответ, но хотели бы знать.",
+          "uk": "Ви зараз не знаєте відповіді, але хотіли б знати."
+        },
+        "gappedTargetPhrase": "I wish I ___ the answer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-14:i20:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i20:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i20:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Вы сейчас не знаете ответ, но хотели бы знать.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-14:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы сейчас не знаете ответ, но хотели бы знать.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания после wish нужна форма knew.",
+              "uk": "Для такого бажання після wish потрібна форма knew."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-14:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы сейчас не знаете ответ, но хотели бы знать.",
+            "feedbackByLocale": {
+              "ru": "Нужно I knew, не I knowing.",
+              "uk": "Потрібне I knew, не I knowing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг сказал, что ему понравилась книга. Передайте его слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-14:i21:audio"
+      ],
+      "accessibilityLabel": "Друг сказал, что ему понравилась книга. Передайте его слова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-14:i21:audio",
+          "transcript": "He said he enjoyed the book."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he enjoyed the book.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cc0cf6ae9936b79e5bf6e1fd08569dac3a5e8e89193cf4e33d60ffef25460c8b"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-18:i01",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i02",
+    "correctText": "I know where the coat is.",
+    "correctResponseId": "en:lesson-31:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i03",
+    "correctText": "the coat is",
+    "correctResponseId": "en:lesson-31:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i04",
+    "correctText": "gloves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i05",
+    "correctText": "Your gloves are warm, aren't they?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i06",
+    "correctText": "The coat was washed by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-18:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i08",
+    "correctText": "scarf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i09",
+    "correctText": "Could you tell me where the scarf is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i10",
+    "correctText": "I know that she needs a scarf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i12",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i13",
+    "correctText": "The door is closed, isn't it?",
+    "correctResponseId": "en:lesson-31:session-18:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i14",
+    "correctText": "She said the gloves were dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i15",
+    "correctText": "I understand why she is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i16",
+    "correctText": "the coat is",
+    "correctResponseId": "en:lesson-31:session-18:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i17",
+    "correctText": "The door was closed by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i18",
+    "correctText": "I know where the scarf is.",
+    "correctResponseId": "en:lesson-31:session-18:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i19",
+    "correctText": "I know where the gloves are.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-18:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-18:i21",
+    "correctText": "I know that she is ready.",
+    "correctResponseId": null
+  }
+]

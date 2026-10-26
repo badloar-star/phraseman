@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "как передать чужие сомнения, сказать о недостающей информации и уточнить выбранное место.",
+    "uk": "як передати чужі сумніви, сказати про брак інформації й уточнити вибране місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друг пока сомневался",
+        "uk": "Друг поки вагався"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы предложили другу снять домик на выходные. Он сказал, что пока сомневается. Вы пересказываете разговор сестре: He said he was hesitant — он сказал, что сомневался. Соберите He + said + he was hesitant. Said вводит слова друга; he was hesitant описывает его нерешительность в тот момент.",
+        "uk": "Учора ви запропонували другові винайняти будиночок на вихідні. Він сказав, що поки вагається. Ви переказуєте розмову сестрі: He said he was hesitant — він сказав, що вагався. Складіть He + said + he was hesitant. Said вводить слова друга; he was hesitant описує його нерішучість тієї миті."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-06:intro1:r1",
+              "text": "He said he was hesitant."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro1:r2",
+              "text": "He said he were hesitant."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro1:r3",
+              "text": "He said he being hesitant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-06:intro1:r1",
+              "text": "He said he was hesitant."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro1:r2",
+              "text": "He said he were hesitant."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro1:r3",
+              "text": "He said he being hesitant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Цена пока неизвестна",
+        "uk": "Ціна поки невідома"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете домик, но ещё не знаете цену: I wish I knew the price — жаль, что я не знаю цену. Соберите I wish + I knew + the price. Knew после wish выражает желание знать цену сейчас; эта форма не означает, что вы знали её раньше.",
+        "uk": "Ви вибираєте будиночок, але ще не знаєте ціну: I wish I knew the price — шкода, що я не знаю ціну. Складіть I wish + I knew + the price. Knew після wish виражає бажання знати ціну зараз; ця форма не означає, що ви знали її раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-06:intro2:r1",
+              "text": "I wish I knew the price."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro2:r2",
+              "text": "I wish I know the price."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro2:r3",
+              "text": "I wish I knowing the price."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-06:intro2:r1",
+              "text": "I wish I knew the price."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro2:r2",
+              "text": "I wish I know the price."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro2:r3",
+              "text": "I wish I knowing the price."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какой домик был маленьким",
+        "uk": "Який будиночок був маленьким"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о домике, который вы осмотрели: The cottage we visited was small — домик, который мы осмотрели, был маленьким. Соберите The cottage + we visited + was small. We visited уточняет, о каком домике речь. Перед we можно опустить that: we — те, кто осматривал, а cottage — то, что осматривали.",
+        "uk": "Друг запитує про будиночок, який ви оглянули: The cottage we visited was small — будиночок, який ми оглянули, був маленьким. Складіть The cottage + we visited + was small. We visited уточнює, про який будиночок ідеться. Перед we можна пропустити that: we — ті, хто оглядав, а cottage — те, що оглядали."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-06:intro3:r1",
+              "text": "The cottage we visited was small."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro3:r2",
+              "text": "The cottage we visiting was small."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro3:r3",
+              "text": "The cottage we visited were small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-06:intro3:r1",
+              "text": "The cottage we visited was small."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro3:r2",
+              "text": "The cottage we visiting was small."
+            },
+            {
+              "responseId": "en:lesson-30:session-06:intro3:r3",
+              "text": "The cottage we visited were small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "21102a4a31a145e5d7fef7c74e79035b7c082615c383dea3644a8985c136e241"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-15:intro1:r2": {
+          "ru": "Внутри пересказа нужен порядок the bran was.",
+          "uk": "Усередині переказу потрібен порядок the bran was."
+        },
+        "en:lesson-30:session-15:intro1:r3": {
+          "ru": "Здесь bran — продукт в целом: the bran was.",
+          "uk": "Тут bran — продукт загалом: the bran was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-15:intro2:r2": {
+          "ru": "После if нужно I had, без did.",
+          "uk": "Після if потрібне I had, без did."
+        },
+        "en:lesson-30:session-15:intro2:r3": {
+          "ru": "Нужна форма had, не having.",
+          "uk": "Потрібна форма had, не having."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-15:intro3:r2": {
+          "ru": "Нужна форма sent, не sending.",
+          "uk": "Потрібна форма sent, не sending."
+        },
+        "en:lesson-30:session-15:intro3:r3": {
+          "ru": "Один рецепт: the recipe was.",
+          "uk": "Один рецепт: the recipe was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4a2cff9127c74511cb6f8355add0f1aa9aa040f6f10110efb79679d8fbfb4e43"
+}

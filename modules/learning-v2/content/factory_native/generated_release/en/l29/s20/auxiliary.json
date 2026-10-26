@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-20:intro1:r2": {
+          "ru": "Who уже обозначает женщину, she лишнее.",
+          "uk": "Who вже позначає жінку, she зайве."
+        },
+        "en:lesson-29:session-20:intro1:r3": {
+          "ru": "Для человека здесь используем who.",
+          "uk": "Для людини тут використовуємо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-20:intro2:r2": {
+          "ru": "Внутри уточнения нужен порядок we can talk.",
+          "uk": "Усередині уточнення потрібен порядок we can talk."
+        },
+        "en:lesson-29:session-20:intro2:r3": {
+          "ru": "Для места разговора нужно where.",
+          "uk": "Для місця розмови потрібне where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-20:intro3:r2": {
+          "ru": "Принадлежность телефона показывает whose.",
+          "uk": "Належність телефона показує whose."
+        },
+        "en:lesson-29:session-20:intro3:r3": {
+          "ru": "His после whose не добавляем.",
+          "uk": "His після whose не додаємо."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "998afddf625f2cf6f4fc4df996b12555186df5c1eee41aae385e8de6ce2a1fd9"
+}

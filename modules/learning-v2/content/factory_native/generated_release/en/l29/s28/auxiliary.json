@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-28:intro1:r2": {
+          "ru": "Who уже обозначает исполнителя, he лишнее.",
+          "uk": "Who вже позначає виконавця, he зайве."
+        },
+        "en:lesson-29:session-28:intro1:r3": {
+          "ru": "Получателя обучения обозначаем me, а не I.",
+          "uk": "Отримувача навчання позначаємо me, а не I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-28:intro2:r2": {
+          "ru": "Who уже обозначает ученика, him лишнее.",
+          "uk": "Who вже позначає учня, him зайве."
+        },
+        "en:lesson-29:session-28:intro2:r3": {
+          "ru": "Тот, кто учил, — I, а не me.",
+          "uk": "Той, хто навчав, — I, а не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-28:intro3:r2": {
+          "ru": "В этом условии после if нужно rains без will.",
+          "uk": "У цій умові після if потрібне rains без will."
+        },
+        "en:lesson-29:session-28:intro3:r3": {
+          "ru": "После will нужна форма play.",
+          "uk": "Після will потрібна форма play."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0ead169d2bba42f78a701cc436389a79068460dc39dbe2625a37dfea65be2493"
+}

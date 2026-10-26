@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-44:i01",
+    "correctText": "Could we see the dessert menu?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i02",
+    "correctText": "churro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i03",
+    "correctText": "Could I have one churro?",
+    "correctResponseId": "en:lesson-29:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i04",
+    "correctText": "The dessert you recommended is delicious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i05",
+    "correctText": "you recommended",
+    "correctResponseId": "en:lesson-29:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i06",
+    "correctText": "macaron",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i07",
+    "correctText": "What flavour is this macaron?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i08",
+    "correctText": "This is the café where I tried it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i09",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i10",
+    "correctText": "sorbet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i11",
+    "correctText": "Do you have lemon sorbet?",
+    "correctResponseId": "en:lesson-29:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i12",
+    "correctText": "Could we share one portion?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i13",
+    "correctText": "gelato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i14",
+    "correctText": "Could I have one scoop of chocolate gelato?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i15",
+    "correctText": "en:lesson-29:session-44:i15:p1=churro\nen:lesson-29:session-44:i15:p2=macaron\nen:lesson-29:session-44:i15:p3=sorbet\nen:lesson-29:session-44:i15:p4=gelato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i16",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-44:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i17",
+    "correctText": "Do you have lemon sorbet?",
+    "correctResponseId": "en:lesson-29:session-44:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i18",
+    "correctText": "This macaron has a lemon filling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i19",
+    "correctText": "Could we have another spoon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i20",
+    "correctText": "we tried",
+    "correctResponseId": "en:lesson-29:session-44:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-44:i21",
+    "correctText": "Thank you for your help.",
+    "correctResponseId": null
+  }
+]

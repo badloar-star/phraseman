@@ -23,8 +23,8 @@
           "uk": "Місць кілька, і a перед ними не ставимо: seats."
         },
         "en:lesson-04:session-11:intro2:r3": {
-          "ru": "Вопрос начинаем с Are there, а не с There are.",
-          "uk": "Запитання починаємо з Are there, а не з There are."
+          "ru": "После Are there здесь нужна форма множественного числа seats.",
+          "uk": "Після Are there тут потрібна форма множини seats."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "cce0f571c3b2f44c9c52e4ed388b983d8462accbe9b0baf4c1e095cebb0de720"
+  "auxiliaryFingerprint": "9727d8336862c4994f8ce4ab58c24f7149d2a06e5d49e29b1d33f1ed2036fddf"
 }

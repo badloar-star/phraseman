@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-24:i01",
+    "correctText": "windy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i02",
+    "correctText": "He said it was windy.",
+    "correctResponseId": "en:lesson-30:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i03",
+    "correctText": "to bring",
+    "correctResponseId": "en:lesson-30:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i04",
+    "correctText": "blanket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i05",
+    "correctText": "She asked me to bring a blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i06",
+    "correctText": "He asked where the entrance was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i07",
+    "correctText": "bench",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i08",
+    "correctText": "I wish this bench were dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i09",
+    "correctText": "my blanket was",
+    "correctResponseId": "en:lesson-30:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i10",
+    "correctText": "He said the park was quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i11",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-30:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i12",
+    "correctText": "basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i13",
+    "correctText": "He asked me to carry the basket.",
+    "correctResponseId": "en:lesson-30:session-24:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i14",
+    "correctText": "The bread I brought is fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i15",
+    "correctText": "The blanket she chose is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i16",
+    "correctText": "not to sit",
+    "correctResponseId": "en:lesson-30:session-24:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i17",
+    "correctText": "He asked if I needed a spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i18",
+    "correctText": "She asked me to close the basket.",
+    "correctResponseId": "en:lesson-30:session-24:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i19",
+    "correctText": "He asked us to put the cups away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i20",
+    "correctText": "we were",
+    "correctResponseId": "en:lesson-30:session-24:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-24:i21",
+    "correctText": "He told us to go home.",
+    "correctResponseId": null
+  }
+]

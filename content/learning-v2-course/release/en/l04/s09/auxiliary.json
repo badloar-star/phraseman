@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-04:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro3:r2": {
-          "ru": "Вопрос начинаем с Is there, а не с There is.",
-          "uk": "Запитання починаємо з Is there, а не з There is."
+          "ru": "Перед toilet в единственном числе здесь нужно a.",
+          "uk": "Перед toilet в однині тут потрібне a."
         },
         "en:lesson-04:session-09:intro3:r3": {
           "ru": "Туалет один, поэтому нужно Is, а не Are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "464fdc4ba759d0202575695238f89fcc83ab529a0e0da8de536a9f04fce72645"
+  "auxiliaryFingerprint": "3b03f67b4304af419d31c65990f46e32d190e1d6f2194ae6e32cf6f172c9c727"
 }

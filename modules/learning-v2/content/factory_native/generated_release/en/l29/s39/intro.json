@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать потемнение металла, остатки средства и мыльную пену, попросить удалить жир и уточнить нужную вещь.",
+    "uk": "як назвати потемніння металу, залишки засобу й мильну піну, попросити видалити жир та уточнити потрібну річ."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какая тряпка осталась мокрой",
+        "uk": "Яка ганчірка залишилася мокрою"
+      },
+      "bodyByLocale": {
+        "ru": "После уборки вы объясняете брату, какую тряпку нужно высушить. Скажите: The cloth I used is still wet — тряпка, которой я пользовался, всё ещё мокрая. Соберите The cloth + I used + is still wet. В уточнении действие выполняет I, а cloth называет использованную вещь. Поэтому that перед I можно опустить; it после used не добавляем.",
+        "uk": "Після прибирання ви пояснюєте братові, яку ганчірку потрібно висушити. Скажіть: The cloth I used is still wet — ганчірка, якою я користувався, усе ще мокра. Складіть The cloth + I used + is still wet. В уточненні дію виконує I, а cloth називає використану річ. Тому that перед I можна пропустити; it після used не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-39:intro1:r1",
+              "text": "The cloth I used is still wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro1:r2",
+              "text": "The cloth I used it is still wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro1:r3",
+              "text": "The cloth me used is still wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-39:intro1:r1",
+              "text": "The cloth I used is still wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro1:r2",
+              "text": "The cloth I used it is still wet."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro1:r3",
+              "text": "The cloth me used is still wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Щётка со сломанной ручкой",
+        "uk": "Щітка зі зламаною ручкою"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете брату щётку, у которой сломалась ручка. Скажите: This is the brush whose handle broke — это щётка, у которой сломалась ручка. Соберите This is the brush + whose handle + broke. Whose handle связывает ручку со щёткой. Whose можно использовать и для вещей; its после него не нужно.",
+        "uk": "Ви показуєте братові щітку, у якої зламалася ручка. Скажіть: This is the brush whose handle broke — це щітка, у якої зламалася ручка. Складіть This is the brush + whose handle + broke. Whose handle пов’язує ручку зі щіткою. Whose можна використовувати й для речей; its після нього не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-39:intro2:r1",
+              "text": "This is the brush whose handle broke."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro2:r2",
+              "text": "This is the brush who handle broke."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro2:r3",
+              "text": "This is the brush whose its handle broke."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-39:intro2:r1",
+              "text": "This is the brush whose handle broke."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro2:r2",
+              "text": "This is the brush who handle broke."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro2:r3",
+              "text": "This is the brush whose its handle broke."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто вымыл раковину",
+        "uk": "Хто вимив раковину"
+      },
+      "bodyByLocale": {
+        "ru": "Мама замечает чистую раковину, и вы называете того, кто её вымыл. Скажите: The sink was cleaned by my brother — раковину вымыл мой брат. Соберите The sink + was cleaned + by my brother. Начните с раковины, затем поставьте was cleaned — была вымыта. By вводит человека, выполнившего действие.",
+        "uk": "Мама помічає чисту раковину, і ви називаєте того, хто її вимив. Скажіть: The sink was cleaned by my brother — раковину вимив мій брат. Складіть The sink + was cleaned + by my brother. Почніть із раковини, потім поставте was cleaned — була вимита. By вводить людину, яка виконала дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-39:intro3:r1",
+              "text": "The sink was cleaned by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro3:r2",
+              "text": "The sink was clean by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro3:r3",
+              "text": "The sink was cleaned of my brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-39:intro3:r1",
+              "text": "The sink was cleaned by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro3:r2",
+              "text": "The sink was clean by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-39:intro3:r3",
+              "text": "The sink was cleaned of my brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c3ae0c12742234e5de35568a46878becfb30f85a4d24fa16ca49f70b65b7d2a8"
+}

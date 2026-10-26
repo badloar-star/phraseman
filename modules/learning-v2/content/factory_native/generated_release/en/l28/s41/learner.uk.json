@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-41:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Привітайте гостя, якого давно не бачили.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Привітайте гостя, якого давно не бачили.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i01:audio",
+          "transcript": "It is lovely to see you again."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is lovely to see you again.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — godmother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — godmother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i02:audio",
+          "transcript": "godmother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i02:r1",
+            "targetText": "godmother",
+            "meaningByLocale": {
+              "ru": "Крёстная мать. Женщина, ставшая крёстной при крещении ребёнка.",
+              "uk": "Хрещена мати. Жінка, яка стала хрещеною під час хрещення дитини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "godmother",
+          "definitionByLocale": {
+            "ru": "Крёстная мать. Женщина, ставшая крёстной при крещении ребёнка.",
+            "uk": "Хрещена мати. Жінка, яка стала хрещеною під час хрещення дитини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Представте свою хрещену матір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Представте свою хрещену матір.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is my godmother.",
+        "localizedMeaning": {
+          "ru": "Представьте свою крёстную мать.",
+          "uk": "Представте свою хрещену матір."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "my",
+          "godmother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б, щоб відсутня сестра була тут.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i04:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i04:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б, щоб відсутня сестра була тут.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы, чтобы отсутствующая сестра была здесь.",
+          "uk": "Ви хотіли б, щоб відсутня сестра була тут."
+        },
+        "gappedTargetPhrase": "I wish she ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-41:i04:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i04:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Ви хотіли б, щоб відсутня сестра була тут.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б, щоб відсутня сестра була тут.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна were.",
+              "uk": "Після wish тут потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б, щоб відсутня сестра була тут.",
+            "feedbackByLocale": {
+              "ru": "Желаемое сейчас: were here.",
+              "uk": "Бажане зараз: were here."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i05:r1",
+          "text": "The invitations were sent last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i05:r2",
+          "text": "The invitations will be sent next week."
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i05:r3",
+          "text": "The invitations were sent yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i05:audio",
+          "transcript": "The invitations were sent last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i05:r1",
+            "targetText": "The invitations were sent last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i05:r2",
+            "targetText": "The invitations will be sent next week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i05:r3",
+            "targetText": "The invitations were sent yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The invitations were sent last week.",
+              "uk": "У записі звучить The invitations were sent last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The invitations were sent last week.",
+              "uk": "У записі звучить The invitations were sent last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — godfather",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — godfather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i06:audio",
+          "transcript": "godfather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i06:r1",
+            "targetText": "godfather",
+            "meaningByLocale": {
+              "ru": "Крёстный отец. Мужчина, ставший крёстным при крещении ребёнка.",
+              "uk": "Хрещений батько. Чоловік, який став хрещеним під час хрещення дитини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "godfather",
+          "definitionByLocale": {
+            "ru": "Крёстный отец. Мужчина, ставший крёстным при крещении ребёнка.",
+            "uk": "Хрещений батько. Чоловік, який став хрещеним під час хрещення дитини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i07:r1",
+          "text": "My godfather lives nearby."
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i07:r2",
+          "text": "My godmother lives nearby."
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i07:r3",
+          "text": "My grandfather lives nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i07:audio",
+          "transcript": "My godfather lives nearby."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i07:r1",
+            "targetText": "My godfather lives nearby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i07:r2",
+            "targetText": "My godmother lives nearby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i07:r3",
+            "targetText": "My grandfather lives nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My godfather lives nearby.",
+              "uk": "У записі звучить My godfather lives nearby."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My godfather lives nearby.",
+              "uk": "У записі звучить My godfather lives nearby."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто приготував торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто приготував торт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i08:audio",
+          "transcript": "The cake was made by my aunt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cake was made by my aunt.",
+        "orderedTokens": [
+          "The",
+          "cake",
+          "was",
+          "made",
+          "by",
+          "my",
+          "aunt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат пішов до вашого приїзду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i09:r1",
+          "text": "left"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i09:r2",
+          "text": "leave"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i09:r3",
+          "text": "leaving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат пішов до вашого приїзду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат ушёл до вашего приезда.",
+          "uk": "Брат пішов до вашого приїзду."
+        },
+        "gappedTargetPhrase": "He had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-41:i09:r1",
+            "text": "left"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i09:r2",
+            "text": "leave"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i09:r3",
+            "text": "leaving"
+          }
+        ],
+        "testedDimension": "Брат пішов до вашого приїзду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Брат пішов до вашого приїзду.",
+            "feedbackByLocale": {
+              "ru": "После had нужна left.",
+              "uk": "Після had потрібна left."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Брат пішов до вашого приїзду.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had left.",
+              "uk": "Тут використовуємо had left."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — godson",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — godson",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i10:audio",
+          "transcript": "godson"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i10:r1",
+            "targetText": "godson",
+            "meaningByLocale": {
+              "ru": "Крестник. Мальчик или мужчина по отношению к своим крёстным родителям.",
+              "uk": "Хрещеник. Хлопчик або чоловік стосовно своїх хрещених батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "godson",
+          "definitionByLocale": {
+            "ru": "Крестник. Мальчик или мужчина по отношению к своим крёстным родителям.",
+            "uk": "Хрещеник. Хлопчик або чоловік стосовно своїх хрещених батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що подарунок призначений вашому хрещенику.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що подарунок призначений вашому хрещенику.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i11:audio",
+          "transcript": "This gift is for my godson."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This gift is for my godson.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви називаєте тітку, яка приготувала торт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i12:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i12:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви називаєте тітку, яка приготувала торт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете тётю, приготовившую торт.",
+          "uk": "Ви називаєте тітку, яка приготувала торт."
+        },
+        "gappedTargetPhrase": "The cake was made ___ my aunt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-41:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i12:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i12:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Ви називаєте тітку, яка приготувала торт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви називаєте тітку, яка приготувала торт.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводит by.",
+              "uk": "Виконавця вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви називаєте тітку, яка приготувала торт.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by my aunt.",
+              "uk": "Тут потрібна by my aunt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i13:r1",
+          "text": "The photos will be printed tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i13:r2",
+          "text": "The photos were printed yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i13:r3",
+          "text": "The photos will be printed next week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i13:audio",
+          "transcript": "The photos will be printed tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i13:r1",
+            "targetText": "The photos will be printed tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i13:r2",
+            "targetText": "The photos were printed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i13:r3",
+            "targetText": "The photos will be printed next week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photos will be printed tomorrow.",
+              "uk": "У записі звучить The photos will be printed tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photos will be printed tomorrow.",
+              "uk": "У записі звучить The photos will be printed tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — goddaughter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — goddaughter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i14:audio",
+          "transcript": "goddaughter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-41:i14:r1",
+            "targetText": "goddaughter",
+            "meaningByLocale": {
+              "ru": "Крестница. Девочка или женщина по отношению к своим крёстным родителям.",
+              "uk": "Хрещениця. Дівчинка або жінка стосовно своїх хрещених батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "goddaughter",
+          "definitionByLocale": {
+            "ru": "Крестница. Девочка или женщина по отношению к своим крёстным родителям.",
+            "uk": "Хрещениця. Дівчинка або жінка стосовно своїх хрещених батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ваша хрещениця любить малювати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ваша хрещениця любить малювати.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My goddaughter loves drawing.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваша крестница любит рисовать.",
+          "uk": "Скажіть, що ваша хрещениця любить малювати."
+        },
+        "orderedTokens": [
+          "My",
+          "goddaughter",
+          "loves",
+          "drawing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-41:i16:p1",
+            "target": "godmother",
+            "meaningByLocale": {
+              "ru": "крёстная мать",
+              "uk": "хрещена мати"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-41:i16:p2",
+            "target": "godfather",
+            "meaningByLocale": {
+              "ru": "крёстный отец",
+              "uk": "хрещений батько"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-41:i16:p3",
+            "target": "godson",
+            "meaningByLocale": {
+              "ru": "крестник",
+              "uk": "хрещеник"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-41:i16:p4",
+            "target": "goddaughter",
+            "meaningByLocale": {
+              "ru": "крестница",
+              "uk": "хрещениця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "godmother",
+          "godfather",
+          "godson",
+          "goddaughter"
+        ],
+        "rightColumn": [
+          "хрещена мати",
+          "хрещений батько",
+          "хрещеник",
+          "хрещениця"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте гостю чаю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте гостю чаю.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i17:audio",
+          "transcript": "Would you like some tea?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you like some tea?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви кажете, що подарунки можна відкрити пізніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i18:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i18:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i18:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви кажете, що подарунки можна відкрити пізніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите, что подарки можно открыть позже.",
+          "uk": "Ви кажете, що подарунки можна відкрити пізніше."
+        },
+        "gappedTargetPhrase": "The gifts can ___ opened later.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-41:i18:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i18:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i18:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Ви кажете, що подарунки можна відкрити пізніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i18:r2",
+            "correct": false,
+            "testedDimension": "Ви кажете, що подарунки можна відкрити пізніше.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i18:r3",
+            "correct": false,
+            "testedDimension": "Ви кажете, що подарунки можна відкрити пізніше.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be opened.",
+              "uk": "Тут використовуємо can be opened."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зберігають сімейні фотографії.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зберігають сімейні фотографії.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i19:audio",
+          "transcript": "The family photos are kept in this album."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The family photos are kept in this album.",
+        "orderedTokens": [
+          "The",
+          "family",
+          "photos",
+          "are",
+          "kept",
+          "in",
+          "this",
+          "album"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви хотіли б мати більше часу для сім’ї.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-41:i20:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i20:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-41:i20:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви хотіли б мати більше часу для сім’ї.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы иметь больше времени для семьи.",
+          "uk": "Ви хотіли б мати більше часу для сім’ї."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time for my family.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-41:i20:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i20:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i20:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Ви хотіли б мати більше часу для сім’ї.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-41:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви хотіли б мати більше часу для сім’ї.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь нужна had.",
+              "uk": "Після wish тут потрібна had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-41:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви хотіли б мати більше часу для сім’ї.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: had more time.",
+              "uk": "Бажання щодо теперішнього: had more time."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте зустрітися знову найближчим часом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-41:i21:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте зустрітися знову найближчим часом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-41:i21:audio",
+          "transcript": "Shall we meet again soon?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we meet again soon?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1e2cc25aa25e569f607d5de526079bb7ca374ab5228475b8a308df019fbead47"
+}

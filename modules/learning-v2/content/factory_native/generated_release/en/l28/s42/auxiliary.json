@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-42:intro1:r2": {
+          "ru": "После wish здесь нужна had.",
+          "uk": "Після wish тут потрібна had."
+        },
+        "en:lesson-28:session-42:intro1:r3": {
+          "ru": "Для желания о настоящем используем had.",
+          "uk": "Для бажання щодо теперішнього використовуємо had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-42:intro2:r2": {
+          "ru": "Перед delivered нужна be.",
+          "uk": "Перед delivered потрібна be."
+        },
+        "en:lesson-28:session-42:intro2:r3": {
+          "ru": "После be нужна delivered.",
+          "uk": "Після be потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-42:intro3:r2": {
+          "ru": "Plants — несколько: were.",
+          "uk": "Plants — кілька: were."
+        },
+        "en:lesson-28:session-42:intro3:r3": {
+          "ru": "После were здесь нужна grown.",
+          "uk": "Після were тут потрібна grown."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bf51c18d80e4a8770a5712da2d424f94197a11a434653305d69df7ea737fd662"
+}

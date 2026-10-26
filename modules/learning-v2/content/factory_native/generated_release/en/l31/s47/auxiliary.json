@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-47:intro1:r2": {
+          "ru": "После to нужна форма remember.",
+          "uk": "Після to потрібна форма remember."
+        },
+        "en:lesson-31:session-47:intro1:r3": {
+          "ru": "Перед remember для цели нужно to.",
+          "uk": "Перед remember для мети потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-47:intro2:r2": {
+          "ru": "Перед частью she could buy нужна связка so that.",
+          "uk": "Перед частиною she could buy потрібна сполука so that."
+        },
+        "en:lesson-31:session-47:intro2:r3": {
+          "ru": "После could нужна форма buy.",
+          "uk": "Після could потрібна форма buy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-47:intro3:r2": {
+          "ru": "После what нужен порядок we need без do.",
+          "uk": "Після what потрібен порядок we need без do."
+        },
+        "en:lesson-31:session-47:intro3:r3": {
+          "ru": "С we используем need без s.",
+          "uk": "З we використовуємо need без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fce4822d33ab2b45bf24c11c5d04d54ab226ab68ad89f1fee974e445a777c6af"
+}

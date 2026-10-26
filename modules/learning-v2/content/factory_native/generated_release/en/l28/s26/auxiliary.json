@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-26:intro1:r2": {
+          "ru": "Между can и replaced нужна be.",
+          "uk": "Між can і replaced потрібна be."
+        },
+        "en:lesson-28:session-26:intro1:r3": {
+          "ru": "Здесь нужна replaced.",
+          "uk": "Тут потрібна replaced."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-26:intro2:r2": {
+          "ru": "После will нужна be.",
+          "uk": "Після will потрібна be."
+        },
+        "en:lesson-28:session-26:intro2:r3": {
+          "ru": "Здесь нужна delivered.",
+          "uk": "Тут потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-26:intro3:r2": {
+          "ru": "После should нужна be.",
+          "uk": "Після should потрібна be."
+        },
+        "en:lesson-28:session-26:intro3:r3": {
+          "ru": "Здесь нужна kept.",
+          "uk": "Тут потрібна kept."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2a93696c059e7ddcfd5c56a8b7bac065245cf3a733f306e34c4a0b95ee6db0c6"
+}

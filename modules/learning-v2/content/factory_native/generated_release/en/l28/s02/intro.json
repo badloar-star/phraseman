@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать, что делают с вещами, чего вам хотелось бы сейчас и что уже произошло к прошлому моменту.",
+    "uk": "як сказати, що роблять із речами, чого вам хотілося б зараз і що вже сталося до минулого моменту."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как стирают эту одежду",
+        "uk": "Як перуть цей одяг"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец объясняет, как здесь стирают одежду. These clothes are washed in cold water — эту одежду стирают в холодной воде. Начните с These clothes, затем поставьте are washed: говорим, что делают с одеждой. Clothes сочетается с are. В конце добавьте in cold water — в какой воде. Для washed берём wash и добавляем -ed.",
+        "uk": "Продавець пояснює, як тут перуть одяг. These clothes are washed in cold water — цей одяг перуть у холодній воді. Почніть із These clothes, потім поставте are washed: говоримо, що роблять з одягом. Clothes поєднується з are. Наприкінці додайте in cold water — у якій воді. Для washed беремо wash і додаємо -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-02:intro1:r1",
+              "text": "These clothes are washed in cold water."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro1:r2",
+              "text": "These clothes is washed in cold water."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro1:r3",
+              "text": "These clothes are wash in cold water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-02:intro1:r1",
+              "text": "These clothes are washed in cold water."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro1:r2",
+              "text": "These clothes is washed in cold water."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro1:r3",
+              "text": "These clothes are wash in cold water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Маленькие карманы",
+        "uk": "Маленькі кишені"
+      },
+      "bodyByLocale": {
+        "ru": "Вы примеряете брюки, но телефон не помещается в карманы. I wish the pockets were bigger — жаль, что карманы не больше. Начните с I wish, затем назовите то, что хотелось бы изменить: the pockets. После этого поставьте were bigger. Здесь were показывает желаемое отличие от того, что есть сейчас. Прошлое мы не описываем.",
+        "uk": "Ви приміряєте штани, але телефон не вміщується в кишені. I wish the pockets were bigger — шкода, що кишені не більші. Почніть з I wish, потім назвіть те, що хотілося б змінити: the pockets. Після цього поставте were bigger. Тут were показує бажану відмінність від того, що є зараз. Минуле ми не описуємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-02:intro2:r1",
+              "text": "I wish the pockets were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro2:r2",
+              "text": "I wish the pockets are bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro2:r3",
+              "text": "I wish the pockets be bigger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-02:intro2:r1",
+              "text": "I wish the pockets were bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro2:r2",
+              "text": "I wish the pockets are bigger."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro2:r3",
+              "text": "I wish the pockets be bigger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не успели в магазин",
+        "uk": "Не встигли до крамниці"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы пришли к магазину после закрытия. The shop had closed by the time we arrived — к тому времени, как мы пришли, магазин уже закрылся. Соберите сначала то, что произошло раньше: The shop + had closed. Затем добавьте by the time + we arrived — к какому моменту. Had closed показывает, что закрытие было раньше вашего прихода.",
+        "uk": "Учора ви прийшли до крамниці після закриття. The shop had closed by the time we arrived — до того часу, як ми прийшли, крамниця вже зачинилася. Складіть спочатку те, що сталося раніше: The shop + had closed. Потім додайте by the time + we arrived — до якого моменту. Had closed показує, що закриття було раніше за ваш прихід."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-02:intro3:r1",
+              "text": "The shop had closed by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro3:r2",
+              "text": "The shop had close by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro3:r3",
+              "text": "The shop had closed by the time we arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-02:intro3:r1",
+              "text": "The shop had closed by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro3:r2",
+              "text": "The shop had close by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-02:intro3:r3",
+              "text": "The shop had closed by the time we arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e2e16ca4d58a9868a61761a8c34a850b65b27ee6fed2d6d639a1e07e7171f71e"
+}

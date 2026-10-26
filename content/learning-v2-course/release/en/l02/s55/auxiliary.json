@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-02:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-55:intro1:r2": {
-          "ru": "С not выходит «Он не хочет играть». А он принёс вам мячик: He is playful.",
-          "uk": "З not виходить «Воно не хоче гратися». А воно принесло вам м’ячик: He is playful."
+          "ru": "С not выходит «Он не игривый». А он принёс вам мячик: He is playful.",
+          "uk": "З not виходить «Він не грайливий». А воно принесло вам м’ячик: He is playful."
         },
         "en:lesson-02:session-55:intro1:r3": {
           "ru": "Между He и playful нужно is: He is playful.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-02:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-55:intro3:r2": {
-          "ru": "С not выходит «Он забыл хозяина». А он неделю ждал у калитки: He's loyal.",
-          "uk": "З not виходить «Він забув господаря». А він тиждень чекав біля хвіртки: He's loyal."
+          "ru": "С not выходит «Он не преданный». А он неделю ждал у калитки: He's loyal.",
+          "uk": "З not виходить «Він не відданий». А він тиждень чекав біля хвіртки: He's loyal."
         },
         "en:lesson-02:session-55:intro3:r3": {
           "ru": "Пёс один, нужно He's: He's loyal.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "819eb9078ac83a694a2f850e0c9a7b6b183469abcbf15d8566598f862c7ec66f"
+  "auxiliaryFingerprint": "48809be74239a0f30e480f1a39e0c97c15a22e3f1ce5e18586ef0924c38ce778"
 }

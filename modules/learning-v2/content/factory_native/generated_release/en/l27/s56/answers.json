@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-56:i01",
+    "correctText": "windbreaker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i02",
+    "correctText": "My windbreaker is in the wardrobe.",
+    "correctResponseId": "en:lesson-27:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i03",
+    "correctText": "Could you bring me my windbreaker?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i04",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-27:session-56:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i05",
+    "correctText": "beanie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i06",
+    "correctText": "You can borrow my beanie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i07",
+    "correctText": "It will be cold in the morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i08",
+    "correctText": "pack",
+    "correctResponseId": "en:lesson-27:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i09",
+    "correctText": "bikini",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i10",
+    "correctText": "I have packed my bikini and a towel.",
+    "correctResponseId": "en:lesson-27:session-56:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i11",
+    "correctText": "Have you packed the sunscreen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i12",
+    "correctText": "I have not found my sunglasses yet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i13",
+    "correctText": "sundress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i14",
+    "correctText": "I will take my blue sundress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i15",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i16",
+    "correctText": "The café closes at six today.",
+    "correctResponseId": "en:lesson-27:session-56:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i17",
+    "correctText": "Let’s eat first and go for a walk later.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i18",
+    "correctText": "stops",
+    "correctResponseId": "en:lesson-27:session-56:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i19",
+    "correctText": "We would visit the harbour if we had a car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i20",
+    "correctText": "I will meet you outside the café.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-56:i21",
+    "correctText": "I really enjoyed our walk.",
+    "correctResponseId": null
+  }
+]

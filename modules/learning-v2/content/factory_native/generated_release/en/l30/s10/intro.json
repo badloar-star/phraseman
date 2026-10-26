@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "как передавать вопросы о месте и доступности, выразить желание и уточнить полезную вещь.",
+    "uk": "як передавати запитання про місце й доступність, висловити бажання й уточнити корисну річ."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где был вход",
+        "uk": "Де був вхід"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера во время прогулки друг спросил у вас, где вход. Вы пересказываете это сестре: He asked where the entrance was — он спросил, где вход. Соберите He + asked + where + the entrance + was. После where сначала назовите предмет вопроса — the entrance, затем поставьте was. Это порядок слов внутри пересказа.",
+        "uk": "Учора під час прогулянки друг запитав у вас, де вхід. Ви переказуєте це сестрі: He asked where the entrance was — він запитав, де вхід. Складіть He + asked + where + the entrance + was. Після where спочатку назвіть предмет запитання — the entrance, потім поставте was. Це порядок слів усередині переказу."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-10:intro1:r1",
+              "text": "He asked where the entrance was."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro1:r2",
+              "text": "He asked where was the entrance."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro1:r3",
+              "text": "He asked where the entrance were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-10:intro1:r1",
+              "text": "He asked where the entrance was."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro1:r2",
+              "text": "He asked where was the entrance."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro1:r3",
+              "text": "He asked where the entrance were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хотелось бы больше времени",
+        "uk": "Хотілося б більше часу"
+      },
+      "bodyByLocale": {
+        "ru": "Сегодня вы хотите успеть в несколько интересных мест, но времени мало: I wish we had more time — хотелось бы, чтобы у нас было больше времени. Соберите I wish + we had + more time. Had после wish выражает желание изменить сегодняшнюю ситуацию; это не рассказ о прошлом.",
+        "uk": "Сьогодні ви хочете встигнути до кількох цікавих місць, але часу мало: I wish we had more time — хотілося б, щоб у нас було більше часу. Складіть I wish + we had + more time. Had після wish виражає бажання змінити сьогоднішню ситуацію; це не розповідь про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-10:intro2:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro2:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro2:r3",
+              "text": "I wish we having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-10:intro2:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro2:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro2:r3",
+              "text": "I wish we having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Карта помогла",
+        "uk": "Карта допомогла"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра дала вам карту, и по ней вы нашли нужный вход. Вы говорите ей: The map you gave me helped — карта, которую ты мне дала, помогла. Соберите The map + you gave me + helped. You gave me уточняет карту. Перед you можно опустить that: you — тот, кто дал, а map — то, что дали.",
+        "uk": "Сестра дала вам карту, і за нею ви знайшли потрібний вхід. Ви кажете їй: The map you gave me helped — карта, яку ти мені дала, допомогла. Складіть The map + you gave me + helped. You gave me уточнює карту. Перед you можна пропустити that: you — та, хто дала, а map — те, що дали."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-10:intro3:r1",
+              "text": "The map you gave me helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro3:r2",
+              "text": "The map you giving me helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro3:r3",
+              "text": "The map you gave me helping."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-10:intro3:r1",
+              "text": "The map you gave me helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro3:r2",
+              "text": "The map you giving me helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-10:intro3:r3",
+              "text": "The map you gave me helping."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ecd966c5a320d9bc58713db175ec212acd7ecf13952d6d46e903a58a12639f64"
+}

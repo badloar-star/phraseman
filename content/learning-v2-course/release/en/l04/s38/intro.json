@@ -15,8 +15,8 @@
         "uk": "Велосипед без місця"
       },
       "bodyByLocale": {
-        "ru": "Сосед приехал во двор на велосипеде и хочет его пристегнуть, чтобы не украли. Он ищет железную стойку рядом с сараем, но там только трава и камни. bicycle rack — «велосипедная стойка». There isn’t a bicycle rack next to the shed — «Рядом с сараем нет велосипедной стойки».",
-        "uk": "Сусід приїхав у двір на велосипеді й хоче його пристебнути, щоб не вкрали. Він шукає залізну стійку поруч із сараєм, але там лише трава й каміння. bicycle rack — «велосипедна стійка». There isn’t a bicycle rack next to the shed — «Поруч із сараєм немає велосипедної стійки»."
+        "ru": "Сосед приехал во двор на велосипеде и хочет его пристегнуть, чтобы не украли. Он ищет железную стойку рядом с сараем, но там только трава и камни. bicycle rack — «велосипедная стойка». There isn’t a bicycle rack next to the shed — «Рядом с сараем нет велосипедной стойки». Начинаем с There isn’t, затем называем предмет — a bicycle rack — и место: next to the shed. Isn’t означает is not, а next to — «рядом с».",
+        "uk": "Сусід приїхав у двір на велосипеді й хоче його пристебнути, щоб не вкрали. Він шукає залізну стійку поруч із сараєм, але там лише трава й каміння. bicycle rack — «велосипедна стійка». There isn’t a bicycle rack next to the shed — «Поруч із сараєм немає велосипедної стійки». Починаємо з There isn’t, потім називаємо предмет — a bicycle rack — і місце: next to the shed. Isn’t означає is not, а next to — «поруч із»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-38:intro1:q",
@@ -36,7 +36,7 @@
             },
             {
               "responseId": "en:lesson-04:session-38:intro1:r3",
-              "text": "There aren’t any bicycle racks next to the shed."
+              "text": "There aren’t a bicycle rack next to the shed."
             }
           ],
           "uk": [
@@ -50,7 +50,7 @@
             },
             {
               "responseId": "en:lesson-04:session-38:intro1:r3",
-              "text": "There aren’t any bicycle racks next to the shed."
+              "text": "There aren’t a bicycle rack next to the shed."
             }
           ]
         },
@@ -69,8 +69,8 @@
         "uk": "Трава для дитини"
       },
       "bodyByLocale": {
-        "ru": "Соседка хочет посидеть с маленьким сыном на мягкой траве, пока тепло. Она заходит за дом, а там только серый бетон, камни и ни одной травинки. lawn — «газон»: ровная подстриженная трава. There isn’t a lawn behind the building — «За домом нет газона».",
-        "uk": "Сусідка хоче посидіти з маленьким сином на м’якій траві, поки тепло. Вона заходить за будинок, а там лише сірий бетон, каміння й жодної травинки. lawn — «газон»: рівна підстрижена трава. There isn’t a lawn behind the building — «За будинком немає газону»."
+        "ru": "Соседка хочет посидеть с маленьким сыном на мягкой траве, пока тепло. Она заходит за дом, а там только серый бетон, камни и ни одной травинки. lawn — «газон»: ровная подстриженная трава. There isn’t a lawn behind the building — «За домом нет газона». Сначала ставим There isn’t, затем a lawn и место — behind the building. Behind показывает, что речь о месте за зданием.",
+        "uk": "Сусідка хоче посидіти з маленьким сином на м’якій траві, поки тепло. Вона заходить за будинок, а там лише сірий бетон, каміння й жодної травинки. lawn — «газон»: рівна підстрижена трава. There isn’t a lawn behind the building — «За будинком немає газону». Спочатку ставимо There isn’t, потім a lawn і місце — behind the building. Behind показує, що йдеться про місце за будинком."
       },
       "question": {
         "interactionId": "en:lesson-04:session-38:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Мокрі простирадла"
       },
       "bodyByLocale": {
-        "ru": "Подруга постирала простыни и несёт их мокрыми по двору. Ей нужна верёвка, натянутая в воздухе, чтобы развесить бельё. washing line — «верёвка для белья». There isn’t a washing line between the shed and the fence — «Между сараем и забором нет верёвки».",
-        "uk": "Подруга випрала простирадла й несе їх мокрими по двору. Їй потрібна мотузка, натягнута в повітрі, щоб розвісити білизну. washing line — «мотузка для білизни». There isn’t a washing line between the shed and the fence — «Між сараєм і парканом немає мотузки»."
+        "ru": "Подруга постирала простыни и несёт их мокрыми по двору. Ей нужна верёвка, натянутая в воздухе, чтобы развесить бельё. washing line — «верёвка для белья». There isn’t a washing line between the shed and the fence — «Между сараем и забором нет верёвки». Начинаем с There isn’t, называем предмет — a washing line, затем указываем место: between the shed and the fence. Между двумя ориентирами после between ставим and.",
+        "uk": "Подруга випрала простирадла й несе їх мокрими по двору. Їй потрібна мотузка, натягнута в повітрі, щоб розвісити білизну. washing line — «мотузка для білизни». There isn’t a washing line between the shed and the fence — «Між сараєм і парканом немає мотузки». Починаємо з There isn’t, називаємо предмет — a washing line, потім указуємо місце: between the shed and the fence. Між двома орієнтирами після between ставимо and."
       },
       "question": {
         "interactionId": "en:lesson-04:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d3b732ef72eeb71b1fe652b544fc0bc294c4df06bfb719b236c816f4c0a62d19"
+  "introFingerprint": "1b07742d40bf524f0b10d82026d5b13a524e228133c2955d02ba231fbd10fc1a"
 }

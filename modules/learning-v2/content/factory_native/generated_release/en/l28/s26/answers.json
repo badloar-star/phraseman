@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-26:i01",
+    "correctText": "satchel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i02",
+    "correctText": "Can the strap on this satchel be replaced?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i03",
+    "correctText": "Your bag will be delivered tomorrow.",
+    "correctResponseId": "en:lesson-28:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i04",
+    "correctText": "Could you show me a lighter bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i05",
+    "correctText": "holdall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i06",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i07",
+    "correctText": "How much does it weigh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i08",
+    "correctText": "I wish it were smaller.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i09",
+    "correctText": "combination",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i10",
+    "correctText": "The combination can be changed.",
+    "correctResponseId": "en:lesson-28:session-26:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i11",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i12",
+    "correctText": "Could you show me how to open the lock?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i13",
+    "correctText": "expandable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i14",
+    "correctText": "Is this suitcase expandable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i15",
+    "correctText": "The handle was repaired yesterday.",
+    "correctResponseId": "en:lesson-28:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i16",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-26:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i17",
+    "correctText": "The bag should be kept dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i18",
+    "correctText": "Can I return it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i19",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-26:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i20",
+    "correctText": "The new handle will be sent tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-26:i21",
+    "correctText": "Could you deliver it to my home?",
+    "correctResponseId": null
+  }
+]

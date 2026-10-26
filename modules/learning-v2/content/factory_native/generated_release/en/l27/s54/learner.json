@@ -1,0 +1,1085 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-54:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поздоровайтесь со знакомым: вы рады его видеть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Поздоровайтесь со знакомым: вы рады его видеть.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i01:audio",
+          "transcript": "It is good to see you again."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is good to see you again.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nickname",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nickname",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i02:audio",
+          "transcript": "nickname"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i02:r1",
+            "targetText": "nickname",
+            "meaningByLocale": {
+              "ru": "Прозвище, неофициальное имя человека.",
+              "uk": "Прізвисько, неофіційне ім’я людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nickname",
+          "definitionByLocale": {
+            "ru": "Прозвище, неофициальное имя человека.",
+            "uk": "Прізвисько, неофіційне ім’я людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i03:r1",
+          "text": "My nickname at school was Sunny."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i03:r2",
+          "text": "My nickname at school was Sandy."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i03:r3",
+          "text": "My surname was Sunny."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i03:audio",
+          "transcript": "My nickname at school was Sunny."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i03:r1",
+            "targetText": "My nickname at school was Sunny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i03:r2",
+            "targetText": "My nickname at school was Sandy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i03:r3",
+            "targetText": "My surname was Sunny.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My nickname at school was Sunny.",
+              "uk": "У записі звучить My nickname at school was Sunny."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My nickname at school was Sunny.",
+              "uk": "У записі звучить My nickname at school was Sunny."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Последняя встреча была на свадьбе Анны в мае. Выберите прошедшую форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i04:r1",
+          "text": "met"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i04:r2",
+          "text": "have met"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i04:r3",
+          "text": "meeting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Последняя встреча была на свадьбе Анны в мае. Выберите прошедшую форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Последняя встреча была на свадьбе Анны в мае. Выберите прошедшую форму.",
+          "uk": "Остання зустріч була на весіллі Анни в травні. Виберіть минулу форму."
+        },
+        "gappedTargetPhrase": "We ___ at Anna’s wedding in May.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-54:i04:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i04:r2",
+            "text": "have met"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i04:r3",
+            "text": "meeting"
+          }
+        ],
+        "testedDimension": "Последняя встреча была на свадьбе Анны в мае. Выберите прошедшую форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i04:r2",
+            "correct": false,
+            "testedDimension": "Последняя встреча была на свадьбе Анны в мае. Выберите прошедшую форму.",
+            "feedbackByLocale": {
+              "ru": "Названа конкретная прошлая встреча: met.",
+              "uk": "Названо конкретну минулу зустріч: met."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i04:r3",
+            "correct": false,
+            "testedDimension": "Последняя встреча была на свадьбе Анны в мае. Выберите прошедшую форму.",
+            "feedbackByLocale": {
+              "ru": "Meeting здесь не заменяет сказуемое met.",
+              "uk": "Meeting тут не замінює присудок met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, помнит ли друг ваше прозвище.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, помнит ли друг ваше прозвище.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you remember my nickname?",
+        "localizedMeaning": {
+          "ru": "Спросите, помнит ли друг ваше прозвище.",
+          "uk": "Запитайте, чи пам’ятає друг ваше прізвисько."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "remember",
+          "my",
+          "nickname"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — espresso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — espresso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i06:audio",
+          "transcript": "espresso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i06:r1",
+            "targetText": "espresso",
+            "meaningByLocale": {
+              "ru": "Эспрессо: небольшая порция крепкого кофе. В заказе an espresso — одна порция.",
+              "uk": "Еспресо: невелика порція міцної кави. У замовленні an espresso — одна порція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "espresso",
+          "definitionByLocale": {
+            "ru": "Эспрессо: небольшая порция крепкого кофе. В заказе an espresso — одна порция.",
+            "uk": "Еспресо: невелика порція міцної кави. У замовленні an espresso — одна порція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Закажите один эспрессо и воду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Закажите один эспрессо и воду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i07:audio",
+          "transcript": "An espresso and some water, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "An espresso and some water, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i08:r1",
+          "text": "I have already ordered a sandwich."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i08:r2",
+          "text": "I have already ordered a salad."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i08:r3",
+          "text": "I ordered a sandwich yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i08:audio",
+          "transcript": "I have already ordered a sandwich."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i08:r1",
+            "targetText": "I have already ordered a sandwich.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i08:r2",
+            "targetText": "I have already ordered a salad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i08:r3",
+            "targetText": "I ordered a sandwich yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already ordered a sandwich.",
+              "uk": "У записі звучить I have already ordered a sandwich."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already ordered a sandwich.",
+              "uk": "У записі звучить I have already ordered a sandwich."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — latte",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — latte",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i09:audio",
+          "transcript": "latte"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i09:r1",
+            "targetText": "latte",
+            "meaningByLocale": {
+              "ru": "Латте: кофе с большим количеством молока. A latte — одна порция напитка.",
+              "uk": "Лате: кава з великою кількістю молока. A latte — одна порція напою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "latte",
+          "definitionByLocale": {
+            "ru": "Латте: кофе с большим количеством молока. A latte — одна порция напитка.",
+            "uk": "Лате: кава з великою кількістю молока. A latte — одна порція напою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Закажите маленький латте без сахара.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Закажите маленький латте без сахара.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a small latte without sugar?",
+        "localizedMeaning": {
+          "ru": "Закажите маленький латте без сахара.",
+          "uk": "Замовте маленьке лате без цукру."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "small",
+          "latte",
+          "without",
+          "sugar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг уже оплатил заказ: важен результат сейчас, время не названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i11:r1",
+          "text": "paid"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i11:r2",
+          "text": "pay"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i11:r3",
+          "text": "paying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг уже оплатил заказ: важен результат сейчас, время не названо.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг уже оплатил заказ: важен результат сейчас, время не названо.",
+          "uk": "Друг уже оплатив замовлення: важливий результат зараз, час не названо."
+        },
+        "gappedTargetPhrase": "He has already ___ for our drinks.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-54:i11:r1",
+            "text": "paid"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i11:r2",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i11:r3",
+            "text": "paying"
+          }
+        ],
+        "testedDimension": "Друг уже оплатил заказ: важен результат сейчас, время не названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Друг уже оплатил заказ: важен результат сейчас, время не названо.",
+            "feedbackByLocale": {
+              "ru": "После has нужна третья форма paid.",
+              "uk": "Після has потрібна третя форма paid."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Друг уже оплатил заказ: важен результат сейчас, время не названо.",
+            "feedbackByLocale": {
+              "ru": "Здесь Present Perfect: has paid.",
+              "uk": "Тут Present Perfect: has paid."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, где вас ждёт друг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Услышьте, где вас ждёт друг.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i12:audio",
+          "transcript": "I am at the table by the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am at the table by the window.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "at",
+          "the",
+          "table",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cappuccino",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cappuccino",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i13:audio",
+          "transcript": "cappuccino"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i13:r1",
+            "targetText": "cappuccino",
+            "meaningByLocale": {
+              "ru": "Капучино: кофе с молоком и молочной пеной. A cappuccino — одна порция.",
+              "uk": "Капучино: кава з молоком і молочною піною. A cappuccino — одна порція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cappuccino",
+          "definitionByLocale": {
+            "ru": "Капучино: кофе с молоком и молочной пеной. A cappuccino — одна порция.",
+            "uk": "Капучино: кава з молоком і молочною піною. A cappuccino — одна порція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i14:r1",
+          "text": "This cappuccino is for my friend."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i14:r2",
+          "text": "This cappuccino is for me."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i14:r3",
+          "text": "This latte is for my friend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i14:audio",
+          "transcript": "This cappuccino is for my friend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i14:r1",
+            "targetText": "This cappuccino is for my friend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i14:r2",
+            "targetText": "This cappuccino is for me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i14:r3",
+            "targetText": "This latte is for my friend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cappuccino is for my friend.",
+              "uk": "У записі звучить This cappuccino is for my friend."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cappuccino is for my friend.",
+              "uk": "У записі звучить This cappuccino is for my friend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает совета: вы бы выбрали стол снаружи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает совета: вы бы выбрали стол снаружи.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "If I were you, I would sit outside.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает совета: вы бы выбрали стол снаружи.",
+          "uk": "Друг просить поради: ви б вибрали столик надворі."
+        },
+        "orderedTokens": [
+          "If",
+          "I",
+          "were",
+          "you,",
+          "I",
+          "would",
+          "sit",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете новый адрес друга, но хотели бы знать его сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i16:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i16:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i16:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете новый адрес друга, но хотели бы знать его сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете новый адрес друга, но хотели бы знать его сейчас.",
+          "uk": "Ви не знаєте нової адреси друга, але хотіли б знати її зараз."
+        },
+        "gappedTargetPhrase": "I wish I ___ your new address.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-54:i16:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i16:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i16:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Вы не знаете новый адрес друга, но хотели бы знать его сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете новый адрес друга, но хотели бы знать его сейчас.",
+            "feedbackByLocale": {
+              "ru": "Wish + knew выражает желание о нынешнем положении.",
+              "uk": "Wish + knew виражає бажання про нинішнє становище."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете новый адрес друга, но хотели бы знать его сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма knew после I.",
+              "uk": "Потрібна форма knew після I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите друга прислать адрес сообщением.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите друга прислать адрес сообщением.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i17:audio",
+          "transcript": "Could you send me your address?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you send me your address?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы воображаете свободный день. Начните с результата: If I had a day off, I would visit you.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы воображаете свободный день. Начните с результата: If I had a day off, I would visit you.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would visit you if I had a day off.",
+        "localizedMeaning": {
+          "ru": "Вы воображаете свободный день. Начните с результата: If I had a day off, I would visit you.",
+          "uk": "Ви уявляєте вільний день. Почніть із результату: If I had a day off, I would visit you."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "visit",
+          "you",
+          "if",
+          "I",
+          "had",
+          "a",
+          "day",
+          "off"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i19:r1",
+          "text": "I am free on Saturday afternoon."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i19:r2",
+          "text": "I am free on Sunday afternoon."
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i19:r3",
+          "text": "I am busy on Saturday afternoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i19:audio",
+          "transcript": "I am free on Saturday afternoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-54:i19:r1",
+            "targetText": "I am free on Saturday afternoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i19:r2",
+            "targetText": "I am free on Sunday afternoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i19:r3",
+            "targetText": "I am busy on Saturday afternoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am free on Saturday afternoon.",
+              "uk": "У записі звучить I am free on Saturday afternoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i19:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am free on Saturday afternoon.",
+              "uk": "У записі звучить I am free on Saturday afternoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы готовы прийти, если суббота устроит друга. Это реальная договорённость.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-54:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i20:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-27:session-54:i20:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовы прийти, если суббота устроит друга. Это реальная договорённость.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы готовы прийти, если суббота устроит друга. Это реальная договорённость.",
+          "uk": "Ви готові прийти, якщо субота влаштує друга. Це реальна домовленість."
+        },
+        "gappedTargetPhrase": "I will come if you ___ free on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-54:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i20:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i20:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Вы готовы прийти, если суббота устроит друга. Это реальная договорённость.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-54:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы готовы прийти, если суббота устроит друга. Это реальная договорённость.",
+            "feedbackByLocale": {
+              "ru": "В таком условии с if о будущем используем are.",
+              "uk": "У такій умові з if про майбутнє використовуємо are."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-54:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы готовы прийти, если суббота устроит друга. Это реальная договорённость.",
+            "feedbackByLocale": {
+              "ru": "После you нужна личная форма are.",
+              "uk": "Після you потрібна особова форма are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попрощайтесь до субботы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-54:i21:audio"
+      ],
+      "accessibilityLabel": "Попрощайтесь до субботы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-54:i21:audio",
+          "transcript": "See you on Saturday!"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "See you on Saturday!",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "051890ede04b23f53b1e9489b6deed524a67a7a540140e025f5fddb162075bf7"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "делать вывод о состоянии друзей и уточнять, кому предназначена приготовленная еда.",
+    "uk": "робити висновок про стан друзів і уточнювати, кому призначена приготована їжа."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пропустили обед — наверняка голодны",
+        "uk": "Пропустили обід — напевно, голодні"
+      },
+      "bodyByLocale": {
+        "ru": "Анна и Бен гуляли весь день и пропустили обед. Вы делаете вывод: They must be hungry — они, должно быть, голодны. Соберите They + must + be + hungry. Must выражает уверенный вывод, а перед hungry нужна связка be. С they после must не меняем be на are.",
+        "uk": "Анна й Бен гуляли весь день і пропустили обід. Ви робите висновок: They must be hungry — вони, напевно, голодні. Складіть They + must + be + hungry. Must виражає впевнений висновок, а перед hungry потрібна зв’язка be. З they після must не змінюємо be на are."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-05:intro1:r1",
+              "text": "They must be hungry."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro1:r2",
+              "text": "They must are hungry."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro1:r3",
+              "text": "They must hungry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-05:intro1:r1",
+              "text": "They must be hungry."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro1:r2",
+              "text": "They must are hungry."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro1:r3",
+              "text": "They must hungry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бутерброд, который я приготовил",
+        "uk": "Бутерброд, який я приготував"
+      },
+      "bodyByLocale": {
+        "ru": "На столе несколько бутербродов. Укажите свой: The sandwich I made is for Ben — бутерброд, который я приготовил, для Бена. Соберите The sandwich + I made + is for Ben. Часть I made уточняет sandwich. Можно опустить that: внутри уточнения уже есть I, тот, кто приготовил бутерброд.",
+        "uk": "На столі кілька бутербродів. Укажіть свій: The sandwich I made is for Ben — бутерброд, який я приготував, для Бена. Складіть The sandwich + I made + is for Ben. Частина I made уточнює sandwich. Можна опустити that: усередині уточнення вже є I, той, хто приготував бутерброд."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-05:intro2:r1",
+              "text": "The sandwich I made is for Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro2:r2",
+              "text": "The sandwich I made it is for Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro2:r3",
+              "text": "The sandwich I make yesterday is for Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-05:intro2:r1",
+              "text": "The sandwich I made is for Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro2:r2",
+              "text": "The sandwich I made it is for Ben."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro2:r3",
+              "text": "The sandwich I make yesterday is for Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проголодался — съел яблоко",
+        "uk": "Зголоднів — з’їв яблуко"
+      },
+      "bodyByLocale": {
+        "ru": "Пока готовился обед, вы съели яблоко: I was hungry, so I ate an apple — я был голоден, поэтому съел яблоко. Соберите I was hungry + so + I ate an apple. Перед so стоит причина, после него — результат. Ate — прошедшая форма eat.",
+        "uk": "Поки готувався обід, ви з’їли яблуко: I was hungry, so I ate an apple — я був голодний, тому з’їв яблуко. Складіть I was hungry + so + I ate an apple. Перед so стоїть причина, після нього — результат. Ate — минула форма eat."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-05:intro3:r1",
+              "text": "I was hungry, so I ate an apple."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro3:r2",
+              "text": "I was hungry, so I eaten an apple."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro3:r3",
+              "text": "I was hungry, so I eating an apple."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-05:intro3:r1",
+              "text": "I was hungry, so I ate an apple."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro3:r2",
+              "text": "I was hungry, so I eaten an apple."
+            },
+            {
+              "responseId": "en:lesson-32:session-05:intro3:r3",
+              "text": "I was hungry, so I eating an apple."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1b78ba6509f174e19ecac0f8ab99b22637df9cfe9ef37df2907c697905ebb92d"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-09:i01",
+    "correctText": "ready",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i02",
+    "correctText": "You're ready, aren't you?",
+    "correctResponseId": "en:lesson-31:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i03",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-31:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i04",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i05",
+    "correctText": "The bag isn't heavy, is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i06",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-31:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i07",
+    "correctText": "drive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i08",
+    "correctText": "She doesn't drive, does she?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i09",
+    "correctText": "does",
+    "correctResponseId": "en:lesson-31:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i10",
+    "correctText": "bus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i11",
+    "correctText": "The bus is late, isn't it?",
+    "correctResponseId": "en:lesson-31:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i12",
+    "correctText": "The bus is late, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i13",
+    "correctText": "The bus isn't full, is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i14",
+    "correctText": "aren't",
+    "correctResponseId": "en:lesson-31:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i15",
+    "correctText": "She doesn't drive, does she?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i16",
+    "correctText": "The bags are heavy, aren't they?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i17",
+    "correctText": "it",
+    "correctResponseId": "en:lesson-31:session-09:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i18",
+    "correctText": "You're tired, aren't you?",
+    "correctResponseId": "en:lesson-31:session-09:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i19",
+    "correctText": "The bag isn't heavy, is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i20",
+    "correctText": "does",
+    "correctResponseId": "en:lesson-31:session-09:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-09:i21",
+    "correctText": "We aren't late, are we?",
+    "correctResponseId": null
+  }
+]

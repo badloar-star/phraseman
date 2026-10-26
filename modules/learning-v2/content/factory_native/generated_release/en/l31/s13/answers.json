@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-13:i01",
+    "correctText": "shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i02",
+    "correctText": "The shirt isn't dry, is it?",
+    "correctResponseId": "en:lesson-31:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i04",
+    "correctText": "machine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i05",
+    "correctText": "Do you know when the machine finishes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i06",
+    "correctText": "The shirt was washed by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i07",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-31:session-13:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i08",
+    "correctText": "basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i09",
+    "correctText": "Could you tell me where the basket is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i10",
+    "correctText": "The basket is full, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i12",
+    "correctText": "clothes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i13",
+    "correctText": "Do you know if the clothes are dry?",
+    "correctResponseId": "en:lesson-31:session-13:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i14",
+    "correctText": "She said the clothes were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i15",
+    "correctText": "The machine is noisy, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i16",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-31:session-13:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i17",
+    "correctText": "The window was opened by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i18",
+    "correctText": "The basket is empty, isn't it?",
+    "correctResponseId": "en:lesson-31:session-13:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i19",
+    "correctText": "Do you know if the shirt is dry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i20",
+    "correctText": "finishes",
+    "correctResponseId": "en:lesson-31:session-13:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-13:i21",
+    "correctText": "She said the basket was full.",
+    "correctResponseId": null
+  }
+]

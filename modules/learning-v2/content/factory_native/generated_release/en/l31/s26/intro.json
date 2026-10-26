@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять причину, говорить о понимании чужого поступка и уточнять готовность еды.",
+    "uk": "пояснювати причину, говорити про розуміння чужого вчинку й уточнювати готовність їжі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поел, потому что проголодался",
+        "uk": "Поїв, бо зголоднів"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, почему вы не дождались общего ужина. Вы были голодны: I ate because I was hungry — я поел, потому что был голоден. Соберите I ate + because + I was hungry. После because идёт целая причина с участником I и состоянием was hungry.",
+        "uk": "Друг запитує, чому ви не дочекалися спільної вечері. Ви були голодні: I ate because I was hungry — я поїв, бо був голодний. Складіть I ate + because + I was hungry. Після because йде ціла причина з учасником I та станом was hungry."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-26:intro1:r1",
+              "text": "I ate because I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro1:r2",
+              "text": "I ate because of I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro1:r3",
+              "text": "I ate because I hungry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-26:intro1:r1",
+              "text": "I ate because I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro1:r2",
+              "text": "I ate because of I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro1:r3",
+              "text": "I ate because I hungry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Почему друг ушёл раньше",
+        "uk": "Чому друг пішов раніше"
+      },
+      "bodyByLocale": {
+        "ru": "После ужина Бен сказал, что устал, и ушёл домой. Теперь вы понимаете причину его ухода: I understand why Ben left — я понимаю, почему Бен ушёл. Соберите I understand + why + Ben + left. После why сохраняем порядок Ben left; did здесь не добавляем.",
+        "uk": "Після вечері Бен сказав, що втомився, і пішов додому. Тепер ви розумієте причину його відходу: I understand why Ben left — я розумію, чому Бен пішов. Складіть I understand + why + Ben + left. Після why зберігаємо порядок Ben left; did тут не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-26:intro2:r1",
+              "text": "I understand why Ben left."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro2:r2",
+              "text": "I understand why did Ben leave."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro2:r3",
+              "text": "I understand why Ben did left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-26:intro2:r1",
+              "text": "I understand why Ben left."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro2:r2",
+              "text": "I understand why did Ben leave."
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro2:r3",
+              "text": "I understand why Ben did left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Суп уже готов?",
+        "uk": "Суп уже готовий?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите кастрюлю на столе и уточняете у друга: The soup is ready, isn’t it? — суп готов, правда? Соберите The soup is ready + isn’t + it. После утвердительного is добавляем отрицательное isn’t; soup заменяем на it.",
+        "uk": "Ви бачите каструлю на столі й уточнюєте в друга: The soup is ready, isn’t it? — суп готовий, правда? Складіть The soup is ready + isn’t + it. Після стверджувального is додаємо заперечне isn’t; soup замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-26:intro3:r1",
+              "text": "The soup is ready, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro3:r2",
+              "text": "The soup is ready, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro3:r3",
+              "text": "The soup is ready, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-26:intro3:r1",
+              "text": "The soup is ready, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro3:r2",
+              "text": "The soup is ready, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-26:intro3:r3",
+              "text": "The soup is ready, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a19ad8d523aa2ebc682028686037a16ce04cae8485533347f4bc108578b5d286"
+}

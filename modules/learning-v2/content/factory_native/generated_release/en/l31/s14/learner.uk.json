@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i01:audio",
+          "transcript": "shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-14:i01:r1",
+            "targetText": "shoes",
+            "meaningByLocale": {
+              "ru": "Обувь. Повторение знакомого слова.",
+              "uk": "Взуття. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoes",
+          "definitionByLocale": {
+            "ru": "Обувь. Повторение знакомого слова.",
+            "uk": "Взуття. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i02:r1",
+          "text": "Your shoes are wet, aren't they?"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i02:r2",
+          "text": "Your shoes are dirty, aren't they?"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i02:r3",
+          "text": "Your shoes are new, aren't they?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i02:audio",
+          "transcript": "Your shoes are wet, aren't they?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-14:i02:r1",
+            "targetText": "Your shoes are wet, aren't they?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i02:r2",
+            "targetText": "Your shoes are dirty, aren't they?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i02:r3",
+            "targetText": "Your shoes are new, aren't they?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your shoes are wet, aren't they?",
+              "uk": "У записі звучить Your shoes are wet, aren't they?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your shoes are wet, aren't they?",
+              "uk": "У записі звучить Your shoes are wet, aren't they?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Взуття друга мокре. Додайте заперечне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i03:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i03:r2",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Взуття друга мокре. Додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Обувь друга мокрая. Добавьте отрицательное уточнение.",
+          "uk": "Взуття друга мокре. Додайте заперечне уточнення."
+        },
+        "gappedTargetPhrase": "Your shoes are wet, ___ they?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-14:i03:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i03:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Взуття друга мокре. Додайте заперечне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Взуття друга мокре. Додайте заперечне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Множественное shoes требует aren’t.",
+              "uk": "Множина shoes потребує aren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Взуття друга мокре. Додайте заперечне уточнення.",
+            "feedbackByLocale": {
+              "ru": "В основной части are, поэтому здесь aren’t.",
+              "uk": "В основній частині are, тому тут aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i04:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-14:i04:r1",
+            "targetText": "bus",
+            "meaningByLocale": {
+              "ru": "Автобус. Повторение знакомого слова.",
+              "uk": "Автобус. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus",
+          "definitionByLocale": {
+            "ru": "Автобус. Повторение знакомого слова.",
+            "uk": "Автобус. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте друга, чи знає він, чи повний автобус.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи повний автобус.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know if the bus is full?",
+        "localizedMeaning": {
+          "ru": "Спросите друга, знает ли он, полон ли автобус.",
+          "uk": "Запитайте друга, чи знає він, чи повний автобус."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "bus",
+          "is",
+          "full"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tickets",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tickets",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i06:audio",
+          "transcript": "tickets"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-14:i06:r1",
+            "targetText": "tickets",
+            "meaningByLocale": {
+              "ru": "Билеты. Повторение знакомого слова.",
+              "uk": "Квитки. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tickets",
+          "definitionByLocale": {
+            "ru": "Билеты. Повторение знакомого слова.",
+            "uk": "Квитки. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен перевірив ваші з другом квитки. Почніть з our tickets.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Бен перевірив ваші з другом квитки. Почніть з our tickets.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i07:audio",
+          "transcript": "Our tickets were checked by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our tickets were checked by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Бен сказав: «Автобус повний». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Бен сказав: «Автобус повний». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Автобус полный». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Автобус повний». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "He said the bus ___ full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-14:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Бен сказав: «Автобус повний». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Автобус повний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Автобус повний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i09:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-14:i09:r1",
+            "targetText": "seat",
+            "meaningByLocale": {
+              "ru": "Место для сидения. Повторение знакомого слова.",
+              "uk": "Місце для сидіння. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat",
+          "definitionByLocale": {
+            "ru": "Место для сидения. Повторение знакомого слова.",
+            "uk": "Місце для сидіння. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте пасажира, чи знає він, чи вільне місце.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте пасажира, чи знає він, чи вільне місце.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know if the seat is free?",
+        "localizedMeaning": {
+          "ru": "Спросите пассажира, знает ли он, свободно ли место.",
+          "uk": "Запитайте пасажира, чи знає він, чи вільне місце."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "seat",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Місце вільне. Додайте заперечне уточнення про нього.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Місце вільне. Додайте заперечне уточнення про нього.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i11:audio",
+          "transcript": "The seat is free, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The seat is free, isn't it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен перевірив квитки. Виберіть прийменник перед його ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i12:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен перевірив квитки. Виберіть прийменник перед його ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен проверил билеты. Выберите предлог перед его именем.",
+          "uk": "Бен перевірив квитки. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "Our tickets were checked ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-14:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i12:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен перевірив квитки. Виберіть прийменник перед його ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Бен перевірив квитки. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Бен перевірив квитки. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i13:r1",
+          "text": "Could you tell me when the bus leaves?"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i13:r2",
+          "text": "Could you tell me when the train leaves?"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i13:r3",
+          "text": "Could you tell me when the boat leaves?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i13:audio",
+          "transcript": "Could you tell me when the bus leaves?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-14:i13:r1",
+            "targetText": "Could you tell me when the bus leaves?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i13:r2",
+            "targetText": "Could you tell me when the train leaves?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i13:r3",
+            "targetText": "Could you tell me when the boat leaves?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me when the bus leaves?",
+              "uk": "У записі звучить Could you tell me when the bus leaves?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me when the bus leaves?",
+              "uk": "У записі звучить Could you tell me when the bus leaves?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Бен сказав: «Місця вільні». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Бен сказав: «Місця вільні». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i14:audio",
+          "transcript": "He said the seats were free."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the seats were free.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Автобус не запізнюється. Додайте стверджувальне уточнення про нього.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус не запізнюється. Додайте стверджувальне уточнення про нього.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bus isn't late, is it?",
+        "localizedMeaning": {
+          "ru": "Автобус не опаздывает. Добавьте утвердительное уточнение о нём.",
+          "uk": "Автобус не запізнюється. Додайте стверджувальне уточнення про нього."
+        },
+        "orderedTokens": [
+          "The",
+          "bus",
+          "isn't",
+          "late,",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть у друга, де ваші з ним квитки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i16:r1",
+          "text": "our tickets are"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i16:r2",
+          "text": "are our tickets"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i16:r3",
+          "text": "our tickets is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть у друга, де ваші з ним квитки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните у друга, где ваши с ним билеты.",
+          "uk": "Уточніть у друга, де ваші з ним квитки."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-14:i16:r1",
+            "text": "our tickets are"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i16:r2",
+            "text": "are our tickets"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i16:r3",
+            "text": "our tickets is"
+          }
+        ],
+        "testedDimension": "Уточніть у друга, де ваші з ним квитки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточніть у друга, де ваші з ним квитки.",
+            "feedbackByLocale": {
+              "ru": "После where порядок our tickets are.",
+              "uk": "Після where порядок our tickets are."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточніть у друга, де ваші з ним квитки.",
+            "feedbackByLocale": {
+              "ru": "Множественное tickets требует are.",
+              "uk": "Множина tickets потребує are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен відчинив двері. Почніть із дверей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Бен відчинив двері. Почніть із дверей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i17:audio",
+          "transcript": "The door was opened by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door was opened by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: пасажир уточнює, місце вільне чи зайняте?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i18:r1",
+          "text": "The seat is free, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i18:r2",
+          "text": "The seat is taken, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i18:audioA",
+        "en:lesson-31:session-14:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: пасажир уточнює, місце вільне чи зайняте?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The seat is free, isn't it?",
+        "contrastB": "The seat is taken, isn't it?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-14:i18:audioA",
+          "transcript": "The seat is free, isn't it?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-14:i18:audioB",
+          "transcript": "The seat is taken, isn't it?"
+        },
+        "testedPhoneticContrast": "Послухайте: пасажир уточнює, місце вільне чи зайняте?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: пасажир уточнює, місце вільне чи зайняте?",
+            "feedbackByLocale": {
+              "ru": "Звучит free — свободно.",
+              "uk": "Звучить free — вільне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про відправлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про відправлення.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i19:audio",
+          "transcript": "Could you tell me when the bus leaves?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you tell me when the bus leaves?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "when",
+          "the",
+          "bus",
+          "leaves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг промок. Додайте заперечне уточнення до You’re wet.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-14:i20:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i20:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-31:session-14:i20:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг промок. Додайте заперечне уточнення до You’re wet.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг промок. Добавьте отрицательное уточнение к You’re wet.",
+          "uk": "Друг промок. Додайте заперечне уточнення до You’re wet."
+        },
+        "gappedTargetPhrase": "You're wet, aren't ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-14:i20:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i20:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i20:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Друг промок. Додайте заперечне уточнення до You’re wet.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-14:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг промок. Додайте заперечне уточнення до You’re wet.",
+            "feedbackByLocale": {
+              "ru": "В основной части you, поэтому повторяем you.",
+              "uk": "В основній частині you, тому повторюємо you."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-14:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг промок. Додайте заперечне уточнення до You’re wet.",
+            "feedbackByLocale": {
+              "ru": "Вы обращаетесь к другу: you.",
+              "uk": "Ви звертаєтеся до друга: you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-14:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Бен сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-14:i21:audio"
+      ],
+      "accessibilityLabel": "Учора Бен сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-14:i21:audio",
+          "transcript": "He said he needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f4e00e315a0ea6f6ce67e133395772964a25005c13989f5b9b1ddf0379fd4e79"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "закреплять пересказ слов, вопросов и просьб, уточнять вещи и выражать желание о настоящем.",
+    "uk": "закріплювати переказ слів, запитань і прохань, уточнювати речі та виражати бажання про теперішнє."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друг хотел принять душ",
+        "uk": "Друг хотів прийняти душ"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера после поездки друг сказал: «Мне нужен душ». Перескажите со сдвигом времени: He said he needed a shower — он сказал, что ему нужно принять душ. Соберите He + said + he + needed a shower. В его I need a shower заменяем I на he, а need сдвигаем в needed после said.",
+        "uk": "Учора після поїздки друг сказав: «Мені потрібен душ». Перекажіть зі зсувом часу: He said he needed a shower — він сказав, що йому потрібно прийняти душ. Складіть He + said + he + needed a shower. У його I need a shower замінюємо I на he, а need зсуваємо у needed після said."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-56:intro1:r1",
+              "text": "He said he needed a shower."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro1:r2",
+              "text": "He said he needs a shower."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro1:r3",
+              "text": "He said he needing a shower."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-56:intro1:r1",
+              "text": "He said he needed a shower."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro1:r2",
+              "text": "He said he needs a shower."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro1:r3",
+              "text": "He said he needing a shower."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Друг спросил про ключи",
+        "uk": "Друг запитав про ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил вас: «Где твои ключи?» Перескажите вопрос: He asked where my keys were — он спросил, где мои ключи. Соберите He + asked + where + my keys + were. После where сначала ставим my keys, затем were. Keys — несколько ключей, поэтому were, не was.",
+        "uk": "Друг запитав вас: «Де твої ключі?» Перекажіть запитання: He asked where my keys were — він запитав, де мої ключі. Складіть He + asked + where + my keys + were. Після where спочатку ставимо my keys, потім were. Keys — кілька ключів, тому were, не was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-56:intro2:r1",
+              "text": "He asked where my keys were."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro2:r2",
+              "text": "He asked where were my keys."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro2:r3",
+              "text": "He asked where my keys was."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-56:intro2:r1",
+              "text": "He asked where my keys were."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro2:r2",
+              "text": "He asked where were my keys."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro2:r3",
+              "text": "He asked where my keys was."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хочется тишины",
+        "uk": "Хочеться тиші"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вернулись домой отдохнуть, но в комнате шумно. Скажите, что хотели бы тишины сейчас: I wish the room were quieter — жаль, что в комнате не тише. Соберите I + wish + the room + were quieter. После wish форма were quieter выражает желание изменить нынешнюю ситуацию.",
+        "uk": "Ви повернулися додому відпочити, але в кімнаті шумно. Скажіть, що хотіли б тиші зараз: I wish the room were quieter — шкода, що в кімнаті не тихіше. Складіть I + wish + the room + were quieter. Після wish форма were quieter виражає бажання змінити теперішню ситуацію."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-56:intro3:r1",
+              "text": "I wish the room were quieter."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro3:r2",
+              "text": "I wish the room is quieter."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro3:r3",
+              "text": "I wish the room be quieter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-56:intro3:r1",
+              "text": "I wish the room were quieter."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro3:r2",
+              "text": "I wish the room is quieter."
+            },
+            {
+              "responseId": "en:lesson-30:session-56:intro3:r3",
+              "text": "I wish the room be quieter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2075227816e2f85751072507564dbc843efa5c733675c99f97a612f6dc4fbcd7"
+}

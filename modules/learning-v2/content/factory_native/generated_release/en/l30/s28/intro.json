@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "передавать сообщения и просьбы, уточнять предмет; повторите вопросы и желание.",
+    "uk": "передавати повідомлення й прохання, уточнювати предмет; повторите запитання та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кому сообщили время праздника",
+        "uk": "Кому повідомили час свята"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга пригласила вас на день рождения и сказала, что праздник в шесть. Передайте это брату: She told me the party was at six — она сказала мне, что праздник в шесть. Соберите She + told + me + the party was at six. После told называем получателя me, затем передаём сообщение.",
+        "uk": "Подруга запросила вас на день народження й сказала, що свято о шостій. Передайте це братові: She told me the party was at six — вона сказала мені, що свято о шостій. Складіть She + told + me + the party was at six. Після told називаємо одержувача me, потім передаємо повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-28:intro1:r1",
+              "text": "She told me the party was at six."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro1:r2",
+              "text": "She said me the party was at six."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro1:r3",
+              "text": "She told to me the party was at six."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-28:intro1:r1",
+              "text": "She told me the party was at six."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro1:r2",
+              "text": "She said me the party was at six."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro1:r3",
+              "text": "She told to me the party was at six."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём попросила подруга",
+        "uk": "Про що попросила подруга"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга попросила вас прийти пораньше, чтобы помочь с подготовкой. Расскажите брату: She asked me to come early — она попросила меня прийти рано. Соберите She + asked + me + to come early. После asked указываем человека me, а затем действие с to: to come.",
+        "uk": "Подруга попросила вас прийти раніше, щоб допомогти з підготовкою. Розкажіть братові: She asked me to come early — вона попросила мене прийти рано. Складіть She + asked + me + to come early. Після asked указуємо людину me, а потім дію з to: to come."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-28:intro2:r1",
+              "text": "She asked me to come early."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro2:r2",
+              "text": "She asked me come early."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro2:r3",
+              "text": "She asked I to come early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-28:intro2:r1",
+              "text": "She asked me to come early."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro2:r2",
+              "text": "She asked me come early."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro2:r3",
+              "text": "She asked I to come early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить, какой подарок",
+        "uk": "Уточнити, який подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "Брат выбирал подарок вместе с вами. Теперь скажите ему, что выбранный им подарок уже на столе: The gift you chose is on the table — подарок, который ты выбрал, на столе. Соберите The gift + you chose + is on the table. You chose уточняет подарок. You — тот, кто выбирал, а gift — выбранный предмет, поэтому that перед you можно опустить.",
+        "uk": "Брат вибирав подарунок разом із вами. Тепер скажіть йому, що вибраний ним подарунок уже на столі: The gift you chose is on the table — подарунок, який ти вибрав, на столі. Складіть The gift + you chose + is on the table. You chose уточнює подарунок. You — той, хто вибирав, а gift — вибраний предмет, тому that перед you можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-28:intro3:r1",
+              "text": "The gift you chose is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro3:r2",
+              "text": "The gift chose you is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro3:r3",
+              "text": "The gift you chose are on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-28:intro3:r1",
+              "text": "The gift you chose is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro3:r2",
+              "text": "The gift chose you is on the table."
+            },
+            {
+              "responseId": "en:lesson-30:session-28:intro3:r3",
+              "text": "The gift you chose are on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3075218793add418b4cb9b725054d2adb6911ead6831464c584545483f085368"
+}

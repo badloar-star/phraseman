@@ -23,8 +23,8 @@
           "uk": "Матеріал один, тому потрібно is: The material is leather."
         },
         "en:lesson-03:session-55:intro2:r3": {
-          "ru": "Сначала называем признак: The material, потом что это: is leather.",
-          "uk": "Спершу називаємо ознаку: The material, потім що це: is leather."
+          "ru": "Между The material и leather нужно is.",
+          "uk": "Між The material та leather потрібне is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "51a07f1a514eb24b1b843af4dafa04d141ee3484e05c4a008666fcd107f57166"
+  "auxiliaryFingerprint": "9b895afba6cbaeacc69023f779dc45fd0225fb35368735d0a9bb9d27310679d6"
 }

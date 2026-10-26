@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glazier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glazier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i01:audio",
+          "transcript": "glazier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-05:i01:r1",
+            "targetText": "glazier",
+            "meaningByLocale": {
+              "ru": "Стекольщик. Мастер, который устанавливает или заменяет стёкла, например в окнах.",
+              "uk": "Скляр. Майстер, який установлює або замінює скло, наприклад у вікнах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glazier",
+          "definitionByLocale": {
+            "ru": "Стекольщик. Мастер, который устанавливает или заменяет стёкла, например в окнах.",
+            "uk": "Скляр. Майстер, який установлює або замінює скло, наприклад у вікнах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам потрібен скляр.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам потрібен скляр.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i02:audio",
+          "transcript": "I need a glazier."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need a glazier.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i03:r1",
+          "text": "The man who repaired the window is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i03:r2",
+          "text": "The man who repaired the door is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i03:r3",
+          "text": "The man who repaired the window is upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i03:audio",
+          "transcript": "The man who repaired the window is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-05:i03:r1",
+            "targetText": "The man who repaired the window is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i03:r2",
+            "targetText": "The man who repaired the door is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i03:r3",
+            "targetText": "The man who repaired the window is upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The man who repaired the window is here.",
+              "uk": "У записі звучить The man who repaired the window is here."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The man who repaired the window is here.",
+              "uk": "У записі звучить The man who repaired the window is here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що чоловік, який полагодив вікно, уже тут.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i04:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i04:r2",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i04:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що чоловік, який полагодив вікно, уже тут.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что мужчина, починивший окно, уже здесь.",
+          "uk": "Уточніть, що чоловік, який полагодив вікно, уже тут."
+        },
+        "gappedTargetPhrase": "The man ___ repaired the window is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-05:i04:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i04:r2",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i04:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточніть, що чоловік, який полагодив вікно, уже тут.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що чоловік, який полагодив вікно, уже тут.",
+            "feedbackByLocale": {
+              "ru": "Для уточнения человека используем who.",
+              "uk": "Для уточнення людини використовуємо who."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що чоловік, який полагодив вікно, уже тут.",
+            "feedbackByLocale": {
+              "ru": "После the man здесь нужна who.",
+              "uk": "Після the man тут потрібна who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть подивитися на тріснуте вікно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть подивитися на тріснуте вікно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you look at the cracked window?",
+        "localizedMeaning": {
+          "ru": "Попросите посмотреть треснувшее окно.",
+          "uk": "Попросіть подивитися на тріснуте вікно."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "look",
+          "at",
+          "the",
+          "cracked",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tiler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tiler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i06:audio",
+          "transcript": "tiler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-05:i06:r1",
+            "targetText": "tiler",
+            "meaningByLocale": {
+              "ru": "Плиточник. Мастер, который укладывает плитку на стены или пол.",
+              "uk": "Плиточник. Майстер, який укладає плитку на стіни або підлогу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tiler",
+          "definitionByLocale": {
+            "ru": "Плиточник. Мастер, который укладывает плитку на стены или пол.",
+            "uk": "Плиточник. Майстер, який укладає плитку на стіни або підлогу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, коли зможе прийти плиточник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, коли зможе прийти плиточник.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When can the tiler come?",
+        "localizedMeaning": {
+          "ru": "Спросите, когда сможет прийти плиточник.",
+          "uk": "Запитайте, коли зможе прийти плиточник."
+        },
+        "orderedTokens": [
+          "When",
+          "can",
+          "the",
+          "tiler",
+          "come"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть повідомити ціну до початку роботи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Попросіть повідомити ціну до початку роботи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i08:audio",
+          "transcript": "Could you tell me the price before you start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me the price before you start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що плитку поклав місцевий майстер.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i09:r2",
+          "text": "from"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що плитку поклав місцевий майстер.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что плитку уложил местный мастер.",
+          "uk": "Скажіть, що плитку поклав місцевий майстер."
+        },
+        "gappedTargetPhrase": "The tiles were fitted ___ a local worker.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-05:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i09:r2",
+            "text": "from"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Скажіть, що плитку поклав місцевий майстер.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що плитку поклав місцевий майстер.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия здесь вводит by.",
+              "uk": "Виконавця дії тут позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що плитку поклав місцевий майстер.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителя здесь нужна by.",
+              "uk": "Для виконавця тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i10:r1",
+          "text": "The tool that fits is in the bag."
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i10:r2",
+          "text": "The tool that fits is on the shelf."
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i10:r3",
+          "text": "The key that fits is in the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i10:audio",
+          "transcript": "The tool that fits is in the bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-05:i10:r1",
+            "targetText": "The tool that fits is in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i10:r2",
+            "targetText": "The tool that fits is on the shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i10:r3",
+            "targetText": "The key that fits is in the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tool that fits is in the bag.",
+              "uk": "У записі звучить The tool that fits is in the bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tool that fits is in the bag.",
+              "uk": "У записі звучить The tool that fits is in the bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plasterer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plasterer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i11:audio",
+          "transcript": "plasterer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-05:i11:r1",
+            "targetText": "plasterer",
+            "meaningByLocale": {
+              "ru": "Штукатур. Мастер, который наносит штукатурку на стены и потолки.",
+              "uk": "Штукатур. Майстер, який наносить штукатурку на стіни й стелі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plasterer",
+          "definitionByLocale": {
+            "ru": "Штукатур. Мастер, который наносит штукатурку на стены и потолки.",
+            "uk": "Штукатур. Майстер, який наносить штукатурку на стіни й стелі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що штукатур, який телефонував, уже чекає.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що штукатур, який телефонував, уже чекає.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i12:audio",
+          "transcript": "The plasterer who called is waiting."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The plasterer who called is waiting.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто пофарбував двері.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто пофарбував двері.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i13:audio",
+          "transcript": "The door was painted by my brother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door was painted by my brother.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "was",
+          "painted",
+          "by",
+          "my",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пообіцяйте зателефонувати, якщо ремонт затягнеться.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i14:r1",
+          "text": "takes"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i14:r2",
+          "text": "will take"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i14:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообіцяйте зателефонувати, якщо ремонт затягнеться.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пообещайте позвонить, если ремонт затянется.",
+          "uk": "Пообіцяйте зателефонувати, якщо ремонт затягнеться."
+        },
+        "gappedTargetPhrase": "If the repair ___ longer, I will call you.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-05:i14:r1",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i14:r2",
+            "text": "will take"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i14:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Пообіцяйте зателефонувати, якщо ремонт затягнеться.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i14:r2",
+            "correct": false,
+            "testedDimension": "Пообіцяйте зателефонувати, якщо ремонт затягнеться.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if используем takes, без will.",
+              "uk": "У цій умові після if використовуємо takes, без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i14:r3",
+            "correct": false,
+            "testedDimension": "Пообіцяйте зателефонувати, якщо ремонт затягнеться.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма takes.",
+              "uk": "Тут потрібна форма takes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — handyman",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Картка слова — handyman",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i15:audio",
+          "transcript": "handyman"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-05:i15:r1",
+            "targetText": "handyman",
+            "meaningByLocale": {
+              "ru": "Мастер по мелкому ремонту. Человек, который выполняет разные небольшие работы по дому.",
+              "uk": "Майстер із дрібного ремонту. Людина, яка виконує різні невеликі роботи вдома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handyman",
+          "definitionByLocale": {
+            "ru": "Мастер по мелкому ремонту. Человек, который выполняет разные небольшие работы по дому.",
+            "uk": "Майстер із дрібного ремонту. Людина, яка виконує різні невеликі роботи вдома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи може майстер із дрібного ремонту полагодити ручку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи може майстер із дрібного ремонту полагодити ручку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can the handyman fix the handle?",
+        "localizedMeaning": {
+          "ru": "Спросите, может ли мастер по мелкому ремонту починить ручку.",
+          "uk": "Запитайте, чи може майстер із дрібного ремонту полагодити ручку."
+        },
+        "orderedTokens": [
+          "Can",
+          "the",
+          "handyman",
+          "fix",
+          "the",
+          "handle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте фахівців із перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте фахівців із перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-05:i17:p1",
+            "target": "glazier",
+            "meaningByLocale": {
+              "ru": "стекольщик",
+              "uk": "скляр"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-05:i17:p2",
+            "target": "tiler",
+            "meaningByLocale": {
+              "ru": "плиточник",
+              "uk": "плиточник"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-05:i17:p3",
+            "target": "plasterer",
+            "meaningByLocale": {
+              "ru": "штукатур",
+              "uk": "штукатур"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-05:i17:p4",
+            "target": "handyman",
+            "meaningByLocale": {
+              "ru": "мастер по мелкому ремонту",
+              "uk": "майстер із дрібного ремонту"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glazier",
+          "tiler",
+          "plasterer",
+          "handyman"
+        ],
+        "rightColumn": [
+          "скляр",
+          "плиточник",
+          "штукатур",
+          "майстер із дрібного ремонту"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: вікно потрібно полагодити чи замінити?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i18:r1",
+          "text": "The window needs to be replaced."
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i18:r2",
+          "text": "The window needs to be repaired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i18:audioA",
+        "en:lesson-29:session-05:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: вікно потрібно полагодити чи замінити?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The window needs to be replaced.",
+        "contrastB": "The window needs to be repaired.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-05:i18:audioA",
+          "transcript": "The window needs to be replaced."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-05:i18:audioB",
+          "transcript": "The window needs to be repaired."
+        },
+        "testedPhoneticContrast": "Послухайте: вікно потрібно полагодити чи замінити?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: вікно потрібно полагодити чи замінити?",
+            "feedbackByLocale": {
+              "ru": "В записи replaced — заменено.",
+              "uk": "У записі replaced — замінене."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, який інструмент лежить у сумці: той, який підходить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-05:i19:r1",
+          "text": "fits"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i19:r2",
+          "text": "fit"
+        },
+        {
+          "responseId": "en:lesson-29:session-05:i19:r3",
+          "text": "fitting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, який інструмент лежить у сумці: той, який підходить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, какой инструмент лежит в сумке: тот, который подходит.",
+          "uk": "Уточніть, який інструмент лежить у сумці: той, який підходить."
+        },
+        "gappedTargetPhrase": "The tool that ___ is in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-05:i19:r1",
+            "text": "fits"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i19:r2",
+            "text": "fit"
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i19:r3",
+            "text": "fitting"
+          }
+        ],
+        "testedDimension": "Уточніть, який інструмент лежить у сумці: той, який підходить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-05:i19:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, який інструмент лежить у сумці: той, який підходить.",
+            "feedbackByLocale": {
+              "ru": "К одному tool относится fits.",
+              "uk": "До одного tool належить fits."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-05:i19:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, який інструмент лежить у сумці: той, який підходить.",
+            "feedbackByLocale": {
+              "ru": "После that здесь нужна fits.",
+              "uk": "Після that тут потрібна fits."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, коли господар буде вдома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте, коли господар буде вдома.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i20:audio",
+          "transcript": "I will be at home if you come tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will be at home if you come tomorrow.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "be",
+          "at",
+          "home",
+          "if",
+          "you",
+          "come",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-05:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть зателефонувати перед приїздом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-05:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть зателефонувати перед приїздом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-05:i21:audio",
+          "transcript": "Please call before you come."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please call before you come.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4f19a34a23a40467c78e917e60f9ffdd1044d8d71c283fcf01f1c1f5d1e34cbc"
+}

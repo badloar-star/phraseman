@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-39:intro1:r2": {
+          "ru": "Задано противопоставление «но»: but.",
+          "uk": "Задано протиставлення «але»: but."
+        },
+        "en:lesson-31:session-39:intro1:r3": {
+          "ru": "Прошедшая форма buy — bought.",
+          "uk": "Минула форма buy — bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-39:intro2:r2": {
+          "ru": "После where порядок the receipt is.",
+          "uk": "Після where порядок the receipt is."
+        },
+        "en:lesson-31:session-39:intro2:r3": {
+          "ru": "Один receipt требует is.",
+          "uk": "Один receipt потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-39:intro3:r2": {
+          "ru": "С is нужно isn’t.",
+          "uk": "З is потрібне isn’t."
+        },
+        "en:lesson-31:session-39:intro3:r3": {
+          "ru": "Одно coat заменяем на it.",
+          "uk": "Одне coat замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b8b871f0314bc512493fe57b18847997760818d28f2205e85339d1df5ce1ff02"
+}

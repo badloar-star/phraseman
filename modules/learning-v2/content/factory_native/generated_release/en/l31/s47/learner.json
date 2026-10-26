@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — list",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — list",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i01:audio",
+          "transcript": "list"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-47:i01:r1",
+            "targetText": "list",
+            "meaningByLocale": {
+              "ru": "Список. Повторение знакомого слова.",
+              "uk": "Список. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "list",
+          "definitionByLocale": {
+            "ru": "Список. Повторение знакомого слова.",
+            "uk": "Список. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i02:r1",
+          "text": "I know where the list is."
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i02:r2",
+          "text": "I know where the pen is."
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i02:r3",
+          "text": "I know where the note is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i02:audio",
+          "transcript": "I know where the list is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-47:i02:r1",
+            "targetText": "I know where the list is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i02:r2",
+            "targetText": "I know where the pen is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i02:r3",
+            "targetText": "I know where the note is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the list is.",
+              "uk": "У записі звучить I know where the list is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the list is.",
+              "uk": "У записі звучить I know where the list is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы составили список с целью помнить покупки. Выберите форму после to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i03:r1",
+          "text": "remember"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i03:r2",
+          "text": "remembered"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i03:r3",
+          "text": "remembering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы составили список с целью помнить покупки. Выберите форму после to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы составили список с целью помнить покупки. Выберите форму после to.",
+          "uk": "Ви склали список, щоб пам’ятати покупки. Виберіть форму після to."
+        },
+        "gappedTargetPhrase": "I made a list to ___ what we need.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-47:i03:r1",
+            "text": "remember"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i03:r2",
+            "text": "remembered"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i03:r3",
+            "text": "remembering"
+          }
+        ],
+        "testedDimension": "Вы составили список с целью помнить покупки. Выберите форму после to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы составили список с целью помнить покупки. Выберите форму после to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма remember.",
+              "uk": "Після to потрібна форма remember."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы составили список с целью помнить покупки. Выберите форму после to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to remember.",
+              "uk": "Мету виражаємо через to remember."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i04:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-47:i04:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы знаете, что нужен хлеб. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы знаете, что нужен хлеб. Скажите это.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know that we need bread.",
+        "localizedMeaning": {
+          "ru": "Вы знаете, что нужен хлеб. Скажите это.",
+          "uk": "Ви знаєте, що потрібен хліб. Скажіть це."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "that",
+          "we",
+          "need",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i06:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-47:i06:r1",
+            "targetText": "milk",
+            "meaningByLocale": {
+              "ru": "Молоко. Повторение знакомого слова.",
+              "uk": "Молоко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milk",
+          "definitionByLocale": {
+            "ru": "Молоко. Повторение знакомого слова.",
+            "uk": "Молоко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите у Анны, есть ли дома молоко. Используйте we.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите у Анны, есть ли дома молоко. Используйте we.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i07:audio",
+          "transcript": "Could you tell me if we have milk?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me if we have milk?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Молоко в холодильнике». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Молоко в холодильнике». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Молоко в холодильнике». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Молоко в холодильнику». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the milk ___ in the fridge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-47:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Молоко в холодильнике». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Молоко в холодильнике». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Молоко в холодильнике». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы дали Анне список, чтобы она купила хлеб. Начните с I gave Anna the list.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы дали Анне список, чтобы она купила хлеб. Начните с I gave Anna the list.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I gave Anna the list so that she could buy the bread.",
+        "localizedMeaning": {
+          "ru": "Вы дали Анне список, чтобы она купила хлеб. Начните с I gave Anna the list.",
+          "uk": "Ви дали Анні список, щоб вона купила хліб. Почніть з I gave Anna the list."
+        },
+        "orderedTokens": [
+          "I",
+          "gave",
+          "Anna",
+          "the",
+          "list",
+          "so",
+          "that",
+          "she",
+          "could",
+          "buy",
+          "the",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что вам с Анной нужно. Скажите: «Я знаю, что нам нужно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что вам с Анной нужно. Скажите: «Я знаю, что нам нужно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i10:audio",
+          "transcript": "I know what we need."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know what we need.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Список написал Бен. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Список написал Бен. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Список написал Бен. Выберите предлог перед его именем.",
+          "uk": "Список написав Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The list was written ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-47:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Список написал Бен. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Список написал Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Автора называем после by.",
+              "uk": "Автора називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Список написал Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Бен написал список: by Ben.",
+              "uk": "Бен написав список: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i12:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-47:i12:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i13:r1",
+          "text": "I took a bag to carry the bread."
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i13:r2",
+          "text": "I took a box to carry the bread."
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i13:r3",
+          "text": "I took a basket to carry the bread."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i13:audio",
+          "transcript": "I took a bag to carry the bread."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-47:i13:r1",
+            "targetText": "I took a bag to carry the bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i13:r2",
+            "targetText": "I took a box to carry the bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i13:r3",
+            "targetText": "I took a basket to carry the bread.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took a bag to carry the bread.",
+              "uk": "У записі звучить I took a bag to carry the bread."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took a bag to carry the bread.",
+              "uk": "У записі звучить I took a bag to carry the bread."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Сумки пустые». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Сумки пустые». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i14:audio",
+          "transcript": "She said the bags were empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the bags were empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы составили список, потому что забыли молоко. Начните с I made a list.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы составили список, потому что забыли молоко. Начните с I made a list.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I made a list because I forgot the milk.",
+        "localizedMeaning": {
+          "ru": "Вы составили список, потому что забыли молоко. Начните с I made a list.",
+          "uk": "Ви склали список, бо забули молоко. Почніть з I made a list."
+        },
+        "orderedTokens": [
+          "I",
+          "made",
+          "a",
+          "list",
+          "because",
+          "I",
+          "forgot",
+          "the",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i16:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i16:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i16:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+          "uk": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread."
+        },
+        "gappedTargetPhrase": "I gave Anna the list ___ she could buy the bread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-47:i16:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i16:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i16:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i16:r2",
+            "correct": false,
+            "testedDimension": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+            "feedbackByLocale": {
+              "ru": "Перед she could buy the bread нужно so that.",
+              "uk": "Перед she could buy the bread потрібне so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i16:r3",
+            "correct": false,
+            "testedDimension": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+            "feedbackByLocale": {
+              "ru": "Цель с целой частью вводим через so that.",
+              "uk": "Мету з цілою частиною вводимо через so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна пошла в магазин, хотя устала. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Анна пошла в магазин, хотя устала. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i17:audio",
+          "transcript": "Anna went to the shop although she was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna went to the shop although she was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: Анна должна купить хлеб или молоко?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i18:r1",
+          "text": "I gave Anna the list so that she could buy the bread."
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i18:r2",
+          "text": "I gave Anna the list so that she could buy the milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i18:audioA",
+        "en:lesson-31:session-47:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: Анна должна купить хлеб или молоко?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I gave Anna the list so that she could buy the bread.",
+        "contrastB": "I gave Anna the list so that she could buy the milk.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-47:i18:audioA",
+          "transcript": "I gave Anna the list so that she could buy the bread."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-47:i18:audioB",
+          "transcript": "I gave Anna the list so that she could buy the milk."
+        },
+        "testedPhoneticContrast": "Послушайте: Анна должна купить хлеб или молоко?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: Анна должна купить хлеб или молоко?",
+            "feedbackByLocale": {
+              "ru": "Звучит bread — хлеб.",
+              "uk": "Звучить bread — хліб."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте цель списка. Начните с I made a list.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте цель списка. Начните с I made a list.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i19:audio",
+          "transcript": "I made a list to remember what we need."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I made a list to remember what we need.",
+        "orderedTokens": [
+          "I",
+          "made",
+          "a",
+          "list",
+          "to",
+          "remember",
+          "what",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Список не длинный. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-47:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-47:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Список не длинный. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Список не длинный. Добавьте утвердительное уточнение.",
+          "uk": "Список не довгий. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The list isn't long, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-47:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Список не длинный. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-47:i20:r2",
+            "correct": false,
+            "testedDimension": "Список не длинный. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Один list требует is.",
+              "uk": "Один list потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-47:i20:r3",
+            "correct": false,
+            "testedDimension": "Список не длинный. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-47:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Анна взяла сумку. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-47:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Анна взяла сумку. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-47:i21:audio",
+          "transcript": "I understand why Anna took a bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna took a bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f4d203ffd8bccd70dbc01e1ee31b1e9da9af6eb484933e54d3f30a59ce3f720d"
+}

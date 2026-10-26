@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать блюда, уточнить состав заказа и договориться о получении.",
+    "uk": "як назвати страви, уточнити склад замовлення й домовитися про отримання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обед с напитком",
+        "uk": "Обід із напоєм"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заказываете обед и хотите, чтобы напиток входил в набор. Скажите: I want a meal that includes a drink — я хочу обед, который включает напиток. Соберите I want a meal + that includes a drink. Сразу после a meal добавьте that includes a drink: это уточняет нужный набор. That занимает место meal внутри уточнения; ещё одно it перед includes не нужно.",
+        "uk": "Ви замовляєте обід і хочете, щоб напій входив до набору. Скажіть: I want a meal that includes a drink — я хочу обід, який включає напій. Складіть I want a meal + that includes a drink. Одразу після a meal додайте that includes a drink: це уточнює потрібний набір. That займає місце meal всередині уточнення; ще одне it перед includes не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-04:intro1:r1",
+              "text": "I want a meal that includes a drink."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro1:r2",
+              "text": "I want a meal that it includes a drink."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro1:r3",
+              "text": "I want a meal that include a drink."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-04:intro1:r1",
+              "text": "I want a meal that includes a drink."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro1:r2",
+              "text": "I want a meal that it includes a drink."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro1:r3",
+              "text": "I want a meal that include a drink."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто привёз заказ",
+        "uk": "Хто привіз замовлення"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, кто привёз еду. Ответьте: The order was delivered by a courier — заказ доставил курьер. Соберите The order + was delivered + by a courier. Сначала назовите заказ, затем поставьте was и delivered, третью форму deliver. Часть by a courier указывает человека, который выполнил доставку.",
+        "uk": "Друг запитує, хто привіз їжу. Дайте відповідь: The order was delivered by a courier — замовлення доставив кур’єр. Складіть The order + was delivered + by a courier. Спочатку назвіть замовлення, потім поставте was та delivered, третю форму deliver. Частина by a courier вказує людину, яка виконала доставку."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-04:intro2:r1",
+              "text": "The order was delivered by a courier."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro2:r2",
+              "text": "The order was delivered from a courier."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro2:r3",
+              "text": "The order was deliver by a courier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-04:intro2:r1",
+              "text": "The order was delivered by a courier."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro2:r2",
+              "text": "The order was delivered from a courier."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro2:r3",
+              "text": "The order was deliver by a courier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Забрать самим",
+        "uk": "Забрати самим"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не знаете стоимость доставки и обсуждаете запасной вариант. Скажите: If delivery costs extra, we will collect the order — если доставка оплачивается отдельно, мы заберём заказ сами. Соберите If delivery costs extra + we will collect the order. После If назовите условие: delivery costs extra. Затем поставьте we will collect: так вы сообщите о решении на случай платной доставки. Между частями нужна запятая.",
+        "uk": "Ви ще не знаєте вартості доставки й обговорюєте запасний варіант. Скажіть: If delivery costs extra, we will collect the order — якщо доставка оплачується окремо, ми заберемо замовлення самі. Складіть If delivery costs extra + we will collect the order. Після If назвіть умову: delivery costs extra. Потім поставте we will collect: так ви повідомите про рішення на випадок платної доставки. Між частинами потрібна кома."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-04:intro3:r1",
+              "text": "If delivery costs extra, we will collect the order."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro3:r2",
+              "text": "If delivery will cost extra, we will collect the order."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro3:r3",
+              "text": "If delivery costs extra, we will collected the order."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-04:intro3:r1",
+              "text": "If delivery costs extra, we will collect the order."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro3:r2",
+              "text": "If delivery will cost extra, we will collect the order."
+            },
+            {
+              "responseId": "en:lesson-29:session-04:intro3:r3",
+              "text": "If delivery costs extra, we will collected the order."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9e8648e81cc4ff3bff2f1d33e4873cf13fc8c2d3c67bda093dc2e4f72ec33add"
+}

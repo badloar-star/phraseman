@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "делать вывод по признакам и уточнять, о какой еде или посуде идёт речь.",
+    "uk": "робити висновок за ознаками й уточнювати, про яку їжу чи посуд ідеться."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Суп, должно быть, горячий",
+        "uk": "Суп, напевно, гарячий"
+      },
+      "bodyByLocale": {
+        "ru": "Анна только сняла кастрюлю с плиты, над супом поднимается пар. Вы делаете вывод: The soup must be hot — суп, должно быть, горячий. Соберите The soup + must + be + hot. Must здесь выражает уверенный вывод по признакам. Перед прилагательным hot нужна связка be, а не is.",
+        "uk": "Анна щойно зняла каструлю з плити, над супом підіймається пара. Ви робите висновок: The soup must be hot — суп, напевно, гарячий. Складіть The soup + must + be + hot. Must тут виражає впевнений висновок за ознаками. Перед прикметником hot потрібна зв’язка be, а не is."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-03:intro1:r1",
+              "text": "The soup must be hot."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro1:r2",
+              "text": "The soup must hot."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro1:r3",
+              "text": "The soup must is hot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-03:intro1:r1",
+              "text": "The soup must be hot."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro1:r2",
+              "text": "The soup must hot."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro1:r3",
+              "text": "The soup must is hot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Суп, который приготовила Анна",
+        "uk": "Суп, який приготувала Анна"
+      },
+      "bodyByLocale": {
+        "ru": "На столе два блюда. Уточните суп Анны: The soup Anna made is ready — суп, который приготовила Анна, готов. Соберите The soup + Anna made + is ready. Часть Anna made уточняет soup. Можно опустить that: Анна приготовила суп, и действующее лицо Anna уже названо внутри уточнения.",
+        "uk": "На столі дві страви. Уточніть суп Анни: The soup Anna made is ready — суп, який приготувала Анна, готовий. Складіть The soup + Anna made + is ready. Частина Anna made уточнює soup. Можна опустити that: Анна приготувала суп, і діяч Anna вже названий усередині уточнення."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-03:intro2:r1",
+              "text": "The soup Anna made is ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro2:r2",
+              "text": "The soup Anna made it is ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro2:r3",
+              "text": "The soup Anna make is ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-03:intro2:r1",
+              "text": "The soup Anna made is ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro2:r2",
+              "text": "The soup Anna made it is ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro2:r3",
+              "text": "The soup Anna make is ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Горячая миска — поставил на стол",
+        "uk": "Гаряча миска — поставив на стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Вы взяли горячую миску и сразу поставили её: The bowl was hot, so I put it down — миска была горячей, поэтому я её поставил. Соберите The bowl was hot + so + I put it down. После so идёт результат. В сочетании put it down местоимение it стоит между put и down.",
+        "uk": "Ви взяли гарячу миску й одразу поставили її: The bowl was hot, so I put it down — миска була гаряча, тому я її поставив. Складіть The bowl was hot + so + I put it down. Після so йде результат. У сполуці put it down займенник it стоїть між put і down."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-03:intro3:r1",
+              "text": "The bowl was hot, so I put it down."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro3:r2",
+              "text": "The bowl was hot, so I put down it."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro3:r3",
+              "text": "The bowl was hot, so I putting it down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-03:intro3:r1",
+              "text": "The bowl was hot, so I put it down."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro3:r2",
+              "text": "The bowl was hot, so I put down it."
+            },
+            {
+              "responseId": "en:lesson-32:session-03:intro3:r3",
+              "text": "The bowl was hot, so I putting it down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8404d52fcd2aed5a679e53eb490b21de70b63fe7fde4b61816c29fe23eacbcd6"
+}

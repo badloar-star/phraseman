@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — book",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — book",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i01:audio",
+          "transcript": "book"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-40:i01:r1",
+            "targetText": "book",
+            "meaningByLocale": {
+              "ru": "Книга. Повторение знакомого слова.",
+              "uk": "Книжка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "book",
+          "definitionByLocale": {
+            "ru": "Книга. Повторение знакомого слова.",
+            "uk": "Книжка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i02:r1",
+          "text": "I read the book although it was long."
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i02:r2",
+          "text": "I read the book although it was boring."
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i02:r3",
+          "text": "I read the book although it was difficult."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i02:audio",
+          "transcript": "I read the book although it was long."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-40:i02:r1",
+            "targetText": "I read the book although it was long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i02:r2",
+            "targetText": "I read the book although it was boring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i02:r3",
+            "targetText": "I read the book although it was difficult.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I read the book although it was long.",
+              "uk": "У записі звучить I read the book although it was long."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I read the book although it was long.",
+              "uk": "У записі звучить I read the book although it was long."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прочитали книжку, хоча вона була довгою. Виберіть «хоча».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i03:r1",
+          "text": "although"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i03:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i03:r3",
+          "text": "because of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали книжку, хоча вона була довгою. Виберіть «хоча».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы прочитали книгу, хотя она была длинной. Выберите «хотя».",
+          "uk": "Ви прочитали книжку, хоча вона була довгою. Виберіть «хоча»."
+        },
+        "gappedTargetPhrase": "I read the book ___ it was long.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-40:i03:r1",
+            "text": "although"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i03:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i03:r3",
+            "text": "because of"
+          }
+        ],
+        "testedDimension": "Ви прочитали книжку, хоча вона була довгою. Виберіть «хоча».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви прочитали книжку, хоча вона була довгою. Виберіть «хоча».",
+            "feedbackByLocale": {
+              "ru": "Нужно «хотя», не «потому что».",
+              "uk": "Потрібне «хоча», не «тому що»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви прочитали книжку, хоча вона була довгою. Виберіть «хоча».",
+            "feedbackByLocale": {
+              "ru": "Здесь задана уступка although, не причина.",
+              "uk": "Тут задано поступку although, не причину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — library",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — library",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i04:audio",
+          "transcript": "library"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-40:i04:r1",
+            "targetText": "library",
+            "meaningByLocale": {
+              "ru": "Библиотека. Повторение знакомого слова.",
+              "uk": "Бібліотека. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "library",
+          "definitionByLocale": {
+            "ru": "Библиотека. Повторение знакомого слова.",
+            "uk": "Бібліотека. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте, коли бібліотека зачиняється.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте, коли бібліотека зачиняється.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know when the library closes.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, когда библиотека закрывается.",
+          "uk": "Скажіть, що знаєте, коли бібліотека зачиняється."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "when",
+          "the",
+          "library",
+          "closes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна повернула книжку. Почніть із книжки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Анна повернула книжку. Почніть із книжки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i06:audio",
+          "transcript": "The book was returned by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The book was returned by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Книжка цікава». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Книжка цікава». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Книга интересная». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Книжка цікава». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the book ___ interesting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-40:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Книжка цікава». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Книжка цікава». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Книжка цікава». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i08:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-40:i08:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте друга, де ваша сумка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте друга, де ваша сумка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where my bag is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите друга, где ваша сумка.",
+          "uk": "Ввічливо запитайте друга, де ваша сумка."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "my",
+          "bag",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що книжка в сумці. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що книжка в сумці. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i10:audio",
+          "transcript": "I know that the book is in the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the book is in the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна повернула книжку. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна повернула книжку. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна вернула книгу. Выберите предлог перед её именем.",
+          "uk": "Анна повернула книжку. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The book was returned ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-40:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна повернула книжку. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна повернула книжку. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна повернула книжку. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "В условии Анна вернула книгу, а не получила её: by.",
+              "uk": "За умовою Анна повернула книжку, а не отримала її: by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i12:audio",
+          "transcript": "card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-40:i12:r1",
+            "targetText": "card",
+            "meaningByLocale": {
+              "ru": "Карточка, билет читателя. Повторение знакомого слова.",
+              "uk": "Картка, читацький квиток. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "card",
+          "definitionByLocale": {
+            "ru": "Карточка, билет читателя. Повторение знакомого слова.",
+            "uk": "Картка, читацький квиток. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i13:r1",
+          "text": "I know where my card is."
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i13:r2",
+          "text": "I know where my book is."
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i13:r3",
+          "text": "I know where my bag is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i13:audio",
+          "transcript": "I know where my card is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-40:i13:r1",
+            "targetText": "I know where my card is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i13:r2",
+            "targetText": "I know where my book is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i13:r3",
+            "targetText": "I know where my bag is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where my card is.",
+              "uk": "У записі звучить I know where my card is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where my card is.",
+              "uk": "У записі звучить I know where my card is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Книжки цікаві». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Книжки цікаві». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i14:audio",
+          "transcript": "She said the books were interesting."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the books were interesting.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви прочитали книжку, хоча вона була довгою. Почніть з I read the book.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прочитали книжку, хоча вона була довгою. Почніть з I read the book.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I read the book although it was long.",
+        "localizedMeaning": {
+          "ru": "Вы прочитали книгу, хотя она была длинной. Начните с I read the book.",
+          "uk": "Ви прочитали книжку, хоча вона була довгою. Почніть з I read the book."
+        },
+        "orderedTokens": [
+          "I",
+          "read",
+          "the",
+          "book",
+          "although",
+          "it",
+          "was",
+          "long"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друга, чи знає він, чи відчинена бібліотека.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i16:r1",
+          "text": "the library is"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i16:r2",
+          "text": "is the library"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i16:r3",
+          "text": "the library are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи відчинена бібліотека.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, открыта ли библиотека.",
+          "uk": "Запитайте друга, чи знає він, чи відчинена бібліотека."
+        },
+        "gappedTargetPhrase": "Do you know if ___ open?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-40:i16:r1",
+            "text": "the library is"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i16:r2",
+            "text": "is the library"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i16:r3",
+            "text": "the library are"
+          }
+        ],
+        "testedDimension": "Запитайте друга, чи знає він, чи відчинена бібліотека.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи відчинена бібліотека.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the library is.",
+              "uk": "Після if порядок the library is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи відчинена бібліотека.",
+            "feedbackByLocale": {
+              "ru": "Одна library требует is.",
+              "uk": "Одна library потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви залишилися вдома читати через дощ. Назвіть дощ причиною того, що залишилися вдома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Ви залишилися вдома читати через дощ. Назвіть дощ причиною того, що залишилися вдома.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i17:audio",
+          "transcript": "I stayed home because of the rain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I stayed home because of the rain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець прочитав книжку, хоча вона була довгою чи нудною?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i18:r1",
+          "text": "I read the book although it was long."
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i18:r2",
+          "text": "I read the book although it was boring."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i18:audioA",
+        "en:lesson-31:session-40:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець прочитав книжку, хоча вона була довгою чи нудною?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I read the book although it was long.",
+        "contrastB": "I read the book although it was boring.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-40:i18:audioA",
+          "transcript": "I read the book although it was long."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-40:i18:audioB",
+          "transcript": "I read the book although it was boring."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець прочитав книжку, хоча вона була довгою чи нудною?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець прочитав книжку, хоча вона була довгою чи нудною?",
+            "feedbackByLocale": {
+              "ru": "Звучит long — длинная.",
+              "uk": "Звучить long — довга."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте розповідь про книжку. Почніть з I read the book.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте розповідь про книжку. Почніть з I read the book.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i19:audio",
+          "transcript": "I read the book although it was long."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I read the book although it was long.",
+        "orderedTokens": [
+          "I",
+          "read",
+          "the",
+          "book",
+          "although",
+          "it",
+          "was",
+          "long"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бібліотека не зачинена. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-40:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-40:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бібліотека не зачинена. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Библиотека не закрыта. Добавьте утвердительное уточнение.",
+          "uk": "Бібліотека не зачинена. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The library isn't closed, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-40:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Бібліотека не зачинена. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-40:i20:r2",
+            "correct": false,
+            "testedDimension": "Бібліотека не зачинена. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Одна library требует is.",
+              "uk": "Одна library потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-40:i20:r3",
+            "correct": false,
+            "testedDimension": "Бібліотека не зачинена. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-40:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна повернула книжку. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-40:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна повернула книжку. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-40:i21:audio",
+          "transcript": "I understand why Anna returned the book."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna returned the book.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a53c11ce71bb5c83283b1671fd392582d9b31511436cbccd66eb396f162defa1"
+}

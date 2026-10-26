@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-07:i01",
+    "correctText": "map",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i02",
+    "correctText": "The map I found is useful.",
+    "correctResponseId": "en:lesson-32:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i03",
+    "correctText": "need",
+    "correctResponseId": "en:lesson-32:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i04",
+    "correctText": "exit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i05",
+    "correctText": "The exit was closed, so we went back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i06",
+    "correctText": "stairs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i07",
+    "correctText": "The stairs must be here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i08",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-32:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i09",
+    "correctText": "He must need help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i10",
+    "correctText": "The door I opened leads to the stairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i12",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i13",
+    "correctText": "This must be the right floor.",
+    "correctResponseId": "en:lesson-32:session-07:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i14",
+    "correctText": "This must be the right floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i15",
+    "correctText": "The map I found is useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-07:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i17",
+    "correctText": "She must know this building.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i18",
+    "correctText": "He must need help.",
+    "correctResponseId": "en:lesson-32:session-07:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i19",
+    "correctText": "He must need help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i20",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-07:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-07:i21",
+    "correctText": "We found the exit, so we went out.",
+    "correctResponseId": null
+  }
+]

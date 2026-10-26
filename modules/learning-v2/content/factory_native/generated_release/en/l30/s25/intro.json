@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "said + сообщение; told + кому + сообщение; asked для вопроса или просьбы.",
+    "uk": "said + повідомлення; told + кому + повідомлення; asked для запитання чи прохання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Передать само сообщение",
+        "uk": "Передати саме повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Друг сходил к кафе и сообщил, что оно закрыто. Перескажите новость сестре: He said the café was closed — он сказал, что кафе было закрыто. Соберите He + said + the café was closed. После said здесь идёт само сообщение. Кому он это сказал, в этой фразе не называем.",
+        "uk": "Друг сходив до кафе й повідомив, що воно зачинене. Перекажіть новину сестрі: He said the café was closed — він сказав, що кафе було зачинене. Складіть He + said + the café was closed. Після said тут іде саме повідомлення. Кому він це сказав, у цій фразі не називаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-25:intro1:r1",
+              "text": "He said the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro1:r2",
+              "text": "He told the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro1:r3",
+              "text": "He asked the café was closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-25:intro1:r1",
+              "text": "He said the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro1:r2",
+              "text": "He told the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro1:r3",
+              "text": "He asked the café was closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Указать, кому сообщили",
+        "uk": "Указати, кому повідомили"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра спрашивает, откуда вы знаете, что кафе закрыто. Подчеркните, что друг сообщил это именно вам: He told me the café was closed — он сказал мне, что кафе было закрыто. Соберите He + told + me + the café was closed. После told ставим получателя сообщения me, затем само сообщение.",
+        "uk": "Сестра запитує, звідки ви знаєте, що кафе зачинене. Підкресліть, що друг повідомив це саме вам: He told me the café was closed — він сказав мені, що кафе було зачинене. Складіть He + told + me + the café was closed. Після told ставимо одержувача повідомлення me, потім саме повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-25:intro2:r1",
+              "text": "He told me the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro2:r2",
+              "text": "He said me the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro2:r3",
+              "text": "He told to me the café was closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-25:intro2:r1",
+              "text": "He told me the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro2:r2",
+              "text": "He said me the café was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro2:r3",
+              "text": "He told to me the café was closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Передать вопрос друга",
+        "uk": "Передати запитання друга"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хотел перенести встречу и спросил, свободны ли вы. Расскажите сестре: He asked me if I was free — он спросил меня, свободен ли я. Соберите He + asked + me + if I was free. Asked обозначает вопрос, me — кого спросили, а if вводит содержание вопроса «свободен ли».",
+        "uk": "Друг хотів перенести зустріч і запитав, чи ви вільні. Розкажіть сестрі: He asked me if I was free — він запитав мене, чи я вільний. Складіть He + asked + me + if I was free. Asked позначає запитання, me — кого запитали, а if вводить зміст запитання «чи вільний»."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-25:intro3:r1",
+              "text": "He asked me if I was free."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro3:r2",
+              "text": "He asked me if was I free."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro3:r3",
+              "text": "He asked I if I was free."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-25:intro3:r1",
+              "text": "He asked me if I was free."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro3:r2",
+              "text": "He asked me if was I free."
+            },
+            {
+              "responseId": "en:lesson-30:session-25:intro3:r3",
+              "text": "He asked I if I was free."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "beceef9c4798d1036eddde68195d0cab4bdb98bc6f8570fbcfd16997416232c8"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-37:i01",
+    "correctText": "chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i02",
+    "correctText": "The chair moves, so it might be broken.",
+    "correctResponseId": "en:lesson-32:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i04",
+    "correctText": "leg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i05",
+    "correctText": "The leg can't be straight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i06",
+    "correctText": "glue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i07",
+    "correctText": "The glue I bought is strong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i09",
+    "correctText": "The chair moves, so it might be broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i10",
+    "correctText": "It can’t be straight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i12",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i13",
+    "correctText": "The floor must be wet.",
+    "correctResponseId": "en:lesson-32:session-37:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i14",
+    "correctText": "The floor must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i15",
+    "correctText": "This is the glue I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-37:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i17",
+    "correctText": "The chair moves, so it might be broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i18",
+    "correctText": "The chair moves, so it might be broken.",
+    "correctResponseId": "en:lesson-32:session-37:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i19",
+    "correctText": "The leg can't be straight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-37:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-37:i21",
+    "correctText": "The chair moves, so it could be broken.",
+    "correctResponseId": null
+  }
+]

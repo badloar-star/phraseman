@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-38:intro1:r2": {
+          "ru": "Исполнителя вводит by.",
+          "uk": "Виконавця вводить by."
+        },
+        "en:lesson-28:session-38:intro1:r3": {
+          "ru": "Перед my brother нужна by.",
+          "uk": "Перед my brother потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-38:intro2:r2": {
+          "ru": "После must нужна be.",
+          "uk": "Після must потрібна be."
+        },
+        "en:lesson-28:session-38:intro2:r3": {
+          "ru": "После be нужна washed.",
+          "uk": "Після be потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-38:intro3:r2": {
+          "ru": "После wish здесь нужна were.",
+          "uk": "Після wish тут потрібна were."
+        },
+        "en:lesson-28:session-38:intro3:r3": {
+          "ru": "Для этого желания используем were cleaner.",
+          "uk": "Для цього бажання використовуємо were cleaner."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3791a5e92e567cad63b1981a2c327a275599d650b105917f8077d862eb99a53c"
+}

@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — key",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — key",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i01:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-51:i01:r1",
+            "targetText": "key",
+            "meaningByLocale": {
+              "ru": "Ключ. Повторение знакомого слова.",
+              "uk": "Ключ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key",
+          "definitionByLocale": {
+            "ru": "Ключ. Повторение знакомого слова.",
+            "uk": "Ключ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i02:r1",
+          "text": "I found my key, so I went in."
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i02:r2",
+          "text": "I found my key, so I went home."
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i02:r3",
+          "text": "I found my key, so I went out."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i02:audio",
+          "transcript": "I found my key, so I went in."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-51:i02:r1",
+            "targetText": "I found my key, so I went in.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i02:r2",
+            "targetText": "I found my key, so I went home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i02:r3",
+            "targetText": "I found my key, so I went out.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I found my key, so I went in.",
+              "uk": "У записі звучить I found my key, so I went in."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I found my key, so I went in.",
+              "uk": "У записі звучить I found my key, so I went in."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы нашли ключ и вошли. Выберите форму прошлого времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i03:r1",
+          "text": "went"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i03:r2",
+          "text": "gone"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i03:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли ключ и вошли. Выберите форму прошлого времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы нашли ключ и вошли. Выберите форму прошлого времени.",
+          "uk": "Ви знайшли ключ і ввійшли. Виберіть форму минулого часу."
+        },
+        "gappedTargetPhrase": "I found my key, so I ___ in.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-51:i03:r1",
+            "text": "went"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i03:r2",
+            "text": "gone"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i03:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Вы нашли ключ и вошли. Выберите форму прошлого времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы нашли ключ и вошли. Выберите форму прошлого времени.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма went.",
+              "uk": "Потрібна форма went."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы нашли ключ и вошли. Выберите форму прошлого времени.",
+            "feedbackByLocale": {
+              "ru": "Для результата в прошлом нужна форма went.",
+              "uk": "Для результату в минулому потрібна форма went."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i04:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-51:i04:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дверь была заперта, и поэтому вы воспользовались ключом. Начните с The door was locked and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь была заперта, и поэтому вы воспользовались ключом. Начните с The door was locked and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door was locked and therefore I used my key.",
+        "localizedMeaning": {
+          "ru": "Дверь была заперта, и поэтому вы воспользовались ключом. Начните с The door was locked and therefore.",
+          "uk": "Двері були замкнені, і тому ви скористалися ключем. Почніть з The door was locked and therefore."
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "was",
+          "locked",
+          "and",
+          "therefore",
+          "I",
+          "used",
+          "my",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i06:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-51:i06:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Ключ в сумке». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Ключ в сумке». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i07:audio",
+          "transcript": "Ben said the key was in the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben said the key was in the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Бен сказал: «Дверь заперта». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Бен сказал: «Дверь заперта». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Дверь заперта». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Двері замкнені». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "Ben said the door ___ locked.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-51:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Бен сказал: «Дверь заперта». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Дверь заперта». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Дверь заперта». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы нашли ключ, поэтому вошли. Начните с I found my key.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли ключ, поэтому вошли. Начните с I found my key.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I found my key, so I went in.",
+        "localizedMeaning": {
+          "ru": "Вы нашли ключ, поэтому вошли. Начните с I found my key.",
+          "uk": "Ви знайшли ключ, тому ввійшли. Почніть з I found my key."
+        },
+        "orderedTokens": [
+          "I",
+          "found",
+          "my",
+          "key,",
+          "so",
+          "I",
+          "went",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите у Бена, где ключ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите у Бена, где ключ.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i10:audio",
+          "transcript": "Could you tell me where the key is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the key is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверь открыл Бен. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь открыл Бен. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь открыл Бен. Выберите предлог перед его именем.",
+          "uk": "Двері відчинив Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The door was opened ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-51:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Дверь открыл Бен. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Дверь открыл Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия называем после by.",
+              "uk": "Виконавця дії називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Дверь открыл Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Бен открыл дверь: by Ben.",
+              "uk": "Бен відчинив двері: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pocket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pocket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i12:audio",
+          "transcript": "pocket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-51:i12:r1",
+            "targetText": "pocket",
+            "meaningByLocale": {
+              "ru": "Карман. Повторение знакомого слова.",
+              "uk": "Кишеня. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pocket",
+          "definitionByLocale": {
+            "ru": "Карман. Повторение знакомого слова.",
+            "uk": "Кишеня. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i13:r1",
+          "text": "I know that the key is in my pocket."
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i13:r2",
+          "text": "I know that the key is in my bag."
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i13:r3",
+          "text": "I know that the key is in my drawer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i13:audio",
+          "transcript": "I know that the key is in my pocket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-51:i13:r1",
+            "targetText": "I know that the key is in my pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i13:r2",
+            "targetText": "I know that the key is in my bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i13:r3",
+            "targetText": "I know that the key is in my drawer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the key is in my pocket.",
+              "uk": "У записі звучить I know that the key is in my pocket."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the key is in my pocket.",
+              "uk": "У записі звучить I know that the key is in my pocket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Мои карманы пустые». Передайте его слова со сдвигом are в прошлое; карманы принадлежат Бену.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Мои карманы пустые». Передайте его слова со сдвигом are в прошлое; карманы принадлежат Бену.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i14:audio",
+          "transcript": "Ben said his pockets were empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben said his pockets were empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы открыли сумку, чтобы найти ключ. Начните с I opened the bag.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы открыли сумку, чтобы найти ключ. Начните с I opened the bag.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I opened the bag to find the key.",
+        "localizedMeaning": {
+          "ru": "Вы открыли сумку, чтобы найти ключ. Начните с I opened the bag.",
+          "uk": "Ви відкрили сумку, щоб знайти ключ. Почніть з I opened the bag."
+        },
+        "orderedTokens": [
+          "I",
+          "opened",
+          "the",
+          "bag",
+          "to",
+          "find",
+          "the",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы нашли ключ и в результате вошли. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли ключ и в результате вошли. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы нашли ключ и в результате вошли. Вставьте «поэтому».",
+          "uk": "Ви знайшли ключ і в результаті ввійшли. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "I found my key, ___ I went in.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-51:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Вы нашли ключ и в результате вошли. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы нашли ключ и в результате вошли. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь нужен результат.",
+              "uk": "Because вводить причину, а тут потрібен результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы нашли ключ и в результате вошли. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а здесь результат: so.",
+              "uk": "Although означає «хоча», а тут результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен помог вам, хотя был занят. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Бен помог вам, хотя был занят. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i17:audio",
+          "transcript": "Ben helped me although he was busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben helped me although he was busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы нашли ключ или карту?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i18:r1",
+          "text": "I found my key, so I went in."
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i18:r2",
+          "text": "I found my card, so I went in."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i18:audioA",
+        "en:lesson-31:session-51:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы нашли ключ или карту?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I found my key, so I went in.",
+        "contrastB": "I found my card, so I went in.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-51:i18:audioA",
+          "transcript": "I found my key, so I went in."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-51:i18:audioB",
+          "transcript": "I found my card, so I went in."
+        },
+        "testedPhoneticContrast": "Послушайте: вы нашли ключ или карту?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы нашли ключ или карту?",
+            "feedbackByLocale": {
+              "ru": "Звучит key — ключ.",
+              "uk": "Звучить key — ключ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину и результат. Начните с The door was locked and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину и результат. Начните с The door was locked and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i19:audio",
+          "transcript": "The door was locked and therefore I used my key."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door was locked and therefore I used my key.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "was",
+          "locked",
+          "and",
+          "therefore",
+          "I",
+          "used",
+          "my",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверь не открыта. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-51:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-51:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь не открыта. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь не открыта. Добавьте утвердительное уточнение.",
+          "uk": "Двері не відчинені. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The door isn't open, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-51:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Дверь не открыта. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-51:i20:r2",
+            "correct": false,
+            "testedDimension": "Дверь не открыта. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Одна door требует is.",
+              "uk": "Одна door потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-51:i20:r3",
+            "correct": false,
+            "testedDimension": "Дверь не открыта. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Бен позвонил вам. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-51:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Бен позвонил вам. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-51:i21:audio",
+          "transcript": "I understand why Ben called me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Ben called me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "07d4545a6e8704fea439ee5f419a3ec609ca430bb42873e8a97764d6b34886ea"
+}

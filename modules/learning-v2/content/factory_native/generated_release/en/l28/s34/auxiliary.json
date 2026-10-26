@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-34:intro1:r2": {
+          "ru": "Здесь называем исполнителей: by local students.",
+          "uk": "Тут називаємо виконавців: by local students."
+        },
+        "en:lesson-28:session-34:intro1:r3": {
+          "ru": "Перед local students нужна by.",
+          "uk": "Перед local students потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-34:intro2:r2": {
+          "ru": "После must нужна be.",
+          "uk": "Після must потрібна be."
+        },
+        "en:lesson-28:session-34:intro2:r3": {
+          "ru": "Здесь нужна booked.",
+          "uk": "Тут потрібна booked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-34:intro3:r2": {
+          "ru": "После wish здесь нужна were.",
+          "uk": "Після wish тут потрібна were."
+        },
+        "en:lesson-28:session-34:intro3:r3": {
+          "ru": "Для этого желания используем were bigger.",
+          "uk": "Для цього бажання використовуємо were bigger."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ad4b1c29d0ded4dfaba1e44ce7d01794515bdfac169424b06e0aa7ecfa9a3032"
+}

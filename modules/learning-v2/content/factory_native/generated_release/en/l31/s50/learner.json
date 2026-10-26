@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i01:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-50:i01:r1",
+            "targetText": "bus",
+            "meaningByLocale": {
+              "ru": "Автобус. Повторение знакомого слова.",
+              "uk": "Автобус. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus",
+          "definitionByLocale": {
+            "ru": "Автобус. Повторение знакомого слова.",
+            "uk": "Автобус. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i02:r1",
+          "text": "The bus didn't come, so we walked."
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i02:r2",
+          "text": "The bus didn't come, so we waited."
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i02:r3",
+          "text": "The bus didn't come, so we called Anna."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i02:audio",
+          "transcript": "The bus didn't come, so we walked."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-50:i02:r1",
+            "targetText": "The bus didn't come, so we walked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i02:r2",
+            "targetText": "The bus didn't come, so we waited.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i02:r3",
+            "targetText": "The bus didn't come, so we called Anna.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus didn't come, so we walked.",
+              "uk": "У записі звучить The bus didn't come, so we walked."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus didn't come, so we walked.",
+              "uk": "У записі звучить The bus didn't come, so we walked."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Автобус не пришёл. Выберите форму после didn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i03:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i03:r2",
+          "text": "came"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i03:r3",
+          "text": "coming"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус не пришёл. Выберите форму после didn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Автобус не пришёл. Выберите форму после didn’t.",
+          "uk": "Автобус не приїхав. Виберіть форму після didn’t."
+        },
+        "gappedTargetPhrase": "The bus didn't ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-50:i03:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i03:r2",
+            "text": "came"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i03:r3",
+            "text": "coming"
+          }
+        ],
+        "testedDimension": "Автобус не пришёл. Выберите форму после didn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Автобус не пришёл. Выберите форму после didn’t.",
+            "feedbackByLocale": {
+              "ru": "После didn’t нужна форма come.",
+              "uk": "Після didn’t потрібна форма come."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Автобус не пришёл. Выберите форму после didn’t.",
+            "feedbackByLocale": {
+              "ru": "Отрицание строим через didn’t come.",
+              "uk": "Заперечення будуємо через didn’t come."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — taxi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — taxi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i04:audio",
+          "transcript": "taxi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-50:i04:r1",
+            "targetText": "taxi",
+            "meaningByLocale": {
+              "ru": "Такси. Повторение знакомого слова.",
+              "uk": "Таксі. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "taxi",
+          "definitionByLocale": {
+            "ru": "Такси. Повторение знакомого слова.",
+            "uk": "Таксі. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шёл дождь, и поэтому вы взяли такси. Начните с It was raining and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шёл дождь, и поэтому вы взяли такси. Начните с It was raining and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was raining and therefore we took a taxi.",
+        "localizedMeaning": {
+          "ru": "Шёл дождь, и поэтому вы взяли такси. Начните с It was raining and therefore.",
+          "uk": "Ішов дощ, і тому ви взяли таксі. Почніть з It was raining and therefore."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "raining",
+          "and",
+          "therefore",
+          "we",
+          "took",
+          "a",
+          "taxi"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i06:audio",
+          "transcript": "rain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-50:i06:r1",
+            "targetText": "rain",
+            "meaningByLocale": {
+              "ru": "Дождь. Повторение знакомого слова.",
+              "uk": "Дощ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rain",
+          "definitionByLocale": {
+            "ru": "Дождь. Повторение знакомого слова.",
+            "uk": "Дощ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, что дождь сильный. Скажите: «Я знаю, что дождь сильный».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, что дождь сильный. Скажите: «Я знаю, что дождь сильный».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i07:audio",
+          "transcript": "I know that the rain is heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the rain is heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Автобус опаздывает». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Автобус опаздывает». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Автобус опаздывает». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Автобус запізнюється». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the bus ___ late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-50:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Автобус опаздывает». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Автобус опаздывает». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Автобус опаздывает». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Автобус не пришёл, поэтому вы пошли пешком. Начните с The bus didn’t come.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус не пришёл, поэтому вы пошли пешком. Начните с The bus didn’t come.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bus didn't come, so we walked.",
+        "localizedMeaning": {
+          "ru": "Автобус не пришёл, поэтому вы пошли пешком. Начните с The bus didn’t come.",
+          "uk": "Автобус не приїхав, тому ви пішли пішки. Почніть з The bus didn’t come."
+        },
+        "orderedTokens": [
+          "The",
+          "bus",
+          "didn't",
+          "come,",
+          "so",
+          "we",
+          "walked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите, когда прибывает автобус.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите, когда прибывает автобус.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i10:audio",
+          "transcript": "Could you tell me when the bus arrives?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me when the bus arrives?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы взяли такси из-за дождя. Вставьте «поэтому» перед результатом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i11:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i11:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i11:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы взяли такси из-за дождя. Вставьте «поэтому» перед результатом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы взяли такси из-за дождя. Вставьте «поэтому» перед результатом.",
+          "uk": "Ви взяли таксі через дощ. Вставте «тому» перед результатом."
+        },
+        "gappedTargetPhrase": "It was raining, ___ we took a taxi.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-50:i11:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i11:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i11:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Вы взяли такси из-за дождя. Вставьте «поэтому» перед результатом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы взяли такси из-за дождя. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы взяли такси из-за дождя. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ticket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ticket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i12:audio",
+          "transcript": "ticket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-50:i12:r1",
+            "targetText": "ticket",
+            "meaningByLocale": {
+              "ru": "Билет. Повторение знакомого слова.",
+              "uk": "Квиток. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ticket",
+          "definitionByLocale": {
+            "ru": "Билет. Повторение знакомого слова.",
+            "uk": "Квиток. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i13:r1",
+          "text": "The ticket was bought by Anna."
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i13:r2",
+          "text": "The ticket was bought by Ben."
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i13:r3",
+          "text": "The ticket was bought by Tom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i13:audio",
+          "transcript": "The ticket was bought by Anna."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-50:i13:r1",
+            "targetText": "The ticket was bought by Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i13:r2",
+            "targetText": "The ticket was bought by Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i13:r3",
+            "targetText": "The ticket was bought by Tom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ticket was bought by Anna.",
+              "uk": "У записі звучить The ticket was bought by Anna."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ticket was bought by Anna.",
+              "uk": "У записі звучить The ticket was bought by Anna."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Билеты дешёвые». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Билеты дешёвые». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i14:audio",
+          "transcript": "She said the tickets were cheap."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the tickets were cheap.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы позвонили Анне, чтобы спросить об автобусе. Начните с I called Anna.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы позвонили Анне, чтобы спросить об автобусе. Начните с I called Anna.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I called Anna to ask about the bus.",
+        "localizedMeaning": {
+          "ru": "Вы позвонили Анне, чтобы спросить об автобусе. Начните с I called Anna.",
+          "uk": "Ви зателефонували Анні, щоб запитати про автобус. Почніть з I called Anna."
+        },
+        "orderedTokens": [
+          "I",
+          "called",
+          "Anna",
+          "to",
+          "ask",
+          "about",
+          "the",
+          "bus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Билет купила Анна. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i16:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i16:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i16:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Билет купила Анна. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Билет купила Анна. Выберите предлог перед её именем.",
+          "uk": "Квиток купила Анна. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The ticket was bought ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-50:i16:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i16:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i16:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Билет купила Анна. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i16:r2",
+            "correct": false,
+            "testedDimension": "Билет купила Анна. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Покупателя называем после by.",
+              "uk": "Покупця називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i16:r3",
+            "correct": false,
+            "testedDimension": "Билет купила Анна. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Анна купила билет: by Anna.",
+              "uk": "Анна купила квиток: by Anna."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы пошли пешком, хотя устали. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Вы пошли пешком, хотя устали. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i17:audio",
+          "transcript": "We walked although we were tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We walked although we were tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: было поздно или холодно?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i18:r1",
+          "text": "It was late, so we took a taxi."
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i18:r2",
+          "text": "It was cold, so we took a taxi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i18:audioA",
+        "en:lesson-31:session-50:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: было поздно или холодно?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "It was late, so we took a taxi.",
+        "contrastB": "It was cold, so we took a taxi.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-50:i18:audioA",
+          "transcript": "It was late, so we took a taxi."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-50:i18:audioB",
+          "transcript": "It was cold, so we took a taxi."
+        },
+        "testedPhoneticContrast": "Послушайте: было поздно или холодно?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: было поздно или холодно?",
+            "feedbackByLocale": {
+              "ru": "Звучит late — поздно.",
+              "uk": "Звучить late — пізно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину и результат. Начните с It was raining and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину и результат. Начните с It was raining and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i19:audio",
+          "transcript": "It was raining and therefore we took a taxi."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It was raining and therefore we took a taxi.",
+        "orderedTokens": [
+          "It",
+          "was",
+          "raining",
+          "and",
+          "therefore",
+          "we",
+          "took",
+          "a",
+          "taxi"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Автобус не полный. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-50:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-50:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус не полный. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Автобус не полный. Добавьте утвердительное уточнение.",
+          "uk": "Автобус не повний. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The bus isn't full, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-50:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Автобус не полный. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-50:i20:r2",
+            "correct": false,
+            "testedDimension": "Автобус не полный. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Один bus требует is.",
+              "uk": "Один bus потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-50:i20:r3",
+            "correct": false,
+            "testedDimension": "Автобус не полный. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-50:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Анна взяла такси. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-50:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Анна взяла такси. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-50:i21:audio",
+          "transcript": "I understand why Anna took a taxi."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna took a taxi.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b7eebb46c3d5324cbd9b1cbc2c0ee9c8c9a767e5fee35a2f409f2054ae18c0dc"
+}

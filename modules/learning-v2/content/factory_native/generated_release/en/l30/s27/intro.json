@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "передавать сообщения, вопросы и просьбы; повторите уточнение предмета и желание.",
+    "uk": "передавати повідомлення, запитання й прохання; повторите уточнення предмета та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто сообщил о колесе",
+        "uk": "Хто повідомив про колесо"
+      },
+      "bodyByLocale": {
+        "ru": "Перед прогулкой друг заметил, что у вашего велосипеда спущено колесо. Передайте его сообщение сестре: He told me the tyre was flat — он сказал мне, что шина спущена. Соберите He + told + me + the tyre was flat. После told называем получателя me, затем сообщение о шине.",
+        "uk": "Перед прогулянкою друг помітив, що у вашого велосипеда спущене колесо. Передайте його повідомлення сестрі: He told me the tyre was flat — він сказав мені, що шина спущена. Складіть He + told + me + the tyre was flat. Після told називаємо одержувача me, потім повідомлення про шину."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-27:intro1:r1",
+              "text": "He told me the tyre was flat."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro1:r2",
+              "text": "He said me the tyre was flat."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro1:r3",
+              "text": "He told to me the tyre was flat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-27:intro1:r1",
+              "text": "He told me the tyre was flat."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro1:r2",
+              "text": "He said me the tyre was flat."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro1:r3",
+              "text": "He told to me the tyre was flat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пересказать вопрос о насосе",
+        "uk": "Переказати запитання про насос"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спросил вас, есть ли у вас насос. Расскажите сестре: He asked if I had a pump — он спросил, был ли у меня насос. Соберите He + asked + if + I had a pump. If вводит вопрос «есть ли». Дальше идёт обычный порядок: I перед had, без did перед I.",
+        "uk": "Друг запитав вас, чи є у вас насос. Розкажіть сестрі: He asked if I had a pump — він запитав, чи був у мене насос. Складіть He + asked + if + I had a pump. If вводить запитання «чи є». Далі йде звичайний порядок: I перед had, без did перед I."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-27:intro2:r1",
+              "text": "He asked if I had a pump."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro2:r2",
+              "text": "He asked if did I have a pump."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro2:r3",
+              "text": "He asked if me had a pump."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-27:intro2:r1",
+              "text": "He asked if I had a pump."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro2:r2",
+              "text": "He asked if did I have a pump."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro2:r3",
+              "text": "He asked if me had a pump."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить нужный насос",
+        "uk": "Уточнити потрібний насос"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра принесла два насоса. Один вы одолжили ей раньше. Скажите, что тот насос маленький: The pump I lent you is small — насос, который я тебе одолжил, маленький. Соберите The pump + I lent you + is small. I lent you уточняет насос. I — тот, кто одолжил, а pump — одолженный предмет, поэтому that перед I можно опустить.",
+        "uk": "Сестра принесла два насоси. Один ви позичили їй раніше. Скажіть, що той насос маленький: The pump I lent you is small — насос, який я тобі позичив, маленький. Складіть The pump + I lent you + is small. I lent you уточнює насос. I — той, хто позичив, а pump — позичений предмет, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-27:intro3:r1",
+              "text": "The pump I lent you is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro3:r2",
+              "text": "The pump lent I you is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro3:r3",
+              "text": "The pump I lent you are small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-27:intro3:r1",
+              "text": "The pump I lent you is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro3:r2",
+              "text": "The pump lent I you is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-27:intro3:r3",
+              "text": "The pump I lent you are small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bc0c1a39df467ade3b0997b0cde9b5bb582557bd8a9df59e109c9ed5b6a67d31"
+}

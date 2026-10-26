@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-37:intro1:r2": {
+          "ru": "В заданном пересказе сдвигаем is в was.",
+          "uk": "У заданому переказі зсуваємо is у was."
+        },
+        "en:lesson-30:session-37:intro1:r3": {
+          "ru": "Hair здесь не множественное число; нужна форма was.",
+          "uk": "Hair тут не множина; потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-37:intro2:r2": {
+          "ru": "После asked брата обозначаем him, не he.",
+          "uk": "Після asked брата позначаємо him, не he."
+        },
+        "en:lesson-30:session-37:intro2:r3": {
+          "ru": "После asked him перед sit нужно to.",
+          "uk": "Після asked him перед sit потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-37:intro3:r2": {
+          "ru": "Wants не выполняет заданный сдвиг в прошлое; здесь wanted.",
+          "uk": "Wants не виконує заданий зсув у минуле; тут wanted."
+        },
+        "en:lesson-30:session-37:intro3:r3": {
+          "ru": "Здесь нужна форма wanted, не wanting.",
+          "uk": "Тут потрібна форма wanted, не wanting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7ab255bbeb333a01ae421b55fd6df1037d334f0e2d8ae86261021748f01202a3"
+}

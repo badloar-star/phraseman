@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "как описать голод и жажду, уточнить место и узнать владельца вещи.",
+    "uk": "як описати голод і спрагу, уточнити місце й упізнати власника речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где можно поесть",
+        "uk": "Де можна поїсти"
+      },
+      "bodyByLocale": {
+        "ru": "После прогулки вы предлагаете другу знакомое кафе. Скажите: I know a café where we can eat — я знаю кафе, где мы можем поесть. Соберите I know a café + where + we can eat. После названия места поставьте where, затем we can eat: кто и что может сделать в этом месте. There в конце не добавляем: место уже обозначено словом where.",
+        "uk": "Після прогулянки ви пропонуєте другові знайоме кафе. Скажіть: I know a café where we can eat — я знаю кафе, де ми можемо поїсти. Складіть I know a café + where + we can eat. Після назви місця поставте where, потім we can eat: хто й що може зробити в цьому місці. There наприкінці не додаємо: місце вже позначене словом where."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-19:intro1:r1",
+              "text": "I know a café where we can eat."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro1:r2",
+              "text": "I know a café where we can eat there."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro1:r3",
+              "text": "I know a café who we can eat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-19:intro1:r1",
+              "text": "I know a café where we can eat."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro1:r2",
+              "text": "I know a café where we can eat there."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro1:r3",
+              "text": "I know a café who we can eat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Официант с меню",
+        "uk": "Офіціант із меню"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите заказать еду и указываете другу на официанта с меню. Скажите: The waiter who has the menus is over there — официант, у которого меню, вон там. Соберите The waiter + who has the menus + is over there. Сразу после waiter вставьте уточнение who has the menus. Who здесь заменяет официанта внутри уточнения, поэтому he перед has не добавляем.",
+        "uk": "Ви хочете замовити їжу й показуєте другові на офіціанта з меню. Скажіть: The waiter who has the menus is over there — офіціант, у якого меню, он там. Складіть The waiter + who has the menus + is over there. Відразу після waiter вставте уточнення who has the menus. Who тут замінює офіціанта всередині уточнення, тому he перед has не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-19:intro2:r1",
+              "text": "The waiter who has the menus is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro2:r2",
+              "text": "The waiter who he has the menus is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro2:r3",
+              "text": "The waiter which has the menus is over there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-19:intro2:r1",
+              "text": "The waiter who has the menus is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro2:r2",
+              "text": "The waiter who he has the menus is over there."
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro2:r3",
+              "text": "The waiter which has the menus is over there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чья куртка осталась",
+        "uk": "Чия куртка залишилася"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь уходить из кафе и замечаете забытую куртку. Спросите: Is that the woman whose jacket is on the chair? — это та женщина, чья куртка на стуле? Соберите Is that the woman + whose jacket + is on the chair? Whose jacket связывает куртку с женщиной. После whose сразу ставим название вещи jacket, без her.",
+        "uk": "Ви збираєтеся йти з кафе й помічаєте забуту куртку. Запитайте: Is that the woman whose jacket is on the chair? — це та жінка, чия куртка на стільці? Складіть Is that the woman + whose jacket + is on the chair? Whose jacket пов’язує куртку із жінкою. Після whose відразу ставимо назву речі jacket, без her."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-19:intro3:r1",
+              "text": "Is that the woman whose jacket is on the chair?"
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro3:r2",
+              "text": "Is that the woman who jacket is on the chair?"
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro3:r3",
+              "text": "Is that the woman whose her jacket is on the chair?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-19:intro3:r1",
+              "text": "Is that the woman whose jacket is on the chair?"
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro3:r2",
+              "text": "Is that the woman who jacket is on the chair?"
+            },
+            {
+              "responseId": "en:lesson-29:session-19:intro3:r3",
+              "text": "Is that the woman whose her jacket is on the chair?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "83b482fc84b3b7a04015415757d517f1d32c7bffb11e82b9e5d05bc94fb84fba"
+}

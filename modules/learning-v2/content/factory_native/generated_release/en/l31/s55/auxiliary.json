@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-55:intro1:r2": {
+          "ru": "Для результата в прошлом нужна форма got.",
+          "uk": "Для результату в минулому потрібна форма got."
+        },
+        "en:lesson-31:session-55:intro1:r3": {
+          "ru": "После I и в прошлом используем got.",
+          "uk": "Після I й у минулому використовуємо got."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-55:intro2:r2": {
+          "ru": "Для прошлого действия нужна форма walked.",
+          "uk": "Для минулої дії потрібна форма walked."
+        },
+        "en:lesson-31:session-55:intro2:r3": {
+          "ru": "После we и в прошлом используем walked.",
+          "uk": "Після we й у минулому використовуємо walked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-55:intro3:r2": {
+          "ru": "После to нужна форма dry.",
+          "uk": "Після to потрібна форма dry."
+        },
+        "en:lesson-31:session-55:intro3:r3": {
+          "ru": "Перед dry для цели используем to.",
+          "uk": "Перед dry для мети використовуємо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fe988e078ce569d941d2ca2153b071f51daf23cc4df2ed889be809f6d717797b"
+}

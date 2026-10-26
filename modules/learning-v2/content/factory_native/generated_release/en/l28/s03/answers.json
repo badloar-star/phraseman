@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-03:i01",
+    "correctText": "cheesecake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i02",
+    "correctText": "The cheesecake is kept in the fridge.",
+    "correctResponseId": "en:lesson-28:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i03",
+    "correctText": "Two slices, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i04",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-03:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i05",
+    "correctText": "mousse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i06",
+    "correctText": "Do you have chocolate mousse?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i07",
+    "correctText": "This dessert contains nuts.",
+    "correctResponseId": "en:lesson-28:session-03:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i08",
+    "correctText": "Does it contain eggs?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i09",
+    "correctText": "tart",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i10",
+    "correctText": "I would like the lemon tart.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i12",
+    "correctText": "This dessert is served cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i13",
+    "correctText": "sprinkles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i14",
+    "correctText": "Could you add some sprinkles?",
+    "correctResponseId": "en:lesson-28:session-03:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i15",
+    "correctText": "That is enough, thank you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i16",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-28:session-03:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i17",
+    "correctText": "The boxes are made of cardboard.",
+    "correctResponseId": "en:lesson-28:session-03:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i18",
+    "correctText": "Could you put them in separate boxes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i19",
+    "correctText": "I wish the shop were closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i20",
+    "correctText": "decorated",
+    "correctResponseId": "en:lesson-28:session-03:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-03:i21",
+    "correctText": "That is twelve pounds altogether.",
+    "correctResponseId": null
+  }
+]

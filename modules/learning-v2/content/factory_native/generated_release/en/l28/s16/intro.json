@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "как описать информацию в меню и приготовление еды, выразить желание и связать прошлые события.",
+    "uk": "як описати інформацію в меню й приготування їжі, висловити бажання та пов’язати минулі події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что указано в меню",
+        "uk": "Що вказано в меню"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете напиток и спрашиваете, где посмотреть его состав. Сотрудник отвечает: The ingredients are listed on the menu — ингредиенты перечислены в меню. Соберите The ingredients + are listed + on the menu. Ingredients — несколько ингредиентов, поэтому are. Listed после are говорит, что ингредиенты перечислены. On the menu указывает, где искать список.",
+        "uk": "Ви вибираєте напій і запитуєте, де подивитися його склад. Працівник відповідає: The ingredients are listed on the menu — інгредієнти перелічені в меню. Складіть The ingredients + are listed + on the menu. Ingredients — кілька інгредієнтів, тому are. Listed після are говорить, що інгредієнти перелічені. On the menu указує, де шукати список."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-16:intro1:r1",
+              "text": "The ingredients are listed on the menu."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro1:r2",
+              "text": "The ingredients is listed on the menu."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro1:r3",
+              "text": "The ingredients are list on the menu."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-16:intro1:r1",
+              "text": "The ingredients are listed on the menu."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro1:r2",
+              "text": "The ingredients is listed on the menu."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro1:r3",
+              "text": "The ingredients are list on the menu."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда приготовили суп",
+        "uk": "Коли приготували суп"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете, свежий ли суп. Сотрудник сообщает: The soup was prepared this morning — суп приготовили сегодня утром. Соберите The soup + was prepared + this morning. Soup здесь — одна порция или весь суп как масса, поэтому was. Prepared после was показывает, что сделали с супом. This morning указывает время приготовления.",
+        "uk": "Ви запитуєте, чи свіжий суп. Працівник повідомляє: The soup was prepared this morning — суп приготували сьогодні вранці. Складіть The soup + was prepared + this morning. Soup тут — одна порція або весь суп як маса, тому was. Prepared після was показує, що зробили із супом. This morning указує час приготування."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-16:intro2:r1",
+              "text": "The soup was prepared this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro2:r2",
+              "text": "The soup were prepared this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro2:r3",
+              "text": "The soup was prepare this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-16:intro2:r1",
+              "text": "The soup was prepared this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro2:r2",
+              "text": "The soup were prepared this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro2:r3",
+              "text": "The soup was prepare this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Музыка мешает разговору",
+        "uk": "Музика заважає розмові"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе играет громкая музыка, и вам трудно разговаривать с другом. Скажите: I wish the music were quieter — хотелось бы, чтобы музыка была тише. Соберите I wish + the music + were + quieter. Were после I wish описывает желаемое положение сейчас. Quieter — тише. Вы хотите изменить нынешнюю громкость.",
+        "uk": "У кафе грає гучна музика, і вам важко розмовляти з другом. Скажіть: I wish the music were quieter — хотілося б, щоб музика була тихішою. Складіть I wish + the music + were + quieter. Were після I wish описує бажаний стан зараз. Quieter — тихіше. Ви хочете змінити теперішню гучність."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-16:intro3:r1",
+              "text": "I wish the music were quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro3:r2",
+              "text": "I wish the music is quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro3:r3",
+              "text": "I wish the music be quieter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-16:intro3:r1",
+              "text": "I wish the music were quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro3:r2",
+              "text": "I wish the music is quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-16:intro3:r3",
+              "text": "I wish the music be quieter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9e72d61ade4465ddbc86423ff5d29ad3a1f847c79ddcf8eda026e331d94be560"
+}

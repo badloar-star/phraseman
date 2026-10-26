@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-56:intro1:r2": {
+          "ru": "It повторяет предложение.",
+          "uk": "It повторює пропозицію."
+        },
+        "en:lesson-29:session-56:intro1:r3": {
+          "ru": "Получателя называем через I, не me.",
+          "uk": "Одержувача називаємо через I, не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-56:intro2:r2": {
+          "ru": "Who нужен как исполнитель внутри уточнения.",
+          "uk": "Who потрібне як виконавець усередині уточнення."
+        },
+        "en:lesson-29:session-56:intro2:r3": {
+          "ru": "He повторяет исполнителя.",
+          "uk": "He повторює виконавця."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-56:intro3:r2": {
+          "ru": "В уточнении нужен порядок they sell tickets.",
+          "uk": "В уточненні потрібен порядок they sell tickets."
+        },
+        "en:lesson-29:session-56:intro3:r3": {
+          "ru": "Для места используем where.",
+          "uk": "Для місця використовуємо where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4eb62765cf911b115006bdca944b0f7bee29d52d231b3c33001e238df37c03dd"
+}

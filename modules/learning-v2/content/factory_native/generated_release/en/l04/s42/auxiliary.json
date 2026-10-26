@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-42:intro1:r2": {
-          "ru": "Вопрос о наличии начинают с Is there, а не с There is.",
-          "uk": "Запитання про наявність починають з Is there, а не з There is."
+          "ru": "С a bus shelter в единственном числе нужно Is there.",
+          "uk": "З a bus shelter в однині потрібне Is there."
         },
         "en:lesson-04:session-42:intro1:r3": {
           "ru": "Павильон один, поэтому перед bus shelter нужно a.",
@@ -23,8 +23,8 @@
           "uk": "Автоматів кілька, тому запитання починають з Are there, а не з Is there."
         },
         "en:lesson-04:session-42:intro2:r3": {
-          "ru": "После any слово ставят во множественном числе: ticket machines.",
-          "uk": "Після any слово ставлять у множині: ticket machines."
+          "ru": "После Are there any здесь нужна форма множественного числа ticket machines.",
+          "uk": "Після Are there any тут потрібна форма множини ticket machines."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "236429a85fea822af9b19f99515101b2f6f2f7f9583eb8e27291b94f879b3987"
+  "auxiliaryFingerprint": "9613175c8ecb445597870840f4b07ad57c187b3bd0fb750690e0c94ab16cac76"
 }

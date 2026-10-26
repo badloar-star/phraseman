@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recipe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recipe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i01:audio",
+          "transcript": "recipe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-44:i01:r1",
+            "targetText": "recipe",
+            "meaningByLocale": {
+              "ru": "Рецепт. Повторение знакомого слова.",
+              "uk": "Рецепт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recipe",
+          "definitionByLocale": {
+            "ru": "Рецепт. Повторение знакомого слова.",
+            "uk": "Рецепт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i02:r1",
+          "text": "I know where the recipe is."
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i02:r2",
+          "text": "I know where the letter is."
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i02:r3",
+          "text": "I know where the book is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i02:audio",
+          "transcript": "I know where the recipe is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-44:i02:r1",
+            "targetText": "I know where the recipe is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i02:r2",
+            "targetText": "I know where the letter is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i02:r3",
+            "targetText": "I know where the book is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the recipe is.",
+              "uk": "У записі звучить I know where the recipe is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the recipe is.",
+              "uk": "У записі звучить I know where the recipe is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви читаєте рецепт, щоб приготувати вечерю. Виберіть форму після to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i03:r1",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i03:r2",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i03:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви читаєте рецепт, щоб приготувати вечерю. Виберіть форму після to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы читаете рецепт, чтобы приготовить ужин. Выберите форму после to.",
+          "uk": "Ви читаєте рецепт, щоб приготувати вечерю. Виберіть форму після to."
+        },
+        "gappedTargetPhrase": "I am reading the recipe to ___ dinner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-44:i03:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i03:r2",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i03:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Ви читаєте рецепт, щоб приготувати вечерю. Виберіть форму після to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви читаєте рецепт, щоб приготувати вечерю. Виберіть форму після to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма make.",
+              "uk": "Після to потрібна форма make."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви читаєте рецепт, щоб приготувати вечерю. Виберіть форму після to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to make.",
+              "uk": "Мету виражаємо через to make."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i04:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-44:i04:r1",
+            "targetText": "soup",
+            "meaningByLocale": {
+              "ru": "Суп. Повторение знакомого слова.",
+              "uk": "Суп. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soup",
+          "definitionByLocale": {
+            "ru": "Суп. Повторение знакомого слова.",
+            "uk": "Суп. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви читаєте рецепт, щоб приготувати суп. Почніть з I am reading the recipe.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви читаєте рецепт, щоб приготувати суп. Почніть з I am reading the recipe.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am reading the recipe to make soup.",
+        "localizedMeaning": {
+          "ru": "Вы читаете рецепт, чтобы приготовить суп. Начните с I am reading the recipe.",
+          "uk": "Ви читаєте рецепт, щоб приготувати суп. Почніть з I am reading the recipe."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "reading",
+          "the",
+          "recipe",
+          "to",
+          "make",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i06:audio",
+          "transcript": "spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-44:i06:r1",
+            "targetText": "spoon",
+            "meaningByLocale": {
+              "ru": "Ложка. Повторение знакомого слова.",
+              "uk": "Ложка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spoon",
+          "definitionByLocale": {
+            "ru": "Ложка. Повторение знакомого слова.",
+            "uk": "Ложка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам потрібна ложка, щоб скуштувати суп. Почніть з I need.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Вам потрібна ложка, щоб скуштувати суп. Почніть з I need.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i07:audio",
+          "transcript": "I need a spoon to taste the soup."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need a spoon to taste the soup.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the soup ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-44:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви читаєте вголос, щоб Анна вас чула. Почніть з I am reading aloud.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви читаєте вголос, щоб Анна вас чула. Почніть з I am reading aloud.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am reading aloud so that Anna can hear me.",
+        "localizedMeaning": {
+          "ru": "Вы читаете вслух, чтобы Анна вас слышала. Начните с I am reading aloud.",
+          "uk": "Ви читаєте вголос, щоб Анна вас чула. Почніть з I am reading aloud."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "reading",
+          "aloud",
+          "so",
+          "that",
+          "Anna",
+          "can",
+          "hear",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що суп гарячий. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що суп гарячий. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i10:audio",
+          "transcript": "I know that the soup is hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the soup is hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп приготувала Анна. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп приготувала Анна. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп приготовила Анна. Выберите предлог перед её именем.",
+          "uk": "Суп приготувала Анна. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The soup was made ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-44:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Суп приготувала Анна. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Суп приготувала Анна. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Того, кто приготовил, называем после by.",
+              "uk": "Того, хто приготував, називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Суп приготувала Анна. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Анна приготовила суп: by Anna.",
+              "uk": "Анна приготувала суп: by Anna."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — salt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — salt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i12:audio",
+          "transcript": "salt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-44:i12:r1",
+            "targetText": "salt",
+            "meaningByLocale": {
+              "ru": "Соль. Повторение знакомого слова.",
+              "uk": "Сіль. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salt",
+          "definitionByLocale": {
+            "ru": "Соль. Повторение знакомого слова.",
+            "uk": "Сіль. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i13:r1",
+          "text": "Could you tell me where the salt is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i13:r2",
+          "text": "Could you tell me where the sugar is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i13:r3",
+          "text": "Could you tell me where the pepper is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i13:audio",
+          "transcript": "Could you tell me where the salt is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-44:i13:r1",
+            "targetText": "Could you tell me where the salt is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i13:r2",
+            "targetText": "Could you tell me where the sugar is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i13:r3",
+            "targetText": "Could you tell me where the pepper is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the salt is?",
+              "uk": "У записі звучить Could you tell me where the salt is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the salt is?",
+              "uk": "У записі звучить Could you tell me where the salt is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Ложки чисті». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Ложки чисті». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i14:audio",
+          "transcript": "She said the spoons were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the spoons were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви чекаєте, бо суп гарячий. Почніть з I am waiting.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви чекаєте, бо суп гарячий. Почніть з I am waiting.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am waiting because the soup is hot.",
+        "localizedMeaning": {
+          "ru": "Вы ждёте, потому что суп горячий. Начните с I am waiting.",
+          "uk": "Ви чекаєте, бо суп гарячий. Почніть з I am waiting."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "waiting",
+          "because",
+          "the",
+          "soup",
+          "is",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i16:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i16:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i16:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы читаете вслух с целью помочь Анне услышать вас. Выберите связку.",
+          "uk": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку."
+        },
+        "gappedTargetPhrase": "I am reading aloud ___ Anna can hear me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-44:i16:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i16:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i16:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+            "feedbackByLocale": {
+              "ru": "Перед Anna can hear me нужна связка so that.",
+              "uk": "Перед Anna can hear me потрібна сполука so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+            "feedbackByLocale": {
+              "ru": "Для цели с целой частью используем so that.",
+              "uk": "Для мети з цілою частиною використовуємо so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна приготувала суп, хоча втомилася. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Анна приготувала суп, хоча втомилася. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i17:audio",
+          "transcript": "Anna made soup although she was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna made soup although she was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: Анна має почути чи побачити вас?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i18:r1",
+          "text": "I am reading aloud so that Anna can hear me."
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i18:r2",
+          "text": "I am reading aloud so that Anna can see me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i18:audioA",
+        "en:lesson-31:session-44:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: Анна має почути чи побачити вас?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I am reading aloud so that Anna can hear me.",
+        "contrastB": "I am reading aloud so that Anna can see me.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-44:i18:audioA",
+          "transcript": "I am reading aloud so that Anna can hear me."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-44:i18:audioB",
+          "transcript": "I am reading aloud so that Anna can see me."
+        },
+        "testedPhoneticContrast": "Послухайте: Анна має почути чи побачити вас?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: Анна має почути чи побачити вас?",
+            "feedbackByLocale": {
+              "ru": "Звучит hear — слышать.",
+              "uk": "Звучить hear — чути."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте мету читання вголос. Почніть з I am reading aloud.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте мету читання вголос. Почніть з I am reading aloud.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i19:audio",
+          "transcript": "I am reading aloud so that Anna can hear me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am reading aloud so that Anna can hear me.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "reading",
+          "aloud",
+          "so",
+          "that",
+          "Anna",
+          "can",
+          "hear",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп не холодний. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-44:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-44:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп не холодний. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп не холодный. Добавьте утвердительное уточнение.",
+          "uk": "Суп не холодний. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The soup isn't cold, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-44:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Суп не холодний. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-44:i20:r2",
+            "correct": false,
+            "testedDimension": "Суп не холодний. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "С soup нужна форма is.",
+              "uk": "З soup потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-44:i20:r3",
+            "correct": false,
+            "testedDimension": "Суп не холодний. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна чекає. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-44:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна чекає. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-44:i21:audio",
+          "transcript": "I understand why Anna is waiting."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna is waiting.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "94bff0902d0f61bb9be3b781c831c1d2d9dc30393fa3d42e1869322b52a82dc9"
+}

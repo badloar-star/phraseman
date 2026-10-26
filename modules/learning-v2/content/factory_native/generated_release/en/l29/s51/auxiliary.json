@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-51:intro1:r2": {
+          "ru": "It повторяет способ.",
+          "uk": "It повторює спосіб."
+        },
+        "en:lesson-29:session-51:intro1:r3": {
+          "ru": "Исполнителя называем через you, не your.",
+          "uk": "Виконавця називаємо через you, не your."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-51:intro2:r2": {
+          "ru": "Для принадлежности нужно whose bag.",
+          "uk": "Для належності потрібне whose bag."
+        },
+        "en:lesson-29:session-51:intro2:r3": {
+          "ru": "Her после whose лишнее.",
+          "uk": "Her після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-51:intro3:r2": {
+          "ru": "Перед исполнителем нужна связка by.",
+          "uk": "Перед виконавцем потрібна зв’язка by."
+        },
+        "en:lesson-29:session-51:intro3:r3": {
+          "ru": "После was нужна форма made.",
+          "uk": "Після was потрібна форма made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cd1b35cafe2b4b9c411b7380e9d45981395b52ee5ea38d734beec4848784e145"
+}

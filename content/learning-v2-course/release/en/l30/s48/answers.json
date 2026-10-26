@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-48:i01",
+    "correctText": "table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i02",
+    "correctText": "She said the table was clean.",
+    "correctResponseId": "en:lesson-30:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i04",
+    "correctText": "chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i05",
+    "correctText": "I asked her to bring another chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i06",
+    "correctText": "She asked if I needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i07",
+    "correctText": "my bowl was",
+    "correctResponseId": "en:lesson-30:session-48:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i08",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i09",
+    "correctText": "I told her the soup was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i10",
+    "correctText": "She asked me to pass the bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i11",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i12",
+    "correctText": "plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i13",
+    "correctText": "She said the plate was hot.",
+    "correctResponseId": "en:lesson-30:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i14",
+    "correctText": "I wish the table were bigger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i15",
+    "correctText": "The chair I borrowed is white.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i16",
+    "correctText": "not to touch",
+    "correctResponseId": "en:lesson-30:session-48:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i17",
+    "correctText": "She said she needed a spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i18",
+    "correctText": "She told me the soup was hot.",
+    "correctResponseId": "en:lesson-30:session-48:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i19",
+    "correctText": "She asked if I liked the soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i20",
+    "correctText": "told",
+    "correctResponseId": "en:lesson-30:session-48:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-48:i21",
+    "correctText": "The soup I made is hot.",
+    "correctResponseId": null
+  }
+]

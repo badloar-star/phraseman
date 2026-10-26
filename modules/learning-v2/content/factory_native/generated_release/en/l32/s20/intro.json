@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "называть возможное состояние, делать вывод по признакам и уточнять предмет.",
+    "uk": "називати можливий стан, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможное состояние",
+        "uk": "Можливий стан"
+      },
+      "bodyByLocale": {
+        "ru": "Листья выглядят вялыми. Вы пока не знаете, когда растение поливали. The plant could be dry. — Возможно, растение пересохло. Соберите The plant + could + be + dry. Здесь описываем состояние: перед dry нужна связка be. Could показывает, что это возможный вариант.",
+        "uk": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. The plant could be dry. — Можливо, рослина пересохла. Складіть The plant + could + be + dry. Тут описуємо стан: перед dry потрібна зв’язка be. Could показує, що це можливий варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-20:intro1:r1",
+              "text": "The plant could be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro1:r2",
+              "text": "The plant could is dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro1:r3",
+              "text": "The plant could to be dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-20:intro1:r1",
+              "text": "The plant could be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro1:r2",
+              "text": "The plant could is dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro1:r3",
+              "text": "The plant could to be dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. The soil must be dry. — Почва, должно быть, сухая. Соберите The soil + must + be + dry. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. The soil must be dry. — Ґрунт, напевно, сухий. Складіть The soil + must + be + dry. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-20:intro2:r1",
+              "text": "The soil must be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro2:r2",
+              "text": "The soil must is dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro2:r3",
+              "text": "The soil must to be dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-20:intro2:r1",
+              "text": "The soil must be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro2:r2",
+              "text": "The soil must is dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro2:r3",
+              "text": "The soil must to be dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сравниваете купленный горшок с растением и показываете его Анне. The pot I bought is small. — Горшок, который я купил, маленький. Соберите The pot + I bought + is small. Часть I bought уточняет pot. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви порівнюєте куплений горщик із рослиною й показуєте його Анні. The pot I bought is small. — Горщик, який я купив, маленький. Складіть The pot + I bought + is small. Частина I bought уточнює pot. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-20:intro3:r1",
+              "text": "The pot I bought is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro3:r2",
+              "text": "The pot I bought it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro3:r3",
+              "text": "The pot I buying is small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-20:intro3:r1",
+              "text": "The pot I bought is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro3:r2",
+              "text": "The pot I bought it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-20:intro3:r3",
+              "text": "The pot I buying is small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e53067206ae217d39011b5222a01f05d25b1a98093f70c0c1ea8839dae03baaa"
+}

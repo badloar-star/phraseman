@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-20:i01",
+    "correctText": "Thank you for inviting us.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i02",
+    "correctText": "assertive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i03",
+    "correctText": "I want to be more assertive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i04",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-20:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i05",
+    "correctText": "sarcastic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i06",
+    "correctText": "He was being sarcastic.",
+    "correctResponseId": "en:lesson-29:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i07",
+    "correctText": "Shall we go into the garden?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i08",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i09",
+    "correctText": "aloof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i10",
+    "correctText": "He seems aloof.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i11",
+    "correctText": "She invited us last week.",
+    "correctResponseId": "en:lesson-29:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i12",
+    "correctText": "We can talk here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i13",
+    "correctText": "insecure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i14",
+    "correctText": "Sometimes I feel insecure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i15",
+    "correctText": "en:lesson-29:session-20:i15:p1=assertive\nen:lesson-29:session-20:i15:p2=sarcastic\nen:lesson-29:session-20:i15:p3=aloof\nen:lesson-29:session-20:i15:p4=insecure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i16",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-20:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i17",
+    "correctText": "He seems aloof.",
+    "correctResponseId": "en:lesson-29:session-20:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i18",
+    "correctText": "Let me introduce you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i19",
+    "correctText": "The cake was made by my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i20",
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-29:session-20:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-20:i21",
+    "correctText": "Thank you for a lovely evening.",
+    "correctResponseId": null
+  }
+]

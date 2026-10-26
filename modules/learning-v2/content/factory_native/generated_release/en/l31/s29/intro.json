@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять задержку, сообщать время отправления и уточнять, прибыл ли поезд.",
+    "uk": "пояснювати затримку, повідомляти час відправлення й уточнювати, чи прибув потяг."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поезд задержался из-за снега",
+        "uk": "Потяг затримався через сніг"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приехали на станцию, но поезд задержался. На путях много снега. Объясните другу: The train was late because of the snow — поезд опоздал из-за снега. Соберите The train was late + because of + the snow. Причина названа словами the snow, поэтому перед ними нужна связка because of.",
+        "uk": "Ви приїхали на станцію, але потяг затримався. На коліях багато снігу. Поясніть другові: The train was late because of the snow — потяг запізнився через сніг. Складіть The train was late + because of + the snow. Причину названо словами the snow, тому перед ними потрібна сполука because of."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-29:intro1:r1",
+              "text": "The train was late because of the snow."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro1:r2",
+              "text": "The train was late because the snow."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro1:r3",
+              "text": "The train was late because of it was snowing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-29:intro1:r1",
+              "text": "The train was late because of the snow."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro1:r2",
+              "text": "The train was late because the snow."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro1:r3",
+              "text": "The train was late because of it was snowing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю время отправления",
+        "uk": "Я знаю час відправлення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы прочитали новое время на табло. Скажите другу: I know when the train leaves — я знаю, когда отправляется поезд. Соберите I know + when + the train + leaves. После when сохраняем порядок the train leaves, без вопросительного does.",
+        "uk": "Ви прочитали новий час на табло. Скажіть другові: I know when the train leaves — я знаю, коли вирушає потяг. Складіть I know + when + the train + leaves. Після when зберігаємо порядок the train leaves, без питального does."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-29:intro2:r1",
+              "text": "I know when the train leaves."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro2:r2",
+              "text": "I know when does the train leave."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro2:r3",
+              "text": "I know when the train leave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-29:intro2:r1",
+              "text": "I know when the train leaves."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro2:r2",
+              "text": "I know when does the train leave."
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro2:r3",
+              "text": "I know when the train leave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поезда ещё нет, правда?",
+        "uk": "Потяга ще немає, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите на пустой путь и уточняете у друга: The train isn’t here, is it? — поезда здесь нет, правда? Соберите The train isn’t here + is + it. Основная часть уже отрицательная, поэтому в коротком уточнении ставим утвердительное is. Поезд заменяем на it.",
+        "uk": "Ви дивитеся на порожню колію й уточнюєте в друга: The train isn’t here, is it? — потяга тут немає, правда? Складіть The train isn’t here + is + it. Основна частина вже заперечна, тому в короткому уточненні ставимо стверджувальне is. Потяг замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-29:intro3:r1",
+              "text": "The train isn't here, is it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro3:r2",
+              "text": "The train isn't here, are it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro3:r3",
+              "text": "The train isn't here, is they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-29:intro3:r1",
+              "text": "The train isn't here, is it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro3:r2",
+              "text": "The train isn't here, are it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-29:intro3:r3",
+              "text": "The train isn't here, is they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c0462d3c42f6bad21207132cceba3040333db060089b9865b440bccfd643e93c"
+}

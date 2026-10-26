@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-02:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-53:intro1:r2": {
-          "ru": "С not выходит «Она сухая». А футболка прилипла к спине: It is sweaty.",
-          "uk": "З not виходить «Вона суха». А футболка прилипла до спини: It is sweaty."
+          "ru": "С not выходит «Она не мокрая от пота». А футболка прилипла к спине: It is sweaty.",
+          "uk": "З not виходить «Вона не мокра від поту». А футболка прилипла до спини: It is sweaty."
         },
         "en:lesson-02:session-53:intro1:r3": {
           "ru": "Между It и sweaty нужно is: It is sweaty.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5662f8c49290c2efbfe0006abaef58384e2492646de7ecc84d1216e673904099"
+  "auxiliaryFingerprint": "341718e3f20cf469b53a5951a39f879912926f128996e1a73ec022fa06b14133"
 }

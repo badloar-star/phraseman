@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-22:i01",
+    "correctText": "I have an appointment this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i02",
+    "correctText": "dashboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i03",
+    "correctText": "There is a light on the dashboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i04",
+    "correctText": "Your car will be checked this afternoon.",
+    "correctResponseId": "en:lesson-28:session-22:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i05",
+    "correctText": "accelerator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i06",
+    "correctText": "The accelerator is stuck.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-22:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i08",
+    "correctText": "I wish my car were quieter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i09",
+    "correctText": "gearbox",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i10",
+    "correctText": "The gearbox will be checked tomorrow.",
+    "correctResponseId": "en:lesson-28:session-22:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i11",
+    "correctText": "Please tell me the price before you start.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i13",
+    "correctText": "speedometer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i14",
+    "correctText": "The speedometer is not working.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i15",
+    "correctText": "The tyres were changed last month.",
+    "correctResponseId": "en:lesson-28:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i16",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-22:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i17",
+    "correctText": "The bill will be sent today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i18",
+    "correctText": "When can I collect the car?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i19",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-22:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i20",
+    "correctText": "The keys will be kept in the office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-22:i21",
+    "correctText": "Please call me when it is ready.",
+    "correctResponseId": null
+  }
+]

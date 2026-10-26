@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-20:intro1:r2": {
+          "ru": "Перед show после asked me нужно to.",
+          "uk": "Перед show після asked me потрібне to."
+        },
+        "en:lesson-30:session-20:intro1:r3": {
+          "ru": "После asked здесь нужна форма me.",
+          "uk": "Після asked тут потрібна форма me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-20:intro2:r2": {
+          "ru": "В уточнении сначала I, затем bought.",
+          "uk": "В уточненні спочатку I, потім bought."
+        },
+        "en:lesson-30:session-20:intro2:r3": {
+          "ru": "Один kettle требует is, не are.",
+          "uk": "Один kettle потребує is, не are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-20:intro3:r2": {
+          "ru": "В пересказе не ставим did перед I: используем I had.",
+          "uk": "У переказі не ставимо did перед I: використовуємо I had."
+        },
+        "en:lesson-30:session-20:intro3:r3": {
+          "ru": "Тот, у кого был чек, — I; me здесь не подходит.",
+          "uk": "Той, у кого був чек, — I; me тут не підходить."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5886d6c71f3126279501dce12234d0ed006888a385399ebfd2b7d3d5e90c86e9"
+}

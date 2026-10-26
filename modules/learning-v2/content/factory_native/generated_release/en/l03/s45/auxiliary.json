@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-03:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-45:intro1:r2": {
-          "ru": "Вы оба смотрите на одну и ту же цифру на ярлыке, поэтому the: The size is small.",
-          "uk": "Ви обоє дивитеся на одну й ту саму цифру на ярлику, тому the: The size is small."
+          "ru": "После The size нужно is.",
+          "uk": "Після The size потрібне is."
         },
         "en:lesson-03:session-45:intro1:r3": {
           "ru": "Размер один, поэтому нужно is: The size is small.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-03:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-45:intro2:r2": {
-          "ru": "Надпись вы называете впервые, поэтому a: This is a model.",
-          "uk": "Напис ви називаєте вперше, тому a: This is a model."
+          "ru": "После This нужно is.",
+          "uk": "Після This потрібне is."
         },
         "en:lesson-03:session-45:intro2:r3": {
           "ru": "Слово model начинается с согласного звука, поэтому a: This is a model.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-03:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-45:intro3:r2": {
-          "ru": "Вы оба смотрите на цвет этого шарфа, поэтому the: The colour is wrong.",
-          "uk": "Ви обоє дивитеся на колір цього шарфа, тому the: The colour is wrong."
+          "ru": "После The colour нужно is.",
+          "uk": "Після The colour потрібне is."
         },
         "en:lesson-03:session-45:intro3:r3": {
           "ru": "Цвет один, поэтому нужно is: The colour is wrong.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "8fb992fc932cc4629cf78500688006c2e69a06b7f636623dc608f4931a5f6b0d"
+  "auxiliaryFingerprint": "643b0940b679bc6516d1a51fde49a59f7970e344dd9a86ce105b8c88d59d0dcc"
 }

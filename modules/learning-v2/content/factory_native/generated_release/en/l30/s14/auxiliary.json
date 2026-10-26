@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-14:intro1:r2": {
+          "ru": "В пересказе нужен порядок the motive was.",
+          "uk": "У переказі потрібен порядок the motive was."
+        },
+        "en:lesson-30:session-14:intro1:r3": {
+          "ru": "С одним мотивом здесь используем was.",
+          "uk": "З одним мотивом тут використовуємо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-14:intro2:r2": {
+          "ru": "В пересказе нужно I knew без did.",
+          "uk": "У переказі потрібне I knew без did."
+        },
+        "en:lesson-30:session-14:intro2:r3": {
+          "ru": "Нужна форма knew, не knowing.",
+          "uk": "Потрібна форма knew, не knowing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-14:intro3:r2": {
+          "ru": "В уточнении нужна форма lent.",
+          "uk": "В уточненні потрібна форма lent."
+        },
+        "en:lesson-30:session-14:intro3:r3": {
+          "ru": "Одна книга: the book was.",
+          "uk": "Одна книжка: the book was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "85260096bff86835bc9344c813eca89c2a74e14905c527e0e842994fee77cdd8"
+}

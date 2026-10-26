@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-40:i01",
+    "correctText": "book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i02",
+    "correctText": "I read the book although it was long.",
+    "correctResponseId": "en:lesson-31:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i03",
+    "correctText": "although",
+    "correctResponseId": "en:lesson-31:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i04",
+    "correctText": "library",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i05",
+    "correctText": "I know when the library closes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i06",
+    "correctText": "The book was returned by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-40:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i08",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i09",
+    "correctText": "Could you tell me where my bag is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i10",
+    "correctText": "I know that the book is in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i12",
+    "correctText": "card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i13",
+    "correctText": "I know where my card is.",
+    "correctResponseId": "en:lesson-31:session-40:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i14",
+    "correctText": "She said the books were interesting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i15",
+    "correctText": "I read the book although it was long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i16",
+    "correctText": "the library is",
+    "correctResponseId": "en:lesson-31:session-40:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i17",
+    "correctText": "I stayed home because of the rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i18",
+    "correctText": "I read the book although it was long.",
+    "correctResponseId": "en:lesson-31:session-40:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i19",
+    "correctText": "I read the book although it was long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-40:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-40:i21",
+    "correctText": "I understand why Anna returned the book.",
+    "correctResponseId": null
+  }
+]

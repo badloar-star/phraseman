@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать варианты жилья, уточнить место и договориться о планах.",
+    "uk": "як назвати варіанти житла, уточнити місце й домовитися про плани."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Деревня, в которой вы жили",
+        "uk": "Село, у якому ви жили"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу фотографию деревни после поездки. Скажите: This is the village where we stayed — это деревня, в которой мы остановились. Соберите This is the village + where + we stayed. После названия места the village поставьте where, а затем назовите действие we stayed. Where связывает проживание с этой деревней, поэтому there в конце не добавляем.",
+        "uk": "Ви показуєте другові фотографію села після поїздки. Скажіть: This is the village where we stayed — це село, у якому ми зупинилися. Складіть This is the village + where + we stayed. Після назви місця the village поставте where, а потім назвіть дію we stayed. Where пов’язує проживання із цим селом, тому there наприкінці не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-18:intro1:r1",
+              "text": "This is the village where we stayed."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro1:r2",
+              "text": "This is the village where we stayed there."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro1:r3",
+              "text": "This is the village who we stayed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-18:intro1:r1",
+              "text": "This is the village where we stayed."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro1:r2",
+              "text": "This is the village where we stayed there."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro1:r3",
+              "text": "This is the village who we stayed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кого попросить переставить машину",
+        "uk": "Кого попросити переставити машину"
+      },
+      "bodyByLocale": {
+        "ru": "У входа стоит машина, и вы ищете её владельца. Спросите: Where is the guest whose car is outside? — где гость, чья машина снаружи? Соберите Where is the guest + whose car + is outside? После the guest добавьте whose car: машина принадлежит этому гостю. Затем is outside указывает её место. His после whose не нужен.",
+        "uk": "Біля входу стоїть машина, і ви шукаєте її власника. Запитайте: Where is the guest whose car is outside? — де гість, чия машина надворі? Складіть Where is the guest + whose car + is outside? Після the guest додайте whose car: машина належить цьому гостеві. Потім is outside указує її місце. His після whose не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-18:intro2:r1",
+              "text": "Where is the guest whose car is outside?"
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro2:r2",
+              "text": "Where is the guest who car is outside?"
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro2:r3",
+              "text": "Where is the guest whose his car is outside?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-18:intro2:r1",
+              "text": "Where is the guest whose car is outside?"
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro2:r2",
+              "text": "Where is the guest who car is outside?"
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro2:r3",
+              "text": "Where is the guest whose his car is outside?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если будет дождь",
+        "uk": "Якщо буде дощ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы планируете прогулку у места ночлега и договариваетесь остаться внутри в случае дождя. Скажите: We will stay inside if it rains — мы останемся внутри, если пойдёт дождь. Соберите We will stay inside + if it rains. Сначала назовите будущее действие с will stay. Затем добавьте условие if it rains; после if здесь нужна rains без will. Условие стоит в конце, поэтому запятая не нужна.",
+        "uk": "Ви плануєте прогулянку біля місця ночівлі й домовляєтеся залишитися всередині в разі дощу. Скажіть: We will stay inside if it rains — ми залишимося всередині, якщо піде дощ. Складіть We will stay inside + if it rains. Спочатку назвіть майбутню дію з will stay. Потім додайте умову if it rains; після if тут потрібна rains без will. Умова стоїть наприкінці, тому кома не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-18:intro3:r1",
+              "text": "We will stay inside if it rains."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro3:r2",
+              "text": "We will stay inside if it will rain."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro3:r3",
+              "text": "We will stay inside if it raining."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-18:intro3:r1",
+              "text": "We will stay inside if it rains."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro3:r2",
+              "text": "We will stay inside if it will rain."
+            },
+            {
+              "responseId": "en:lesson-29:session-18:intro3:r3",
+              "text": "We will stay inside if it raining."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5d694caf0323ea585631c123c0aa16d7749f7a0c8decfb354c4d5f48ebc36d02"
+}

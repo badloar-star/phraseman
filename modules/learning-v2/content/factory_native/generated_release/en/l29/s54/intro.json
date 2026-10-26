@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "как говорить об инициативе соседей, общем саде, граффити и вещи, которая портит вид.",
+    "uk": "як говорити про ініціативу сусідів, спільний сад, графіті та річ, яка псує вигляд."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Инструменты, которые одолжили",
+        "uk": "Інструменти, які позичили"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете соседу инструменты, которые одолжили для уборки двора. Скажите: The tools we borrowed are in the shed — инструменты, которые мы одолжили, находятся в сарае. Соберите The tools + we borrowed + are in the shed. We называет тех, кто одолжил инструменты. Поэтому that перед we можно опустить; them после borrowed не добавляем.",
+        "uk": "Ви показуєте сусідові інструменти, які позичили для прибирання подвір’я. Скажіть: The tools we borrowed are in the shed — інструменти, які ми позичили, лежать у сараї. Складіть The tools + we borrowed + are in the shed. We називає тих, хто позичив інструменти. Тому that перед we можна пропустити; them після borrowed не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-54:intro1:r1",
+              "text": "The tools we borrowed are in the shed."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro1:r2",
+              "text": "The tools we borrowed them are in the shed."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro1:r3",
+              "text": "The tools us borrowed are in the shed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-54:intro1:r1",
+              "text": "The tools we borrowed are in the shed."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro1:r2",
+              "text": "The tools we borrowed them are in the shed."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro1:r3",
+              "text": "The tools us borrowed are in the shed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто покрасил скамейку",
+        "uk": "Хто пофарбував лавку"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, кто покрасил скамейку во дворе. Скажите: The bench was painted by our neighbour — скамейку покрасил наш сосед. Соберите The bench + was painted + by our neighbour. Начните с вещи, затем добавьте was painted; после by назовите исполнителя.",
+        "uk": "Сусід запитує, хто пофарбував лавку на подвір’ї. Скажіть: The bench was painted by our neighbour — лавку пофарбував наш сусід. Складіть The bench + was painted + by our neighbour. Почніть із речі, потім додайте was painted; після by назвіть виконавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-54:intro2:r1",
+              "text": "The bench was painted by our neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro2:r2",
+              "text": "The bench was painted our neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro2:r3",
+              "text": "The bench was paint by our neighbour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-54:intro2:r1",
+              "text": "The bench was painted by our neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro2:r2",
+              "text": "The bench was painted our neighbour."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro2:r3",
+              "text": "The bench was paint by our neighbour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где вы сажаете цветы",
+        "uk": "Де ви саджаєте квіти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете новой соседке двор, где жители сажают цветы. Скажите: This is the courtyard where we plant flowers — это двор, где мы сажаем цветы. Соберите This is the courtyard + where + we plant flowers. Where связывает действие с местом. После where сохраняем обычный порядок we plant flowers, без вопросительного do.",
+        "uk": "Ви показуєте новій сусідці подвір’я, де мешканці саджають квіти. Скажіть: This is the courtyard where we plant flowers — це подвір’я, де ми саджаємо квіти. Складіть This is the courtyard + where + we plant flowers. Where пов’язує дію з місцем. Після where зберігаємо звичайний порядок we plant flowers, без питального do."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-54:intro3:r1",
+              "text": "This is the courtyard where we plant flowers."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro3:r2",
+              "text": "This is the courtyard where do we plant flowers."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro3:r3",
+              "text": "This is the courtyard who we plant flowers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-54:intro3:r1",
+              "text": "This is the courtyard where we plant flowers."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro3:r2",
+              "text": "This is the courtyard where do we plant flowers."
+            },
+            {
+              "responseId": "en:lesson-29:session-54:intro3:r3",
+              "text": "This is the courtyard who we plant flowers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ff9b8e613fbe18753572e534fca2514cad8014a2c573d9bae12fa02092cca22e"
+}

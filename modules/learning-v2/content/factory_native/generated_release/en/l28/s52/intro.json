@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать разные виды обуви и уточнить условия заказа.",
+    "uk": "як назвати різні види взуття й уточнити умови замовлення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заказать свой размер",
+        "uk": "Замовити свій розмір"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине нет вашего размера понравившейся обуви. Спросите: Can these shoes be ordered in my size? — можно заказать эту обувь в моём размере? Соберите Can + these shoes + be ordered + in my size? Начните с Can, затем назовите обувь. После неё поставьте be и ordered, третью форму order: действие выполнят над товаром. In my size уточняет нужный размер.",
+        "uk": "У магазині немає вашого розміру взуття, що сподобалося. Запитайте: Can these shoes be ordered in my size? — чи можна замовити це взуття в моєму розмірі? Складіть Can + these shoes + be ordered + in my size? Почніть із Can, потім назвіть взуття. Після нього поставте be та ordered, третю форму order: дію виконають із товаром. In my size уточнює потрібний розмір."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-52:intro1:r1",
+              "text": "Can these shoes be ordered in my size?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro1:r2",
+              "text": "Can these shoes ordered in my size?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro1:r3",
+              "text": "Can these shoes be order in my size?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-52:intro1:r1",
+              "text": "Can these shoes be ordered in my size?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro1:r2",
+              "text": "Can these shoes ordered in my size?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro1:r3",
+              "text": "Can these shoes be order in my size?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Получить заказ дома",
+        "uk": "Отримати замовлення вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заказали пару обуви и оставили домашний адрес. Продавец подтверждает: Your shoes will be delivered on Thursday — вашу обувь доставят в четверг. Соберите Your shoes + will be + delivered + on Thursday. Сначала назовите обувь, затем поставьте will be и delivered, третью форму deliver. Эта конструкция сообщает о будущем действии над заказом. В конце назовите день доставки.",
+        "uk": "Ви замовили пару взуття й залишили домашню адресу. Продавець підтверджує: Your shoes will be delivered on Thursday — ваше взуття доставлять у четвер. Складіть Your shoes + will be + delivered + on Thursday. Спочатку назвіть взуття, потім поставте will be та delivered, третю форму deliver. Ця конструкція повідомляє про майбутню дію із замовленням. Наприкінці назвіть день доставки."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-52:intro2:r1",
+              "text": "Your shoes will be delivered on Thursday."
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro2:r2",
+              "text": "Your shoes will delivered on Thursday."
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro2:r3",
+              "text": "Your shoes will be deliver on Thursday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-52:intro2:r1",
+              "text": "Your shoes will be delivered on Thursday."
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro2:r2",
+              "text": "Your shoes will delivered on Thursday."
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro2:r3",
+              "text": "Your shoes will be deliver on Thursday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Цена доставки",
+        "uk": "Ціна доставки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знаете цену обуви, но не знаете, нужно ли доплачивать за доставку. Спросите: Is delivery included in the price? — доставка включена в цену? Соберите Is + delivery + included + in the price? В вопросе поставьте Is перед delivery. Затем добавьте included, третью форму include. In the price уточняет, куда должна входить доставка.",
+        "uk": "Ви знаєте ціну взуття, але не знаєте, чи потрібно доплачувати за доставку. Запитайте: Is delivery included in the price? — доставку включено в ціну? Складіть Is + delivery + included + in the price? У запитанні поставте Is перед delivery. Потім додайте included, третю форму include. In the price уточнює, куди має входити доставка."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-52:intro3:r1",
+              "text": "Is delivery included in the price?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro3:r2",
+              "text": "Are delivery included in the price?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro3:r3",
+              "text": "Is delivery include in the price?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-52:intro3:r1",
+              "text": "Is delivery included in the price?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro3:r2",
+              "text": "Are delivery included in the price?"
+            },
+            {
+              "responseId": "en:lesson-28:session-52:intro3:r3",
+              "text": "Is delivery include in the price?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a366b00579434b55d7fe85101bccf0eec004ab6fd5fd98a4886cb8ebe5aa791f"
+}

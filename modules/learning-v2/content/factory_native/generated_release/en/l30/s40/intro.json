@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать слова и вопросы, передавать просьбы и выражать желание о настоящем.",
+    "uk": "переказувати слова й запитання, передавати прохання та виражати бажання про теперішнє."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что сказала сестра",
+        "uk": "Що сказала сестра"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра собиралась на прогулку и сказала: «Я устала». Перескажите её слова со сдвигом времени: She said she was tired — она сказала, что устала. Соберите She + said + she + was tired. В её словах было I am tired; при пересказе I становится she, а am сдвигается в was.",
+        "uk": "Учора сестра збиралася на прогулянку й сказала: «Я втомилася». Перекажіть її слова зі зсувом часу: She said she was tired — вона сказала, що втомилася. Складіть She + said + she + was tired. У її словах було I am tired; у переказі I стає she, а am зсувається у was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-40:intro1:r1",
+              "text": "She said she was tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro1:r2",
+              "text": "She said she is tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro1:r3",
+              "text": "She said she be tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-40:intro1:r1",
+              "text": "She said she was tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro1:r2",
+              "text": "She said she is tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro1:r3",
+              "text": "She said she be tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос о куртке",
+        "uk": "Запитання про куртку"
+      },
+      "bodyByLocale": {
+        "ru": "Перед прогулкой сестра спросила вас: «Где твоя куртка?» Передайте вопрос: She asked where my jacket was — она спросила, где моя куртка. Соберите She + asked + where + my jacket + was. После where в пересказе сначала называем предмет my jacket, затем ставим was.",
+        "uk": "Перед прогулянкою сестра запитала вас: «Де твоя куртка?» Передайте запитання: She asked where my jacket was — вона запитала, де моя куртка. Складіть She + asked + where + my jacket + was. Після where в переказі спочатку називаємо предмет my jacket, потім ставимо was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-40:intro2:r1",
+              "text": "She asked where my jacket was."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro2:r2",
+              "text": "She asked where was my jacket."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro2:r3",
+              "text": "She asked where my jacket were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-40:intro2:r1",
+              "text": "She asked where my jacket was."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro2:r2",
+              "text": "She asked where was my jacket."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro2:r3",
+              "text": "She asked where my jacket were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На улице холодно",
+        "uk": "Надворі холодно"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вышли на прогулку, но на улице холодно. Вы хотели бы другой погоды сейчас: I wish it were warmer — жаль, что не теплее. Соберите I + wish + it + were warmer. После wish форма were warmer выражает желание о настоящем: сейчас хотелось бы теплее.",
+        "uk": "Ви вийшли на прогулянку, але надворі холодно. Ви хотіли б іншої погоди зараз: I wish it were warmer — шкода, що не тепліше. Складіть I + wish + it + were warmer. Після wish форма were warmer виражає бажання про теперішнє: зараз хотілося б тепліше."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-40:intro3:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro3:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro3:r3",
+              "text": "I wish it be warmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-40:intro3:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro3:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-40:intro3:r3",
+              "text": "I wish it be warmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "faf43f40a0c5745555e3ad515d8d00025a1673363ba79d546c5bed2d59181fe3"
+}

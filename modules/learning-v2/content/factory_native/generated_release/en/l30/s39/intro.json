@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать вчерашние слова со сдвигом времени, передавать просьбы к нескольким людям и уточнять предмет.",
+    "uk": "переказувати вчорашні слова зі зсувом часу, передавати прохання до кількох людей і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друг хотел поплавать",
+        "uk": "Друг хотів поплавати"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера друг сказал: «Я хочу поплавать». Сегодня перескажите это со сдвигом времени: He said he wanted to swim — он сказал, что хотел поплавать. Соберите He + said + he + wanted to swim. Want из его слов сдвигается в wanted после прошедшего said. Часть to swim остаётся без изменения.",
+        "uk": "Учора друг сказав: «Я хочу поплавати». Сьогодні перекажіть це зі зсувом часу: He said he wanted to swim — він сказав, що хотів поплавати. Складіть He + said + he + wanted to swim. Want з його слів зсувається у wanted після минулого said. Частина to swim залишається без зміни."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-39:intro1:r1",
+              "text": "He said he wanted to swim."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro1:r2",
+              "text": "He said he wants to swim."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro1:r3",
+              "text": "He said he wanting to swim."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-39:intro1:r1",
+              "text": "He said he wanted to swim."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro1:r2",
+              "text": "He said he wants to swim."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro1:r3",
+              "text": "He said he wanting to swim."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём попросили вас обоих",
+        "uk": "Про що попросили вас обох"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом пришли к бассейну. Сотрудница попросила вас обоих подождать снаружи. Передайте просьбу: She asked us to wait outside — она попросила нас подождать снаружи. Соберите She + asked + us + to wait outside. Us обозначает вас с другом; после него действие вводим через to.",
+        "uk": "Ви з другом прийшли до басейну. Працівниця попросила вас обох зачекати надворі. Передайте прохання: She asked us to wait outside — вона попросила нас зачекати надворі. Складіть She + asked + us + to wait outside. Us позначає вас із другом; після нього дію вводимо через to."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-39:intro2:r1",
+              "text": "She asked us to wait outside."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro2:r2",
+              "text": "She asked we to wait outside."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro2:r3",
+              "text": "She asked us wait outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-39:intro2:r1",
+              "text": "She asked us to wait outside."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro2:r2",
+              "text": "She asked we to wait outside."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro2:r3",
+              "text": "She asked us wait outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какой шкафчик был вашим",
+        "uk": "Яка шафка була вашою"
+      },
+      "bodyByLocale": {
+        "ru": "После бассейна вы рассказываете другу о шкафчике, которым пользовались. Скажите, что он маленький: The locker I used is small — шкафчик, которым я пользовался, маленький. Соберите The locker + I used + is small. I used уточняет предмет; I — тот, кто пользовался, а locker — предмет, поэтому that перед I можно опустить.",
+        "uk": "Після басейну ви розповідаєте другові про шафку, якою користувалися. Скажіть, що вона маленька: The locker I used is small — шафка, якою я користувався, маленька. Складіть The locker + I used + is small. I used уточнює предмет; I — той, хто користувався, а locker — предмет, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-39:intro3:r1",
+              "text": "The locker I used is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro3:r2",
+              "text": "The locker used I is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro3:r3",
+              "text": "The locker I used are small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-39:intro3:r1",
+              "text": "The locker I used is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro3:r2",
+              "text": "The locker used I is small."
+            },
+            {
+              "responseId": "en:lesson-30:session-39:intro3:r3",
+              "text": "The locker I used are small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "925e466fb8427c71f018424477bcfd6f546cde5c49d376f2df9f7511b4db6190"
+}

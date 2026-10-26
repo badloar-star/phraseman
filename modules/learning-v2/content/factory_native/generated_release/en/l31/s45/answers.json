@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-45:i01",
+    "correctText": "box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i02",
+    "correctText": "The box was packed by Ben.",
+    "correctResponseId": "en:lesson-31:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i03",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i04",
+    "correctText": "cups",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i05",
+    "correctText": "I opened the box to find the cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i06",
+    "correctText": "label",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i07",
+    "correctText": "I know that my name is on the label.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i08",
+    "correctText": "find",
+    "correctResponseId": "en:lesson-31:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i09",
+    "correctText": "I labelled the box so that Anna could find the cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i10",
+    "correctText": "Could you tell me where the cups are?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i12",
+    "correctText": "shelf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i13",
+    "correctText": "I know that the shelf is empty.",
+    "correctResponseId": "en:lesson-31:session-45:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i14",
+    "correctText": "He said the cups were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i15",
+    "correctText": "Anna found the cups because she read the label.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i16",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-45:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i17",
+    "correctText": "I carried the box although I was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i18",
+    "correctText": "I opened the box to find the cups.",
+    "correctResponseId": "en:lesson-31:session-45:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i19",
+    "correctText": "I labelled the box so that Anna could find the cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-45:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-45:i21",
+    "correctText": "I understand why Ben labelled the box.",
+    "correctResponseId": null
+  }
+]

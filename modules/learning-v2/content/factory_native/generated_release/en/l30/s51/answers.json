@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-51:i01",
+    "correctText": "apples",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i02",
+    "correctText": "He said the apples were fresh.",
+    "correctResponseId": "en:lesson-30:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i04",
+    "correctText": "pears",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i05",
+    "correctText": "He asked if I wanted pears.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i06",
+    "correctText": "The apples I bought are sweet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i07",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-51:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i08",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i09",
+    "correctText": "He asked me to open my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i10",
+    "correctText": "He asked if I needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i11",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i12",
+    "correctText": "coins",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i13",
+    "correctText": "He asked if I had coins.",
+    "correctResponseId": "en:lesson-30:session-51:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i14",
+    "correctText": "I wish the bag were lighter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i15",
+    "correctText": "The pears I chose are yellow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i16",
+    "correctText": "not to lift",
+    "correctResponseId": "en:lesson-30:session-51:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i17",
+    "correctText": "He said he needed a box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i18",
+    "correctText": "He asked if I wanted apples.",
+    "correctResponseId": "en:lesson-30:session-51:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i19",
+    "correctText": "He said the bag was full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i20",
+    "correctText": "my basket was",
+    "correctResponseId": "en:lesson-30:session-51:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-51:i21",
+    "correctText": "I told him the apples were for my mother.",
+    "correctResponseId": null
+  }
+]

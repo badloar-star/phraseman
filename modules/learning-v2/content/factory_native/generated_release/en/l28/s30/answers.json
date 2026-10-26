@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-30:i01",
+    "correctText": "Could you help me read this label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i02",
+    "correctText": "multigrain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i03",
+    "correctText": "I would like some multigrain bread.",
+    "correctResponseId": "en:lesson-28:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i04",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-30:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i05",
+    "correctText": "Your shopping will be delivered today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i06",
+    "correctText": "pasteurised",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i07",
+    "correctText": "Is this milk pasteurised?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i08",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i09",
+    "correctText": "The bags are checked at the door.",
+    "correctResponseId": "en:lesson-28:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i10",
+    "correctText": "fortified",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i11",
+    "correctText": "Is this cereal fortified?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i12",
+    "correctText": "I am looking for a smaller packet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i13",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-30:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i14",
+    "correctText": "refrigerate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i15",
+    "correctText": "Should I refrigerate this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i16",
+    "correctText": "en:lesson-28:session-30:i16:p1=multigrain\nen:lesson-28:session-30:i16:p2=pasteurised\nen:lesson-28:session-30:i16:p3=fortified\nen:lesson-28:session-30:i16:p4=refrigerate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i17",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-30:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i18",
+    "correctText": "This can be delivered.",
+    "correctResponseId": "en:lesson-28:session-30:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i19",
+    "correctText": "The bottle was replaced.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i20",
+    "correctText": "Could I have a separate bag for the bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-30:i21",
+    "correctText": "How much is delivery?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-02:intro1:r2": {
+          "ru": "С he здесь нужно was.",
+          "uk": "Із he тут потрібне was."
+        },
+        "en:lesson-30:session-02:intro1:r3": {
+          "ru": "Нужна личная форма was, не being.",
+          "uk": "Потрібна особова форма was, не being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-02:intro2:r2": {
+          "ru": "Для этого желания о настоящем после wish нужна форма had.",
+          "uk": "Для цього бажання про теперішнє після wish потрібна форма had."
+        },
+        "en:lesson-30:session-02:intro2:r3": {
+          "ru": "Having не образует здесь предложение; нужно I had.",
+          "uk": "Having не утворює тут речення; потрібне I had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-02:intro3:r2": {
+          "ru": "В уточнении нужна форма watched, не watching.",
+          "uk": "В уточненні потрібна форма watched, не watching."
+        },
+        "en:lesson-30:session-02:intro3:r3": {
+          "ru": "Один матч: the match was.",
+          "uk": "Один матч: the match was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "53852e813112461b4010203254e3dc2455e678f7893b4e38240d3cfa04f47994"
+}

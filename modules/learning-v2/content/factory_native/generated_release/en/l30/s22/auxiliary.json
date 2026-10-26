@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-22:intro1:r2": {
+          "ru": "После asked me перед hold нужно to.",
+          "uk": "Після asked me перед hold потрібне to."
+        },
+        "en:lesson-30:session-22:intro1:r3": {
+          "ru": "Того, кого попросили, обозначаем me, не I.",
+          "uk": "Того, кого попросили, позначаємо me, не I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-22:intro2:r2": {
+          "ru": "В уточнении сначала I, потом packed.",
+          "uk": "В уточненні спочатку I, потім packed."
+        },
+        "en:lesson-30:session-22:intro2:r3": {
+          "ru": "Одна box требует is.",
+          "uk": "Одна box потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-22:intro3:r2": {
+          "ru": "В пересказе используем I needed, без did перед I.",
+          "uk": "У переказі використовуємо I needed, без did перед I."
+        },
+        "en:lesson-30:session-22:intro3:r3": {
+          "ru": "Кому нужна помощь, здесь обозначаем подлежащим I.",
+          "uk": "Кому потрібна допомога, тут позначаємо підметом I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f656b47382876d78924274d85d8ef348145215134d4df9bec7ce73080430fb75"
+}

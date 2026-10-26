@@ -23,8 +23,8 @@
           "uk": "Машин кілька, тому потрібно There are, а не There is."
         },
         "en:lesson-04:session-45:intro2:r3": {
-          "ru": "После some слово ставят во множественном числе: washing machines.",
-          "uk": "Після some слово ставлять у множині: washing machines."
+          "ru": "Здесь говорим о нескольких машинах: washing machines.",
+          "uk": "Тут говоримо про кілька машин: washing machines."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e09d68855ba3a2f5812d3e251bb9ece9b88bc490f37a0eb1dd5b6c03a27fb450"
+  "auxiliaryFingerprint": "1da513a8f57b71375721f06884c7b3c3513dc4cf4cce0fbd3a647cf8c912a221"
 }

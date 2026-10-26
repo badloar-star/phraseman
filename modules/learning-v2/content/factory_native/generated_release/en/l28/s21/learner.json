@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — viscose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — viscose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i01:audio",
+          "transcript": "viscose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i01:r1",
+            "targetText": "viscose",
+            "meaningByLocale": {
+              "ru": "Вискоза: материал, название которого можно встретить в составе одежды.",
+              "uk": "Віскоза: матеріал, назву якого можна побачити у складі одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "viscose",
+          "definitionByLocale": {
+            "ru": "Вискоза: материал, название которого можно встретить в составе одежды.",
+            "uk": "Віскоза: матеріал, назву якого можна побачити у складі одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Прочитайте описание ткани платья.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прочитайте описание ткани платья.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This dress is made of viscose.",
+        "localizedMeaning": {
+          "ru": "Прочитайте описание ткани платья.",
+          "uk": "Прочитайте опис тканини сукні."
+        },
+        "orderedTokens": [
+          "This",
+          "dress",
+          "is",
+          "made",
+          "of",
+          "viscose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать ярлык с составом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите показать ярлык с составом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i03:audio",
+          "transcript": "Could you show me the label?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me the label?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i04:r1",
+          "text": "Your order will be sent tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i04:r2",
+          "text": "Your order will be sent on Monday."
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i04:r3",
+          "text": "Your receipt will be sent tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i04:audio",
+          "transcript": "Your order will be sent tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i04:r1",
+            "targetText": "Your order will be sent tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i04:r2",
+            "targetText": "Your order will be sent on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i04:r3",
+            "targetText": "Your receipt will be sent tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your order will be sent tomorrow.",
+              "uk": "У записі звучить Your order will be sent tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your order will be sent tomorrow.",
+              "uk": "У записі звучить Your order will be sent tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — acrylic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — acrylic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i05:audio",
+          "transcript": "acrylic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i05:r1",
+            "targetText": "acrylic",
+            "meaningByLocale": {
+              "ru": "Акрил: синтетическое волокно, используемое в одежде.",
+              "uk": "Акрил: синтетичне волокно, яке використовують в одязі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "acrylic",
+          "definitionByLocale": {
+            "ru": "Акрил: синтетическое волокно, используемое в одежде.",
+            "uk": "Акрил: синтетичне волокно, яке використовують в одязі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, есть ли в составе свитера акрил.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i06:audio"
+      ],
+      "accessibilityLabel": "Уточните, есть ли в составе свитера акрил.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i06:audio",
+          "transcript": "Does this jumper contain acrylic?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does this jumper contain acrylic?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эти рубашки делают поблизости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i07:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эти рубашки делают поблизости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти рубашки делают поблизости.",
+          "uk": "Ці сорочки виготовляють поблизу."
+        },
+        "gappedTargetPhrase": "These shirts ___ made locally.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-21:i07:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Эти рубашки делают поблизости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i07:r2",
+            "correct": false,
+            "testedDimension": "Эти рубашки делают поблизости.",
+            "feedbackByLocale": {
+              "ru": "Shirts — несколько: are.",
+              "uk": "Shirts — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i07:r3",
+            "correct": false,
+            "testedDimension": "Эти рубашки делают поблизости.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are made.",
+              "uk": "Тут використовуємо are made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ткань жёсткая. Вы хотели бы, чтобы она была мягче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ткань жёсткая. Вы хотели бы, чтобы она была мягче.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish this fabric were softer.",
+        "localizedMeaning": {
+          "ru": "Ткань жёсткая. Вы хотели бы, чтобы она была мягче.",
+          "uk": "Тканина жорстка. Ви хотіли б, щоб вона була м’якшою."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "this",
+          "fabric",
+          "were",
+          "softer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — satin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — satin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i09:audio",
+          "transcript": "satin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i09:r1",
+            "targetText": "satin",
+            "meaningByLocale": {
+              "ru": "Атлас: гладкая ткань с блестящей лицевой стороной.",
+              "uk": "Атлас: гладка тканина з блискучим лицьовим боком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "satin",
+          "definitionByLocale": {
+            "ru": "Атлас: гладкая ткань с блестящей лицевой стороной.",
+            "uk": "Атлас: гладка тканина з блискучим лицьовим боком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i10:r1",
+          "text": "The satin skirt was displayed in the window."
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i10:r2",
+          "text": "The satin skirt was displayed near the stairs."
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i10:r3",
+          "text": "The cotton skirt was displayed in the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i10:audio",
+          "transcript": "The satin skirt was displayed in the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i10:r1",
+            "targetText": "The satin skirt was displayed in the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i10:r2",
+            "targetText": "The satin skirt was displayed near the stairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i10:r3",
+            "targetText": "The cotton skirt was displayed in the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The satin skirt was displayed in the window.",
+              "uk": "У записі звучить The satin skirt was displayed in the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The satin skirt was displayed in the window.",
+              "uk": "У записі звучить The satin skirt was displayed in the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Свитер доставят домой. Вставьте недостающую часть.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i11:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Свитер доставят домой. Вставьте недостающую часть.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Свитер доставят домой. Вставьте недостающую часть.",
+          "uk": "Светр доставлять додому. Вставте пропущену частину."
+        },
+        "gappedTargetPhrase": "The jumper will ___ delivered to your home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-21:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i11:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Свитер доставят домой. Вставьте недостающую часть.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Свитер доставят домой. Вставьте недостающую часть.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Свитер доставят домой. Вставьте недостающую часть.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна will be delivered.",
+              "uk": "Тут потрібна will be delivered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, есть ли эта вещь другого цвета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Спросите, есть ли эта вещь другого цвета.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i12:audio",
+          "transcript": "Do you have this in another colour?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have this in another colour?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cashmere",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cashmere",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i13:audio",
+          "transcript": "cashmere"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i13:r1",
+            "targetText": "cashmere",
+            "meaningByLocale": {
+              "ru": "Кашемир: мягкое волокно из пуха кашемировых коз; также ткань или пряжа из него.",
+              "uk": "Кашемір: м’яке волокно з пуху кашемірових кіз; також тканина або пряжа з нього."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cashmere",
+          "definitionByLocale": {
+            "ru": "Кашемир: мягкое волокно из пуха кашемировых коз; также ткань или пряжа из него.",
+            "uk": "Кашемір: м’яке волокно з пуху кашемірових кіз; також тканина або пряжа з нього."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, сделан ли шарф из кашемира.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, сделан ли шарф из кашемира.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this scarf made of cashmere?",
+        "localizedMeaning": {
+          "ru": "Уточните, сделан ли шарф из кашемира.",
+          "uk": "Уточніть, чи зроблений шарф із кашеміру."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "scarf",
+          "made",
+          "of",
+          "cashmere"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i15:r1",
+          "text": "The clothes were checked before delivery."
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i15:r2",
+          "text": "The clothes were checked after delivery."
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i15:r3",
+          "text": "The shoes were checked before delivery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i15:audio",
+          "transcript": "The clothes were checked before delivery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-21:i15:r1",
+            "targetText": "The clothes were checked before delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i15:r2",
+            "targetText": "The clothes were checked after delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i15:r3",
+            "targetText": "The shoes were checked before delivery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The clothes were checked before delivery.",
+              "uk": "У записі звучить The clothes were checked before delivery."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The clothes were checked before delivery.",
+              "uk": "У записі звучить The clothes were checked before delivery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера ваш размер уже распродали к вашему приходу. Завершите более раннее событие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i16:r1",
+          "text": "sold"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i16:r2",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i16:r3",
+          "text": "selling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера ваш размер уже распродали к вашему приходу. Завершите более раннее событие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера ваш размер уже распродали к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора ваш розмір уже розпродали до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "My size had ___ out by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-21:i16:r1",
+            "text": "sold"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i16:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i16:r3",
+            "text": "selling"
+          }
+        ],
+        "testedDimension": "Вчера ваш размер уже распродали к вашему приходу. Завершите более раннее событие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i16:r2",
+            "correct": false,
+            "testedDimension": "Вчера ваш размер уже распродали к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна sold.",
+              "uk": "Після had потрібна sold."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i16:r3",
+            "correct": false,
+            "testedDimension": "Вчера ваш размер уже распродали к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had sold out.",
+              "uk": "Тут використовуємо had sold out."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, где упакуют заказ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте, где упакуют заказ.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i17:audio",
+          "transcript": "The order will be packed in the shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The order will be packed in the shop.",
+        "orderedTokens": [
+          "The",
+          "order",
+          "will",
+          "be",
+          "packed",
+          "in",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли стирать эту вещь в машине.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i18:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли стирать эту вещь в машине.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i18:audio",
+          "transcript": "Can I wash this in the machine?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I wash this in the machine?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы, чтобы шарф стоил дешевле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-21:i19:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-21:i19:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы, чтобы шарф стоил дешевле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы, чтобы шарф стоил дешевле.",
+          "uk": "Вам хотілося б, щоб шарф коштував дешевше."
+        },
+        "gappedTargetPhrase": "I wish the scarf ___ cheaper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-21:i19:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i19:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы, чтобы шарф стоил дешевле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-21:i19:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы, чтобы шарф стоил дешевле.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-21:i19:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы, чтобы шарф стоил дешевле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, когда вещь вернули в магазин.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте, когда вещь вернули в магазин.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i20:audio",
+          "transcript": "It was returned yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It was returned yesterday.",
+        "orderedTokens": [
+          "It",
+          "was",
+          "returned",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-21:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сохранить чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-21:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите сохранить чек.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-21:i21:audio",
+          "transcript": "Please keep the receipt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please keep the receipt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4a54750a7ca52f308c58e57bb7f5f862e073ddc2d135ada62237e350dad066fa"
+}

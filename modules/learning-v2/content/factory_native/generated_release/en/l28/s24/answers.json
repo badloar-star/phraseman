@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-24:i01",
+    "correctText": "delicates",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i02",
+    "correctText": "Where should I put the delicates?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i03",
+    "correctText": "The shirts will be ironed tomorrow.",
+    "correctResponseId": "en:lesson-28:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i04",
+    "correctText": "Could I collect them on Friday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i05",
+    "correctText": "shrinkage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i06",
+    "correctText": "I am worried about shrinkage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i07",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-24:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i08",
+    "correctText": "I wish it were cheaper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i09",
+    "correctText": "colourfast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i10",
+    "correctText": "The label says the fabric is colourfast.",
+    "correctResponseId": "en:lesson-28:session-24:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i12",
+    "correctText": "Please check the label first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i13",
+    "correctText": "starch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i14",
+    "correctText": "Please do not use starch on the shirts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i15",
+    "correctText": "The stain was removed this morning.",
+    "correctResponseId": "en:lesson-28:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i16",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-24:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i17",
+    "correctText": "The shirts will be put on hangers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i18",
+    "correctText": "How much will it cost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i19",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-24:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i20",
+    "correctText": "Your order is kept behind the counter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-24:i21",
+    "correctText": "I am here to collect my clothes.",
+    "correctResponseId": null
+  }
+]

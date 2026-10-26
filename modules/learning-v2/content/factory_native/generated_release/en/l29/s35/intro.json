@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "как понять названия частей кожуры и действий в рецепте, уточнить рецепт и назвать того, кто приготовил блюдо.",
+    "uk": "як зрозуміти назви частин шкірки й дій у рецепті, уточнити рецепт і назвати того, хто приготував страву."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рецепт, который вы попробовали",
+        "uk": "Рецепт, який ви спробували"
+      },
+      "bodyByLocale": {
+        "ru": "После ужина друг спрашивает, трудно ли было готовить. Скажите: The recipe we tried was simple — рецепт, который мы попробовали, был простым. Соберите The recipe + we tried + was simple. Внутри уточнения действие выполняет we, а recipe называет то, что попробовали. Поэтому that перед we можно опустить; it после tried не добавляем.",
+        "uk": "Після вечері друг запитує, чи важко було готувати. Скажіть: The recipe we tried was simple — рецепт, який ми спробували, був простим. Складіть The recipe + we tried + was simple. Усередині уточнення дію виконує we, а recipe називає те, що спробували. Тому that перед we можна пропустити; it після tried не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-35:intro1:r1",
+              "text": "The recipe we tried was simple."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro1:r2",
+              "text": "The recipe we tried it was simple."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro1:r3",
+              "text": "The recipe us tried was simple."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-35:intro1:r1",
+              "text": "The recipe we tried was simple."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro1:r2",
+              "text": "The recipe we tried it was simple."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro1:r3",
+              "text": "The recipe us tried was simple."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чей рецепт помог",
+        "uk": "Чий рецепт допоміг"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знакомите гостя с другом, у которого взяли рецепт ужина. Скажите: This is the friend whose recipe we used — это друг, чьим рецептом мы воспользовались. Соберите This is the friend + whose recipe + we used. Whose связывает рецепт с другом: чей рецепт. После whose сразу ставим recipe, без his.",
+        "uk": "Ви знайомите гостя з другом, у якого взяли рецепт вечері. Скажіть: This is the friend whose recipe we used — це друг, чиїм рецептом ми скористалися. Складіть This is the friend + whose recipe + we used. Whose пов’язує рецепт із другом: чий рецепт. Після whose відразу ставимо recipe, без his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-35:intro2:r1",
+              "text": "This is the friend whose recipe we used."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro2:r2",
+              "text": "This is the friend who recipe we used."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro2:r3",
+              "text": "This is the friend whose his recipe we used."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-35:intro2:r1",
+              "text": "This is the friend whose recipe we used."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro2:r2",
+              "text": "This is the friend who recipe we used."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro2:r3",
+              "text": "This is the friend whose his recipe we used."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто приготовил соус",
+        "uk": "Хто приготував соус"
+      },
+      "bodyByLocale": {
+        "ru": "Гость спрашивает, кто приготовил соус к ужину. Скажите: The sauce was made by my brother — соус приготовил мой брат. Соберите The sauce + was made + by my brother. Начните с соуса, затем поставьте was made — был приготовлен. Слово by вводит человека, который это сделал.",
+        "uk": "Гість запитує, хто приготував соус до вечері. Скажіть: The sauce was made by my brother — соус приготував мій брат. Складіть The sauce + was made + by my brother. Почніть із соусу, потім поставте was made — був приготовлений. Слово by вводить людину, яка це зробила."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-35:intro3:r1",
+              "text": "The sauce was made by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro3:r2",
+              "text": "The sauce was make by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro3:r3",
+              "text": "The sauce was made of my brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-35:intro3:r1",
+              "text": "The sauce was made by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro3:r2",
+              "text": "The sauce was make by my brother."
+            },
+            {
+              "responseId": "en:lesson-29:session-35:intro3:r3",
+              "text": "The sauce was made of my brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "79e6bd76b1282f2594e4b326c86cc95c62014eef82d6340f9cd715366463eb2d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать слова со сдвигом времени, передавать просьбы и уточнять предмет.",
+    "uk": "переказувати слова зі зсувом часу, передавати прохання й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Растениям нужна была вода",
+        "uk": "Рослинам потрібна була вода"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера соседка сказала: «Моим растениям нужна вода». Сегодня перескажите её слова со сдвигом времени: She said her plants needed water — она сказала, что её растениям нужна была вода. Соберите She + said + her plants + needed water. Need из её слов сдвигаем в needed. Her plants обозначает растения соседки в вашем рассказе.",
+        "uk": "Учора сусідка сказала: «Моїм рослинам потрібна вода». Сьогодні перекажіть її слова зі зсувом часу: She said her plants needed water — вона сказала, що її рослинам потрібна була вода. Складіть She + said + her plants + needed water. Need з її слів зсуваємо у needed. Her plants позначає рослини сусідки у вашій розповіді."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-38:intro1:r1",
+              "text": "She said her plants needed water."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro1:r2",
+              "text": "She said her plants need water."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro1:r3",
+              "text": "She said her plants needing water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-38:intro1:r1",
+              "text": "She said her plants needed water."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro1:r2",
+              "text": "She said her plants need water."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro1:r3",
+              "text": "She said her plants needing water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Передать просьбу полить цветы",
+        "uk": "Передати прохання полити квіти"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка попросила вас полить цветы, пока она в отъезде. Расскажите брату: She asked me to water the flowers — она попросила меня полить цветы. Соберите She + asked + me + to water the flowers. После asked называем человека me, затем действие с to: to water. Water здесь означает «поливать».",
+        "uk": "Сусідка попросила вас полити квіти, поки вона у від’їзді. Розкажіть братові: She asked me to water the flowers — вона попросила мене полити квіти. Складіть She + asked + me + to water the flowers. Після asked називаємо людину me, потім дію з to: to water. Water тут означає «поливати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-38:intro2:r1",
+              "text": "She asked me to water the flowers."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro2:r2",
+              "text": "She asked me water the flowers."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro2:r3",
+              "text": "She asked I to water the flowers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-38:intro2:r1",
+              "text": "She asked me to water the flowers."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro2:r2",
+              "text": "She asked me water the flowers."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro2:r3",
+              "text": "She asked I to water the flowers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить нужный горшок",
+        "uk": "Уточнити потрібний горщик"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка оставила несколько горшков. Скажите ей, что горшок, который вы выбрали, слишком маленький: The pot I chose is too small — горшок, который я выбрал, слишком маленький. Соберите The pot + I chose + is too small. I chose уточняет предмет. I — тот, кто выбирал, а pot — выбранный предмет, поэтому that перед I можно опустить.",
+        "uk": "Сусідка залишила кілька горщиків. Скажіть їй, що горщик, який ви вибрали, замалий: The pot I chose is too small — горщик, який я вибрав, замалий. Складіть The pot + I chose + is too small. I chose уточнює предмет. I — той, хто вибирав, а pot — вибраний предмет, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-38:intro3:r1",
+              "text": "The pot I chose is too small."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro3:r2",
+              "text": "The pot chose I is too small."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro3:r3",
+              "text": "The pot I chose are too small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-38:intro3:r1",
+              "text": "The pot I chose is too small."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro3:r2",
+              "text": "The pot chose I is too small."
+            },
+            {
+              "responseId": "en:lesson-30:session-38:intro3:r3",
+              "text": "The pot I chose are too small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "41d71154b0f0801e9555402ebdb7ca64a84395081e28bc6cab6583c71d28a637"
+}

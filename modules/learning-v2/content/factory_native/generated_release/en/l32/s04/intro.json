@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "делать вывод по несоответствию и уточнять адрес знакомой частью без that.",
+    "uk": "робити висновок за невідповідністю й уточнювати адресу знайомою частиною без that."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Должно быть, не тот дом",
+        "uk": "Напевно, не той будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Номер на двери не совпадает с адресом Анны. Вы делаете вывод: This must be the wrong house — это, должно быть, не тот дом. Соберите This + must + be + the wrong house. Must выражает уверенный вывод по найденному несоответствию; перед названием предмета the wrong house нужна связка be.",
+        "uk": "Номер на дверях не збігається з адресою Анни. Ви робите висновок: This must be the wrong house — це, напевно, не той будинок. Складіть This + must + be + the wrong house. Must виражає впевнений висновок за знайденою невідповідністю; перед назвою предмета the wrong house потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-04:intro1:r1",
+              "text": "This must be the wrong house."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro1:r2",
+              "text": "This must the wrong house."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro1:r3",
+              "text": "This must is the wrong house."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-04:intro1:r1",
+              "text": "This must be the wrong house."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro1:r2",
+              "text": "This must the wrong house."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro1:r3",
+              "text": "This must is the wrong house."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Адрес, который написал Бен",
+        "uk": "Адреса, яку написав Бен"
+      },
+      "bodyByLocale": {
+        "ru": "У вас две записки. Уточните адрес на записке Бена: The address Ben wrote is wrong — адрес, который написал Бен, неверный. Соберите The address + Ben wrote + is wrong. Часть Ben wrote уточняет address. That можно опустить: Бен написал адрес, и Ben уже назван внутри уточнения.",
+        "uk": "У вас дві записки. Уточніть адресу на записці Бена: The address Ben wrote is wrong — адреса, яку написав Бен, неправильна. Складіть The address + Ben wrote + is wrong. Частина Ben wrote уточнює address. That можна опустити: Бен написав адресу, і Ben вже названий усередині уточнення."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-04:intro2:r1",
+              "text": "The address Ben wrote is wrong."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro2:r2",
+              "text": "The address Ben wrote it is wrong."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro2:r3",
+              "text": "The address Ben written is wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-04:intro2:r1",
+              "text": "The address Ben wrote is wrong."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro2:r2",
+              "text": "The address Ben wrote it is wrong."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro2:r3",
+              "text": "The address Ben written is wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дверь заперта — подождали",
+        "uk": "Двері замкнені — зачекали"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с Беном дошли до нужного дома, но дверь была заперта: The door was locked, so we waited — дверь была заперта, поэтому мы подождали. Соберите The door was locked + so + we waited. Перед so — причина, после него — результат вашего решения.",
+        "uk": "Ви з Беном дійшли до потрібного будинку, але двері були замкнені: The door was locked, so we waited — двері були замкнені, тому ми зачекали. Складіть The door was locked + so + we waited. Перед so — причина, після нього — результат вашого рішення."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-04:intro3:r1",
+              "text": "The door was locked, so we waited."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro3:r2",
+              "text": "The door was locked, so we waiting."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro3:r3",
+              "text": "The door was locked, so we waits."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-04:intro3:r1",
+              "text": "The door was locked, so we waited."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro3:r2",
+              "text": "The door was locked, so we waiting."
+            },
+            {
+              "responseId": "en:lesson-32:session-04:intro3:r3",
+              "text": "The door was locked, so we waits."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "175067dda6bc3ad53da159ea94374af436e7195b47301e2a0beda228f567c766"
+}

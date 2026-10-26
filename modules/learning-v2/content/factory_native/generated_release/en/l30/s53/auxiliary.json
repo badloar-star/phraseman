@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-53:intro1:r2": {
+          "ru": "В пересказе нужен порядок my watch worked, без did.",
+          "uk": "У переказі потрібен порядок my watch worked, без did."
+        },
+        "en:lesson-30:session-53:intro1:r3": {
+          "ru": "Нужна форма worked.",
+          "uk": "Потрібна форма worked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-53:intro2:r2": {
+          "ru": "После asked используем him.",
+          "uk": "Після asked використовуємо him."
+        },
+        "en:lesson-30:session-53:intro2:r3": {
+          "ru": "Перед change нужно to.",
+          "uk": "Перед change потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-53:intro3:r2": {
+          "ru": "В уточнении нужен порядок he fixed.",
+          "uk": "В уточненні потрібен порядок he fixed."
+        },
+        "en:lesson-30:session-53:intro3:r3": {
+          "ru": "Один watch требует is.",
+          "uk": "Один watch потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e80939421200066fef3d948d9bf7320eb950c937c0b5970e1b1611d48e031c2"
+}

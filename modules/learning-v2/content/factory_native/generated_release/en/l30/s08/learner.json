@@ -1,0 +1,1091 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова сестры: она сказала, что была рада.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова сестры: она сказала, что была рада.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She said she was happy.",
+        "localizedMeaning": {
+          "ru": "Передайте слова сестры: она сказала, что была рада.",
+          "uk": "Передайте слова сестри: вона сказала, що була рада."
+        },
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "was",
+          "happy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brunch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brunch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i02:audio",
+          "transcript": "brunch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i02:r1",
+            "targetText": "brunch",
+            "meaningByLocale": {
+              "ru": "Поздний завтрак, заменяющий завтрак и обед. Обычно его едят ближе к полудню.",
+              "uk": "Пізній сніданок, що замінює сніданок і обід. Зазвичай його їдять ближче до полудня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brunch",
+          "definitionByLocale": {
+            "ru": "Поздний завтрак, заменяющий завтрак и обед. Обычно его едят ближе к полудню.",
+            "uk": "Пізній сніданок, що замінює сніданок і обід. Зазвичай його їдять ближче до полудня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i03:r1",
+          "text": "We had brunch together."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i03:r2",
+          "text": "We had dinner together."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i03:r3",
+          "text": "We had breakfast together."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i03:audio",
+          "transcript": "We had brunch together."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i03:r1",
+            "targetText": "We had brunch together.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i03:r2",
+            "targetText": "We had dinner together.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i03:r3",
+            "targetText": "We had breakfast together.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had brunch together.",
+              "uk": "У записі звучить We had brunch together."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had brunch together.",
+              "uk": "У записі звучить We had brunch together."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваш стол сейчас маловат для всей семьи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i04:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваш стол сейчас маловат для всей семьи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваш стол сейчас маловат для всей семьи.",
+          "uk": "Ваш стіл зараз замалий для всієї родини."
+        },
+        "gappedTargetPhrase": "I wish we ___ a bigger table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-08:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Ваш стол сейчас маловат для всей семьи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i04:r2",
+            "correct": false,
+            "testedDimension": "Ваш стол сейчас маловат для всей семьи.",
+            "feedbackByLocale": {
+              "ru": "После wish в таком желании используем had.",
+              "uk": "Після wish у такому бажанні використовуємо had."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i04:r3",
+            "correct": false,
+            "testedDimension": "Ваш стол сейчас маловат для всей семьи.",
+            "feedbackByLocale": {
+              "ru": "Нужно we had, не we having.",
+              "uk": "Потрібне we had, не we having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похвалите суп, который приготовил брат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Похвалите суп, который приготовил брат.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i05:audio",
+          "transcript": "The soup you made was delicious."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soup you made was delicious.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — buffet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — buffet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i06:audio",
+          "transcript": "buffet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i06:r1",
+            "targetText": "buffet",
+            "meaningByLocale": {
+              "ru": "Шведский стол. Способ подачи еды, при котором блюда выставлены на столе и гости сами выбирают, что взять.",
+              "uk": "Шведський стіл. Спосіб подавання їжі, коли страви виставлені на столі й гості самі вибирають, що взяти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buffet",
+          "definitionByLocale": {
+            "ru": "Шведский стол. Способ подачи еды, при котором блюда выставлены на столе и гости сами выбирают, что взять.",
+            "uk": "Шведський стіл. Спосіб подавання їжі, коли страви виставлені на столі й гості самі вибирають, що взяти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i07:r1",
+          "text": "There was a buffet."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i07:r2",
+          "text": "There was a menu."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i07:r3",
+          "text": "There was a picnic."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i07:audio",
+          "transcript": "There was a buffet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i07:r1",
+            "targetText": "There was a buffet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i07:r2",
+            "targetText": "There was a menu.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i07:r3",
+            "targetText": "There was a picnic.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a buffet.",
+              "uk": "У записі звучить There was a buffet."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a buffet.",
+              "uk": "У записі звучить There was a buffet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте желание о более просторном столе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте желание о более просторном столе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i08:audio",
+          "transcript": "I wish we had a bigger table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wish we had a bigger table.",
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "had",
+          "a",
+          "bigger",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните суп, который приготовил брат.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i09:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i09:r2",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i09:r3",
+          "text": "makes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните суп, который приготовил брат.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните суп, который приготовил брат.",
+          "uk": "Уточніть суп, який приготував брат."
+        },
+        "gappedTargetPhrase": "The soup you ___ was delicious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-08:i09:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i09:r2",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i09:r3",
+            "text": "makes"
+          }
+        ],
+        "testedDimension": "Уточните суп, который приготовил брат.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточните суп, который приготовил брат.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма made.",
+              "uk": "Тут потрібна форма made."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточните суп, который приготовил брат.",
+            "feedbackByLocale": {
+              "ru": "Makes не сочетается с you; об уже приготовленном супе говорим made.",
+              "uk": "Makes не поєднується з you; про вже приготований суп кажемо made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — appetiser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — appetiser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i10:audio",
+          "transcript": "appetiser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i10:r1",
+            "targetText": "appetiser",
+            "meaningByLocale": {
+              "ru": "Закуска перед основным блюдом. Небольшая порция еды в начале обеда или ужина.",
+              "uk": "Закуска перед основною стравою. Невелика порція їжі на початку обіду або вечері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appetiser",
+          "definitionByLocale": {
+            "ru": "Закуска перед основным блюдом. Небольшая порция еды в начале обеда или ужина.",
+            "uk": "Закуска перед основною стравою. Невелика порція їжі на початку обіду або вечері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы заказали закуску перед основным блюдом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы заказали закуску перед основным блюдом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i11:audio",
+          "transcript": "We ordered an appetiser."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We ordered an appetiser.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте отзыв о приготовленном супе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте отзыв о приготовленном супе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i12:audio",
+          "transcript": "The soup you made was delicious."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The soup you made was delicious.",
+        "orderedTokens": [
+          "The",
+          "soup",
+          "you",
+          "made",
+          "was",
+          "delicious"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — feast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — feast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i13:audio",
+          "transcript": "feast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i13:r1",
+            "targetText": "feast",
+            "meaningByLocale": {
+              "ru": "Пир, обильное угощение. Большая трапеза с большим количеством вкусной еды.",
+              "uk": "Бенкет, щедре частування. Велика трапеза з великою кількістю смачної їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "feast",
+          "definitionByLocale": {
+            "ru": "Пир, обильное угощение. Большая трапеза с большим количеством вкусной еды.",
+            "uk": "Бенкет, щедре частування. Велика трапеза з великою кількістю смачної їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i14:r1",
+          "text": "It was a real feast."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i14:r2",
+          "text": "It was a real surprise."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i14:r3",
+          "text": "It was a real treat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i14:audio",
+          "transcript": "It was a real feast."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-08:i14:r1",
+            "targetText": "It was a real feast.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i14:r2",
+            "targetText": "It was a real surprise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i14:r3",
+            "targetText": "It was a real treat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a real feast.",
+              "uk": "У записі звучить It was a real feast."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a real feast.",
+              "uk": "У записі звучить It was a real feast."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-08:i15:p1",
+            "target": "brunch",
+            "meaningByLocale": {
+              "ru": "поздний завтрак",
+              "uk": "пізній сніданок"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-08:i15:p2",
+            "target": "buffet",
+            "meaningByLocale": {
+              "ru": "шведский стол",
+              "uk": "шведський стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-08:i15:p3",
+            "target": "appetiser",
+            "meaningByLocale": {
+              "ru": "закуска перед основным блюдом",
+              "uk": "закуска перед основною стравою"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-08:i15:p4",
+            "target": "feast",
+            "meaningByLocale": {
+              "ru": "пир",
+              "uk": "бенкет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "brunch",
+          "buffet",
+          "appetiser",
+          "feast"
+        ],
+        "rightColumn": [
+          "поздний завтрак",
+          "шведский стол",
+          "закуска перед основным блюдом",
+          "пир"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте слова сестры о её радости на встрече.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i16:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i16:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i16:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова сестры о её радости на встрече.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте слова сестры о её радости на встрече.",
+          "uk": "Передайте слова сестри про її радість на зустрічі."
+        },
+        "gappedTargetPhrase": "She said she ___ happy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-08:i16:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i16:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i16:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Передайте слова сестры о её радости на встрече.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i16:r2",
+            "correct": false,
+            "testedDimension": "Передайте слова сестры о её радости на встрече.",
+            "feedbackByLocale": {
+              "ru": "С she здесь используем was.",
+              "uk": "Із she тут використовуємо was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i16:r3",
+            "correct": false,
+            "testedDimension": "Передайте слова сестры о её радости на встрече.",
+            "feedbackByLocale": {
+              "ru": "Нужно she was, не she being.",
+              "uk": "Потрібне she was, не she being."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бабушка обещала лёгкий обед, но приготовила еды на два дня. Скажите, что это был настоящий пир.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Бабушка обещала лёгкий обед, но приготовила еды на два дня. Скажите, что это был настоящий пир.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i17:audio",
+          "transcript": "It was a real feast."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It was a real feast.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вы заказали закуску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вы заказали закуску.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We ordered an appetiser.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вы заказали закуску.",
+          "uk": "Скажіть, що ви замовили закуску."
+        },
+        "orderedTokens": [
+          "We",
+          "ordered",
+          "an",
+          "appetiser"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы вместе ели поздний завтрак или ужин?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i19:r1",
+          "text": "We had brunch together."
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i19:r2",
+          "text": "We had dinner together."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i19:audioA",
+        "en:lesson-30:session-08:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы вместе ели поздний завтрак или ужин?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "We had brunch together.",
+        "contrastB": "We had dinner together.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-08:i19:audioA",
+          "transcript": "We had brunch together."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-08:i19:audioB",
+          "transcript": "We had dinner together."
+        },
+        "testedPhoneticContrast": "Послушайте: вы вместе ели поздний завтрак или ужин?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы вместе ели поздний завтрак или ужин?",
+            "feedbackByLocale": {
+              "ru": "Звучит brunch — поздний завтрак.",
+              "uk": "Звучить brunch — пізній сніданок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сказал вчера, что устал после приготовления обеда.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-08:i20:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i20:r2",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-30:session-08:i20:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сказал вчера, что устал после приготовления обеда.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сказал вчера, что устал после приготовления обеда.",
+          "uk": "Друг сказав учора, що втомився після приготування обіду."
+        },
+        "gappedTargetPhrase": "He ___ he was tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-08:i20:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i20:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i20:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Друг сказал вчера, что устал после приготовления обеда.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-08:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг сказал вчера, что устал после приготовления обеда.",
+            "feedbackByLocale": {
+              "ru": "О вчерашнем разговоре говорим said.",
+              "uk": "Про вчорашню розмову кажемо said."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-08:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг сказал вчера, что устал после приготовления обеда.",
+            "feedbackByLocale": {
+              "ru": "Нужно said, не saying.",
+              "uk": "Потрібне said, не saying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга: он сказал, что ему нужна помощь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-08:i21:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга: он сказал, что ему нужна помощь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-08:i21:audio",
+          "transcript": "He said he needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cc7d53fb316616058c79708799ef9bdacc73d31a3211b87d7c49cda56048b0bb"
+}

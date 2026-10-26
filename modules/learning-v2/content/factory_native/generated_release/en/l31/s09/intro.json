@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "добавлять короткий вопрос для подтверждения: после утверждения — отрицательный, после отрицания — утвердительный.",
+    "uk": "додавати коротке запитання для підтвердження: після твердження — заперечне, після заперечення — стверджувальне."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ты готов, правда?",
+        "uk": "Ти готовий, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь ехать с другом и думаете, что он готов. Уточните: You’re ready, aren’t you? — ты готов, правда? Соберите You’re ready + aren’t + you. You’re означает you are. После утвердительной части здесь ставим отрицательное aren’t, затем того же участника you. Получается короткий вопрос для подтверждения.",
+        "uk": "Ви збираєтеся їхати з другом і думаєте, що він готовий. Уточніть: You’re ready, aren’t you? — ти готовий, правда? Складіть You’re ready + aren’t + you. You’re означає you are. Після стверджувальної частини тут ставимо заперечне aren’t, потім того самого учасника you. Виходить коротке запитання для підтвердження."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-09:intro1:r1",
+              "text": "You're ready, aren't you?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro1:r2",
+              "text": "You're ready, isn't you?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro1:r3",
+              "text": "You're ready, aren't he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-09:intro1:r1",
+              "text": "You're ready, aren't you?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro1:r2",
+              "text": "You're ready, isn't you?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro1:r3",
+              "text": "You're ready, aren't he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка не тяжёлая, правда?",
+        "uk": "Сумка не важка, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Друг берёт сумку, которая кажется вам лёгкой. Уточните: The bag isn’t heavy, is it? — сумка не тяжёлая, правда? Соберите The bag isn’t heavy + is + it. Основная часть уже отрицательная, поэтому короткий вопрос здесь без not: is it. Одну сумку заменяем словом it.",
+        "uk": "Друг бере сумку, яка здається вам легкою. Уточніть: The bag isn’t heavy, is it? — сумка не важка, правда? Складіть The bag isn’t heavy + is + it. Основна частина вже заперечна, тому коротке запитання тут без not: is it. Одну сумку замінюємо словом it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-09:intro2:r1",
+              "text": "The bag isn't heavy, is it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro2:r2",
+              "text": "The bag isn't heavy, are it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro2:r3",
+              "text": "The bag isn't heavy, is they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-09:intro2:r1",
+              "text": "The bag isn't heavy, is it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro2:r2",
+              "text": "The bag isn't heavy, are it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro2:r3",
+              "text": "The bag isn't heavy, is they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Она не водит, правда?",
+        "uk": "Вона не водить, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша подруга Анна едет вместе с вами. Вы помните, что она не водит машину, и уточняете у друга: She doesn’t drive, does she? — она не водит, правда? Соберите She doesn’t drive + does + she. Берём does из doesn’t, но убираем отрицание в коротком вопросе. В конце снова she — это Анна.",
+        "uk": "Ваша подруга Анна їде разом із вами. Ви пам’ятаєте, що вона не водить машину, й уточнюєте у друга: She doesn’t drive, does she? — вона не водить, правда? Складіть She doesn’t drive + does + she. Беремо does із doesn’t, але прибираємо заперечення в короткому запитанні. Наприкінці знову she — це Анна."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-09:intro3:r1",
+              "text": "She doesn't drive, does she?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro3:r2",
+              "text": "She doesn't drive, do she?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro3:r3",
+              "text": "She doesn't drive, does he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-09:intro3:r1",
+              "text": "She doesn't drive, does she?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro3:r2",
+              "text": "She doesn't drive, do she?"
+            },
+            {
+              "responseId": "en:lesson-31:session-09:intro3:r3",
+              "text": "She doesn't drive, does he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0b30026368bb3e5377b4b225aabe49af136876058cd17bca471032a02e85c108"
+}

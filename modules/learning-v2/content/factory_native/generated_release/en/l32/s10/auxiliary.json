@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-10:intro1:r2": {
+          "ru": "Нужна связка be перед at home.",
+          "uk": "Потрібна зв’язка be перед at home."
+        },
+        "en:lesson-32:session-10:intro1:r3": {
+          "ru": "После might используем be, не is.",
+          "uk": "Після might використовуємо be, не is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-10:intro2:r2": {
+          "ru": "Bag уже названо: it после bought не нужно.",
+          "uk": "Bag уже названо: it після bought не потрібне."
+        },
+        "en:lesson-32:session-10:intro2:r3": {
+          "ru": "Нужна прошедшая форма bought.",
+          "uk": "Потрібна минула форма bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-10:intro3:r2": {
+          "ru": "Перед местом здесь нужна связка be.",
+          "uk": "Перед місцем тут потрібна зв’язка be."
+        },
+        "en:lesson-32:session-10:intro3:r3": {
+          "ru": "После must используем be.",
+          "uk": "Після must використовуємо be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a366fa146cfdd3fffb7485694905d3105f5f321e63c11101c712510ac020ffba"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "говорить о возможности с may и might.",
+    "uk": "говорити про можливість із may та might."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможно, пойдёт дождь",
+        "uk": "Можливо, піде дощ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь в парк. На небе облака, но дождь ещё не начался: It may rain later — возможно, позже пойдёт дождь. Соберите It + may + rain + later. После may ставим начальную форму rain без to. May здесь означает возможность, а не уверенный прогноз.",
+        "uk": "Ви збираєтеся до парку. На небі хмари, але дощ іще не почався: It may rain later — можливо, пізніше піде дощ. Складіть It + may + rain + later. Після may ставимо початкову форму rain без to. May тут означає можливість, а не впевнений прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-09:intro1:r1",
+              "text": "It may rain later."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro1:r2",
+              "text": "It may rains later."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro1:r3",
+              "text": "It may to rain later."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-09:intro1:r1",
+              "text": "It may rain later."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro1:r2",
+              "text": "It may rains later."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro1:r3",
+              "text": "It may to rain later."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бен, возможно, придёт",
+        "uk": "Бен, можливо, прийде"
+      },
+      "bodyByLocale": {
+        "ru": "Бен ещё не решил, пойдёт ли с вами в парк: Ben might come — возможно, Бен придёт. Соберите Ben + might + come. Might, как и may, позволяет назвать возможность. После might глагол come остаётся без s, даже когда речь о Бене.",
+        "uk": "Бен іще не вирішив, чи піде з вами до парку: Ben might come — можливо, Бен прийде. Складіть Ben + might + come. Might, як і may, дозволяє назвати можливість. Після might дієслово come залишається без s, навіть коли йдеться про Бена."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-09:intro2:r1",
+              "text": "Ben might come."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro2:r2",
+              "text": "Ben might comes."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro2:r3",
+              "text": "Ben might coming."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-09:intro2:r1",
+              "text": "Ben might come."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro2:r2",
+              "text": "Ben might comes."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro2:r3",
+              "text": "Ben might coming."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Возможно, он занят",
+        "uk": "Можливо, він зайнятий"
+      },
+      "bodyByLocale": {
+        "ru": "Бен не ответил на приглашение. Вы допускаете, что он занят: He might be busy — возможно, он занят. Соберите He + might + be + busy. Busy описывает состояние; перед ним нужна связка be. Might показывает, что это лишь возможное объяснение.",
+        "uk": "Бен не відповів на запрошення. Ви припускаєте, що він зайнятий: He might be busy — можливо, він зайнятий. Складіть He + might + be + busy. Busy описує стан; перед ним потрібна зв’язка be. Might показує, що це лише можливе пояснення."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-09:intro3:r1",
+              "text": "He might be busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro3:r2",
+              "text": "He might busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro3:r3",
+              "text": "He might is busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-09:intro3:r1",
+              "text": "He might be busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro3:r2",
+              "text": "He might busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-09:intro3:r3",
+              "text": "He might is busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "590cae54e16f0747c02f9f7990f57b70f27fb106c3e89b6b2ca39d1ddb18d93b"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-51:intro1:r2": {
+          "ru": "Для завершённого прошлого действия нужна форма went.",
+          "uk": "Для завершеної минулої дії потрібна форма went."
+        },
+        "en:lesson-31:session-51:intro1:r3": {
+          "ru": "Нужна полная часть I went in.",
+          "uk": "Потрібна повна частина I went in."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-51:intro2:r2": {
+          "ru": "В прошлом говорим I used.",
+          "uk": "У минулому кажемо I used."
+        },
+        "en:lesson-31:session-51:intro2:r3": {
+          "ru": "Нужна прошедшая форма used, не uses.",
+          "uk": "Потрібна минула форма used, не uses."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-51:intro3:r2": {
+          "ru": "Один key требует was.",
+          "uk": "Один key потребує was."
+        },
+        "en:lesson-31:session-51:intro3:r3": {
+          "ru": "В этом пересказе нужна форма was.",
+          "uk": "У цьому переказі потрібна форма was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5b4833371dbda602ab11294820fee82aefe2ceeec49eb15937d03bab6d610a43"
+}

@@ -1,0 +1,1045 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i01:audio",
+          "transcript": "cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-19:i01:r1",
+            "targetText": "cake",
+            "meaningByLocale": {
+              "ru": "Торт. Повторение знакомого слова.",
+              "uk": "Торт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cake",
+          "definitionByLocale": {
+            "ru": "Торт. Повторение знакомого слова.",
+            "uk": "Торт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i02:r1",
+          "text": "I know that the cake is ready."
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i02:r2",
+          "text": "I know that the cake is big."
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i02:r3",
+          "text": "I know that the cake is sweet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i02:audio",
+          "transcript": "I know that the cake is ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-19:i02:r1",
+            "targetText": "I know that the cake is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i02:r2",
+            "targetText": "I know that the cake is big.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i02:r3",
+            "targetText": "I know that the cake is sweet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the cake is ready.",
+              "uk": "У записі звучить I know that the cake is ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the cake is ready.",
+              "uk": "У записі звучить I know that the cake is ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви знаєте, що торт готовий. Завершіть твердження.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i03:r1",
+          "text": "the cake is"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i03:r2",
+          "text": "is the cake"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i03:r3",
+          "text": "the cake are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знаєте, що торт готовий. Завершіть твердження.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете, что торт готов. Завершите утверждение.",
+          "uk": "Ви знаєте, що торт готовий. Завершіть твердження."
+        },
+        "gappedTargetPhrase": "I know that ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-19:i03:r1",
+            "text": "the cake is"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i03:r2",
+            "text": "is the cake"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i03:r3",
+            "text": "the cake are"
+          }
+        ],
+        "testedDimension": "Ви знаєте, що торт готовий. Завершіть твердження.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви знаєте, що торт готовий. Завершіть твердження.",
+            "feedbackByLocale": {
+              "ru": "После that порядок the cake is.",
+              "uk": "Після that порядок the cake is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви знаєте, що торт готовий. Завершіть твердження.",
+            "feedbackByLocale": {
+              "ru": "Один cake требует is.",
+              "uk": "Один cake потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — candles",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — candles",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i04:audio",
+          "transcript": "candles"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-19:i04:r1",
+            "targetText": "candles",
+            "meaningByLocale": {
+              "ru": "Свечи. Повторение знакомого слова.",
+              "uk": "Свічки. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "candles",
+          "definitionByLocale": {
+            "ru": "Свечи. Повторение знакомого слова.",
+            "uk": "Свічки. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де свічки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де свічки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the candles are?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где свечи.",
+          "uk": "Ввічливо запитайте, де свічки."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "candles",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i06:audio",
+          "transcript": "gift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-19:i06:r1",
+            "targetText": "gift",
+            "meaningByLocale": {
+              "ru": "Подарок. Повторение знакомого слова.",
+              "uk": "Подарунок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gift",
+          "definitionByLocale": {
+            "ru": "Подарок. Повторение знакомого слова.",
+            "uk": "Подарунок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна загорнула подарунок. Почніть із подарунка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Анна загорнула подарунок. Почніть із подарунка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i07:audio",
+          "transcript": "The gift was wrapped by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The gift was wrapped by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Торт готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Торт готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the cake ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-19:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i09:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-19:i09:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте, де коробка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте, де коробка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the box is.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, где коробка.",
+          "uk": "Скажіть, що знаєте, де коробка."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "box",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коробка важка. Додайте заперечне уточнення про неї.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Коробка важка. Додайте заперечне уточнення про неї.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i11:audio",
+          "transcript": "The box is heavy, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The box is heavy, isn't it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна загорнула подарунок. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i12:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна загорнула подарунок. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна завернула подарок. Выберите предлог перед её именем.",
+          "uk": "Анна загорнула подарунок. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The gift was wrapped ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-19:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i12:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна загорнула подарунок. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Анна загорнула подарунок. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Анна загорнула подарунок. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i13:r1",
+          "text": "The candles are short, aren't they?"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i13:r2",
+          "text": "The candles are long, aren't they?"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i13:r3",
+          "text": "The candles are blue, aren't they?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i13:audio",
+          "transcript": "The candles are short, aren't they?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-19:i13:r1",
+            "targetText": "The candles are short, aren't they?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i13:r2",
+            "targetText": "The candles are long, aren't they?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i13:r3",
+            "targetText": "The candles are blue, aren't they?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The candles are short, aren't they?",
+              "uk": "У записі звучить The candles are short, aren't they?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The candles are short, aren't they?",
+              "uk": "У записі звучить The candles are short, aren't they?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Свічки короткі». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Свічки короткі». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i14:audio",
+          "transcript": "She said the candles were short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the candles were short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви розумієте, чому друг щасливий. Скажіть про це Анні.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розумієте, чому друг щасливий. Скажіть про це Анні.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand why he is happy.",
+        "localizedMeaning": {
+          "ru": "Вы понимаете, почему друг счастлив. Скажите об этом Анне.",
+          "uk": "Ви розумієте, чому друг щасливий. Скажіть про це Анні."
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "he",
+          "is",
+          "happy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте Анну, чи знає вона, де подарунок.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i16:r1",
+          "text": "the gift is"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i16:r2",
+          "text": "is the gift"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i16:r3",
+          "text": "the gift are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте Анну, чи знає вона, де подарунок.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите Анну, знает ли она, где подарок.",
+          "uk": "Запитайте Анну, чи знає вона, де подарунок."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-19:i16:r1",
+            "text": "the gift is"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i16:r2",
+            "text": "is the gift"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i16:r3",
+            "text": "the gift are"
+          }
+        ],
+        "testedDimension": "Запитайте Анну, чи знає вона, де подарунок.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте Анну, чи знає вона, де подарунок.",
+            "feedbackByLocale": {
+              "ru": "После where порядок the gift is.",
+              "uk": "Після where порядок the gift is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте Анну, чи знає вона, де подарунок.",
+            "feedbackByLocale": {
+              "ru": "Один gift требует is.",
+              "uk": "Один gift потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спекла торт. Почніть із торта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спекла торт. Почніть із торта.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i17:audio",
+          "transcript": "The cake was baked by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cake was baked by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець знає, де подарунок чи коробка?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i18:r1",
+          "text": "I know where the gift is."
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i18:r2",
+          "text": "I know where the box is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i18:audioA",
+        "en:lesson-31:session-19:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець знає, де подарунок чи коробка?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I know where the gift is.",
+        "contrastB": "I know where the box is.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-19:i18:audioA",
+          "transcript": "I know where the gift is."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-19:i18:audioB",
+          "transcript": "I know where the box is."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець знає, де подарунок чи коробка?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець знає, де подарунок чи коробка?",
+            "feedbackByLocale": {
+              "ru": "Звучит gift — подарок.",
+              "uk": "Звучить gift — подарунок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте твердження про свічки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте твердження про свічки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i19:audio",
+          "transcript": "I know where the candles are."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I know where the candles are.",
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "candles",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подарунок не важкий. Додайте стверджувальне уточнення про нього.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-19:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-19:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подарунок не важкий. Додайте стверджувальне уточнення про нього.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подарок не тяжёлый. Добавьте утвердительное уточнение о нём.",
+          "uk": "Подарунок не важкий. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The gift isn't heavy, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-19:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Подарунок не важкий. Додайте стверджувальне уточнення про нього.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-19:i20:r2",
+            "correct": false,
+            "testedDimension": "Подарунок не важкий. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "Один gift требует is.",
+              "uk": "Один gift потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-19:i20:r3",
+            "correct": false,
+            "testedDimension": "Подарунок не важкий. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-19:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що Анна зайнята. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-19:i21:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що Анна зайнята. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-19:i21:audio",
+          "transcript": "I know that she is busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that she is busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ae6677f0213d48cab15fa2c17b3ea1da91637a8c2fb8f8c7f835788c71e32aa5"
+}

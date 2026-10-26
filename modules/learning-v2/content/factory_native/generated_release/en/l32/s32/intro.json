@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "отвергать невозможный вариант, делать вывод по признакам и уточнять предмет.",
+    "uk": "відкидати неможливий варіант, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Исключаем вариант",
+        "uk": "Відкидаємо варіант"
+      },
+      "bodyByLocale": {
+        "ru": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. The key can't be right. — Ключ не может быть нужным. Соберите The key + can't + be + right. Здесь описываем состояние: перед right нужна связка be. Can’t исключает этот вариант по указанным признакам.",
+        "uk": "На ключі вказано номер 12, а ваша кімната — номер 18. Ви впевнені, що вам видали інший ключ. The key can't be right. — Ключ не може бути потрібним. Складіть The key + can't + be + right. Тут описуємо стан: перед right потрібна зв’язка be. Can’t відкидає цей варіант за вказаними ознаками."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-32:intro1:r1",
+              "text": "The key can't be right."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro1:r2",
+              "text": "The key can't is right."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro1:r3",
+              "text": "The key can't to be right."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-32:intro1:r1",
+              "text": "The key can't be right."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro1:r2",
+              "text": "The key can't is right."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro1:r3",
+              "text": "The key can't to be right."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. The door must be locked. — Дверь, должно быть, заперта. Соберите The door + must + be + locked. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Ручка повертається, але двері не піддаються, й усередині чути клацання замка. The door must be locked. — Двері, напевно, замкнені. Складіть The door + must + be + locked. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-32:intro2:r1",
+              "text": "The door must be locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro2:r2",
+              "text": "The door must is locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro2:r3",
+              "text": "The door must to be locked."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-32:intro2:r1",
+              "text": "The door must be locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro2:r2",
+              "text": "The door must is locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro2:r3",
+              "text": "The door must to be locked."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы оставили Анне короткую записку о том, что пошли за другим ключом. The note I wrote is short. — Записка, которую я написал, короткая. Соберите The note + I wrote + is short. Часть I wrote уточняет note. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви залишили Анні коротку записку про те, що пішли по інший ключ. The note I wrote is short. — Записка, яку я написав, коротка. Складіть The note + I wrote + is short. Частина I wrote уточнює note. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-32:intro3:r1",
+              "text": "The note I wrote is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro3:r2",
+              "text": "The note I wrote it is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro3:r3",
+              "text": "The note I writing is short."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-32:intro3:r1",
+              "text": "The note I wrote is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro3:r2",
+              "text": "The note I wrote it is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-32:intro3:r3",
+              "text": "The note I writing is short."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "34abfe34ded9f88454af36d0a9d440e1cc12592952739b083d53f850d29d0f2e"
+}

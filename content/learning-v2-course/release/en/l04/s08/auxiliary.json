@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-08:intro1:r2": {
-          "ru": "Вы оба знаете, о каком районе речь, поэтому the: The neighbourhood is quiet.",
-          "uk": "Ви обоє знаєте, про який район ідеться, тому the: The neighbourhood is quiet."
+          "ru": "Между названием района и quiet нужно is.",
+          "uk": "Між назвою району та quiet потрібне is."
         },
         "en:lesson-04:session-08:intro1:r3": {
           "ru": "Район один, поэтому нужно is: The neighbourhood is quiet.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d012ab876d36b4289acb95e1ba2ca0aba1600e43f286586e97837d7bca246abc"
+  "auxiliaryFingerprint": "dde2c47e0aff6a4dc13a2e02b832c55a2259e7e0901f5a6c5424ffbf0cfc92c5"
 }

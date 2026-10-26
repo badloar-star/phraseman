@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-48:i01",
+    "correctText": "Could you show me a smaller box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i02",
+    "correctText": "flapjack",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i03",
+    "correctText": "Can I have one flapjack?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i04",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-28:session-48:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i05",
+    "correctText": "The biscuits will be packed separately.",
+    "correctResponseId": "en:lesson-28:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i06",
+    "correctText": "fudge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i07",
+    "correctText": "Can I have a small piece of fudge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i08",
+    "correctText": "The chocolate cake was made by my mother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i09",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-28:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i10",
+    "correctText": "meringue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i11",
+    "correctText": "Could I have that meringue?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i12",
+    "correctText": "These cakes are made here every morning.",
+    "correctResponseId": "en:lesson-28:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i14",
+    "correctText": "truffle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i15",
+    "correctText": "I would like one chocolate truffle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i16",
+    "correctText": "en:lesson-28:session-48:i16:p1=flapjack\nen:lesson-28:session-48:i16:p2=fudge\nen:lesson-28:session-48:i16:p3=meringue\nen:lesson-28:session-48:i16:p4=truffle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i17",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-48:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i18",
+    "correctText": "Could you add some napkins?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i19",
+    "correctText": "Can this cake be packed in a box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i20",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-48:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-48:i21",
+    "correctText": "That is everything, thank you.",
+    "correctResponseId": null
+  }
+]

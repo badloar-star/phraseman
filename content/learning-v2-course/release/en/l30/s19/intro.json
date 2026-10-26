@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "передавать просьбы и вопросы; повторите сообщения, уточнение предмета и желание.",
+    "uk": "передавати прохання й запитання; повторите повідомлення, уточнення предмета та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Передать просьбу о тишине",
+        "uk": "Передати прохання про тишу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы в гостях у сестры. Ребёнок спит, и сестра попросила вас говорить тихо. Передайте её просьбу брату: She asked me to speak quietly — она попросила меня говорить тихо. Соберите She + asked + me + to speak quietly. После asked укажите, кого попросили: me. Затем to + действие speak, а quietly поясняет, как говорить.",
+        "uk": "Ви в гостях у сестри. Дитина спить, і сестра попросила вас говорити тихо. Передайте її прохання братові: She asked me to speak quietly — вона попросила мене говорити тихо. Складіть She + asked + me + to speak quietly. Після asked укажіть, кого попросили: me. Потім to + дія speak, а quietly пояснює, як говорити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-19:intro1:r1",
+              "text": "She asked me to speak quietly."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro1:r2",
+              "text": "She asked me speak quietly."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro1:r3",
+              "text": "She asked I to speak quietly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-19:intro1:r1",
+              "text": "She asked me to speak quietly."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro1:r2",
+              "text": "She asked me speak quietly."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro1:r3",
+              "text": "She asked I to speak quietly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Передать запрет",
+        "uk": "Передати заборону"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с братом собираетесь включить музыку у спящего ребёнка. Сестра сказала вам обоим не шуметь. Перескажите: She told us not to make a noise — она сказала нам не шуметь. Соберите She + told + us + not to make a noise. Us означает «нам», а not ставится перед to. Так запрет становится частью пересказа.",
+        "uk": "Ви з братом збираєтеся ввімкнути музику біля дитини, яка спить. Сестра сказала вам обом не шуміти. Перекажіть: She told us not to make a noise — вона сказала нам не шуміти. Складіть She + told + us + not to make a noise. Us означає «нам», а not ставиться перед to. Так заборона стає частиною переказу."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-19:intro2:r1",
+              "text": "She told us not to make a noise."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro2:r2",
+              "text": "She told us not make a noise."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro2:r3",
+              "text": "She told we not to make a noise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-19:intro2:r1",
+              "text": "She told us not to make a noise."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro2:r2",
+              "text": "She told us not make a noise."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro2:r3",
+              "text": "She told we not to make a noise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пересказать вопрос сестры",
+        "uk": "Переказати запитання сестри"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра спросила вас, где лежат ключи, чтобы закрыть дверь. Позже вы рассказываете брату о её вопросе: She asked where the keys were — она спросила, где были ключи. Соберите She + asked + where + the keys + were. В пересказе вопроса после where идёт предмет the keys, затем were. Порядок were the keys оставляем для прямого вопроса.",
+        "uk": "Сестра запитала вас, де лежать ключі, щоб зачинити двері. Пізніше ви розповідаєте братові про її запитання: She asked where the keys were — вона запитала, де були ключі. Складіть She + asked + where + the keys + were. У переказі запитання після where йде предмет the keys, потім were. Порядок were the keys залишаємо для прямого запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-19:intro3:r1",
+              "text": "She asked where the keys were."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro3:r2",
+              "text": "She asked where were the keys."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro3:r3",
+              "text": "She asked where the keys was."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-19:intro3:r1",
+              "text": "She asked where the keys were."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro3:r2",
+              "text": "She asked where were the keys."
+            },
+            {
+              "responseId": "en:lesson-30:session-19:intro3:r3",
+              "text": "She asked where the keys was."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ebfe84b063d9e1099144803ded31a2db889cbf9ff4029d3ccdd07aa69457393"
+}

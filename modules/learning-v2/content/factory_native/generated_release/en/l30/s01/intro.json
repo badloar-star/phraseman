@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "как передавать чужие утверждения через said, сохранять нужное лицо и отрицание.",
+    "uk": "як передавати чужі твердження через said, зберігати потрібну особу й заперечення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что сказал друг",
+        "uk": "Що сказав друг"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера друг сказал вам, что устал. Сегодня вы пересказываете это сестре: He said that he was tired — он сказал, что устал. Соберите He + said + that + he was tired. Сначала назовите говорившего и добавьте said — сказал; после that передайте его слова. Здесь he обозначает друга, а was tired описывает его состояние во время вчерашнего разговора.",
+        "uk": "Учора друг сказав вам, що втомився. Сьогодні ви переказуєте це сестрі: He said that he was tired — він сказав, що втомився. Складіть He + said + that + he was tired. Спочатку назвіть того, хто говорив, і додайте said — сказав; після that передайте його слова. Тут he позначає друга, а was tired описує його стан під час учорашньої розмови."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-01:intro1:r1",
+              "text": "He said that he was tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro1:r2",
+              "text": "He say that he was tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro1:r3",
+              "text": "He said that he were tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-01:intro1:r1",
+              "text": "He said that he was tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro1:r2",
+              "text": "He say that he was tired."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro1:r3",
+              "text": "He said that he were tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно без that",
+        "uk": "Можна без that"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра сказала, что ей нужна помощь. Вы передаёте её слова другу: She said she needed help — она сказала, что ей нужна помощь. Соберите She + said + she needed help. Слово that после said можно опустить. Но she перед needed оставляем: оно показывает, кому была нужна помощь в том разговоре.",
+        "uk": "Учора сестра сказала, що їй потрібна допомога. Ви передаєте її слова другові: She said she needed help — вона сказала, що їй потрібна допомога. Складіть She + said + she needed help. Слово that після said можна пропустити. Але she перед needed залишаємо: воно показує, кому була потрібна допомога в тій розмові."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-01:intro2:r1",
+              "text": "She said she needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro2:r2",
+              "text": "She said needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro2:r3",
+              "text": "She said she needing help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-01:intro2:r1",
+              "text": "She said she needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro2:r2",
+              "text": "She said needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro2:r3",
+              "text": "She said she needing help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Он был не готов",
+        "uk": "Він був не готовий"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера перед выходом брат сказал, что ещё не готов. Теперь вы объясняете маме задержку: He said he was not ready — он сказал, что не был готов. Соберите He + said + he was not ready. Отрицание относится к состоянию брата: not ставим после was внутри передаваемых слов.",
+        "uk": "Учора перед виходом брат сказав, що ще не готовий. Тепер ви пояснюєте мамі затримку: He said he was not ready — він сказав, що не був готовий. Складіть He + said + he was not ready. Заперечення стосується стану брата: not ставимо після was усередині переданих слів."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-01:intro3:r1",
+              "text": "He said he was not ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro3:r2",
+              "text": "He said he not was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro3:r3",
+              "text": "He said he were not ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-01:intro3:r1",
+              "text": "He said he was not ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro3:r2",
+              "text": "He said he not was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-01:intro3:r3",
+              "text": "He said he were not ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cbcdd5f7bfedcfede2202395062462bca31e6f32b4fb68517e63f896dfe9ed9d"
+}

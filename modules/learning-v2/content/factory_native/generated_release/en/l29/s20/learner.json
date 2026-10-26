@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-20:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите за приглашение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите за приглашение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i01:audio",
+          "transcript": "Thank you for inviting us."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for inviting us.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — assertive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — assertive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i02:audio",
+          "transcript": "assertive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-20:i02:r1",
+            "targetText": "assertive",
+            "meaningByLocale": {
+              "ru": "Уверенно выражающий свою позицию. Говорит о своих желаниях прямо, без агрессии.",
+              "uk": "Той, хто впевнено висловлює свою позицію. Говорить про свої бажання прямо, без агресії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "assertive",
+          "definitionByLocale": {
+            "ru": "Уверенно выражающий свою позицию. Говорит о своих желаниях прямо, без агрессии.",
+            "uk": "Той, хто впевнено висловлює свою позицію. Говорить про свої бажання прямо, без агресії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что хотите увереннее выражать свою позицию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что хотите увереннее выражать свою позицию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I want to be more assertive.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотите увереннее выражать свою позицию.",
+          "uk": "Скажіть, що хочете впевненіше висловлювати свою позицію."
+        },
+        "orderedTokens": [
+          "I",
+          "want",
+          "to",
+          "be",
+          "more",
+          "assertive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните женщину: именно она пригласила вас с другом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i04:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i04:r2",
+          "text": "who she"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i04:r3",
+          "text": "which"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните женщину: именно она пригласила вас с другом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните женщину: именно она пригласила вас с другом.",
+          "uk": "Уточніть жінку: саме вона запросила вас із другом."
+        },
+        "gappedTargetPhrase": "That is the woman ___ invited us.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-20:i04:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i04:r2",
+            "text": "who she"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i04:r3",
+            "text": "which"
+          }
+        ],
+        "testedDimension": "Уточните женщину: именно она пригласила вас с другом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточните женщину: именно она пригласила вас с другом.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает женщину, she не нужно.",
+              "uk": "Who вже позначає жінку, she не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточните женщину: именно она пригласила вас с другом.",
+            "feedbackByLocale": {
+              "ru": "Для женщины здесь нужно who.",
+              "uk": "Для жінки тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sarcastic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sarcastic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i05:audio",
+          "transcript": "sarcastic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-20:i05:r1",
+            "targetText": "sarcastic",
+            "meaningByLocale": {
+              "ru": "Саркастичный. Говорит с язвительной насмешкой, иногда произнося противоположное тому, что имеет в виду.",
+              "uk": "Саркастичний. Говорить з їдкою насмішкою, іноді промовляючи протилежне тому, що має на увазі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sarcastic",
+          "definitionByLocale": {
+            "ru": "Саркастичный. Говорит с язвительной насмешкой, иногда произнося противоположное тому, что имеет в виду.",
+            "uk": "Саркастичний. Говорить з їдкою насмішкою, іноді промовляючи протилежне тому, що має на увазі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i06:r1",
+          "text": "He was being sarcastic."
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i06:r2",
+          "text": "He was being polite."
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i06:r3",
+          "text": "She was being sarcastic."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i06:audio",
+          "transcript": "He was being sarcastic."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-20:i06:r1",
+            "targetText": "He was being sarcastic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i06:r2",
+            "targetText": "He was being polite.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i06:r3",
+            "targetText": "She was being sarcastic.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was being sarcastic.",
+              "uk": "У записі звучить He was being sarcastic."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was being sarcastic.",
+              "uk": "У записі звучить He was being sarcastic."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте предложение выйти в сад.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте предложение выйти в сад.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i07:audio",
+          "transcript": "Shall we go into the garden?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall we go into the garden?",
+        "orderedTokens": [
+          "Shall",
+          "we",
+          "go",
+          "into",
+          "the",
+          "garden"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В саду можно поговорить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i08:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i08:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i08:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В саду можно поговорить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В саду можно поговорить.",
+          "uk": "У саду можна поговорити."
+        },
+        "gappedTargetPhrase": "There is a garden ___ we can talk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-20:i08:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i08:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i08:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "В саду можно поговорить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "В саду можно поговорить.",
+            "feedbackByLocale": {
+              "ru": "Для места здесь нужно where.",
+              "uk": "Для місця тут потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "В саду можно поговорить.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — aloof",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — aloof",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i09:audio",
+          "transcript": "aloof"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-20:i09:r1",
+            "targetText": "aloof",
+            "meaningByLocale": {
+              "ru": "Отстранённый. Держится в стороне и не проявляет интереса к общению.",
+              "uk": "Відсторонений. Тримається осторонь і не виявляє інтересу до спілкування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aloof",
+          "definitionByLocale": {
+            "ru": "Отстранённый. Держится в стороне и не проявляет интереса к общению.",
+            "uk": "Відсторонений. Тримається осторонь і не виявляє інтересу до спілкування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что он кажется отстранённым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите, что он кажется отстранённым.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i10:audio",
+          "transcript": "He seems aloof."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He seems aloof.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i11:r1",
+          "text": "She invited us last week."
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i11:r2",
+          "text": "She invited us yesterday."
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i11:r3",
+          "text": "He invited us last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i11:audio",
+          "transcript": "She invited us last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-20:i11:r1",
+            "targetText": "She invited us last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i11:r2",
+            "targetText": "She invited us yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i11:r3",
+            "targetText": "He invited us last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She invited us last week.",
+              "uk": "У записі звучить She invited us last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She invited us last week.",
+              "uk": "У записі звучить She invited us last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что здесь можно поговорить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что здесь можно поговорить.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can talk here.",
+        "localizedMeaning": {
+          "ru": "Скажите, что здесь можно поговорить.",
+          "uk": "Скажіть, що тут можна поговорити."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "talk",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — insecure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — insecure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i13:audio",
+          "transcript": "insecure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-20:i13:r1",
+            "targetText": "insecure",
+            "meaningByLocale": {
+              "ru": "Неуверенный в себе. Сомневается в себе или беспокоится о том, как его воспринимают другие.",
+              "uk": "Невпевнений у собі. Сумнівається в собі або непокоїться про те, як його сприймають інші."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "insecure",
+          "definitionByLocale": {
+            "ru": "Неуверенный в себе. Сомневается в себе или беспокоится о том, как его воспринимают другие.",
+            "uk": "Невпевнений у собі. Сумнівається в собі або непокоїться про те, як його сприймають інші."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что иногда чувствуете неуверенность в себе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что иногда чувствуете неуверенность в себе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sometimes I feel insecure.",
+        "localizedMeaning": {
+          "ru": "Скажите, что иногда чувствуете неуверенность в себе.",
+          "uk": "Скажіть, що іноді відчуваєте невпевненість у собі."
+        },
+        "orderedTokens": [
+          "Sometimes I",
+          "feel",
+          "insecure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините описание с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините описание с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-20:i15:p1",
+            "target": "assertive",
+            "meaningByLocale": {
+              "ru": "уверенно выражающий свою позицию",
+              "uk": "той, хто впевнено висловлює свою позицію"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-20:i15:p2",
+            "target": "sarcastic",
+            "meaningByLocale": {
+              "ru": "саркастичный",
+              "uk": "саркастичний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-20:i15:p3",
+            "target": "aloof",
+            "meaningByLocale": {
+              "ru": "отстранённый",
+              "uk": "відсторонений"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-20:i15:p4",
+            "target": "insecure",
+            "meaningByLocale": {
+              "ru": "неуверенный в себе",
+              "uk": "невпевнений у собі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "assertive",
+          "sarcastic",
+          "aloof",
+          "insecure"
+        ],
+        "rightColumn": [
+          "уверенно выражающий свою позицию",
+          "саркастичный",
+          "отстранённый",
+          "неуверенный в себе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Найдите мужчину, чей телефон звонит.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i16:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i16:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Найдите мужчину, чей телефон звонит.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Найдите мужчину, чей телефон звонит.",
+          "uk": "Знайдіть чоловіка, чий телефон дзвонить."
+        },
+        "gappedTargetPhrase": "Where is the man ___ phone is ringing?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-20:i16:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i16:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Найдите мужчину, чей телефон звонит.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i16:r2",
+            "correct": false,
+            "testedDimension": "Найдите мужчину, чей телефон звонит.",
+            "feedbackByLocale": {
+              "ru": "Перед названием его вещи нужно whose.",
+              "uk": "Перед назвою його речі потрібне whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i16:r3",
+            "correct": false,
+            "testedDimension": "Найдите мужчину, чей телефон звонит.",
+            "feedbackByLocale": {
+              "ru": "His после whose лишнее.",
+              "uk": "His після whose зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: он кажется отстранённым или дружелюбным?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i17:r1",
+          "text": "He seems aloof."
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i17:r2",
+          "text": "He seems friendly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i17:audioA",
+        "en:lesson-29:session-20:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: он кажется отстранённым или дружелюбным?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He seems aloof.",
+        "contrastB": "He seems friendly.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-20:i17:audioA",
+          "transcript": "He seems aloof."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-20:i17:audioB",
+          "transcript": "He seems friendly."
+        },
+        "testedPhoneticContrast": "Послушайте: он кажется отстранённым или дружелюбным?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: он кажется отстранённым или дружелюбным?",
+            "feedbackByLocale": {
+              "ru": "Звучит aloof — отстранённый.",
+              "uk": "Звучить aloof — відсторонений."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите познакомить друга с остальными.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i18:audio"
+      ],
+      "accessibilityLabel": "Предложите познакомить друга с остальными.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i18:audio",
+          "transcript": "Let me introduce you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let me introduce you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто приготовил торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто приготовил торт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i19:audio",
+          "transcript": "The cake was made by my sister."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cake was made by my sister.",
+        "orderedTokens": [
+          "The",
+          "cake",
+          "was",
+          "made",
+          "by",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Предложите сесть внутри, если похолодает.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-20:i20:r1",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i20:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-29:session-20:i20:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите сесть внутри, если похолодает.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Предложите сесть внутри, если похолодает.",
+          "uk": "Запропонуйте сісти всередині, якщо похолоднішає."
+        },
+        "gappedTargetPhrase": "We will sit inside if it ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-20:i20:r1",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i20:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i20:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Предложите сесть внутри, если похолодает.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-20:i20:r2",
+            "correct": false,
+            "testedDimension": "Предложите сесть внутри, если похолодает.",
+            "feedbackByLocale": {
+              "ru": "После if в этом условии используем gets без will.",
+              "uk": "Після if у цій умові використовуємо gets без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-20:i20:r3",
+            "correct": false,
+            "testedDimension": "Предложите сесть внутри, если похолодает.",
+            "feedbackByLocale": {
+              "ru": "После it здесь нужна gets.",
+              "uk": "Після it тут потрібна gets."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-20:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите за приятный вечер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-20:i21:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите за приятный вечер.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-20:i21:audio",
+          "transcript": "Thank you for a lovely evening."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for a lovely evening.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "72c56f936022657b83a79c9fa03cc93203df859bf7cb32fb9a2fb5ec7c9ee30d"
+}

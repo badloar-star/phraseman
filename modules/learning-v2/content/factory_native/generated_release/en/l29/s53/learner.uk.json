@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — curfew",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — curfew",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i01:audio",
+          "transcript": "curfew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-53:i01:r1",
+            "targetText": "curfew",
+            "meaningByLocale": {
+              "ru": "Установленное время возвращения домой. В разговоре о семье — время, к которому родители просят быть дома.",
+              "uk": "Установлений час повернення додому. У розмові про сім’ю — час, до якого батьки просять бути вдома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curfew",
+          "definitionByLocale": {
+            "ru": "Установленное время возвращения домой. В разговоре о семье — время, к которому родители просят быть дома.",
+            "uk": "Установлений час повернення додому. У розмові про сім’ю — час, до якого батьки просять бути вдома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте подругу, о котрій їй потрібно бути вдома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Запитайте подругу, о котрій їй потрібно бути вдома.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i02:audio",
+          "transcript": "What time is your curfew?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time is your curfew?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть братові, що узгоджене правило зрозуміле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть братові, що узгоджене правило зрозуміле.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The rule we agreed on is clear.",
+        "localizedMeaning": {
+          "ru": "Скажите брату, что согласованное правило понятно.",
+          "uk": "Скажіть братові, що узгоджене правило зрозуміле."
+        },
+        "orderedTokens": [
+          "The",
+          "rule",
+          "we",
+          "agreed",
+          "on",
+          "is",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з братом домовилися про це правило.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i04:r1",
+          "text": "we agreed on"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i04:r2",
+          "text": "we agreed on it"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i04:r3",
+          "text": "us agreed on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з братом домовилися про це правило.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с братом договорились об этом правиле.",
+          "uk": "Ви з братом домовилися про це правило."
+        },
+        "gappedTargetPhrase": "The rule ___ is clear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-53:i04:r1",
+            "text": "we agreed on"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i04:r2",
+            "text": "we agreed on it"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i04:r3",
+            "text": "us agreed on"
+          }
+        ],
+        "testedDimension": "Ви з братом домовилися про це правило.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви з братом домовилися про це правило.",
+            "feedbackByLocale": {
+              "ru": "It повторяет правило.",
+              "uk": "It повторює правило."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви з братом домовилися про це правило.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель we.",
+              "uk": "Потрібен виконавець we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть маму пояснити причину правила.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Попросіть маму пояснити причину правила.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i05:audio",
+          "transcript": "Could you explain the reason?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you explain the reason?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tantrum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tantrum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i06:audio",
+          "transcript": "tantrum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-53:i06:r1",
+            "targetText": "tantrum",
+            "meaningByLocale": {
+              "ru": "Вспышка капризов или гнева. Когда человек кричит или плачет из-за того, что не получил желаемого; часто говорят о ребёнке.",
+              "uk": "Спалах вередування чи гніву. Коли людина кричить або плаче через те, що не отримала бажаного; часто говорять про дитину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tantrum",
+          "definitionByLocale": {
+            "ru": "Вспышка капризов или гнева. Когда человек кричит или плачет из-за того, что не получил желаемого; часто говорят о ребёнке.",
+            "uk": "Спалах вередування чи гніву. Коли людина кричить або плаче через те, що не отримала бажаного; часто говорять про дитину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i07:r1",
+          "text": "The child had a tantrum."
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i07:r2",
+          "text": "The child had a nap."
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i07:r3",
+          "text": "The child had a snack."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i07:audio",
+          "transcript": "The child had a tantrum."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-53:i07:r1",
+            "targetText": "The child had a tantrum.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i07:r2",
+            "targetText": "The child had a nap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i07:r3",
+            "targetText": "The child had a snack.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The child had a tantrum.",
+              "uk": "У записі звучить The child had a tantrum."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The child had a tantrum.",
+              "uk": "У записі звучить The child had a tantrum."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, чиїх батьків ви зустріли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чиїх батьків ви зустріли.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i08:audio",
+          "transcript": "She is the friend whose parents I met."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is the friend whose parents I met.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "the",
+          "friend",
+          "whose",
+          "parents",
+          "I",
+          "met"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви познайомилися з батьками подруги.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i09:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви познайомилися з батьками подруги.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы познакомились с родителями подруги.",
+          "uk": "Ви познайомилися з батьками подруги."
+        },
+        "gappedTargetPhrase": "She is the friend ___ parents I met.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-53:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i09:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Ви познайомилися з батьками подруги.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви познайомилися з батьками подруги.",
+            "feedbackByLocale": {
+              "ru": "Нужно whose parents — чьи родители.",
+              "uk": "Потрібне whose parents — чиї батьки."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви познайомилися з батьками подруги.",
+            "feedbackByLocale": {
+              "ru": "Her после whose лишнее.",
+              "uk": "Her після whose зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rebellious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rebellious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i10:audio",
+          "transcript": "rebellious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-53:i10:r1",
+            "targetText": "rebellious",
+            "meaningByLocale": {
+              "ru": "Бунтарский, непокорный. Не желающий следовать правилам или подчиняться требованиям.",
+              "uk": "Бунтарський, непокірний. Той, хто не бажає дотримуватися правил або підкорятися вимогам."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rebellious",
+          "definitionByLocale": {
+            "ru": "Бунтарский, непокорный. Не желающий следовать правилам или подчиняться требованиям.",
+            "uk": "Бунтарський, непокірний. Той, хто не бажає дотримуватися правил або підкорятися вимогам."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть братові, що в школі ви часто бунтували проти правил.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть братові, що в школі ви часто бунтували проти правил.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i11:audio",
+          "transcript": "I was rebellious at school."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was rebellious at school.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте поговорити спокійно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте поговорити спокійно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us talk calmly.",
+        "localizedMeaning": {
+          "ru": "Предложите поговорить спокойно.",
+          "uk": "Запропонуйте поговорити спокійно."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "talk calmly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lenient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lenient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i13:audio",
+          "transcript": "lenient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-53:i13:r1",
+            "targetText": "lenient",
+            "meaningByLocale": {
+              "ru": "Снисходительный, нестрогий. Не требующий слишком жёсткого соблюдения правил или не наказывающий сурово.",
+              "uk": "Поблажливий, несуворий. Той, хто не вимагає надто жорсткого дотримання правил або не карає суворо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lenient",
+          "definitionByLocale": {
+            "ru": "Снисходительный, нестрогий. Не требующий слишком жёсткого соблюдения правил или не наказывающий сурово.",
+            "uk": "Поблажливий, несуворий. Той, хто не вимагає надто жорсткого дотримання правил або не карає суворо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i14:r1",
+          "text": "Our parents were lenient."
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i14:r2",
+          "text": "Our parents were strict."
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i14:r3",
+          "text": "Our parents were busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i14:audio",
+          "transcript": "Our parents were lenient."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-53:i14:r1",
+            "targetText": "Our parents were lenient.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i14:r2",
+            "targetText": "Our parents were strict.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i14:r3",
+            "targetText": "Our parents were busy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our parents were lenient.",
+              "uk": "У записі звучить Our parents were lenient."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our parents were lenient.",
+              "uk": "У записі звучить Our parents were lenient."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-53:i15:p1",
+            "target": "curfew",
+            "meaningByLocale": {
+              "ru": "время обязательного возвращения домой",
+              "uk": "час обов’язкового повернення додому"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-53:i15:p2",
+            "target": "tantrum",
+            "meaningByLocale": {
+              "ru": "вспышка капризов или гнева",
+              "uk": "спалах вередування чи гніву"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-53:i15:p3",
+            "target": "rebellious",
+            "meaningByLocale": {
+              "ru": "бунтарский",
+              "uk": "бунтарський"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-53:i15:p4",
+            "target": "lenient",
+            "meaningByLocale": {
+              "ru": "нестрогий",
+              "uk": "несуворий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "curfew",
+          "tantrum",
+          "rebellious",
+          "lenient"
+        ],
+        "rightColumn": [
+          "час обов’язкового повернення додому",
+          "спалах вередування чи гніву",
+          "бунтарський",
+          "несуворий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обіцяєте мамі зателефонувати, якщо запізнитеся.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i16:r1",
+          "text": "are late"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i16:r2",
+          "text": "will be late"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i16:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обіцяєте мамі зателефонувати, якщо запізнитеся.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обещаете маме позвонить, если опоздаете.",
+          "uk": "Ви обіцяєте мамі зателефонувати, якщо запізнитеся."
+        },
+        "gappedTargetPhrase": "We will call you if we ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-53:i16:r1",
+            "text": "are late"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i16:r2",
+            "text": "will be late"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i16:r3",
+            "text": "late"
+          }
+        ],
+        "testedDimension": "Ви обіцяєте мамі зателефонувати, якщо запізнитеся.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви обіцяєте мамі зателефонувати, якщо запізнитеся.",
+            "feedbackByLocale": {
+              "ru": "После if здесь не используем will.",
+              "uk": "Після if тут не використовуємо will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви обіцяєте мамі зателефонувати, якщо запізнитеся.",
+            "feedbackByLocale": {
+              "ru": "Перед late нужен глагол are.",
+              "uk": "Перед late потрібне дієслово are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: батьки були несуворими чи суворими?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i17:r1",
+          "text": "Our parents were lenient."
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i17:r2",
+          "text": "Our parents were strict."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i17:audioA",
+        "en:lesson-29:session-53:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: батьки були несуворими чи суворими?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Our parents were lenient.",
+        "contrastB": "Our parents were strict.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-53:i17:audioA",
+          "transcript": "Our parents were lenient."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-53:i17:audioB",
+          "transcript": "Our parents were strict."
+        },
+        "testedPhoneticContrast": "Послухайте: батьки були несуворими чи суворими?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: батьки були несуворими чи суворими?",
+            "feedbackByLocale": {
+              "ru": "Звучит lenient — нестрогие.",
+              "uk": "Звучить lenient — несуворі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте обіцянку зателефонувати в разі затримки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте обіцянку зателефонувати в разі затримки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i18:audio",
+          "transcript": "We will call you if we are late."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will call you if we are late.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "call",
+          "you",
+          "if",
+          "we",
+          "are",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть мамі, що розумієте її занепокоєння.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-53:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть мамі, що розумієте її занепокоєння.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-53:i19:audio",
+          "transcript": "I understand your concern."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand your concern.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат пояснив вам зрозумілу причину правила.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-53:i20:r1",
+          "text": "you gave"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i20:r2",
+          "text": "you gave it"
+        },
+        {
+          "responseId": "en:lesson-29:session-53:i20:r3",
+          "text": "your gave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат пояснив вам зрозумілу причину правила.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат объяснил вам понятную причину правила.",
+          "uk": "Брат пояснив вам зрозумілу причину правила."
+        },
+        "gappedTargetPhrase": "The reason ___ makes sense.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-53:i20:r1",
+            "text": "you gave"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i20:r2",
+            "text": "you gave it"
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i20:r3",
+            "text": "your gave"
+          }
+        ],
+        "testedDimension": "Брат пояснив вам зрозумілу причину правила.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-53:i20:r2",
+            "correct": false,
+            "testedDimension": "Брат пояснив вам зрозумілу причину правила.",
+            "feedbackByLocale": {
+              "ru": "It повторяет причину.",
+              "uk": "It повторює причину."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-53:i20:r3",
+            "correct": false,
+            "testedDimension": "Брат пояснив вам зрозумілу причину правила.",
+            "feedbackByLocale": {
+              "ru": "Нужно you, не your.",
+              "uk": "Потрібне you, не your."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-53:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте разом знайти рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте разом знайти рішення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us find a solution together.",
+        "localizedMeaning": {
+          "ru": "Предложите вместе найти решение.",
+          "uk": "Запропонуйте разом знайти рішення."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "find a solution together"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1de944b0c8a597cf0cce3e820275deb309b14f84a355cfe20da6ca80e7c596c4"
+}

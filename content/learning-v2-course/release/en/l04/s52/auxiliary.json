@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-52:intro2:r2": {
-          "ru": "Это порядок слов утверждения. В вопросе сначала Is: Is there a sandpit?",
-          "uk": "Це порядок слів твердження. У запитанні спочатку Is: Is there a sandpit?"
+          "ru": "Название места собираем так: in the yard.",
+          "uk": "Назву місця складаємо так: in the yard."
         },
         "en:lesson-04:session-52:intro2:r3": {
           "ru": "Песочница одна, поэтому вопрос начинаем с Is there, а не с Are there.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-52:intro3:r2": {
-          "ru": "Качелей несколько, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Гойдалок кілька, тому потрібно aren’t, а не isn’t."
+          "ru": "Swings стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Swings стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-52:intro3:r3": {
-          "ru": "Качелей несколько, поэтому на конце swings, а не swing.",
-          "uk": "Гойдалок кілька, тому наприкінці swings, а не swing."
+          "ru": "После aren’t any здесь нужна форма множественного числа swings.",
+          "uk": "Після aren’t any тут потрібна форма множини swings."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "221ba142f6ed68ebb11721db370451ac471cac265da4091536ae00aa66015c48"
+  "auxiliaryFingerprint": "3f79bdaf28340feda1158cf4cab35a2c5dfff353a501dd8ee3afb52050f18bd0"
 }

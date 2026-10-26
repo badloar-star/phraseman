@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "как описать хранение и чистку вещей, выразить желание и связать два прошлых события.",
+    "uk": "як описати зберігання й чищення речей, висловити бажання та пов’язати дві минулі події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где хранят средства",
+        "uk": "Де зберігають засоби"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине вы спрашиваете, где найти чистящие средства. Сотрудник отвечает: Cleaning products are kept on this shelf — чистящие средства хранят на этой полке. Соберите Cleaning products + are kept + on this shelf. Products — несколько средств, поэтому are. Kept — форма keep, которая после are показывает действие над средствами. Последняя часть называет место.",
+        "uk": "У крамниці ви запитуєте, де знайти засоби для чищення. Працівник відповідає: Cleaning products are kept on this shelf — засоби для чищення зберігають на цій полиці. Складіть Cleaning products + are kept + on this shelf. Products — кілька засобів, тому are. Kept — форма keep, яка після are показує дію над засобами. Остання частина називає місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-14:intro1:r1",
+              "text": "Cleaning products are kept on this shelf."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro1:r2",
+              "text": "Cleaning products is kept on this shelf."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro1:r3",
+              "text": "Cleaning products are keep on this shelf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-14:intro1:r1",
+              "text": "Cleaning products are kept on this shelf."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro1:r2",
+              "text": "Cleaning products is kept on this shelf."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro1:r3",
+              "text": "Cleaning products are keep on this shelf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уборка вчера",
+        "uk": "Прибирання вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец спрашивает, давно ли вы чистили фильтр прибора. Ответьте: The filter was cleaned yesterday — фильтр почистили вчера. Соберите The filter + was cleaned + yesterday. Один фильтр и действие в прошлом: was. После was используем cleaned, чтобы сказать, что сделали с фильтром. Yesterday указывает время.",
+        "uk": "Продавець запитує, чи давно ви чистили фільтр приладу. Дайте відповідь: The filter was cleaned yesterday — фільтр почистили вчора. Складіть The filter + was cleaned + yesterday. Один фільтр і дія в минулому: was. Після was використовуємо cleaned, щоб сказати, що зробили з фільтром. Yesterday указує час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-14:intro2:r1",
+              "text": "The filter was cleaned yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro2:r2",
+              "text": "The filter were cleaned yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro2:r3",
+              "text": "The filter was clean yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-14:intro2:r1",
+              "text": "The filter was cleaned yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro2:r2",
+              "text": "The filter were cleaned yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro2:r3",
+              "text": "The filter was clean yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы меньше сырости",
+        "uk": "Хотілося б менше вогкості"
+      },
+      "bodyByLocale": {
+        "ru": "Вы объясняете продавцу, почему хотите купить прибор для удаления влаги. Дома сыро. I wish my flat were drier — хотелось бы, чтобы моя квартира была суше. Соберите I wish + my flat + were + drier. После I wish форма were описывает желаемое положение сейчас. Drier — суше; сейчас квартира не такая сухая, как вам хотелось бы.",
+        "uk": "Ви пояснюєте продавцеві, чому хочете купити прилад для видалення вологи. Удома вогко. I wish my flat were drier — хотілося б, щоб моя квартира була сухішою. Складіть I wish + my flat + were + drier. Після I wish форма were описує бажаний стан зараз. Drier — сухіша; зараз квартира не така суха, як вам хотілося б."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-14:intro3:r1",
+              "text": "I wish my flat were drier."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro3:r2",
+              "text": "I wish my flat is drier."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro3:r3",
+              "text": "I wish my flat be drier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-14:intro3:r1",
+              "text": "I wish my flat were drier."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro3:r2",
+              "text": "I wish my flat is drier."
+            },
+            {
+              "responseId": "en:lesson-28:session-14:intro3:r3",
+              "text": "I wish my flat be drier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6d85292de844d9511187de4176c1f98e58b3b07a5865c2e658826e1e501180d6"
+}

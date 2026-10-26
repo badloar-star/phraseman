@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-39:intro1:r2": {
-          "ru": "Так говорят о бойлере, который существует, но лежит в другом месте. У вас бойлера нет совсем.",
-          "uk": "Так кажуть про бойлер, який існує, але лежить в іншому місці. У вас бойлера немає зовсім."
+          "ru": "С a boiler в единственном числе нужно isn’t.",
+          "uk": "З a boiler в однині потрібне isn’t."
         },
         "en:lesson-04:session-39:intro1:r3": {
           "ru": "is значит «есть», а бойлера нет: нужно isn’t.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-39:intro2:r2": {
-          "ru": "Так говорят, когда крана нет вообще. Но хозяин уже назвал этот кран, поэтому: The tap.",
-          "uk": "Так кажуть, коли крана немає взагалі. Але господар уже назвав цей кран, тому: The tap."
+          "ru": "Между the tap и here нужно isn’t, а не одно not.",
+          "uk": "Між the tap і here потрібне isn’t, а не одне not."
         },
         "en:lesson-04:session-39:intro2:r3": {
           "ru": "Кран один, поэтому нужно isn’t, а не aren’t.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "90bb74782680b71eb784bd8ec0d16ffdfae9faf32ab32dec0620ea1fb49d081c"
+  "auxiliaryFingerprint": "6904a56b1a7880c5341330e2db7d768f6b2b29fe8e8cb17a950ee5953e2e862d"
 }

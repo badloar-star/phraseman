@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра спросила, сколько длился просмотренный вами спектакль.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i01:r1",
+          "text": "the play lasted"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i01:r2",
+          "text": "did the play last"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i01:r3",
+          "text": "the play lasting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спросила, сколько длился просмотренный вами спектакль.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила, сколько длился просмотренный вами спектакль.",
+          "uk": "Сестра запитала, скільки тривала переглянута вами вистава."
+        },
+        "gappedTargetPhrase": "She asked how long ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-13:i01:r1",
+            "text": "the play lasted"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i01:r2",
+            "text": "did the play last"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i01:r3",
+            "text": "the play lasting"
+          }
+        ],
+        "testedDimension": "Сестра спросила, сколько длился просмотренный вами спектакль.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i01:r2",
+            "correct": false,
+            "testedDimension": "Сестра спросила, сколько длился просмотренный вами спектакль.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужно the play lasted без did.",
+              "uk": "У переказі потрібне the play lasted без did."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i01:r3",
+            "correct": false,
+            "testedDimension": "Сестра спросила, сколько длился просмотренный вами спектакль.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма lasted, не lasting.",
+              "uk": "Потрібна форма lasted, не lasting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — premiere",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — premiere",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i02:audio",
+          "transcript": "premiere"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-13:i02:r1",
+            "targetText": "premiere",
+            "meaningByLocale": {
+              "ru": "Премьера. Первое публичное представление спектакля или фильма.",
+              "uk": "Прем’єра. Перший публічний показ вистави або фільму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "premiere",
+          "definitionByLocale": {
+            "ru": "Премьера. Первое публичное представление спектакля или фильма.",
+            "uk": "Прем’єра. Перший публічний показ вистави або фільму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i03:r1",
+          "text": "We went to the premiere."
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i03:r2",
+          "text": "We went to the rehearsal."
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i03:r3",
+          "text": "We went to the concert."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i03:audio",
+          "transcript": "We went to the premiere."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-13:i03:r1",
+            "targetText": "We went to the premiere.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i03:r2",
+            "targetText": "We went to the rehearsal.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i03:r3",
+            "targetText": "We went to the concert.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We went to the premiere.",
+              "uk": "У записі звучить We went to the premiere."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We went to the premiere.",
+              "uk": "У записі звучить We went to the premiere."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос друга: поздно ли закончился спектакль?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос друга: поздно ли закончился спектакль?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He asked if the play ended late.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос друга: поздно ли закончился спектакль?",
+          "uk": "Передайте запитання друга: чи пізно закінчилася вистава?"
+        },
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "the",
+          "play",
+          "ended",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — backstage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — backstage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i05:audio",
+          "transcript": "backstage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-13:i05:r1",
+            "targetText": "backstage",
+            "meaningByLocale": {
+              "ru": "За кулисами. В части театра за сценой, которую зрители обычно не видят.",
+              "uk": "За лаштунками. У частині театру за сценою, якої глядачі зазвичай не бачать."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "backstage",
+          "definitionByLocale": {
+            "ru": "За кулисами. В части театра за сценой, которую зрители обычно не видят.",
+            "uk": "За лаштунками. У частині театру за сценою, якої глядачі зазвичай не бачать."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы встретили актёра за кулисами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы встретили актёра за кулисами.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i06:audio",
+          "transcript": "We met the actor backstage."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We met the actor backstage.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните актёра, которого вы видели.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i07:r1",
+          "text": "saw"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i07:r2",
+          "text": "seeing"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i07:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните актёра, которого вы видели.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните актёра, которого вы видели.",
+          "uk": "Уточніть актора, якого ви бачили."
+        },
+        "gappedTargetPhrase": "The actor we ___ was excellent.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-13:i07:r1",
+            "text": "saw"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i07:r2",
+            "text": "seeing"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i07:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Уточните актёра, которого вы видели.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i07:r2",
+            "correct": false,
+            "testedDimension": "Уточните актёра, которого вы видели.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма saw, не seeing.",
+              "uk": "Потрібна форма saw, не seeing."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i07:r3",
+            "correct": false,
+            "testedDimension": "Уточните актёра, которого вы видели.",
+            "feedbackByLocale": {
+              "ru": "Sees не сочетается с we; о вчерашнем просмотре говорим saw.",
+              "uk": "Sees не поєднується з we; про вчорашній перегляд кажемо saw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о длительности спектакля.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о длительности спектакля.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i08:audio",
+          "transcript": "She asked how long the play lasted."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked how long the play lasted.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "how",
+          "long",
+          "the",
+          "play",
+          "lasted"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — monologue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — monologue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i09:audio",
+          "transcript": "monologue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-13:i09:r1",
+            "targetText": "monologue",
+            "meaningByLocale": {
+              "ru": "Монолог. Длинная речь одного персонажа в спектакле или фильме.",
+              "uk": "Монолог. Довга промова одного персонажа у виставі або фільмі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "monologue",
+          "definitionByLocale": {
+            "ru": "Монолог. Длинная речь одного персонажа в спектакле или фильме.",
+            "uk": "Монолог. Довга промова одного персонажа у виставі або фільмі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i10:r1",
+          "text": "She asked how long the monologue lasted."
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i10:r2",
+          "text": "She asked how long the interval lasted."
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i10:r3",
+          "text": "She asked how long the concert lasted."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i10:audio",
+          "transcript": "She asked how long the monologue lasted."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-13:i10:r1",
+            "targetText": "She asked how long the monologue lasted.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i10:r2",
+            "targetText": "She asked how long the interval lasted.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i10:r3",
+            "targetText": "She asked how long the concert lasted.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked how long the monologue lasted.",
+              "uk": "У записі звучить She asked how long the monologue lasted."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked how long the monologue lasted.",
+              "uk": "У записі звучить She asked how long the monologue lasted."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотели бы иметь больше времени для походов в театр сейчас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Вы хотели бы иметь больше времени для походов в театр сейчас.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i11:audio",
+          "transcript": "I wish I had more time."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I had more time.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ovation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ovation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i12:audio",
+          "transcript": "ovation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-13:i12:r1",
+            "targetText": "ovation",
+            "meaningByLocale": {
+              "ru": "Овация. Бурные продолжительные аплодисменты в знак восхищения.",
+              "uk": "Овація. Бурхливі тривалі оплески на знак захоплення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ovation",
+          "definitionByLocale": {
+            "ru": "Овация. Бурные продолжительные аплодисменты в знак восхищения.",
+            "uk": "Овація. Бурхливі тривалі оплески на знак захоплення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что зрители устроили актёру овацию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите, что зрители устроили актёру овацию.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i13:audio",
+          "transcript": "The audience gave him an ovation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The audience gave him an ovation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-13:i14:p1",
+            "target": "premiere",
+            "meaningByLocale": {
+              "ru": "премьера",
+              "uk": "прем’єра"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-13:i14:p2",
+            "target": "backstage",
+            "meaningByLocale": {
+              "ru": "за кулисами",
+              "uk": "за лаштунками"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-13:i14:p3",
+            "target": "monologue",
+            "meaningByLocale": {
+              "ru": "монолог",
+              "uk": "монолог"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-13:i14:p4",
+            "target": "ovation",
+            "meaningByLocale": {
+              "ru": "овация",
+              "uk": "овація"
+            }
+          }
+        ],
+        "leftColumn": [
+          "premiere",
+          "backstage",
+          "monologue",
+          "ovation"
+        ],
+        "rightColumn": [
+          "премьера",
+          "за кулисами",
+          "монолог",
+          "овация"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Похвалите актёра, которого вы видели.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Похвалите актёра, которого вы видели.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The actor we saw was excellent.",
+        "localizedMeaning": {
+          "ru": "Похвалите актёра, которого вы видели.",
+          "uk": "Похваліть актора, якого ви бачили."
+        },
+        "orderedTokens": [
+          "The",
+          "actor",
+          "we",
+          "saw",
+          "was",
+          "excellent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил, поздно ли закончился спектакль.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i16:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i16:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил, поздно ли закончился спектакль.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, поздно ли закончился спектакль.",
+          "uk": "Друг запитав, чи пізно закінчилася вистава."
+        },
+        "gappedTargetPhrase": "He asked ___ the play ended late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-13:i16:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i16:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Друг спросил, поздно ли закончился спектакль.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i16:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил, поздно ли закончился спектакль.",
+            "feedbackByLocale": {
+              "ru": "Вопрос да или нет передаём через if.",
+              "uk": "Запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i16:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил, поздно ли закончился спектакль.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте, а здесь спрашивали о позднем окончании.",
+              "uk": "Where запитує про місце, а тут запитували про пізнє закінчення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг обещал рассказать о спектакле за минуту. Через десять минут он ещё не дошёл до второго действия. Передайте вопрос сестры о длительности самого спектакля.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Друг обещал рассказать о спектакле за минуту. Через десять минут он ещё не дошёл до второго действия. Передайте вопрос сестры о длительности самого спектакля.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i17:audio",
+          "transcript": "She asked how long the play lasted."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked how long the play lasted.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о длительности монолога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о длительности монолога.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i18:audio",
+          "transcript": "She asked how long the monologue lasted."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked how long the monologue lasted.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "how",
+          "long",
+          "the",
+          "monologue",
+          "lasted"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы пошли на премьеру или на репетицию?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i19:r1",
+          "text": "We went to the premiere."
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i19:r2",
+          "text": "We went to the rehearsal."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i19:audioA",
+        "en:lesson-30:session-13:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы пошли на премьеру или на репетицию?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "We went to the premiere.",
+        "contrastB": "We went to the rehearsal.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-13:i19:audioA",
+          "transcript": "We went to the premiere."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-13:i19:audioB",
+          "transcript": "We went to the rehearsal."
+        },
+        "testedPhoneticContrast": "Послушайте: вы пошли на премьеру или на репетицию?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы пошли на премьеру или на репетицию?",
+            "feedbackByLocale": {
+              "ru": "Звучит premiere — премьера.",
+              "uk": "Звучить premiere — прем’єра."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Времени на театр сейчас не хватает, и вы хотите это изменить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-13:i20:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i20:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-30:session-13:i20:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Времени на театр сейчас не хватает, и вы хотите это изменить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Времени на театр сейчас не хватает, и вы хотите это изменить.",
+          "uk": "Часу на театр зараз бракує, і ви хочете це змінити."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-13:i20:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i20:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i20:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Времени на театр сейчас не хватает, и вы хотите это изменить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-13:i20:r2",
+            "correct": false,
+            "testedDimension": "Времени на театр сейчас не хватает, и вы хотите это изменить.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания после wish нужно had.",
+              "uk": "Для такого бажання після wish потрібне had."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-13:i20:r3",
+            "correct": false,
+            "testedDimension": "Времени на театр сейчас не хватает, и вы хотите это изменить.",
+            "feedbackByLocale": {
+              "ru": "Нужно I had, не I having.",
+              "uk": "Потрібне I had, не I having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-13:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг сказал, что ему понравился спектакль. Передайте его слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-13:i21:audio"
+      ],
+      "accessibilityLabel": "Друг сказал, что ему понравился спектакль. Передайте его слова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-13:i21:audio",
+          "transcript": "He said he enjoyed the play."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he enjoyed the play.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e49a172b56f87431acfeb2c939ce370835fd571292a08058e5390f5e477f1a91"
+}

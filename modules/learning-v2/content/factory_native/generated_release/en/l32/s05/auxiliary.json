@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-05:intro1:r2": {
+          "ru": "После must здесь нужна форма be.",
+          "uk": "Після must тут потрібна форма be."
+        },
+        "en:lesson-32:session-05:intro1:r3": {
+          "ru": "Перед hungry нужна связка be.",
+          "uk": "Перед hungry потрібна зв’язка be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-05:intro2:r2": {
+          "ru": "Sandwich уже названо: it после made не нужно.",
+          "uk": "Sandwich уже названо: it після made не потрібне."
+        },
+        "en:lesson-32:session-05:intro2:r3": {
+          "ru": "Для завершённого прошлого действия нужна форма made.",
+          "uk": "Для завершеної минулої дії потрібна форма made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-05:intro3:r2": {
+          "ru": "Нужна прошедшая форма ate.",
+          "uk": "Потрібна минула форма ate."
+        },
+        "en:lesson-32:session-05:intro3:r3": {
+          "ru": "Нужна полная часть I ate an apple.",
+          "uk": "Потрібна повна частина I ate an apple."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "abfc33bbbea253681bfeeb1cb5a9e26858cbff8177250d0ae7bc063ff3f664e0"
+}

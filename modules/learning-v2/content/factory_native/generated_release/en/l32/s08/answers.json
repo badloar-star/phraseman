@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-08:i01",
+    "correctText": "dog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i02",
+    "correctText": "The dog must be thirsty.",
+    "correctResponseId": "en:lesson-32:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i04",
+    "correctText": "bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i05",
+    "correctText": "The bowl I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i06",
+    "correctText": "water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i07",
+    "correctText": "The dog must need water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i09",
+    "correctText": "The dog must be thirsty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i10",
+    "correctText": "The bowl was empty, so I filled it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i11",
+    "correctText": "need",
+    "correctResponseId": "en:lesson-32:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i12",
+    "correctText": "towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i13",
+    "correctText": "The towel I used is wet.",
+    "correctResponseId": "en:lesson-32:session-08:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i14",
+    "correctText": "The towel I used is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i15",
+    "correctText": "The dog must need water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-08:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i17",
+    "correctText": "The dog must be tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i18",
+    "correctText": "The towel I used is wet.",
+    "correctResponseId": "en:lesson-32:session-08:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i19",
+    "correctText": "The bowl I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i20",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-32:session-08:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-08:i21",
+    "correctText": "The dog must be comfortable.",
+    "correctResponseId": null
+  }
+]

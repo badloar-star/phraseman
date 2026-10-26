@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-34:intro1:r2": {
+          "ru": "В заданном пересказе сдвигаем is в was.",
+          "uk": "У заданому переказі зсуваємо is у was."
+        },
+        "en:lesson-30:session-34:intro1:r3": {
+          "ru": "Один bus требует was, не were.",
+          "uk": "Один bus потребує was, не were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-34:intro2:r2": {
+          "ru": "Для заданного сдвига в прошлое используем were, не are.",
+          "uk": "Для заданого зсуву в минуле використовуємо were, не are."
+        },
+        "en:lesson-30:session-34:intro2:r3": {
+          "ru": "После they нужна форма were, не was.",
+          "uk": "Після they потрібна форма were, не was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-34:intro3:r2": {
+          "ru": "В уточнении используем порядок I lent you.",
+          "uk": "В уточненні використовуємо порядок I lent you."
+        },
+        "en:lesson-30:session-34:intro3:r3": {
+          "ru": "Один umbrella требует is.",
+          "uk": "Одна umbrella потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a793bcedd0dda04287603177ba64263f346b305e4c5c96fa41fa1521de38c43a"
+}

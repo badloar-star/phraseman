@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать нужного специалиста, уточнить работу и договориться о времени.",
+    "uk": "як назвати потрібного фахівця, уточнити роботу й домовитися про час."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать мастера",
+        "uk": "Упізнати майстра"
+      },
+      "bodyByLocale": {
+        "ru": "В дверь позвонили, и вы узнали мастера после прошлого ремонта. Скажите семье: The man who repaired the window is here — мужчина, который починил окно, здесь. Соберите The man + who repaired the window + is here. После The man добавьте who repaired the window: уточните, какого человека вы узнали. Затем is here сообщает, где он сейчас. Дополнительное he после who не нужно.",
+        "uk": "У двері подзвонили, і ви впізнали майстра після минулого ремонту. Скажіть родині: The man who repaired the window is here — чоловік, який полагодив вікно, тут. Складіть The man + who repaired the window + is here. Після The man додайте who repaired the window: уточніть, яку людину ви впізнали. Потім is here повідомляє, де він зараз. Додаткове he після who не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-05:intro1:r1",
+              "text": "The man who repaired the window is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro1:r2",
+              "text": "The man who he repaired the window is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro1:r3",
+              "text": "The man who repaired the window are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-05:intro1:r1",
+              "text": "The man who repaired the window is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro1:r2",
+              "text": "The man who he repaired the window is here."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro1:r3",
+              "text": "The man who repaired the window are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто уложил плитку",
+        "uk": "Хто поклав плитку"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед спрашивает, кто уложил плитку у вас на кухне. Ответьте: The tiles were fitted by a local worker — плитку уложил местный мастер. Соберите The tiles + were fitted + by a local worker. После The tiles поставьте were fitted: действие уже выполнено над плиткой. By a local worker называет человека, который сделал работу.",
+        "uk": "Сусід запитує, хто поклав плитку у вас на кухні. Дайте відповідь: The tiles were fitted by a local worker — плитку поклав місцевий майстер. Складіть The tiles + were fitted + by a local worker. Після The tiles поставте were fitted: дію вже виконано з плиткою. By a local worker називає людину, яка зробила роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-05:intro2:r1",
+              "text": "The tiles were fitted by a local worker."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro2:r2",
+              "text": "The tiles were fitted from a local worker."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro2:r3",
+              "text": "The tiles was fitted by a local worker."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-05:intro2:r1",
+              "text": "The tiles were fitted by a local worker."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro2:r2",
+              "text": "The tiles were fitted from a local worker."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro2:r3",
+              "text": "The tiles was fitted by a local worker."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предупредить о задержке",
+        "uk": "Попередити про затримку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ждёте окончания ремонта перед встречей с другом. Пообещайте: If the repair takes longer, I will call you — если ремонт займёт больше времени, я тебе позвоню. Соберите If the repair takes longer + I will call you. После If поставьте takes: это условие. Во второй части I will call сообщает, что вы сделаете при задержке. Между частями поставьте запятую.",
+        "uk": "Ви чекаєте завершення ремонту перед зустріччю з другом. Пообіцяйте: If the repair takes longer, I will call you — якщо ремонт триватиме довше, я тобі зателефоную. Складіть If the repair takes longer + I will call you. Після If поставте takes: це умова. У другій частині I will call повідомляє, що ви зробите за затримки. Між частинами поставте кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-05:intro3:r1",
+              "text": "If the repair takes longer, I will call you."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro3:r2",
+              "text": "If the repair will take longer, I will call you."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro3:r3",
+              "text": "If the repair takes longer, I will called you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-05:intro3:r1",
+              "text": "If the repair takes longer, I will call you."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro3:r2",
+              "text": "If the repair will take longer, I will call you."
+            },
+            {
+              "responseId": "en:lesson-29:session-05:intro3:r3",
+              "text": "If the repair takes longer, I will called you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "58dcf4115e71edc7d4c1d849cf6bf7dba6115ec122acae9c709ac9aa6d680298"
+}

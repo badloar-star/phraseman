@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-17:intro1:r2": {
+          "ru": "После that сначала she, затем is busy.",
+          "uk": "Після that спочатку she, потім is busy."
+        },
+        "en:lesson-31:session-17:intro1:r3": {
+          "ru": "С she нужна форма is.",
+          "uk": "З she потрібна форма is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-17:intro2:r2": {
+          "ru": "После where порядок the keys are.",
+          "uk": "Після where порядок the keys are."
+        },
+        "en:lesson-31:session-17:intro2:r3": {
+          "ru": "Множественное keys требует are.",
+          "uk": "Множина keys потребує are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-17:intro3:r2": {
+          "ru": "Это часть утверждения: нужен порядок she left, без did.",
+          "uk": "Це частина твердження: потрібен порядок she left, без did."
+        },
+        "en:lesson-31:session-17:intro3:r3": {
+          "ru": "Нужна прошедшая форма left.",
+          "uk": "Потрібна минула форма left."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "56aeaba904942ce2ac90c7ba9746f4992e0c7291ced19e10b6a165492562a216"
+}

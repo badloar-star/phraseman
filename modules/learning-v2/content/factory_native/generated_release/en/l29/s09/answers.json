@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-09:i01",
+    "correctText": "Who left this jacket on the chair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i02",
+    "correctText": "snag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i03",
+    "correctText": "There is a snag on the sleeve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i04",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-09:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i05",
+    "correctText": "I helped the boy whose shoe was wet.",
+    "correctResponseId": "en:lesson-29:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i06",
+    "correctText": "dampen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i07",
+    "correctText": "Could you dampen the cloth?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i08",
+    "correctText": "The man whose bag is missing is waiting inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i10",
+    "correctText": "dab",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i11",
+    "correctText": "Please dab the wet patch gently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i12",
+    "correctText": "The woman whose coat is on the chair is outside.",
+    "correctResponseId": "en:lesson-29:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i13",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-29:session-09:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i14",
+    "correctText": "buff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i15",
+    "correctText": "Please buff the shoes with a soft cloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i16",
+    "correctText": "en:lesson-29:session-09:i16:p1=snag\nen:lesson-29:session-09:i16:p2=dampen\nen:lesson-29:session-09:i16:p3=dab\nen:lesson-29:session-09:i16:p4=buff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i17",
+    "correctText": "The man whose bag is missing is here.",
+    "correctResponseId": "en:lesson-29:session-09:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i18",
+    "correctText": "Can I read the care label first?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i19",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-09:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i20",
+    "correctText": "Please check the pockets first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-09:i21",
+    "correctText": "Shall I bring a dry cloth?",
+    "correctResponseId": null
+  }
+]

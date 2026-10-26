@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-01:intro1:r2": {
+          "ru": "Bread здесь неисчисляемое: используем is, не are.",
+          "uk": "Bread тут незлічуване: використовуємо is, не are."
+        },
+        "en:lesson-28:session-01:intro1:r3": {
+          "ru": "После is в этой модели нужна третья форма baked.",
+          "uk": "Після is у цій моделі потрібна третя форма baked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-01:intro2:r2": {
+          "ru": "С vegetables во множественном числе нужна are.",
+          "uk": "З vegetables у множині потрібна are."
+        },
+        "en:lesson-28:session-01:intro2:r3": {
+          "ru": "Третья форма grow — grown.",
+          "uk": "Третя форма grow — grown."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-01:intro3:r2": {
+          "ru": "В пассивной форме нужна produced, не produce.",
+          "uk": "У пасивній формі потрібна produced, не produce."
+        },
+        "en:lesson-28:session-01:intro3:r3": {
+          "ru": "С cheese здесь используем is.",
+          "uk": "З cheese тут використовуємо is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ff71d070f73682fabf88c179357755f4cc38bdb36336b5ff8ba3918981859c07"
+}

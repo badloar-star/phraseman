@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cafe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cafe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i01:audio",
+          "transcript": "cafe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-52:i01:r1",
+            "targetText": "cafe",
+            "meaningByLocale": {
+              "ru": "Кафе. Повторение знакомого слова.",
+              "uk": "Кафе. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cafe",
+          "definitionByLocale": {
+            "ru": "Кафе. Повторение знакомого слова.",
+            "uk": "Кафе. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i02:r1",
+          "text": "The cafe was full, so we waited."
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i02:r2",
+          "text": "The cafe was closed, so we left."
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i02:r3",
+          "text": "The cafe was open, so we went in."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i02:audio",
+          "transcript": "The cafe was full, so we waited."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-52:i02:r1",
+            "targetText": "The cafe was full, so we waited.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i02:r2",
+            "targetText": "The cafe was closed, so we left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i02:r3",
+            "targetText": "The cafe was open, so we went in.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cafe was full, so we waited.",
+              "uk": "У записі звучить The cafe was full, so we waited."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cafe was full, so we waited.",
+              "uk": "У записі звучить The cafe was full, so we waited."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Місць не було, тому ви зачекали. Виберіть форму минулого часу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i03:r1",
+          "text": "waited"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i03:r2",
+          "text": "waiting"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i03:r3",
+          "text": "waits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Місць не було, тому ви зачекали. Виберіть форму минулого часу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мест не было, поэтому вы подождали. Выберите форму прошлого времени.",
+          "uk": "Місць не було, тому ви зачекали. Виберіть форму минулого часу."
+        },
+        "gappedTargetPhrase": "The cafe was full, so we ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-52:i03:r1",
+            "text": "waited"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i03:r2",
+            "text": "waiting"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i03:r3",
+            "text": "waits"
+          }
+        ],
+        "testedDimension": "Місць не було, тому ви зачекали. Виберіть форму минулого часу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Місць не було, тому ви зачекали. Виберіть форму минулого часу.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма waited.",
+              "uk": "Потрібна форма waited."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Місць не було, тому ви зачекали. Виберіть форму минулого часу.",
+            "feedbackByLocale": {
+              "ru": "После we и в прошлом используем waited.",
+              "uk": "Після we й у минулому використовуємо waited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i04:audio",
+          "transcript": "table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-52:i04:r1",
+            "targetText": "table",
+            "meaningByLocale": {
+              "ru": "Стол, столик. Повторение знакомого слова.",
+              "uk": "Стіл, столик. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "table",
+          "definitionByLocale": {
+            "ru": "Стол, столик. Повторение знакомого слова.",
+            "uk": "Стіл, столик. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Столик був вільний, і тому ви сіли. Почніть з The table was free and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Столик був вільний, і тому ви сіли. Почніть з The table was free and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The table was free and therefore we sat down.",
+        "localizedMeaning": {
+          "ru": "Столик был свободен, и поэтому вы сели. Начните с The table was free and therefore.",
+          "uk": "Столик був вільний, і тому ви сіли. Почніть з The table was free and therefore."
+        },
+        "orderedTokens": [
+          "The",
+          "table",
+          "was",
+          "free",
+          "and",
+          "therefore",
+          "we",
+          "sat",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — menu",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — menu",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i06:audio",
+          "transcript": "menu"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-52:i06:r1",
+            "targetText": "menu",
+            "meaningByLocale": {
+              "ru": "Меню. Повторение знакомого слова.",
+              "uk": "Меню. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "menu",
+          "definitionByLocale": {
+            "ru": "Меню. Повторение знакомого слова.",
+            "uk": "Меню. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви взяли меню, щоб вибрати їжу. Почніть з I took the menu.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Ви взяли меню, щоб вибрати їжу. Почніть з I took the menu.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i07:audio",
+          "transcript": "I took the menu to choose my food."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I took the menu to choose my food.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Столик вільний». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Столик вільний». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Столик свободен». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Столик вільний». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the table ___ free.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-52:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Столик вільний». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Столик вільний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Столик вільний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кафе було заповнене, тому ви зачекали. Почніть з The cafe was full.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кафе було заповнене, тому ви зачекали. Почніть з The cafe was full.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cafe was full, so we waited.",
+        "localizedMeaning": {
+          "ru": "Кафе было заполнено, поэтому вы подождали. Начните с The cafe was full.",
+          "uk": "Кафе було заповнене, тому ви зачекали. Почніть з The cafe was full."
+        },
+        "orderedTokens": [
+          "The",
+          "cafe",
+          "was",
+          "full,",
+          "so",
+          "we",
+          "waited"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ввічливо запитайте, чи вільний цей столик.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "Ввічливо запитайте, чи вільний цей столик.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i10:audio",
+          "transcript": "Could you tell me if this table is free?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me if this table is free?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стіл помив Бен. Виберіть прийменник перед його ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стіл помив Бен. Виберіть прийменник перед його ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стол вымыл Бен. Выберите предлог перед его именем.",
+          "uk": "Стіл помив Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The table was cleaned ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-52:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Стіл помив Бен. Виберіть прийменник перед його ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Стіл помив Бен. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия называем после by.",
+              "uk": "Виконавця дії називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Стіл помив Бен. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Бен вымыл стол: by Ben.",
+              "uk": "Бен помив стіл: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i12:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-52:i12:r1",
+            "targetText": "window",
+            "meaningByLocale": {
+              "ru": "Окно. Повторение знакомого слова.",
+              "uk": "Вікно. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "window",
+          "definitionByLocale": {
+            "ru": "Окно. Повторение знакомого слова.",
+            "uk": "Вікно. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i13:r1",
+          "text": "I know that our table is near the window."
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i13:r2",
+          "text": "I know that our table is near the door."
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i13:r3",
+          "text": "I know that our table is near the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i13:audio",
+          "transcript": "I know that our table is near the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-52:i13:r1",
+            "targetText": "I know that our table is near the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i13:r2",
+            "targetText": "I know that our table is near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i13:r3",
+            "targetText": "I know that our table is near the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that our table is near the window.",
+              "uk": "У записі звучить I know that our table is near the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that our table is near the window.",
+              "uk": "У записі звучить I know that our table is near the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Столи чисті». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Столи чисті». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i14:audio",
+          "transcript": "She said the tables were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the tables were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви дали Анні меню, щоб вона вибрала їжу. Почніть з I gave Anna the menu.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви дали Анні меню, щоб вона вибрала їжу. Почніть з I gave Anna the menu.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I gave Anna the menu so that she could choose her food.",
+        "localizedMeaning": {
+          "ru": "Вы дали Анне меню, чтобы она выбрала еду. Начните с I gave Anna the menu.",
+          "uk": "Ви дали Анні меню, щоб вона вибрала їжу. Почніть з I gave Anna the menu."
+        },
+        "orderedTokens": [
+          "I",
+          "gave",
+          "Anna",
+          "the",
+          "menu",
+          "so",
+          "that",
+          "she",
+          "could",
+          "choose",
+          "her",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Столик був вільний, і в результаті ви сіли. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Столик був вільний, і в результаті ви сіли. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Столик был свободен, и в результате вы сели. Вставьте «поэтому».",
+          "uk": "Столик був вільний, і в результаті ви сіли. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The table was free, ___ we sat down.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-52:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Столик був вільний, і в результаті ви сіли. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i16:r2",
+            "correct": false,
+            "testedDimension": "Столик був вільний, і в результаті ви сіли. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i16:r3",
+            "correct": false,
+            "testedDimension": "Столик був вільний, і в результаті ви сіли. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви чекали, хоча були голодні. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Ви чекали, хоча були голодні. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i17:audio",
+          "transcript": "We waited although we were hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We waited although we were hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: кафе було заповнене, тому ви зачекали чи пішли?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i18:r1",
+          "text": "The cafe was full, so we waited."
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i18:r2",
+          "text": "The cafe was full, so we left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i18:audioA",
+        "en:lesson-31:session-52:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: кафе було заповнене, тому ви зачекали чи пішли?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The cafe was full, so we waited.",
+        "contrastB": "The cafe was full, so we left.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-52:i18:audioA",
+          "transcript": "The cafe was full, so we waited."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-52:i18:audioB",
+          "transcript": "The cafe was full, so we left."
+        },
+        "testedPhoneticContrast": "Послухайте: кафе було заповнене, тому ви зачекали чи пішли?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: кафе було заповнене, тому ви зачекали чи пішли?",
+            "feedbackByLocale": {
+              "ru": "Звучит waited — подождали.",
+              "uk": "Звучить waited — зачекали."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте причину й результат. Почніть з The table was free and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте причину й результат. Почніть з The table was free and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i19:audio",
+          "transcript": "The table was free and therefore we sat down."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The table was free and therefore we sat down.",
+        "orderedTokens": [
+          "The",
+          "table",
+          "was",
+          "free",
+          "and",
+          "therefore",
+          "we",
+          "sat",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Столик не зайнятий. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-52:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-52:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Столик не зайнятий. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Столик не занят. Добавьте утвердительное уточнение.",
+          "uk": "Столик не зайнятий. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The table isn't taken, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-52:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Столик не зайнятий. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-52:i20:r2",
+            "correct": false,
+            "testedDimension": "Столик не зайнятий. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Один table требует is.",
+              "uk": "Один table потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-52:i20:r3",
+            "correct": false,
+            "testedDimension": "Столик не зайнятий. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-52:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна вибрала цей столик. Скажіть це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-52:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна вибрала цей столик. Скажіть це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-52:i21:audio",
+          "transcript": "I understand why Anna chose this table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna chose this table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1027601ad5185d321ea81bd3db3c34e85acffc37a5997b7d5587899d62f05e6f"
+}

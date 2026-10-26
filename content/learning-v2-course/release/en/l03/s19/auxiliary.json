@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-03:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-19:intro2:r2": {
-          "ru": "В слове country y меняется на ies: countries.",
-          "uk": "У слові country y змінюється на ies: countries."
+          "ru": "В слове city y меняется на ies: cities.",
+          "uk": "У слові city y змінюється на ies: cities."
         },
         "en:lesson-03:session-19:intro2:r3": {
-          "ru": "В вопросе с they нужно Are: Are they countries?",
-          "uk": "У запитанні з they потрібно Are: Are they countries?"
+          "ru": "В вопросе с they нужно Are.",
+          "uk": "У запитанні з they потрібне Are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "fb87bf9a0a442c97739ec3a5a111c6b9b2d68bfe424f5aff43d78179fd7474de"
+  "auxiliaryFingerprint": "fe445a66d1d0069b863e27c7de0e07fadc3b1fc494110ddbe65905cb4af02d10"
 }

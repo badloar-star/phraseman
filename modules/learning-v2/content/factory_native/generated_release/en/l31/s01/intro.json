@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "строить вежливые вопросы с Could you tell me и Do you know, сохраняя прямой порядок слов после where, when и if.",
+    "uk": "будувати ввічливі запитання з Could you tell me та Do you know, зберігаючи прямий порядок слів після where, when та if."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вежливо спросить дорогу",
+        "uk": "Ввічливо запитати дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете вокзал и обращаетесь к прохожему: Could you tell me where the station is? — не подскажете, где вокзал? Соберите Could you tell me + where + the station + is. В прямом вопросе было бы Where is the station? После вежливого начала порядок меняется: сначала the station, затем is.",
+        "uk": "Ви шукаєте вокзал і звертаєтеся до перехожого: Could you tell me where the station is? — не підкажете, де вокзал? Складіть Could you tell me + where + the station + is. У прямому запитанні було б Where is the station? Після ввічливого початку порядок змінюється: спочатку the station, потім is."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-01:intro1:r1",
+              "text": "Could you tell me where the station is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro1:r2",
+              "text": "Could you tell me where is the station?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro1:r3",
+              "text": "Could you tell me where the station are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-01:intro1:r1",
+              "text": "Could you tell me where the station is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro1:r2",
+              "text": "Could you tell me where is the station?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro1:r3",
+              "text": "Could you tell me where the station are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Открыто ли кафе",
+        "uk": "Чи відчинене кафе"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите зайти в кафе и спрашиваете прохожего: Do you know if the café is open? — вы не знаете, открыто ли кафе? Соберите Do you know + if + the café + is open. If вводит вопрос «ли». После if ставим the café перед is, а не порядок прямого вопроса Is the café open?",
+        "uk": "Ви хочете зайти до кафе й запитуєте перехожого: Do you know if the café is open? — ви не знаєте, чи відчинене кафе? Складіть Do you know + if + the café + is open. If вводить запитання «чи». Після if ставимо the café перед is, а не порядок прямого запитання Is the café open?"
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-01:intro2:r1",
+              "text": "Do you know if the café is open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro2:r2",
+              "text": "Do you know if is the café open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro2:r3",
+              "text": "Do you know if the café are open?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-01:intro2:r1",
+              "text": "Do you know if the café is open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro2:r2",
+              "text": "Do you know if is the café open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro2:r3",
+              "text": "Do you know if the café are open?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда отправляется автобус",
+        "uk": "Коли вирушає автобус"
+      },
+      "bodyByLocale": {
+        "ru": "На остановке вы спрашиваете сотрудника: Could you tell me when the bus leaves? — не подскажете, когда отправляется автобус? Соберите Could you tell me + when + the bus + leaves. Внутри вопроса порядок the bus leaves; does из прямого When does the bus leave? не переносим. С одним автобусом у leave появляется окончание -s.",
+        "uk": "На зупинці ви запитуєте працівника: Could you tell me when the bus leaves? — не підкажете, коли вирушає автобус? Складіть Could you tell me + when + the bus + leaves. Усередині запитання порядок the bus leaves; does із прямого When does the bus leave? не переносимо. З одним автобусом у leave з’являється закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-01:intro3:r1",
+              "text": "Could you tell me when the bus leaves?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro3:r2",
+              "text": "Could you tell me when does the bus leave?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro3:r3",
+              "text": "Could you tell me when the bus leave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-01:intro3:r1",
+              "text": "Could you tell me when the bus leaves?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro3:r2",
+              "text": "Could you tell me when does the bus leave?"
+            },
+            {
+              "responseId": "en:lesson-31:session-01:intro3:r3",
+              "text": "Could you tell me when the bus leave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "51a1ecb62c979b33cbc94ea09fdf3c2f947ed1bb70bc06f4cc5de009a8778ffe"
+}

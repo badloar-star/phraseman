@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-08:intro1:r2": {
+          "ru": "С she здесь нужно was.",
+          "uk": "Із she тут потрібне was."
+        },
+        "en:lesson-30:session-08:intro1:r3": {
+          "ru": "Нужно she was, не she being.",
+          "uk": "Потрібне she was, не she being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-08:intro2:r2": {
+          "ru": "Для такого желания после wish нужна форма had.",
+          "uk": "Для такого бажання після wish потрібна форма had."
+        },
+        "en:lesson-30:session-08:intro2:r3": {
+          "ru": "Нужно we had, не we having.",
+          "uk": "Потрібне we had, не we having."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-08:intro3:r2": {
+          "ru": "В уточнении нужна форма made.",
+          "uk": "В уточненні потрібна форма made."
+        },
+        "en:lesson-30:session-08:intro3:r3": {
+          "ru": "С soup здесь нужна форма was.",
+          "uk": "Із soup тут потрібна форма was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a14c4718c0caa7fc03d2948a0146b0461fd5e124198dc67e72e3d205a5ad440d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-22:intro1:r2": {
+          "ru": "Where уже указывает место, there лишнее.",
+          "uk": "Where вже вказує місце, there зайве."
+        },
+        "en:lesson-29:session-22:intro1:r3": {
+          "ru": "Для кафе как места нужно where.",
+          "uk": "Для кафе як місця потрібне where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-22:intro2:r2": {
+          "ru": "Связь заказа с человеком показывает whose.",
+          "uk": "Зв’язок замовлення з людиною показує whose."
+        },
+        "en:lesson-29:session-22:intro2:r3": {
+          "ru": "His после whose лишнее.",
+          "uk": "His після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-22:intro3:r2": {
+          "ru": "В этом условии после if нужно is без will.",
+          "uk": "У цій умові після if потрібне is без will."
+        },
+        "en:lesson-29:session-22:intro3:r3": {
+          "ru": "После will нужна начальная форма share.",
+          "uk": "Після will потрібна початкова форма share."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "41b824609b704b43489d20d64b9ef33da599959e7e5b677fd7e6e9b4dedc14d1"
+}

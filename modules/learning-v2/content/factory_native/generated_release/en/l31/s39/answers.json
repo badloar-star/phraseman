@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-39:i01",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i02",
+    "correctText": "The coat was expensive, but I bought it.",
+    "correctResponseId": "en:lesson-31:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i03",
+    "correctText": "but",
+    "correctResponseId": "en:lesson-31:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i04",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i05",
+    "correctText": "I know where the receipt is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i06",
+    "correctText": "The receipt was printed by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-39:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i08",
+    "correctText": "pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i09",
+    "correctText": "I know that the receipt is in the pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i10",
+    "correctText": "The coat is warm, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i12",
+    "correctText": "shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i13",
+    "correctText": "I know when the shop closes.",
+    "correctResponseId": "en:lesson-31:session-39:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i14",
+    "correctText": "She said the pockets were deep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i15",
+    "correctText": "It was expensive, but I bought it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i16",
+    "correctText": "the shop is",
+    "correctResponseId": "en:lesson-31:session-39:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i17",
+    "correctText": "I bought a coat because my old coat was too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i18",
+    "correctText": "The coat was expensive, but I bought it.",
+    "correctResponseId": "en:lesson-31:session-39:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i19",
+    "correctText": "It was expensive, but I bought it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-39:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-39:i21",
+    "correctText": "I understand why Anna bought the coat.",
+    "correctResponseId": null
+  }
+]

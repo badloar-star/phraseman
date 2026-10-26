@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-02:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-39:intro1:r2": {
-          "ru": "С not выходит «Он невкусный». А тарелка пустая: It is tasty.",
-          "uk": "З not виходить «Він несмачний». А тарілка порожня: It is tasty."
+          "ru": "С not выходит «Он невкусный». По ситуации суп вам понравился: It is tasty.",
+          "uk": "З not виходить «Він несмачний». За ситуацією суп вам сподобався: It is tasty."
         },
         "en:lesson-02:session-39:intro1:r3": {
           "ru": "Между It и tasty нужно is: It is tasty.",
@@ -23,8 +23,8 @@
           "uk": "З not виходить «Вони не жирні». А серветка вся в олії: They're greasy."
         },
         "en:lesson-02:session-39:intro2:r3": {
-          "ru": "Картошки несколько ломтиков, нужно They're: They're greasy.",
-          "uk": "Картоплі кілька скибочок, потрібно They're: They're greasy."
+          "ru": "После They нужна связка are, сокращённо They’re: They’re greasy.",
+          "uk": "Після They потрібна зв’язка are, скорочено They’re: They’re greasy."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "28c08f782a9e7dbd61107a2c6306c8d1ef68b2e3ab8d24c7d868aafa47a80e51"
+  "auxiliaryFingerprint": "e7e92049f79099f6ec50c712aa42939ad3e77b93d05b6d4a6942675cb6f539e6"
 }

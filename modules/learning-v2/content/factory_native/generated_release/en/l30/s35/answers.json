@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-35:i01",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i02",
+    "correctText": "She said her soup was cold.",
+    "correctResponseId": "en:lesson-30:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i04",
+    "correctText": "spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i05",
+    "correctText": "She said she needed a spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i06",
+    "correctText": "He asked me to wait by the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i07",
+    "correctText": "our table was",
+    "correctResponseId": "en:lesson-30:session-35:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i08",
+    "correctText": "plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i09",
+    "correctText": "She said her plate was empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i10",
+    "correctText": "He asked if I wanted some water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i11",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i12",
+    "correctText": "bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i13",
+    "correctText": "She asked for the bill.",
+    "correctResponseId": "en:lesson-30:session-35:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i14",
+    "correctText": "I wish the café were closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i15",
+    "correctText": "The soup I ordered is tasty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i16",
+    "correctText": "not to touch",
+    "correctResponseId": "en:lesson-30:session-35:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i17",
+    "correctText": "She said she needed some water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i18",
+    "correctText": "She said her tea was cold.",
+    "correctResponseId": "en:lesson-30:session-35:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i19",
+    "correctText": "He said the bread was fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-35:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-35:i21",
+    "correctText": "She said she wanted some coffee.",
+    "correctResponseId": null
+  }
+]

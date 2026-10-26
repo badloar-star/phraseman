@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать слова со сдвигом времени и указывать получателя сообщения; повторите просьбы, вопросы и уточнения.",
+    "uk": "переказувати слова зі зсувом часу й указувати одержувача повідомлення; повторите прохання, запитання та уточнення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какая книга была нужна",
+        "uk": "Яка книжка була потрібна"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера брат сказал: «Мне нужна короткая книга». Сегодня перескажите его слова со сдвигом времени: He said he needed a short book — он сказал, что ему нужна была короткая книга. Соберите He + said + he + needed a short book. После прошедшего said форма need из его слов меняется на needed.",
+        "uk": "Учора брат сказав: «Мені потрібна коротка книжка». Сьогодні перекажіть його слова зі зсувом часу: He said he needed a short book — він сказав, що йому потрібна була коротка книжка. Складіть He + said + he + needed a short book. Після минулого said форма need з його слів змінюється на needed."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-36:intro1:r1",
+              "text": "He said he needed a short book."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro1:r2",
+              "text": "He said he needs a short book."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro1:r3",
+              "text": "He said he needing a short book."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-36:intro1:r1",
+              "text": "He said he needed a short book."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro1:r2",
+              "text": "He said he needs a short book."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro1:r3",
+              "text": "He said he needing a short book."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кому сообщили о библиотеке",
+        "uk": "Кому повідомили про бібліотеку"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сотрудница сказала вам, что библиотека уже закрыта. Сегодня передайте это брату: She told me the library was closed — она сказала мне, что библиотека была закрыта. Соберите She + told + me + the library was closed. После told указываем получателя me, затем сообщение.",
+        "uk": "Учора працівниця сказала вам, що бібліотека вже зачинена. Сьогодні передайте це братові: She told me the library was closed — вона сказала мені, що бібліотека була зачинена. Складіть She + told + me + the library was closed. Після told указуємо одержувача me, потім повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-36:intro2:r1",
+              "text": "She told me the library was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro2:r2",
+              "text": "She said me the library was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro2:r3",
+              "text": "She told to me the library was closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-36:intro2:r1",
+              "text": "She told me the library was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro2:r2",
+              "text": "She said me the library was closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro2:r3",
+              "text": "She told to me the library was closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить книгу брата",
+        "uk": "Уточнити книжку брата"
+      },
+      "bodyByLocale": {
+        "ru": "Брат выбрал книгу, а вы открыли её дома. Скажите ему, что выбранная им книга интересная: The book you chose is interesting — книга, которую ты выбрал, интересная. Соберите The book + you chose + is interesting. You chose уточняет книгу. You — тот, кто выбирал, а book — выбранный предмет, поэтому that перед you можно опустить.",
+        "uk": "Брат вибрав книжку, а ви відкрили її вдома. Скажіть йому, що вибрана ним книжка цікава: The book you chose is interesting — книжка, яку ти вибрав, цікава. Складіть The book + you chose + is interesting. You chose уточнює книжку. You — той, хто вибирав, а book — вибраний предмет, тому that перед you можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-36:intro3:r1",
+              "text": "The book you chose is interesting."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro3:r2",
+              "text": "The book chose you is interesting."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro3:r3",
+              "text": "The book you chose are interesting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-36:intro3:r1",
+              "text": "The book you chose is interesting."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro3:r2",
+              "text": "The book chose you is interesting."
+            },
+            {
+              "responseId": "en:lesson-30:session-36:intro3:r3",
+              "text": "The book you chose are interesting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4ea090d3b36cfca190d3ed351e81e4c95582e08d5eeb11e2bbbcfa3ec4a9de01"
+}

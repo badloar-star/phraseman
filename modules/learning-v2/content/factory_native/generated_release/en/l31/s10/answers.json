@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-10:i01",
+    "correctText": "park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i02",
+    "correctText": "The park is quiet, isn't it?",
+    "correctResponseId": "en:lesson-31:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i03",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-31:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i04",
+    "correctText": "gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i05",
+    "correctText": "Could you tell me where the gate is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i06",
+    "correctText": "The gate was opened by Tom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-10:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i08",
+    "correctText": "bench",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i09",
+    "correctText": "Do you know if the bench is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i10",
+    "correctText": "The bench is dry, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i12",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i13",
+    "correctText": "The bag isn't heavy, is it?",
+    "correctResponseId": "en:lesson-31:session-10:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i14",
+    "correctText": "He said the benches were free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i15",
+    "correctText": "Could you tell me where the toilet is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i16",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-10:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i17",
+    "correctText": "The bench was cleaned by Tom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i18",
+    "correctText": "The bench is wet, isn't it?",
+    "correctResponseId": "en:lesson-31:session-10:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i19",
+    "correctText": "Do you know if the gate is open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i20",
+    "correctText": "closes",
+    "correctResponseId": "en:lesson-31:session-10:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-10:i21",
+    "correctText": "He said he needed help.",
+    "correctResponseId": null
+  }
+]

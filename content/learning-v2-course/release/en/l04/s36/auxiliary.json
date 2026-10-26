@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-36:intro1:r2": {
-          "ru": "Вы говорите об одном датчике, поэтому isn’t a, а не aren’t any.",
-          "uk": "Ви говорите про один датчик, тому isn’t a, а не aren’t any."
+          "ru": "С a smoke alarm в единственном числе нужно isn’t.",
+          "uk": "З a smoke alarm в однині потрібне isn’t."
         },
         "en:lesson-04:session-36:intro1:r3": {
           "ru": "is значит «есть», а датчика нет: нужно isn’t.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-36:intro3:r2": {
-          "ru": "Фонарики — несколько предметов, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Ліхтарики — кілька предметів, тому потрібно aren’t, а не isn’t."
+          "ru": "Torches стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Torches стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-36:intro3:r3": {
-          "ru": "После any слово ставят во множественном числе: torches.",
-          "uk": "Після any слово ставлять у множині: torches."
+          "ru": "После aren’t any здесь нужна форма множественного числа torches.",
+          "uk": "Після aren’t any тут потрібна форма множини torches."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f23566a727ccf5d61c6e352eda839339045a126d18b690ece9464de0589168e8"
+  "auxiliaryFingerprint": "8e050c4e30383d6f8f44def652e0c6d917c9fba56132981680558d73c59d168f"
 }

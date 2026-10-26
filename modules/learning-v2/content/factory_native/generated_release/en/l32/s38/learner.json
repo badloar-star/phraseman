@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bike",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bike",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i01:audio",
+          "transcript": "bike"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-38:i01:r1",
+            "targetText": "bike",
+            "meaningByLocale": {
+              "ru": "Велосипед. Повторение знакомого слова.",
+              "uk": "Велосипед. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bike",
+          "definitionByLocale": {
+            "ru": "Велосипед. Повторение знакомого слова.",
+            "uk": "Велосипед. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i02:r1",
+          "text": "The bike is noisy, so it might be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i02:r2",
+          "text": "The bike is noisy, so it must be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i02:r3",
+          "text": "The bike is noisy, so it can't be broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i02:audio",
+          "transcript": "The bike is noisy, so it might be broken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-38:i02:r1",
+            "targetText": "The bike is noisy, so it might be broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i02:r2",
+            "targetText": "The bike is noisy, so it must be broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i02:r3",
+            "targetText": "The bike is noisy, so it can't be broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bike is noisy, so it might be broken.",
+              "uk": "У записі звучить The bike is noisy, so it might be broken."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bike is noisy, so it might be broken.",
+              "uk": "У записі звучить The bike is noisy, so it might be broken."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан.",
+          "uk": "Коли Анна котить велосипед, чути незвичний стукіт. Ви ще не знайшли його причини. Велосипед шумить, тому він, можливо, зламаний."
+        },
+        "gappedTargetPhrase": "The bike is noisy, so it might ___ broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-38:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i04:audio",
+          "transcript": "lock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-38:i04:r1",
+            "targetText": "lock",
+            "meaningByLocale": {
+              "ru": "Замок. Повторение знакомого слова.",
+              "uk": "Замок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lock",
+          "definitionByLocale": {
+            "ru": "Замок. Повторение знакомого слова.",
+            "uk": "Замок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Замок не может быть открытым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Замок не может быть открытым.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The lock can't be open.",
+        "localizedMeaning": {
+          "ru": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Замок не может быть открытым.",
+          "uk": "Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Замок не може бути відчиненим."
+        },
+        "orderedTokens": [
+          "The",
+          "lock",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — helmet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — helmet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i06:audio",
+          "transcript": "helmet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-38:i06:r1",
+            "targetText": "helmet",
+            "meaningByLocale": {
+              "ru": "Шлем. Повторение знакомого слова.",
+              "uk": "Шолом. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "helmet",
+          "definitionByLocale": {
+            "ru": "Шлем. Повторение знакомого слова.",
+            "uk": "Шолом. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Шлем, который я купил, новый. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Шлем, который я купил, новый. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i07:audio",
+          "transcript": "The helmet I bought is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The helmet I bought is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+          "uk": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The helmet I ___ is new.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-38:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан. Начните с The bike is noisy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан. Начните с The bike is noisy.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bike is noisy, so it might be broken.",
+        "localizedMeaning": {
+          "ru": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. Велосипед шумит, поэтому он, возможно, сломан. Начните с The bike is noisy.",
+          "uk": "Коли Анна котить велосипед, чути незвичний стукіт. Ви ще не знайшли його причини. Велосипед шумить, тому він, можливо, зламаний. Почніть із The bike is noisy."
+        },
+        "orderedTokens": [
+          "The",
+          "bike",
+          "is",
+          "noisy,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i10:audio",
+          "transcript": "It can’t be open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Замок не может быть открытым. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Замок не может быть открытым. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Замок не может быть открытым. Выберите форму после can’t.",
+          "uk": "Замок не може бути відчиненим. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The lock can't ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-38:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Замок не может быть открытым. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Замок не может быть открытым. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Замок не может быть открытым. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i12:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-38:i12:r1",
+            "targetText": "seat",
+            "meaningByLocale": {
+              "ru": "Сиденье. Повторение знакомого слова.",
+              "uk": "Сидіння. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat",
+          "definitionByLocale": {
+            "ru": "Сиденье. Повторение знакомого слова.",
+            "uk": "Сидіння. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i13:r1",
+          "text": "The seat must be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i13:r2",
+          "text": "The seat may be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i13:r3",
+          "text": "The seat could be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i13:audio",
+          "transcript": "The seat must be wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-38:i13:r1",
+            "targetText": "The seat must be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i13:r2",
+            "targetText": "The seat may be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i13:r3",
+            "targetText": "The seat could be wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seat must be wet.",
+              "uk": "У записі звучить The seat must be wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seat must be wet.",
+              "uk": "У записі звучить The seat must be wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i14:audio",
+          "transcript": "The seat must be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The seat must be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the helmet и уточнение I bought. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the helmet и уточнение I bought. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the helmet I bought.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the helmet и уточнение I bought. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the helmet й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "helmet",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Велосипед шумит, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Велосипед шумит, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Велосипед шумит, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+          "uk": "Велосипед шумить, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The bike is noisy, ___ it might be broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-38:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Велосипед шумит, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i16:r2",
+            "correct": false,
+            "testedDimension": "Велосипед шумит, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i16:r3",
+            "correct": false,
+            "testedDimension": "Велосипед шумит, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Велосипед шумит, поэтому он, возможно, сломан. Ответьте, начиная с The bike is noisy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Велосипед шумит, поэтому он, возможно, сломан. Ответьте, начиная с The bike is noisy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i17:audio",
+          "transcript": "The bike is noisy, so it might be broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bike is noisy, so it might be broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i18:r1",
+          "text": "The bike is noisy, so it might be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i18:r2",
+          "text": "The bike is noisy, so it must be broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i18:audioA",
+        "en:lesson-32:session-38:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The bike is noisy, so it might be broken.",
+        "contrastB": "The bike is noisy, so it must be broken.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-38:i18:audioA",
+          "transcript": "The bike is noisy, so it might be broken."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-38:i18:audioB",
+          "transcript": "The bike is noisy, so it must be broken."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i19:audio",
+          "transcript": "The lock can't be open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The lock can't be open.",
+        "orderedTokens": [
+          "The",
+          "lock",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-38:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-38:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+          "uk": "Велосипед усю ніч стояв без накриття під сильним дощем. Ви ще не торкалися сидіння. Сидіння, напевно, мокре."
+        },
+        "gappedTargetPhrase": "The seat must ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-38:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-38:i20:r2",
+            "correct": false,
+            "testedDimension": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-38:i20:r3",
+            "correct": false,
+            "testedDimension": "Велосипед всю ночь стоял без укрытия под сильным дождём. Вы ещё не касались сиденья. Сиденье, должно быть, мокрое.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-38:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Велосипед шумит, поэтому он, возможно, сломан. Назовите ту же возможность с could вместо might. Начните с The bike is noisy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-38:i21:audio"
+      ],
+      "accessibilityLabel": "Велосипед шумит, поэтому он, возможно, сломан. Назовите ту же возможность с could вместо might. Начните с The bike is noisy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-38:i21:audio",
+          "transcript": "The bike is noisy, so it could be broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bike is noisy, so it could be broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "821ec8db078fb25ff385fd18ea6ab16c134d71540aca2f27fa86910551201096"
+}

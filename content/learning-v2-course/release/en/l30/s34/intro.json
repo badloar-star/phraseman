@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "сдвигать настоящее в прошедшее в заданном пересказе; повторите просьбы, вопросы и уточнения.",
+    "uk": "зсувати теперішнє в минуле в заданому переказі; повторите прохання, запитання та уточнення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Автобус опаздывал вчера",
+        "uk": "Автобус запізнювався вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера на остановке друг сказал: «Автобус опаздывает». Сегодня перескажите это с обычным сдвигом времени: He said the bus was late — он сказал, что автобус опаздывал. Соберите He + said + the bus + was late. После прошедшего said сдвигаем is из слов друга в was. Речь о вчерашнем автобусе.",
+        "uk": "Учора на зупинці друг сказав: «Автобус запізнюється». Сьогодні перекажіть це зі звичайним зсувом часу: He said the bus was late — він сказав, що автобус запізнювався. Складіть He + said + the bus + was late. Після минулого said зсуваємо is зі слів друга у was. Йдеться про вчорашній автобус."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-34:intro1:r1",
+              "text": "He said the bus was late."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro1:r2",
+              "text": "He said the bus is late."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro1:r3",
+              "text": "He said the bus were late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-34:intro1:r1",
+              "text": "He said the bus was late."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro1:r2",
+              "text": "He said the bus is late."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro1:r3",
+              "text": "He said the bus were late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Они промокли тогда",
+        "uk": "Вони змокли тоді"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера двое друзей стояли под дождём и сказали: «Мы мокрые». Сегодня передайте их слова со сдвигом времени: They said they were wet — они сказали, что промокли. Соберите They + said + they + were wet. Are из их слов переходит в were, а друзей в вашем рассказе обозначаем they.",
+        "uk": "Учора двоє друзів стояли під дощем і сказали: «Ми мокрі». Сьогодні передайте їхні слова зі зсувом часу: They said they were wet — вони сказали, що змокли. Складіть They + said + they + were wet. Are з їхніх слів переходить у were, а друзів у вашій розповіді позначаємо they."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-34:intro2:r1",
+              "text": "They said they were wet."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro2:r2",
+              "text": "They said they are wet."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro2:r3",
+              "text": "They said they was wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-34:intro2:r1",
+              "text": "They said they were wet."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro2:r2",
+              "text": "They said they are wet."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro2:r3",
+              "text": "They said they was wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какой зонт вы одолжили",
+        "uk": "Яку парасолю ви позичили"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы одолжили другу зонт. Сегодня у двери лежат два зонта; уточните, что тот, который вы ему одолжили, синий: The umbrella I lent you is blue — зонт, который я тебе одолжил, синий. Соберите The umbrella + I lent you + is blue. I lent you уточняет предмет; I — тот, кто одолжил, поэтому that перед I можно опустить.",
+        "uk": "Учора ви позичили другові парасолю. Сьогодні біля дверей лежать дві парасолі; уточніть, що та, яку ви йому позичили, синя: The umbrella I lent you is blue — парасоля, яку я тобі позичив, синя. Складіть The umbrella + I lent you + is blue. I lent you уточнює предмет; I — той, хто позичив, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-34:intro3:r1",
+              "text": "The umbrella I lent you is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro3:r2",
+              "text": "The umbrella lent I you is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro3:r3",
+              "text": "The umbrella I lent you are blue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-34:intro3:r1",
+              "text": "The umbrella I lent you is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro3:r2",
+              "text": "The umbrella lent I you is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-34:intro3:r3",
+              "text": "The umbrella I lent you are blue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3e7ca2766e998e130c28bac2a01ecc9d8fe6d9e2e6e6b805b0d999516b0d7c33"
+}

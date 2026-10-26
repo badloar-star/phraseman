@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що рецепт виявився простим.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що рецепт виявився простим.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The recipe we tried was simple.",
+        "localizedMeaning": {
+          "ru": "Скажите, что рецепт оказался простым.",
+          "uk": "Скажіть, що рецепт виявився простим."
+        },
+        "orderedTokens": [
+          "The",
+          "recipe",
+          "we",
+          "tried",
+          "was",
+          "simple"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i02:audio",
+          "transcript": "rind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-35:i02:r1",
+            "targetText": "rind",
+            "meaningByLocale": {
+              "ru": "Толстая кожура или корка. Например, кожура лимона или арбуза; слово также употребляется о корке сыра.",
+              "uk": "Товста шкірка або кірка. Наприклад, шкірка лимона чи кавуна; слово також уживається щодо кірки сиру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rind",
+          "definitionByLocale": {
+            "ru": "Толстая кожура или корка. Например, кожура лимона или арбуза; слово также употребляется о корке сыра.",
+            "uk": "Товста шкірка або кірка. Наприклад, шкірка лимона чи кавуна; слово також уживається щодо кірки сиру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що в лимона товста шкірка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що в лимона товста шкірка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i03:audio",
+          "transcript": "This lemon has a thick rind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This lemon has a thick rind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви спробували простий рецепт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i04:r1",
+          "text": "we tried"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i04:r2",
+          "text": "we tried it"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i04:r3",
+          "text": "us tried"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви спробували простий рецепт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попробовали простой рецепт.",
+          "uk": "Ви спробували простий рецепт."
+        },
+        "gappedTargetPhrase": "The recipe ___ was simple.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-35:i04:r1",
+            "text": "we tried"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i04:r2",
+            "text": "we tried it"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i04:r3",
+            "text": "us tried"
+          }
+        ],
+        "testedDimension": "Ви спробували простий рецепт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви спробували простий рецепт.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названный рецепт.",
+              "uk": "It повторює вже названий рецепт."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви спробували простий рецепт.",
+            "feedbackByLocale": {
+              "ru": "Исполнитель — we, а не us.",
+              "uk": "Виконавець — we, а не us."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i05:r1",
+          "text": "This is the friend whose recipe we used."
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i05:r2",
+          "text": "This is the neighbour whose recipe we used."
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i05:r3",
+          "text": "This is the friend whose oven we used."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i05:audio",
+          "transcript": "This is the friend whose recipe we used."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-35:i05:r1",
+            "targetText": "This is the friend whose recipe we used.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i05:r2",
+            "targetText": "This is the neighbour whose recipe we used.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i05:r3",
+            "targetText": "This is the friend whose oven we used.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the friend whose recipe we used.",
+              "uk": "У записі звучить This is the friend whose recipe we used."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the friend whose recipe we used.",
+              "uk": "У записі звучить This is the friend whose recipe we used."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — zest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — zest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i06:audio",
+          "transcript": "zest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-35:i06:r1",
+            "targetText": "zest",
+            "meaningByLocale": {
+              "ru": "Цедра. Тонкий цветной наружный слой кожуры цитрусовых, который добавляют в еду для аромата.",
+              "uk": "Цедра. Тонкий кольоровий зовнішній шар шкірки цитрусових, який додають до їжі для аромату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "zest",
+          "definitionByLocale": {
+            "ru": "Цедра. Тонкий цветной наружный слой кожуры цитрусовых, который добавляют в еду для аромата.",
+            "uk": "Цедра. Тонкий кольоровий зовнішній шар шкірки цитрусових, який додають до їжі для аромату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть додати трохи лимонної цедри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть додати трохи лимонної цедри.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please add some lemon zest.",
+        "localizedMeaning": {
+          "ru": "Попросите добавить немного лимонной цедры.",
+          "uk": "Попросіть додати трохи лимонної цедри."
+        },
+        "orderedTokens": [
+          "Please add",
+          "some",
+          "lemon",
+          "zest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, скільки лимонного соку потрібно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Запитайте, скільки лимонного соку потрібно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i08:audio",
+          "transcript": "How much lemon juice do we need?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much lemon juice do we need?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви знайомите гостя з другом, чий рецепт використали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i09:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знайомите гостя з другом, чий рецепт використали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знакомите гостя с другом, чей рецепт использовали.",
+          "uk": "Ви знайомите гостя з другом, чий рецепт використали."
+        },
+        "gappedTargetPhrase": "This is the friend ___ recipe we used.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-35:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i09:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Ви знайомите гостя з другом, чий рецепт використали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви знайомите гостя з другом, чий рецепт використали.",
+            "feedbackByLocale": {
+              "ru": "Чей рецепт — whose recipe.",
+              "uk": "Чий рецепт — whose recipe."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви знайомите гостя з другом, чий рецепт використали.",
+            "feedbackByLocale": {
+              "ru": "Whose уже показывает принадлежность; his лишнее.",
+              "uk": "Whose вже показує належність; his зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — baste",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — baste",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i10:audio",
+          "transcript": "baste"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-35:i10:r1",
+            "targetText": "baste",
+            "meaningByLocale": {
+              "ru": "Поливать соком или жиром при запекании. Так говорят, когда поливают готовящееся мясо или другой продукт жидкостью из формы.",
+              "uk": "Поливати соком або жиром під час запікання. Так кажуть, коли поливають м’ясо чи інший продукт, що готується, рідиною з форми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baste",
+          "definitionByLocale": {
+            "ru": "Поливать соком или жиром при запекании. Так говорят, когда поливают готовящееся мясо или другой продукт жидкостью из формы.",
+            "uk": "Поливати соком або жиром під час запікання. Так кажуть, коли поливають м’ясо чи інший продукт, що готується, рідиною з форми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i11:r1",
+          "text": "Could you baste the chicken?"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i11:r2",
+          "text": "Could you carve the chicken?"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i11:r3",
+          "text": "Could you baste the turkey?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i11:audio",
+          "transcript": "Could you baste the chicken?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-35:i11:r1",
+            "targetText": "Could you baste the chicken?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i11:r2",
+            "targetText": "Could you carve the chicken?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i11:r3",
+            "targetText": "Could you baste the turkey?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you baste the chicken?",
+              "uk": "У записі звучить Could you baste the chicken?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you baste the chicken?",
+              "uk": "У записі звучить Could you baste the chicken?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто приготував соус.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто приготував соус.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i12:audio",
+          "transcript": "The sauce was made by my brother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The sauce was made by my brother.",
+        "orderedTokens": [
+          "The",
+          "sauce",
+          "was",
+          "made",
+          "by",
+          "my",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blanch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blanch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i13:audio",
+          "transcript": "blanch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-35:i13:r1",
+            "targetText": "blanch",
+            "meaningByLocale": {
+              "ru": "Бланшировать. Ненадолго опускать продукт в кипяток, затем обычно охлаждать в холодной воде.",
+              "uk": "Бланшувати. Ненадовго опускати продукт в окріп, потім зазвичай охолоджувати в холодній воді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blanch",
+          "definitionByLocale": {
+            "ru": "Бланшировать. Ненадолго опускать продукт в кипяток, затем обычно охлаждать в холодной воде.",
+            "uk": "Бланшувати. Ненадовго опускати продукт в окріп, потім зазвичай охолоджувати в холодній воді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи потрібно бланшувати квасолю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи потрібно бланшувати квасолю.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i14:audio",
+          "transcript": "Do we need to blanch the beans?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do we need to blanch the beans?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-35:i15:p1",
+            "target": "rind",
+            "meaningByLocale": {
+              "ru": "толстая кожура",
+              "uk": "товста шкірка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-35:i15:p2",
+            "target": "zest",
+            "meaningByLocale": {
+              "ru": "цедра",
+              "uk": "цедра"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-35:i15:p3",
+            "target": "baste",
+            "meaningByLocale": {
+              "ru": "поливать соком при запекании",
+              "uk": "поливати соком під час запікання"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-35:i15:p4",
+            "target": "blanch",
+            "meaningByLocale": {
+              "ru": "бланшировать",
+              "uk": "бланшувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rind",
+          "zest",
+          "baste",
+          "blanch"
+        ],
+        "rightColumn": [
+          "товста шкірка",
+          "цедра",
+          "поливати соком під час запікання",
+          "бланшувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Соус приготував ваш брат.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i16:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i16:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i16:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соус приготував ваш брат.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соус приготовил ваш брат.",
+          "uk": "Соус приготував ваш брат."
+        },
+        "gappedTargetPhrase": "The sauce was made ___ my brother.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-35:i16:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i16:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i16:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Соус приготував ваш брат.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i16:r2",
+            "correct": false,
+            "testedDimension": "Соус приготував ваш брат.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i16:r3",
+            "correct": false,
+            "testedDimension": "Соус приготував ваш брат.",
+            "feedbackByLocale": {
+              "ru": "Для человека, приготовившего соус, нужно by.",
+              "uk": "Для людини, яка приготувала соус, потрібне by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: йдеться про цедру чи сік?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i17:r1",
+          "text": "Please add some lemon zest."
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i17:r2",
+          "text": "Please add some lemon juice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i17:audioA",
+        "en:lesson-29:session-35:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: йдеться про цедру чи сік?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Please add some lemon zest.",
+        "contrastB": "Please add some lemon juice.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-35:i17:audioA",
+          "transcript": "Please add some lemon zest."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-35:i17:audioB",
+          "transcript": "Please add some lemon juice."
+        },
+        "testedPhoneticContrast": "Послухайте: йдеться про цедру чи сік?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: йдеться про цедру чи сік?",
+            "feedbackByLocale": {
+              "ru": "Звучит zest — цедра.",
+              "uk": "Звучить zest — цедра."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що потрібно зробити з квасолею.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що потрібно зробити з квасолею.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i18:audio",
+          "transcript": "We need to blanch the beans."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We need to blanch the beans.",
+        "orderedTokens": [
+          "We",
+          "need",
+          "to",
+          "blanch",
+          "the",
+          "beans"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть надіслати вам рецепт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-35:i19:audio"
+      ],
+      "accessibilityLabel": "Попросіть надіслати вам рецепт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-35:i19:audio",
+          "transcript": "Could you send me the recipe?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you send me the recipe?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам сподобався соус, який приготував співрозмовник.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-35:i20:r1",
+          "text": "you made"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i20:r2",
+          "text": "you made it"
+        },
+        {
+          "responseId": "en:lesson-29:session-35:i20:r3",
+          "text": "you make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам сподобався соус, який приготував співрозмовник.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам понравился соус, который приготовил собеседник.",
+          "uk": "Вам сподобався соус, який приготував співрозмовник."
+        },
+        "gappedTargetPhrase": "The sauce ___ was delicious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-35:i20:r1",
+            "text": "you made"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i20:r2",
+            "text": "you made it"
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i20:r3",
+            "text": "you make"
+          }
+        ],
+        "testedDimension": "Вам сподобався соус, який приготував співрозмовник.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-35:i20:r2",
+            "correct": false,
+            "testedDimension": "Вам сподобався соус, який приготував співрозмовник.",
+            "feedbackByLocale": {
+              "ru": "Sauce уже называет приготовленное; it лишнее.",
+              "uk": "Sauce вже називає приготовлене; it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-35:i20:r3",
+            "correct": false,
+            "testedDimension": "Вам сподобався соус, який приготував співрозмовник.",
+            "feedbackByLocale": {
+              "ru": "О приготовленном ужине говорим made.",
+              "uk": "Про приготовлену вечерю кажемо made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-35:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте за рецепт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте за рецепт.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for the recipe.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за рецепт.",
+          "uk": "Подякуйте за рецепт."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "the",
+          "recipe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "302d962675cfe9d4c9556caf7735f820d86a62a83c1d69191b4e30eaf84f96d0"
+}

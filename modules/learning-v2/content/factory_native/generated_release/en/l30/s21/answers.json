@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-21:i01",
+    "correctText": "brush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i02",
+    "correctText": "The brush you gave me is wet.",
+    "correctResponseId": "en:lesson-30:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i03",
+    "correctText": "to move",
+    "correctResponseId": "en:lesson-30:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i04",
+    "correctText": "paint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i05",
+    "correctText": "He asked me to bring the paint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i06",
+    "correctText": "I asked him to open the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i07",
+    "correctText": "the bucket was",
+    "correctResponseId": "en:lesson-30:session-21:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i08",
+    "correctText": "ladder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i09",
+    "correctText": "He told me not to climb the ladder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i10",
+    "correctText": "He said the wall was dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i11",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i12",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i13",
+    "correctText": "He asked me to clean the floor.",
+    "correctResponseId": "en:lesson-30:session-21:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i14",
+    "correctText": "I wish I had another brush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i15",
+    "correctText": "The chair you chose is too big.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i16",
+    "correctText": "not to touch",
+    "correctResponseId": "en:lesson-30:session-21:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i17",
+    "correctText": "I wish this room were bigger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i18",
+    "correctText": "He asked me to bring the paint.",
+    "correctResponseId": "en:lesson-30:session-21:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i19",
+    "correctText": "She asked us to take a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i20",
+    "correctText": "we were",
+    "correctResponseId": "en:lesson-30:session-21:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-21:i21",
+    "correctText": "He said he liked the colour.",
+    "correctResponseId": null
+  }
+]

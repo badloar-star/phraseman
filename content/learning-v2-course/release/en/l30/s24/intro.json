@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "передавать сообщения и просьбы, выражать желание; повторите вопросы и уточнение предмета.",
+    "uk": "передавати повідомлення й прохання, висловлювати бажання; повторите запитання та уточнення предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что друг сказал о погоде",
+        "uk": "Що друг сказав про погоду"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь на пикник. Друг сообщил, что в парке ветрено. Передайте это сестре: He said it was windy — он сказал, что было ветрено. Соберите He + said + it was windy. После said передаём сообщение целиком: it — подлежащее, was — связка, windy — описание погоды. В этой фразе можно обойтись без that.",
+        "uk": "Ви збираєтеся на пікнік. Друг повідомив, що в парку вітряно. Передайте це сестрі: He said it was windy — він сказав, що було вітряно. Складіть He + said + it was windy. Після said передаємо повідомлення цілком: it — підмет, was — зв’язка, windy — опис погоди. У цій фразі можна обійтися без that."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-24:intro1:r1",
+              "text": "He said it was windy."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro1:r2",
+              "text": "He said was windy."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro1:r3",
+              "text": "He said it were windy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-24:intro1:r1",
+              "text": "He said it was windy."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro1:r2",
+              "text": "He said was windy."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro1:r3",
+              "text": "He said it were windy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Передать просьбу подруги",
+        "uk": "Передати прохання подруги"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга попросила вас принести одеяло для пикника. Расскажите сестре: She asked me to bring a blanket — она попросила меня принести одеяло. Соберите She + asked + me + to bring a blanket. Me обозначает вас, а to bring называет действие, которое попросили сделать.",
+        "uk": "Подруга попросила вас принести ковдру для пікніка. Розкажіть сестрі: She asked me to bring a blanket — вона попросила мене принести ковдру. Складіть She + asked + me + to bring a blanket. Me позначає вас, а to bring називає дію, яку попросили виконати."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-24:intro2:r1",
+              "text": "She asked me to bring a blanket."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro2:r2",
+              "text": "She asked me bring a blanket."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro2:r3",
+              "text": "She asked I to bring a blanket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-24:intro2:r1",
+              "text": "She asked me to bring a blanket."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro2:r2",
+              "text": "She asked me bring a blanket."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro2:r3",
+              "text": "She asked I to bring a blanket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Жаль, что скамейка мокрая",
+        "uk": "Шкода, що лавка мокра"
+      },
+      "bodyByLocale": {
+        "ru": "После дождя скамейка мокрая, а вам хочется сесть. Скажите: I wish this bench were dry — жаль, что эта скамейка не сухая. Соберите I wish + this bench + were dry. После wish здесь описываем желаемое состояние сейчас. Were dry не переносит нас в прошлое: скамейка сейчас мокрая, а хочется сухую.",
+        "uk": "Після дощу лавка мокра, а вам хочеться сісти. Скажіть: I wish this bench were dry — шкода, що ця лавка не суха. Складіть I wish + this bench + were dry. Після wish тут описуємо бажаний стан зараз. Were dry не переносить нас у минуле: лавка зараз мокра, а хочеться суху."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-24:intro3:r1",
+              "text": "I wish this bench were dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro3:r2",
+              "text": "I wish this bench is dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro3:r3",
+              "text": "I wish this bench be dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-24:intro3:r1",
+              "text": "I wish this bench were dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro3:r2",
+              "text": "I wish this bench is dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-24:intro3:r3",
+              "text": "I wish this bench be dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4f56003924eefa35d7226164795c358650e20ac5f3f40adc28fa7be08e7a644d"
+}

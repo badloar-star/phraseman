@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-01:intro1:r2": {
+          "ru": "Who уже называет того, кто работает; she не добавляем.",
+          "uk": "Who вже називає того, хто працює; she не додаємо."
+        },
+        "en:lesson-29:session-01:intro1:r3": {
+          "ru": "Об одной женщине говорим works с окончанием s.",
+          "uk": "Про одну жінку кажемо works із закінченням s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-01:intro2:r2": {
+          "ru": "После which не добавляем it.",
+          "uk": "Після which не додаємо it."
+        },
+        "en:lesson-29:session-01:intro2:r3": {
+          "ru": "У одной сумки: has, а не have.",
+          "uk": "В однієї сумки: has, а не have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-01:intro3:r2": {
+          "ru": "That уже заменяет ключ внутри уточнения; it не нужно.",
+          "uk": "That вже замінює ключ усередині уточнення; it не потрібне."
+        },
+        "en:lesson-29:session-01:intro3:r3": {
+          "ru": "Об одном ключе говорим opens.",
+          "uk": "Про один ключ кажемо opens."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df884b9b820211c039554e37d8488d852a7fb3726138caeb939ded199f835a66"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-15:intro1:r2": {
+          "ru": "Одна посылка: was.",
+          "uk": "Одна посилка: was."
+        },
+        "en:lesson-28:session-15:intro1:r3": {
+          "ru": "Здесь нужна was weighed.",
+          "uk": "Тут потрібна was weighed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-15:intro2:r2": {
+          "ru": "Несколько писем: are.",
+          "uk": "Кілька листів: are."
+        },
+        "en:lesson-28:session-15:intro2:r3": {
+          "ru": "Здесь нужна are sorted.",
+          "uk": "Тут потрібна are sorted."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-15:intro3:r2": {
+          "ru": "После had нужна closed.",
+          "uk": "Після had потрібна closed."
+        },
+        "en:lesson-28:session-15:intro3:r3": {
+          "ru": "О вчерашнем приходе: arrived.",
+          "uk": "Про вчорашній прихід: arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cbc1b8079dd7a1dd8bdeec6c42f8a987b133c95a916836cc5a30aad380d6c9df"
+}

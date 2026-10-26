@@ -1,0 +1,1094 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i01:r1",
+          "text": "The film which we watched was great."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i01:r2",
+          "text": "The film which we watched was boring."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i01:r3",
+          "text": "The play which we watched was great."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i01:audio",
+          "transcript": "The film which we watched was great."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i01:r1",
+            "targetText": "The film which we watched was great.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i01:r2",
+            "targetText": "The film which we watched was boring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i01:r3",
+            "targetText": "The play which we watched was great.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The film which we watched was great.",
+              "uk": "У записі звучить The film which we watched was great."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The film which we watched was great.",
+              "uk": "У записі звучить The film which we watched was great."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gripping",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gripping",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i02:audio",
+          "transcript": "gripping"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i02:r1",
+            "targetText": "gripping",
+            "meaningByLocale": {
+              "ru": "Захватывающий. Настолько интересный, что трудно отвлечься.",
+              "uk": "Захопливий. Настільки цікавий, що важко відволіктися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gripping",
+          "definitionByLocale": {
+            "ru": "Захватывающий. Настолько интересный, что трудно отвлечься.",
+            "uk": "Захопливий. Настільки цікавий, що важко відволіктися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что история была захватывающей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что история была захватывающей.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The story was gripping.",
+        "localizedMeaning": {
+          "ru": "Скажите, что история была захватывающей.",
+          "uk": "Скажіть, що історія була захопливою."
+        },
+        "orderedTokens": [
+          "The",
+          "story",
+          "was",
+          "gripping"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, что друг думает о концовке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i04:audio"
+      ],
+      "accessibilityLabel": "Спросите, что друг думает о концовке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i04:audio",
+          "transcript": "What did you think of the ending?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What did you think of the ending?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы вместе посмотрели этот фильм.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i05:r1",
+          "text": "we watched"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i05:r2",
+          "text": "we watched it"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i05:r3",
+          "text": "us watched"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы вместе посмотрели этот фильм.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вместе посмотрели этот фильм.",
+          "uk": "Ви разом подивилися цей фільм."
+        },
+        "gappedTargetPhrase": "The film which ___ was great.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-30:i05:r1",
+            "text": "we watched"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i05:r2",
+            "text": "we watched it"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i05:r3",
+            "text": "us watched"
+          }
+        ],
+        "testedDimension": "Вы вместе посмотрели этот фильм.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы вместе посмотрели этот фильм.",
+            "feedbackByLocale": {
+              "ru": "Which уже обозначает фильм, it лишнее.",
+              "uk": "Which вже позначає фільм, it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы вместе посмотрели этот фильм.",
+            "feedbackByLocale": {
+              "ru": "Смотрели вы вместе: нужен исполнитель we.",
+              "uk": "Дивилися ви разом: потрібен виконавець we."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — suspenseful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — suspenseful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i06:audio",
+          "transcript": "suspenseful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i06:r1",
+            "targetText": "suspenseful",
+            "meaningByLocale": {
+              "ru": "Держащий в напряжении. Заставляет с волнением ждать, что произойдёт дальше.",
+              "uk": "Той, що тримає в напрузі. Змушує із хвилюванням чекати, що станеться далі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suspenseful",
+          "definitionByLocale": {
+            "ru": "Держащий в напряжении. Заставляет с волнением ждать, что произойдёт дальше.",
+            "uk": "Той, що тримає в напрузі. Змушує із хвилюванням чекати, що станеться далі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i07:r1",
+          "text": "The last scene was suspenseful."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i07:r2",
+          "text": "The first scene was suspenseful."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i07:r3",
+          "text": "The last scene was funny."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i07:audio",
+          "transcript": "The last scene was suspenseful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i07:r1",
+            "targetText": "The last scene was suspenseful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i07:r2",
+            "targetText": "The first scene was suspenseful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i07:r3",
+            "targetText": "The last scene was funny.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The last scene was suspenseful.",
+              "uk": "У записі звучить The last scene was suspenseful."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The last scene was suspenseful.",
+              "uk": "У записі звучить The last scene was suspenseful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой актёр знаком вашему другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой актёр знаком вашему другу.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i08:audio",
+          "transcript": "I know the actor who played the father."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I know the actor who played the father.",
+        "orderedTokens": [
+          "I",
+          "know",
+          "the",
+          "actor",
+          "who",
+          "played",
+          "the",
+          "father"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — heartwarming",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — heartwarming",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i09:audio",
+          "transcript": "heartwarming"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i09:r1",
+            "targetText": "heartwarming",
+            "meaningByLocale": {
+              "ru": "Вызывающий тёплые чувства. Трогательный и добрый по впечатлению.",
+              "uk": "Той, що викликає теплі почуття. Зворушливий і добрий за враженням."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heartwarming",
+          "definitionByLocale": {
+            "ru": "Вызывающий тёплые чувства. Трогательный и добрый по впечатлению.",
+            "uk": "Той, що викликає теплі почуття. Зворушливий і добрий за враженням."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что концовка вызвала тёплые чувства.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите, что концовка вызвала тёплые чувства.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i10:audio",
+          "transcript": "The ending was heartwarming."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ending was heartwarming.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этот актёр сыграл отца.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i11:r1",
+          "text": "played"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i11:r2",
+          "text": "he played"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i11:r3",
+          "text": "play"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этот актёр сыграл отца.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот актёр сыграл отца.",
+          "uk": "Цей актор зіграв батька."
+        },
+        "gappedTargetPhrase": "The actor who ___ the father is famous.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-30:i11:r1",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i11:r2",
+            "text": "he played"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i11:r3",
+            "text": "play"
+          }
+        ],
+        "testedDimension": "Этот актёр сыграл отца.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Этот актёр сыграл отца.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает актёра, he лишнее.",
+              "uk": "Who вже позначає актора, he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Этот актёр сыграл отца.",
+            "feedbackByLocale": {
+              "ru": "О сыгранной роли здесь говорим played.",
+              "uk": "Про зіграну роль тут кажемо played."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, где снимали фильм.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, где снимали фильм.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where was the film made?",
+        "localizedMeaning": {
+          "ru": "Спросите, где снимали фильм.",
+          "uk": "Запитайте, де знімали фільм."
+        },
+        "orderedTokens": [
+          "Where",
+          "was",
+          "the",
+          "film",
+          "made"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overrated",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overrated",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i13:audio",
+          "transcript": "overrated"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i13:r1",
+            "targetText": "overrated",
+            "meaningByLocale": {
+              "ru": "Переоценённый. По мнению говорящего, его хвалят больше, чем он заслуживает.",
+              "uk": "Переоцінений. На думку мовця, його хвалять більше, ніж він заслуговує."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overrated",
+          "definitionByLocale": {
+            "ru": "Переоценённый. По мнению говорящего, его хвалят больше, чем он заслуживает.",
+            "uk": "Переоцінений. На думку мовця, його хвалять більше, ніж він заслуговує."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i14:r1",
+          "text": "I think the film is overrated."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i14:r2",
+          "text": "I think the film is too long."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i14:r3",
+          "text": "She thinks the film is overrated."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i14:audio",
+          "transcript": "I think the film is overrated."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-30:i14:r1",
+            "targetText": "I think the film is overrated.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i14:r2",
+            "targetText": "I think the film is too long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i14:r3",
+            "targetText": "She thinks the film is overrated.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the film is overrated.",
+              "uk": "У записі звучить I think the film is overrated."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the film is overrated.",
+              "uk": "У записі звучить I think the film is overrated."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините впечатление с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините впечатление с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-30:i15:p1",
+            "target": "gripping",
+            "meaningByLocale": {
+              "ru": "захватывающий",
+              "uk": "захопливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-30:i15:p2",
+            "target": "suspenseful",
+            "meaningByLocale": {
+              "ru": "держащий в напряжении",
+              "uk": "той, що тримає в напрузі"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-30:i15:p3",
+            "target": "heartwarming",
+            "meaningByLocale": {
+              "ru": "вызывающий тёплые чувства",
+              "uk": "той, що викликає теплі почуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-30:i15:p4",
+            "target": "overrated",
+            "meaningByLocale": {
+              "ru": "переоценённый",
+              "uk": "переоцінений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gripping",
+          "suspenseful",
+          "heartwarming",
+          "overrated"
+        ],
+        "rightColumn": [
+          "захватывающий",
+          "держащий в напряжении",
+          "вызывающий тёплые чувства",
+          "переоценённый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Если первая серия понравится, вы посмотрите ещё одну.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i16:r1",
+          "text": "like"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i16:r2",
+          "text": "will like"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i16:r3",
+          "text": "liking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Если первая серия понравится, вы посмотрите ещё одну.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если первая серия понравится, вы посмотрите ещё одну.",
+          "uk": "Якщо перша серія сподобається, ви подивитеся ще одну."
+        },
+        "gappedTargetPhrase": "If we ___ it, we will watch another episode.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-30:i16:r1",
+            "text": "like"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i16:r2",
+            "text": "will like"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i16:r3",
+            "text": "liking"
+          }
+        ],
+        "testedDimension": "Если первая серия понравится, вы посмотрите ещё одну.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i16:r2",
+            "correct": false,
+            "testedDimension": "Если первая серия понравится, вы посмотрите ещё одну.",
+            "feedbackByLocale": {
+              "ru": "После if здесь нужно like без will.",
+              "uk": "Після if тут потрібне like без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i16:r3",
+            "correct": false,
+            "testedDimension": "Если первая серия понравится, вы посмотрите ещё одну.",
+            "feedbackByLocale": {
+              "ru": "В условии после we нужна like.",
+              "uk": "В умові після we потрібне like."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: речь о первой сцене или последней?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i17:r1",
+          "text": "The last scene was suspenseful."
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i17:r2",
+          "text": "The first scene was suspenseful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i17:audioA",
+        "en:lesson-29:session-30:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: речь о первой сцене или последней?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The last scene was suspenseful.",
+        "contrastB": "The first scene was suspenseful.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-30:i17:audioA",
+          "transcript": "The last scene was suspenseful."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-30:i17:audioB",
+          "transcript": "The first scene was suspenseful."
+        },
+        "testedPhoneticContrast": "Послушайте: речь о первой сцене или последней?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: речь о первой сцене или последней?",
+            "feedbackByLocale": {
+              "ru": "Звучит last — последняя.",
+              "uk": "Звучить last — остання."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто посоветовал фильм.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто посоветовал фильм.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i18:audio",
+          "transcript": "The film was recommended by my sister."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The film was recommended by my sister.",
+        "orderedTokens": [
+          "The",
+          "film",
+          "was",
+          "recommended",
+          "by",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите не рассказывать концовку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-30:i19:audio"
+      ],
+      "accessibilityLabel": "Попросите не рассказывать концовку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-30:i19:audio",
+          "transcript": "Please do not tell me the ending."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please do not tell me the ending.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фильм посоветовала ваша сестра.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-30:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-30:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фильм посоветовала ваша сестра.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Фильм посоветовала ваша сестра.",
+          "uk": "Фільм порадила ваша сестра."
+        },
+        "gappedTargetPhrase": "The film was recommended ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-30:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Фильм посоветовала ваша сестра.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-30:i20:r2",
+            "correct": false,
+            "testedDimension": "Фильм посоветовала ваша сестра.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-30:i20:r3",
+            "correct": false,
+            "testedDimension": "Фильм посоветовала ваша сестра.",
+            "feedbackByLocale": {
+              "ru": "Для человека, посоветовавшего фильм, нужна by.",
+              "uk": "Для людини, яка порадила фільм, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-30:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите посмотреть ещё одну серию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите посмотреть ещё одну серию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall we watch another episode?",
+        "localizedMeaning": {
+          "ru": "Предложите посмотреть ещё одну серию.",
+          "uk": "Запропонуйте подивитися ще одну серію."
+        },
+        "orderedTokens": [
+          "Shall",
+          "we",
+          "watch",
+          "another",
+          "episode"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f67fe098f038322b50f5856b27f4cde5f24395d8e7c9dffcea9bd4a7604a20b3"
+}

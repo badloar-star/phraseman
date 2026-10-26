@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-02:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-54:intro1:r2": {
-          "ru": "С not выходит «Он играет плохо». А он не сделал ни одной ошибки: He is talented.",
-          "uk": "З not виходить «Він грає погано». А він не зробив жодної помилки: He is talented."
+          "ru": "С not выходит «Он не талантливый». А он не сделал ни одной ошибки: He is talented.",
+          "uk": "З not виходить «Він не талановитий». А він не зробив жодної помилки: He is talented."
         },
         "en:lesson-02:session-54:intro1:r3": {
           "ru": "Между He и talented нужно is: He is talented.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "72510c36a593ecafe8739fcbd15fddd0b71dfedf6440de3f878636ba2365a9cb"
+  "auxiliaryFingerprint": "1038a14a4867463b2b3d6985ee9782d05ebfcf2a65bf6063524f73de3a6ac962"
 }

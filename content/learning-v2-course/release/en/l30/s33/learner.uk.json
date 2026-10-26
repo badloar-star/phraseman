@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — busy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — busy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i01:audio",
+          "transcript": "busy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-33:i01:r1",
+            "targetText": "busy",
+            "meaningByLocale": {
+              "ru": "Занятый. Повторение знакомого слова.",
+              "uk": "Зайнятий. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "busy",
+          "definitionByLocale": {
+            "ru": "Занятый. Повторение знакомого слова.",
+            "uk": "Зайнятий. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i02:r1",
+          "text": "She said she was busy."
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i02:r2",
+          "text": "She said she was tired."
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i02:r3",
+          "text": "She said she was ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i02:audio",
+          "transcript": "She said she was busy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-33:i02:r1",
+            "targetText": "She said she was busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i02:r2",
+            "targetText": "She said she was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i02:r3",
+            "targetText": "She said she was ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was busy.",
+              "uk": "У записі звучить She said she was busy."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was busy.",
+              "uk": "У записі звучить She said she was busy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора сестра сказала: «Я втомилася». Передайте її слова зі зсувом am у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора сестра сказала: «Я втомилася». Передайте її слова зі зсувом am у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера сестра сказала: «Я устала». Передайте её слова со сдвигом am в прошлое.",
+          "uk": "Учора сестра сказала: «Я втомилася». Передайте її слова зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-33:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора сестра сказала: «Я втомилася». Передайте її слова зі зсувом am у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора сестра сказала: «Я втомилася». Передайте її слова зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг в прошлое.",
+              "uk": "Is не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора сестра сказала: «Я втомилася». Передайте її слова зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was, не be.",
+              "uk": "Потрібна форма was, не be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ready",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ready",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i04:audio",
+          "transcript": "ready"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-33:i04:r1",
+            "targetText": "ready",
+            "meaningByLocale": {
+              "ru": "Готовый. Повторение знакомого слова.",
+              "uk": "Готовий. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ready",
+          "definitionByLocale": {
+            "ru": "Готовый. Повторение знакомого слова.",
+            "uk": "Готовий. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Батьки вчора сказали: «Ми готові». Передайте це зі зсувом у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Батьки вчора сказали: «Ми готові». Передайте це зі зсувом у минуле.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They said they were ready.",
+        "localizedMeaning": {
+          "ru": "Родители вчера сказали: «Мы готовы». Передайте это со сдвигом в прошлое.",
+          "uk": "Батьки вчора сказали: «Ми готові». Передайте це зі зсувом у минуле."
+        },
+        "orderedTokens": [
+          "They",
+          "said",
+          "they",
+          "were",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат учора сказав: «Я голодний». Перекажіть зі зсувом у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Брат учора сказав: «Я голодний». Перекажіть зі зсувом у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i06:audio",
+          "transcript": "He said he was hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he was hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Батьки вчора сказали: «Ми втомилися». Передайте це зі зсувом are у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i07:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i07:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i07:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Батьки вчора сказали: «Ми втомилися». Передайте це зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Родители вчера сказали: «Мы устали». Передайте это со сдвигом are в прошлое.",
+          "uk": "Батьки вчора сказали: «Ми втомилися». Передайте це зі зсувом are у минуле."
+        },
+        "gappedTargetPhrase": "They said they ___ tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-33:i07:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i07:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Батьки вчора сказали: «Ми втомилися». Передайте це зі зсувом are у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i07:r2",
+            "correct": false,
+            "testedDimension": "Батьки вчора сказали: «Ми втомилися». Передайте це зі зсувом are у минуле.",
+            "feedbackByLocale": {
+              "ru": "Are не выполняет заданный сдвиг в прошлое.",
+              "uk": "Are не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i07:r3",
+            "correct": false,
+            "testedDimension": "Батьки вчора сказали: «Ми втомилися». Передайте це зі зсувом are у минуле.",
+            "feedbackByLocale": {
+              "ru": "С they используем were, не was.",
+              "uk": "Із they використовуємо were, не was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — help",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — help",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i08:audio",
+          "transcript": "help"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-33:i08:r1",
+            "targetText": "help",
+            "meaningByLocale": {
+              "ru": "Помощь. Повторение знакомого слова.",
+              "uk": "Допомога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "help",
+          "definitionByLocale": {
+            "ru": "Помощь. Повторение знакомого слова.",
+            "uk": "Допомога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат учора сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Брат учора сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i09:audio",
+          "transcript": "He said he needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення про ключі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про ключі.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i10:audio",
+          "transcript": "She said the keys were in her bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said the keys were in her bag.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "the",
+          "keys",
+          "were",
+          "in",
+          "her",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра вчора сказала: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i11:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i11:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i11:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра вчора сказала: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра вчера сказала: «Мне нужна вода». Перескажите со сдвигом need в прошлое.",
+          "uk": "Сестра вчора сказала: «Мені потрібна вода». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ some water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-33:i11:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i11:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i11:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Сестра вчора сказала: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Сестра вчора сказала: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг в прошлое.",
+              "uk": "Needs не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Сестра вчора сказала: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма needed, не needing.",
+              "uk": "Тут потрібна форма needed, не needing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — late",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — late",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i12:audio",
+          "transcript": "late"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-33:i12:r1",
+            "targetText": "late",
+            "meaningByLocale": {
+              "ru": "Опоздавший; поздний. Повторение знакомого слова.",
+              "uk": "Той, хто запізнився; пізній. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "late",
+          "definitionByLocale": {
+            "ru": "Опоздавший; поздний. Повторение знакомого слова.",
+            "uk": "Той, хто запізнився; пізній. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i13:r1",
+          "text": "He said he was late."
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i13:r2",
+          "text": "He said he was early."
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i13:r3",
+          "text": "He said he was busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i13:audio",
+          "transcript": "He said he was late."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-33:i13:r1",
+            "targetText": "He said he was late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i13:r2",
+            "targetText": "He said he was early.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i13:r3",
+            "targetText": "He said he was busy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said he was late.",
+              "uk": "У записі звучить He said he was late."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said he was late.",
+              "uk": "У записі звучить He said he was late."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра вчора сказала: «Моя сумка важка». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Сестра вчора сказала: «Моя сумка важка». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i14:audio",
+          "transcript": "She said her bag was heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said her bag was heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брат учора сказав: «Мені потрібен квиток». Передайте це зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат учора сказав: «Мені потрібен квиток». Передайте це зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said he needed a ticket.",
+        "localizedMeaning": {
+          "ru": "Брат вчера сказал: «Мне нужен билет». Передайте это со сдвигом need в прошлое.",
+          "uk": "Брат учора сказав: «Мені потрібен квиток». Передайте це зі зсувом need у минуле."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "needed",
+          "a",
+          "ticket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра вчора сказала: «Моя куртка мокра». Передайте це зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i16:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i16:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра вчора сказала: «Моя куртка мокра». Передайте це зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра вчера сказала: «Моя куртка мокрая». Передайте это со сдвигом is в прошлое.",
+          "uk": "Сестра вчора сказала: «Моя куртка мокра». Передайте це зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said her jacket ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-33:i16:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i16:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Сестра вчора сказала: «Моя куртка мокра». Передайте це зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i16:r2",
+            "correct": false,
+            "testedDimension": "Сестра вчора сказала: «Моя куртка мокра». Передайте це зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг в прошлое.",
+              "uk": "Is не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i16:r3",
+            "correct": false,
+            "testedDimension": "Сестра вчора сказала: «Моя куртка мокра». Передайте це зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Одна jacket требует was, не were.",
+              "uk": "Одна jacket потребує was, не were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Батьки вчора сказали: «Нам потрібне таксі». Передайте це зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Батьки вчора сказали: «Нам потрібне таксі». Передайте це зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i17:audio",
+          "transcript": "They said they needed a taxi."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They said they needed a taxi.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: брат сказав, що йому потрібна допомога чи вода?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i18:r1",
+          "text": "He said he needed help."
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i18:r2",
+          "text": "He said he needed water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i18:audioA",
+        "en:lesson-30:session-33:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: брат сказав, що йому потрібна допомога чи вода?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He said he needed help.",
+        "contrastB": "He said he needed water.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-33:i18:audioA",
+          "transcript": "He said he needed help."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-33:i18:audioB",
+          "transcript": "He said he needed water."
+        },
+        "testedPhoneticContrast": "Послухайте: брат сказав, що йому потрібна допомога чи вода?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: брат сказав, що йому потрібна допомога чи вода?",
+            "feedbackByLocale": {
+              "ru": "Звучит help — помощь.",
+              "uk": "Звучить help — допомога."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення про батьків.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про батьків.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i19:audio",
+          "transcript": "They said they were outside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They said they were outside.",
+        "orderedTokens": [
+          "They",
+          "said",
+          "they",
+          "were",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат учора сказав: «Мені потрібен відпочинок». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-33:i20:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i20:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-30:session-33:i20:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат учора сказав: «Мені потрібен відпочинок». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат вчера сказал: «Мне нужен отдых». Перескажите со сдвигом need в прошлое.",
+          "uk": "Брат учора сказав: «Мені потрібен відпочинок». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ a rest.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-33:i20:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i20:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i20:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Брат учора сказав: «Мені потрібен відпочинок». Перекажіть зі зсувом need у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-33:i20:r2",
+            "correct": false,
+            "testedDimension": "Брат учора сказав: «Мені потрібен відпочинок». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг в прошлое.",
+              "uk": "Needs не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-33:i20:r3",
+            "correct": false,
+            "testedDimension": "Брат учора сказав: «Мені потрібен відпочинок». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма needed, не needing.",
+              "uk": "Тут потрібна форма needed, не needing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мама вчора сказала: «Поїзд уже тут». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-33:i21:audio"
+      ],
+      "accessibilityLabel": "Мама вчора сказала: «Поїзд уже тут». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-33:i21:audio",
+          "transcript": "She said the train was already here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the train was already here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ec594d0ce71474cefdb9bbf7b6a3f7efad594d5d2d3da63732ee4c79affb4e7c"
+}

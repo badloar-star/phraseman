@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i01:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-53:i01:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i02:r1",
+          "text": "The bag is heavy, so it might be full."
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i02:r2",
+          "text": "The bag is heavy, so it must be full."
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i02:r3",
+          "text": "The bag is heavy, so it can't be full."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i02:audio",
+          "transcript": "The bag is heavy, so it might be full."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-53:i02:r1",
+            "targetText": "The bag is heavy, so it might be full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i02:r2",
+            "targetText": "The bag is heavy, so it must be full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i02:r3",
+            "targetText": "The bag is heavy, so it can't be full.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag is heavy, so it might be full.",
+              "uk": "У записі звучить The bag is heavy, so it might be full."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag is heavy, so it might be full.",
+              "uk": "У записі звучить The bag is heavy, so it might be full."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная.",
+          "uk": "Ви піднімаєте закриту сумку з їжею й за вагою припускаєте, що вона повна. Сумка важка, тому вона, можливо, повна."
+        },
+        "gappedTargetPhrase": "The bag is heavy, so it might ___ full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-53:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bottle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bottle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i04:audio",
+          "transcript": "bottle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-53:i04:r1",
+            "targetText": "bottle",
+            "meaningByLocale": {
+              "ru": "Бутылка. Повторение знакомого слова.",
+              "uk": "Пляшка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottle",
+          "definitionByLocale": {
+            "ru": "Бутылка. Повторение знакомого слова.",
+            "uk": "Пляшка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Бутылка не может быть пустой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Бутылка не может быть пустой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bottle can't be empty.",
+        "localizedMeaning": {
+          "ru": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Бутылка не может быть пустой.",
+          "uk": "У прозорій пляшці видно воду. Анна помилково вважає її порожньою. Пляшка не може бути порожньою."
+        },
+        "orderedTokens": [
+          "The",
+          "bottle",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sandwich",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sandwich",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i06:audio",
+          "transcript": "sandwich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-53:i06:r1",
+            "targetText": "sandwich",
+            "meaningByLocale": {
+              "ru": "Бутерброд. Повторение знакомого слова.",
+              "uk": "Бутерброд. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sandwich",
+          "definitionByLocale": {
+            "ru": "Бутерброд. Повторение знакомого слова.",
+            "uk": "Бутерброд. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бутерброд, который я сделал, большой. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Бутерброд, который я сделал, большой. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i07:audio",
+          "transcript": "The sandwich I made is large."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sandwich I made is large.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i08:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i08:r2",
+          "text": "made it"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i08:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+          "uk": "Бутерброд, який я зробив, великий. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The sandwich I ___ is large.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-53:i08:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i08:r2",
+            "text": "made it"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i08:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма made.",
+              "uk": "Потрібна минула форма made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная. Начните с The bag is heavy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная. Начните с The bag is heavy.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag is heavy, so it might be full.",
+        "localizedMeaning": {
+          "ru": "Вы поднимаете закрытую сумку с едой и по весу предполагаете, что она полная. Сумка тяжёлая, поэтому она, возможно, полная. Начните с The bag is heavy.",
+          "uk": "Ви піднімаєте закриту сумку з їжею й за вагою припускаєте, що вона повна. Сумка важка, тому вона, можливо, повна. Почніть із The bag is heavy."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "is",
+          "heavy,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "full"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бутылка не может быть пустой. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бутылка не может быть пустой. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бутылка не может быть пустой. Выберите форму после can’t.",
+          "uk": "Пляшка не може бути порожньою. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The bottle can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-53:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Бутылка не может быть пустой. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Бутылка не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Бутылка не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — juice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — juice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i12:audio",
+          "transcript": "juice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-53:i12:r1",
+            "targetText": "juice",
+            "meaningByLocale": {
+              "ru": "Сок. Повторение знакомого слова.",
+              "uk": "Сік. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "juice",
+          "definitionByLocale": {
+            "ru": "Сок. Повторение знакомого слова.",
+            "uk": "Сік. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i13:r1",
+          "text": "The juice must be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i13:r2",
+          "text": "The juice may be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i13:r3",
+          "text": "The juice could be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i13:audio",
+          "transcript": "The juice must be cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-53:i13:r1",
+            "targetText": "The juice must be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i13:r2",
+            "targetText": "The juice may be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i13:r3",
+            "targetText": "The juice could be cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The juice must be cold.",
+              "uk": "У записі звучить The juice must be cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The juice must be cold.",
+              "uk": "У записі звучить The juice must be cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i14:audio",
+          "transcript": "The juice must be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The juice must be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the sandwich и уточнение I made. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the sandwich и уточнение I made. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the sandwich I made.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the sandwich и уточнение I made. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the sandwich й уточнення I made. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "sandwich",
+          "I",
+          "made"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка тяжёлая, поэтому она, возможно, полная. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка тяжёлая, поэтому она, возможно, полная. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка тяжёлая, поэтому она, возможно, полная. Соедините признак и предположение словом «поэтому».",
+          "uk": "Сумка важка, тому вона, можливо, повна. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The bag is heavy, ___ it might be full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-53:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Сумка тяжёлая, поэтому она, возможно, полная. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i16:r2",
+            "correct": false,
+            "testedDimension": "Сумка тяжёлая, поэтому она, возможно, полная. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i16:r3",
+            "correct": false,
+            "testedDimension": "Сумка тяжёлая, поэтому она, возможно, полная. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Сумка тяжёлая, поэтому она, возможно, полная. Ответьте, начиная с The bag is heavy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Сумка тяжёлая, поэтому она, возможно, полная. Ответьте, начиная с The bag is heavy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i17:audio",
+          "transcript": "The bag is heavy, so it might be full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag is heavy, so it might be full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i18:r1",
+          "text": "The bag is heavy, so it might be full."
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i18:r2",
+          "text": "The bag is heavy, so it must be full."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i18:audioA",
+        "en:lesson-32:session-53:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The bag is heavy, so it might be full.",
+        "contrastB": "The bag is heavy, so it must be full.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-53:i18:audioA",
+          "transcript": "The bag is heavy, so it might be full."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-53:i18:audioB",
+          "transcript": "The bag is heavy, so it must be full."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i19:audio",
+          "transcript": "The bottle can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bottle can't be empty.",
+        "orderedTokens": [
+          "The",
+          "bottle",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-53:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-53:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+          "uk": "Сік щойно дістали з холодильника, де він стояв із вечора. Сік, напевно, холодний."
+        },
+        "gappedTargetPhrase": "The juice must ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-53:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-53:i20:r2",
+            "correct": false,
+            "testedDimension": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-53:i20:r3",
+            "correct": false,
+            "testedDimension": "Сок только что достали из холодильника, где он стоял с вечера. Сок, должно быть, холодный.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-53:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сумка тяжёлая, поэтому она, возможно, полная. Назовите ту же возможность с could вместо might. Начните с The bag is heavy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-53:i21:audio"
+      ],
+      "accessibilityLabel": "Сумка тяжёлая, поэтому она, возможно, полная. Назовите ту же возможность с could вместо might. Начните с The bag is heavy.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-53:i21:audio",
+          "transcript": "The bag is heavy, so it could be full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag is heavy, so it could be full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fa54ba826da99198ce1f1c3f6a7b40f7389044d39706fd95a5b6e3f72777e746"
+}

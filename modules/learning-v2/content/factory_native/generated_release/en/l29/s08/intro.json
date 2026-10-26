@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "как описать звуки птиц и лягушек, уточнить, о ком речь, и договориться о возвращении домой.",
+    "uk": "як описати звуки птахів і жаб, уточнити, про кого йдеться, та домовитися про повернення додому."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто ухаживает за птицами",
+        "uk": "Хто доглядає птахів"
+      },
+      "bodyByLocale": {
+        "ru": "На прогулке ребёнок спрашивает, кто этот мужчина у пруда. Ответьте: He is the man who looks after the birds — это мужчина, который ухаживает за птицами. Соберите He is the man + who + looks after the birds. После the man добавьте who: дальше вы объясняете, о каком мужчине говорите. Who здесь выполняет роль действующего лица, поэтому ещё одно he после него не нужно.",
+        "uk": "На прогулянці дитина запитує, хто цей чоловік біля ставка. Дайте відповідь: He is the man who looks after the birds — це чоловік, який доглядає птахів. Складіть He is the man + who + looks after the birds. Після the man додайте who: далі ви пояснюєте, про якого чоловіка говорите. Who тут виконує роль діяча, тому ще одне he після нього не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-08:intro1:r1",
+              "text": "He is the man who looks after the birds."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro1:r2",
+              "text": "He is the man who he looks after the birds."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro1:r3",
+              "text": "He is the man who look after the birds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-08:intro1:r1",
+              "text": "He is the man who looks after the birds."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro1:r2",
+              "text": "He is the man who he looks after the birds."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro1:r3",
+              "text": "He is the man who look after the birds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто очистил пруд",
+        "uk": "Хто очистив ставок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает, что пруд стал чистым, и спрашивает, кто его очистил. Ответьте: The pond was cleaned by volunteers — пруд очистили волонтёры. Соберите The pond + was cleaned + by volunteers. Начните с пруда, затем поставьте was cleaned: с ним выполнили действие. После by назовите исполнителей — volunteers.",
+        "uk": "Друг помічає, що ставок став чистим, і запитує, хто його очистив. Дайте відповідь: The pond was cleaned by volunteers — ставок очистили волонтери. Складіть The pond + was cleaned + by volunteers. Почніть зі ставка, потім поставте was cleaned: з ним виконали дію. Після by назвіть виконавців — volunteers."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-08:intro2:r1",
+              "text": "The pond was cleaned by volunteers."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro2:r2",
+              "text": "The pond was cleaned from volunteers."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro2:r3",
+              "text": "The pond was clean by volunteers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-08:intro2:r1",
+              "text": "The pond was cleaned by volunteers."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro2:r2",
+              "text": "The pond was cleaned from volunteers."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro2:r3",
+              "text": "The pond was clean by volunteers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда идти домой",
+        "uk": "Коли йти додому"
+      },
+      "bodyByLocale": {
+        "ru": "Во время вечерней прогулки вы договариваетесь уйти, если стемнеет. Скажите: We will go home if it gets dark — мы пойдём домой, если стемнеет. Соберите We will go home + if it gets dark. Сначала назовите будущее действие: We will go home. Затем добавьте условие if it gets dark; после if здесь используем gets, без will. Когда условие стоит в конце, запятая между частями не нужна.",
+        "uk": "Під час вечірньої прогулянки ви домовляєтеся піти, якщо стемніє. Скажіть: We will go home if it gets dark — ми підемо додому, якщо стемніє. Складіть We will go home + if it gets dark. Спочатку назвіть майбутню дію: We will go home. Потім додайте умову if it gets dark; після if тут використовуємо gets, без will. Коли умова стоїть наприкінці, кома між частинами не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-08:intro3:r1",
+              "text": "We will go home if it gets dark."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro3:r2",
+              "text": "We will go home if it will get dark."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro3:r3",
+              "text": "We will go home if it getting dark."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-08:intro3:r1",
+              "text": "We will go home if it gets dark."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro3:r2",
+              "text": "We will go home if it will get dark."
+            },
+            {
+              "responseId": "en:lesson-29:session-08:intro3:r3",
+              "text": "We will go home if it getting dark."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a8bad7088bfb07b3e6a14e4139de499bc9089b462f3ad2fb8c34797fae34811f"
+}

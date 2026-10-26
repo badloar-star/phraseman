@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i01:audio",
+          "transcript": "room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-26:i01:r1",
+            "targetText": "room",
+            "meaningByLocale": {
+              "ru": "Комната, номер в гостинице. Повторение знакомого слова.",
+              "uk": "Кімната, номер у готелі. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room",
+          "definitionByLocale": {
+            "ru": "Комната, номер в гостинице. Повторение знакомого слова.",
+            "uk": "Кімната, номер у готелі. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i02:r1",
+          "text": "She said the room was ready."
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i02:r2",
+          "text": "She said the room was warm."
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i02:r3",
+          "text": "She said the room was quiet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i02:audio",
+          "transcript": "She said the room was ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-26:i02:r1",
+            "targetText": "She said the room was ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i02:r2",
+            "targetText": "She said the room was warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i02:r3",
+            "targetText": "She said the room was quiet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the room was ready.",
+              "uk": "У записі звучить She said the room was ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the room was ready.",
+              "uk": "У записі звучить She said the room was ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудница сообщила вам, что лифт работает. Выберите глагол перед me.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i03:r1",
+          "text": "told"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i03:r2",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i03:r3",
+          "text": "asked"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудница сообщила вам, что лифт работает. Выберите глагол перед me.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудница сообщила вам, что лифт работает. Выберите глагол перед me.",
+          "uk": "Працівниця повідомила вам, що ліфт працює. Виберіть дієслово перед me."
+        },
+        "gappedTargetPhrase": "She ___ me the lift was working.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-26:i03:r1",
+            "text": "told"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i03:r2",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i03:r3",
+            "text": "asked"
+          }
+        ],
+        "testedDimension": "Сотрудница сообщила вам, что лифт работает. Выберите глагол перед me.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Сотрудница сообщила вам, что лифт работает. Выберите глагол перед me.",
+            "feedbackByLocale": {
+              "ru": "После said нельзя поставить me напрямую.",
+              "uk": "Після said не можна поставити me безпосередньо."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Сотрудница сообщила вам, что лифт работает. Выберите глагол перед me.",
+            "feedbackByLocale": {
+              "ru": "Она сообщила факт, а не задала вопрос. Здесь told.",
+              "uk": "Вона повідомила факт, а не поставила запитання. Тут told."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — breakfast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — breakfast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i04:audio",
+          "transcript": "breakfast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-26:i04:r1",
+            "targetText": "breakfast",
+            "meaningByLocale": {
+              "ru": "Завтрак. Повторение знакомого слова.",
+              "uk": "Сніданок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breakfast",
+          "definitionByLocale": {
+            "ru": "Завтрак. Повторение знакомого слова.",
+            "uk": "Сніданок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сотрудница сообщила вам, что завтрак в семь. Перескажите это с указанием получателя.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Сотрудница сообщила вам, что завтрак в семь. Перескажите это с указанием получателя.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i05:audio",
+          "transcript": "She told me breakfast was at seven."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She told me breakfast was at seven.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сотрудник попросил вас назвать номер комнаты. Передайте просьбу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник попросил вас назвать номер комнаты. Передайте просьбу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He asked me for my room number.",
+        "localizedMeaning": {
+          "ru": "Сотрудник попросил вас назвать номер комнаты. Передайте просьбу.",
+          "uk": "Працівник попросив вас назвати номер кімнати. Передайте прохання."
+        },
+        "orderedTokens": [
+          "He",
+          "asked",
+          "me",
+          "for",
+          "my",
+          "room",
+          "number"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудница спросила, где ваш чемодан. Передайте вопрос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i07:r1",
+          "text": "my suitcase was"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i07:r2",
+          "text": "was my suitcase"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i07:r3",
+          "text": "my suitcase were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудница спросила, где ваш чемодан. Передайте вопрос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудница спросила, где ваш чемодан. Передайте вопрос.",
+          "uk": "Працівниця запитала, де ваша валіза. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-26:i07:r1",
+            "text": "my suitcase was"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i07:r2",
+            "text": "was my suitcase"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i07:r3",
+            "text": "my suitcase were"
+          }
+        ],
+        "testedDimension": "Сотрудница спросила, где ваш чемодан. Передайте вопрос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i07:r2",
+            "correct": false,
+            "testedDimension": "Сотрудница спросила, где ваш чемодан. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "В пересказе my suitcase идёт перед was.",
+              "uk": "У переказі my suitcase йде перед was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i07:r3",
+            "correct": false,
+            "testedDimension": "Сотрудница спросила, где ваш чемодан. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "Suitcase — один предмет; здесь was.",
+              "uk": "Suitcase — один предмет; тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — key",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — key",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i08:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-26:i08:r1",
+            "targetText": "key",
+            "meaningByLocale": {
+              "ru": "Ключ. Повторение знакомого слова.",
+              "uk": "Ключ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key",
+          "definitionByLocale": {
+            "ru": "Ключ. Повторение знакомого слова.",
+            "uk": "Ключ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ключ, который вам дала сотрудница, не подходит.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ключ, который вам дала сотрудница, не подходит.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i09:audio",
+          "transcript": "The key she gave me does not fit."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The key she gave me does not fit.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте просьбу подождать у двери.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте просьбу подождать у двери.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i10:audio",
+          "transcript": "She asked me to wait by the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked me to wait by the door.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "wait",
+          "by",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы попросили сотрудницу помочь вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i11:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i11:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i11:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попросили сотрудницу помочь вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили сотрудницу помочь вам.",
+          "uk": "Ви попросили працівницю допомогти вам."
+        },
+        "gappedTargetPhrase": "I asked ___ to help me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-26:i11:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i11:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i11:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Вы попросили сотрудницу помочь вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы попросили сотрудницу помочь вам.",
+            "feedbackByLocale": {
+              "ru": "После asked здесь нужна her.",
+              "uk": "Після asked тут потрібна her."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы попросили сотрудницу помочь вам.",
+            "feedbackByLocale": {
+              "ru": "Hers обозначает принадлежность; человека здесь обозначаем her.",
+              "uk": "Hers позначає належність; людину тут позначаємо her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i12:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-26:i12:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "Полотенце. Повторение знакомого слова.",
+              "uk": "Рушник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "Полотенце. Повторение знакомого слова.",
+            "uk": "Рушник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i13:r1",
+          "text": "I asked for a clean towel."
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i13:r2",
+          "text": "I asked for a clean cup."
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i13:r3",
+          "text": "I asked for a clean plate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i13:audio",
+          "transcript": "I asked for a clean towel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-26:i13:r1",
+            "targetText": "I asked for a clean towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i13:r2",
+            "targetText": "I asked for a clean cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i13:r3",
+            "targetText": "I asked for a clean plate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I asked for a clean towel.",
+              "uk": "У записі звучить I asked for a clean towel."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I asked for a clean towel.",
+              "uk": "У записі звучить I asked for a clean towel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг сообщил, что кровать удобная. Передайте сообщение без указания получателя.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Друг сообщил, что кровать удобная. Передайте сообщение без указания получателя.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i14:audio",
+          "transcript": "He said the bed was comfortable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the bed was comfortable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что полотенце, которое вы взяли, сухое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что полотенце, которое вы взяли, сухое.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The towel I took is dry.",
+        "localizedMeaning": {
+          "ru": "Скажите, что полотенце, которое вы взяли, сухое.",
+          "uk": "Скажіть, що рушник, який ви взяли, сухий."
+        },
+        "orderedTokens": [
+          "The",
+          "towel",
+          "I",
+          "took",
+          "is",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудница попросила вас не оставлять ключ снаружи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i16:r1",
+          "text": "not to leave"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i16:r2",
+          "text": "not leave"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i16:r3",
+          "text": "not leaving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудница попросила вас не оставлять ключ снаружи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудница попросила вас не оставлять ключ снаружи.",
+          "uk": "Працівниця попросила вас не залишати ключ надворі."
+        },
+        "gappedTargetPhrase": "She asked me ___ the key outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-26:i16:r1",
+            "text": "not to leave"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i16:r2",
+            "text": "not leave"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i16:r3",
+            "text": "not leaving"
+          }
+        ],
+        "testedDimension": "Сотрудница попросила вас не оставлять ключ снаружи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i16:r2",
+            "correct": false,
+            "testedDimension": "Сотрудница попросила вас не оставлять ключ снаружи.",
+            "feedbackByLocale": {
+              "ru": "Для отрицательной просьбы здесь нужно not to leave.",
+              "uk": "Для заперечного прохання тут потрібне not to leave."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i16:r3",
+            "correct": false,
+            "testedDimension": "Сотрудница попросила вас не оставлять ключ снаружи.",
+            "feedbackByLocale": {
+              "ru": "После asked me здесь используем not to leave.",
+              "uk": "Після asked me тут використовуємо not to leave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В номере шумно. Скажите, что хотели бы, чтобы он был тише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "В номере шумно. Скажите, что хотели бы, чтобы он был тише.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i17:audio",
+          "transcript": "I wish this room were quieter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish this room were quieter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: сотрудница сообщила время завтрака вам или вашему другу?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i18:r1",
+          "text": "She told him breakfast was at seven."
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i18:r2",
+          "text": "She told me breakfast was at seven."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i18:audioA",
+        "en:lesson-30:session-26:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: сотрудница сообщила время завтрака вам или вашему другу?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She told him breakfast was at seven.",
+        "contrastB": "She told me breakfast was at seven.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-26:i18:audioA",
+          "transcript": "She told him breakfast was at seven."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-26:i18:audioB",
+          "transcript": "She told me breakfast was at seven."
+        },
+        "testedPhoneticContrast": "Послушайте: сотрудница сообщила время завтрака вам или вашему другу?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: сотрудница сообщила время завтрака вам или вашему другу?",
+            "feedbackByLocale": {
+              "ru": "Звучит him — ему.",
+              "uk": "Звучить him — йому."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, о чём спросил сотрудник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, о чём спросил сотрудник.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i19:audio",
+          "transcript": "He asked if we needed help."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if we needed help.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "we",
+          "needed",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сотрудник сообщил вам с другом, что стол готов. Вставьте форму «нам».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-26:i20:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i20:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-26:i20:r3",
+          "text": "to us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник сообщил вам с другом, что стол готов. Вставьте форму «нам».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник сообщил вам с другом, что стол готов. Вставьте форму «нам».",
+          "uk": "Працівник повідомив вам із другом, що стіл готовий. Вставте форму «нам»."
+        },
+        "gappedTargetPhrase": "He told ___ the table was ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-26:i20:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i20:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i20:r3",
+            "text": "to us"
+          }
+        ],
+        "testedDimension": "Сотрудник сообщил вам с другом, что стол готов. Вставьте форму «нам».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-26:i20:r2",
+            "correct": false,
+            "testedDimension": "Сотрудник сообщил вам с другом, что стол готов. Вставьте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told получателя обозначаем us.",
+              "uk": "Після told одержувача позначаємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-26:i20:r3",
+            "correct": false,
+            "testedDimension": "Сотрудник сообщил вам с другом, что стол готов. Вставьте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told перед us не нужен to.",
+              "uk": "Після told перед us не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сотрудник попросил вас выбрать стол. Перескажите просьбу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-26:i21:audio"
+      ],
+      "accessibilityLabel": "Сотрудник попросил вас выбрать стол. Перескажите просьбу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-26:i21:audio",
+          "transcript": "He asked me to choose a table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to choose a table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "05f66b71e964b82240ca774299d79fbff6b9ac89e1855dbac82d0a3b3b9f168e"
+}

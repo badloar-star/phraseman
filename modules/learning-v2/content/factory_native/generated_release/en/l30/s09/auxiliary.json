@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-09:intro1:r2": {
+          "ru": "В пересказанном вопросе нужен порядок I lived без did.",
+          "uk": "У переказаному запитанні потрібен порядок I lived без did."
+        },
+        "en:lesson-30:session-09:intro1:r3": {
+          "ru": "Нужна форма lived, не living.",
+          "uk": "Потрібна форма lived, не living."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-09:intro2:r2": {
+          "ru": "Внутри пересказа нужен порядок I was, не was I.",
+          "uk": "Усередині переказу потрібен порядок I was, не was I."
+        },
+        "en:lesson-30:session-09:intro2:r3": {
+          "ru": "Здесь передаём состояние I was; это не желание с wish.",
+          "uk": "Тут передаємо стан I was; це не бажання з wish."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-09:intro3:r2": {
+          "ru": "Нужен порядок the station was.",
+          "uk": "Потрібен порядок the station was."
+        },
+        "en:lesson-30:session-09:intro3:r3": {
+          "ru": "С одной станцией здесь используем was.",
+          "uk": "З однією станцією тут використовуємо was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d518e043bf9a0567b22f6de6ce848e7288c737d1dfc5db199367591fa17d58ec"
+}

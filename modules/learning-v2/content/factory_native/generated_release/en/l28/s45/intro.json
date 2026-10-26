@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "как понять указания на кухне и рассказать, что уже приготовили.",
+    "uk": "як зрозуміти вказівки на кухні й розповісти, що вже приготували."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подготовить заранее",
+        "uk": "Підготувати заздалегідь"
+      },
+      "bodyByLocale": {
+        "ru": "Вы готовите ужин для гостей и хотите сделать соус утром. Уточните: Can the sauce be prepared in advance? — можно приготовить соус заранее? Соберите Can + the sauce + be prepared + in advance? Can поставьте перед названием соуса. Затем добавьте be и prepared, третью форму prepare. Соус не готовит сам: вы спрашиваете о действии над ним. In advance означает «заранее».",
+        "uk": "Ви готуєте вечерю для гостей і хочете зробити соус уранці. Уточніть: Can the sauce be prepared in advance? — чи можна приготувати соус заздалегідь? Складіть Can + the sauce + be prepared + in advance? Can поставте перед назвою соусу. Потім додайте be та prepared, третю форму prepare. Соус не готує сам: ви запитуєте про дію над ним. In advance означає «заздалегідь»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-45:intro1:r1",
+              "text": "Can the sauce be prepared in advance?"
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro1:r2",
+              "text": "Can the sauce prepared in advance?"
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro1:r3",
+              "text": "Can the sauce be prepare in advance?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-45:intro1:r1",
+              "text": "Can the sauce be prepared in advance?"
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro1:r2",
+              "text": "Can the sauce prepared in advance?"
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro1:r3",
+              "text": "Can the sauce be prepare in advance?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Овощи уже нарезаны",
+        "uk": "Овочі вже нарізані"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли помочь с ужином, но брат уже нарезал овощи. Расскажите: He had chopped the vegetables by the time I arrived — к моему приходу он уже нарезал овощи. Соберите He + had chopped + the vegetables + by the time + I arrived. Более раннее действие передайте через had и chopped. После by the time назовите момент, к которому оно завершилось: I arrived.",
+        "uk": "Ви прийшли допомогти з вечерею, але брат уже нарізав овочі. Розкажіть: He had chopped the vegetables by the time I arrived — на момент мого приходу він уже нарізав овочі. Складіть He + had chopped + the vegetables + by the time + I arrived. Раніше виконану дію передайте через had та chopped. Після by the time назвіть момент, до якого вона завершилася: I arrived."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-45:intro2:r1",
+              "text": "He had chopped the vegetables by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro2:r2",
+              "text": "He had chop the vegetables by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro2:r3",
+              "text": "He had chopping the vegetables by the time I arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-45:intro2:r1",
+              "text": "He had chopped the vegetables by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro2:r2",
+              "text": "He had chop the vegetables by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro2:r3",
+              "text": "He had chopping the vegetables by the time I arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто приготовил суп",
+        "uk": "Хто приготував суп"
+      },
+      "bodyByLocale": {
+        "ru": "Гость хвалит суп, который приготовил ваш брат. Ответьте: The soup was made by my brother — суп приготовил мой брат. Соберите The soup + was made + by my brother. Сначала назовите суп, затем поставьте was и made, третью форму make. После by назовите человека, который готовил: my brother. Так предложение начинается с блюда и заканчивается его автором.",
+        "uk": "Гість хвалить суп, який приготував ваш брат. Дайте відповідь: The soup was made by my brother — суп приготував мій брат. Складіть The soup + was made + by my brother. Спочатку назвіть суп, потім поставте was та made, третю форму make. Після by назвіть людину, яка готувала: my brother. Так речення починається зі страви й закінчується її автором."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-45:intro3:r1",
+              "text": "The soup was made by my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro3:r2",
+              "text": "The soup was made of my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro3:r3",
+              "text": "The soup was made my brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-45:intro3:r1",
+              "text": "The soup was made by my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro3:r2",
+              "text": "The soup was made of my brother."
+            },
+            {
+              "responseId": "en:lesson-28:session-45:intro3:r3",
+              "text": "The soup was made my brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0b2879b83b5ccc03dfaee301b133c712e4dee26a238af38636e1fc35e92942ce"
+}

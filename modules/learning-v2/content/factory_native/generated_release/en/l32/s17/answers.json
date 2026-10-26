@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-17:i01",
+    "correctText": "noise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i02",
+    "correctText": "The noise could wake Ben.",
+    "correctResponseId": "en:lesson-32:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i03",
+    "correctText": "wake",
+    "correctResponseId": "en:lesson-32:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i04",
+    "correctText": "wind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i05",
+    "correctText": "It could be the wind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i06",
+    "correctText": "kitchen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i07",
+    "correctText": "It could come from the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i08",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-32:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i09",
+    "correctText": "The noise could wake Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i10",
+    "correctText": "It could be the wind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i12",
+    "correctText": "window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i13",
+    "correctText": "The window could be open.",
+    "correctResponseId": "en:lesson-32:session-17:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i14",
+    "correctText": "The window could be open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i15",
+    "correctText": "It could come from the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i16",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-17:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i17",
+    "correctText": "The noise could wake Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i18",
+    "correctText": "The noise could wake Ben.",
+    "correctResponseId": "en:lesson-32:session-17:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i19",
+    "correctText": "It could be the wind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i20",
+    "correctText": "stop",
+    "correctResponseId": "en:lesson-32:session-17:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-17:i21",
+    "correctText": "Ben could be in the kitchen.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-19:intro1:r2": {
+          "ru": "Where уже связывает действие с кафе; there лишнее.",
+          "uk": "Where вже пов’язує дію з кафе; there зайве."
+        },
+        "en:lesson-29:session-19:intro1:r3": {
+          "ru": "Для места здесь нужно where.",
+          "uk": "Для місця тут потрібне where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-19:intro2:r2": {
+          "ru": "Who уже обозначает человека, he лишнее.",
+          "uk": "Who вже позначає людину, he зайве."
+        },
+        "en:lesson-29:session-19:intro2:r3": {
+          "ru": "Для человека здесь используем who.",
+          "uk": "Для людини тут використовуємо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-19:intro3:r2": {
+          "ru": "Принадлежность куртки показывает whose.",
+          "uk": "Належність куртки показує whose."
+        },
+        "en:lesson-29:session-19:intro3:r3": {
+          "ru": "Her после whose не добавляем.",
+          "uk": "Her після whose не додаємо."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc50ce985d35b72b5f8074646d077a93fe6630e1c5e61580f4dfebe447a42e2a"
+}

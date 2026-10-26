@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-52:intro1:r2": {
+          "ru": "Перед ordered нужна be.",
+          "uk": "Перед ordered потрібна be."
+        },
+        "en:lesson-28:session-52:intro1:r3": {
+          "ru": "После be нужна ordered.",
+          "uk": "Після be потрібна ordered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-52:intro2:r2": {
+          "ru": "Между will и delivered нужна be.",
+          "uk": "Між will та delivered потрібна be."
+        },
+        "en:lesson-28:session-52:intro2:r3": {
+          "ru": "После will be нужна delivered.",
+          "uk": "Після will be потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-52:intro3:r2": {
+          "ru": "С delivery здесь нужна is.",
+          "uk": "З delivery тут потрібна is."
+        },
+        "en:lesson-28:session-52:intro3:r3": {
+          "ru": "После is нужна included.",
+          "uk": "Після is потрібна included."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "76d2f713580a20bef85ca68ac55630db95185c5dc020193b34339f8d57a2452e"
+}

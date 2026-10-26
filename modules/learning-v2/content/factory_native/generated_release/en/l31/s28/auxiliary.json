@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-28:intro1:r2": {
+          "ru": "Перед целой частью they were too small нужен because без of.",
+          "uk": "Перед цілою частиною they were too small потрібне because без of."
+        },
+        "en:lesson-31:session-28:intro1:r3": {
+          "ru": "С they нужна форма were.",
+          "uk": "З they потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-28:intro2:r2": {
+          "ru": "После where порядок the receipt is.",
+          "uk": "Після where порядок the receipt is."
+        },
+        "en:lesson-31:session-28:intro2:r3": {
+          "ru": "Один receipt требует is.",
+          "uk": "Один receipt потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-28:intro3:r2": {
+          "ru": "С is здесь нужно isn’t.",
+          "uk": "З is тут потрібне isn’t."
+        },
+        "en:lesson-31:session-28:intro3:r3": {
+          "ru": "Один shop заменяем на it.",
+          "uk": "Один shop замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "58a4535cf8647243c8cfe9d98bab8fb441a341cb884bee91dbf0c3f71466e6c5"
+}

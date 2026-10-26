@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-02:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть меню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть меню.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i01:audio",
+          "transcript": "Could I see the menu, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I see the menu, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gnocchi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gnocchi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i02:audio",
+          "transcript": "gnocchi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-02:i02:r1",
+            "targetText": "gnocchi",
+            "meaningByLocale": {
+              "ru": "Ньокки. Маленькие клёцки, которые часто делают из картофеля с мукой и подают с соусом.",
+              "uk": "Ньокі. Маленькі галушки, які часто роблять із картоплі з борошном і подають із соусом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gnocchi",
+          "definitionByLocale": {
+            "ru": "Ньокки. Маленькие клёцки, которые часто делают из картофеля с мукой и подают с соусом.",
+            "uk": "Ньокі. Маленькі галушки, які часто роблять із картоплі з борошном і подають із соусом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Замовте ньокі з томатним соусом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Замовте ньокі з томатним соусом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like gnocchi with tomato sauce.",
+        "localizedMeaning": {
+          "ru": "Закажите ньокки с томатным соусом.",
+          "uk": "Замовте ньокі з томатним соусом."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "gnocchi",
+          "with",
+          "tomato",
+          "sauce"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що хочете страву без м’яса.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i04:r1",
+          "text": "contains"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i04:r2",
+          "text": "contain"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i04:r3",
+          "text": "containing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що хочете страву без м’яса.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что хотите блюдо без мяса.",
+          "uk": "Уточніть, що хочете страву без м’яса."
+        },
+        "gappedTargetPhrase": "I want a dish that ___ no meat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-02:i04:r1",
+            "text": "contains"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i04:r2",
+            "text": "contain"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i04:r3",
+            "text": "containing"
+          }
+        ],
+        "testedDimension": "Уточніть, що хочете страву без м’яса.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що хочете страву без м’яса.",
+            "feedbackByLocale": {
+              "ru": "К одному dish относится contains.",
+              "uk": "До одного dish належить contains."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що хочете страву без м’яса.",
+            "feedbackByLocale": {
+              "ru": "После that здесь нужна contains.",
+              "uk": "Після that тут потрібна contains."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i05:r1",
+          "text": "The bread was made by our chef."
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i05:r2",
+          "text": "The bread was made by my brother."
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i05:r3",
+          "text": "The cake was made by our chef."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i05:audio",
+          "transcript": "The bread was made by our chef."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-02:i05:r1",
+            "targetText": "The bread was made by our chef.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i05:r2",
+            "targetText": "The bread was made by my brother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i05:r3",
+            "targetText": "The cake was made by our chef.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread was made by our chef.",
+              "uk": "У записі звучить The bread was made by our chef."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread was made by our chef.",
+              "uk": "У записі звучить The bread was made by our chef."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — risotto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — risotto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i06:audio",
+          "transcript": "risotto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-02:i06:r1",
+            "targetText": "risotto",
+            "meaningByLocale": {
+              "ru": "Ризотто. Блюдо из риса, который готовят, постепенно добавляя жидкость; обычно оно получается мягким и кремообразным.",
+              "uk": "Ризото. Страва з рису, який готують, поступово додаючи рідину; зазвичай вона виходить м’якою та кремоподібною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "risotto",
+          "definitionByLocale": {
+            "ru": "Ризотто. Блюдо из риса, который готовят, постепенно добавляя жидкость; обычно оно получается мягким и кремообразным.",
+            "uk": "Ризото. Страва з рису, який готують, поступово додаючи рідину; зазвичай вона виходить м’якою та кремоподібною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи є гриби в ризото.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи є гриби в ризото.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i07:audio",
+          "transcript": "Does the risotto contain mushrooms?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does the risotto contain mushrooms?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який соус потрібний.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який соус потрібний.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i08:audio",
+          "transcript": "I need a sauce that contains no cream."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need a sauce that contains no cream.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "a",
+          "sauce",
+          "that",
+          "contains",
+          "no",
+          "cream"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що хліб приготував кухар кафе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i09:r2",
+          "text": "from"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що хліб приготував кухар кафе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что хлеб приготовил повар кафе.",
+          "uk": "Скажіть, що хліб приготував кухар кафе."
+        },
+        "gappedTargetPhrase": "The bread was made ___ our chef.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-02:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i09:r2",
+            "text": "from"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Скажіть, що хліб приготував кухар кафе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що хліб приготував кухар кафе.",
+            "feedbackByLocale": {
+              "ru": "Человека, выполнившего действие, вводит by.",
+              "uk": "Людину, яка виконала дію, позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що хліб приготував кухар кафе.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителя здесь нужна by.",
+              "uk": "Для виконавця тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — focaccia",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — focaccia",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i10:audio",
+          "transcript": "focaccia"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-02:i10:r1",
+            "targetText": "focaccia",
+            "meaningByLocale": {
+              "ru": "Фокачча. Плоский хлеб, который обычно пекут с оливковым маслом; сверху могут быть травы или другие добавки.",
+              "uk": "Фокача. Плаский хліб, який зазвичай печуть з оливковою олією; зверху можуть бути трави або інші додатки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "focaccia",
+          "definitionByLocale": {
+            "ru": "Фокачча. Плоский хлеб, который обычно пекут с оливковым маслом; сверху могут быть травы или другие добавки.",
+            "uk": "Фокача. Плаский хліб, який зазвичай печуть з оливковою олією; зверху можуть бути трави або інші додатки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть фокачу на двох.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Попросіть фокачу на двох.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i11:audio",
+          "transcript": "Could we have focaccia for two?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we have focaccia for two?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i12:r1",
+          "text": "The waiter who brought the menu is over there."
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i12:r2",
+          "text": "The waiter who brought the bread is over there."
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i12:r3",
+          "text": "The waiter who brought the menu is outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i12:audio",
+          "transcript": "The waiter who brought the menu is over there."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-02:i12:r1",
+            "targetText": "The waiter who brought the menu is over there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i12:r2",
+            "targetText": "The waiter who brought the bread is over there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i12:r3",
+            "targetText": "The waiter who brought the menu is outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The waiter who brought the menu is over there.",
+              "uk": "У записі звучить The waiter who brought the menu is over there."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The waiter who brought the menu is over there.",
+              "uk": "У записі звучить The waiter who brought the menu is over there."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запропонуйте замовити закуску, якщо друг голодний.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i13:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i13:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i13:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте замовити закуску, якщо друг голодний.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Предложите заказать закуску, если друг голоден.",
+          "uk": "Запропонуйте замовити закуску, якщо друг голодний."
+        },
+        "gappedTargetPhrase": "If you ___ hungry, I will order a starter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-02:i13:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i13:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i13:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Запропонуйте замовити закуску, якщо друг голодний.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i13:r2",
+            "correct": false,
+            "testedDimension": "Запропонуйте замовити закуску, якщо друг голодний.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if используем are, без will.",
+              "uk": "У цій умові після if використовуємо are, без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i13:r3",
+            "correct": false,
+            "testedDimension": "Запропонуйте замовити закуску, якщо друг голодний.",
+            "feedbackByLocale": {
+              "ru": "С you здесь нужна are.",
+              "uk": "З you тут потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — brioche",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — brioche",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i14:audio",
+          "transcript": "brioche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-02:i14:r1",
+            "targetText": "brioche",
+            "meaningByLocale": {
+              "ru": "Бриошь. Мягкая сдобная выпечка из теста, которое обычно содержит яйца и сливочное масло.",
+              "uk": "Бріош. М’яка здобна випічка з тіста, яке зазвичай містить яйця та вершкове масло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brioche",
+          "definitionByLocale": {
+            "ru": "Бриошь. Мягкая сдобная выпечка из теста, которое обычно содержит яйца и сливочное масло.",
+            "uk": "Бріош. М’яка здобна випічка з тіста, яке зазвичай містить яйця та вершкове масло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Замовте бріош із джемом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Замовте бріош із джемом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would like brioche with jam.",
+        "localizedMeaning": {
+          "ru": "Закажите бриошь с джемом.",
+          "uk": "Замовте бріош із джемом."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "brioche",
+          "with",
+          "jam"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви їжі з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви їжі з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-02:i16:p1",
+            "target": "gnocchi",
+            "meaningByLocale": {
+              "ru": "ньокки",
+              "uk": "ньокі"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-02:i16:p2",
+            "target": "risotto",
+            "meaningByLocale": {
+              "ru": "ризотто",
+              "uk": "ризото"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-02:i16:p3",
+            "target": "focaccia",
+            "meaningByLocale": {
+              "ru": "фокачча",
+              "uk": "фокача"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-02:i16:p4",
+            "target": "brioche",
+            "meaningByLocale": {
+              "ru": "бриошь",
+              "uk": "бріош"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gnocchi",
+          "risotto",
+          "focaccia",
+          "brioche"
+        ],
+        "rightColumn": [
+          "ньокі",
+          "ризото",
+          "фокача",
+          "бріош"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: соус містить вершки чи не містить?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i17:r1",
+          "text": "This sauce contains no cream."
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i17:r2",
+          "text": "This sauce contains cream."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i17:audioA",
+        "en:lesson-29:session-02:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: соус містить вершки чи не містить?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This sauce contains no cream.",
+        "contrastB": "This sauce contains cream.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-02:i17:audioA",
+          "transcript": "This sauce contains no cream."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-02:i17:audioB",
+          "transcript": "This sauce contains cream."
+        },
+        "testedPhoneticContrast": "Послухайте: соус містить вершки чи не містить?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: соус містить вершки чи не містить?",
+            "feedbackByLocale": {
+              "ru": "В записи no cream — без сливок.",
+              "uk": "У записі no cream — без вершків."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте поділити одну порцію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i18:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте поділити одну порцію.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i18:audio",
+          "transcript": "Shall we share one portion?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we share one portion?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, який офіціант стоїть поруч: той, який приніс меню.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-02:i19:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i19:r2",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-02:i19:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, який офіціант стоїть поруч: той, який приніс меню.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, какой официант стоит рядом: тот, который принёс меню.",
+          "uk": "Уточніть, який офіціант стоїть поруч: той, який приніс меню."
+        },
+        "gappedTargetPhrase": "The waiter ___ brought the menu is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-02:i19:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i19:r2",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i19:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Уточніть, який офіціант стоїть поруч: той, який приніс меню.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-02:i19:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, який офіціант стоїть поруч: той, який приніс меню.",
+            "feedbackByLocale": {
+              "ru": "О человеке говорим who.",
+              "uk": "Про людину кажемо who."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-02:i19:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, який офіціант стоїть поруч: той, який приніс меню.",
+            "feedbackByLocale": {
+              "ru": "После the waiter здесь нужна who.",
+              "uk": "Після the waiter тут потрібна who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте умову замовлення десерту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте умову замовлення десерту.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i20:audio",
+          "transcript": "I will order dessert if I am still hungry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will order dessert if I am still hungry.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "order",
+          "dessert",
+          "if",
+          "I",
+          "am",
+          "still",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-02:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть принести рахунок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-02:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть принести рахунок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-02:i21:audio",
+          "transcript": "Could we have the bill, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we have the bill, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "65cfb6c500c864caffb20e431bfa002bf01dff616d2b9bce72e547087d7a8e82"
+}

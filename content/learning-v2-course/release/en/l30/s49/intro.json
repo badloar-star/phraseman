@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "передавать слова и просьбы подруги и выражать желание о настоящем.",
+    "uk": "передавати слова й прохання подруги та виражати бажання про теперішнє."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подруга сказала о пляже",
+        "uk": "Подруга сказала про пляж"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера подруга сказала: «Пляж переполнен». Перескажите со сдвигом времени: She said the beach was crowded — она сказала, что на пляже много людей. Соберите She + said + the beach + was crowded. В исходных словах The beach is crowded форма is сдвигается в was после said.",
+        "uk": "Учора подруга сказала: «Пляж переповнений». Перекажіть зі зсувом часу: She said the beach was crowded — вона сказала, що на пляжі багато людей. Складіть She + said + the beach + was crowded. У початкових словах The beach is crowded форма is зсувається у was після said."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-49:intro1:r1",
+              "text": "She said the beach was crowded."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro1:r2",
+              "text": "She said the beach is crowded."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro1:r3",
+              "text": "She said the beach be crowded."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-49:intro1:r1",
+              "text": "She said the beach was crowded."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro1:r2",
+              "text": "She said the beach is crowded."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro1:r3",
+              "text": "She said the beach be crowded."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Просьба принести полотенце",
+        "uk": "Прохання принести рушник"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга попросила вас принести её полотенце. Передайте просьбу: She asked me to bring her towel — она попросила меня принести её полотенце. Соберите She + asked + me + to bring her towel. Me обозначает вас, а her towel — полотенце подруги. Действие вводим через to bring.",
+        "uk": "Подруга попросила вас принести її рушник. Передайте прохання: She asked me to bring her towel — вона попросила мене принести її рушник. Складіть She + asked + me + to bring her towel. Me позначає вас, а her towel — рушник подруги. Дію вводимо через to bring."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-49:intro2:r1",
+              "text": "She asked me to bring her towel."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro2:r2",
+              "text": "She asked I to bring her towel."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro2:r3",
+              "text": "She asked me bring her towel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-49:intro2:r1",
+              "text": "She asked me to bring her towel."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro2:r2",
+              "text": "She asked I to bring her towel."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro2:r3",
+              "text": "She asked me bring her towel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Море слишком холодное",
+        "uk": "Море надто холодне"
+      },
+      "bodyByLocale": {
+        "ru": "Вы подошли к воде: море холодное. Хотелось бы, чтобы оно было теплее сейчас: I wish the sea were warmer — жаль, что море не теплее. Соберите I + wish + the sea + were warmer. После wish форма were warmer выражает желание о настоящем, а не рассказ о вчерашней погоде.",
+        "uk": "Ви підійшли до води: море холодне. Хотілося б, щоб воно було теплішим зараз: I wish the sea were warmer — шкода, що море не тепліше. Складіть I + wish + the sea + were warmer. Після wish форма were warmer виражає бажання про теперішнє, а не розповідь про вчорашню погоду."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-49:intro3:r1",
+              "text": "I wish the sea were warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro3:r2",
+              "text": "I wish the sea is warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro3:r3",
+              "text": "I wish the sea be warmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-49:intro3:r1",
+              "text": "I wish the sea were warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro3:r2",
+              "text": "I wish the sea is warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-49:intro3:r3",
+              "text": "I wish the sea be warmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4b0101b44b3804c818de7b01ddc5a85464307bb426a9c9b3647bda2179968971"
+}

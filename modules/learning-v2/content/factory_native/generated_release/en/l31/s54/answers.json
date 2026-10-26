@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-54:i01",
+    "correctText": "chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i02",
+    "correctText": "The chair was fixed by Ben.",
+    "correctResponseId": "en:lesson-31:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i03",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i04",
+    "correctText": "leg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i05",
+    "correctText": "I know that one leg is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i06",
+    "correctText": "glue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i07",
+    "correctText": "Ben needs glue to fix the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i09",
+    "correctText": "The chair was broken, so I sat on the sofa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i10",
+    "correctText": "Could you tell me where the glue is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i11",
+    "correctText": "use",
+    "correctResponseId": "en:lesson-31:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i12",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i13",
+    "correctText": "I know that the glue is on the floor.",
+    "correctResponseId": "en:lesson-31:session-54:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i14",
+    "correctText": "Ben said the chairs were ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i15",
+    "correctText": "The chair was fixed and therefore we could use it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-31:session-54:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i17",
+    "correctText": "Ben fixed the chair although he was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i18",
+    "correctText": "The chair was broken, so I sat on the sofa.",
+    "correctResponseId": "en:lesson-31:session-54:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i19",
+    "correctText": "The chair was fixed and therefore we could use it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-54:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-54:i21",
+    "correctText": "I understand why Ben brought the glue.",
+    "correctResponseId": null
+  }
+]

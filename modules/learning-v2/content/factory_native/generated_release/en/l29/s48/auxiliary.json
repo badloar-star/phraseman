@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-48:intro1:r2": {
+          "ru": "It повторяет уже названную заколку.",
+          "uk": "It повторює вже названу шпильку."
+        },
+        "en:lesson-29:session-48:intro1:r3": {
+          "ru": "Покупатель обозначается словом I.",
+          "uk": "Покупця позначаємо словом I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-48:intro2:r2": {
+          "ru": "Принадлежность обозначаем через whose comb.",
+          "uk": "Належність позначаємо через whose comb."
+        },
+        "en:lesson-29:session-48:intro2:r3": {
+          "ru": "Her после whose лишнее.",
+          "uk": "Her після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-48:intro3:r2": {
+          "ru": "В уточнении нужен порядок I bought it.",
+          "uk": "В уточненні потрібен порядок I bought it."
+        },
+        "en:lesson-29:session-48:intro3:r3": {
+          "ru": "Для места покупки нужно where.",
+          "uk": "Для місця купівлі потрібне where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "135244df899995e4412ff68fd9b1b9f9c12a055bab914d24c18fb85b97d7f6d8"
+}

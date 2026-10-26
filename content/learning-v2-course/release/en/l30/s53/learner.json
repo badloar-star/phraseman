@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — watch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — watch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i01:audio",
+          "transcript": "watch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-53:i01:r1",
+            "targetText": "watch",
+            "meaningByLocale": {
+              "ru": "Наручные часы. Повторение знакомого слова.",
+              "uk": "Наручний годинник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watch",
+          "definitionByLocale": {
+            "ru": "Наручные часы. Повторение знакомого слова.",
+            "uk": "Наручний годинник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i02:r1",
+          "text": "He asked if my watch worked."
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i02:r2",
+          "text": "He asked if my phone worked."
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i02:r3",
+          "text": "He asked if my clock worked."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i02:audio",
+          "transcript": "He asked if my watch worked."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-53:i02:r1",
+            "targetText": "He asked if my watch worked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i02:r2",
+            "targetText": "He asked if my phone worked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i02:r3",
+            "targetText": "He asked if my clock worked.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if my watch worked.",
+              "uk": "У записі звучить He asked if my watch worked."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if my watch worked.",
+              "uk": "У записі звучить He asked if my watch worked."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера мастер сказал: «Я занят». Перескажите со сдвигом am в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера мастер сказал: «Я занят». Перескажите со сдвигом am в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мастер сказал: «Я занят». Перескажите со сдвигом am в прошлое.",
+          "uk": "Учора майстер сказав: «Я зайнятий». Перекажіть зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-53:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера мастер сказал: «Я занят». Перескажите со сдвигом am в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера мастер сказал: «Я занят». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера мастер сказал: «Я занят». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — battery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — battery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i04:audio",
+          "transcript": "battery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-53:i04:r1",
+            "targetText": "battery",
+            "meaningByLocale": {
+              "ru": "Батарейка. Повторение знакомого слова.",
+              "uk": "Батарейка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "battery",
+          "definitionByLocale": {
+            "ru": "Батарейка. Повторение знакомого слова.",
+            "uk": "Батарейка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы попросили мастера заменить батарейку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попросили мастера заменить батарейку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I asked him to change the battery.",
+        "localizedMeaning": {
+          "ru": "Вы попросили мастера заменить батарейку.",
+          "uk": "Ви попросили майстра замінити батарейку."
+        },
+        "orderedTokens": [
+          "I",
+          "asked",
+          "him",
+          "to",
+          "change",
+          "the",
+          "battery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Часы, которые мастер починил, ваши. Скажите от своего лица.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Часы, которые мастер починил, ваши. Скажите от своего лица.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i06:audio",
+          "transcript": "The watch he fixed is mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The watch he fixed is mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер попросил вас подождать.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i07:r1",
+          "text": "me"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i07:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i07:r3",
+          "text": "my"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер попросил вас подождать.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер попросил вас подождать.",
+          "uk": "Майстер попросив вас зачекати."
+        },
+        "gappedTargetPhrase": "He asked ___ to wait.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-53:i07:r1",
+            "text": "me"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i07:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i07:r3",
+            "text": "my"
+          }
+        ],
+        "testedDimension": "Мастер попросил вас подождать.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i07:r2",
+            "correct": false,
+            "testedDimension": "Мастер попросил вас подождать.",
+            "feedbackByLocale": {
+              "ru": "После asked используем me.",
+              "uk": "Після asked використовуємо me."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i07:r3",
+            "correct": false,
+            "testedDimension": "Мастер попросил вас подождать.",
+            "feedbackByLocale": {
+              "ru": "My означает «мой»; здесь me.",
+              "uk": "My означає «мій»; тут me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — receipt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — receipt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i08:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-53:i08:r1",
+            "targetText": "receipt",
+            "meaningByLocale": {
+              "ru": "Чек. Повторение знакомого слова.",
+              "uk": "Чек. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receipt",
+          "definitionByLocale": {
+            "ru": "Чек. Повторение знакомого слова.",
+            "uk": "Чек. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мастер попросил вас сохранить чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Мастер попросил вас сохранить чек.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i09:audio",
+          "transcript": "He asked me to keep the receipt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to keep the receipt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте сообщение мастера.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение мастера.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i10:audio",
+          "transcript": "He told me the watch was ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He told me the watch was ready.",
+        "orderedTokens": [
+          "He",
+          "told",
+          "me",
+          "the",
+          "watch",
+          "was",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер сообщил вам, что батарейка старая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i11:r1",
+          "text": "me"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i11:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i11:r3",
+          "text": "to me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер сообщил вам, что батарейка старая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер сообщил вам, что батарейка старая.",
+          "uk": "Майстер повідомив вам, що батарейка стара."
+        },
+        "gappedTargetPhrase": "He told ___ the battery was old.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-53:i11:r1",
+            "text": "me"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i11:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i11:r3",
+            "text": "to me"
+          }
+        ],
+        "testedDimension": "Мастер сообщил вам, что батарейка старая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Мастер сообщил вам, что батарейка старая.",
+            "feedbackByLocale": {
+              "ru": "После told используем me.",
+              "uk": "Після told використовуємо me."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Мастер сообщил вам, что батарейка старая.",
+            "feedbackByLocale": {
+              "ru": "После told перед me не ставим to.",
+              "uk": "Після told перед me не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i12:audio",
+          "transcript": "shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-53:i12:r1",
+            "targetText": "shop",
+            "meaningByLocale": {
+              "ru": "Магазин. Повторение знакомого слова.",
+              "uk": "Магазин. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shop",
+          "definitionByLocale": {
+            "ru": "Магазин. Повторение знакомого слова.",
+            "uk": "Магазин. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i13:r1",
+          "text": "He said the shop was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i13:r2",
+          "text": "He said the shop was closed."
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i13:r3",
+          "text": "He said the shop was busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i13:audio",
+          "transcript": "He said the shop was open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-53:i13:r1",
+            "targetText": "He said the shop was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i13:r2",
+            "targetText": "He said the shop was closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i13:r3",
+            "targetText": "He said the shop was busy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the shop was open.",
+              "uk": "У записі звучить He said the shop was open."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the shop was open.",
+              "uk": "У записі звучить He said the shop was open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Магазин с мастерской далеко. Хотелось бы, чтобы он был ближе сейчас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Магазин с мастерской далеко. Хотелось бы, чтобы он был ближе сейчас.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i14:audio",
+          "transcript": "I wish the shop were closer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the shop were closer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Часы, которые вы принесли, чёрные.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Часы, которые вы принесли, чёрные.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The watch I brought is black.",
+        "localizedMeaning": {
+          "ru": "Часы, которые вы принесли, чёрные.",
+          "uk": "Годинник, який ви принесли, чорний."
+        },
+        "orderedTokens": [
+          "The",
+          "watch",
+          "I",
+          "brought",
+          "is",
+          "black"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер попросил вас пока не трогать часы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i16:r1",
+          "text": "not to touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i16:r2",
+          "text": "not touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i16:r3",
+          "text": "not touching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер попросил вас пока не трогать часы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер попросил вас пока не трогать часы.",
+          "uk": "Майстер попросив вас поки не торкатися годинника."
+        },
+        "gappedTargetPhrase": "He asked me ___ the watch yet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-53:i16:r1",
+            "text": "not to touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i16:r2",
+            "text": "not touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i16:r3",
+            "text": "not touching"
+          }
+        ],
+        "testedDimension": "Мастер попросил вас пока не трогать часы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i16:r2",
+            "correct": false,
+            "testedDimension": "Мастер попросил вас пока не трогать часы.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to touch.",
+              "uk": "Заперечне прохання передаємо через not to touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i16:r3",
+            "correct": false,
+            "testedDimension": "Мастер попросил вас пока не трогать часы.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно not to touch.",
+              "uk": "Тут потрібне not to touch."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера мастер сказал: «Мне нужно больше времени». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Вчера мастер сказал: «Мне нужно больше времени». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i17:audio",
+          "transcript": "He said he needed more time."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed more time.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы попросили мастера или мастер попросил вас?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i18:r1",
+          "text": "I asked him to wait."
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i18:r2",
+          "text": "He asked me to wait."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i18:audioA",
+        "en:lesson-30:session-53:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы попросили мастера или мастер попросил вас?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I asked him to wait.",
+        "contrastB": "He asked me to wait.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-53:i18:audioA",
+          "transcript": "I asked him to wait."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-53:i18:audioB",
+          "transcript": "He asked me to wait."
+        },
+        "testedPhoneticContrast": "Послушайте: вы попросили мастера или мастер попросил вас?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы попросили мастера или мастер попросил вас?",
+            "feedbackByLocale": {
+              "ru": "Звучит I asked him — я попросил его.",
+              "uk": "Звучить I asked him — я попросив його."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос мастера.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос мастера.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i19:audio",
+          "transcript": "He asked if I wanted the old battery."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if I wanted the old battery.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "wanted",
+          "the",
+          "old",
+          "battery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер спросил, где ваш чек.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-53:i20:r1",
+          "text": "my receipt was"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i20:r2",
+          "text": "was my receipt"
+        },
+        {
+          "responseId": "en:lesson-30:session-53:i20:r3",
+          "text": "my receipt were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер спросил, где ваш чек.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер спросил, где ваш чек.",
+          "uk": "Майстер запитав, де ваш чек."
+        },
+        "gappedTargetPhrase": "He asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-53:i20:r1",
+            "text": "my receipt was"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i20:r2",
+            "text": "was my receipt"
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i20:r3",
+            "text": "my receipt were"
+          }
+        ],
+        "testedDimension": "Мастер спросил, где ваш чек.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-53:i20:r2",
+            "correct": false,
+            "testedDimension": "Мастер спросил, где ваш чек.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок my receipt was.",
+              "uk": "У переказі потрібен порядок my receipt was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-53:i20:r3",
+            "correct": false,
+            "testedDimension": "Мастер спросил, где ваш чек.",
+            "feedbackByLocale": {
+              "ru": "Один receipt требует was.",
+              "uk": "Один receipt потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-53:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы сообщили мастеру, что часы для вашего папы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-53:i21:audio"
+      ],
+      "accessibilityLabel": "Вы сообщили мастеру, что часы для вашего папы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-53:i21:audio",
+          "transcript": "I told him the watch was for my father."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I told him the watch was for my father.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7995fe7102926380de3f4d5dd5cf785ed205ff0a72b15ff00f559f71a2bb9235"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-12:intro1:r2": {
+          "ru": "С одной book нужна was.",
+          "uk": "З однією book потрібна was."
+        },
+        "en:lesson-28:session-12:intro1:r3": {
+          "ru": "После was здесь нужна delivered.",
+          "uk": "Після was тут потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-12:intro2:r2": {
+          "ru": "С Books нужна are.",
+          "uk": "З Books потрібна are."
+        },
+        "en:lesson-28:session-12:intro2:r3": {
+          "ru": "В этой конструкции используем are wrapped.",
+          "uk": "У цій конструкції використовуємо are wrapped."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-12:intro3:r2": {
+          "ru": "После had нужна arrived.",
+          "uk": "Після had потрібна arrived."
+        },
+        "en:lesson-28:session-12:intro3:r3": {
+          "ru": "Вчерашний приход: got there.",
+          "uk": "Учорашній прихід: got there."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a3bb66a180470dd48f10b1c26c3256890a99e3c46a71453386a5617fb923ce94"
+}

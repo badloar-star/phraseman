@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-25:intro1:r2": {
+          "ru": "Перед целой частью I was tired ставим because без of.",
+          "uk": "Перед цілою частиною I was tired ставимо because без of."
+        },
+        "en:lesson-31:session-25:intro1:r3": {
+          "ru": "Для состояния в прошлом нужно was tired.",
+          "uk": "Для стану в минулому потрібне was tired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-25:intro2:r2": {
+          "ru": "Перед the rain нужно because of.",
+          "uk": "Перед the rain потрібне because of."
+        },
+        "en:lesson-31:session-25:intro2:r3": {
+          "ru": "После because of здесь называем причину: the rain.",
+          "uk": "Після because of тут називаємо причину: the rain."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-25:intro3:r2": {
+          "ru": "Перед the bus was late нужен because без of.",
+          "uk": "Перед the bus was late потрібне because без of."
+        },
+        "en:lesson-31:session-25:intro3:r3": {
+          "ru": "Один bus требует was.",
+          "uk": "Один bus потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43f0e41db0f00061a1e5072422185d5a53e2779d7a84f2171e843cf3be4f2296"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-27:intro1:r2": {
+          "ru": "Who уже обозначает автора, she лишнее.",
+          "uk": "Who вже позначає авторку, she зайве."
+        },
+        "en:lesson-29:session-27:intro1:r3": {
+          "ru": "О человеке здесь говорим who.",
+          "uk": "Про людину тут кажемо who."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-27:intro2:r2": {
+          "ru": "Which уже обозначает выбранную картину, it лишнее.",
+          "uk": "Which вже позначає вибрану картину, it зайве."
+        },
+        "en:lesson-29:session-27:intro2:r3": {
+          "ru": "Выбирали вы: нужен исполнитель I.",
+          "uk": "Вибирали ви: потрібен виконавець I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-27:intro3:r2": {
+          "ru": "Where уже обозначает место, there лишнее.",
+          "uk": "Where вже позначає місце, there зайве."
+        },
+        "en:lesson-29:session-27:intro3:r3": {
+          "ru": "Для комнаты как места нужно where.",
+          "uk": "Для кімнати як місця потрібне where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "281b99bd1e98d5f5b8dfdce8d51b21d0e76c25fa9a6ab151541b62c584503b58"
+}

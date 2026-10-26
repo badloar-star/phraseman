@@ -15,8 +15,8 @@
         "uk": "Де холодно"
       },
       "bodyByLocale": {
-        "ru": "Управляющий ведёт вас на общую кухню и показывает, где хранится замороженная еда. Это большой белый шкаф, в котором продукты держат при сильном холоде. freezer — «морозильник». Он стоит у шкафчика: The freezer is next to the cupboard — «Морозильник стоит рядом со шкафчиком».",
-        "uk": "Управитель веде вас на спільну кухню й показує, де зберігається заморожена їжа. Це велика біла шафа, у якій продукти тримають за сильного холоду. freezer — «морозильник». Він стоїть біля шафки: The freezer is next to the cupboard — «Морозильник стоїть поруч із шафкою»."
+        "ru": "На общей кухне управляющий показывает морозильник рядом со шкафчиком. Freezer — «морозильник». The freezer is next to the cupboard — «Морозильник рядом со шкафчиком». Сначала называем предмет — the freezer, затем ставим is и указываем место — next to the cupboard. Next to означает «рядом с».",
+        "uk": "На спільній кухні управитель показує морозильник поруч із шафкою. Freezer — «морозильник». The freezer is next to the cupboard — «Морозильник поруч із шафкою». Спочатку називаємо предмет — the freezer, потім ставимо is і вказуємо місце — next to the cupboard. Next to означає «поруч із»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-44:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Кімната для запасів"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете, куда убрать запасные лампочки и вёдра. Управляющий открывает небольшую комнату без окон, где держат всякие запасы. storeroom — «кладовая». Она зажата с двух сторон: There is a storeroom between the kitchen and the hall — «Между кухней и холлом есть кладовая».",
-        "uk": "Ви шукаєте, куди прибрати запасні лампочки й відра. Управитель відчиняє невелику кімнату без вікон, де тримають усілякі запаси. storeroom — «комора». Вона затиснута з двох боків: There is a storeroom between the kitchen and the hall — «Між кухнею й холом є комора»."
+        "ru": "Вы ищете комнату для запасных лампочек и вёдер. Управляющий показывает кладовую между кухней и холлом. Storeroom — «кладовая». There is a storeroom between the kitchen and the hall — «Между кухней и холлом есть кладовая». Начинаем с There is, называем кладовую — a storeroom, затем ставим between и два ориентира, соединённые and: the kitchen and the hall.",
+        "uk": "Ви шукаєте кімнату для запасних лампочок і відер. Управитель показує комору між кухнею й холом. Storeroom — «комора». There is a storeroom between the kitchen and the hall — «Між кухнею й холом є комора». Починаємо з There is, називаємо комору — a storeroom, потім ставимо between і два орієнтири, поєднані and: the kitchen and the hall."
       },
       "question": {
         "interactionId": "en:lesson-04:session-44:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Мокрі куртки"
       },
       "bodyByLocale": {
-        "ru": "В холле у входа мокрые куртки лежат на стуле. Подруга показывает высокую подставку на ножке с крючками, куда их вешают. coat rack — «вешалка для одежды». Она стоит у двери, но с другой стороны: The coat rack is behind the door — «Вешалка за дверью».",
-        "uk": "У холі біля входу мокрі куртки лежать на стільці. Подруга показує високу підставку на ніжці з гачками, куди їх вішають. coat rack — «вішак для одягу». Вона стоїть біля дверей, але з іншого боку: The coat rack is behind the door — «Вішак за дверима»."
+        "ru": "Подруга ищет, куда повесить мокрую куртку. Вы замечаете вешалку за открытой дверью. Coat rack — «вешалка для одежды». The coat rack is behind the door — «Вешалка за дверью». Называем предмет — the coat rack, затем ставим is и место — behind the door. Behind означает «за», по другую сторону двери.",
+        "uk": "Подруга шукає, куди повісити мокру куртку. Ви помічаєте вішак за відчиненими дверима. Coat rack — «вішак для одягу». The coat rack is behind the door — «Вішак за дверима». Називаємо предмет — the coat rack, потім ставимо is і місце — behind the door. Behind означає «за», по інший бік дверей."
       },
       "question": {
         "interactionId": "en:lesson-04:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5d3fbdde28bdacaca20b222b5aba31ad824f06c13e003059ae40d82ab9a15b3e"
+  "introFingerprint": "5d1af6b06df5125fd665ed672086da75a3b586a834db54b303e3e31763537cad"
 }

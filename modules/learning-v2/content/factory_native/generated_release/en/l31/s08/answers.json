@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-08:i01",
+    "correctText": "pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i02",
+    "correctText": "Do you know if the pool is open?",
+    "correctResponseId": "en:lesson-31:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i03",
+    "correctText": "the changing room is",
+    "correctResponseId": "en:lesson-31:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i04",
+    "correctText": "towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i05",
+    "correctText": "My towel was found by Tim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i06",
+    "correctText": "Could you tell me when the pool closes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-08:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i08",
+    "correctText": "locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i09",
+    "correctText": "Do you know where my locker is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i10",
+    "correctText": "The locker was opened by Tim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i12",
+    "correctText": "shower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i13",
+    "correctText": "Could you tell me where the shower is?",
+    "correctResponseId": "en:lesson-31:session-08:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i14",
+    "correctText": "He said the lockers were free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i15",
+    "correctText": "Do you know if the shower is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i16",
+    "correctText": "my towel is",
+    "correctResponseId": "en:lesson-31:session-08:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i17",
+    "correctText": "The shower was cleaned by Tim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i18",
+    "correctText": "Could you tell me when the pool closes?",
+    "correctResponseId": "en:lesson-31:session-08:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i19",
+    "correctText": "Do you know if the locker is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i20",
+    "correctText": "opens",
+    "correctResponseId": "en:lesson-31:session-08:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-08:i21",
+    "correctText": "He said he needed help.",
+    "correctResponseId": null
+  }
+]

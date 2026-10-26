@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте сестре слова друга: вчера он сказал, что устал.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте сестре слова друга: вчера он сказал, что устал.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said that he was tired.",
+        "localizedMeaning": {
+          "ru": "Передайте сестре слова друга: вчера он сказал, что устал.",
+          "uk": "Передайте сестрі слова друга: учора він сказав, що втомився."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "that",
+          "he",
+          "was",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — elated",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — elated",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i02:audio",
+          "transcript": "elated"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-01:i02:r1",
+            "targetText": "elated",
+            "meaningByLocale": {
+              "ru": "Ликующий, очень обрадованный. О сильной радости, например после хорошей новости или успеха.",
+              "uk": "Сповнений радості, піднесений. Про сильну радість, наприклад після доброї новини чи успіху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elated",
+          "definitionByLocale": {
+            "ru": "Ликующий, очень обрадованный. О сильной радости, например после хорошей новости или успеха.",
+            "uk": "Сповнений радості, піднесений. Про сильну радість, наприклад після доброї новини чи успіху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i03:r1",
+          "text": "She said she was elated."
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i03:r2",
+          "text": "She said she was tired."
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i03:r3",
+          "text": "She said she was worried."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i03:audio",
+          "transcript": "She said she was elated."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-01:i03:r1",
+            "targetText": "She said she was elated.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i03:r2",
+            "targetText": "She said she was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i03:r3",
+            "targetText": "She said she was worried.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was elated.",
+              "uk": "У записі звучить She said she was elated."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she was elated.",
+              "uk": "У записі звучить She said she was elated."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера друг сказал, что устал.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i04:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i04:r2",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i04:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера друг сказал, что устал.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера друг сказал, что устал.",
+          "uk": "Учора друг сказав, що втомився."
+        },
+        "gappedTargetPhrase": "He ___ that he was tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-01:i04:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i04:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i04:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Вчера друг сказал, что устал.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Вчера друг сказал, что устал.",
+            "feedbackByLocale": {
+              "ru": "Для прошлого разговора нужна форма said.",
+              "uk": "Для минулої розмови потрібна форма said."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Вчера друг сказал, что устал.",
+            "feedbackByLocale": {
+              "ru": "Одного saying здесь недостаточно; нужно said.",
+              "uk": "Самого saying тут недостатньо; потрібне said."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова сестры: она сказала, что ей нужна помощь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Передайте слова сестры: она сказала, что ей нужна помощь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i05:audio",
+          "transcript": "She said she needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — downcast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — downcast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i06:audio",
+          "transcript": "downcast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-01:i06:r1",
+            "targetText": "downcast",
+            "meaningByLocale": {
+              "ru": "Удручённый, понурый. Когда человек выглядит или чувствует себя печальным и подавленным.",
+              "uk": "Пригнічений, похнюплений. Коли людина має сумний вигляд або почувається засмученою й пригніченою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "downcast",
+          "definitionByLocale": {
+            "ru": "Удручённый, понурый. Когда человек выглядит или чувствует себя печальным и подавленным.",
+            "uk": "Пригнічений, похнюплений. Коли людина має сумний вигляд або почувається засмученою й пригніченою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга о его состоянии: он сказал, что чувствовал себя удручённым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга о его состоянии: он сказал, что чувствовал себя удручённым.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i07:audio",
+          "transcript": "He said he felt downcast."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he felt downcast.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что сказала сестра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что сказала сестра.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i08:audio",
+          "transcript": "She said she needed help."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said she needed help.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "needed",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра говорила, что помощь нужна ей самой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i09:r1",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i09:r2",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i09:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра говорила, что помощь нужна ей самой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра говорила, что помощь нужна ей самой.",
+          "uk": "Сестра казала, що допомога потрібна їй самій."
+        },
+        "gappedTargetPhrase": "She said ___ needed help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-01:i09:r1",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i09:r2",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i09:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Сестра говорила, что помощь нужна ей самой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Сестра говорила, что помощь нужна ей самой.",
+            "feedbackByLocale": {
+              "ru": "Перед needed нужен исполнитель she.",
+              "uk": "Перед needed потрібен виконавець she."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Сестра говорила, что помощь нужна ей самой.",
+            "feedbackByLocale": {
+              "ru": "Hers обозначает принадлежность; здесь нужно she.",
+              "uk": "Hers позначає належність; тут потрібне she."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — anticipation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — anticipation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i10:audio",
+          "transcript": "anticipation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-01:i10:r1",
+            "targetText": "anticipation",
+            "meaningByLocale": {
+              "ru": "Предвкушение, ожидание события. Чувство, с которым заранее думают о том, что скоро произойдёт.",
+              "uk": "Передчуття, очікування події. Почуття, з яким заздалегідь думають про те, що скоро станеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anticipation",
+          "definitionByLocale": {
+            "ru": "Предвкушение, ожидание события. Чувство, с которым заранее думают о том, что скоро произойдёт.",
+            "uk": "Передчуття, очікування події. Почуття, з яким заздалегідь думають про те, що скоро станеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i11:r1",
+          "text": "She said she felt a sense of anticipation."
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i11:r2",
+          "text": "She said she felt a sense of relief."
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i11:r3",
+          "text": "She said she felt a sense of pride."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i11:audio",
+          "transcript": "She said she felt a sense of anticipation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-01:i11:r1",
+            "targetText": "She said she felt a sense of anticipation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i11:r2",
+            "targetText": "She said she felt a sense of relief.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i11:r3",
+            "targetText": "She said she felt a sense of pride.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she felt a sense of anticipation.",
+              "uk": "У записі звучить She said she felt a sense of anticipation."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she felt a sense of anticipation.",
+              "uk": "У записі звучить She said she felt a sense of anticipation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова брата: он сказал, что был не готов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова брата: он сказал, что был не готов.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said he was not ready.",
+        "localizedMeaning": {
+          "ru": "Передайте слова брата: он сказал, что был не готов.",
+          "uk": "Передайте слова брата: він сказав, що був не готовий."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "not",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — disbelief",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — disbelief",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i13:audio",
+          "transcript": "disbelief"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-01:i13:r1",
+            "targetText": "disbelief",
+            "meaningByLocale": {
+              "ru": "Неверие. Чувство, когда трудно поверить услышанному или увиденному, часто от сильного удивления.",
+              "uk": "Невіра. Почуття, коли важко повірити почутому чи побаченому, часто через сильне здивування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disbelief",
+          "definitionByLocale": {
+            "ru": "Неверие. Чувство, когда трудно поверить услышанному или увиденному, часто от сильного удивления.",
+            "uk": "Невіра. Почуття, коли важко повірити почутому чи побаченому, часто через сильне здивування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова сестры: она сказала, что смотрела на него в недоумении, не веря происходящему.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Передайте слова сестры: она сказала, что смотрела на него в недоумении, не веря происходящему.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i14:audio",
+          "transcript": "She said she stared at him in disbelief."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she stared at him in disbelief.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-01:i15:p1",
+            "target": "elated",
+            "meaningByLocale": {
+              "ru": "ликующий",
+              "uk": "сповнений радості"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-01:i15:p2",
+            "target": "downcast",
+            "meaningByLocale": {
+              "ru": "удручённый",
+              "uk": "пригнічений"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-01:i15:p3",
+            "target": "anticipation",
+            "meaningByLocale": {
+              "ru": "предвкушение",
+              "uk": "передчуття"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-01:i15:p4",
+            "target": "disbelief",
+            "meaningByLocale": {
+              "ru": "неверие",
+              "uk": "невіра"
+            }
+          }
+        ],
+        "leftColumn": [
+          "elated",
+          "downcast",
+          "anticipation",
+          "disbelief"
+        ],
+        "rightColumn": [
+          "ликующий",
+          "удручённый",
+          "предвкушение",
+          "неверие"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат сказал, что в тот момент был не готов.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i16:r1",
+          "text": "was not"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i16:r2",
+          "text": "not was"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i16:r3",
+          "text": "were not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат сказал, что в тот момент был не готов.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат сказал, что в тот момент был не готов.",
+          "uk": "Брат сказав, що тієї миті був не готовий."
+        },
+        "gappedTargetPhrase": "He said he ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-01:i16:r1",
+            "text": "was not"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i16:r2",
+            "text": "not was"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i16:r3",
+            "text": "were not"
+          }
+        ],
+        "testedDimension": "Брат сказал, что в тот момент был не готов.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i16:r2",
+            "correct": false,
+            "testedDimension": "Брат сказал, что в тот момент был не готов.",
+            "feedbackByLocale": {
+              "ru": "Нужен порядок was not.",
+              "uk": "Потрібен порядок was not."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i16:r3",
+            "correct": false,
+            "testedDimension": "Брат сказал, что в тот момент был не готов.",
+            "feedbackByLocale": {
+              "ru": "С he здесь нужно was.",
+              "uk": "Із he тут потрібне was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: сестра сказала, что ликовала или устала?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i17:r1",
+          "text": "She said she was elated."
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i17:r2",
+          "text": "She said she was tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i17:audioA",
+        "en:lesson-30:session-01:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: сестра сказала, что ликовала или устала?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She said she was elated.",
+        "contrastB": "She said she was tired.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-01:i17:audioA",
+          "transcript": "She said she was elated."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-01:i17:audioB",
+          "transcript": "She said she was tired."
+        },
+        "testedPhoneticContrast": "Послушайте: сестра сказала, что ликовала или устала?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: сестра сказала, что ликовала или устала?",
+            "feedbackByLocale": {
+              "ru": "Звучит elated — ликующая.",
+              "uk": "Звучить elated — сповнена радості."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте слова брата о готовности.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте слова брата о готовности.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i18:audio",
+          "transcript": "He said he was not ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said he was not ready.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "was",
+          "not",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте слова друга: он сказал, что ему нужен перерыв.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-01:i19:audio"
+      ],
+      "accessibilityLabel": "Передайте слова друга: он сказал, что ему нужен перерыв.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-01:i19:audio",
+          "transcript": "He said he needed a break."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed a break.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте слова сестры о её радости в тот момент.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-01:i20:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i20:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-30:session-01:i20:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова сестры о её радости в тот момент.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте слова сестры о её радости в тот момент.",
+          "uk": "Передайте слова сестри про її радість тієї миті."
+        },
+        "gappedTargetPhrase": "She said that she ___ elated.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-01:i20:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i20:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i20:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Передайте слова сестры о её радости в тот момент.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-01:i20:r2",
+            "correct": false,
+            "testedDimension": "Передайте слова сестры о её радости в тот момент.",
+            "feedbackByLocale": {
+              "ru": "С she здесь нужна форма was.",
+              "uk": "Із she тут потрібна форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-01:i20:r3",
+            "correct": false,
+            "testedDimension": "Передайте слова сестры о её радости в тот момент.",
+            "feedbackByLocale": {
+              "ru": "Одного being недостаточно; нужно was.",
+              "uk": "Самого being недостатньо; потрібне was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-01:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова сестры: она сказала, что чувствовала себя лучше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова сестры: она сказала, что чувствовала себя лучше.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She said she felt better.",
+        "localizedMeaning": {
+          "ru": "Передайте слова сестры: она сказала, что чувствовала себя лучше.",
+          "uk": "Передайте слова сестри: вона сказала, що почувалася краще."
+        },
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "felt",
+          "better"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "679146eed237975fdec94d9a28109a660348df461c95f15d4b0314d1f608c042"
+}

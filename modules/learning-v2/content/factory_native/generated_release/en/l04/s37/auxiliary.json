@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro1:r2": {
-          "ru": "Вы говорите об одном почтомате, поэтому isn’t a, а не aren’t any.",
-          "uk": "Ви говорите про один поштомат, тому isn’t a, а не aren’t any."
+          "ru": "С a parcel locker в единственном числе нужно isn’t.",
+          "uk": "З a parcel locker в однині потрібне isn’t."
         },
         "en:lesson-04:session-37:intro1:r3": {
           "ru": "Почтомат один, поэтому после isn’t нужно a: isn’t a parcel locker.",
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro2:r2": {
-          "ru": "Поддоны — несколько предметов, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Піддони — кілька предметів, тому потрібно aren’t, а не isn’t."
+          "ru": "Pallets стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Pallets стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-37:intro2:r3": {
-          "ru": "После any слово ставят во множественном числе: pallets.",
-          "uk": "Після any слово ставлять у множині: pallets."
+          "ru": "После aren’t any здесь нужна форма множественного числа pallets.",
+          "uk": "Після aren’t any тут потрібна форма множини pallets."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f48262797da31bc31beed8208816b6dcc2b0fafed55d25c73bce8e7bb7022458"
+  "auxiliaryFingerprint": "d1ff0300456c86033b73f3acc894f3f181bf4fa473d7300458e1bdcad8508fd0"
 }

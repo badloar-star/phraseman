@@ -12,12 +12,12 @@
 
 ### Дощ на зупинці
 
-Ви стоїте на зупинці, дощ посилюється, а сумка вже геть мокра. Потрібен дах із лавкою, щоб спокійно перечекати автобус. bus shelter — «зупинковий павільйон». Один павільйон — Is there a bus shelter near here? — «Поруч є зупинковий павільйон?»
+На зупинці посилюється дощ, і ви шукаєте укриття. Bus shelter — «зупинковий павільйон». Is there a bus shelter near here? — «Поруч є зупинковий павільйон?» Починаємо запитання з Is there, потім називаємо один павільйон — a bus shelter — і додаємо near here: «тут поблизу».
 
 **Працівник станції стоїть поруч. Запитайте його, чи є поруч зупинковий павільйон.**
 
 - ✅ **Is there a bus shelter near here?**
-- ❌ There is a bus shelter near here? — *Запитання про наявність починають з Is there, а не з There is.*
+- ❌ Are there a bus shelter near here? — *З a bus shelter в однині потрібне Is there.*
 - ❌ Is there bus shelter near here? — *Павільйон один, тому перед bus shelter потрібно a.*
 
 ---
@@ -26,13 +26,13 @@
 
 ### Черга біля каси
 
-У каси довга черга, а потяг скоро відійде. Працівник каже, що на платформі стоять апарати, де квиток купують самі. ticket machine — «автомат для квитків». Ви не бачите жодного й питаєте про кілька: Are there any ticket machines on the platform?
+Біля каси довга черга, а потяг скоро відійде. Ви хочете купити квиток в автоматі й уточнюєте у працівника, чи є автомати на платформі. Ticket machine — «автомат для квитків». Are there any ticket machines on the platform? — «На платформі є автомати для квитків?» Спочатку ставимо Are there, потім any ticket machines і місце — on the platform. З ticket machines у множині потрібне are.
 
 **Запитайте працівника, чи є на платформі автомати для квитків.**
 
 - ✅ **Are there any ticket machines on the platform?**
 - ❌ Is there any ticket machines on the platform? — *Автоматів кілька, тому запитання починають з Are there, а не з Is there.*
-- ❌ Are there any ticket machine on the platform? — *Після any слово ставлять у множині: ticket machines.*
+- ❌ Are there any ticket machine on the platform? — *Після Are there any тут потрібна форма множини ticket machines.*
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Вхід на платформу
 
-Працівник питає, що ви бачите біля входу на платформу. Ви помічаєте високу обертову перекладину, яка пропускає людей строго по одному. turnstile — «турнікет». Він один, тому: There is a turnstile near the entrance — «Поруч зі входом є турнікет».
+Працівник станції телефоном питає, що ви бачите біля входу. Ви помічаєте турнікет. Turnstile — «турнікет». There is a turnstile near the entrance — «Біля входу є турнікет». Починаємо з There is, потім називаємо один предмет — a turnstile — і місце: near the entrance.
 
 **Працівник чекає відповіді. Скажіть йому, що поруч зі входом є турнікет.**
 

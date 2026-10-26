@@ -1,0 +1,1045 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i01:r1",
+          "text": "There are six people coming tonight."
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i01:r2",
+          "text": "There are three people coming tonight."
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i01:r3",
+          "text": "There are six people coming tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i01:audio",
+          "transcript": "There are six people coming tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i01:r1",
+            "targetText": "There are six people coming tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i01:r2",
+            "targetText": "There are three people coming tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i01:r3",
+            "targetText": "There are six people coming tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are six people coming tonight.",
+              "uk": "У записі звучить There are six people coming tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are six people coming tonight.",
+              "uk": "У записі звучить There are six people coming tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spaghetti",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spaghetti",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i02:audio",
+          "transcript": "spaghetti"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i02:r1",
+            "targetText": "spaghetti",
+            "meaningByLocale": {
+              "ru": "Спагетти: длинные тонкие макароны.",
+              "uk": "Спагеті: довгі тонкі макарони."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spaghetti",
+          "definitionByLocale": {
+            "ru": "Спагетти: длинные тонкие макароны.",
+            "uk": "Спагеті: довгі тонкі макарони."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть поставити воду для спагеті.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть поставити воду для спагеті.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please boil some water for the spaghetti.",
+        "localizedMeaning": {
+          "ru": "Попросите поставить воду для спагетти.",
+          "uk": "Попросіть поставити воду для спагеті."
+        },
+        "orderedTokens": [
+          "Please",
+          "boil",
+          "some",
+          "water",
+          "for",
+          "the",
+          "spaghetti"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купили помідори вчора. Виберіть форму для завершеної минулої події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i04:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i04:r2",
+          "text": "have bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i04:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купили помідори вчора. Виберіть форму для завершеної минулої події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купили помидоры вчера. Выберите форму для законченного прошлого события.",
+          "uk": "Ви купили помідори вчора. Виберіть форму для завершеної минулої події."
+        },
+        "gappedTargetPhrase": "I ___ the tomatoes yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-55:i04:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i04:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i04:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Ви купили помідори вчора. Виберіть форму для завершеної минулої події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви купили помідори вчора. Виберіть форму для завершеної минулої події.",
+            "feedbackByLocale": {
+              "ru": "Yesterday указывает на законченное прошлое: bought.",
+              "uk": "Yesterday вказує на завершене минуле: bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви купили помідори вчора. Виберіть форму для завершеної минулої події.",
+            "feedbackByLocale": {
+              "ru": "Buying не заменяет прошедшую форму bought.",
+              "uk": "Buying не замінює минулу форму bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сестру нарізати помідори.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Попросіть сестру нарізати помідори.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i05:audio",
+          "transcript": "Could you chop the tomatoes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you chop the tomatoes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ravioli",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ravioli",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i06:audio",
+          "transcript": "ravioli"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i06:r1",
+            "targetText": "ravioli",
+            "meaningByLocale": {
+              "ru": "Равиоли: небольшие изделия из теста с начинкой.",
+              "uk": "Равіолі: невеликі вироби з тіста з начинкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ravioli",
+          "definitionByLocale": {
+            "ru": "Равиоли: небольшие изделия из теста с начинкой.",
+            "uk": "Равіолі: невеликі вироби з тіста з начинкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i07:r1",
+          "text": "These ravioli have cheese inside."
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i07:r2",
+          "text": "These ravioli have meat inside."
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i07:r3",
+          "text": "These ravioli have mushrooms inside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i07:audio",
+          "transcript": "These ravioli have cheese inside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i07:r1",
+            "targetText": "These ravioli have cheese inside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i07:r2",
+            "targetText": "These ravioli have meat inside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i07:r3",
+            "targetText": "These ravioli have mushrooms inside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These ravioli have cheese inside.",
+              "uk": "У записі звучить These ravioli have cheese inside."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These ravioli have cheese inside.",
+              "uk": "У записі звучить These ravioli have cheese inside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед приготуванням прочитайте разом інструкцію на пакуванні.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед приготуванням прочитайте разом інструкцію на пакуванні.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let’s read the instructions on the packet.",
+        "localizedMeaning": {
+          "ru": "Перед приготовлением прочитайте вместе инструкцию на упаковке.",
+          "uk": "Перед приготуванням прочитайте разом інструкцію на пакуванні."
+        },
+        "orderedTokens": [
+          "Let’s",
+          "read",
+          "the",
+          "instructions",
+          "on",
+          "the",
+          "packet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pesto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pesto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i09:audio",
+          "transcript": "pesto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i09:r1",
+            "targetText": "pesto",
+            "meaningByLocale": {
+              "ru": "Песто: соус, который часто делают из базилика, масла, сыра и орехов. Состав конкретного соуса смотрят на упаковке.",
+              "uk": "Песто: соус, який часто роблять із базиліку, олії, сиру та горіхів. Склад конкретного соусу дивляться на пакуванні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pesto",
+          "definitionByLocale": {
+            "ru": "Песто: соус, который часто делают из базилика, масла, сыра и орехов. Состав конкретного соуса смотрят на упаковке.",
+            "uk": "Песто: соус, який часто роблять із базиліку, олії, сиру та горіхів. Склад конкретного соусу дивляться на пакуванні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не відкрили банку соусу: повідомте про становище зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i10:r1",
+          "text": "opened"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i10:r2",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i10:r3",
+          "text": "opening"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не відкрили банку соусу: повідомте про становище зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не открыли банку соуса: сообщите о положении сейчас.",
+          "uk": "Ви ще не відкрили банку соусу: повідомте про становище зараз."
+        },
+        "gappedTargetPhrase": "I have not ___ the pesto yet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-55:i10:r1",
+            "text": "opened"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i10:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i10:r3",
+            "text": "opening"
+          }
+        ],
+        "testedDimension": "Ви ще не відкрили банку соусу: повідомте про становище зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i10:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не відкрили банку соусу: повідомте про становище зараз.",
+            "feedbackByLocale": {
+              "ru": "После have not нужна третья форма opened.",
+              "uk": "Після have not потрібна третя форма opened."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i10:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не відкрили банку соусу: повідомте про становище зараз.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма opened, не opening.",
+              "uk": "Потрібна форма opened, не opening."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть трохи песто в окремій мисці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Попросіть трохи песто в окремій мисці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i11:audio",
+          "transcript": "Could you put some pesto in a separate bowl?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put some pesto in a separate bowl?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, коли прийдуть гості.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Почуйте, коли прийдуть гості.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i12:audio",
+          "transcript": "Our friends will arrive at seven."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Our friends will arrive at seven.",
+        "orderedTokens": [
+          "Our",
+          "friends",
+          "will",
+          "arrive",
+          "at",
+          "seven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pitta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pitta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i13:audio",
+          "transcript": "pitta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i13:r1",
+            "targetText": "pitta",
+            "meaningByLocale": {
+              "ru": "Пита: плоский хлеб, который можно разрезать и наполнить начинкой.",
+              "uk": "Піта: плаский хліб, який можна розрізати й наповнити начинкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pitta",
+          "definitionByLocale": {
+            "ru": "Пита: плоский хлеб, который можно разрезать и наполнить начинкой.",
+            "uk": "Піта: плаский хліб, який можна розрізати й наповнити начинкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте подати піту із салатом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте подати піту із салатом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can serve the pitta with salad.",
+        "localizedMeaning": {
+          "ru": "Предложите подать питу с салатом.",
+          "uk": "Запропонуйте подати піту із салатом."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "serve",
+          "the",
+          "pitta",
+          "with",
+          "salad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Порадьте сестрі поставити хліб на стіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i15:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i15:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i15:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Порадьте сестрі поставити хліб на стіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте сестре поставить хлеб на стол.",
+          "uk": "Порадьте сестрі поставити хліб на стіл."
+        },
+        "gappedTargetPhrase": "If I ___ you, I would put the bread on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-55:i15:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i15:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i15:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Порадьте сестрі поставити хліб на стіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i15:r2",
+            "correct": false,
+            "testedDimension": "Порадьте сестрі поставити хліб на стіл.",
+            "feedbackByLocale": {
+              "ru": "В совете используем if I were you.",
+              "uk": "У пораді використовуємо if I were you."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i15:r3",
+            "correct": false,
+            "testedDimension": "Порадьте сестрі поставити хліб на стіл.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма were.",
+              "uk": "Потрібна особова форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i16:r1",
+          "text": "I have already washed the plates."
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i16:r2",
+          "text": "I have already washed the glasses."
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i16:r3",
+          "text": "I have not washed the plates yet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i16:audio",
+          "transcript": "I have already washed the plates."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-55:i16:r1",
+            "targetText": "I have already washed the plates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i16:r2",
+            "targetText": "I have already washed the glasses.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i16:r3",
+            "targetText": "I have not washed the plates yet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already washed the plates.",
+              "uk": "У записі звучить I have already washed the plates."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already washed the plates.",
+              "uk": "У записі звучить I have already washed the plates."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сестру поставити тарілки на стіл.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Попросіть сестру поставити тарілки на стіл.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i17:audio",
+          "transcript": "Please put the plates on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please put the plates on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стіл маленький. Уявіть більший стіл і почніть із результату: If we had a bigger table, everyone would sit together.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стіл маленький. Уявіть більший стіл і почніть із результату: If we had a bigger table, everyone would sit together.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Everyone would sit together if we had a bigger table.",
+        "localizedMeaning": {
+          "ru": "Стол маленький. Представьте стол побольше и начните с результата: If we had a bigger table, everyone would sit together.",
+          "uk": "Стіл маленький. Уявіть більший стіл і почніть із результату: If we had a bigger table, everyone would sit together."
+        },
+        "orderedTokens": [
+          "Everyone",
+          "would",
+          "sit",
+          "together",
+          "if",
+          "we",
+          "had",
+          "a",
+          "bigger",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви не вмієте добре готувати, але хотіли б уміти зараз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-55:i19:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i19:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-27:session-55:i19:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не вмієте добре готувати, але хотіли б уміти зараз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не умеете хорошо готовить, но хотели бы уметь сейчас.",
+          "uk": "Ви не вмієте добре готувати, але хотіли б уміти зараз."
+        },
+        "gappedTargetPhrase": "I wish I ___ cook better.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-55:i19:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i19:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i19:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ви не вмієте добре готувати, але хотіли б уміти зараз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-55:i19:r2",
+            "correct": false,
+            "testedDimension": "Ви не вмієте добре готувати, але хотіли б уміти зараз.",
+            "feedbackByLocale": {
+              "ru": "После wish о желаемом умении используем could.",
+              "uk": "Після wish про бажане вміння використовуємо could."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-55:i19:r3",
+            "correct": false,
+            "testedDimension": "Ви не вмієте добре готувати, але хотіли б уміти зараз.",
+            "feedbackByLocale": {
+              "ru": "Am не сочетается с cook в этой модели.",
+              "uk": "Am не поєднується з cook у цій моделі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прохання гостя за столом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i20:audio"
+      ],
+      "accessibilityLabel": "Почуйте прохання гостя за столом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i20:audio",
+          "transcript": "Could you pass me the salad?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you pass me the salad?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "pass",
+          "me",
+          "the",
+          "salad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-55:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте сестрі: ви раді, що готували разом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-55:i21:audio"
+      ],
+      "accessibilityLabel": "Подякуйте сестрі: ви раді, що готували разом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-55:i21:audio",
+          "transcript": "Thank you for cooking with me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for cooking with me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c9896a0783428ce05b5d1c75a7fb2f6b3483b8e742a5eb68783d055fa7a8673f"
+}

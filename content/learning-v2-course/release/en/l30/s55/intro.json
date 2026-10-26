@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "передавать чужой вопрос и свои слова, уточнять выбранный предмет.",
+    "uk": "передавати чуже запитання й власні слова, уточнювати обраний предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бабушка предложила чай",
+        "uk": "Бабуся запропонувала чай"
+      },
+      "bodyByLocale": {
+        "ru": "Бабушка спросила вас: «Хочешь чаю?» Перескажите вопрос: She asked if I wanted tea — она спросила, хочу ли я чаю. Соберите She + asked + if + I + wanted tea. If передаёт «ли»; после него порядок I wanted, без вопросительного did.",
+        "uk": "Бабуся запитала вас: «Хочеш чаю?» Перекажіть запитання: She asked if I wanted tea — вона запитала, чи хочу я чаю. Складіть She + asked + if + I + wanted tea. If передає «чи»; після нього порядок I wanted, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-55:intro1:r1",
+              "text": "She asked if I wanted tea."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro1:r2",
+              "text": "She asked if did I want tea."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro1:r3",
+              "text": "She asked if I wanting tea."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-55:intro1:r1",
+              "text": "She asked if I wanted tea."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro1:r2",
+              "text": "She asked if did I want tea."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro1:r3",
+              "text": "She asked if I wanting tea."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вы сказали, что чашка горячая",
+        "uk": "Ви сказали, що чашка гаряча"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы сказали: «Чашка горячая». Перескажите свои слова со сдвигом времени: I said the cup was hot — я сказал, что чашка горячая. Соберите I + said + the cup + was hot. В ваших словах The cup is hot форма is сдвигается в was после said. Говоривший — вы, поэтому начинаем с I.",
+        "uk": "Учора ви сказали: «Чашка гаряча». Перекажіть свої слова зі зсувом часу: I said the cup was hot — я сказав, що чашка гаряча. Складіть I + said + the cup + was hot. У ваших словах The cup is hot форма is зсувається у was після said. Говорили ви, тому починаємо з I."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-55:intro2:r1",
+              "text": "I said the cup was hot."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro2:r2",
+              "text": "I said the cup is hot."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro2:r3",
+              "text": "I said the cup be hot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-55:intro2:r1",
+              "text": "I said the cup was hot."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro2:r2",
+              "text": "I said the cup is hot."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro2:r3",
+              "text": "I said the cup be hot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какую чашку вы выбрали",
+        "uk": "Яку чашку ви обрали"
+      },
+      "bodyByLocale": {
+        "ru": "На столе несколько чашек. Скажите, какую выбрали: The cup I chose is blue — чашка, которую я выбрал, синяя. Соберите The cup + I chose + is blue. I chose уточняет чашку: I — тот, кто выбрал, cup — выбранный предмет. Поэтому that перед I можно опустить.",
+        "uk": "На столі кілька чашок. Скажіть, яку обрали: The cup I chose is blue — чашка, яку я обрав, синя. Складіть The cup + I chose + is blue. I chose уточнює чашку: I — той, хто обрав, cup — обраний предмет. Тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-55:intro3:r1",
+              "text": "The cup I chose is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro3:r2",
+              "text": "The cup chose I is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro3:r3",
+              "text": "The cup I chose are blue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-55:intro3:r1",
+              "text": "The cup I chose is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro3:r2",
+              "text": "The cup chose I is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-55:intro3:r3",
+              "text": "The cup I chose are blue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2fe72e8b18cfbd29f0095193f908e15ef07a93f56699e61478a4f7fb1bf05258"
+}

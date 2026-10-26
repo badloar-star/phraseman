@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-53:i01",
+    "correctText": "watch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i02",
+    "correctText": "He asked if my watch worked.",
+    "correctResponseId": "en:lesson-30:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i04",
+    "correctText": "battery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i05",
+    "correctText": "I asked him to change the battery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i06",
+    "correctText": "The watch he fixed is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i07",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-53:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i08",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i09",
+    "correctText": "He asked me to keep the receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i10",
+    "correctText": "He told me the watch was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i11",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i12",
+    "correctText": "shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i13",
+    "correctText": "He said the shop was open.",
+    "correctResponseId": "en:lesson-30:session-53:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i14",
+    "correctText": "I wish the shop were closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i15",
+    "correctText": "The watch I brought is black.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i16",
+    "correctText": "not to touch",
+    "correctResponseId": "en:lesson-30:session-53:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i17",
+    "correctText": "He said he needed more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i18",
+    "correctText": "I asked him to wait.",
+    "correctResponseId": "en:lesson-30:session-53:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i19",
+    "correctText": "He asked if I wanted the old battery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i20",
+    "correctText": "my receipt was",
+    "correctResponseId": "en:lesson-30:session-53:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-53:i21",
+    "correctText": "I told him the watch was for my father.",
+    "correctResponseId": null
+  }
+]

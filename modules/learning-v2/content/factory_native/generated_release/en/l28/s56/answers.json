@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-56:i01",
+    "correctText": "When can I view the flat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i02",
+    "correctText": "loft",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i03",
+    "correctText": "Is there a loft in the house?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i04",
+    "correctText": "included",
+    "correctResponseId": "en:lesson-28:session-56:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i05",
+    "correctText": "The windows were replaced last year.",
+    "correctResponseId": "en:lesson-28:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i06",
+    "correctText": "alcove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i07",
+    "correctText": "Will the bed fit in the alcove?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i08",
+    "correctText": "The kitchen was painted by the owner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i09",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i10",
+    "correctText": "bedsit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i11",
+    "correctText": "I am looking for a bedsit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i12",
+    "correctText": "The bathroom is shared with one other tenant.",
+    "correctResponseId": "en:lesson-28:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-56:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i14",
+    "correctText": "duplex",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i15",
+    "correctText": "Does this duplex have a balcony?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i16",
+    "correctText": "en:lesson-28:session-56:i16:p1=loft\nen:lesson-28:session-56:i16:p2=alcove\nen:lesson-28:session-56:i16:p3=bedsit\nen:lesson-28:session-56:i16:p4=duplex",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i17",
+    "correctText": "Heating is not included.",
+    "correctResponseId": "en:lesson-28:session-56:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i18",
+    "correctText": "Could you open the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i19",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-56:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i20",
+    "correctText": "The flat will be cleaned tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-56:i21",
+    "correctText": "I would like to think about it.",
+    "correctResponseId": null
+  }
+]

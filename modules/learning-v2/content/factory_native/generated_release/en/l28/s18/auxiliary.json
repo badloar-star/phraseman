@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-18:intro1:r2": {
+          "ru": "Один предмет: was.",
+          "uk": "Один предмет: was."
+        },
+        "en:lesson-28:session-18:intro1:r3": {
+          "ru": "О выполненной чистке кольца: was cleaned.",
+          "uk": "Про виконане чищення каблучки: was cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-18:intro2:r2": {
+          "ru": "Между will и repaired нужна be.",
+          "uk": "Між will і repaired потрібна be."
+        },
+        "en:lesson-28:session-18:intro2:r3": {
+          "ru": "Здесь нужна repaired.",
+          "uk": "Тут потрібна repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-18:intro3:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-28:session-18:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "65317861db60df496f69799aa1f1fba326c3a334c1b5fc745dbcf591a1d9ac14"
+}

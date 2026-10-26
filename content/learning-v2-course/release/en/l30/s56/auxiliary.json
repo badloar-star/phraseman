@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-56:intro1:r2": {
+          "ru": "Needs не выполняет заданный сдвиг.",
+          "uk": "Needs не виконує заданий зсув."
+        },
+        "en:lesson-30:session-56:intro1:r3": {
+          "ru": "Нужна форма needed.",
+          "uk": "Потрібна форма needed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-56:intro2:r2": {
+          "ru": "В пересказе нужен порядок my keys were.",
+          "uk": "У переказі потрібен порядок my keys were."
+        },
+        "en:lesson-30:session-56:intro2:r3": {
+          "ru": "Множественное keys требует were.",
+          "uk": "Множина keys потребує were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-56:intro3:r2": {
+          "ru": "Для такого желания используем were quieter.",
+          "uk": "Для такого бажання використовуємо were quieter."
+        },
+        "en:lesson-30:session-56:intro3:r3": {
+          "ru": "Здесь нужна форма were.",
+          "uk": "Тут потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bcb47e0e2b8b1e3f7a2c19af9803830416a796962ba7cc5285152663a4da426f"
+}

@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i01:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-35:i01:r1",
+            "targetText": "soup",
+            "meaningByLocale": {
+              "ru": "Суп. Повторение знакомого слова.",
+              "uk": "Суп. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soup",
+          "definitionByLocale": {
+            "ru": "Суп. Повторение знакомого слова.",
+            "uk": "Суп. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i02:r1",
+          "text": "She said her soup was cold."
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i02:r2",
+          "text": "She said her soup was hot."
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i02:r3",
+          "text": "She said her soup was salty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i02:audio",
+          "transcript": "She said her soup was cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-35:i02:r1",
+            "targetText": "She said her soup was cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i02:r2",
+            "targetText": "She said her soup was hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i02:r3",
+            "targetText": "She said her soup was salty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said her soup was cold.",
+              "uk": "У записі звучить She said her soup was cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said her soup was cold.",
+              "uk": "У записі звучить She said her soup was cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера подруга сказала: «Я голодна». Перескажите со сдвигом am в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера подруга сказала: «Я голодна». Перескажите со сдвигом am в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера подруга сказала: «Я голодна». Перескажите со сдвигом am в прошлое.",
+          "uk": "Учора подруга сказала: «Я голодна». Перекажіть зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-35:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера подруга сказала: «Я голодна». Перескажите со сдвигом am в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера подруга сказала: «Я голодна». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг в прошлое.",
+              "uk": "Is не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера подруга сказала: «Я голодна». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма was, не be.",
+              "uk": "Тут потрібна особова форма was, не be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i04:audio",
+          "transcript": "spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-35:i04:r1",
+            "targetText": "spoon",
+            "meaningByLocale": {
+              "ru": "Ложка. Повторение знакомого слова.",
+              "uk": "Ложка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spoon",
+          "definitionByLocale": {
+            "ru": "Ложка. Повторение знакомого слова.",
+            "uk": "Ложка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга вчера сказала: «Мне нужна ложка». Передайте это со сдвигом need в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга вчера сказала: «Мне нужна ложка». Передайте это со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She said she needed a spoon.",
+        "localizedMeaning": {
+          "ru": "Подруга вчера сказала: «Мне нужна ложка». Передайте это со сдвигом need в прошлое.",
+          "uk": "Подруга вчора сказала: «Мені потрібна ложка». Передайте це зі зсувом need у минуле."
+        },
+        "orderedTokens": [
+          "She",
+          "said",
+          "she",
+          "needed",
+          "a",
+          "spoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Официант попросил вас подождать у двери. Передайте просьбу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Официант попросил вас подождать у двери. Передайте просьбу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i06:audio",
+          "transcript": "He asked me to wait by the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to wait by the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга спросила, где находится ваш стол. Передайте вопрос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i07:r1",
+          "text": "our table was"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i07:r2",
+          "text": "was our table"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i07:r3",
+          "text": "our table were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга спросила, где находится ваш стол. Передайте вопрос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга спросила, где находится ваш стол. Передайте вопрос.",
+          "uk": "Подруга запитала, де ваш стіл. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-35:i07:r1",
+            "text": "our table was"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i07:r2",
+            "text": "was our table"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i07:r3",
+            "text": "our table were"
+          }
+        ],
+        "testedDimension": "Подруга спросила, где находится ваш стол. Передайте вопрос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i07:r2",
+            "correct": false,
+            "testedDimension": "Подруга спросила, где находится ваш стол. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "В пересказе ставим our table перед was.",
+              "uk": "У переказі ставимо our table перед was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i07:r3",
+            "correct": false,
+            "testedDimension": "Подруга спросила, где находится ваш стол. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "Один table требует was.",
+              "uk": "Один table потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i08:audio",
+          "transcript": "plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-35:i08:r1",
+            "targetText": "plate",
+            "meaningByLocale": {
+              "ru": "Тарелка. Повторение знакомого слова.",
+              "uk": "Тарілка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plate",
+          "definitionByLocale": {
+            "ru": "Тарелка. Повторение знакомого слова.",
+            "uk": "Тарілка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга вчера сказала: «Моя тарелка пустая». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i09:audio"
+      ],
+      "accessibilityLabel": "Подруга вчера сказала: «Моя тарелка пустая». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i09:audio",
+          "transcript": "She said her plate was empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said her plate was empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос официанта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос официанта.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i10:audio",
+          "transcript": "He asked if I wanted some water."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if I wanted some water.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "wanted",
+          "some",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы попросили официанта принести хлеб.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i11:r1",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i11:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i11:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попросили официанта принести хлеб.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили официанта принести хлеб.",
+          "uk": "Ви попросили офіціанта принести хліб."
+        },
+        "gappedTargetPhrase": "I asked ___ to bring some bread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-35:i11:r1",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i11:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i11:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Вы попросили официанта принести хлеб.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы попросили официанта принести хлеб.",
+            "feedbackByLocale": {
+              "ru": "После asked используем him для того, кого попросили.",
+              "uk": "Після asked використовуємо him для того, кого попросили."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы попросили официанта принести хлеб.",
+            "feedbackByLocale": {
+              "ru": "His обозначает принадлежность; здесь нужен him.",
+              "uk": "His позначає належність; тут потрібне him."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i12:audio",
+          "transcript": "bill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-35:i12:r1",
+            "targetText": "bill",
+            "meaningByLocale": {
+              "ru": "Счёт в кафе. Повторение знакомого слова.",
+              "uk": "Рахунок у кафе. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bill",
+          "definitionByLocale": {
+            "ru": "Счёт в кафе. Повторение знакомого слова.",
+            "uk": "Рахунок у кафе. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i13:r1",
+          "text": "She asked for the bill."
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i13:r2",
+          "text": "She asked for the menu."
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i13:r3",
+          "text": "She asked for the salt."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i13:audio",
+          "transcript": "She asked for the bill."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-35:i13:r1",
+            "targetText": "She asked for the bill.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i13:r2",
+            "targetText": "She asked for the menu.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i13:r3",
+            "targetText": "She asked for the salt.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked for the bill.",
+              "uk": "У записі звучить She asked for the bill."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked for the bill.",
+              "uk": "У записі звучить She asked for the bill."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Кафе далеко от вашего дома. Скажите, что хотели бы, чтобы оно было ближе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Кафе далеко от вашего дома. Скажите, что хотели бы, чтобы оно было ближе.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i14:audio",
+          "transcript": "I wish the café were closer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the café were closer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что суп, который вы заказали, вкусный.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что суп, который вы заказали, вкусный.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soup I ordered is tasty.",
+        "localizedMeaning": {
+          "ru": "Скажите, что суп, который вы заказали, вкусный.",
+          "uk": "Скажіть, що суп, який ви замовили, смачний."
+        },
+        "orderedTokens": [
+          "The",
+          "soup",
+          "I",
+          "ordered",
+          "is",
+          "tasty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Официант попросил вас не трогать горячую тарелку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i16:r1",
+          "text": "not to touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i16:r2",
+          "text": "not touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i16:r3",
+          "text": "not touching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Официант попросил вас не трогать горячую тарелку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Официант попросил вас не трогать горячую тарелку.",
+          "uk": "Офіціант попросив вас не торкатися гарячої тарілки."
+        },
+        "gappedTargetPhrase": "He asked me ___ the hot plate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-35:i16:r1",
+            "text": "not to touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i16:r2",
+            "text": "not touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i16:r3",
+            "text": "not touching"
+          }
+        ],
+        "testedDimension": "Официант попросил вас не трогать горячую тарелку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i16:r2",
+            "correct": false,
+            "testedDimension": "Официант попросил вас не трогать горячую тарелку.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to touch.",
+              "uk": "Заперечне прохання передаємо через not to touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i16:r3",
+            "correct": false,
+            "testedDimension": "Официант попросил вас не трогать горячую тарелку.",
+            "feedbackByLocale": {
+              "ru": "После asked me здесь нужно not to touch.",
+              "uk": "Після asked me тут потрібне not to touch."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга вчера сказала: «Мне нужна вода». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Подруга вчера сказала: «Мне нужна вода». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i17:audio",
+          "transcript": "She said she needed some water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed some water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: подруга сказала, что её суп холодный или что её чай холодный?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i18:r1",
+          "text": "She said her tea was cold."
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i18:r2",
+          "text": "She said her soup was cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i18:audioA",
+        "en:lesson-30:session-35:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: подруга сказала, что её суп холодный или что её чай холодный?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She said her tea was cold.",
+        "contrastB": "She said her soup was cold.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-35:i18:audioA",
+          "transcript": "She said her tea was cold."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-35:i18:audioB",
+          "transcript": "She said her soup was cold."
+        },
+        "testedPhoneticContrast": "Послушайте: подруга сказала, что её суп холодный или что её чай холодный?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: подруга сказала, что её суп холодный или что её чай холодный?",
+            "feedbackByLocale": {
+              "ru": "Звучит tea — чай.",
+              "uk": "Звучить tea — чай."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте сообщение официанта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение официанта.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i19:audio",
+          "transcript": "He said the bread was fresh."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said the bread was fresh.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "the",
+          "bread",
+          "was",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Официант сообщил вам с подругой, что десерт готов. Вставьте форму «нам».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-35:i20:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i20:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-35:i20:r3",
+          "text": "to us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Официант сообщил вам с подругой, что десерт готов. Вставьте форму «нам».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Официант сообщил вам с подругой, что десерт готов. Вставьте форму «нам».",
+          "uk": "Офіціант повідомив вам із подругою, що десерт готовий. Вставте форму «нам»."
+        },
+        "gappedTargetPhrase": "He told ___ the dessert was ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-35:i20:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i20:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i20:r3",
+            "text": "to us"
+          }
+        ],
+        "testedDimension": "Официант сообщил вам с подругой, что десерт готов. Вставьте форму «нам».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-35:i20:r2",
+            "correct": false,
+            "testedDimension": "Официант сообщил вам с подругой, что десерт готов. Вставьте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told получателя обозначаем us.",
+              "uk": "Після told одержувача позначаємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-35:i20:r3",
+            "correct": false,
+            "testedDimension": "Официант сообщил вам с подругой, что десерт готов. Вставьте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told перед us не ставим to.",
+              "uk": "Після told перед us не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга вчера сказала: «Я хочу кофе». Передайте это со сдвигом want в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-35:i21:audio"
+      ],
+      "accessibilityLabel": "Подруга вчера сказала: «Я хочу кофе». Передайте это со сдвигом want в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-35:i21:audio",
+          "transcript": "She said she wanted some coffee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she wanted some coffee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6dd1a2b8cda0ac53e6ca2a473c670819d2243c552945ac222fed732c685dc8e6"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-30:intro1:r2": {
+          "ru": "После asked me перед buy нужно to.",
+          "uk": "Після asked me перед buy потрібне to."
+        },
+        "en:lesson-30:session-30:intro1:r3": {
+          "ru": "После asked здесь нужна форма me.",
+          "uk": "Після asked тут потрібна форма me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-30:intro2:r2": {
+          "ru": "В данном порядке перед me нужен told.",
+          "uk": "У цьому порядку перед me потрібне told."
+        },
+        "en:lesson-30:session-30:intro2:r3": {
+          "ru": "После told перед me не нужен to.",
+          "uk": "Після told перед me не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-30:intro3:r2": {
+          "ru": "В уточнении нужен порядок I wrote.",
+          "uk": "В уточненні потрібен порядок I wrote."
+        },
+        "en:lesson-30:session-30:intro3:r3": {
+          "ru": "Один list требует is, не are.",
+          "uk": "Один list потребує is, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a595ab4c9566ac9030059b3d0a7e0f019873f7ae54e0526239852abfdd11a894"
+}

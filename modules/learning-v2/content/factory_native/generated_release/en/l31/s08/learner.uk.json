@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i01:audio",
+          "transcript": "pool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-08:i01:r1",
+            "targetText": "pool",
+            "meaningByLocale": {
+              "ru": "Бассейн. Повторение знакомого слова.",
+              "uk": "Басейн. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pool",
+          "definitionByLocale": {
+            "ru": "Бассейн. Повторение знакомого слова.",
+            "uk": "Басейн. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i02:r1",
+          "text": "Do you know if the pool is open?"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i02:r2",
+          "text": "Do you know if the café is open?"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i02:r3",
+          "text": "Do you know if the shop is open?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i02:audio",
+          "transcript": "Do you know if the pool is open?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-08:i02:r1",
+            "targetText": "Do you know if the pool is open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i02:r2",
+            "targetText": "Do you know if the café is open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i02:r3",
+            "targetText": "Do you know if the shop is open?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the pool is open?",
+              "uk": "У записі звучить Do you know if the pool is open?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the pool is open?",
+              "uk": "У записі звучить Do you know if the pool is open?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ввічливо запитайте, де роздягальня.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i03:r1",
+          "text": "the changing room is"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i03:r2",
+          "text": "is the changing room"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i03:r3",
+          "text": "the changing room are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де роздягальня.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, где раздевалка.",
+          "uk": "Ввічливо запитайте, де роздягальня."
+        },
+        "gappedTargetPhrase": "Could you tell me where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-08:i03:r1",
+            "text": "the changing room is"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i03:r2",
+            "text": "is the changing room"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i03:r3",
+            "text": "the changing room are"
+          }
+        ],
+        "testedDimension": "Ввічливо запитайте, де роздягальня.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, де роздягальня.",
+            "feedbackByLocale": {
+              "ru": "После where порядок the changing room is.",
+              "uk": "Після where порядок the changing room is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, де роздягальня.",
+            "feedbackByLocale": {
+              "ru": "Одна room требует is.",
+              "uk": "Одна room потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i04:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-08:i04:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "Полотенце. Повторение знакомого слова.",
+              "uk": "Рушник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "Полотенце. Повторение знакомого слова.",
+            "uk": "Рушник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тім знайшов ваш рушник. Почніть з my towel.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Тім знайшов ваш рушник. Почніть з my towel.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i05:audio",
+          "transcript": "My towel was found by Tim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My towel was found by Tim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, коли зачиняється басейн.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, коли зачиняється басейн.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me when the pool closes?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, когда закрывается бассейн.",
+          "uk": "Ввічливо запитайте, коли зачиняється басейн."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "when",
+          "the",
+          "pool",
+          "closes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Тім сказав: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Тім сказав: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Тим сказал: «Бассейн открыт». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Тім сказав: «Басейн відкритий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "He said the pool ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-08:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Тім сказав: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Тім сказав: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Тім сказав: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — locker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — locker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i08:audio",
+          "transcript": "locker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-08:i08:r1",
+            "targetText": "locker",
+            "meaningByLocale": {
+              "ru": "Шкафчик. Повторение знакомого слова.",
+              "uk": "Шафка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "locker",
+          "definitionByLocale": {
+            "ru": "Шкафчик. Повторение знакомого слова.",
+            "uk": "Шафка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте працівника, чи знає він, де ваша шафка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте працівника, чи знає він, де ваша шафка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know where my locker is?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудника, знает ли он, где ваш шкафчик.",
+          "uk": "Запитайте працівника, чи знає він, де ваша шафка."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "where",
+          "my",
+          "locker",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тім відчинив шафку. Почніть із шафки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Тім відчинив шафку. Почніть із шафки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i10:audio",
+          "transcript": "The locker was opened by Tim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The locker was opened by Tim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Тім знайшов ваш рушник. Виберіть прийменник перед ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тім знайшов ваш рушник. Виберіть прийменник перед ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тим нашёл ваше полотенце. Выберите предлог перед именем.",
+          "uk": "Тім знайшов ваш рушник. Виберіть прийменник перед ім’ям."
+        },
+        "gappedTargetPhrase": "My towel was found ___ Tim.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-08:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Тім знайшов ваш рушник. Виберіть прийменник перед ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Тім знайшов ваш рушник. Виберіть прийменник перед ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Тім знайшов ваш рушник. Виберіть прийменник перед ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i12:audio",
+          "transcript": "shower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-08:i12:r1",
+            "targetText": "shower",
+            "meaningByLocale": {
+              "ru": "Душ. Повторение знакомого слова.",
+              "uk": "Душ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shower",
+          "definitionByLocale": {
+            "ru": "Душ. Повторение знакомого слова.",
+            "uk": "Душ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i13:r1",
+          "text": "Could you tell me where the shower is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i13:r2",
+          "text": "Could you tell me where the towel is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i13:r3",
+          "text": "Could you tell me where the locker is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i13:audio",
+          "transcript": "Could you tell me where the shower is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-08:i13:r1",
+            "targetText": "Could you tell me where the shower is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i13:r2",
+            "targetText": "Could you tell me where the towel is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i13:r3",
+            "targetText": "Could you tell me where the locker is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the shower is?",
+              "uk": "У записі звучить Could you tell me where the shower is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the shower is?",
+              "uk": "У записі звучить Could you tell me where the shower is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Тім сказав: «Шафки вільні». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Тім сказав: «Шафки вільні». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i14:audio",
+          "transcript": "He said the lockers were free."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the lockers were free.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте працівника, чи знає він, чи вільний душ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте працівника, чи знає він, чи вільний душ.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know if the shower is free?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудника, знает ли он, свободен ли душ.",
+          "uk": "Запитайте працівника, чи знає він, чи вільний душ."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "shower",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть у Тіма, де ваш рушник.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i16:r1",
+          "text": "my towel is"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i16:r2",
+          "text": "is my towel"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i16:r3",
+          "text": "my towel are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть у Тіма, де ваш рушник.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните у Тима, где ваше полотенце.",
+          "uk": "Уточніть у Тіма, де ваш рушник."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-08:i16:r1",
+            "text": "my towel is"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i16:r2",
+            "text": "is my towel"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i16:r3",
+            "text": "my towel are"
+          }
+        ],
+        "testedDimension": "Уточніть у Тіма, де ваш рушник.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточніть у Тіма, де ваш рушник.",
+            "feedbackByLocale": {
+              "ru": "После where порядок my towel is.",
+              "uk": "Після where порядок my towel is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточніть у Тіма, де ваш рушник.",
+            "feedbackByLocale": {
+              "ru": "Один towel требует is.",
+              "uk": "Один towel потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тім вимив душ. Почніть із душу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Тім вимив душ. Почніть із душу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i17:audio",
+          "transcript": "The shower was cleaned by Tim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shower was cleaned by Tim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: відвідувач запитує про час відкриття чи закриття?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i18:r1",
+          "text": "Could you tell me when the pool closes?"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i18:r2",
+          "text": "Could you tell me when the pool opens?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i18:audioA",
+        "en:lesson-31:session-08:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: відвідувач запитує про час відкриття чи закриття?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Could you tell me when the pool closes?",
+        "contrastB": "Could you tell me when the pool opens?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-08:i18:audioA",
+          "transcript": "Could you tell me when the pool closes?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-08:i18:audioB",
+          "transcript": "Could you tell me when the pool opens?"
+        },
+        "testedPhoneticContrast": "Послухайте: відвідувач запитує про час відкриття чи закриття?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: відвідувач запитує про час відкриття чи закриття?",
+            "feedbackByLocale": {
+              "ru": "Звучит closes — закрывается.",
+              "uk": "Звучить closes — зачиняється."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про шафку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про шафку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i19:audio",
+          "transcript": "Do you know if the locker is free?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the locker is free?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "locker",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ввічливо запитайте, коли відчиняється басейн.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-08:i20:r1",
+          "text": "opens"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i20:r2",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-31:session-08:i20:r3",
+          "text": "opening"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, коли відчиняється басейн.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, когда открывается бассейн.",
+          "uk": "Ввічливо запитайте, коли відчиняється басейн."
+        },
+        "gappedTargetPhrase": "Could you tell me when the pool ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-08:i20:r1",
+            "text": "opens"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i20:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i20:r3",
+            "text": "opening"
+          }
+        ],
+        "testedDimension": "Ввічливо запитайте, коли відчиняється басейн.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-08:i20:r2",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, коли відчиняється басейн.",
+            "feedbackByLocale": {
+              "ru": "С the pool нужна форма opens.",
+              "uk": "З the pool потрібна форма opens."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-08:i20:r3",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, коли відчиняється басейн.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма opens.",
+              "uk": "Потрібна форма opens."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Тім сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-08:i21:audio"
+      ],
+      "accessibilityLabel": "Учора Тім сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-08:i21:audio",
+          "transcript": "He said he needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fd2d29a4d291d2e3c75180239b57cc54a600ba2000e0f2d4b44c97904a7efb48"
+}

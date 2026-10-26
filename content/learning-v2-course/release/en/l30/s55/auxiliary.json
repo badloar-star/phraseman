@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-55:intro1:r2": {
+          "ru": "В пересказе нужен порядок I wanted, без did.",
+          "uk": "У переказі потрібен порядок I wanted, без did."
+        },
+        "en:lesson-30:session-55:intro1:r3": {
+          "ru": "Нужна форма wanted.",
+          "uk": "Потрібна форма wanted."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-55:intro2:r2": {
+          "ru": "Is не выполняет заданный сдвиг.",
+          "uk": "Is не виконує заданий зсув."
+        },
+        "en:lesson-30:session-55:intro2:r3": {
+          "ru": "Нужна форма was.",
+          "uk": "Потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-55:intro3:r2": {
+          "ru": "В уточнении нужен порядок I chose.",
+          "uk": "В уточненні потрібен порядок I chose."
+        },
+        "en:lesson-30:session-55:intro3:r3": {
+          "ru": "Одна cup требует is.",
+          "uk": "Одна cup потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1257b949935e397036189b00c2a3399d6b02c003037a6e161feaeaea8587b776"
+}

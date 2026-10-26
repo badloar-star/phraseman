@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-35:intro1:r2": {
+          "ru": "В этом задании передаём вчерашнее состояние со сдвигом is → was.",
+          "uk": "У цьому завданні передаємо вчорашній стан зі зсувом is → was."
+        },
+        "en:lesson-30:session-35:intro1:r3": {
+          "ru": "Soup здесь требует was, не were.",
+          "uk": "Soup тут потребує was, не were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-35:intro2:r2": {
+          "ru": "Needs не выполняет заданный сдвиг в прошлое; здесь нужно needed.",
+          "uk": "Needs не виконує заданий зсув у минуле; тут потрібне needed."
+        },
+        "en:lesson-30:session-35:intro2:r3": {
+          "ru": "Нужна форма needed, не needing.",
+          "uk": "Потрібна форма needed, не needing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-35:intro3:r2": {
+          "ru": "После asked me перед wait нужно to.",
+          "uk": "Після asked me перед wait потрібне to."
+        },
+        "en:lesson-30:session-35:intro3:r3": {
+          "ru": "После asked здесь нужна форма me.",
+          "uk": "Після asked тут потрібна форма me."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "91fd971c8588f0ad8e008e243a7e6b8101f1d0b641b415c68dfbe1184a2fdf95"
+}

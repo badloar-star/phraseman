@@ -12,7 +12,7 @@
 
 ### Спізнюємося на автобус
 
-Подруга спізнюється на автобус, а йде додому околицею. Ви знаєте дорогу, яка йде навпростець і заощаджує десять хвилин. shortcut — «короткий шлях». Він один і проходить між парком і бібліотекою: There is a shortcut between the park and the library.
+Подруга спізнюється на автобус і йде до зупинки обхідним шляхом. Ви знаєте дорогу, яка йде навпростець і заощаджує десять хвилин. shortcut — «короткий шлях». There is a shortcut between the park and the library — «Між парком і бібліотекою є короткий шлях». Спочатку ставимо There is, потім називаємо шлях — a shortcut — і місце: between the park and the library. Два орієнтири після between поєднуємо словом and.
 
 **Подруга спізнюється на автобус. Скажіть їй, що між парком і бібліотекою є короткий шлях.**
 
@@ -26,13 +26,13 @@
 
 ### Подалі від машин
 
-Подруга не хоче йти по шосе поруч із машинами й питає, як пройти пішки. Ви думаєте про вузьку доріжку в траві, по якій ходять лише люди. footpath — «піша стежка». Ви не впевнені й питаєте в перехожого: Is there a footpath between the park and the school?
+Подруга не хоче йти по шосе поруч із машинами й питає, як пройти пішки. Ви думаєте про вузьку доріжку в траві, по якій ходять лише люди. footpath — «піша стежка». Is there a footpath between the park and the school? — «Між парком і школою є піша стежка?» Щоб дізнатися про наявність стежки, ставимо Is there, потім a footpath і місце — between the park and the school.
 
 **Подруга не хоче йти поруч із машинами. Запитайте перехожого, чи є між парком і школою піша стежка.**
 
 - ✅ **Is there a footpath between the park and the school?**
 - ❌ Are there a footpath between the park and the school? — *Стежка одна, тому запитання починаємо з Is there, а не з Are there.*
-- ❌ There is a footpath between the park and the school? — *Це порядок слів твердження. У запитанні спочатку Is: Is there a footpath?*
+- ❌ Is there footpath between the park and the school? — *Перед footpath в однині тут потрібне a.*
 
 ---
 
@@ -40,13 +40,13 @@
 
 ### Після дощу
 
-Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». Таких ям немає зовсім, тому aren’t any: There aren’t any puddles on the footpath.
+Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». There aren’t any puddles on the footpath — «На стежці немає калюж». Починаємо з There aren’t any, потім називаємо те, чого немає, у множині — puddles — і місце: on the footpath. Aren’t означає are not, а any в цьому запереченні підкреслює, що калюж немає зовсім.
 
 **Подруга боїться промочити ноги. Скажіть їй, що на стежці калюж немає.**
 
 - ✅ **There aren’t any puddles on the footpath.**
-- ❌ There isn’t any puddles on the footpath. — *Калюж кілька, тому потрібно aren’t, а не isn’t.*
-- ❌ There aren’t any puddle on the footpath. — *Калюж кілька, тому наприкінці puddles, а не puddle.*
+- ❌ There isn’t any puddles on the footpath. — *Puddles стоїть у множині, тому потрібно aren’t.*
+- ❌ There aren’t any puddle on the footpath. — *Після aren’t any тут потрібна форма множини puddles.*
 
 ---
 

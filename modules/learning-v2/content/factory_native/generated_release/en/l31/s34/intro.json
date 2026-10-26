@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять поступок через although, находить нужные вещи и уточнять детали обеда.",
+    "uk": "пояснювати вчинок через although, знаходити потрібні речі й уточнювати деталі обіду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поделился, хотя был голоден",
+        "uk": "Поділився, хоча був голодний"
+      },
+      "bodyByLocale": {
+        "ru": "Хлеба за обедом осталось мало. Вы тоже были голодны, но поделились с другом. Скажите: I shared the bread although I was hungry — я поделился хлебом, хотя был голоден. Соберите I shared the bread + although + I was hungry. Здесь although стоит после главного сообщения и вводит то, что не помешало вам поделиться.",
+        "uk": "Хліба за обідом залишилося мало. Ви теж були голодні, але поділилися з другом. Скажіть: I shared the bread although I was hungry — я поділився хлібом, хоча був голодний. Складіть I shared the bread + although + I was hungry. Тут although стоїть після головного повідомлення й вводить те, що не завадило вам поділитися."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-34:intro1:r1",
+              "text": "I shared the bread although I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro1:r2",
+              "text": "I shared the bread although of I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro1:r3",
+              "text": "I shared the bread although I hungry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-34:intro1:r1",
+              "text": "I shared the bread although I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro1:r2",
+              "text": "I shared the bread although of I was hungry."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro1:r3",
+              "text": "I shared the bread although I hungry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю, где нож",
+        "uk": "Я знаю, де ніж"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет нарезать сыр и ищет нож. Вы видели его на столе: I know where the knife is — я знаю, где нож. Соберите I know + where + the knife + is. После where сохраняем порядок the knife is; вопросительную перестановку здесь не делаем.",
+        "uk": "Друг хоче нарізати сир і шукає ніж. Ви бачили його на столі: I know where the knife is — я знаю, де ніж. Складіть I know + where + the knife + is. Після where зберігаємо порядок the knife is; питальної перестановки тут не робимо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-34:intro2:r1",
+              "text": "I know where the knife is."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro2:r2",
+              "text": "I know where is the knife."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro2:r3",
+              "text": "I know where the knife are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-34:intro2:r1",
+              "text": "I know where the knife is."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro2:r2",
+              "text": "I know where is the knife."
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro2:r3",
+              "text": "I know where the knife are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Суп горячий, правда?",
+        "uk": "Суп гарячий, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Анна поставила суп на стол. Вы уточняете, горячий ли он: The soup is hot, isn’t it? — суп горячий, правда? Соберите The soup is hot + isn’t + it. После утвердительного is добавляем отрицательное isn’t; soup заменяем словом it.",
+        "uk": "Анна поставила суп на стіл. Ви уточнюєте, чи гарячий він: The soup is hot, isn’t it? — суп гарячий, правда? Складіть The soup is hot + isn’t + it. Після стверджувального is додаємо заперечне isn’t; soup замінюємо словом it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-34:intro3:r1",
+              "text": "The soup is hot, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro3:r2",
+              "text": "The soup is hot, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro3:r3",
+              "text": "The soup is hot, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-34:intro3:r1",
+              "text": "The soup is hot, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro3:r2",
+              "text": "The soup is hot, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-34:intro3:r3",
+              "text": "The soup is hot, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0a7e5af618c7a7f9002d1c92bb62a8e5da6a189f55e670353b488e9ea957160a"
+}

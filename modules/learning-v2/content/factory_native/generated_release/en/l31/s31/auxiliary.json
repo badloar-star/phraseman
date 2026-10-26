@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-31:intro1:r2": {
+          "ru": "Перед the rain нужно because of.",
+          "uk": "Перед the rain потрібне because of."
+        },
+        "en:lesson-31:session-31:intro1:r3": {
+          "ru": "После because of здесь называем причину: the rain.",
+          "uk": "Після because of тут називаємо причину: the rain."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-31:intro2:r2": {
+          "ru": "Внутри сообщения не ставим вопрос с did.",
+          "uk": "Усередині повідомлення не ставимо запитання з did."
+        },
+        "en:lesson-31:session-31:intro2:r3": {
+          "ru": "Достаточно ended без did.",
+          "uk": "Достатньо ended без did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-31:intro3:r2": {
+          "ru": "С is здесь нужно isn’t.",
+          "uk": "З is тут потрібне isn’t."
+        },
+        "en:lesson-31:session-31:intro3:r3": {
+          "ru": "Одну game заменяем на it.",
+          "uk": "Одну game замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0db39623a1b104e1e35fd5a26a335280f09c38184d6c718f6e0a74369f3fa7cd"
+}

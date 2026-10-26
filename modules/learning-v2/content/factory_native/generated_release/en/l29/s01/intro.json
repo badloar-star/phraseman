@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "как добавить уточнение с who, which или that.",
+    "uk": "як додати уточнення з who, which або that."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти сотрудницу",
+        "uk": "Знайти працівницю"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет сотрудницу магазина. Вы видите её на улице и говорите: The woman who works here is outside — женщина, которая здесь работает, на улице. Соберите The woman + who works here + is outside. После The woman добавьте who works here: это уточняет, о какой женщине речь. Who заменяет «которая», поэтому ещё одно she перед works не нужно. Затем закончите основную мысль словами is outside.",
+        "uk": "Друг шукає працівницю магазину. Ви бачите її надворі й кажете: The woman who works here is outside — жінка, яка тут працює, надворі. Складіть The woman + who works here + is outside. Після The woman додайте who works here: це уточнює, про яку жінку йдеться. Who замінює «яка», тому ще одне she перед works не потрібне. Потім завершіть основну думку словами is outside."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-01:intro1:r1",
+              "text": "The woman who works here is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro1:r2",
+              "text": "The woman who she works here is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro1:r3",
+              "text": "The woman who work here is outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-01:intro1:r1",
+              "text": "The woman who works here is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro1:r2",
+              "text": "The woman who she works here is outside."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro1:r3",
+              "text": "The woman who work here is outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узнать свою сумку",
+        "uk": "Упізнати свою сумку"
+      },
+      "bodyByLocale": {
+        "ru": "На стойке лежат несколько сумок, и вы объясняете, какая ваша: The bag which has a red handle is mine — сумка, у которой красная ручка, моя. Соберите The bag + which has a red handle + is mine. Сразу после The bag добавьте which has a red handle, чтобы указать нужную сумку. Which относится к предмету и занимает место it внутри уточнения. В конце is mine сообщает, что сумка ваша.",
+        "uk": "На стійці лежать кілька сумок, і ви пояснюєте, яка ваша: The bag which has a red handle is mine — сумка, у якої червона ручка, моя. Складіть The bag + which has a red handle + is mine. Одразу після The bag додайте which has a red handle, щоб указати потрібну сумку. Which стосується предмета й займає місце it усередині уточнення. Наприкінці is mine повідомляє, що сумка ваша."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-01:intro2:r1",
+              "text": "The bag which has a red handle is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro2:r2",
+              "text": "The bag which it has a red handle is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro2:r3",
+              "text": "The bag which have a red handle is mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-01:intro2:r1",
+              "text": "The bag which has a red handle is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro2:r2",
+              "text": "The bag which it has a red handle is mine."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro2:r3",
+              "text": "The bag which have a red handle is mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подходящий ключ",
+        "uk": "Потрібний ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Вам дали несколько ключей, но дверь пока не открывается. Скажите: I need a key that opens this door — мне нужен ключ, который открывает эту дверь. Соберите I need a key + that opens this door. После a key добавьте that и opens this door: так вы уточняете, какой ключ нужен. That здесь связывает предмет с его действием; дополнительное it перед opens не ставим. В таком уточнении предмета вместо that также можно использовать which.",
+        "uk": "Вам дали кілька ключів, але двері поки не відчиняються. Скажіть: I need a key that opens this door — мені потрібен ключ, який відчиняє ці двері. Складіть I need a key + that opens this door. Після a key додайте that та opens this door: так ви уточнюєте, який ключ потрібний. That тут пов’язує предмет із його дією; додаткове it перед opens не ставимо. У такому уточненні предмета замість that також можна використати which."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-01:intro3:r1",
+              "text": "I need a key that opens this door."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro3:r2",
+              "text": "I need a key that it opens this door."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro3:r3",
+              "text": "I need a key that open this door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-01:intro3:r1",
+              "text": "I need a key that opens this door."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro3:r2",
+              "text": "I need a key that it opens this door."
+            },
+            {
+              "responseId": "en:lesson-29:session-01:intro3:r3",
+              "text": "I need a key that open this door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "061cbc50cee4ebfadc6e769e91e38ff4b8e2a409477478be2241309d337164f2"
+}

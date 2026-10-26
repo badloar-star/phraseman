@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-21:intro1:r2": {
+          "ru": "Уточнение начинается с you, затем идёт gave me.",
+          "uk": "Уточнення починається з you, потім іде gave me."
+        },
+        "en:lesson-30:session-21:intro1:r3": {
+          "ru": "Одна brush требует is, не are.",
+          "uk": "Один brush потребує is, не are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-21:intro2:r2": {
+          "ru": "После asked me нужно to перед open.",
+          "uk": "Після asked me потрібне to перед open."
+        },
+        "en:lesson-30:session-21:intro2:r3": {
+          "ru": "После asked здесь используем me, не I.",
+          "uk": "Після asked тут використовуємо me, не I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-21:intro3:r2": {
+          "ru": "Для такого нереального желания сейчас используем were bigger, не is bigger.",
+          "uk": "Для такого нереального бажання зараз використовуємо were bigger, не is bigger."
+        },
+        "en:lesson-30:session-21:intro3:r3": {
+          "ru": "В этой конструкции нужна форма were, не be.",
+          "uk": "У цій конструкції потрібна форма were, не be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f112ad507245c6c5c9e8df53ea6bd3063c4b9b656eea006c1e92a57165d44c5d"
+}

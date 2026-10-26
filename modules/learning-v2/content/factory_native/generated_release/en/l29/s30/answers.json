@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-30:i01",
+    "correctText": "The film which we watched was great.",
+    "correctResponseId": "en:lesson-29:session-30:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i02",
+    "correctText": "gripping",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i03",
+    "correctText": "The story was gripping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i04",
+    "correctText": "What did you think of the ending?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i05",
+    "correctText": "we watched",
+    "correctResponseId": "en:lesson-29:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i06",
+    "correctText": "suspenseful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i07",
+    "correctText": "The last scene was suspenseful.",
+    "correctResponseId": "en:lesson-29:session-30:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i08",
+    "correctText": "I know the actor who played the father.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i09",
+    "correctText": "heartwarming",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i10",
+    "correctText": "The ending was heartwarming.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i11",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-29:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i12",
+    "correctText": "Where was the film made?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i13",
+    "correctText": "overrated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i14",
+    "correctText": "I think the film is overrated.",
+    "correctResponseId": "en:lesson-29:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i15",
+    "correctText": "en:lesson-29:session-30:i15:p1=gripping\nen:lesson-29:session-30:i15:p2=suspenseful\nen:lesson-29:session-30:i15:p3=heartwarming\nen:lesson-29:session-30:i15:p4=overrated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i16",
+    "correctText": "like",
+    "correctResponseId": "en:lesson-29:session-30:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i17",
+    "correctText": "The last scene was suspenseful.",
+    "correctResponseId": "en:lesson-29:session-30:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i18",
+    "correctText": "The film was recommended by my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i19",
+    "correctText": "Please do not tell me the ending.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-30:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-30:i21",
+    "correctText": "Shall we watch another episode?",
+    "correctResponseId": null
+  }
+]

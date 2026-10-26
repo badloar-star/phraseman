@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-03:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-47:intro1:r2": {
-          "ru": "Шуруп вы называете впервые, поэтому a: This is a screw.",
-          "uk": "Шуруп ви називаєте вперше, тому a: This is a screw."
+          "ru": "Между This и a screw нужно is.",
+          "uk": "Між This та a screw потрібне is."
         },
         "en:lesson-03:session-47:intro1:r3": {
           "ru": "Слово screw начинается с согласного звука, поэтому a: This is a screw.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-03:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-47:intro2:r2": {
-          "ru": "Вы оба смотрите на гвозди из этой коробки, поэтому the: The nails are long.",
-          "uk": "Ви обоє дивитеся на цвяхи з цієї коробки, тому the: The nails are long."
+          "ru": "После The nails нужно are.",
+          "uk": "Після The nails потрібне are."
         },
         "en:lesson-03:session-47:intro2:r3": {
           "ru": "Гвоздей несколько, поэтому нужно are: The nails are long.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5e4cb5dee63478f515a2db911cba8a0e545ff067d4cebbd584c66f83366e0f84"
+  "auxiliaryFingerprint": "214112a1b454fff8b39d0a3f18679b298f685cdbf521be7f13b7daaef62e2b37"
 }

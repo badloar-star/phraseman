@@ -1,0 +1,1032 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — satchel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — satchel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i01:audio",
+          "transcript": "satchel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i01:r1",
+            "targetText": "satchel",
+            "meaningByLocale": {
+              "ru": "Сумка с ремнём через плечо, обычно с клапаном, например для книг.",
+              "uk": "Сумка з ременем через плече, зазвичай із клапаном, наприклад для книжок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "satchel",
+          "definitionByLocale": {
+            "ru": "Сумка с ремнём через плечо, обычно с клапаном, например для книг.",
+            "uk": "Сумка з ременем через плече, зазвичай із клапаном, наприклад для книжок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, можно ли заменить ремень этой сумки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли заменить ремень этой сумки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can the strap on this satchel be replaced?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли заменить ремень этой сумки.",
+          "uk": "Запитайте, чи можна замінити ремінь цієї сумки."
+        },
+        "orderedTokens": [
+          "Can",
+          "the strap on this satchel",
+          "be",
+          "replaced"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i03:r1",
+          "text": "Your bag will be delivered tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i03:r2",
+          "text": "Your bag will be delivered on Friday."
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i03:r3",
+          "text": "Your bag was delivered yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i03:audio",
+          "transcript": "Your bag will be delivered tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i03:r1",
+            "targetText": "Your bag will be delivered tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i03:r2",
+            "targetText": "Your bag will be delivered on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i03:r3",
+            "targetText": "Your bag was delivered yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your bag will be delivered tomorrow.",
+              "uk": "У записі звучить Your bag will be delivered tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your bag will be delivered tomorrow.",
+              "uk": "У записі звучить Your bag will be delivered tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать более лёгкую сумку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Попросите показать более лёгкую сумку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i04:audio",
+          "transcript": "Could you show me a lighter bag?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me a lighter bag?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — holdall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — holdall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i05:audio",
+          "transcript": "holdall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i05:r1",
+            "targetText": "holdall",
+            "meaningByLocale": {
+              "ru": "Большая мягкая дорожная сумка с ручками.",
+              "uk": "Велика м’яка дорожня сумка з ручками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "holdall",
+          "definitionByLocale": {
+            "ru": "Большая мягкая дорожная сумка с ручками.",
+            "uk": "Велика м’яка дорожня сумка з ручками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец говорит, что эту дорожную сумку можно сложить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i06:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец говорит, что эту дорожную сумку можно сложить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец говорит, что эту дорожную сумку можно сложить.",
+          "uk": "Продавець каже, що цю дорожню сумку можна скласти."
+        },
+        "gappedTargetPhrase": "This holdall can ___ folded.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-26:i06:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Продавец говорит, что эту дорожную сумку можно сложить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Продавец говорит, что эту дорожную сумку можно сложить.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Продавец говорит, что эту дорожную сумку можно сложить.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна can be folded.",
+              "uk": "Тут потрібна can be folded."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, сколько весит сумка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Уточните, сколько весит сумка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i07:audio",
+          "transcript": "How much does it weigh?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much does it weigh?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели бы, чтобы сумка была меньше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы, чтобы сумка была меньше.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish it were smaller.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы, чтобы сумка была меньше.",
+          "uk": "Ви хотіли б, щоб сумка була меншою."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "it",
+          "were",
+          "smaller"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — combination",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — combination",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i09:audio",
+          "transcript": "combination"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i09:r1",
+            "targetText": "combination",
+            "meaningByLocale": {
+              "ru": "Комбинация; здесь последовательность цифр, которая открывает кодовый замок.",
+              "uk": "Комбінація; тут послідовність цифр, яка відкриває кодовий замок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "combination",
+          "definitionByLocale": {
+            "ru": "Комбинация; здесь последовательность цифр, которая открывает кодовый замок.",
+            "uk": "Комбінація; тут послідовність цифр, яка відкриває кодовий замок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i10:r1",
+          "text": "The combination can be changed."
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i10:r2",
+          "text": "The combination must be changed."
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i10:r3",
+          "text": "The combination was changed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i10:audio",
+          "transcript": "The combination can be changed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i10:r1",
+            "targetText": "The combination can be changed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i10:r2",
+            "targetText": "The combination must be changed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i10:r3",
+            "targetText": "The combination was changed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The combination can be changed.",
+              "uk": "У записі звучить The combination can be changed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The combination can be changed.",
+              "uk": "У записі звучить The combination can be changed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумки проверяют перед отправкой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i11:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумки проверяют перед отправкой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумки проверяют перед отправкой.",
+          "uk": "Сумки перевіряють перед відправленням."
+        },
+        "gappedTargetPhrase": "Bags ___ checked before delivery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-26:i11:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сумки проверяют перед отправкой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Сумки проверяют перед отправкой.",
+            "feedbackByLocale": {
+              "ru": "Bags — несколько: are.",
+              "uk": "Bags — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Сумки проверяют перед отправкой.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are checked.",
+              "uk": "Тут використовуємо are checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать, как открыть замок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i12:audio"
+      ],
+      "accessibilityLabel": "Попросите показать, как открыть замок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i12:audio",
+          "transcript": "Could you show me how to open the lock?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me how to open the lock?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — expandable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — expandable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i13:audio",
+          "transcript": "expandable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i13:r1",
+            "targetText": "expandable",
+            "meaningByLocale": {
+              "ru": "Расширяемый: о сумке или чемодане, объём которых можно увеличить.",
+              "uk": "Розширюваний: про сумку чи валізу, об’єм яких можна збільшити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "expandable",
+          "definitionByLocale": {
+            "ru": "Расширяемый: о сумке или чемодане, объём которых можно увеличить.",
+            "uk": "Розширюваний: про сумку чи валізу, об’єм яких можна збільшити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, можно ли увеличить объём этого чемодана.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, можно ли увеличить объём этого чемодана.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is this suitcase expandable?",
+        "localizedMeaning": {
+          "ru": "Уточните, можно ли увеличить объём этого чемодана.",
+          "uk": "Уточніть, чи можна збільшити об’єм цієї валізи."
+        },
+        "orderedTokens": [
+          "Is",
+          "this",
+          "suitcase",
+          "expandable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i15:r1",
+          "text": "The handle was repaired yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i15:r2",
+          "text": "The handle was repaired last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i15:r3",
+          "text": "The zip was repaired yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i15:audio",
+          "transcript": "The handle was repaired yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-26:i15:r1",
+            "targetText": "The handle was repaired yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i15:r2",
+            "targetText": "The handle was repaired last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i15:r3",
+            "targetText": "The zip was repaired yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The handle was repaired yesterday.",
+              "uk": "У записі звучить The handle was repaired yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The handle was repaired yesterday.",
+              "uk": "У записі звучить The handle was repaired yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i16:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i16:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i16:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+          "uk": "Учора крамниця вже зачинилася до вашого приходу. Завершіть ранішу подію."
+        },
+        "gappedTargetPhrase": "The shop had ___ by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-26:i16:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i16:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i16:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i16:r2",
+            "correct": false,
+            "testedDimension": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна closed.",
+              "uk": "Після had потрібна closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i16:r3",
+            "correct": false,
+            "testedDimension": "Вчера магазин уже закрылся к вашему приходу. Завершите более раннее событие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had closed.",
+              "uk": "Тут використовуємо had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте совет о хранении сумки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте совет о хранении сумки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i17:audio",
+          "transcript": "The bag should be kept dry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag should be kept dry.",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "should",
+          "be",
+          "kept",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли вернуть покупку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i18:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли вернуть покупку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i18:audio",
+          "transcript": "Can I return it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I return it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец объясняет условие возврата: необходимо предъявить чек.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-26:i19:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i19:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-26:i19:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец объясняет условие возврата: необходимо предъявить чек.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец объясняет условие возврата: необходимо предъявить чек.",
+          "uk": "Продавець пояснює умову повернення: необхідно пред’явити чек."
+        },
+        "gappedTargetPhrase": "The receipt must ___ shown.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-26:i19:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i19:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i19:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Продавец объясняет условие возврата: необходимо предъявить чек.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-26:i19:r2",
+            "correct": false,
+            "testedDimension": "Продавец объясняет условие возврата: необходимо предъявить чек.",
+            "feedbackByLocale": {
+              "ru": "После must нужна be.",
+              "uk": "Після must потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-26:i19:r3",
+            "correct": false,
+            "testedDimension": "Продавец объясняет условие возврата: необходимо предъявить чек.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна must be shown.",
+              "uk": "Тут потрібна must be shown."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, когда пришлют новую ручку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте, когда пришлют новую ручку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i20:audio",
+          "transcript": "The new handle will be sent tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The new handle will be sent tomorrow.",
+        "orderedTokens": [
+          "The",
+          "new",
+          "handle",
+          "will",
+          "be",
+          "sent",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-26:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите доставить покупку домой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-26:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите доставить покупку домой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-26:i21:audio",
+          "transcript": "Could you deliver it to my home?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you deliver it to my home?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "94faf3943ba53150b240b9a2035fe56087f9d9ff32f5bcb043e13e3b9cd59fda"
+}

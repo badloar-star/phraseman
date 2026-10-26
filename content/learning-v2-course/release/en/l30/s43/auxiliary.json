@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-43:intro1:r2": {
+          "ru": "В уточнении ставим I перед bought.",
+          "uk": "В уточненні ставимо I перед bought."
+        },
+        "en:lesson-30:session-43:intro1:r3": {
+          "ru": "Множественное shoes требует are.",
+          "uk": "Множина shoes потребує are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-43:intro2:r2": {
+          "ru": "В пересказе нужен порядок I needed, без did.",
+          "uk": "У переказі потрібен порядок I needed, без did."
+        },
+        "en:lesson-30:session-43:intro2:r3": {
+          "ru": "Здесь нужна форма needed.",
+          "uk": "Тут потрібна форма needed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-43:intro3:r2": {
+          "ru": "После told перед her не ставим to.",
+          "uk": "Після told перед her не ставимо to."
+        },
+        "en:lesson-30:session-43:intro3:r3": {
+          "ru": "Перед her здесь используем told.",
+          "uk": "Перед her тут використовуємо told."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "123ea5d1ea2dea29f2a203ae88870696627b3ceac057258aaab80460de9ecb9d"
+}

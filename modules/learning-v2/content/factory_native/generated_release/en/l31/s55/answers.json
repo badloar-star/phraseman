@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-55:i01",
+    "correctText": "water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i02",
+    "correctText": "I know that the water is cold.",
+    "correctResponseId": "en:lesson-31:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i04",
+    "correctText": "cloth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i05",
+    "correctText": "I spilled some water, so I got a cloth.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i06",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i07",
+    "correctText": "The floor was wet and therefore we walked slowly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i08",
+    "correctText": "dry",
+    "correctResponseId": "en:lesson-31:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i09",
+    "correctText": "I got a cloth to dry the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i10",
+    "correctText": "Could you tell me where the dry cloth is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i12",
+    "correctText": "cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i13",
+    "correctText": "I know that the cup is empty.",
+    "correctResponseId": "en:lesson-31:session-55:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i14",
+    "correctText": "She said the cloths were dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i15",
+    "correctText": "The floor was wet and therefore we walked slowly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-31:session-55:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i17",
+    "correctText": "Anna helped me although she was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i18",
+    "correctText": "I spilled some water, so I got a cloth.",
+    "correctResponseId": "en:lesson-31:session-55:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i19",
+    "correctText": "The floor was wet and therefore we walked slowly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-55:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-55:i21",
+    "correctText": "I understand why Anna brought a cloth.",
+    "correctResponseId": null
+  }
+]

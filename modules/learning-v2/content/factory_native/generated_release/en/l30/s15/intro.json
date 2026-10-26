@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "как пересказать вопрос о месте или наличии продукта, уточнить рецепт и выразить желание.",
+    "uk": "як переказати запитання про місце або наявність продукту, уточнити рецепт і висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где лежит нужный продукт",
+        "uk": "Де лежить потрібний продукт"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине подруга спросила вас, где стоят отруби. Дома вы пересказываете её вопрос: She asked where the bran was — она спросила, где были отруби. Соберите She + asked + where + the bran + was. После where в пересказе сначала называем продукт, затем ставим was. Bran — название продукта в целом, поэтому здесь was.",
+        "uk": "У магазині подруга запитала вас, де стоять висівки. Удома ви переказуєте її запитання: She asked where the bran was — вона запитала, де були висівки. Складіть She + asked + where + the bran + was. Після where у переказі спочатку називаємо продукт, потім ставимо was. Bran — назва продукту загалом, тому тут was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-15:intro1:r1",
+              "text": "She asked where the bran was."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro1:r2",
+              "text": "She asked where was the bran."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro1:r3",
+              "text": "She asked where the bran were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-15:intro1:r1",
+              "text": "She asked where the bran was."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro1:r2",
+              "text": "She asked where was the bran."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro1:r3",
+              "text": "She asked where the bran were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Есть ли это дома",
+        "uk": "Чи є це вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Перед покупкой сестра спросила, есть ли у вас дома рис. Передайте её вопрос: She asked if I had rice — она спросила, был ли у меня рис. Соберите She + asked + if + I + had rice. If передаёт «ли»; внутри пересказа ставим I перед had и не добавляем did.",
+        "uk": "Перед покупкою сестра запитала, чи є у вас удома рис. Передайте її запитання: She asked if I had rice — вона запитала, чи був у мене рис. Складіть She + asked + if + I + had rice. If передає «чи»; усередині переказу ставимо I перед had і не додаємо did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-15:intro2:r1",
+              "text": "She asked if I had rice."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro2:r2",
+              "text": "She asked if did I have rice."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro2:r3",
+              "text": "She asked if I having rice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-15:intro2:r1",
+              "text": "She asked if I had rice."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro2:r2",
+              "text": "She asked if did I have rice."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro2:r3",
+              "text": "She asked if I having rice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какой именно рецепт",
+        "uk": "Який саме рецепт"
+      },
+      "bodyByLocale": {
+        "ru": "Друг прислал вам рецепт, и вы уже приготовили блюдо. Скажите ему: The recipe you sent me was easy — рецепт, который ты мне прислал, был простым. Соберите The recipe + you sent me + was easy. You sent me уточняет рецепт. Здесь можно не ставить that: you обозначает того, кто прислал, а recipe — то, что прислали.",
+        "uk": "Друг надіслав вам рецепт, і ви вже приготували страву. Скажіть йому: The recipe you sent me was easy — рецепт, який ти мені надіслав, був простим. Складіть The recipe + you sent me + was easy. You sent me уточнює рецепт. Тут можна не ставити that: you позначає того, хто надіслав, а recipe — те, що надіслали."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-15:intro3:r1",
+              "text": "The recipe you sent me was easy."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro3:r2",
+              "text": "The recipe you sending me was easy."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro3:r3",
+              "text": "The recipe you sent me were easy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-15:intro3:r1",
+              "text": "The recipe you sent me was easy."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro3:r2",
+              "text": "The recipe you sending me was easy."
+            },
+            {
+              "responseId": "en:lesson-30:session-15:intro3:r3",
+              "text": "The recipe you sent me were easy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c688d03a1d5369c44412ba0842e9d56ab8b3a23cebf5dff697a928d985553794"
+}

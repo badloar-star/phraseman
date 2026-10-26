@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "как описать приготовление еды, пожелать изменения сейчас и рассказать, что произошло до вашего прихода.",
+    "uk": "як описати приготування їжі, побажати зміни зараз і розповісти, що сталося до вашого приходу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Суп к обеду",
+        "uk": "Суп до обіду"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе вам объясняют, что суп готовят каждое утро. The soup is prepared every morning — суп готовят каждое утро. Начните с The soup: называем еду, с которой что-то делают. Затем поставьте is prepared и добавьте every morning. Soup здесь сочетается с is; для prepared к prepare добавляем -d.",
+        "uk": "У кафе вам пояснюють, що суп готують щоранку. The soup is prepared every morning — суп готують щоранку. Почніть із The soup: називаємо їжу, з якою щось роблять. Потім поставте is prepared і додайте every morning. Soup тут поєднується з is; для prepared до prepare додаємо -d."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-04:intro1:r1",
+              "text": "The soup is prepared every morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro1:r2",
+              "text": "The soup are prepared every morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro1:r3",
+              "text": "The soup is prepare every morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-04:intro1:r1",
+              "text": "The soup is prepared every morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro1:r2",
+              "text": "The soup are prepared every morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro1:r3",
+              "text": "The soup is prepare every morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слишком острый соус",
+        "uk": "Занадто гострий соус"
+      },
+      "bodyByLocale": {
+        "ru": "Вы попробовали соус: для вас он слишком острый. I wish the sauce were milder — хотелось бы, чтобы соус был менее острым. Соберите I wish + the sauce + were milder. Milder — мягче на вкус, менее острый. Were здесь помогает сказать, какой соус вам хотелось бы сейчас, хотя он уже острый.",
+        "uk": "Ви скуштували соус: для вас він занадто гострий. I wish the sauce were milder — хотілося б, щоб соус був менш гострим. Складіть I wish + the sauce + were milder. Milder — м’якший на смак, менш гострий. Were тут допомагає сказати, якого соусу вам хотілося б зараз, хоча він уже гострий."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-04:intro2:r1",
+              "text": "I wish the sauce were milder."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro2:r2",
+              "text": "I wish the sauce is milder."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro2:r3",
+              "text": "I wish the sauce be milder."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-04:intro2:r1",
+              "text": "I wish the sauce were milder."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro2:r2",
+              "text": "I wish the sauce is milder."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro2:r3",
+              "text": "I wish the sauce be milder."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стол уже занят",
+        "uk": "Столик уже зайнятий"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы задержались по дороге в кафе. Подруга успела найти столик до вашего прихода. She had found a table by the time I arrived — к тому времени, как я пришёл, она уже нашла столик. Сначала She + had found + a table: то, что произошло раньше. Затем by the time + I arrived: момент вашего прихода. После had используем found, форму find.",
+        "uk": "Учора ви затрималися дорогою до кафе. Подруга встигла знайти столик до вашого приходу. She had found a table by the time I arrived — до того часу, як я прийшов, вона вже знайшла столик. Спочатку She + had found + a table: те, що сталося раніше. Потім by the time + I arrived: момент вашого приходу. Після had використовуємо found, форму find."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-04:intro3:r1",
+              "text": "She had found a table by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro3:r2",
+              "text": "She had find a table by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro3:r3",
+              "text": "She had found a table by the time I arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-04:intro3:r1",
+              "text": "She had found a table by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro3:r2",
+              "text": "She had find a table by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-04:intro3:r3",
+              "text": "She had found a table by the time I arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "59dfc95f97817c7f02f9010398d96d66921b0c8fad42e17507365ff416e83ddf"
+}

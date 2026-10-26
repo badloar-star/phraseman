@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — baby",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — baby",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i01:audio",
+          "transcript": "baby"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-32:i01:r1",
+            "targetText": "baby",
+            "meaningByLocale": {
+              "ru": "Малыш. Повторение знакомого слова.",
+              "uk": "Малюк. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baby",
+          "definitionByLocale": {
+            "ru": "Малыш. Повторение знакомого слова.",
+            "uk": "Малюк. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i02:r1",
+          "text": "The baby is crying because he is hungry."
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i02:r2",
+          "text": "The baby is crying because he is tired."
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i02:r3",
+          "text": "The baby is crying because he is cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i02:audio",
+          "transcript": "The baby is crying because he is hungry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-32:i02:r1",
+            "targetText": "The baby is crying because he is hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i02:r2",
+            "targetText": "The baby is crying because he is tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i02:r3",
+            "targetText": "The baby is crying because he is cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The baby is crying because he is hungry.",
+              "uk": "У записі звучить The baby is crying because he is hungry."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The baby is crying because he is hungry.",
+              "uk": "У записі звучить The baby is crying because he is hungry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Малюк плаче, бо голодний. Виберіть сполучник.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i03:r1",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i03:r2",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Малюк плаче, бо голодний. Виберіть сполучник.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Малыш плачет, потому что голоден. Выберите связку.",
+          "uk": "Малюк плаче, бо голодний. Виберіть сполучник."
+        },
+        "gappedTargetPhrase": "The baby is crying ___ he is hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-32:i03:r1",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i03:r2",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Малюк плаче, бо голодний. Виберіть сполучник.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Малюк плаче, бо голодний. Виберіть сполучник.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью he is hungry нужен because.",
+              "uk": "Перед цілою частиною he is hungry потрібне because."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Малюк плаче, бо голодний. Виберіть сполучник.",
+            "feedbackByLocale": {
+              "ru": "Of не связывает эти части.",
+              "uk": "Of не пов’язує ці частини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bottle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bottle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i04:audio",
+          "transcript": "bottle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-32:i04:r1",
+            "targetText": "bottle",
+            "meaningByLocale": {
+              "ru": "Бутылка, бутылочка. Повторение знакомого слова.",
+              "uk": "Пляшка, пляшечка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottle",
+          "definitionByLocale": {
+            "ru": "Бутылка, бутылочка. Повторение знакомого слова.",
+            "uk": "Пляшка, пляшечка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте, де пляшечка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте, де пляшечка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the bottle is.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, где бутылочка.",
+          "uk": "Скажіть, що знаєте, де пляшечка."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "bottle",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blanket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blanket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i06:audio",
+          "transcript": "blanket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-32:i06:r1",
+            "targetText": "blanket",
+            "meaningByLocale": {
+              "ru": "Одеяло. Повторение знакомого слова.",
+              "uk": "Ковдра. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blanket",
+          "definitionByLocale": {
+            "ru": "Одеяло. Повторение знакомого слова.",
+            "uk": "Ковдра. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна випрала ковдру. Почніть із ковдри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Анна випрала ковдру. Почніть із ковдри.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i07:audio",
+          "transcript": "The blanket was washed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The blanket was washed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Малюк спить». Перекажіть фразу The baby is asleep зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Малюк спить». Перекажіть фразу The baby is asleep зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Малыш спит». Перескажите фразу The baby is asleep со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Малюк спить». Перекажіть фразу The baby is asleep зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the baby ___ asleep.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-32:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Малюк спить». Перекажіть фразу The baby is asleep зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Малюк спить». Перекажіть фразу The baby is asleep зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Малюк спить». Перекажіть фразу The baby is asleep зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i09:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-32:i09:r1",
+            "targetText": "milk",
+            "meaningByLocale": {
+              "ru": "Молоко. Повторение знакомого слова.",
+              "uk": "Молоко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milk",
+          "definitionByLocale": {
+            "ru": "Молоко. Повторение знакомого слова.",
+            "uk": "Молоко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де молоко.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де молоко.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the milk is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где молоко.",
+          "uk": "Ввічливо запитайте, де молоко."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "milk",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що молоко в холодильнику. Скажіть це сестрі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що молоко в холодильнику. Скажіть це сестрі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i11:audio",
+          "transcript": "I know that the milk is in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the milk is in the fridge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна випрала ковдру. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i12:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна випрала ковдру. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна постирала одеяло. Выберите предлог перед её именем.",
+          "uk": "Анна випрала ковдру. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The blanket was washed ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-32:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i12:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна випрала ковдру. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Анна випрала ковдру. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Анна випрала ковдру. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i13:r1",
+          "text": "I understand why the baby is crying."
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i13:r2",
+          "text": "I understand why the baby is sleeping."
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i13:r3",
+          "text": "I understand why the baby is smiling."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i13:audio",
+          "transcript": "I understand why the baby is crying."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-32:i13:r1",
+            "targetText": "I understand why the baby is crying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i13:r2",
+            "targetText": "I understand why the baby is sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i13:r3",
+            "targetText": "I understand why the baby is smiling.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I understand why the baby is crying.",
+              "uk": "У записі звучить I understand why the baby is crying."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I understand why the baby is crying.",
+              "uk": "У записі звучить I understand why the baby is crying."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Пляшечки чисті». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Пляшечки чисті». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i14:audio",
+          "transcript": "She said the bottles were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the bottles were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Молоко тепле. Додайте заперечне уточнення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Молоко тепле. Додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The milk is warm, isn't it?",
+        "localizedMeaning": {
+          "ru": "Молоко тёплое. Добавьте отрицательное уточнение.",
+          "uk": "Молоко тепле. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "milk",
+          "is",
+          "warm,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте сестру, чи знає вона, де ковдра.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i16:r1",
+          "text": "the blanket is"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i16:r2",
+          "text": "is the blanket"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i16:r3",
+          "text": "the blanket are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте сестру, чи знає вона, де ковдра.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите сестру, знает ли она, где одеяло.",
+          "uk": "Запитайте сестру, чи знає вона, де ковдра."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-32:i16:r1",
+            "text": "the blanket is"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i16:r2",
+            "text": "is the blanket"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i16:r3",
+            "text": "the blanket are"
+          }
+        ],
+        "testedDimension": "Запитайте сестру, чи знає вона, де ковдра.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте сестру, чи знає вона, де ковдра.",
+            "feedbackByLocale": {
+              "ru": "После where порядок the blanket is.",
+              "uk": "Після where порядок the blanket is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте сестру, чи знає вона, де ковдра.",
+            "feedbackByLocale": {
+              "ru": "Одна blanket требует is.",
+              "uk": "Одна blanket потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Надворі галасували. Скажіть, що зачинили вікно через шум.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Надворі галасували. Скажіть, що зачинили вікно через шум.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i17:audio",
+          "transcript": "I closed the window because of the noise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I closed the window because of the noise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: малюк плаче, бо голодний чи втомлений?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i18:r1",
+          "text": "The baby is crying because he is hungry."
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i18:r2",
+          "text": "The baby is crying because he is tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i18:audioA",
+        "en:lesson-31:session-32:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: малюк плаче, бо голодний чи втомлений?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The baby is crying because he is hungry.",
+        "contrastB": "The baby is crying because he is tired.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-32:i18:audioA",
+          "transcript": "The baby is crying because he is hungry."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-32:i18:audioB",
+          "transcript": "The baby is crying because he is tired."
+        },
+        "testedPhoneticContrast": "Послухайте: малюк плаче, бо голодний чи втомлений?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: малюк плаче, бо голодний чи втомлений?",
+            "feedbackByLocale": {
+              "ru": "Звучит hungry — голоден.",
+              "uk": "Звучить hungry — голодний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте причину плачу. Почніть з The baby is crying.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте причину плачу. Почніть з The baby is crying.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i19:audio",
+          "transcript": "The baby is crying because he is hungry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The baby is crying because he is hungry.",
+        "orderedTokens": [
+          "The",
+          "baby",
+          "is",
+          "crying",
+          "because",
+          "he",
+          "is",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Молоко не холодне. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-32:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-32:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Молоко не холодне. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Молоко не холодное. Добавьте утвердительное уточнение.",
+          "uk": "Молоко не холодне. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The milk isn't cold, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-32:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Молоко не холодне. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-32:i20:r2",
+            "correct": false,
+            "testedDimension": "Молоко не холодне. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Milk требует is.",
+              "uk": "Milk потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-32:i20:r3",
+            "correct": false,
+            "testedDimension": "Молоко не холодне. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-32:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому малюк плаче. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-32:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому малюк плаче. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-32:i21:audio",
+          "transcript": "I understand why the baby is crying."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why the baby is crying.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1750812511272c3af68103c250432f37d8d914e2482650cd402a21c32c6bdd35"
+}

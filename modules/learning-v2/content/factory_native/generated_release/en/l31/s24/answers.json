@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-24:i01",
+    "correctText": "flowers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i02",
+    "correctText": "I know where the flowers are.",
+    "correctResponseId": "en:lesson-31:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i03",
+    "correctText": "water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i04",
+    "correctText": "need",
+    "correctResponseId": "en:lesson-31:session-24:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i05",
+    "correctText": "bench",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i06",
+    "correctText": "I understand why the bench is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i07",
+    "correctText": "gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i08",
+    "correctText": "The gate was painted by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i10",
+    "correctText": "Could you tell me where the water is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i11",
+    "correctText": "I know that the flowers need water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i13",
+    "correctText": "I understand why the bench is wet.",
+    "correctResponseId": "en:lesson-31:session-24:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i14",
+    "correctText": "He said the flowers were beautiful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i15",
+    "correctText": "The gate is closed, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i16",
+    "correctText": "the bench is",
+    "correctResponseId": "en:lesson-31:session-24:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i17",
+    "correctText": "The flowers were watered by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i18",
+    "correctText": "I know where the water is.",
+    "correctResponseId": "en:lesson-31:session-24:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i19",
+    "correctText": "I understand why the bench is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-24:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-24:i21",
+    "correctText": "I know that Ben is busy.",
+    "correctResponseId": null
+  }
+]

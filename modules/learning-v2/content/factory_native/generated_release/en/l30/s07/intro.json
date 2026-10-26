@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "как передать слова об обиде, выразить желание меньше спорить и сказать о примирении.",
+    "uk": "як передати слова про образу, висловити бажання менше сперечатися й сказати про примирення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Она чувствовала обиду",
+        "uk": "Вона відчувала образу"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра сказала, что обижена на брата: он снова оставил ей всю уборку. Вы пересказываете её слова маме: She said that she was resentful — она сказала, что чувствовала обиду. Соберите She + said + that + she was resentful. После said передайте её состояние в том разговоре: she was resentful. Оба she обозначают сестру.",
+        "uk": "Учора сестра сказала, що ображена на брата: він знову залишив їй усе прибирання. Ви переказуєте її слова мамі: She said that she was resentful — вона сказала, що відчувала образу. Складіть She + said + that + she was resentful. Після said передайте її стан у тій розмові: she was resentful. Обидва she позначають сестру."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-07:intro1:r1",
+              "text": "She said that she was resentful."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro1:r2",
+              "text": "She said that she were resentful."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro1:r3",
+              "text": "She said that she being resentful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-07:intro1:r1",
+              "text": "She said that she was resentful."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro1:r2",
+              "text": "She said that she were resentful."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro1:r3",
+              "text": "She said that she being resentful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хочется меньше спорить",
+        "uk": "Хочеться менше сперечатися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с братом часто ссоритесь и хотите это изменить: I wish we argued less — хотелось бы, чтобы мы меньше спорили. Соберите I wish + we argued + less. Argued после wish описывает желаемую перемену в нынешних отношениях; это не рассказ о прошлой ссоре.",
+        "uk": "Ви з братом часто сваритеся й хочете це змінити: I wish we argued less — хотілося б, щоб ми менше сперечалися. Складіть I wish + we argued + less. Argued після wish описує бажану зміну в нинішніх стосунках; це не розповідь про минулу сварку."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-07:intro2:r1",
+              "text": "I wish we argued less."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro2:r2",
+              "text": "I wish we argue less."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro2:r3",
+              "text": "I wish we arguing less."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-07:intro2:r1",
+              "text": "I wish we argued less."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro2:r2",
+              "text": "I wish we argue less."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro2:r3",
+              "text": "I wish we arguing less."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Добрые слова помогли",
+        "uk": "Добрі слова допомогли"
+      },
+      "bodyByLocale": {
+        "ru": "Брат написал вам после ссоры, и его сообщение помогло помириться. Вы говорите ему: The message you sent helped — сообщение, которое ты отправил, помогло. Соберите The message + you sent + helped. You sent уточняет сообщение; перед you можно опустить that, поскольку you называет отправителя, а message — то, что отправили.",
+        "uk": "Брат написав вам після сварки, і його повідомлення допомогло помиритися. Ви кажете йому: The message you sent helped — повідомлення, яке ти надіслав, допомогло. Складіть The message + you sent + helped. You sent уточнює повідомлення; перед you можна пропустити that, оскільки you називає відправника, а message — те, що надіслали."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-07:intro3:r1",
+              "text": "The message you sent helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro3:r2",
+              "text": "The message you sending helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro3:r3",
+              "text": "The message you sent helping."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-07:intro3:r1",
+              "text": "The message you sent helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro3:r2",
+              "text": "The message you sending helped."
+            },
+            {
+              "responseId": "en:lesson-30:session-07:intro3:r3",
+              "text": "The message you sent helping."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55c95d611a11f4fc73f67fc65b6553c82cf024bba4a2cf46594f24622244c4bd"
+}

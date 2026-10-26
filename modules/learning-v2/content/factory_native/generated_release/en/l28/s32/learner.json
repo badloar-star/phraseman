@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i01:r1",
+          "text": "Your appointment was changed yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i01:r2",
+          "text": "Your appointment was cancelled yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i01:r3",
+          "text": "Your appointment will be changed tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i01:audio",
+          "transcript": "Your appointment was changed yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i01:r1",
+            "targetText": "Your appointment was changed yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i01:r2",
+            "targetText": "Your appointment was cancelled yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i01:r3",
+            "targetText": "Your appointment will be changed tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your appointment was changed yesterday.",
+              "uk": "У записі звучить Your appointment was changed yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your appointment was changed yesterday.",
+              "uk": "У записі звучить Your appointment was changed yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mouthguard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mouthguard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i02:audio",
+          "transcript": "mouthguard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i02:r1",
+            "targetText": "mouthguard",
+            "meaningByLocale": {
+              "ru": "Защитная капа для зубов, например для занятий контактным спортом.",
+              "uk": "Захисна капа для зубів, наприклад для занять контактним спортом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mouthguard",
+          "definitionByLocale": {
+            "ru": "Защитная капа для зубов, например для занятий контактным спортом.",
+            "uk": "Захисна капа для зубів, наприклад для занять контактним спортом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вы потеряли защитную капу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i03:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вы потеряли защитную капу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i03:audio",
+          "transcript": "I have lost my mouthguard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have lost my mouthguard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите о ремонте изделия, которое показываете врачу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о ремонте изделия, которое показываете врачу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can it be repaired?",
+        "localizedMeaning": {
+          "ru": "Спросите о ремонте изделия, которое показываете врачу.",
+          "uk": "Запитайте про ремонт виробу, який показуєте лікареві."
+        },
+        "orderedTokens": [
+          "Can",
+          "it",
+          "be",
+          "repaired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Администратор обещает отправить сообщение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i05:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i05:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i05:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Администратор обещает отправить сообщение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Администратор обещает отправить сообщение.",
+          "uk": "Адміністратор обіцяє надіслати повідомлення."
+        },
+        "gappedTargetPhrase": "A message will ___ sent.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-32:i05:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i05:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i05:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Администратор обещает отправить сообщение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Администратор обещает отправить сообщение.",
+            "feedbackByLocale": {
+              "ru": "После will нужна be.",
+              "uk": "Після will потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Администратор обещает отправить сообщение.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем will be sent.",
+              "uk": "Тут використовуємо will be sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dentures",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dentures",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i06:audio",
+          "transcript": "dentures"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i06:r1",
+            "targetText": "dentures",
+            "meaningByLocale": {
+              "ru": "Съёмные зубные протезы. Слово здесь во множественном числе; для одного протеза используется denture.",
+              "uk": "Знімні зубні протези. Слово тут у множині; для одного протеза використовується denture."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dentures",
+          "definitionByLocale": {
+            "ru": "Съёмные зубные протезы. Слово здесь во множественном числе; для одного протеза используется denture.",
+            "uk": "Знімні зубні протези. Слово тут у множині; для одного протеза використовується denture."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i07:r1",
+          "text": "My dentures are uncomfortable."
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i07:r2",
+          "text": "My dentures are comfortable."
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i07:r3",
+          "text": "Your dentures are uncomfortable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i07:audio",
+          "transcript": "My dentures are uncomfortable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i07:r1",
+            "targetText": "My dentures are uncomfortable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i07:r2",
+            "targetText": "My dentures are comfortable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i07:r3",
+            "targetText": "Your dentures are uncomfortable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My dentures are uncomfortable.",
+              "uk": "У записі звучить My dentures are uncomfortable."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My dentures are uncomfortable.",
+              "uk": "У записі звучить My dentures are uncomfortable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите место, которое вам мешает.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i08:audio"
+      ],
+      "accessibilityLabel": "Покажите место, которое вам мешает.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i08:audio",
+          "transcript": "It hurts here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It hurts here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В регистратуре сообщают, что записи на приём подтверждают по телефону.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В регистратуре сообщают, что записи на приём подтверждают по телефону.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В регистратуре сообщают, что записи на приём подтверждают по телефону.",
+          "uk": "У реєстратурі повідомляють, що записи на прийом підтверджують телефоном."
+        },
+        "gappedTargetPhrase": "Appointments ___ confirmed by phone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-32:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В регистратуре сообщают, что записи на приём подтверждают по телефону.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "В регистратуре сообщают, что записи на приём подтверждают по телефону.",
+            "feedbackByLocale": {
+              "ru": "Appointments — несколько: are.",
+              "uk": "Appointments — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "В регистратуре сообщают, что записи на приём подтверждают по телефону.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are confirmed.",
+              "uk": "Тут потрібна are confirmed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — retainer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — retainer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i10:audio",
+          "transcript": "retainer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i10:r1",
+            "targetText": "retainer",
+            "meaningByLocale": {
+              "ru": "Ретейнер. Ортодонтический аппарат, который помогает удерживать зубы в достигнутом положении.",
+              "uk": "Ретейнер. Ортодонтичний апарат, який допомагає утримувати зуби в досягнутому положенні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "retainer",
+          "definitionByLocale": {
+            "ru": "Ретейнер. Ортодонтический аппарат, который помогает удерживать зубы в достигнутом положении.",
+            "uk": "Ретейнер. Ортодонтичний апарат, який допомагає утримувати зуби в досягнутому положенні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вы принесли свой ретейнер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вы принесли свой ретейнер.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have brought my retainer.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вы принесли свой ретейнер.",
+          "uk": "Скажіть, що ви принесли свій ретейнер."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "brought",
+          "my",
+          "retainer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотели бы, чтобы новый футляр был меньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i12:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы, чтобы новый футляр был меньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотели бы, чтобы новый футляр был меньше.",
+          "uk": "Ви хотіли б, щоб новий футляр був меншим."
+        },
+        "gappedTargetPhrase": "I wish the case ___ smaller.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-32:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i12:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Вы хотели бы, чтобы новый футляр был меньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы хотели бы, чтобы новый футляр был меньше.",
+            "feedbackByLocale": {
+              "ru": "После wish о желаемом сейчас используем were.",
+              "uk": "Після wish про бажане зараз використовуємо were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы хотели бы, чтобы новый футляр был меньше.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна were smaller.",
+              "uk": "Тут потрібна were smaller."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что сделали с повреждённым футляром.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что сделали с повреждённым футляром.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i13:audio",
+          "transcript": "The case was replaced."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The case was replaced.",
+        "orderedTokens": [
+          "The",
+          "case",
+          "was",
+          "replaced"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — aligner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — aligner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i14:audio",
+          "transcript": "aligner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i14:r1",
+            "targetText": "aligner",
+            "meaningByLocale": {
+              "ru": "Элайнер. Прозрачная ортодонтическая капа, предназначенная для перемещения зубов.",
+              "uk": "Елайнер. Прозора ортодонтична капа, призначена для переміщення зубів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aligner",
+          "definitionByLocale": {
+            "ru": "Элайнер. Прозрачная ортодонтическая капа, предназначенная для перемещения зубов.",
+            "uk": "Елайнер. Прозора ортодонтична капа, призначена для переміщення зубів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что принесли свой элайнер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите, что принесли свой элайнер.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i15:audio",
+          "transcript": "I have brought my aligner."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have brought my aligner.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините изделия с названиями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините изделия с названиями.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-32:i16:p1",
+            "target": "mouthguard",
+            "meaningByLocale": {
+              "ru": "защитная капа",
+              "uk": "захисна капа"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-32:i16:p2",
+            "target": "dentures",
+            "meaningByLocale": {
+              "ru": "съёмные зубные протезы",
+              "uk": "знімні зубні протези"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-32:i16:p3",
+            "target": "retainer",
+            "meaningByLocale": {
+              "ru": "ретейнер",
+              "uk": "ретейнер"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-32:i16:p4",
+            "target": "aligner",
+            "meaningByLocale": {
+              "ru": "элайнер",
+              "uk": "елайнер"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mouthguard",
+          "dentures",
+          "retainer",
+          "aligner"
+        ],
+        "rightColumn": [
+          "защитная капа",
+          "съёмные зубные протезы",
+          "ретейнер",
+          "элайнер"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "К вашему приходу администратор уже подготовил бланк.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i17:r1",
+          "text": "prepared"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i17:r2",
+          "text": "prepare"
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i17:r3",
+          "text": "preparing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "К вашему приходу администратор уже подготовил бланк.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "К вашему приходу администратор уже подготовил бланк.",
+          "uk": "До вашого приходу адміністратор уже підготував бланк."
+        },
+        "gappedTargetPhrase": "He had ___ the form by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-32:i17:r1",
+            "text": "prepared"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i17:r2",
+            "text": "prepare"
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i17:r3",
+            "text": "preparing"
+          }
+        ],
+        "testedDimension": "К вашему приходу администратор уже подготовил бланк.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i17:r2",
+            "correct": false,
+            "testedDimension": "К вашему приходу администратор уже подготовил бланк.",
+            "feedbackByLocale": {
+              "ru": "После had нужна prepared.",
+              "uk": "Після had потрібна prepared."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i17:r3",
+            "correct": false,
+            "testedDimension": "К вашему приходу администратор уже подготовил бланк.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had prepared.",
+              "uk": "Тут використовуємо had prepared."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите врача записать свои указания.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите врача записать свои указания.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i18:audio",
+          "transcript": "Could you write that down, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you write that down, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте условие получения заказа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте условие получения заказа.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i19:audio",
+          "transcript": "The form must be signed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The form must be signed.",
+        "orderedTokens": [
+          "The",
+          "form",
+          "must",
+          "be",
+          "signed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-32:i20:r1",
+          "text": "This can be replaced."
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i20:r2",
+          "text": "This must be replaced."
+        },
+        {
+          "responseId": "en:lesson-28:session-32:i20:r3",
+          "text": "This was replaced."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i20:audio",
+          "transcript": "This can be replaced."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-32:i20:r1",
+            "targetText": "This can be replaced.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i20:r2",
+            "targetText": "This must be replaced.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i20:r3",
+            "targetText": "This was replaced.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-32:i20:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can be replaced.",
+              "uk": "У записі звучить This can be replaced."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-32:i20:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can be replaced.",
+              "uk": "У записі звучить This can be replaced."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-32:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, когда можно забрать заказ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-32:i21:audio"
+      ],
+      "accessibilityLabel": "Уточните, когда можно забрать заказ.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-32:i21:audio",
+          "transcript": "When can I collect it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When can I collect it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ab9c36ed857252333d87a8e66f7cfcfc01808ae1ef8365669bf8145f6a798110"
+}

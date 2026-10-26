@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-25:i01",
+    "correctText": "café",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i02",
+    "correctText": "He said the café was closed.",
+    "correctResponseId": "en:lesson-30:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i03",
+    "correctText": "told",
+    "correctResponseId": "en:lesson-30:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i04",
+    "correctText": "closed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i05",
+    "correctText": "He told me the café was closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i06",
+    "correctText": "He said he was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i07",
+    "correctText": "free",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i08",
+    "correctText": "He asked me if I was free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i09",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i10",
+    "correctText": "He told us he was late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i11",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i12",
+    "correctText": "meet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i13",
+    "correctText": "He asked me to meet him outside.",
+    "correctResponseId": "en:lesson-30:session-25:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i14",
+    "correctText": "She told me she was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i15",
+    "correctText": "She asked me where he was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i16",
+    "correctText": "asked",
+    "correctResponseId": "en:lesson-30:session-25:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i17",
+    "correctText": "He said he would wait outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i18",
+    "correctText": "He told her he was late.",
+    "correctResponseId": "en:lesson-30:session-25:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i19",
+    "correctText": "She asked me to call later.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-25:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-25:i21",
+    "correctText": "I asked him to save me a seat.",
+    "correctResponseId": null
+  }
+]

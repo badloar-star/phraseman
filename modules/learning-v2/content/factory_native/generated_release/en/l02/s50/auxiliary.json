@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-02:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-50:intro3:r2": {
-          "ru": "С not выходит «Она не пригодилась». А винт открутили за секунду: It's handy.",
-          "uk": "З not виходить «Вона не знадобилася». А гвинт відкрутили за секунду: It's handy."
+          "ru": "С not выходит «Она не удобна в использовании». А винт открутили за секунду: It's handy.",
+          "uk": "З not виходить «Вона не зручна у використанні». А гвинт відкрутили за секунду: It's handy."
         },
         "en:lesson-02:session-50:intro3:r3": {
           "ru": "Отвёртка одна, нужно It's: It's handy.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "df9b96b4e0558580ae242c0f419bf19f7f93dd5cc69d629cca4f83bcbe414cdb"
+  "auxiliaryFingerprint": "e42c0452558aaa5eedf23dfe50a3dcce14552de956e180e4888f1a610f52a934"
 }

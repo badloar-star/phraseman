@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-55:intro1:r2": {
+          "ru": "It повторяет сумку.",
+          "uk": "It повторює сумку."
+        },
+        "en:lesson-29:session-55:intro1:r3": {
+          "ru": "Нужен исполнитель you, не your.",
+          "uk": "Потрібен виконавець you, не your."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-55:intro2:r2": {
+          "ru": "Перед исполнителем нужна связка by.",
+          "uk": "Перед виконавцем потрібна зв’язка by."
+        },
+        "en:lesson-29:session-55:intro2:r3": {
+          "ru": "После was нужна форма made.",
+          "uk": "Після was потрібна форма made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-55:intro3:r2": {
+          "ru": "После if в этом условии не ставим will.",
+          "uk": "Після if у цій умові не ставимо will."
+        },
+        "en:lesson-29:session-55:intro3:r3": {
+          "ru": "Для условия нужна форма breaks.",
+          "uk": "Для умови потрібна форма breaks."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2fd5cce042499866de8626a79ad4f69c41c6fc8b72518c954205563b4f98b9e9"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-29:i01",
+    "correctText": "shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i02",
+    "correctText": "She told me the shirt was dirty.",
+    "correctResponseId": "en:lesson-30:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i03",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i04",
+    "correctText": "pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i05",
+    "correctText": "She asked me to check the pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i06",
+    "correctText": "She asked me to empty my pockets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i07",
+    "correctText": "the basket was",
+    "correctResponseId": "en:lesson-30:session-29:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i08",
+    "correctText": "stain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i09",
+    "correctText": "She told me the stain was still there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i10",
+    "correctText": "She asked me to bring a towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i11",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-30:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i12",
+    "correctText": "dry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i13",
+    "correctText": "The shirt I wore is dry.",
+    "correctResponseId": "en:lesson-30:session-29:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i14",
+    "correctText": "I wish I had more space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i15",
+    "correctText": "The towel I took is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i16",
+    "correctText": "not to close",
+    "correctResponseId": "en:lesson-30:session-29:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i17",
+    "correctText": "He asked if I needed his shirts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i18",
+    "correctText": "She asked me to fold the shirts.",
+    "correctResponseId": "en:lesson-30:session-29:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i19",
+    "correctText": "He said it was sunny outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-29:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-29:i21",
+    "correctText": "I asked him to put his shirts away.",
+    "correctResponseId": null
+  }
+]

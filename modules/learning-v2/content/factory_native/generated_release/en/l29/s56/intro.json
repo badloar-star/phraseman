@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать обман, фальшивую вещь и навязчивое поведение, выразить сомнение и отказаться.",
+    "uk": "як назвати обман, фальшиву річ і нав’язливу поведінку, висловити сумнів та відмовитися."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложение, которое получили",
+        "uk": "Пропозиція, яку отримали"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете другу о сомнительном предложении купить билет у входа. Скажите: The offer I received seems strange — предложение, которое я получил, кажется странным. Соберите The offer + I received + seems strange. I называет получателя, а offer — полученное предложение. Поэтому that перед I можно опустить; it после received не добавляем.",
+        "uk": "Ви розповідаєте другові про сумнівну пропозицію купити квиток біля входу. Скажіть: The offer I received seems strange — пропозиція, яку я отримав, здається дивною. Складіть The offer + I received + seems strange. I називає одержувача, а offer — отриману пропозицію. Тому that перед I можна пропустити; it після received не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-56:intro1:r1",
+              "text": "The offer I received seems strange."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro1:r2",
+              "text": "The offer I received it seems strange."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro1:r3",
+              "text": "The offer me received seems strange."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-56:intro1:r1",
+              "text": "The offer I received seems strange."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro1:r2",
+              "text": "The offer I received it seems strange."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro1:r3",
+              "text": "The offer me received seems strange."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто предложил билет",
+        "uk": "Хто запропонував квиток"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу мужчину, который предложил вам билет. Скажите: That is the man who offered me a ticket — это мужчина, который предложил мне билет. Соберите That is the man + who offered me a ticket. Who обозначает исполнителя действия offered. Поэтому who оставляем, а he после него не добавляем.",
+        "uk": "Ви показуєте другові чоловіка, який запропонував вам квиток. Скажіть: That is the man who offered me a ticket — це чоловік, який запропонував мені квиток. Складіть That is the man + who offered me a ticket. Who позначає виконавця дії offered. Тому who залишаємо, а he після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-56:intro2:r1",
+              "text": "That is the man who offered me a ticket."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro2:r2",
+              "text": "That is the man offered me a ticket."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro2:r3",
+              "text": "That is the man who he offered me a ticket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-56:intro2:r1",
+              "text": "That is the man who offered me a ticket."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro2:r2",
+              "text": "That is the man offered me a ticket."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro2:r3",
+              "text": "That is the man who he offered me a ticket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где продают билеты",
+        "uk": "Де продають квитки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу кассу, где сотрудники продают билеты. Скажите: This is the office where they sell tickets — это касса, где продают билеты. Соберите This is the office + where + they sell tickets. Where связывает продажу с местом. После where используем обычный порядок they sell tickets, без вопросительного do.",
+        "uk": "Ви показуєте другові касу, де працівники продають квитки. Скажіть: This is the office where they sell tickets — це каса, де продають квитки. Складіть This is the office + where + they sell tickets. Where пов’язує продаж із місцем. Після where використовуємо звичайний порядок they sell tickets, без питального do."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-56:intro3:r1",
+              "text": "This is the office where they sell tickets."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro3:r2",
+              "text": "This is the office where do they sell tickets."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro3:r3",
+              "text": "This is the office who they sell tickets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-56:intro3:r1",
+              "text": "This is the office where they sell tickets."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro3:r2",
+              "text": "This is the office where do they sell tickets."
+            },
+            {
+              "responseId": "en:lesson-29:session-56:intro3:r3",
+              "text": "This is the office who they sell tickets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "acb3e82138e867252279877072574dd63ade5a9736186035c927e4ecb714c94d"
+}

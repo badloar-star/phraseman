@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-06:intro1:r2": {
+          "ru": "Перед late нужна связка be.",
+          "uk": "Перед late потрібна зв’язка be."
+        },
+        "en:lesson-32:session-06:intro1:r3": {
+          "ru": "После must здесь нужна начальная форма be.",
+          "uk": "Після must тут потрібна початкова форма be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-06:intro2:r2": {
+          "ru": "Ticket уже названо: дополнительное it после bought не нужно.",
+          "uk": "Ticket уже названо: додаткове it після bought не потрібне."
+        },
+        "en:lesson-32:session-06:intro2:r3": {
+          "ru": "Для завершённого прошлого действия нужна форма bought.",
+          "uk": "Для завершеної минулої дії потрібна форма bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-06:intro3:r2": {
+          "ru": "Прошедшая форма — stood, не standed.",
+          "uk": "Минула форма — stood, не standed."
+        },
+        "en:lesson-32:session-06:intro3:r3": {
+          "ru": "Нужна полная часть we stood.",
+          "uk": "Потрібна повна частина we stood."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3dfee4211228eff4813f43a4c11a44c0e2e38445d7f5c71440ae813d9299186d"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-49:i01",
+    "correctText": "table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i02",
+    "correctText": "The table is sticky, so it might be dirty.",
+    "correctResponseId": "en:lesson-32:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i04",
+    "correctText": "cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i05",
+    "correctText": "The cup can't be full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i06",
+    "correctText": "cloth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i07",
+    "correctText": "The cloth I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i09",
+    "correctText": "The table is sticky, so it might be dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i10",
+    "correctText": "It can’t be full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i12",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i13",
+    "correctText": "The floor must be wet.",
+    "correctResponseId": "en:lesson-32:session-49:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i14",
+    "correctText": "The floor must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i15",
+    "correctText": "This is the cloth I washed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-49:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i17",
+    "correctText": "The table is sticky, so it might be dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i18",
+    "correctText": "The table is sticky, so it might be dirty.",
+    "correctResponseId": "en:lesson-32:session-49:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i19",
+    "correctText": "The cup can't be full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-49:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-49:i21",
+    "correctText": "The table is sticky, so it could be dirty.",
+    "correctResponseId": null
+  }
+]

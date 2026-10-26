@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-01:intro1:r2": {
+          "ru": "Перед tired нужна связка be.",
+          "uk": "Перед tired потрібна зв’язка be."
+        },
+        "en:lesson-32:session-01:intro1:r3": {
+          "ru": "После must нужна начальная форма be, не is.",
+          "uk": "Після must потрібна початкова форма be, не is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-01:intro2:r2": {
+          "ru": "После must нужна форма be, не are.",
+          "uk": "Після must потрібна форма be, не are."
+        },
+        "en:lesson-32:session-01:intro2:r3": {
+          "ru": "Перед местом at home нужна связка be.",
+          "uk": "Перед місцем at home потрібна зв’язка be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-01:intro3:r2": {
+          "ru": "После must используем know без s.",
+          "uk": "Після must використовуємо know без s."
+        },
+        "en:lesson-32:session-01:intro3:r3": {
+          "ru": "Перед глаголом know дополнительное be не нужно.",
+          "uk": "Перед дієсловом know додаткове be не потрібне."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "86701f16e3694b27751ad7c8ae7e2a8a9fcb518869ddc6c041209b308eb07ea2"
+}

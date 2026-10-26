@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-36:i01",
+    "correctText": "Could I borrow your guitar?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i02",
+    "correctText": "strum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i03",
+    "correctText": "Can you show me how to strum?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i04",
+    "correctText": "The guitar I borrowed was old.",
+    "correctResponseId": "en:lesson-29:session-36:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i05",
+    "correctText": "I borrowed",
+    "correctResponseId": "en:lesson-29:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i06",
+    "correctText": "duet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i07",
+    "correctText": "Shall we sing a duet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i08",
+    "correctText": "This is the friend whose guitar I borrowed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i10",
+    "correctText": "chorus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i11",
+    "correctText": "Everyone joined in the chorus.",
+    "correctResponseId": "en:lesson-29:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i12",
+    "correctText": "I know the words.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i13",
+    "correctText": "encore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i14",
+    "correctText": "The audience asked for an encore.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i15",
+    "correctText": "en:lesson-29:session-36:i15:p1=strum\nen:lesson-29:session-36:i15:p2=duet\nen:lesson-29:session-36:i15:p3=chorus\nen:lesson-29:session-36:i15:p4=encore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-36:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i17",
+    "correctText": "The guitar I borrowed was old.",
+    "correctResponseId": "en:lesson-29:session-36:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i18",
+    "correctText": "The audience asked for an encore.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i19",
+    "correctText": "Thank you for lending me your guitar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i20",
+    "correctText": "we sang",
+    "correctResponseId": "en:lesson-29:session-36:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-36:i21",
+    "correctText": "I enjoyed playing with you.",
+    "correctResponseId": null
+  }
+]

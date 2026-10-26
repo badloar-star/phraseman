@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "вежливо спрашивать о времени и месте, пересказывать слова и называть исполнителя через by.",
+    "uk": "ввічливо запитувати про час і місце, переказувати слова й називати виконавця через by."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда начинается фильм",
+        "uk": "Коли починається фільм"
+      },
+      "bodyByLocale": {
+        "ru": "В кинотеатре вы уточняете время начала: Could you tell me when the film starts? — не подскажете, когда начинается фильм? Соберите Could you tell me + when + the film + starts. После when порядок the film starts; does из прямого When does the film start? не переносим. С the film нужна форма starts.",
+        "uk": "У кінотеатрі ви уточнюєте час початку: Could you tell me when the film starts? — не підкажете, коли починається фільм? Складіть Could you tell me + when + the film + starts. Після when порядок the film starts; does із прямого When does the film start? не переносимо. З the film потрібна форма starts."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-05:intro1:r1",
+              "text": "Could you tell me when the film starts?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro1:r2",
+              "text": "Could you tell me when does the film start?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro1:r3",
+              "text": "Could you tell me when the film start?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-05:intro1:r1",
+              "text": "Could you tell me when the film starts?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro1:r2",
+              "text": "Could you tell me when does the film start?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro1:r3",
+              "text": "Could you tell me when the film start?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где ваши места",
+        "uk": "Де ваші місця"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом ищете свои места. Спросите сотрудника: Do you know where our seats are? — вы не знаете, где наши места? Соберите Do you know + where + our seats + are. После where называем our seats перед are. Our seats — ваши с другом места; их несколько, поэтому are.",
+        "uk": "Ви з другом шукаєте свої місця. Запитайте працівника: Do you know where our seats are? — ви не знаєте, де наші місця? Складіть Do you know + where + our seats + are. Після where називаємо our seats перед are. Our seats — ваші з другом місця; їх кілька, тому are."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-05:intro2:r1",
+              "text": "Do you know where our seats are?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro2:r2",
+              "text": "Do you know where are our seats?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro2:r3",
+              "text": "Do you know where our seats is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-05:intro2:r1",
+              "text": "Do you know where our seats are?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro2:r2",
+              "text": "Do you know where are our seats?"
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro2:r3",
+              "text": "Do you know where our seats is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто проверил билеты",
+        "uk": "Хто перевірив квитки"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник Том проверил ваши билеты. Расскажите об этом, начиная с билетов: The tickets were checked by Tom — билеты были проверены Томом. Соберите The tickets + were + checked + by Tom. Were checked показывает действие над несколькими билетами, а by Tom называет проверявшего.",
+        "uk": "Працівник Том перевірив ваші квитки. Розкажіть про це, починаючи з квитків: The tickets were checked by Tom — квитки були перевірені Томом. Складіть The tickets + were + checked + by Tom. Were checked показує дію над кількома квитками, а by Tom називає того, хто перевіряв."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-05:intro3:r1",
+              "text": "The tickets were checked by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro3:r2",
+              "text": "The tickets were check by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro3:r3",
+              "text": "The tickets was checked by Tom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-05:intro3:r1",
+              "text": "The tickets were checked by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro3:r2",
+              "text": "The tickets were check by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-05:intro3:r3",
+              "text": "The tickets was checked by Tom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd191cb6239ad9cb0879c8b29e80a9f2d0652bb8b6c47a9585d3dae400f9fd87"
+}

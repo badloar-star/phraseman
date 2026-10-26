@@ -1,0 +1,1070 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hatchback",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hatchback",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i01:audio",
+          "transcript": "hatchback"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i01:r1",
+            "targetText": "hatchback",
+            "meaningByLocale": {
+              "ru": "Хэтчбек. Автомобиль с задней дверью, которая открывается вверх вместе со стеклом.",
+              "uk": "Хетчбек. Автомобіль із задніми дверима, які відчиняються вгору разом зі склом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hatchback",
+          "definitionByLocale": {
+            "ru": "Хэтчбек. Автомобиль с задней дверью, которая открывается вверх вместе со стеклом.",
+            "uk": "Хетчбек. Автомобіль із задніми дверима, які відчиняються вгору разом зі склом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите небольшой хэтчбек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Попросите небольшой хэтчбек.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i02:audio",
+          "transcript": "I would like a small hatchback."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like a small hatchback.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перед выдачей сотрудник просит подписать бланк.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i03:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед выдачей сотрудник просит подписать бланк.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перед выдачей сотрудник просит подписать бланк.",
+          "uk": "Перед видачею працівник просить підписати бланк."
+        },
+        "gappedTargetPhrase": "The form must ___ signed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-27:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i03:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Перед выдачей сотрудник просит подписать бланк.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Перед выдачей сотрудник просит подписать бланк.",
+            "feedbackByLocale": {
+              "ru": "После must нужна be.",
+              "uk": "Після must потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Перед выдачей сотрудник просит подписать бланк.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна must be signed.",
+              "uk": "Тут потрібна must be signed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i04:r1",
+          "text": "The mirror was damaged yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i04:r2",
+          "text": "The mirror was damaged last week."
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i04:r3",
+          "text": "The door was damaged yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i04:audio",
+          "transcript": "The mirror was damaged yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i04:r1",
+            "targetText": "The mirror was damaged yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i04:r2",
+            "targetText": "The mirror was damaged last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i04:r3",
+            "targetText": "The door was damaged yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mirror was damaged yesterday.",
+              "uk": "У записі звучить The mirror was damaged yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mirror was damaged yesterday.",
+              "uk": "У записі звучить The mirror was damaged yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — convertible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — convertible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i05:audio",
+          "transcript": "convertible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i05:r1",
+            "targetText": "convertible",
+            "meaningByLocale": {
+              "ru": "Кабриолет. Автомобиль со складывающейся или съёмной крышей.",
+              "uk": "Кабріолет. Автомобіль зі складаним або знімним дахом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "convertible",
+          "definitionByLocale": {
+            "ru": "Кабриолет. Автомобиль со складывающейся или съёмной крышей.",
+            "uk": "Кабріолет. Автомобіль зі складаним або знімним дахом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, есть ли кабриолет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, есть ли кабриолет.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a convertible?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли кабриолет.",
+          "uk": "Запитайте, чи є кабріолет."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "convertible"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-27:i07:p1",
+            "target": "hatchback",
+            "meaningByLocale": {
+              "ru": "хэтчбек",
+              "uk": "хетчбек"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-27:i07:p2",
+            "target": "convertible",
+            "meaningByLocale": {
+              "ru": "кабриолет",
+              "uk": "кабріолет"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-27:i07:p3",
+            "target": "van",
+            "meaningByLocale": {
+              "ru": "фургон",
+              "uk": "фургон"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-27:i07:p4",
+            "target": "car",
+            "meaningByLocale": {
+              "ru": "машина",
+              "uk": "машина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hatchback",
+          "convertible",
+          "van",
+          "car"
+        ],
+        "rightColumn": [
+          "хэтчбек",
+          "кабриолет",
+          "фургон",
+          "машина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте обещание сотрудника.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте обещание сотрудника.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i08:audio",
+          "transcript": "The car will be washed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The car will be washed.",
+        "orderedTokens": [
+          "The",
+          "car",
+          "will",
+          "be",
+          "washed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эта машина вам дороговата. Вы хотите, чтобы она была дешевле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i09:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эта машина вам дороговата. Вы хотите, чтобы она была дешевле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эта машина вам дороговата. Вы хотите, чтобы она была дешевле.",
+          "uk": "Ця машина для вас задорога. Ви хочете, щоб вона була дешевшою."
+        },
+        "gappedTargetPhrase": "I wish it ___ cheaper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-27:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i09:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Эта машина вам дороговата. Вы хотите, чтобы она была дешевле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Эта машина вам дороговата. Вы хотите, чтобы она была дешевле.",
+            "feedbackByLocale": {
+              "ru": "После wish о желаемой ситуации сейчас используем were.",
+              "uk": "Після wish про бажану ситуацію зараз використовуємо were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Эта машина вам дороговата. Вы хотите, чтобы она была дешевле.",
+            "feedbackByLocale": {
+              "ru": "Для этого желания используем were.",
+              "uk": "Для цього бажання використовуємо were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unleaded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unleaded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i10:audio",
+          "transcript": "unleaded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i10:r1",
+            "targetText": "unleaded",
+            "meaningByLocale": {
+              "ru": "Неэтилированный. Обозначение бензина без свинцовой добавки на заправке.",
+              "uk": "Неетильований. Позначення бензину без свинцевої добавки на заправці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unleaded",
+          "definitionByLocale": {
+            "ru": "Неэтилированный. Обозначение бензина без свинцовой добавки на заправке.",
+            "uk": "Неетильований. Позначення бензину без свинцевої добавки на заправці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i11:r1",
+          "text": "This car takes unleaded petrol."
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i11:r2",
+          "text": "This car takes diesel."
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i11:r3",
+          "text": "That car takes unleaded petrol."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i11:audio",
+          "transcript": "This car takes unleaded petrol."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i11:r1",
+            "targetText": "This car takes unleaded petrol.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i11:r2",
+            "targetText": "This car takes diesel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i11:r3",
+            "targetText": "That car takes unleaded petrol.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This car takes unleaded petrol.",
+              "uk": "У записі звучить This car takes unleaded petrol."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This car takes unleaded petrol.",
+              "uk": "У записі звучить This car takes unleaded petrol."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, как открыть крышку топливного бака.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Уточните, как открыть крышку топливного бака.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i12:audio",
+          "transcript": "How do I open the fuel cap?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How do I open the fuel cap?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В пункте проката машины осматривают перед каждой поездкой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i13:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i13:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i13:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В пункте проката машины осматривают перед каждой поездкой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В пункте проката машины осматривают перед каждой поездкой.",
+          "uk": "У пункті прокату машини оглядають перед кожною поїздкою."
+        },
+        "gappedTargetPhrase": "Cars ___ checked before each trip.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-27:i13:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i13:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i13:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В пункте проката машины осматривают перед каждой поездкой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i13:r2",
+            "correct": false,
+            "testedDimension": "В пункте проката машины осматривают перед каждой поездкой.",
+            "feedbackByLocale": {
+              "ru": "Cars — несколько машин: are.",
+              "uk": "Cars — кілька машин: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i13:r3",
+            "correct": false,
+            "testedDimension": "В пункте проката машины осматривают перед каждой поездкой.",
+            "feedbackByLocale": {
+              "ru": "С cars нужна are.",
+              "uk": "Із cars потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coolant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coolant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i14:audio",
+          "transcript": "coolant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i14:r1",
+            "targetText": "coolant",
+            "meaningByLocale": {
+              "ru": "Охлаждающая жидкость для двигателя.",
+              "uk": "Охолоджувальна рідина для двигуна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coolant",
+          "definitionByLocale": {
+            "ru": "Охлаждающая жидкость для двигателя.",
+            "uk": "Охолоджувальна рідина для двигуна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите сотрудника проверить охлаждающую жидкость.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите сотрудника проверить охлаждающую жидкость.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you check the coolant?",
+        "localizedMeaning": {
+          "ru": "Попросите сотрудника проверить охлаждающую жидкость.",
+          "uk": "Попросіть працівника перевірити охолоджувальну рідину."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "check",
+          "the",
+          "coolant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i16:r1",
+          "text": "The car can be returned here."
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i16:r2",
+          "text": "The car must be returned here."
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i16:r3",
+          "text": "The car was returned here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i16:audio",
+          "transcript": "The car can be returned here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-27:i16:r1",
+            "targetText": "The car can be returned here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i16:r2",
+            "targetText": "The car must be returned here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i16:r3",
+            "targetText": "The car was returned here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The car can be returned here.",
+              "uk": "У записі звучить The car can be returned here."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The car can be returned here.",
+              "uk": "У записі звучить The car can be returned here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "К вашему приезду сотрудник уже подготовил машину. Завершите более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-27:i17:r1",
+          "text": "prepared"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i17:r2",
+          "text": "prepare"
+        },
+        {
+          "responseId": "en:lesson-28:session-27:i17:r3",
+          "text": "preparing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "К вашему приезду сотрудник уже подготовил машину. Завершите более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "К вашему приезду сотрудник уже подготовил машину. Завершите более раннее действие.",
+          "uk": "До вашого приїзду працівник уже підготував машину. Завершіть ранішу дію."
+        },
+        "gappedTargetPhrase": "He had ___ the car by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-27:i17:r1",
+            "text": "prepared"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i17:r2",
+            "text": "prepare"
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i17:r3",
+            "text": "preparing"
+          }
+        ],
+        "testedDimension": "К вашему приезду сотрудник уже подготовил машину. Завершите более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-27:i17:r2",
+            "correct": false,
+            "testedDimension": "К вашему приезду сотрудник уже подготовил машину. Завершите более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "После had нужна prepared.",
+              "uk": "Після had потрібна prepared."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-27:i17:r3",
+            "correct": false,
+            "testedDimension": "К вашему приезду сотрудник уже подготовил машину. Завершите более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had prepared.",
+              "uk": "Тут використовуємо had prepared."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите отметить повреждение в бланке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите отметить повреждение в бланке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i18:audio",
+          "transcript": "Could you write that on the form?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you write that on the form?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что необходимо вернуть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что необходимо вернуть.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i19:audio",
+          "transcript": "The keys must be returned."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The keys must be returned.",
+        "orderedTokens": [
+          "The",
+          "keys",
+          "must",
+          "be",
+          "returned"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните время возврата.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i20:audio"
+      ],
+      "accessibilityLabel": "Уточните время возврата.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i20:audio",
+          "transcript": "What time should I bring it back?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time should I bring it back?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-27:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите копию подписанного бланка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-27:i21:audio"
+      ],
+      "accessibilityLabel": "Попросите копию подписанного бланка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-27:i21:audio",
+          "transcript": "Could I have a copy, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a copy, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0e30414044cf138f7c000c8fe7d225ef38d3b2fc477683b9665ee2254cbd3f69"
+}

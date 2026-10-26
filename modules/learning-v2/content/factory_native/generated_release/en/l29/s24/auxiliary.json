@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-24:intro1:r2": {
+          "ru": "В уточнении нужен порядок you can try.",
+          "uk": "В уточненні потрібен порядок you can try."
+        },
+        "en:lesson-29:session-24:intro1:r3": {
+          "ru": "Для места здесь нужно where.",
+          "uk": "Для місця тут потрібне where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-24:intro2:r2": {
+          "ru": "That уже обозначает платье, it лишнее.",
+          "uk": "That вже позначає сукню, it зайве."
+        },
+        "en:lesson-29:session-24:intro2:r3": {
+          "ru": "Для платья здесь используем that.",
+          "uk": "Для сукні тут використовуємо that."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-24:intro3:r2": {
+          "ru": "После if здесь нужно fits без will.",
+          "uk": "Після if тут потрібне fits без will."
+        },
+        "en:lesson-29:session-24:intro3:r3": {
+          "ru": "С it в этом условии используем fits.",
+          "uk": "З it у цій умові використовуємо fits."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "522a576316f76fd99aaeb06142fe87b5681f6daf21bbc9415c3cbfb61859ad54"
+}

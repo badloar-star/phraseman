@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-46:i01",
+    "correctText": "Can you help me decide?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i02",
+    "correctText": "gullible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i03",
+    "correctText": "I do not want to be gullible.",
+    "correctResponseId": "en:lesson-29:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i04",
+    "correctText": "The advice you gave me was useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i05",
+    "correctText": "you gave me",
+    "correctResponseId": "en:lesson-29:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i06",
+    "correctText": "sceptical",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i07",
+    "correctText": "I am sceptical about that promise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i08",
+    "correctText": "That is the man whose bike I want to buy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i10",
+    "correctText": "biased",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i11",
+    "correctText": "That review sounds biased.",
+    "correctResponseId": "en:lesson-29:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i12",
+    "correctText": "Could I have some time to think?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i13",
+    "correctText": "hasty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i14",
+    "correctText": "I do not want to make a hasty decision.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i15",
+    "correctText": "en:lesson-29:session-46:i15:p1=gullible\nen:lesson-29:session-46:i15:p2=sceptical\nen:lesson-29:session-46:i15:p3=biased\nen:lesson-29:session-46:i15:p4=hasty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i16",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-46:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i17",
+    "correctText": "That review sounds biased.",
+    "correctResponseId": "en:lesson-29:session-46:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i18",
+    "correctText": "The bike was checked by a mechanic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i19",
+    "correctText": "I want to check the brakes first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i20",
+    "correctText": "who",
+    "correctResponseId": "en:lesson-29:session-46:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-46:i21",
+    "correctText": "Thank you for your honest opinion.",
+    "correctResponseId": null
+  }
+]

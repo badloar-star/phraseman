@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-09:intro1:r2": {
+          "ru": "Перед названием принадлежащей ей вещи нужна whose.",
+          "uk": "Перед назвою належної їй речі потрібна whose."
+        },
+        "en:lesson-29:session-09:intro1:r3": {
+          "ru": "Whose уже связывает куртку с женщиной, her не добавляем.",
+          "uk": "Whose вже пов’язує куртку з жінкою, her не додаємо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-09:intro2:r2": {
+          "ru": "Здесь принадлежность ботинка показывает whose.",
+          "uk": "Тут належність черевика показує whose."
+        },
+        "en:lesson-29:session-09:intro2:r3": {
+          "ru": "После whose не добавляем his.",
+          "uk": "Після whose не додаємо his."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-09:intro3:r2": {
+          "ru": "Перед coat нужно whose — чьё пальто.",
+          "uk": "Перед coat потрібне whose — чиє пальто."
+        },
+        "en:lesson-29:session-09:intro3:r3": {
+          "ru": "В уточнении нужна связка is: whose coat is on the chair.",
+          "uk": "В уточненні потрібна зв’язка is: whose coat is on the chair."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0ea6bbef78b767192855797ca2f743e6b6dd6af9da76d4e2bc8f4f82c2532a57"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "как пересказать слова и вопросы попутчиков, уточнить вещь и выразить желание.",
+    "uk": "як переказати слова й запитання попутників, уточнити річ і висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где автобус",
+        "uk": "Де автобус"
+      },
+      "bodyByLocale": {
+        "ru": "На остановке друг спросил вас, где автобус. Позже вы пересказываете его вопрос: He asked where the bus was — он спросил, где был автобус. Соберите He + asked + where + the bus + was. После where внутри пересказа сначала идёт the bus, затем was. Порядок обычного вопроса здесь не нужен.",
+        "uk": "На зупинці друг запитав вас, де автобус. Згодом ви переказуєте його запитання: He asked where the bus was — він запитав, де був автобус. Складіть He + asked + where + the bus + was. Після where всередині переказу спочатку йде the bus, потім was. Порядок звичайного запитання тут не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-16:intro1:r1",
+              "text": "He asked where the bus was."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro1:r2",
+              "text": "He asked where was the bus."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro1:r3",
+              "text": "He asked where the bus were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-16:intro1:r1",
+              "text": "He asked where the bus was."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro1:r2",
+              "text": "He asked where was the bus."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro1:r3",
+              "text": "He asked where the bus were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что сказала подруга",
+        "uk": "Що сказала подруга"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга поёжилась на остановке и сказала, что ей холодно. Дома вы рассказываете об этом: She said she was cold — она сказала, что ей было холодно. Соберите She + said + she was cold. После said идёт содержание её слов: she was cold. That перед этой частью можно добавить, но здесь оно опущено.",
+        "uk": "Подруга зіщулилася на зупинці й сказала, що їй холодно. Удома ви розповідаєте про це: She said she was cold — вона сказала, що їй було холодно. Складіть She + said + she was cold. Після said іде зміст її слів: she was cold. That перед цією частиною можна додати, але тут його пропущено."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-16:intro2:r1",
+              "text": "She said she was cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro2:r2",
+              "text": "She said she were cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro2:r3",
+              "text": "She said she being cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-16:intro2:r1",
+              "text": "She said she was cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro2:r2",
+              "text": "She said she were cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro2:r3",
+              "text": "She said she being cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы тепла",
+        "uk": "Хотілося б тепла"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ждёте автобус на холодном ветру и хотите другой погоды сейчас: I wish it were warmer — жаль, что не теплее. Соберите I + wish + it were warmer. После wish форма were показывает желаемое положение сейчас, которое отличается от действительности. Это желание о нынешней погоде, а не рассказ о прошлом.",
+        "uk": "Ви чекаєте автобус на холодному вітрі й хочете іншої погоди зараз: I wish it were warmer — шкода, що не тепліше. Складіть I + wish + it were warmer. Після wish форма were показує бажаний стан зараз, який відрізняється від дійсності. Це бажання про нинішню погоду, а не розповідь про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-16:intro3:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro3:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro3:r3",
+              "text": "I wish it being warmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-16:intro3:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro3:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-30:session-16:intro3:r3",
+              "text": "I wish it being warmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d4f016d0141c413d0a22e831138acb730213b758994366468fd41c43ab74741c"
+}

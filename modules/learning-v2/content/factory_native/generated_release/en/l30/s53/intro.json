@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "передавать вопрос о вещи, свою просьбу и уточнение с действием другого человека.",
+    "uk": "передавати запитання про річ, своє прохання й уточнення з дією іншої людини."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мастер спросил про часы",
+        "uk": "Майстер запитав про годинник"
+      },
+      "bodyByLocale": {
+        "ru": "Вы принесли наручные часы в мастерскую. Мастер спросил: «Они работают?» Перескажите: He asked if my watch worked — он спросил, работают ли мои часы. Соберите He + asked + if + my watch + worked. If вводит «ли»; после него называем предмет my watch, затем ставим worked, без вопросительного did.",
+        "uk": "Ви принесли наручний годинник до майстерні. Майстер запитав: «Він працює?» Перекажіть: He asked if my watch worked — він запитав, чи працює мій годинник. Складіть He + asked + if + my watch + worked. If вводить «чи»; після нього називаємо предмет my watch, потім ставимо worked, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-53:intro1:r1",
+              "text": "He asked if my watch worked."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro1:r2",
+              "text": "He asked if did my watch work."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro1:r3",
+              "text": "He asked if my watch working."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-53:intro1:r1",
+              "text": "He asked if my watch worked."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro1:r2",
+              "text": "He asked if did my watch work."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro1:r3",
+              "text": "He asked if my watch working."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вы попросили заменить батарейку",
+        "uk": "Ви попросили замінити батарейку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы попросили мастера заменить батарейку. Передайте просьбу: I asked him to change the battery — я попросил его заменить батарейку. Соберите I + asked + him + to change the battery. Him — мастер, к которому вы обратились; после него действие вводим через to change.",
+        "uk": "Ви попросили майстра замінити батарейку. Передайте прохання: I asked him to change the battery — я попросив його замінити батарейку. Складіть I + asked + him + to change the battery. Him — майстер, до якого ви звернулися; після нього дію вводимо через to change."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-53:intro2:r1",
+              "text": "I asked him to change the battery."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro2:r2",
+              "text": "I asked he to change the battery."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro2:r3",
+              "text": "I asked him change the battery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-53:intro2:r1",
+              "text": "I asked him to change the battery."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro2:r2",
+              "text": "I asked he to change the battery."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro2:r3",
+              "text": "I asked him change the battery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какие часы починили",
+        "uk": "Який годинник полагодили"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежат ваши часы и часы папы. Уточните, какие починил мастер: The watch he fixed is mine — часы, которые он починил, мои. Соберите The watch + he fixed + is mine. He fixed уточняет часы: he выполнил действие, watch — предмет действия. Поэтому that перед he можно опустить.",
+        "uk": "На столі лежать ваш годинник і татів. Уточніть, який полагодив майстер: The watch he fixed is mine — годинник, який він полагодив, мій. Складіть The watch + he fixed + is mine. He fixed уточнює годинник: he виконав дію, watch — предмет дії. Тому that перед he можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-53:intro3:r1",
+              "text": "The watch he fixed is mine."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro3:r2",
+              "text": "The watch fixed he is mine."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro3:r3",
+              "text": "The watch he fixed are mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-53:intro3:r1",
+              "text": "The watch he fixed is mine."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro3:r2",
+              "text": "The watch fixed he is mine."
+            },
+            {
+              "responseId": "en:lesson-30:session-53:intro3:r3",
+              "text": "The watch he fixed are mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a7e92190e66b98b6d1343932729b4f73ac2b6d2b426f78f5a5f5c6b09978d142"
+}

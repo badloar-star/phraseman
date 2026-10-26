@@ -1,0 +1,1094 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про те, куди поставити коробку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про те, куди поставити коробку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i01:audio",
+          "transcript": "Where should I put this box?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where should I put this box?",
+        "orderedTokens": [
+          "Where",
+          "should",
+          "I",
+          "put",
+          "this",
+          "box"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — donor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — donor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i02:audio",
+          "transcript": "donor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i02:r1",
+            "targetText": "donor",
+            "meaningByLocale": {
+              "ru": "Жертвователь. Человек, который отдаёт деньги или вещи на помощь другим.",
+              "uk": "Благодійник. Людина, яка віддає гроші або речі на допомогу іншим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "donor",
+          "definitionByLocale": {
+            "ru": "Жертвователь. Человек, который отдаёт деньги или вещи на помощь другим.",
+            "uk": "Благодійник. Людина, яка віддає гроші або речі на допомогу іншим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i03:r1",
+          "text": "The donor brought some books."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i03:r2",
+          "text": "The donor brought some clothes."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i03:r3",
+          "text": "The teacher brought some books."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i03:audio",
+          "transcript": "The donor brought some books."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i03:r1",
+            "targetText": "The donor brought some books.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i03:r2",
+            "targetText": "The donor brought some clothes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i03:r3",
+            "targetText": "The teacher brought some books.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The donor brought some books.",
+              "uk": "У записі звучить The donor brought some books."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The donor brought some books.",
+              "uk": "У записі звучить The donor brought some books."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ця жінка принесла книжки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i04:r1",
+          "text": "brought"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i04:r2",
+          "text": "she brought"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i04:r3",
+          "text": "bring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ця жінка принесла книжки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эта женщина принесла книги.",
+          "uk": "Ця жінка принесла книжки."
+        },
+        "gappedTargetPhrase": "The woman who ___ the books is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-29:i04:r1",
+            "text": "brought"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i04:r2",
+            "text": "she brought"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i04:r3",
+            "text": "bring"
+          }
+        ],
+        "testedDimension": "Ця жінка принесла книжки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i04:r2",
+            "correct": false,
+            "testedDimension": "Ця жінка принесла книжки.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнительницу, she лишнее.",
+              "uk": "Who вже позначає виконавицю, she зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i04:r3",
+            "correct": false,
+            "testedDimension": "Ця жінка принесла книжки.",
+            "feedbackByLocale": {
+              "ru": "О завершённом действии здесь говорим brought.",
+              "uk": "Про завершену дію тут кажемо brought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stallholder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stallholder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i05:audio",
+          "transcript": "stallholder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i05:r1",
+            "targetText": "stallholder",
+            "meaningByLocale": {
+              "ru": "Продавец у прилавка. Человек, который ведёт торговлю на отдельном месте рынка или ярмарки.",
+              "uk": "Продавець біля прилавка. Людина, яка торгує на окремому місці ринку або ярмарку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stallholder",
+          "definitionByLocale": {
+            "ru": "Продавец у прилавка. Человек, который ведёт торговлю на отдельном месте рынка или ярмарки.",
+            "uk": "Продавець біля прилавка. Людина, яка торгує на окремому місці ринку або ярмарку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте запитати продавця біля прилавка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте запитати продавця біля прилавка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i06:audio",
+          "transcript": "Let us ask the stallholder."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us ask the stallholder.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що людина, якій ви допомогли, була вдячна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що людина, якій ви допомогли, була вдячна.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The person who I helped was grateful.",
+        "localizedMeaning": {
+          "ru": "Скажите, что человек, которому вы помогли, был благодарен.",
+          "uk": "Скажіть, що людина, якій ви допомогли, була вдячна."
+        },
+        "orderedTokens": [
+          "The",
+          "person",
+          "who",
+          "I",
+          "helped",
+          "was",
+          "grateful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i08:r1",
+          "text": "The woman who brought the books is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i08:r2",
+          "text": "The woman who bought the books is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i08:r3",
+          "text": "The woman who brought the books is outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i08:audio",
+          "transcript": "The woman who brought the books is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i08:r1",
+            "targetText": "The woman who brought the books is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i08:r2",
+            "targetText": "The woman who bought the books is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i08:r3",
+            "targetText": "The woman who brought the books is outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The woman who brought the books is here.",
+              "uk": "У записі звучить The woman who brought the books is here."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The woman who brought the books is here.",
+              "uk": "У записі звучить The woman who brought the books is here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — raffle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — raffle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i09:audio",
+          "transcript": "raffle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i09:r1",
+            "targetText": "raffle",
+            "meaningByLocale": {
+              "ru": "Розыгрыш призов по билетам. Выигрышные номера выбирают случайно.",
+              "uk": "Розіграш призів за квитками. Виграшні номери обирають випадково."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raffle",
+          "definitionByLocale": {
+            "ru": "Розыгрыш призов по билетам. Выигрышные номера выбирают случайно.",
+            "uk": "Розіграш призів за квитками. Виграшні номери обирають випадково."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, о котрій почнеться розіграш призів.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, о котрій почнеться розіграш призів.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What time does the raffle start?",
+        "localizedMeaning": {
+          "ru": "Спросите, во сколько начнётся розыгрыш призов.",
+          "uk": "Запитайте, о котрій почнеться розіграш призів."
+        },
+        "orderedTokens": [
+          "What",
+          "time",
+          "does",
+          "the",
+          "raffle",
+          "start"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви допомогли цій людині.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i11:r1",
+          "text": "I helped"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i11:r2",
+          "text": "I helped him"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i11:r3",
+          "text": "me helped"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви допомогли цій людині.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы помогли этому человеку.",
+          "uk": "Ви допомогли цій людині."
+        },
+        "gappedTargetPhrase": "The person who ___ was grateful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-29:i11:r1",
+            "text": "I helped"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i11:r2",
+            "text": "I helped him"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i11:r3",
+            "text": "me helped"
+          }
+        ],
+        "testedDimension": "Ви допомогли цій людині.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви допомогли цій людині.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает получателя помощи, him лишнее.",
+              "uk": "Who вже позначає отримувача допомоги, him зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви допомогли цій людині.",
+            "feedbackByLocale": {
+              "ru": "Исполнитель помощи — I, а не me.",
+              "uk": "Виконавець допомоги — I, а не me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте допомогти розставити книжки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i12:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте допомогти розставити книжки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i12:audio",
+          "transcript": "Can I help with the books?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I help with the books?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rummage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rummage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i13:audio",
+          "transcript": "rummage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i13:r1",
+            "targetText": "rummage",
+            "meaningByLocale": {
+              "ru": "Рыться в вещах в поисках чего-либо. Например, перебирать содержимое коробки, чтобы найти нужную вещь.",
+              "uk": "Порпатися в речах у пошуках чогось. Наприклад, перебирати вміст коробки, щоб знайти потрібну річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rummage",
+          "definitionByLocale": {
+            "ru": "Рыться в вещах в поисках чего-либо. Например, перебирать содержимое коробки, чтобы найти нужную вещь.",
+            "uk": "Порпатися в речах у пошуках чогось. Наприклад, перебирати вміст коробки, щоб знайти потрібну річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i14:r1",
+          "text": "We can rummage through this box."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i14:r2",
+          "text": "We can rummage through that bag."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i14:r3",
+          "text": "They can rummage through this box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i14:audio",
+          "transcript": "We can rummage through this box."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-29:i14:r1",
+            "targetText": "We can rummage through this box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i14:r2",
+            "targetText": "We can rummage through that bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i14:r3",
+            "targetText": "They can rummage through this box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can rummage through this box.",
+              "uk": "У записі звучить We can rummage through this box."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can rummage through this box.",
+              "uk": "У записі звучить We can rummage through this box."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-29:i15:p1",
+            "target": "donor",
+            "meaningByLocale": {
+              "ru": "жертвователь",
+              "uk": "благодійник"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-29:i15:p2",
+            "target": "stallholder",
+            "meaningByLocale": {
+              "ru": "продавец у прилавка",
+              "uk": "продавець біля прилавка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-29:i15:p3",
+            "target": "raffle",
+            "meaningByLocale": {
+              "ru": "розыгрыш по билетам",
+              "uk": "розіграш за квитками"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-29:i15:p4",
+            "target": "rummage",
+            "meaningByLocale": {
+              "ru": "рыться в вещах",
+              "uk": "порпатися в речах"
+            }
+          }
+        ],
+        "leftColumn": [
+          "donor",
+          "stallholder",
+          "raffle",
+          "rummage"
+        ],
+        "rightColumn": [
+          "благодійник",
+          "продавець біля прилавка",
+          "розіграш за квитками",
+          "порпатися в речах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На цьому столі збирають книжки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На цьому столі збирають книжки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На этом столе собирают книги.",
+          "uk": "На цьому столі збирають книжки."
+        },
+        "gappedTargetPhrase": "This is the table ___ we collect books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-29:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "На цьому столі збирають книжки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i16:r2",
+            "correct": false,
+            "testedDimension": "На цьому столі збирають книжки.",
+            "feedbackByLocale": {
+              "ru": "Для места сбора нужно where.",
+              "uk": "Для місця збору потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i16:r3",
+            "correct": false,
+            "testedDimension": "На цьому столі збирають книжки.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: жінка принесла книжки чи купила їх?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i17:r1",
+          "text": "The woman who brought the books is here."
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i17:r2",
+          "text": "The woman who bought the books is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i17:audioA",
+        "en:lesson-29:session-29:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: жінка принесла книжки чи купила їх?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The woman who brought the books is here.",
+        "contrastB": "The woman who bought the books is here.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-29:i17:audioA",
+          "transcript": "The woman who brought the books is here."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-29:i17:audioB",
+          "transcript": "The woman who bought the books is here."
+        },
+        "testedPhoneticContrast": "Послухайте: жінка принесла книжки чи купила їх?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: жінка принесла книжки чи купила їх?",
+            "feedbackByLocale": {
+              "ru": "Звучит brought — принесла, а не bought — купила.",
+              "uk": "Звучить brought — принесла, а не bought — купила."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто спік торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто спік торт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i18:audio",
+          "transcript": "The cake was baked by a volunteer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cake was baked by a volunteer.",
+        "orderedTokens": [
+          "The",
+          "cake",
+          "was",
+          "baked",
+          "by",
+          "a",
+          "volunteer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте за допомогу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-29:i19:audio"
+      ],
+      "accessibilityLabel": "Подякуйте за допомогу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-29:i19:audio",
+          "transcript": "Thank you for your help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for your help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торт спік волонтер.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-29:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-29:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торт спік волонтер.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Торт испёк волонтёр.",
+          "uk": "Торт спік волонтер."
+        },
+        "gappedTargetPhrase": "The cake was baked ___ a volunteer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-29:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Торт спік волонтер.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-29:i20:r2",
+            "correct": false,
+            "testedDimension": "Торт спік волонтер.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-29:i20:r3",
+            "correct": false,
+            "testedDimension": "Торт спік волонтер.",
+            "feedbackByLocale": {
+              "ru": "Для человека, испёкшего торт, нужна by.",
+              "uk": "Для людини, яка спекла торт, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-29:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що всі книжки тепер на столі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що всі книжки тепер на столі.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "All the books are on the table now.",
+        "localizedMeaning": {
+          "ru": "Скажите, что все книги теперь на столе.",
+          "uk": "Скажіть, що всі книжки тепер на столі."
+        },
+        "orderedTokens": [
+          "All the books",
+          "are",
+          "on the table now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "603bbb29aa17ff7a0a49edd56c0c6f99ded249c6ff568412a651c72238dbc38a"
+}

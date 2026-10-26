@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro1:r2": {
-          "ru": "Вопрос начинаем с Is there, а не с There is.",
-          "uk": "Запитання починаємо з Is there, а не з There is."
+          "ru": "С a swimming pool в единственном числе нужно Is there.",
+          "uk": "З a swimming pool в однині потрібне Is there."
         },
         "en:lesson-04:session-16:intro1:r3": {
           "ru": "Бассейн один, поэтому перед ним нужно a: a swimming pool.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3ebdd5aec4836500539b1716ea872c5284872e35731920a7e1411a5b64b14630"
+  "auxiliaryFingerprint": "e0f9193dbc216c0d63e8142f63b1f1870083a5e8a7cbdd2d5d6c5d0c93291d43"
 }

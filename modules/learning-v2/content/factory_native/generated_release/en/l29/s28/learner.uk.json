@@ -1,0 +1,1090 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sudoku",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sudoku",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i01:audio",
+          "transcript": "sudoku"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i01:r1",
+            "targetText": "sudoku",
+            "meaningByLocale": {
+              "ru": "Судоку. Головоломка, в которой заполняют сетку цифрами по определённым правилам.",
+              "uk": "Судоку. Головоломка, у якій заповнюють сітку цифрами за певними правилами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sudoku",
+          "definitionByLocale": {
+            "ru": "Судоку. Головоломка, в которой заполняют сетку цифрами по определённым правилам.",
+            "uk": "Судоку. Головоломка, у якій заповнюють сітку цифрами за певними правилами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i02:r1",
+          "text": "I do sudoku on the train."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i02:r2",
+          "text": "I do sudoku on the bus."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i02:r3",
+          "text": "She does sudoku on the train."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i02:audio",
+          "transcript": "I do sudoku on the train."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i02:r1",
+            "targetText": "I do sudoku on the train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i02:r2",
+            "targetText": "I do sudoku on the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i02:r3",
+            "targetText": "She does sudoku on the train.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do sudoku on the train.",
+              "uk": "У записі звучить I do sudoku on the train."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do sudoku on the train.",
+              "uk": "У записі звучить I do sudoku on the train."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть пояснити правила.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть пояснити правила.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you explain the rules?",
+        "localizedMeaning": {
+          "ru": "Попросите объяснить правила.",
+          "uk": "Попросіть пояснити правила."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "explain",
+          "the",
+          "rules"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ця людина навчила вас правил.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i04:r1",
+          "text": "taught"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i04:r2",
+          "text": "he taught"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i04:r3",
+          "text": "teach"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ця людина навчила вас правил.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот человек научил вас правилам.",
+          "uk": "Ця людина навчила вас правил."
+        },
+        "gappedTargetPhrase": "This is the person who ___ me the rules.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-28:i04:r1",
+            "text": "taught"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i04:r2",
+            "text": "he taught"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i04:r3",
+            "text": "teach"
+          }
+        ],
+        "testedDimension": "Ця людина навчила вас правил.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i04:r2",
+            "correct": false,
+            "testedDimension": "Ця людина навчила вас правил.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает того, кто учил; he лишнее.",
+              "uk": "Who вже позначає того, хто навчав; he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i04:r3",
+            "correct": false,
+            "testedDimension": "Ця людина навчила вас правил.",
+            "feedbackByLocale": {
+              "ru": "О завершённом обучении здесь говорим taught.",
+              "uk": "Про завершене навчання тут кажемо taught."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rummy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rummy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i05:audio",
+          "transcript": "rummy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i05:r1",
+            "targetText": "rummy",
+            "meaningByLocale": {
+              "ru": "Рамми. Карточная игра, в которой собирают наборы карт.",
+              "uk": "Рамі. Карткова гра, у якій збирають набори карт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rummy",
+          "definitionByLocale": {
+            "ru": "Рамми. Карточная игра, в которой собирают наборы карт.",
+            "uk": "Рамі. Карткова гра, у якій збирають набори карт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте зіграти в рамі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i06:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте зіграти в рамі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i06:audio",
+          "transcript": "Shall we play rummy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we play rummy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де лежать карти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де лежать карти.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i07:audio",
+          "transcript": "The cards are in the drawer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cards are in the drawer.",
+        "orderedTokens": [
+          "The",
+          "cards",
+          "are",
+          "in",
+          "the",
+          "drawer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i08:r1",
+          "text": "The friend who I taught often wins."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i08:r2",
+          "text": "The friend who taught me often wins."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i08:r3",
+          "text": "The friend who I taught rarely wins."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i08:audio",
+          "transcript": "The friend who I taught often wins."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i08:r1",
+            "targetText": "The friend who I taught often wins.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i08:r2",
+            "targetText": "The friend who taught me often wins.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i08:r3",
+            "targetText": "The friend who I taught rarely wins.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The friend who I taught often wins.",
+              "uk": "У записі звучить The friend who I taught often wins."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The friend who I taught often wins.",
+              "uk": "У записі звучить The friend who I taught often wins."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — poker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — poker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i09:audio",
+          "transcript": "poker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i09:r1",
+            "targetText": "poker",
+            "meaningByLocale": {
+              "ru": "Покер. Карточная игра, в которой сравнивают сочетания карт; для домашней игры можно использовать фишки без денег.",
+              "uk": "Покер. Карткова гра, у якій порівнюють поєднання карт; для домашньої гри можна використовувати фішки без грошей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poker",
+          "definitionByLocale": {
+            "ru": "Покер. Карточная игра, в которой сравнивают сочетания карт; для домашней игры можно использовать фишки без денег.",
+            "uk": "Покер. Карткова гра, у якій порівнюють поєднання карт; для домашньої гри можна використовувати фішки без грошей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що ваш брат уміє грати в покер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ваш брат уміє грати в покер.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My brother can play poker.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваш брат умеет играть в покер.",
+          "uk": "Скажіть, що ваш брат уміє грати в покер."
+        },
+        "orderedTokens": [
+          "My",
+          "brother",
+          "can",
+          "play",
+          "poker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви навчили друга грати; тепер він часто виграє.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i11:r1",
+          "text": "I taught"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i11:r2",
+          "text": "I taught him"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i11:r3",
+          "text": "me taught"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви навчили друга грати; тепер він часто виграє.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы научили друга играть; теперь он часто выигрывает.",
+          "uk": "Ви навчили друга грати; тепер він часто виграє."
+        },
+        "gappedTargetPhrase": "The friend who ___ often wins.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-28:i11:r1",
+            "text": "I taught"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i11:r2",
+            "text": "I taught him"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i11:r3",
+            "text": "me taught"
+          }
+        ],
+        "testedDimension": "Ви навчили друга грати; тепер він часто виграє.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви навчили друга грати; тепер він часто виграє.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает друга, him лишнее.",
+              "uk": "Who вже позначає друга, him зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви навчили друга грати; тепер він часто виграє.",
+            "feedbackByLocale": {
+              "ru": "Учили вы: нужен исполнитель I.",
+              "uk": "Навчали ви: потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чия зараз черга.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чия зараз черга.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i12:audio",
+          "transcript": "Whose turn is it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Whose turn is it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — snooker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — snooker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i13:audio",
+          "transcript": "snooker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i13:r1",
+            "targetText": "snooker",
+            "meaningByLocale": {
+              "ru": "Снукер. Игра на бильярдном столе с красными и другими цветными шарами.",
+              "uk": "Снукер. Гра на більярдному столі з червоними та іншими кольоровими кулями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snooker",
+          "definitionByLocale": {
+            "ru": "Снукер. Игра на бильярдном столе с красными и другими цветными шарами.",
+            "uk": "Снукер. Гра на більярдному столі з червоними та іншими кольоровими кулями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i14:r1",
+          "text": "There is a snooker table upstairs."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i14:r2",
+          "text": "There is a snooker table downstairs."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i14:r3",
+          "text": "There is a small table upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i14:audio",
+          "transcript": "There is a snooker table upstairs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-28:i14:r1",
+            "targetText": "There is a snooker table upstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i14:r2",
+            "targetText": "There is a snooker table downstairs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i14:r3",
+            "targetText": "There is a small table upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a snooker table upstairs.",
+              "uk": "У записі звучить There is a snooker table upstairs."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a snooker table upstairs.",
+              "uk": "У записі звучить There is a snooker table upstairs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви ігор із перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви ігор із перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-28:i15:p1",
+            "target": "sudoku",
+            "meaningByLocale": {
+              "ru": "судоку",
+              "uk": "судоку"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-28:i15:p2",
+            "target": "rummy",
+            "meaningByLocale": {
+              "ru": "рамми",
+              "uk": "рамі"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-28:i15:p3",
+            "target": "poker",
+            "meaningByLocale": {
+              "ru": "покер",
+              "uk": "покер"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-28:i15:p4",
+            "target": "snooker",
+            "meaningByLocale": {
+              "ru": "снукер",
+              "uk": "снукер"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sudoku",
+          "rummy",
+          "poker",
+          "snooker"
+        ],
+        "rightColumn": [
+          "судоку",
+          "рамі",
+          "покер",
+          "снукер"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Якщо піде дощ, ви пограєте в карти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i16:r1",
+          "text": "rains"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i16:r2",
+          "text": "will rain"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i16:r3",
+          "text": "raining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якщо піде дощ, ви пограєте в карти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если пойдёт дождь, вы поиграете в карты.",
+          "uk": "Якщо піде дощ, ви пограєте в карти."
+        },
+        "gappedTargetPhrase": "If it ___, we will play cards.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-28:i16:r1",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i16:r2",
+            "text": "will rain"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i16:r3",
+            "text": "raining"
+          }
+        ],
+        "testedDimension": "Якщо піде дощ, ви пограєте в карти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i16:r2",
+            "correct": false,
+            "testedDimension": "Якщо піде дощ, ви пограєте в карти.",
+            "feedbackByLocale": {
+              "ru": "После if здесь нужно rains без will.",
+              "uk": "Після if тут потрібне rains без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i16:r3",
+            "correct": false,
+            "testedDimension": "Якщо піде дощ, ви пограєте в карти.",
+            "feedbackByLocale": {
+              "ru": "В условии после it нужна rains.",
+              "uk": "В умові після it потрібна rains."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: ви навчили друга чи він навчив вас?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i17:r1",
+          "text": "The friend who I taught often wins."
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i17:r2",
+          "text": "The friend who taught me often wins."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i17:audioA",
+        "en:lesson-29:session-28:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: ви навчили друга чи він навчив вас?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The friend who I taught often wins.",
+        "contrastB": "The friend who taught me often wins.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-28:i17:audioA",
+          "transcript": "The friend who I taught often wins."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-28:i17:audioB",
+          "transcript": "The friend who taught me often wins."
+        },
+        "testedPhoneticContrast": "Послухайте: ви навчили друга чи він навчив вас?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: ви навчили друга чи він навчив вас?",
+            "feedbackByLocale": {
+              "ru": "Звучит who I taught: учили вы.",
+              "uk": "Звучить who I taught: навчали ви."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання почати ще раз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання почати ще раз.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i18:audio",
+          "transcript": "Can we start again?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can we start again?",
+        "orderedTokens": [
+          "Can",
+          "we",
+          "start",
+          "again"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ще вчитеся грати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-28:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ще вчитеся грати.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-28:i19:audio",
+          "transcript": "I am still learning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am still learning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви знаєте місце, де можна грати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-28:i20:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i20:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-28:i20:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знаєте місце, де можна грати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете место, где можно играть.",
+          "uk": "Ви знаєте місце, де можна грати."
+        },
+        "gappedTargetPhrase": "I know a place ___ we can play.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-28:i20:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i20:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i20:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Ви знаєте місце, де можна грати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-28:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви знаєте місце, де можна грати.",
+            "feedbackByLocale": {
+              "ru": "Для места действия нужно where.",
+              "uk": "Для місця дії потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-28:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви знаєте місце, де можна грати.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-28:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте за гру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте за гру.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for the game.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за игру.",
+          "uk": "Подякуйте за гру."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "the",
+          "game"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3317fa45f5a9125c327c65ca58ae6c6f325c97f36d076984c758cce63c141384"
+}

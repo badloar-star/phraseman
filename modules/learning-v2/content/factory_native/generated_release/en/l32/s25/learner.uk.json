@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — key",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — key",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i01:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-25:i01:r1",
+            "targetText": "key",
+            "meaningByLocale": {
+              "ru": "Ключ. Повторение знакомого слова.",
+              "uk": "Ключ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key",
+          "definitionByLocale": {
+            "ru": "Ключ. Повторение знакомого слова.",
+            "uk": "Ключ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i02:r1",
+          "text": "This can't be the right key."
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i02:r2",
+          "text": "This must be the right key."
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i02:r3",
+          "text": "This could be the right key."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i02:audio",
+          "transcript": "This can't be the right key."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-25:i02:r1",
+            "targetText": "This can't be the right key.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i02:r2",
+            "targetText": "This must be the right key.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i02:r3",
+            "targetText": "This could be the right key.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can't be the right key.",
+              "uk": "У записі звучить This can't be the right key."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can't be the right key.",
+              "uk": "У записі звучить This can't be the right key."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Форма ключа зовсім не підходить. Завершіть висновок: це не може бути потрібний ключ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Форма ключа зовсім не підходить. Завершіть висновок: це не може бути потрібний ключ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Форма ключа совсем не подходит. Завершите вывод: это не может быть нужный ключ.",
+          "uk": "Форма ключа зовсім не підходить. Завершіть висновок: це не може бути потрібний ключ."
+        },
+        "gappedTargetPhrase": "This can't ___ the right key.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-25:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Форма ключа зовсім не підходить. Завершіть висновок: це не може бути потрібний ключ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Форма ключа зовсім не підходить. Завершіть висновок: це не може бути потрібний ключ.",
+            "feedbackByLocale": {
+              "ru": "После can’t здесь используем be.",
+              "uk": "Після can’t тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Форма ключа зовсім не підходить. Завершіть висновок: це не може бути потрібний ключ.",
+            "feedbackByLocale": {
+              "ru": "После can’t не ставим to.",
+              "uk": "Після can’t не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i04:audio",
+          "transcript": "lock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-25:i04:r1",
+            "targetText": "lock",
+            "meaningByLocale": {
+              "ru": "Замок. Повторение знакомого слова.",
+              "uk": "Замок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lock",
+          "definitionByLocale": {
+            "ru": "Замок. Повторение знакомого слова.",
+            "uk": "Замок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ключ ширший за отвір. Він не може підходити до цього замка. Почніть з It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ ширший за отвір. Він не може підходити до цього замка. Почніть з It.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It can't fit this lock.",
+        "localizedMeaning": {
+          "ru": "Ключ шире отверстия. Он не может подходить к этому замку. Начните с It.",
+          "uk": "Ключ ширший за отвір. Він не може підходити до цього замка. Почніть з It."
+        },
+        "orderedTokens": [
+          "It",
+          "can't",
+          "fit",
+          "this",
+          "lock"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i06:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-25:i06:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У Бена двері номер 8, а перед вами номер 12. Це не можуть бути двері Бена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "У Бена двері номер 8, а перед вами номер 12. Це не можуть бути двері Бена.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i07:audio",
+          "transcript": "This can’t be Ben’s door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This can’t be Ben’s door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ключ занадто широкий для замка. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i08:r1",
+          "text": "fit"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i08:r2",
+          "text": "fits"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i08:r3",
+          "text": "be fit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ занадто широкий для замка. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ключ слишком широкий для замка. Выберите форму после can’t.",
+          "uk": "Ключ занадто широкий для замка. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "It can't ___ this lock.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-25:i08:r1",
+            "text": "fit"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i08:r2",
+            "text": "fits"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i08:r3",
+            "text": "be fit"
+          }
+        ],
+        "testedDimension": "Ключ занадто широкий для замка. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Ключ занадто широкий для замка. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем fit без s.",
+              "uk": "Після can’t використовуємо fit без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Ключ занадто широкий для замка. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом fit связка be не нужна.",
+              "uk": "Перед дієсловом fit зв’язка be не потрібна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бен стоїть поруч із вами біля будинку Анни, далеко від свого дому. Він не може зараз бути у себе вдома. Скажіть із at home.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен стоїть поруч із вами біля будинку Анни, далеко від свого дому. Він не може зараз бути у себе вдома. Скажіть із at home.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ben can't be at home.",
+        "localizedMeaning": {
+          "ru": "Бен стоит рядом с вами у дома Анны, далеко от своего дома. Он не может сейчас быть у себя дома. Скажите с at home.",
+          "uk": "Бен стоїть поруч із вами біля будинку Анни, далеко від свого дому. Він не може зараз бути у себе вдома. Скажіть із at home."
+        },
+        "orderedTokens": [
+          "Ben",
+          "can't",
+          "be",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна простягає ключ іншої форми. Ви робите висновок, що це не потрібний ключ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Анна простягає ключ іншої форми. Ви робите висновок, що це не потрібний ключ.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i10:audio",
+          "transcript": "This can’t be the right key."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This can’t be the right key.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви бачите Бена поруч із собою біля будинку Анни, далеко від його дому. Завершіть висновок про те, що його немає у себе вдома.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви бачите Бена поруч із собою біля будинку Анни, далеко від його дому. Завершіть висновок про те, що його немає у себе вдома.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы видите Бена рядом с собой у дома Анны, далеко от его дома. Завершите вывод о том, что его нет у себя дома.",
+          "uk": "Ви бачите Бена поруч із собою біля будинку Анни, далеко від його дому. Завершіть висновок про те, що його немає у себе вдома."
+        },
+        "gappedTargetPhrase": "Ben can't ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-25:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Ви бачите Бена поруч із собою біля будинку Анни, далеко від його дому. Завершіть висновок про те, що його немає у себе вдома.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви бачите Бена поруч із собою біля будинку Анни, далеко від його дому. Завершіть висновок про те, що його немає у себе вдома.",
+            "feedbackByLocale": {
+              "ru": "После can’t здесь используем be.",
+              "uk": "Після can’t тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви бачите Бена поруч із собою біля будинку Анни, далеко від його дому. Завершіть висновок про те, що його немає у себе вдома.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — car",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — car",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i12:audio",
+          "transcript": "car"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-25:i12:r1",
+            "targetText": "car",
+            "meaningByLocale": {
+              "ru": "Машина. Повторение знакомого слова.",
+              "uk": "Машина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car",
+          "definitionByLocale": {
+            "ru": "Машина. Повторение знакомого слова.",
+            "uk": "Машина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i13:r1",
+          "text": "Ben can't be in the car."
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i13:r2",
+          "text": "Ben must be in the car."
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i13:r3",
+          "text": "Ben could be in the car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i13:audio",
+          "transcript": "Ben can't be in the car."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-25:i13:r1",
+            "targetText": "Ben can't be in the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i13:r2",
+            "targetText": "Ben must be in the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i13:r3",
+            "targetText": "Ben could be in the car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Ben can't be in the car.",
+              "uk": "У записі звучить Ben can't be in the car."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Ben can't be in the car.",
+              "uk": "У записі звучить Ben can't be in the car."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен стоїть поруч із вами надворі. Він не може водночас бути всередині машини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Бен стоїть поруч із вами надворі. Він не може водночас бути всередині машини.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i14:audio",
+          "transcript": "Ben can’t be in the car."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben can’t be in the car.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Номер дверей не збігається з номером Бена. Це не можуть бути його двері. Назвіть Бена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Номер дверей не збігається з номером Бена. Це не можуть бути його двері. Назвіть Бена.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This can't be Ben's door.",
+        "localizedMeaning": {
+          "ru": "Номер двери не совпадает с номером Бена. Это не может быть его дверь. Назовите Бена.",
+          "uk": "Номер дверей не збігається з номером Бена. Це не можуть бути його двері. Назвіть Бена."
+        },
+        "orderedTokens": [
+          "This",
+          "can't",
+          "be",
+          "Ben's",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен стоїть поруч із вами, тому він не може бути в машині. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i16:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i16:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен стоїть поруч із вами, тому він не може бути в машині. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен стоит рядом с вами, поэтому он не может быть в машине. Выберите форму после can’t.",
+          "uk": "Бен стоїть поруч із вами, тому він не може бути в машині. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "Ben can't ___ in the car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-25:i16:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i16:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Бен стоїть поруч із вами, тому він не може бути в машині. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i16:r2",
+            "correct": false,
+            "testedDimension": "Бен стоїть поруч із вами, тому він не може бути в машині. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i16:r3",
+            "correct": false,
+            "testedDimension": "Бен стоїть поруч із вами, тому він не може бути в машині. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t не ставим to.",
+              "uk": "Після can’t не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ключ помітно ширший за отвір замка. Ви впевнені, що він сюди не підходить. Почніть з It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Ключ помітно ширший за отвір замка. Ви впевнені, що він сюди не підходить. Почніть з It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i17:audio",
+          "transcript": "It can’t fit this lock."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t fit this lock.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець відкидає потрібний ключ чи впевнений, що ключ потрібний?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i18:r1",
+          "text": "This can’t be the right key."
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i18:r2",
+          "text": "This must be the right key."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i18:audioA",
+        "en:lesson-32:session-25:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець відкидає потрібний ключ чи впевнений, що ключ потрібний?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This can’t be the right key.",
+        "contrastB": "This must be the right key.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-25:i18:audioA",
+          "transcript": "This can’t be the right key."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-25:i18:audioB",
+          "transcript": "This must be the right key."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець відкидає потрібний ключ чи впевнений, що ключ потрібний?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець відкидає потрібний ключ чи впевнений, що ключ потрібний?",
+            "feedbackByLocale": {
+              "ru": "Звучит can’t: говорящий отвергает этот вариант.",
+              "uk": "Звучить can’t: мовець відкидає цей варіант."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте висновок про місце перебування Бена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте висновок про місце перебування Бена.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i19:audio",
+          "transcript": "Ben can't be at home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ben can't be at home.",
+        "orderedTokens": [
+          "Ben",
+          "can't",
+          "be",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ключ іншої форми не підходить до цього замка. Виберіть початкову форму дієслова.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-25:i20:r1",
+          "text": "fit"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i20:r2",
+          "text": "fits"
+        },
+        {
+          "responseId": "en:lesson-32:session-25:i20:r3",
+          "text": "to fit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключ іншої форми не підходить до цього замка. Виберіть початкову форму дієслова.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ключ другой формы не подходит к этому замку. Выберите начальную форму глагола.",
+          "uk": "Ключ іншої форми не підходить до цього замка. Виберіть початкову форму дієслова."
+        },
+        "gappedTargetPhrase": "This key can't ___ this lock.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-25:i20:r1",
+            "text": "fit"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i20:r2",
+            "text": "fits"
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i20:r3",
+            "text": "to fit"
+          }
+        ],
+        "testedDimension": "Ключ іншої форми не підходить до цього замка. Виберіть початкову форму дієслова.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-25:i20:r2",
+            "correct": false,
+            "testedDimension": "Ключ іншої форми не підходить до цього замка. Виберіть початкову форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем fit без s.",
+              "uk": "Після can’t використовуємо fit без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-25:i20:r3",
+            "correct": false,
+            "testedDimension": "Ключ іншої форми не підходить до цього замка. Виберіть початкову форму дієслова.",
+            "feedbackByLocale": {
+              "ru": "После can’t не ставим to.",
+              "uk": "Після can’t не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед вами двері номер 12, але вам потрібен номер 8. Це не можуть бути потрібні двері.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-25:i21:audio"
+      ],
+      "accessibilityLabel": "Перед вами двері номер 12, але вам потрібен номер 8. Це не можуть бути потрібні двері.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-25:i21:audio",
+          "transcript": "This can’t be the right door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This can’t be the right door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9039789cc83dd0fe97697b25ed8d64e25d1d651c4e353eaca9501d358a177b76"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать игры и движения на снимках, уточнить фотографию, владельца мяча и место прогулки.",
+    "uk": "як назвати ігри й рухи на знімках, уточнити фотографію, власника м’яча та місце прогулянки."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Фотография из парка",
+        "uk": "Фотографія з парку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре удачный снимок с семейной прогулки. Скажите: The photo you took is lovely — фотография, которую ты сделала, прекрасная. Соберите The photo + you took + is lovely. В уточнении действие выполняет you, а photo называет сделанный снимок. Поэтому that перед you можно опустить; it после took не добавляем.",
+        "uk": "Ви показуєте сестрі вдалий знімок із сімейної прогулянки. Скажіть: The photo you took is lovely — фотографія, яку ти зробила, чудова. Складіть The photo + you took + is lovely. В уточненні дію виконує you, а photo називає зроблений знімок. Тому that перед you можна пропустити; it після took не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-40:intro1:r1",
+              "text": "The photo you took is lovely."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro1:r2",
+              "text": "The photo you took it is lovely."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro1:r3",
+              "text": "The photo you taking is lovely."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-40:intro1:r1",
+              "text": "The photo you took is lovely."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro1:r2",
+              "text": "The photo you took it is lovely."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro1:r3",
+              "text": "The photo you taking is lovely."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чей мяч вы нашли",
+        "uk": "Чий м’яч ви знайшли"
+      },
+      "bodyByLocale": {
+        "ru": "В парке вы нашли мяч и заметили ребёнка, который его потерял. Скажите: This is the child whose ball we found — это ребёнок, чей мяч мы нашли. Соберите This is the child + whose ball + we found. Whose ball связывает мяч с ребёнком: чей мяч. После whose не добавляем his.",
+        "uk": "У парку ви знайшли м’яч і помітили дитину, яка його загубила. Скажіть: This is the child whose ball we found — це дитина, чий м’яч ми знайшли. Складіть This is the child + whose ball + we found. Whose ball пов’язує м’яч із дитиною: чий м’яч. Після whose не додаємо his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-40:intro2:r1",
+              "text": "This is the child whose ball we found."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro2:r2",
+              "text": "This is the child who ball we found."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro2:r3",
+              "text": "This is the child whose his ball we found."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-40:intro2:r1",
+              "text": "This is the child whose ball we found."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro2:r2",
+              "text": "This is the child who ball we found."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro2:r3",
+              "text": "This is the child whose his ball we found."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место для игр",
+        "uk": "Місце для ігор"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу парк, где играли дети. Скажите: This is the park where the children played — это парк, где играли дети. Соберите This is the park + where + the children played. Where связывает игру с местом. После where ставим обычный порядок the children played, без вопросительного did.",
+        "uk": "Ви показуєте другові парк, де грали діти. Скажіть: This is the park where the children played — це парк, де грали діти. Складіть This is the park + where + the children played. Where пов’язує гру з місцем. Після where ставимо звичайний порядок the children played, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-40:intro3:r1",
+              "text": "This is the park where the children played."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro3:r2",
+              "text": "This is the park where did the children play."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro3:r3",
+              "text": "This is the park who the children played."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-40:intro3:r1",
+              "text": "This is the park where the children played."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro3:r2",
+              "text": "This is the park where did the children play."
+            },
+            {
+              "responseId": "en:lesson-29:session-40:intro3:r3",
+              "text": "This is the park who the children played."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2a45f50d828b6aa4677c986d977d73423f1ddbbbd00084a3b65b9c49d46b842b"
+}

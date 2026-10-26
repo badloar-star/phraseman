@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять причину угощения и результат подготовки через so и therefore.",
+    "uk": "пояснювати причину частування й результат підготовки через so і therefore."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "День рождения — приготовили торт",
+        "uk": "День народження — приготували торт"
+      },
+      "bodyByLocale": {
+        "ru": "У Анны день рождения, и вы с Беном приготовили торт: It was Anna’s birthday, so we made a cake — у Анны был день рождения, поэтому мы приготовили торт. Соберите It was Anna’s birthday + so + we made a cake. Сначала называем причину, после so — результат. Made — прошедшая форма make.",
+        "uk": "В Анни день народження, і ви з Беном приготували торт: It was Anna’s birthday, so we made a cake — в Анни був день народження, тому ми приготували торт. Складіть It was Anna’s birthday + so + we made a cake. Спочатку називаємо причину, після so — результат. Made — минула форма make."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-53:intro1:r1",
+              "text": "It was Anna’s birthday, so we made a cake."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro1:r2",
+              "text": "It was Anna’s birthday, so we making a cake."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro1:r3",
+              "text": "It was Anna’s birthday, so we makes a cake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-53:intro1:r1",
+              "text": "It was Anna’s birthday, so we made a cake."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro1:r2",
+              "text": "It was Anna’s birthday, so we making a cake."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro1:r3",
+              "text": "It was Anna’s birthday, so we makes a cake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Торт готов — сели за стол",
+        "uk": "Торт готовий — сіли за стіл"
+      },
+      "bodyByLocale": {
+        "ru": "В письменном рассказе вы описываете начало угощения: The cake was ready and therefore we sat down — торт был готов, и поэтому мы сели. Соберите The cake was ready + and therefore + we sat down. Therefore подчёркивает результат; we sat down говорит, что вы сделали после приготовления торта.",
+        "uk": "У письмовій розповіді ви описуєте початок частування: The cake was ready and therefore we sat down — торт був готовий, і тому ми сіли. Складіть The cake was ready + and therefore + we sat down. Therefore підкреслює результат; we sat down каже, що ви зробили після приготування торта."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-53:intro2:r1",
+              "text": "The cake was ready and therefore we sat down."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro2:r2",
+              "text": "The cake was ready and therefore we sitting down."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro2:r3",
+              "text": "The cake was ready and therefore we sits down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-53:intro2:r1",
+              "text": "The cake was ready and therefore we sat down."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro2:r2",
+              "text": "The cake was ready and therefore we sitting down."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro2:r3",
+              "text": "The cake was ready and therefore we sits down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Торт приготовил Бен",
+        "uk": "Торт приготував Бен"
+      },
+      "bodyByLocale": {
+        "ru": "Анна спрашивает, кто приготовил торт. Начните ответ с торта: The cake was made by Ben — торт приготовил Бен. Соберите The cake + was made + by Ben. Was made сообщает, что сделали с тортом; by Ben называет человека, который его приготовил.",
+        "uk": "Анна запитує, хто приготував торт. Почніть відповідь із торта: The cake was made by Ben — торт приготував Бен. Складіть The cake + was made + by Ben. Was made повідомляє, що зробили з тортом; by Ben називає людину, яка його приготувала."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-53:intro3:r1",
+              "text": "The cake was made by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro3:r2",
+              "text": "The cake was make by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro3:r3",
+              "text": "The cake were made by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-53:intro3:r1",
+              "text": "The cake was made by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro3:r2",
+              "text": "The cake was make by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-53:intro3:r3",
+              "text": "The cake were made by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2171e9a31b919d30090393d979ea7df5523f668af775c4db29fd0a25b1c3e8e8"
+}

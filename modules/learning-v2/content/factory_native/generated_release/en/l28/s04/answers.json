@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-04:i01",
+    "correctText": "ciabatta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i02",
+    "correctText": "The ciabatta is baked here.",
+    "correctResponseId": "en:lesson-28:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i03",
+    "correctText": "Could we see the menu, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i04",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-04:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i05",
+    "correctText": "naan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i06",
+    "correctText": "Is it served with naan?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i07",
+    "correctText": "The soup is served with bread.",
+    "correctResponseId": "en:lesson-28:session-04:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i08",
+    "correctText": "Could we have two plates?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i09",
+    "correctText": "guacamole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i10",
+    "correctText": "The guacamole is made fresh every day.",
+    "correctResponseId": "en:lesson-28:session-04:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i12",
+    "correctText": "Could you put the water in the middle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i13",
+    "correctText": "salsa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i14",
+    "correctText": "Is the salsa spicy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i15",
+    "correctText": "Could I have the sauce on the side?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i16",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-28:session-04:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i17",
+    "correctText": "The rice is cooked every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i18",
+    "correctText": "I ordered the chicken, not the fish.",
+    "correctResponseId": "en:lesson-28:session-04:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i19",
+    "correctText": "I wish it were quieter here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i20",
+    "correctText": "served",
+    "correctResponseId": "en:lesson-28:session-04:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-04:i21",
+    "correctText": "Could we have the bill, please?",
+    "correctResponseId": null
+  }
+]

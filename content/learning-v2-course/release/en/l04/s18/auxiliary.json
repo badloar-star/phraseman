@@ -10,8 +10,8 @@
           "uk": "Молоко не рахують штуками, тому потрібно There is, а не There are."
         },
         "en:lesson-04:session-18:intro1:r3": {
-          "ru": "Молоко не считают штуками, поэтому вместо a нужно some.",
-          "uk": "Молоко не рахують штуками, тому замість a потрібно some."
+          "ru": "После There перед some milk нужно is.",
+          "uk": "Після There перед some milk потрібне is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "b832127a0d6ac55bd4c107a2e14e33d46ce9822e667a04d2b68483216e7f5185"
+  "auxiliaryFingerprint": "7b614d5ddb2d5eb088cbd219fb664fe3bca166d8252bf6f1079474adc80fd72c"
 }

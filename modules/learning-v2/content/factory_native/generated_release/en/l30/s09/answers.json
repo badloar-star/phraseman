@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-09:i01",
+    "correctText": "She asked where I lived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i02",
+    "correctText": "origin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i03",
+    "correctText": "She asked about the origin of the name.",
+    "correctResponseId": "en:lesson-30:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i04",
+    "correctText": "if",
+    "correctResponseId": "en:lesson-30:session-09:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i05",
+    "correctText": "He asked where the station was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i06",
+    "correctText": "via",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i07",
+    "correctText": "The bus goes via the station.",
+    "correctResponseId": "en:lesson-30:session-09:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i08",
+    "correctText": "He asked if I was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i09",
+    "correctText": "the station was",
+    "correctResponseId": "en:lesson-30:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i10",
+    "correctText": "promenade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i11",
+    "correctText": "He asked where the promenade was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i12",
+    "correctText": "She asked where I lived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i13",
+    "correctText": "boardwalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i14",
+    "correctText": "He asked if the boardwalk was open.",
+    "correctResponseId": "en:lesson-30:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i15",
+    "correctText": "en:lesson-30:session-09:i15:p1=origin\nen:lesson-30:session-09:i15:p2=via\nen:lesson-30:session-09:i15:p3=promenade\nen:lesson-30:session-09:i15:p4=boardwalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i16",
+    "correctText": "I lived",
+    "correctResponseId": "en:lesson-30:session-09:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i17",
+    "correctText": "He asked if I was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i18",
+    "correctText": "He asked if the boardwalk was open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i19",
+    "correctText": "He asked where the promenade was.",
+    "correctResponseId": "en:lesson-30:session-09:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i20",
+    "correctText": "I was ready",
+    "correctResponseId": "en:lesson-30:session-09:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-09:i21",
+    "correctText": "She asked where I lived.",
+    "correctResponseId": null
+  }
+]

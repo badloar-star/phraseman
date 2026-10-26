@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-44:intro1:r2": {
+          "ru": "Перед washed нужна be.",
+          "uk": "Перед washed потрібна be."
+        },
+        "en:lesson-28:session-44:intro1:r3": {
+          "ru": "После be нужна третья форма washed.",
+          "uk": "Після be потрібна третя форма washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-44:intro2:r2": {
+          "ru": "Между will и delivered нужна be.",
+          "uk": "Між will та delivered потрібна be."
+        },
+        "en:lesson-28:session-44:intro2:r3": {
+          "ru": "После will be нужна delivered.",
+          "uk": "Після will be потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-44:intro3:r2": {
+          "ru": "Cups — несколько: were.",
+          "uk": "Cups — кілька: were."
+        },
+        "en:lesson-28:session-44:intro3:r3": {
+          "ru": "После were нужна made.",
+          "uk": "Після were потрібна made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f596377408ff5864f954221d13c5acb287b60c8b5c9d3d36f2544acef7c83fe8"
+}

@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — maze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — maze",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i01:audio",
+          "transcript": "maze"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-10:i01:r1",
+            "targetText": "maze",
+            "meaningByLocale": {
+              "ru": "Лабиринт. Сеть дорожек или проходов, в которой нужно найти путь к выходу.",
+              "uk": "Лабіринт. Мережа доріжок або проходів, у якій потрібно знайти шлях до виходу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "maze",
+          "definitionByLocale": {
+            "ru": "Лабиринт. Сеть дорожек или проходов, в которой нужно найти путь к выходу.",
+            "uk": "Лабіринт. Мережа доріжок або проходів, у якій потрібно знайти шлях до виходу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i02:r1",
+          "text": "He asked if the maze was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i02:r2",
+          "text": "He asked if the museum was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i02:r3",
+          "text": "He asked if the pool was open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i02:audio",
+          "transcript": "He asked if the maze was open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-10:i02:r1",
+            "targetText": "He asked if the maze was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i02:r2",
+            "targetText": "He asked if the museum was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i02:r3",
+            "targetText": "He asked if the pool was open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if the maze was open.",
+              "uk": "У записі звучить He asked if the maze was open."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked if the maze was open.",
+              "uk": "У записі звучить He asked if the maze was open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спросил, где вход. Передайте его вопрос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i03:r1",
+          "text": "the entrance was"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i03:r2",
+          "text": "was the entrance"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i03:r3",
+          "text": "the entrance were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спросил, где вход. Передайте его вопрос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, где вход. Передайте его вопрос.",
+          "uk": "Друг запитав, де вхід. Передайте його запитання."
+        },
+        "gappedTargetPhrase": "He asked where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-10:i03:r1",
+            "text": "the entrance was"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i03:r2",
+            "text": "was the entrance"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i03:r3",
+            "text": "the entrance were"
+          }
+        ],
+        "testedDimension": "Друг спросил, где вход. Передайте его вопрос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг спросил, где вход. Передайте его вопрос.",
+            "feedbackByLocale": {
+              "ru": "В пересказе сначала идёт the entrance, затем was.",
+              "uk": "У переказі спочатку йде the entrance, потім was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг спросил, где вход. Передайте его вопрос.",
+            "feedbackByLocale": {
+              "ru": "С the entrance здесь нужна форма was.",
+              "uk": "Із the entrance тут потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы хотели бы иметь больше времени сегодня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотели бы иметь больше времени сегодня.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish we had more time.",
+        "localizedMeaning": {
+          "ru": "Вы хотели бы иметь больше времени сегодня.",
+          "uk": "Ви хотіли б мати більше часу сьогодні."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "had",
+          "more",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — viewpoint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — viewpoint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i05:audio",
+          "transcript": "viewpoint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-10:i05:r1",
+            "targetText": "viewpoint",
+            "meaningByLocale": {
+              "ru": "Смотровая площадка. Место, откуда открывается хороший вид на окрестности.",
+              "uk": "Оглядовий майданчик. Місце, звідки відкривається гарний краєвид на околиці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "viewpoint",
+          "definitionByLocale": {
+            "ru": "Смотровая площадка. Место, откуда открывается хороший вид на окрестности.",
+            "uk": "Оглядовий майданчик. Місце, звідки відкривається гарний краєвид на околиці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте вопрос сестры о том, где смотровая площадка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Передайте вопрос сестры о том, где смотровая площадка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i06:audio",
+          "transcript": "She asked where the viewpoint was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked where the viewpoint was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте пересказ вопроса о входе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте пересказ вопроса о входе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i07:audio",
+          "transcript": "He asked where the entrance was."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked where the entrance was.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "where",
+          "the",
+          "entrance",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат спросил, открыт ли лабиринт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i08:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i08:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i08:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат спросил, открыт ли лабиринт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат спросил, открыт ли лабиринт.",
+          "uk": "Брат запитав, чи відкритий лабіринт."
+        },
+        "gappedTargetPhrase": "He asked ___ the maze was open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-10:i08:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i08:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i08:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Брат спросил, открыт ли лабиринт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Брат спросил, открыт ли лабиринт.",
+            "feedbackByLocale": {
+              "ru": "What означает что; здесь вопрос да или нет передаём через if.",
+              "uk": "What означає що; тут запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Брат спросил, открыт ли лабиринт.",
+            "feedbackByLocale": {
+              "ru": "Where спрашивает о месте, а здесь спрашивали, открыт ли лабиринт.",
+              "uk": "Where запитує про місце, а тут запитували, чи відкритий лабіринт."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — arcade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — arcade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i09:audio",
+          "transcript": "arcade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-10:i09:r1",
+            "targetText": "arcade",
+            "meaningByLocale": {
+              "ru": "Зал игровых автоматов. Место, где можно поиграть на разных игровых автоматах.",
+              "uk": "Зал ігрових автоматів. Місце, де можна пограти на різних ігрових автоматах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "arcade",
+          "definitionByLocale": {
+            "ru": "Зал игровых автоматов. Место, где можно поиграть на разных игровых автоматах.",
+            "uk": "Зал ігрових автоматів. Місце, де можна пограти на різних ігрових автоматах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i10:r1",
+          "text": "She asked if the arcade was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i10:r2",
+          "text": "She asked if the café was open."
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i10:r3",
+          "text": "She asked if the shop was open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i10:audio",
+          "transcript": "She asked if the arcade was open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-10:i10:r1",
+            "targetText": "She asked if the arcade was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i10:r2",
+            "targetText": "She asked if the café was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i10:r3",
+            "targetText": "She asked if the shop was open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked if the arcade was open.",
+              "uk": "У записі звучить She asked if the arcade was open."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked if the arcade was open.",
+              "uk": "У записі звучить She asked if the arcade was open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите сестре, что карта, которую она дала вам, помогла.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите сестре, что карта, которую она дала вам, помогла.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i11:audio",
+          "transcript": "The map you gave me helped."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The map you gave me helped.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — planetarium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — planetarium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i12:audio",
+          "transcript": "planetarium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-10:i12:r1",
+            "targetText": "planetarium",
+            "meaningByLocale": {
+              "ru": "Планетарий. Место, где показывают звёздное небо на куполообразном экране и рассказывают о космосе.",
+              "uk": "Планетарій. Місце, де показують зоряне небо на куполоподібному екрані й розповідають про космос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "planetarium",
+          "definitionByLocale": {
+            "ru": "Планетарий. Место, где показывают звёздное небо на куполообразном экране и рассказывают о космосе.",
+            "uk": "Планетарій. Місце, де показують зоряне небо на куполоподібному екрані й розповідають про космос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте вопрос брата о том, где планетарий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "Передайте вопрос брата о том, где планетарий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i13:audio",
+          "transcript": "He asked where the planetarium was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked where the planetarium was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-10:i14:p1",
+            "target": "maze",
+            "meaningByLocale": {
+              "ru": "лабиринт",
+              "uk": "лабіринт"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-10:i14:p2",
+            "target": "viewpoint",
+            "meaningByLocale": {
+              "ru": "смотровая площадка",
+              "uk": "оглядовий майданчик"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-10:i14:p3",
+            "target": "arcade",
+            "meaningByLocale": {
+              "ru": "зал игровых автоматов",
+              "uk": "зал ігрових автоматів"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-10:i14:p4",
+            "target": "planetarium",
+            "meaningByLocale": {
+              "ru": "планетарий",
+              "uk": "планетарій"
+            }
+          }
+        ],
+        "leftColumn": [
+          "maze",
+          "viewpoint",
+          "arcade",
+          "planetarium"
+        ],
+        "rightColumn": [
+          "лабиринт",
+          "смотровая площадка",
+          "зал игровых автоматов",
+          "планетарий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос сестры: открыт ли зал игровых автоматов?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос сестры: открыт ли зал игровых автоматов?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked if the arcade was open.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос сестры: открыт ли зал игровых автоматов?",
+          "uk": "Передайте запитання сестри: чи відкритий зал ігрових автоматів?"
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "the",
+          "arcade",
+          "was",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Времени сегодня мало, а хочется успеть больше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i16:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i16:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i16:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Времени сегодня мало, а хочется успеть больше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Времени сегодня мало, а хочется успеть больше.",
+          "uk": "Часу сьогодні мало, а хочеться встигнути більше."
+        },
+        "gappedTargetPhrase": "I wish we ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-10:i16:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i16:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i16:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Времени сегодня мало, а хочется успеть больше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i16:r2",
+            "correct": false,
+            "testedDimension": "Времени сегодня мало, а хочется успеть больше.",
+            "feedbackByLocale": {
+              "ru": "Для такого желания о настоящем после wish нужно had.",
+              "uk": "Для такого бажання про теперішнє після wish потрібне had."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i16:r3",
+            "correct": false,
+            "testedDimension": "Времени сегодня мало, а хочется успеть больше.",
+            "feedbackByLocale": {
+              "ru": "Нужно we had, не we having.",
+              "uk": "Потрібне we had, не we having."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат хотел найти в лабиринте самый короткий путь. Теперь ищет просто выход. Передайте его вопрос о расположении выхода.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Брат хотел найти в лабиринте самый короткий путь. Теперь ищет просто выход. Передайте его вопрос о расположении выхода.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i17:audio",
+          "transcript": "He asked where the exit was."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked where the exit was.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о смотровой площадке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о смотровой площадке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i18:audio",
+          "transcript": "She asked where the viewpoint was."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked where the viewpoint was.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "where",
+          "the",
+          "viewpoint",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: брат спросил о планетарии или о музее?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i19:r1",
+          "text": "He asked where the planetarium was."
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i19:r2",
+          "text": "He asked where the museum was."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i19:audioA",
+        "en:lesson-30:session-10:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: брат спросил о планетарии или о музее?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He asked where the planetarium was.",
+        "contrastB": "He asked where the museum was.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-10:i19:audioA",
+          "transcript": "He asked where the planetarium was."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-10:i19:audioB",
+          "transcript": "He asked where the museum was."
+        },
+        "testedPhoneticContrast": "Послушайте: брат спросил о планетарии или о музее?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: брат спросил о планетарии или о музее?",
+            "feedbackByLocale": {
+              "ru": "Звучит planetarium — планетарий.",
+              "uk": "Звучить planetarium — планетарій."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра дала вам карту, и карта помогла.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-10:i20:r1",
+          "text": "gave"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i20:r2",
+          "text": "giving"
+        },
+        {
+          "responseId": "en:lesson-30:session-10:i20:r3",
+          "text": "gives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра дала вам карту, и карта помогла.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра дала вам карту, и карта помогла.",
+          "uk": "Сестра дала вам карту, і карта допомогла."
+        },
+        "gappedTargetPhrase": "The map you ___ me helped.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-10:i20:r1",
+            "text": "gave"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i20:r2",
+            "text": "giving"
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i20:r3",
+            "text": "gives"
+          }
+        ],
+        "testedDimension": "Сестра дала вам карту, и карта помогла.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-10:i20:r2",
+            "correct": false,
+            "testedDimension": "Сестра дала вам карту, и карта помогла.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма gave.",
+              "uk": "Тут потрібна форма gave."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-10:i20:r3",
+            "correct": false,
+            "testedDimension": "Сестра дала вам карту, и карта помогла.",
+            "feedbackByLocale": {
+              "ru": "Gives не сочетается с you; о переданной карте говорим gave.",
+              "uk": "Gives не поєднується з you; про передану карту кажемо gave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-10:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После прогулки брат сказал, что устал. Передайте его слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-10:i21:audio"
+      ],
+      "accessibilityLabel": "После прогулки брат сказал, что устал. Передайте его слова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-10:i21:audio",
+          "transcript": "He said he was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "762c679e970459ac8cb346a2bce2a73732bc64b49cd48d365468b48fae1ae267"
+}

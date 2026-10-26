@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-25:intro1:r2": {
+          "ru": "Перед сообщением после told нужно назвать, кому сказали; здесь этого нет.",
+          "uk": "Перед повідомленням після told потрібно назвати, кому сказали; тут цього немає."
+        },
+        "en:lesson-30:session-25:intro1:r3": {
+          "ru": "Здесь передаём сообщение, а не вопрос или просьбу. Нужен said.",
+          "uk": "Тут передаємо повідомлення, а не запитання чи прохання. Потрібне said."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-25:intro2:r2": {
+          "ru": "Нельзя поставить me сразу после said; в данном порядке нужен told me.",
+          "uk": "Не можна поставити me одразу після said; у цьому порядку потрібне told me."
+        },
+        "en:lesson-30:session-25:intro2:r3": {
+          "ru": "После told получателя me ставим без to.",
+          "uk": "Після told одержувача me ставимо без to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-25:intro3:r2": {
+          "ru": "В пересказе после if используем I was, без перестановки.",
+          "uk": "У переказі після if використовуємо I was, без переставляння."
+        },
+        "en:lesson-30:session-25:intro3:r3": {
+          "ru": "Того, кого спросили, после asked обозначаем me.",
+          "uk": "Того, кого запитали, після asked позначаємо me."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "84c7b00f70e7161c47bb74e2a1d9420823fdb10a4b9c17f7c54a4f2d70f2a1d0"
+}

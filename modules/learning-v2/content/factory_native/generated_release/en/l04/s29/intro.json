@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-29",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что предмет находится ровно между двумя местами, со словом between",
-    "uk": "сказати, що предмет перебуває рівно між двома місцями, зі словом between"
+    "ru": "сказать, что предмет находится между двумя местами, со словом between",
+    "uk": "сказати, що предмет перебуває між двома місцями, зі словом between"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Як доїхати"
       },
       "bodyByLocale": {
-        "ru": "Друг приехал в ваш город на выходные и спрашивает, где сесть на автобус. Нужное место стоит посередине улицы: слева банк, справа библиотека. bus stop — «автобусная остановка». between значит «между»: The bus stop is between the bank and the library.",
-        "uk": "Друг приїхав у ваше місто на вихідні й питає, де сісти на автобус. Потрібне місце стоїть посередині вулиці: ліворуч банк, праворуч бібліотека. bus stop — «автобусна зупинка». between означає «між»: The bus stop is between the bank and the library."
+        "ru": "Друг приехал в ваш город на выходные и спрашивает, где сесть на автобус. Нужное место стоит посередине улицы: слева банк, справа библиотека. bus stop — «автобусная остановка». between значит «между»: The bus stop is between the bank and the library. Сначала называем остановку — the bus stop, затем ставим is и место — between the bank and the library. Два ориентира после between соединяем словом and. Это означает «Остановка между банком и библиотекой».",
+        "uk": "Друг приїхав у ваше місто на вихідні й питає, де сісти на автобус. Потрібне місце стоїть посередині вулиці: ліворуч банк, праворуч бібліотека. bus stop — «автобусна зупинка». between означає «між»: The bus stop is between the bank and the library. Спочатку називаємо зупинку — the bus stop, потім ставимо is і місце — between the bank and the library. Два орієнтири після between поєднуємо словом and. Це означає «Зупинка між банком і бібліотекою»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-29:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Перший раз сама"
       },
       "bodyByLocale": {
-        "ru": "Сестра впервые идёт в школу одна. Дорогу можно перейти только в одном месте: там горит красный, а потом зелёный сигнал. Он стоит посередине между школой и парком. traffic light — «светофор». The traffic light is between the school and the park.",
-        "uk": "Сестра вперше йде до школи сама. Дорогу можна перейти лише в одному місці: там горить червоний, а потім зелений сигнал. Він стоїть посередині між школою й парком. traffic light — «світлофор». The traffic light is between the school and the park."
+        "ru": "Сестра впервые идёт в школу одна. Дорогу можно перейти только в одном месте: там горит красный, а потом зелёный сигнал. Он стоит посередине между школой и парком. traffic light — «светофор». The traffic light is between the school and the park. Фраза означает «Светофор между школой и парком». Называем светофор — the traffic light, затем ставим is, слово between и два ориентира: the school and the park.",
+        "uk": "Сестра вперше йде до школи сама. Дорогу можна перейти лише в одному місці: там горить червоний, а потім зелений сигнал. Він стоїть посередині між школою й парком. traffic light — «світлофор». The traffic light is between the school and the park. Фраза означає «Світлофор між школою й парком». Називаємо світлофор — the traffic light, потім ставимо is, слово between і два орієнтири: the school and the park."
       },
       "question": {
         "interactionId": "en:lesson-04:session-29:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Фото на згадку"
       },
       "bodyByLocale": {
-        "ru": "Гость города хочет сфотографироваться у старой фигуры из камня, которая стоит в парке. Вы знаете дорогу: по одну сторону от неё дерево, по другую скамейка. statue — «статуя». The statue is between the tree and the bench — «Статуя между деревом и скамейкой».",
-        "uk": "Гість міста хоче сфотографуватися біля старої фігури з каменю, що стоїть у парку. Ви знаєте дорогу: з одного боку від неї дерево, з другого лавка. statue — «статуя». The statue is between the tree and the bench — «Статуя між деревом і лавкою»."
+        "ru": "Гость города хочет сфотографироваться у старой фигуры из камня, которая стоит в парке. Вы знаете дорогу: по одну сторону от неё дерево, по другую скамейка. statue — «статуя». The statue is between the tree and the bench — «Статуя между деревом и скамейкой». Называем статую — the statue, затем ставим is и место — between the tree and the bench. Между двумя ориентирами нужно and.",
+        "uk": "Гість міста хоче сфотографуватися біля старої фігури з каменю, що стоїть у парку. Ви знаєте дорогу: з одного боку від неї дерево, з другого лавка. statue — «статуя». The statue is between the tree and the bench — «Статуя між деревом і лавкою». Називаємо статую — the statue, потім ставимо is і місце — between the tree and the bench. Між двома орієнтирами потрібне and."
       },
       "question": {
         "interactionId": "en:lesson-04:session-29:intro3:q",
@@ -140,7 +140,7 @@
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r2",
-              "text": "The statue is between the tree and bench."
+              "text": "The statue are between the tree and the bench."
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r3",
@@ -154,7 +154,7 @@
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r2",
-              "text": "The statue is between the tree and bench."
+              "text": "The statue are between the tree and the bench."
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r3",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "74713f9a29e68382733c9880140187cabf9f45d898a6a9d7e24afeefa2e3c4ae"
+  "introFingerprint": "2151eda5555f957403814a44ea381cdae13d9875a159a7b6ef6f254bedac50d6"
 }

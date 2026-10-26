@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "связывать найденное решение с результатом и пересказывать подсказку.",
+    "uk": "пов’язувати знайдене рішення з результатом і переказувати підказку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашёл ключ — смог войти",
+        "uk": "Знайшов ключ — зміг увійти"
+      },
+      "bodyByLocale": {
+        "ru": "У двери вы наконец нашли ключ: I found my key, so I went in — я нашёл свой ключ, поэтому вошёл. Соберите I found my key + so + I went in. Сначала называем причину, после so — что произошло в результате. Перед so ставим запятую.",
+        "uk": "Біля дверей ви нарешті знайшли ключ: I found my key, so I went in — я знайшов свій ключ, тому ввійшов. Складіть I found my key + so + I went in. Спочатку називаємо причину, після so — що сталося в результаті. Перед so ставимо кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-51:intro1:r1",
+              "text": "I found my key, so I went in."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro1:r2",
+              "text": "I found my key, so I gone in."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro1:r3",
+              "text": "I found my key, so I going in."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-51:intro1:r1",
+              "text": "I found my key, so I went in."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro1:r2",
+              "text": "I found my key, so I gone in."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro1:r3",
+              "text": "I found my key, so I going in."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дверь заперта, поэтому нужен ключ",
+        "uk": "Двері замкнені, тому потрібен ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы письменно объясняете, зачем достали ключ: The door was locked and therefore I used my key — дверь была заперта, и поэтому я воспользовался ключом. Соберите The door was locked + and therefore + I used my key. Therefore указывает на результат: запертая дверь заставила использовать ключ.",
+        "uk": "Ви письмово пояснюєте, навіщо дістали ключ: The door was locked and therefore I used my key — двері були замкнені, і тому я скористався ключем. Складіть The door was locked + and therefore + I used my key. Therefore вказує на результат: замкнені двері змусили скористатися ключем."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-51:intro2:r1",
+              "text": "The door was locked and therefore I used my key."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro2:r2",
+              "text": "The door was locked and therefore I using my key."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro2:r3",
+              "text": "The door was locked and therefore I uses my key."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-51:intro2:r1",
+              "text": "The door was locked and therefore I used my key."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro2:r2",
+              "text": "The door was locked and therefore I using my key."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro2:r3",
+              "text": "The door was locked and therefore I uses my key."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бен сказал, где ключ",
+        "uk": "Бен сказав, де ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера Бен сказал: «Ключ в сумке». Перескажите его слова со сдвигом is в прошлое: Ben said the key was in the bag — Бен сказал, что ключ был в сумке. Соберите Ben said + the key + was + in the bag. После said в этом пересказе is заменяем на was.",
+        "uk": "Учора Бен сказав: «Ключ у сумці». Перекажіть його слова зі зсувом is у минуле: Ben said the key was in the bag — Бен сказав, що ключ був у сумці. Складіть Ben said + the key + was + in the bag. Після said у цьому переказі is замінюємо на was."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-51:intro3:r1",
+              "text": "Ben said the key was in the bag."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro3:r2",
+              "text": "Ben said the key were in the bag."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro3:r3",
+              "text": "Ben said the key be in the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-51:intro3:r1",
+              "text": "Ben said the key was in the bag."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro3:r2",
+              "text": "Ben said the key were in the bag."
+            },
+            {
+              "responseId": "en:lesson-31:session-51:intro3:r3",
+              "text": "Ben said the key be in the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b3dde142dc92245d887ad418d8897e9f11395b1016f75aa5385a1a768e9158ab"
+}

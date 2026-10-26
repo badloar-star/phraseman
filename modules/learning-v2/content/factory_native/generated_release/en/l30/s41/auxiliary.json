@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-41:intro1:r2": {
+          "ru": "Needs не выполняет заданный сдвиг в прошлое.",
+          "uk": "Needs не виконує заданий зсув у минуле."
+        },
+        "en:lesson-30:session-41:intro1:r3": {
+          "ru": "Нужна форма needed, не needing.",
+          "uk": "Потрібна форма needed, не needing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-41:intro2:r2": {
+          "ru": "После asked используем me, не I.",
+          "uk": "Після asked використовуємо me, не I."
+        },
+        "en:lesson-30:session-41:intro2:r3": {
+          "ru": "Перед hold после asked me нужно to.",
+          "uk": "Перед hold після asked me потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-41:intro3:r2": {
+          "ru": "В уточнении нужен порядок I fixed.",
+          "uk": "В уточненні потрібен порядок I fixed."
+        },
+        "en:lesson-30:session-41:intro3:r3": {
+          "ru": "Один chair требует is.",
+          "uk": "Один chair потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "66a61ce3c100c624182852beb916616063bf73634dbbdca1fd3e9fed7c3fbfad"
+}

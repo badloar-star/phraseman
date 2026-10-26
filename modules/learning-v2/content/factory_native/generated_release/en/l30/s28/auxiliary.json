@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-28:intro1:r2": {
+          "ru": "В этом порядке с me нужен told, не said.",
+          "uk": "У цьому порядку з me потрібне told, не said."
+        },
+        "en:lesson-30:session-28:intro1:r3": {
+          "ru": "После told перед me не ставим to.",
+          "uk": "Після told перед me не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-28:intro2:r2": {
+          "ru": "После asked me перед come нужно to.",
+          "uk": "Після asked me перед come потрібне to."
+        },
+        "en:lesson-30:session-28:intro2:r3": {
+          "ru": "Того, кого попросили, обозначаем me, не I.",
+          "uk": "Того, кого попросили, позначаємо me, не I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-28:intro3:r2": {
+          "ru": "В уточнении нужен порядок you chose.",
+          "uk": "В уточненні потрібен порядок you chose."
+        },
+        "en:lesson-30:session-28:intro3:r3": {
+          "ru": "Один gift требует is, не are.",
+          "uk": "Один gift потребує is, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ea33dae8f8b8ea01b46da3a72239e76a3123396334df351a7212460658c5c808"
+}

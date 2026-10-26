@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять результат изменения планов через so и therefore.",
+    "uk": "пояснювати результат зміни планів через so і therefore."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Автобус не пришёл — пошли пешком",
+        "uk": "Автобус не приїхав — пішли пішки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ждали автобус, но он не пришёл: The bus didn’t come, so we walked — автобус не пришёл, поэтому мы пошли пешком. Соберите The bus didn’t come + so + we walked. Перед so стоит причина, после него — результат. Отрицание didn’t come не мешает связать две части.",
+        "uk": "Ви чекали на автобус, але він не приїхав: The bus didn’t come, so we walked — автобус не приїхав, тому ми пішли пішки. Складіть The bus didn’t come + so + we walked. Перед so стоїть причина, після нього — результат. Заперечення didn’t come не заважає пов’язати дві частини."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-50:intro1:r1",
+              "text": "The bus didn't come, so we walked."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro1:r2",
+              "text": "The bus didn't came, so we walked."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro1:r3",
+              "text": "The bus didn't come, so we walking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-50:intro1:r1",
+              "text": "The bus didn't come, so we walked."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro1:r2",
+              "text": "The bus didn't came, so we walked."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro1:r3",
+              "text": "The bus didn't come, so we walking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дождь изменил план",
+        "uk": "Дощ змінив план"
+      },
+      "bodyByLocale": {
+        "ru": "В письменном рассказе о дороге вы объясняете, почему взяли такси: It was raining and therefore we took a taxi — шёл дождь, и поэтому мы взяли такси. Соберите It was raining + and therefore + we took a taxi. And связывает части, therefore подчёркивает результат. В обычной беседе здесь также подошло бы so.",
+        "uk": "У письмовій розповіді про дорогу ви пояснюєте, чому взяли таксі: It was raining and therefore we took a taxi — ішов дощ, і тому ми взяли таксі. Складіть It was raining + and therefore + we took a taxi. And пов’язує частини, therefore підкреслює результат. У звичайній розмові тут також підійшло б so."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-50:intro2:r1",
+              "text": "It was raining and therefore we took a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro2:r2",
+              "text": "It was raining and therefore we taken a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro2:r3",
+              "text": "It was raining and therefore we taking a taxi."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-50:intro2:r1",
+              "text": "It was raining and therefore we took a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro2:r2",
+              "text": "It was raining and therefore we taken a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro2:r3",
+              "text": "It was raining and therefore we taking a taxi."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем, когда придёт автобус",
+        "uk": "Уточнюємо, коли приїде автобус"
+      },
+      "bodyByLocale": {
+        "ru": "На остановке вы вежливо спрашиваете время следующего автобуса: Could you tell me when the bus arrives? — не могли бы вы сказать, когда прибывает автобус? Соберите Could you tell me + when + the bus arrives. После when обычный порядок the bus arrives; does внутрь не добавляем.",
+        "uk": "На зупинці ви ввічливо запитуєте час наступного автобуса: Could you tell me when the bus arrives? — чи не могли б ви сказати, коли прибуває автобус? Складіть Could you tell me + when + the bus arrives. Після when звичайний порядок the bus arrives; does усередину не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-50:intro3:r1",
+              "text": "Could you tell me when the bus arrives?"
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro3:r2",
+              "text": "Could you tell me when does the bus arrive?"
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro3:r3",
+              "text": "Could you tell me when the bus arrive?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-50:intro3:r1",
+              "text": "Could you tell me when the bus arrives?"
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro3:r2",
+              "text": "Could you tell me when does the bus arrive?"
+            },
+            {
+              "responseId": "en:lesson-31:session-50:intro3:r3",
+              "text": "Could you tell me when the bus arrive?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ef27ff0b2751ac8deec74e9bc0ab5cd504f166d935e20775c4aa5a1f07b014f5"
+}

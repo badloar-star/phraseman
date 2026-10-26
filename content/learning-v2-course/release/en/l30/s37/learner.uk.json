@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i01:audio",
+          "transcript": "hair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-37:i01:r1",
+            "targetText": "hair",
+            "meaningByLocale": {
+              "ru": "Волосы. Повторение знакомого слова.",
+              "uk": "Волосся. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hair",
+          "definitionByLocale": {
+            "ru": "Волосы. Повторение знакомого слова.",
+            "uk": "Волосся. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i02:r1",
+          "text": "He said his hair was too long."
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i02:r2",
+          "text": "He said his hair was too wet."
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i02:r3",
+          "text": "He said his hair was too dry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i02:audio",
+          "transcript": "He said his hair was too long."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-37:i02:r1",
+            "targetText": "He said his hair was too long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i02:r2",
+            "targetText": "He said his hair was too wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i02:r3",
+            "targetText": "He said his hair was too dry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said his hair was too long.",
+              "uk": "У записі звучить He said his hair was too long."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said his hair was too long.",
+              "uk": "У записі звучить He said his hair was too long."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора брат сказав: «Я готовий». Перекажіть зі зсувом am у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора брат сказав: «Я готовий». Перекажіть зі зсувом am у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера брат сказал: «Я готов». Перескажите со сдвигом am в прошлое.",
+          "uk": "Учора брат сказав: «Я готовий». Перекажіть зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-37:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора брат сказав: «Я готовий». Перекажіть зі зсувом am у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора брат сказав: «Я готовий». Перекажіть зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг в прошлое.",
+              "uk": "Is не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора брат сказав: «Я готовий». Перекажіть зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма was, не be.",
+              "uk": "Тут потрібна особова форма was, не be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — short",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — short",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i04:audio",
+          "transcript": "short"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-37:i04:r1",
+            "targetText": "short",
+            "meaningByLocale": {
+              "ru": "Короткий. Повторение знакомого слова.",
+              "uk": "Короткий. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "short",
+          "definitionByLocale": {
+            "ru": "Короткий. Повторение знакомого слова.",
+            "uk": "Короткий. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брат учора сказав: «Я хочу коротке волосся». Передайте це зі зсувом want у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат учора сказав: «Я хочу коротке волосся». Передайте це зі зсувом want у минуле.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He said he wanted short hair.",
+        "localizedMeaning": {
+          "ru": "Брат вчера сказал: «Я хочу короткие волосы». Передайте это со сдвигом want в прошлое.",
+          "uk": "Брат учора сказав: «Я хочу коротке волосся». Передайте це зі зсувом want у минуле."
+        },
+        "orderedTokens": [
+          "He",
+          "said",
+          "he",
+          "wanted",
+          "short",
+          "hair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перукарка попросила вашого брата сісти. Передайте її прохання до нього.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Перукарка попросила вашого брата сісти. Передайте її прохання до нього.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i06:audio",
+          "transcript": "She asked him to sit down."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked him to sit down.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перукарка запитала, де куртка брата. Передайте запитання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i07:r1",
+          "text": "his jacket was"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i07:r2",
+          "text": "was his jacket"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i07:r3",
+          "text": "his jacket were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перукарка запитала, де куртка брата. Передайте запитання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Парикмахер спросила, где находится куртка брата. Передайте вопрос.",
+          "uk": "Перукарка запитала, де куртка брата. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-37:i07:r1",
+            "text": "his jacket was"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i07:r2",
+            "text": "was his jacket"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i07:r3",
+            "text": "his jacket were"
+          }
+        ],
+        "testedDimension": "Перукарка запитала, де куртка брата. Передайте запитання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i07:r2",
+            "correct": false,
+            "testedDimension": "Перукарка запитала, де куртка брата. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "В пересказе ставим his jacket перед was.",
+              "uk": "У переказі ставимо his jacket перед was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i07:r3",
+            "correct": false,
+            "testedDimension": "Перукарка запитала, де куртка брата. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "Одна jacket требует was.",
+              "uk": "Одна jacket потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mirror",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mirror",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i08:audio",
+          "transcript": "mirror"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-37:i08:r1",
+            "targetText": "mirror",
+            "meaningByLocale": {
+              "ru": "Зеркало. Повторение знакомого слова.",
+              "uk": "Дзеркало. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mirror",
+          "definitionByLocale": {
+            "ru": "Зеркало. Повторение знакомого слова.",
+            "uk": "Дзеркало. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перукарка попросила брата подивитися в дзеркало. Перекажіть прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Перукарка попросила брата подивитися в дзеркало. Перекажіть прохання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i09:audio",
+          "transcript": "She asked him to look in the mirror."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked him to look in the mirror.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання перукарки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання перукарки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i10:audio",
+          "transcript": "She asked if he was comfortable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked if he was comfortable.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "he",
+          "was",
+          "comfortable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат попросив перукарку допомогти йому з курткою. Вставте форму «її».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i11:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i11:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i11:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат попросив перукарку допомогти йому з курткою. Вставте форму «її».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат попросил парикмахера помочь ему с курткой. Вставьте форму «её».",
+          "uk": "Брат попросив перукарку допомогти йому з курткою. Вставте форму «її»."
+        },
+        "gappedTargetPhrase": "He asked ___ to help him.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-37:i11:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i11:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i11:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Брат попросив перукарку допомогти йому з курткою. Вставте форму «її».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Брат попросив перукарку допомогти йому з курткою. Вставте форму «її».",
+            "feedbackByLocale": {
+              "ru": "После asked того, кого попросили, обозначаем her.",
+              "uk": "Після asked того, кого попросили, позначаємо her."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Брат попросив перукарку допомогти йому з курткою. Вставте форму «її».",
+            "feedbackByLocale": {
+              "ru": "Hers обозначает принадлежность; здесь нужна her.",
+              "uk": "Hers позначає належність; тут потрібна her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — comb",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — comb",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i12:audio",
+          "transcript": "comb"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-37:i12:r1",
+            "targetText": "comb",
+            "meaningByLocale": {
+              "ru": "Расчёска. Повторение знакомого слова.",
+              "uk": "Гребінець. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comb",
+          "definitionByLocale": {
+            "ru": "Расчёска. Повторение знакомого слова.",
+            "uk": "Гребінець. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i13:r1",
+          "text": "He said he needed a comb."
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i13:r2",
+          "text": "He said he needed a towel."
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i13:r3",
+          "text": "He said he needed a bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i13:audio",
+          "transcript": "He said he needed a comb."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-37:i13:r1",
+            "targetText": "He said he needed a comb.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i13:r2",
+            "targetText": "He said he needed a towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i13:r3",
+            "targetText": "He said he needed a bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said he needed a comb.",
+              "uk": "У записі звучить He said he needed a comb."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said he needed a comb.",
+              "uk": "У записі звучить He said he needed a comb."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "До перукарні довго йти. Скажіть, що хотіли б жити ближче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "До перукарні довго йти. Скажіть, що хотіли б жити ближче.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i14:audio",
+          "transcript": "I wish I lived closer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I lived closer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть братові, що стрижка, яку він вибрав, гарна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть братові, що стрижка, яку він вибрав, гарна.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The haircut you chose is nice.",
+        "localizedMeaning": {
+          "ru": "Скажите брату, что стрижка, которую он выбрал, хорошая.",
+          "uk": "Скажіть братові, що стрижка, яку він вибрав, гарна."
+        },
+        "orderedTokens": [
+          "The",
+          "haircut",
+          "you",
+          "chose",
+          "is",
+          "nice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перукарка попросила брата не рухатися.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i16:r1",
+          "text": "not to move"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i16:r2",
+          "text": "not move"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i16:r3",
+          "text": "not moving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перукарка попросила брата не рухатися.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Парикмахер попросила брата не двигаться.",
+          "uk": "Перукарка попросила брата не рухатися."
+        },
+        "gappedTargetPhrase": "She asked him ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-37:i16:r1",
+            "text": "not to move"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i16:r2",
+            "text": "not move"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i16:r3",
+            "text": "not moving"
+          }
+        ],
+        "testedDimension": "Перукарка попросила брата не рухатися.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i16:r2",
+            "correct": false,
+            "testedDimension": "Перукарка попросила брата не рухатися.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to move.",
+              "uk": "Заперечне прохання передаємо через not to move."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i16:r3",
+            "correct": false,
+            "testedDimension": "Перукарка попросила брата не рухатися.",
+            "feedbackByLocale": {
+              "ru": "После asked him здесь нужно not to move.",
+              "uk": "Після asked him тут потрібне not to move."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора брат сказав: «Мені потрібен рушник». Передайте це зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Учора брат сказав: «Мені потрібен рушник». Передайте це зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i17:audio",
+          "transcript": "He said he needed a towel."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he needed a towel.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: перукарка попросила сісти брата чи вас?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i18:r1",
+          "text": "She asked me to sit down."
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i18:r2",
+          "text": "She asked him to sit down."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i18:audioA",
+        "en:lesson-30:session-37:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: перукарка попросила сісти брата чи вас?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked me to sit down.",
+        "contrastB": "She asked him to sit down.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-37:i18:audioA",
+          "transcript": "She asked me to sit down."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-37:i18:audioB",
+          "transcript": "She asked him to sit down."
+        },
+        "testedPhoneticContrast": "Послухайте: перукарка попросила сісти брата чи вас?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: перукарка попросила сісти брата чи вас?",
+            "feedbackByLocale": {
+              "ru": "Звучит me — меня.",
+              "uk": "Звучить me — мене."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення про волосся.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про волосся.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i19:audio",
+          "transcript": "She said his hair was dry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said his hair was dry.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "his",
+          "hair",
+          "was",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перукарка повідомила вам із братом, що вона готова. Вставте форму «нам».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-37:i20:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i20:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-37:i20:r3",
+          "text": "to us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перукарка повідомила вам із братом, що вона готова. Вставте форму «нам».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Парикмахер сообщила вам с братом, что она готова. Вставьте форму «нам».",
+          "uk": "Перукарка повідомила вам із братом, що вона готова. Вставте форму «нам»."
+        },
+        "gappedTargetPhrase": "She told ___ she was ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-37:i20:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i20:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i20:r3",
+            "text": "to us"
+          }
+        ],
+        "testedDimension": "Перукарка повідомила вам із братом, що вона готова. Вставте форму «нам».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-37:i20:r2",
+            "correct": false,
+            "testedDimension": "Перукарка повідомила вам із братом, що вона готова. Вставте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told получателя обозначаем us.",
+              "uk": "Після told одержувача позначаємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-37:i20:r3",
+            "correct": false,
+            "testedDimension": "Перукарка повідомила вам із братом, що вона готова. Вставте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told перед us не ставим to.",
+              "uk": "Після told перед us не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-37:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора брат сказав: «Мені подобається моя стрижка». Передайте це зі зсувом like у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-37:i21:audio"
+      ],
+      "accessibilityLabel": "Учора брат сказав: «Мені подобається моя стрижка». Передайте це зі зсувом like у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-37:i21:audio",
+          "transcript": "He said he liked his haircut."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he liked his haircut.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "58f3a5d2bb653415cdd045460117f2d29e90e59c6570c5706b4f3730caecaff6"
+}

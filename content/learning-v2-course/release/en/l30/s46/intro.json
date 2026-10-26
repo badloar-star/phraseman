@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать сообщение, просьбу и вопрос сотрудницы.",
+    "uk": "переказувати повідомлення, прохання й запитання працівниці."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посылка готова к выдаче",
+        "uk": "Посилка готова до видачі"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сотрудница сказала вам: «Посылка готова». Перескажите со сдвигом времени: She said the parcel was ready — она сказала, что посылка готова. Соберите She + said + the parcel + was ready. В её словах The parcel is ready форма is сдвигается в was после прошедшего said.",
+        "uk": "Учора працівниця сказала вам: «Посилка готова». Перекажіть зі зсувом часу: She said the parcel was ready — вона сказала, що посилка готова. Складіть She + said + the parcel + was ready. У її словах The parcel is ready форма is зсувається у was після минулого said."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-46:intro1:r1",
+              "text": "She said the parcel was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro1:r2",
+              "text": "She said the parcel is ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro1:r3",
+              "text": "She said the parcel be ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-46:intro1:r1",
+              "text": "She said the parcel was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro1:r2",
+              "text": "She said the parcel is ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro1:r3",
+              "text": "She said the parcel be ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Просьба назвать имя по буквам",
+        "uk": "Прохання назвати ім’я по літерах"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудница попросила вас произнести ваше имя по буквам. Передайте просьбу: She asked me to spell my name — она попросила меня назвать моё имя по буквам. Соберите She + asked + me + to spell my name. Me показывает, кого попросили, а to spell — что сделать. My name здесь ваше имя.",
+        "uk": "Працівниця попросила вас вимовити ваше ім’я по літерах. Передайте прохання: She asked me to spell my name — вона попросила мене назвати моє ім’я по літерах. Складіть She + asked + me + to spell my name. Me показує, кого попросили, а to spell — що зробити. My name тут ваше ім’я."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-46:intro2:r1",
+              "text": "She asked me to spell my name."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro2:r2",
+              "text": "She asked I to spell my name."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro2:r3",
+              "text": "She asked me spell my name."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-46:intro2:r1",
+              "text": "She asked me to spell my name."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro2:r2",
+              "text": "She asked I to spell my name."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro2:r3",
+              "text": "She asked me spell my name."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сотрудница спросила адрес",
+        "uk": "Працівниця запитала адресу"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудница спросила вас: «Где ты живёшь?» Перескажите вопрос: She asked where I lived — она спросила, где я живу. Соберите She + asked + where + I + lived. После where ставим I перед lived; вопросительное do из прямого вопроса не переносим.",
+        "uk": "Працівниця запитала вас: «Де ти живеш?» Перекажіть запитання: She asked where I lived — вона запитала, де я живу. Складіть She + asked + where + I + lived. Після where ставимо I перед lived; питальне do з прямого запитання не переносимо."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-46:intro3:r1",
+              "text": "She asked where I lived."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro3:r2",
+              "text": "She asked where did I live."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro3:r3",
+              "text": "She asked where I living."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-46:intro3:r1",
+              "text": "She asked where I lived."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro3:r2",
+              "text": "She asked where did I live."
+            },
+            {
+              "responseId": "en:lesson-30:session-46:intro3:r3",
+              "text": "She asked where I living."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a18ca7953a1daab20e1f26ffa39e457c8f6d24ff27f5d1372744450909ff06b3"
+}

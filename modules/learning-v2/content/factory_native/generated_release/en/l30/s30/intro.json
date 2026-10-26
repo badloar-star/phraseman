@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "передавать просьбы и сообщения, уточнять предмет; повторите вопросы и желание.",
+    "uk": "передавати прохання й повідомлення, уточнювати предмет; повторите запитання та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Передать просьбу о покупках",
+        "uk": "Передати прохання про покупки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы идёте в магазин. Сестра попросила вас купить молоко. Передайте просьбу брату: She asked me to buy some milk — она попросила меня купить молоко. Соберите She + asked + me + to buy some milk. Me обозначает вас, а to buy называет действие, которое нужно сделать.",
+        "uk": "Ви йдете до магазину. Сестра попросила вас купити молоко. Передайте прохання братові: She asked me to buy some milk — вона попросила мене купити молоко. Складіть She + asked + me + to buy some milk. Me позначає вас, а to buy називає дію, яку потрібно виконати."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-30:intro1:r1",
+              "text": "She asked me to buy some milk."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro1:r2",
+              "text": "She asked me buy some milk."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro1:r3",
+              "text": "She asked I to buy some milk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-30:intro1:r1",
+              "text": "She asked me to buy some milk."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro1:r2",
+              "text": "She asked me buy some milk."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro1:r3",
+              "text": "She asked I to buy some milk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кому сообщили о хлебе",
+        "uk": "Кому повідомили про хліб"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине продавец сказал вам, что хлеб свежий. Расскажите сестре: He told me the bread was fresh — он сказал мне, что хлеб свежий. Соберите He + told + me + the bread was fresh. После told сначала называем получателя me, затем передаём сообщение.",
+        "uk": "У магазині продавець сказав вам, що хліб свіжий. Розкажіть сестрі: He told me the bread was fresh — він сказав мені, що хліб свіжий. Складіть He + told + me + the bread was fresh. Після told спочатку називаємо одержувача me, потім передаємо повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-30:intro2:r1",
+              "text": "He told me the bread was fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro2:r2",
+              "text": "He said me the bread was fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro2:r3",
+              "text": "He told to me the bread was fresh."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-30:intro2:r1",
+              "text": "He told me the bread was fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro2:r2",
+              "text": "He said me the bread was fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro2:r3",
+              "text": "He told to me the bread was fresh."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить нужный список",
+        "uk": "Уточнити потрібний список"
+      },
+      "bodyByLocale": {
+        "ru": "Вы составили список покупок, а сестра — другой. Скажите, что ваш список короткий: The list I wrote is short — список, который я написал, короткий. Соберите The list + I wrote + is short. I wrote уточняет список. I — тот, кто писал, а list — написанный список, поэтому that перед I можно опустить.",
+        "uk": "Ви склали список покупок, а сестра — інший. Скажіть, що ваш список короткий: The list I wrote is short — список, який я написав, короткий. Складіть The list + I wrote + is short. I wrote уточнює список. I — той, хто писав, а list — написаний список, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-30:intro3:r1",
+              "text": "The list I wrote is short."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro3:r2",
+              "text": "The list wrote I is short."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro3:r3",
+              "text": "The list I wrote are short."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-30:intro3:r1",
+              "text": "The list I wrote is short."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro3:r2",
+              "text": "The list wrote I is short."
+            },
+            {
+              "responseId": "en:lesson-30:session-30:intro3:r3",
+              "text": "The list I wrote are short."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "749786ffbdab6a6d38aa300ce3ba600de811032714d1024a0d14c7a5b13841e7"
+}

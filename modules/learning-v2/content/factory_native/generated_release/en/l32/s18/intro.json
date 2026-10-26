@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "называть возможное состояние, делать вывод по признакам и уточнять предмет.",
+    "uk": "називати можливий стан, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможное состояние",
+        "uk": "Можливий стан"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не пробовали ручку. Анна могла закрыть дверь на ключ. The door could be locked. — Возможно, дверь заперта. Соберите The door + could + be + locked. Здесь описываем состояние: перед locked нужна связка be. Could показывает, что это возможный вариант.",
+        "uk": "Ви ще не пробували ручку. Анна могла замкнути двері на ключ. The door could be locked. — Можливо, двері замкнені. Складіть The door + could + be + locked. Тут описуємо стан: перед locked потрібна зв’язка be. Could показує, що це можливий варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-18:intro1:r1",
+              "text": "The door could be locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro1:r2",
+              "text": "The door could is locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro1:r3",
+              "text": "The door could to be locked."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-18:intro1:r1",
+              "text": "The door could be locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro1:r2",
+              "text": "The door could is locked."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro1:r3",
+              "text": "The door could to be locked."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. The room must be warm. — В комнате, должно быть, тепло. Соберите The room + must + be + warm. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Із прочиненого вікна кімнати йде тепле повітря, хоча надворі прохолодно. The room must be warm. — У кімнаті, напевно, тепло. Складіть The room + must + be + warm. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-18:intro2:r1",
+              "text": "The room must be warm."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro2:r2",
+              "text": "The room must is warm."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro2:r3",
+              "text": "The room must to be warm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-18:intro2:r1",
+              "text": "The room must be warm."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro2:r2",
+              "text": "The room must is warm."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro2:r3",
+              "text": "The room must to be warm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы написали Анне короткую записку о том, что будете ждать во дворе. The note I wrote is short. — Записка, которую я написал, короткая. Соберите The note + I wrote + is short. Часть I wrote уточняет note. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви написали Анні коротку записку про те, що чекатимете у дворі. The note I wrote is short. — Записка, яку я написав, коротка. Складіть The note + I wrote + is short. Частина I wrote уточнює note. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-18:intro3:r1",
+              "text": "The note I wrote is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro3:r2",
+              "text": "The note I wrote it is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro3:r3",
+              "text": "The note I writing is short."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-18:intro3:r1",
+              "text": "The note I wrote is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro3:r2",
+              "text": "The note I wrote it is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-18:intro3:r3",
+              "text": "The note I writing is short."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "22fc12d9e6ef6cecfad35a40b057b258694d5cb1553c868dca52ae92102edc22"
+}

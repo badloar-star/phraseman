@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-18:intro1:r2": {
+          "ru": "После asked здесь нужно me, не I.",
+          "uk": "Після asked тут потрібне me, не I."
+        },
+        "en:lesson-30:session-18:intro1:r3": {
+          "ru": "Перед действием нужно to apologise.",
+          "uk": "Перед дією потрібне to apologise."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-18:intro2:r2": {
+          "ru": "Здесь нужно not to rub.",
+          "uk": "Тут потрібне not to rub."
+        },
+        "en:lesson-30:session-18:intro2:r3": {
+          "ru": "Действие после asked me передаём через not to rub.",
+          "uk": "Дію після asked me передаємо через not to rub."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-18:intro3:r2": {
+          "ru": "Нужна форма gave, не giving.",
+          "uk": "Потрібна форма gave, не giving."
+        },
+        "en:lesson-30:session-18:intro3:r3": {
+          "ru": "Одно полотенце: the towel is.",
+          "uk": "Один рушник: the towel is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3a4064ce13ef777edaad1cbf5cac6e6baf05503ee525a91411b32b9956e34f2c"
+}

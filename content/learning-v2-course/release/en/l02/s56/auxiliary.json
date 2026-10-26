@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-02:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-56:intro1:r2": {
-          "ru": "С not выходит «Тут спокойно». А все толкаются у стойки: It is hectic.",
-          "uk": "З not виходить «Тут спокійно». А всі штовхаються біля стійки: It is hectic."
+          "ru": "С not выходит «Тут нет суматохи». А все толкаются у стойки: It is hectic.",
+          "uk": "З not виходить «Тут немає метушні». А всі штовхаються біля стійки: It is hectic."
         },
         "en:lesson-02:session-56:intro1:r3": {
           "ru": "Между It и hectic нужно is: It is hectic.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-02:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-02:session-56:intro3:r2": {
-          "ru": "С not выходит «Он спокойный». А он бурчит и пихает чемодан ногой: He's cranky.",
-          "uk": "З not виходить «Він спокійний». А він бурчить і штовхає валізу ногою: He's cranky."
+          "ru": "С not выходит «Он не раздражительный». А он бурчит и пихает чемодан ногой: He's cranky.",
+          "uk": "З not виходить «Він не дратівливий». А він бурчить і штовхає валізу ногою: He's cranky."
         },
         "en:lesson-02:session-56:intro3:r3": {
           "ru": "Мужчина один, нужно He's: He's cranky.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "74cad8a63f8505728d79aca51e178d6942665eab681467585923b9f18bff1df0"
+  "auxiliaryFingerprint": "81e4c94f3bd4c1c2c8e44d94bb61639ba4d3cf2e6465927c68c81f371a911754"
 }

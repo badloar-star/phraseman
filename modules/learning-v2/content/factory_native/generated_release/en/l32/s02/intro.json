@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "делать вывод о местонахождении вещей и уточнять предмет знакомой частью без that.",
+    "uk": "робити висновок про місце речей і уточнювати предмет знайомою частиною без that."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ключи наверняка в сумке",
+        "uk": "Ключі, напевно, у сумці"
+      },
+      "bodyByLocale": {
+        "ru": "Перед выходом вы положили ключи в сумку и с тех пор её не открывали. Теперь делаете вывод: The keys must be in the bag — ключи, должно быть, в сумке. Соберите The keys + must + be + in the bag. Здесь после must нужна начальная форма be, даже когда keys во множественном числе.",
+        "uk": "Перед виходом ви поклали ключі до сумки й відтоді її не відкривали. Тепер робите висновок: The keys must be in the bag — ключі, напевно, у сумці. Складіть The keys + must + be + in the bag. Тут після must потрібна початкова форма be, навіть коли keys у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-02:intro1:r1",
+              "text": "The keys must be in the bag."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro1:r2",
+              "text": "The keys must are in the bag."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro1:r3",
+              "text": "The keys must in the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-02:intro1:r1",
+              "text": "The keys must be in the bag."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro1:r2",
+              "text": "The keys must are in the bag."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro1:r3",
+              "text": "The keys must in the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Именно то пальто, которое я носил",
+        "uk": "Саме те пальто, яке я носив"
+      },
+      "bodyByLocale": {
+        "ru": "Дома два пальто. Уточните, какое вы оставили в машине: The coat I wore is in the car — пальто, которое я носил, в машине. Соберите The coat + I wore + is in the car. Часть I wore уточняет coat. Здесь можно опустить that, потому что внутри этой части уже есть действующее лицо I: пальто носили вы.",
+        "uk": "Удома два пальта. Уточніть, яке ви залишили в машині: The coat I wore is in the car — пальто, яке я носив, у машині. Складіть The coat + I wore + is in the car. Частина I wore уточнює coat. Тут можна опустити that, бо всередині цієї частини вже є діяч I: пальто носили ви."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-02:intro2:r1",
+              "text": "The coat I wore is in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro2:r2",
+              "text": "The coat I wore it is in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro2:r3",
+              "text": "The coat I worn is in the car."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-02:intro2:r1",
+              "text": "The coat I wore is in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro2:r2",
+              "text": "The coat I wore it is in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro2:r3",
+              "text": "The coat I worn is in the car."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумка тяжёлая — поставил её",
+        "uk": "Сумка важка — поставив її"
+      },
+      "bodyByLocale": {
+        "ru": "Вы устали нести сумку и поставили её: The bag was heavy, so I put it down — сумка была тяжёлой, поэтому я её поставил. Соберите The bag was heavy + so + I put it down. После so называем результат. Put в прошлом выглядит так же, как начальная форма.",
+        "uk": "Ви втомилися нести сумку й поставили її: The bag was heavy, so I put it down — сумка була важка, тому я її поставив. Складіть The bag was heavy + so + I put it down. Після so називаємо результат. Put у минулому має такий самий вигляд, як початкова форма."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-02:intro3:r1",
+              "text": "The bag was heavy, so I put it down."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro3:r2",
+              "text": "The bag was heavy, so I putted it down."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro3:r3",
+              "text": "The bag was heavy, so I putting it down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-02:intro3:r1",
+              "text": "The bag was heavy, so I put it down."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro3:r2",
+              "text": "The bag was heavy, so I putted it down."
+            },
+            {
+              "responseId": "en:lesson-32:session-02:intro3:r3",
+              "text": "The bag was heavy, so I putting it down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "54f8efd15f826b75c4a34427d611ac63ebc7d4440c3524c13775a5be852f62b8"
+}

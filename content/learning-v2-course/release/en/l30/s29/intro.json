@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "передавать сообщения и просьбы, уточнять вещь; повторите вопросы и желание.",
+    "uk": "передавати повідомлення й прохання, уточнювати річ; повторите запитання та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что сказали о рубашке",
+        "uk": "Що сказали про сорочку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираете вещи для стирки. Сестра сказала вам, что рубашка грязная. Передайте её сообщение брату: She told me the shirt was dirty — она сказала мне, что рубашка грязная. Соберите She + told + me + the shirt was dirty. После told указываем получателя me, затем само сообщение.",
+        "uk": "Ви збираєте речі для прання. Сестра сказала вам, що сорочка брудна. Передайте її повідомлення братові: She told me the shirt was dirty — вона сказала мені, що сорочка брудна. Складіть She + told + me + the shirt was dirty. Після told указуємо одержувача me, потім саме повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-29:intro1:r1",
+              "text": "She told me the shirt was dirty."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro1:r2",
+              "text": "She said me the shirt was dirty."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro1:r3",
+              "text": "She told to me the shirt was dirty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-29:intro1:r1",
+              "text": "She told me the shirt was dirty."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro1:r2",
+              "text": "She said me the shirt was dirty."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro1:r3",
+              "text": "She told to me the shirt was dirty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Передать просьбу перед стиркой",
+        "uk": "Передати прохання перед пранням"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра попросила вас опустошить карманы перед стиркой. Расскажите брату: She asked me to empty my pockets — она попросила меня вынуть всё из карманов. Соберите She + asked + me + to empty my pockets. Me обозначает вас; после него to empty называет действие. My pockets — ваши карманы в этом рассказе от первого лица.",
+        "uk": "Сестра попросила вас спорожнити кишені перед пранням. Розкажіть братові: She asked me to empty my pockets — вона попросила мене вийняти все з кишень. Складіть She + asked + me + to empty my pockets. Me позначає вас; після нього to empty називає дію. My pockets — ваші кишені в цій розповіді від першої особи."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-29:intro2:r1",
+              "text": "She asked me to empty my pockets."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro2:r2",
+              "text": "She asked me empty my pockets."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro2:r3",
+              "text": "She asked I to empty my pockets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-29:intro2:r1",
+              "text": "She asked me to empty my pockets."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro2:r2",
+              "text": "She asked me empty my pockets."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro2:r3",
+              "text": "She asked I to empty my pockets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить нужную рубашку",
+        "uk": "Уточнити потрібну сорочку"
+      },
+      "bodyByLocale": {
+        "ru": "На сушилке несколько рубашек. Уточните, что рубашка, которую вы носили, уже сухая: The shirt I wore is dry — рубашка, которую я носил, сухая. Соберите The shirt + I wore + is dry. I wore уточняет предмет. I — тот, кто носил, а shirt — вещь, которую носили, поэтому that перед I можно опустить.",
+        "uk": "На сушарці кілька сорочок. Уточніть, що сорочка, яку ви носили, уже суха: The shirt I wore is dry — сорочка, яку я носив, суха. Складіть The shirt + I wore + is dry. I wore уточнює предмет. I — той, хто носив, а shirt — річ, яку носили, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-29:intro3:r1",
+              "text": "The shirt I wore is dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro3:r2",
+              "text": "The shirt wore I is dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro3:r3",
+              "text": "The shirt I wore are dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-29:intro3:r1",
+              "text": "The shirt I wore is dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro3:r2",
+              "text": "The shirt wore I is dry."
+            },
+            {
+              "responseId": "en:lesson-30:session-29:intro3:r3",
+              "text": "The shirt I wore are dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a3704f89b9edcff198d16fa72acde5981e81fb4183a3f464ca4d794874249fde"
+}

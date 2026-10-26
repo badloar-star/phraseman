@@ -15,8 +15,8 @@
         "uk": "Загублений гаманець"
       },
       "bodyByLocale": {
-        "ru": "Приезжий потерял на улице кошелёк и спрашивает, куда с этим идти. Вы смотрите на здание с синей табличкой, где принимают заявления о пропажах и кражах. police station — «полицейский участок». Гость о нём ещё не знает: There is a police station near the museum.",
-        "uk": "Приїжджий загубив на вулиці гаманець і питає, куди з цим іти. Ви дивитеся на будівлю з синьою табличкою, де приймають заяви про пропажі й крадіжки. police station — «поліцейська дільниця». Гість про неї ще не знає: There is a police station near the museum."
+        "ru": "Приезжий потерял на улице кошелёк и спрашивает, куда с этим идти. Вы смотрите на здание с синей табличкой, где принимают заявления о пропажах и кражах. police station — «полицейский участок». There is a police station near the museum — «Возле музея есть полицейский участок». Чтобы сообщить о наличии места, начинаем с There is, затем называем его — a police station — и добавляем ориентир: near the museum.",
+        "uk": "Приїжджий загубив на вулиці гаманець і питає, куди з цим іти. Ви дивитеся на будівлю з синьою табличкою, де приймають заяви про пропажі й крадіжки. police station — «поліцейська дільниця». There is a police station near the museum — «Біля музею є поліцейська дільниця». Щоб повідомити про наявність місця, починаємо з There is, потім називаємо його — a police station — і додаємо орієнтир: near the museum."
       },
       "question": {
         "interactionId": "en:lesson-04:session-53:intro1:q",
@@ -32,7 +32,7 @@
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r2",
-              "text": "It is a police station near the museum."
+              "text": "There are a police station near the museum."
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r3",
@@ -46,7 +46,7 @@
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r2",
-              "text": "It is a police station near the museum."
+              "text": "There are a police station near the museum."
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r3",
@@ -69,8 +69,8 @@
         "uk": "Куди саме йти"
       },
       "bodyByLocale": {
-        "ru": "Гость идёт по вашей подсказке и звонит: он стоит у музея и не видит участка. Вы оба уже говорили о нём, поэтому называть его заново не нужно. Рядом с участком витрина с открытками и брелоками. gift shop — «магазин сувениров». Скажите: It is next to the gift shop.",
-        "uk": "Гість іде за вашою підказкою й телефонує: він стоїть біля музею й не бачить дільниці. Ви обоє вже говорили про неї, тому називати її заново не треба. Поруч із дільницею вітрина з листівками й брелоками. gift shop — «магазин сувенірів». Скажіть: It is next to the gift shop."
+        "ru": "Гость идёт по вашей подсказке и звонит: он стоит у музея и не видит участка. Вы оба уже говорили о нём, поэтому называть его заново не нужно. Рядом с участком витрина с открытками и брелоками. gift shop — «магазин сувениров». It is next to the gift shop — «Он рядом с магазином сувениров». Уже названный участок заменяем словом it, затем ставим is и указываем место — next to the gift shop.",
+        "uk": "Гість іде за вашою підказкою й телефонує: він стоїть біля музею й не бачить дільниці. Ви обоє вже говорили про неї, тому називати її заново не треба. Поруч із дільницею вітрина з листівками й брелоками. gift shop — «магазин сувенірів». It is next to the gift shop — «Вона поруч із магазином сувенірів». Уже названу дільницю замінюємо словом it, потім ставимо is і вказуємо місце — next to the gift shop."
       },
       "question": {
         "interactionId": "en:lesson-04:session-53:intro2:q",
@@ -86,7 +86,7 @@
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r2",
-              "text": "There is a police station next to the gift shop."
+              "text": "It next to the gift shop."
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r3",
@@ -100,7 +100,7 @@
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r2",
-              "text": "There is a police station next to the gift shop."
+              "text": "It next to the gift shop."
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r3",
@@ -123,8 +123,8 @@
         "uk": "Біля столу в дільниці"
       },
       "bodyByLocale": {
-        "ru": "Вы зашли с гостем внутрь, и он спрашивает, к кому здесь обратиться с заявлением. Возле стола в углу стоит человек в форме с нашивкой на рукаве и рацией на груди. officer — «сотрудник полиции». Для гостя он новый: There is an officer next to the desk.",
-        "uk": "Ви зайшли з гостем усередину, і він питає, до кого тут звернутися із заявою. Біля столу в кутку стоїть людина у формі з нашивкою на рукаві й рацією на грудях. officer — «співробітник поліції». Для гостя він новий: There is an officer next to the desk."
+        "ru": "Вы зашли с гостем внутрь, и он спрашивает, к кому здесь обратиться с заявлением. Возле стола в углу стоит человек в форме с нашивкой на рукаве и рацией на груди. officer — «сотрудник полиции». There is an officer next to the desk — «Возле стола есть сотрудник полиции». Начинаем с There is, называем человека — an officer, затем добавляем место: next to the desk. Перед officer нужно an, потому что слово начинается с гласного звука.",
+        "uk": "Ви зайшли з гостем усередину, і він питає, до кого тут звернутися із заявою. Біля столу в кутку стоїть людина у формі з нашивкою на рукаві й рацією на грудях. officer — «співробітник поліції». There is an officer next to the desk — «Біля столу є співробітник поліції». Починаємо з There is, називаємо людину — an officer, потім додаємо місце: next to the desk. Перед officer потрібне an, бо слово починається з голосного звука."
       },
       "question": {
         "interactionId": "en:lesson-04:session-53:intro3:q",
@@ -140,7 +140,7 @@
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r2",
-              "text": "The officer is next to the desk."
+              "text": "There are an officer next to the desk."
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r3",
@@ -154,7 +154,7 @@
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r2",
-              "text": "The officer is next to the desk."
+              "text": "There are an officer next to the desk."
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r3",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "594f12477917f904f97ba5c7c64b0088fd42568fb5069910e4031e68e6d82c8d"
+  "introFingerprint": "204043a3ee4776f8f08e9fc8fcc2005e7b95743ab5b2307951afb05086c0df8d"
 }

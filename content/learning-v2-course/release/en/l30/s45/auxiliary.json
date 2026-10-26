@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-45:intro1:r2": {
+          "ru": "В пересказе нужен порядок my bucket was.",
+          "uk": "У переказі потрібен порядок my bucket was."
+        },
+        "en:lesson-30:session-45:intro1:r3": {
+          "ru": "Одно bucket требует was.",
+          "uk": "Одне bucket потребує was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-45:intro2:r2": {
+          "ru": "После asked нужно me.",
+          "uk": "Після asked потрібне me."
+        },
+        "en:lesson-30:session-45:intro2:r3": {
+          "ru": "Перед fill после asked me нужно to.",
+          "uk": "Перед fill після asked me потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-45:intro3:r2": {
+          "ru": "В уточнении нужен порядок I used.",
+          "uk": "В уточненні потрібен порядок I used."
+        },
+        "en:lesson-30:session-45:intro3:r3": {
+          "ru": "Одна cloth требует is.",
+          "uk": "Одна cloth потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4442737c165bebd02f4b414c1d9671894e5e112672b67d233e27a49ecae3ef6a"
+}

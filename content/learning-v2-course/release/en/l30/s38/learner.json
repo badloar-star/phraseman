@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i01:audio",
+          "transcript": "plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-38:i01:r1",
+            "targetText": "plant",
+            "meaningByLocale": {
+              "ru": "Растение. Повторение знакомого слова.",
+              "uk": "Рослина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plant",
+          "definitionByLocale": {
+            "ru": "Растение. Повторение знакомого слова.",
+            "uk": "Рослина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i02:r1",
+          "text": "She said her plant was dry."
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i02:r2",
+          "text": "She said her plant was small."
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i02:r3",
+          "text": "She said her plant was green."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i02:audio",
+          "transcript": "She said her plant was dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-38:i02:r1",
+            "targetText": "She said her plant was dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i02:r2",
+            "targetText": "She said her plant was small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i02:r3",
+            "targetText": "She said her plant was green.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said her plant was dry.",
+              "uk": "У записі звучить She said her plant was dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said her plant was dry.",
+              "uk": "У записі звучить She said her plant was dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера соседка сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера соседка сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера соседка сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+          "uk": "Учора сусідка сказала: «Я зайнята». Перекажіть зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-38:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера соседка сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера соседка сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг в прошлое.",
+              "uk": "Is не виконує заданий зсув у минуле."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера соседка сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма was, не be.",
+              "uk": "Тут потрібна особова форма was, не be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i04:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-38:i04:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода; поливать. Повторение знакомого слова.",
+              "uk": "Вода; поливати. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода; поливать. Повторение знакомого слова.",
+            "uk": "Вода; поливати. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера соседка сказала: «Моим растениям нужна вода». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Вчера соседка сказала: «Моим растениям нужна вода». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i05:audio",
+          "transcript": "She said her plants needed water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said her plants needed water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы попросили брата помочь вам. Перескажите просьбу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попросили брата помочь вам. Перескажите просьбу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I asked him to help me.",
+        "localizedMeaning": {
+          "ru": "Вы попросили брата помочь вам. Перескажите просьбу.",
+          "uk": "Ви попросили брата допомогти вам. Перекажіть прохання."
+        },
+        "orderedTokens": [
+          "I",
+          "asked",
+          "him",
+          "to",
+          "help",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Соседка спросила, где находится ведро. Передайте вопрос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i07:r1",
+          "text": "the bucket was"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i07:r2",
+          "text": "was the bucket"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i07:r3",
+          "text": "the bucket were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соседка спросила, где находится ведро. Передайте вопрос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соседка спросила, где находится ведро. Передайте вопрос.",
+          "uk": "Сусідка запитала, де відро. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-38:i07:r1",
+            "text": "the bucket was"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i07:r2",
+            "text": "was the bucket"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i07:r3",
+            "text": "the bucket were"
+          }
+        ],
+        "testedDimension": "Соседка спросила, где находится ведро. Передайте вопрос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Соседка спросила, где находится ведро. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "В пересказе ставим the bucket перед was.",
+              "uk": "У переказі ставимо the bucket перед was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Соседка спросила, где находится ведро. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "Один bucket требует was.",
+              "uk": "Одне bucket потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flowers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flowers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i08:audio",
+          "transcript": "flowers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-38:i08:r1",
+            "targetText": "flowers",
+            "meaningByLocale": {
+              "ru": "Цветы. Повторение знакомого слова.",
+              "uk": "Квіти. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flowers",
+          "definitionByLocale": {
+            "ru": "Цветы. Повторение знакомого слова.",
+            "uk": "Квіти. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Соседка попросила вас полить цветы. Передайте просьбу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Соседка попросила вас полить цветы. Передайте просьбу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i09:audio",
+          "transcript": "She asked me to water the flowers."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked me to water the flowers.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос соседки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос соседки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i10:audio",
+          "transcript": "She asked if I needed help."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked if I needed help.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "needed",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы попросили соседку показать вам растения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i11:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i11:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i11:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попросили соседку показать вам растения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили соседку показать вам растения.",
+          "uk": "Ви попросили сусідку показати вам рослини."
+        },
+        "gappedTargetPhrase": "I asked ___ to show me the plants.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-38:i11:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i11:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i11:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Вы попросили соседку показать вам растения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы попросили соседку показать вам растения.",
+            "feedbackByLocale": {
+              "ru": "После asked того, кого попросили, обозначаем her.",
+              "uk": "Після asked того, кого попросили, позначаємо her."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы попросили соседку показать вам растения.",
+            "feedbackByLocale": {
+              "ru": "Hers обозначает принадлежность; здесь нужна her.",
+              "uk": "Hers позначає належність; тут потрібна her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i12:audio",
+          "transcript": "pot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-38:i12:r1",
+            "targetText": "pot",
+            "meaningByLocale": {
+              "ru": "Горшок для растения. Повторение знакомого слова.",
+              "uk": "Горщик для рослини. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pot",
+          "definitionByLocale": {
+            "ru": "Горшок для растения. Повторение знакомого слова.",
+            "uk": "Горщик для рослини. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i13:r1",
+          "text": "The pot I chose is too small."
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i13:r2",
+          "text": "The pot I chose is too big."
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i13:r3",
+          "text": "The pot I chose is too heavy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i13:audio",
+          "transcript": "The pot I chose is too small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-38:i13:r1",
+            "targetText": "The pot I chose is too small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i13:r2",
+            "targetText": "The pot I chose is too big.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i13:r3",
+            "targetText": "The pot I chose is too heavy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pot I chose is too small.",
+              "uk": "У записі звучить The pot I chose is too small."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pot I chose is too small.",
+              "uk": "У записі звучить The pot I chose is too small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На вашем окне мало места для растений. Выразите желание иметь больше места.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "На вашем окне мало места для растений. Выразите желание иметь больше места.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i14:audio",
+          "transcript": "I wish I had more space."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I had more space.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите соседке, что растение, которое она вам дала, на полке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите соседке, что растение, которое она вам дала, на полке.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The plant you gave me is on the shelf.",
+        "localizedMeaning": {
+          "ru": "Скажите соседке, что растение, которое она вам дала, на полке.",
+          "uk": "Скажіть сусідці, що рослина, яку вона вам дала, на полиці."
+        },
+        "orderedTokens": [
+          "The",
+          "plant",
+          "you",
+          "gave",
+          "me",
+          "is",
+          "on",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Соседка попросила вас не трогать цветы.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i16:r1",
+          "text": "not to touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i16:r2",
+          "text": "not touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i16:r3",
+          "text": "not touching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соседка попросила вас не трогать цветы.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соседка попросила вас не трогать цветы.",
+          "uk": "Сусідка попросила вас не торкатися квітів."
+        },
+        "gappedTargetPhrase": "She asked me ___ the flowers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-38:i16:r1",
+            "text": "not to touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i16:r2",
+            "text": "not touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i16:r3",
+            "text": "not touching"
+          }
+        ],
+        "testedDimension": "Соседка попросила вас не трогать цветы.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i16:r2",
+            "correct": false,
+            "testedDimension": "Соседка попросила вас не трогать цветы.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to touch.",
+              "uk": "Заперечне прохання передаємо через not to touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i16:r3",
+            "correct": false,
+            "testedDimension": "Соседка попросила вас не трогать цветы.",
+            "feedbackByLocale": {
+              "ru": "После asked me здесь нужно not to touch.",
+              "uk": "Після asked me тут потрібне not to touch."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера соседка сказала: «Мои цветы красные». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Вчера соседка сказала: «Мои цветы красные». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i17:audio",
+          "transcript": "She said her flowers were red."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said her flowers were red.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: соседка попросила полить растения или передвинуть их?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i18:r1",
+          "text": "She asked me to move the plants."
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i18:r2",
+          "text": "She asked me to water the plants."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i18:audioA",
+        "en:lesson-30:session-38:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: соседка попросила полить растения или передвинуть их?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked me to move the plants.",
+        "contrastB": "She asked me to water the plants.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-38:i18:audioA",
+          "transcript": "She asked me to move the plants."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-38:i18:audioB",
+          "transcript": "She asked me to water the plants."
+        },
+        "testedPhoneticContrast": "Послушайте: соседка попросила полить растения или передвинуть их?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: соседка попросила полить растения или передвинуть их?",
+            "feedbackByLocale": {
+              "ru": "Звучит move — передвинуть.",
+              "uk": "Звучить move — пересунути."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте сообщение о ведре.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение о ведре.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i19:audio",
+          "transcript": "She said the bucket was empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said the bucket was empty.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "the",
+          "bucket",
+          "was",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Соседка сообщила вам с братом, что она уже дома. Вставьте форму «нам».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-38:i20:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i20:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-38:i20:r3",
+          "text": "to us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соседка сообщила вам с братом, что она уже дома. Вставьте форму «нам».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соседка сообщила вам с братом, что она уже дома. Вставьте форму «нам».",
+          "uk": "Сусідка повідомила вам із братом, що вона вже вдома. Вставте форму «нам»."
+        },
+        "gappedTargetPhrase": "She told ___ she was home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-38:i20:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i20:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i20:r3",
+            "text": "to us"
+          }
+        ],
+        "testedDimension": "Соседка сообщила вам с братом, что она уже дома. Вставьте форму «нам».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-38:i20:r2",
+            "correct": false,
+            "testedDimension": "Соседка сообщила вам с братом, что она уже дома. Вставьте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told получателя обозначаем us.",
+              "uk": "Після told одержувача позначаємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-38:i20:r3",
+            "correct": false,
+            "testedDimension": "Соседка сообщила вам с братом, что она уже дома. Вставьте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told перед us не ставим to.",
+              "uk": "Після told перед us не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-38:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера соседка сказала: «Мне нужен горшок побольше». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-38:i21:audio"
+      ],
+      "accessibilityLabel": "Вчера соседка сказала: «Мне нужен горшок побольше». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-38:i21:audio",
+          "transcript": "She said she needed a bigger pot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed a bigger pot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a83a4e7611fce97b8c0be6c956e22d37b8b669755d3cc8f737a0ffcc88ae2275"
+}

@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro2:r2": {
-          "ru": "Расписаний несколько, поэтому нужно aren't, а не isn't.",
-          "uk": "Розкладів кілька, тому потрібно aren't, а не isn't."
+          "ru": "Вопрос о timetables во множественном числе, поэтому в ответе нужно aren’t.",
+          "uk": "Запитання про timetables у множині, тому у відповіді потрібне aren’t."
         },
         "en:lesson-04:session-12:intro2:r3": {
           "ru": "Вопрос начинался с Are there, поэтому и ответ с there: No, there aren't.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "babc9de35df100775c283391d39a5a7d9ad01b4c8854a0652f9616b4cac3c8d4"
+  "auxiliaryFingerprint": "95cb8a2788eed96e6c591e4d496a1c2e756b606dd1789e8570c2a60a0d8a6c12"
 }

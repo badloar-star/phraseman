@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-36:intro1:r2": {
+          "ru": "После although не добавляем of.",
+          "uk": "Після although не додаємо of."
+        },
+        "en:lesson-31:session-36:intro1:r3": {
+          "ru": "С I здесь нужна форма was.",
+          "uk": "З I тут потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-36:intro2:r2": {
+          "ru": "После why порядок Anna is smiling.",
+          "uk": "Після why порядок Anna is smiling."
+        },
+        "en:lesson-31:session-36:intro2:r3": {
+          "ru": "С Anna нужна форма is.",
+          "uk": "З Anna потрібна форма is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-36:intro3:r2": {
+          "ru": "Одна card требует was.",
+          "uk": "Одна card потребує was."
+        },
+        "en:lesson-31:session-36:intro3:r3": {
+          "ru": "Здесь нужна форма written.",
+          "uk": "Тут потрібна форма written."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ff4818bb1006c9ee3a6df666f5fa5c2711b488127427e99e68cb93823c80bfd2"
+}

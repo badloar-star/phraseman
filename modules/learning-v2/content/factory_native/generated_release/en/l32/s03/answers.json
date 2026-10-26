@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-03:i01",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i02",
+    "correctText": "The soup must be hot.",
+    "correctResponseId": "en:lesson-32:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i04",
+    "correctText": "bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i05",
+    "correctText": "The bowl was hot, so I put it down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i06",
+    "correctText": "spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i07",
+    "correctText": "The spoon I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i08",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-32:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i09",
+    "correctText": "The soup Anna made is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i10",
+    "correctText": "He must be hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i11",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i12",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i13",
+    "correctText": "The bread Ben bought is fresh.",
+    "correctResponseId": "en:lesson-32:session-03:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i14",
+    "correctText": "The bread must be fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i15",
+    "correctText": "The bread Ben bought is fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-03:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i17",
+    "correctText": "This must be Anna’s bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i18",
+    "correctText": "The soup must be hot.",
+    "correctResponseId": "en:lesson-32:session-03:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i19",
+    "correctText": "The soup must be hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-03:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-03:i21",
+    "correctText": "I was hungry, so I ate some bread.",
+    "correctResponseId": null
+  }
+]

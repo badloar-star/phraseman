@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-10:i01",
+    "correctText": "Are you ready for breakfast?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i02",
+    "correctText": "flaky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i03",
+    "correctText": "The pastry is light and flaky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i04",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i05",
+    "correctText": "The bread was baked by my sister.",
+    "correctResponseId": "en:lesson-29:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i06",
+    "correctText": "frothy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i07",
+    "correctText": "I prefer frothy milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i08",
+    "correctText": "The guest whose coffee is cold is waiting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i10",
+    "correctText": "pulp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i11",
+    "correctText": "Could I have orange juice without pulp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i12",
+    "correctText": "I will buy more juice if we need it.",
+    "correctResponseId": "en:lesson-29:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i13",
+    "correctText": "need",
+    "correctResponseId": "en:lesson-29:session-10:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i14",
+    "correctText": "underripe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i15",
+    "correctText": "These bananas are still underripe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i16",
+    "correctText": "en:lesson-29:session-10:i16:p1=flaky\nen:lesson-29:session-10:i16:p2=frothy\nen:lesson-29:session-10:i16:p3=pulp\nen:lesson-29:session-10:i16:p4=underripe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i17",
+    "correctText": "I prefer juice without pulp.",
+    "correctResponseId": "en:lesson-29:session-10:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i18",
+    "correctText": "that",
+    "correctResponseId": "en:lesson-29:session-10:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i19",
+    "correctText": "Would you like a different banana?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i20",
+    "correctText": "Could you pass the milk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-10:i21",
+    "correctText": "Shall I warm up your coffee?",
+    "correctResponseId": null
+  }
+]

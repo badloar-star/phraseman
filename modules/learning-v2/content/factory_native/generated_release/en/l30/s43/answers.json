@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-43:i01",
+    "correctText": "shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i02",
+    "correctText": "The shoes I bought are too small.",
+    "correctResponseId": "en:lesson-30:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i03",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i04",
+    "correctText": "pair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i05",
+    "correctText": "She asked if I needed a bigger pair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i06",
+    "correctText": "I wish the shoes were wider.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i07",
+    "correctText": "my box was",
+    "correctResponseId": "en:lesson-30:session-43:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i08",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i09",
+    "correctText": "I told her the receipt was in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i10",
+    "correctText": "She asked me to sit down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i11",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-30:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i12",
+    "correctText": "size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i13",
+    "correctText": "She said the size was wrong.",
+    "correctResponseId": "en:lesson-30:session-43:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i14",
+    "correctText": "I asked her to bring another pair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i15",
+    "correctText": "The pair I chose is black.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i16",
+    "correctText": "not to throw",
+    "correctResponseId": "en:lesson-30:session-43:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i17",
+    "correctText": "She said she was ready to help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i18",
+    "correctText": "I told her the shoes were small.",
+    "correctResponseId": "en:lesson-30:session-43:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i19",
+    "correctText": "She asked if I liked the colour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i20",
+    "correctText": "told",
+    "correctResponseId": "en:lesson-30:session-43:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-43:i21",
+    "correctText": "The receipt I kept is in my bag.",
+    "correctResponseId": null
+  }
+]

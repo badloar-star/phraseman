@@ -1,0 +1,1055 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-50:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте сестру, що вона має на увазі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте сестру, що вона має на увазі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i01:audio",
+          "transcript": "What do you mean?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What do you mean?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nuance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nuance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i02:audio",
+          "transcript": "nuance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-50:i02:r1",
+            "targetText": "nuance",
+            "meaningByLocale": {
+              "ru": "Нюанс, тонкий оттенок смысла. Небольшое различие, которое меняет то, как воспринимается сказанное.",
+              "uk": "Нюанс, тонкий відтінок змісту. Невелика відмінність, яка змінює те, як сприймається сказане."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nuance",
+          "definitionByLocale": {
+            "ru": "Нюанс, тонкий оттенок смысла. Небольшое различие, которое меняет то, как воспринимается сказанное.",
+            "uk": "Нюанс, тонкий відтінок змісту. Невелика відмінність, яка змінює те, як сприймається сказане."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i03:r1",
+          "text": "Could you explain that nuance?"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i03:r2",
+          "text": "Could you explain that word?"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i03:r3",
+          "text": "Could you explain that rule?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i03:audio",
+          "transcript": "Could you explain that nuance?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-50:i03:r1",
+            "targetText": "Could you explain that nuance?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i03:r2",
+            "targetText": "Could you explain that word?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i03:r3",
+            "targetText": "Could you explain that rule?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you explain that nuance?",
+              "uk": "У записі звучить Could you explain that nuance?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you explain that nuance?",
+              "uk": "У записі звучить Could you explain that nuance?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть сестрі, що її повідомлення було незрозумілим.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть сестрі, що її повідомлення було незрозумілим.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The message you sent was unclear.",
+        "localizedMeaning": {
+          "ru": "Скажите сестре, что её сообщение было непонятным.",
+          "uk": "Скажіть сестрі, що її повідомлення було незрозумілим."
+        },
+        "orderedTokens": [
+          "The",
+          "message",
+          "you",
+          "sent",
+          "was",
+          "unclear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра надіслала вам незрозуміле повідомлення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i05:r1",
+          "text": "you sent"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i05:r2",
+          "text": "you sent it"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i05:r3",
+          "text": "your sent"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра надіслала вам незрозуміле повідомлення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра отправила вам непонятное сообщение.",
+          "uk": "Сестра надіслала вам незрозуміле повідомлення."
+        },
+        "gappedTargetPhrase": "The message ___ was unclear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-50:i05:r1",
+            "text": "you sent"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i05:r2",
+            "text": "you sent it"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i05:r3",
+            "text": "your sent"
+          }
+        ],
+        "testedDimension": "Сестра надіслала вам незрозуміле повідомлення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Сестра надіслала вам незрозуміле повідомлення.",
+            "feedbackByLocale": {
+              "ru": "It повторяет сообщение.",
+              "uk": "It повторює повідомлення."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Сестра надіслала вам незрозуміле повідомлення.",
+            "feedbackByLocale": {
+              "ru": "Отправитель обозначается словом you.",
+              "uk": "Відправника позначаємо словом you."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — literal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — literal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i06:audio",
+          "transcript": "literal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-50:i06:r1",
+            "targetText": "literal",
+            "meaningByLocale": {
+              "ru": "Буквальный. Соответствующий прямому значению слов, без образного смысла.",
+              "uk": "Буквальний. Такий, що відповідає прямому значенню слів, без образного змісту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "literal",
+          "definitionByLocale": {
+            "ru": "Буквальный. Соответствующий прямому значению слов, без образного смысла.",
+            "uk": "Буквальний. Такий, що відповідає прямому значенню слів, без образного змісту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, яке буквальне значення цієї фрази.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте, яке буквальне значення цієї фрази.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i07:audio",
+          "transcript": "What is the literal meaning of that phrase?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the literal meaning of that phrase?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто може пояснити повідомлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто може пояснити повідомлення.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i08:audio",
+          "transcript": "You are the person who can explain it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are the person who can explain it.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "the",
+          "person",
+          "who",
+          "can",
+          "explain",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви звертаєтеся до людини, яка може все пояснити.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i09:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i09:r2",
+          "text": "who you"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i09:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви звертаєтеся до людини, яка може все пояснити.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обращаетесь к человеку, который может всё объяснить.",
+          "uk": "Ви звертаєтеся до людини, яка може все пояснити."
+        },
+        "gappedTargetPhrase": "You are the person ___ can explain it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-50:i09:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i09:r2",
+            "text": "who you"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i09:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Ви звертаєтеся до людини, яка може все пояснити.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви звертаєтеся до людини, яка може все пояснити.",
+            "feedbackByLocale": {
+              "ru": "Who уже называет исполнителя; you лишнее.",
+              "uk": "Who вже називає виконавця; you зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви звертаєтеся до людини, яка може все пояснити.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ambiguous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ambiguous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i10:audio",
+          "transcript": "ambiguous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-50:i10:r1",
+            "targetText": "ambiguous",
+            "meaningByLocale": {
+              "ru": "Неоднозначный. Такой, который можно понять двумя или несколькими способами.",
+              "uk": "Неоднозначний. Такий, який можна зрозуміти двома чи кількома способами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ambiguous",
+          "definitionByLocale": {
+            "ru": "Неоднозначный. Такой, который можно понять двумя или несколькими способами.",
+            "uk": "Неоднозначний. Такий, який можна зрозуміти двома чи кількома способами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i11:r1",
+          "text": "That message is ambiguous."
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i11:r2",
+          "text": "That message is clear."
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i11:r3",
+          "text": "That message is brief."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i11:audio",
+          "transcript": "That message is ambiguous."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-50:i11:r1",
+            "targetText": "That message is ambiguous.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i11:r2",
+            "targetText": "That message is clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i11:r3",
+            "targetText": "That message is brief.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That message is ambiguous.",
+              "uk": "У записі звучить That message is ambiguous."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That message is ambiguous.",
+              "uk": "У записі звучить That message is ambiguous."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть сестру навести приклад.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть сестру навести приклад.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you give me an example?",
+        "localizedMeaning": {
+          "ru": "Попросите сестру привести пример.",
+          "uk": "Попросіть сестру навести приклад."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "give",
+          "me",
+          "an",
+          "example"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ironic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ironic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i13:audio",
+          "transcript": "ironic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-50:i13:r1",
+            "targetText": "ironic",
+            "meaningByLocale": {
+              "ru": "Иронический. О словах, которыми намеренно выражают иной, часто противоположный смысл: например, называют проливной дождь прекрасной погодой.",
+              "uk": "Іронічний. Про слова, якими навмисно виражають інший, часто протилежний зміст: наприклад, називають зливу чудовою погодою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ironic",
+          "definitionByLocale": {
+            "ru": "Иронический. О словах, которыми намеренно выражают иной, часто противоположный смысл: например, называют проливной дождь прекрасной погодой.",
+            "uk": "Іронічний. Про слова, якими навмисно виражають інший, часто протилежний зміст: наприклад, називають зливу чудовою погодою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи говорить сестра з іронією.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи говорить сестра з іронією.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i14:audio",
+          "transcript": "Are you being ironic?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you being ironic?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-50:i15:p1",
+            "target": "nuance",
+            "meaningByLocale": {
+              "ru": "тонкий оттенок смысла",
+              "uk": "тонкий відтінок змісту"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-50:i15:p2",
+            "target": "literal",
+            "meaningByLocale": {
+              "ru": "буквальный",
+              "uk": "буквальний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-50:i15:p3",
+            "target": "ambiguous",
+            "meaningByLocale": {
+              "ru": "неоднозначный",
+              "uk": "неоднозначний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-50:i15:p4",
+            "target": "ironic",
+            "meaningByLocale": {
+              "ru": "иронический",
+              "uk": "іронічний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nuance",
+          "literal",
+          "ambiguous",
+          "ironic"
+        ],
+        "rightColumn": [
+          "тонкий відтінок змісту",
+          "буквальний",
+          "неоднозначний",
+          "іронічний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви знаєте місце для спокійної розмови.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знаєте місце для спокійної розмови.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете место для спокойного разговора.",
+          "uk": "Ви знаєте місце для спокійної розмови."
+        },
+        "gappedTargetPhrase": "I know a place ___ we can talk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-50:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Ви знаєте місце для спокійної розмови.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви знаєте місце для спокійної розмови.",
+            "feedbackByLocale": {
+              "ru": "Место связываем через where.",
+              "uk": "Місце пов’язуємо через where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви знаєте місце для спокійної розмови.",
+            "feedbackByLocale": {
+              "ru": "Whose означает принадлежность, не место.",
+              "uk": "Whose означає належність, не місце."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: повідомлення неоднозначне чи зрозуміле?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i17:r1",
+          "text": "That message is ambiguous."
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i17:r2",
+          "text": "That message is clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i17:audioA",
+        "en:lesson-29:session-50:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: повідомлення неоднозначне чи зрозуміле?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "That message is ambiguous.",
+        "contrastB": "That message is clear.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-50:i17:audioA",
+          "transcript": "That message is ambiguous."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-50:i17:audioB",
+          "transcript": "That message is clear."
+        },
+        "testedPhoneticContrast": "Послухайте: повідомлення неоднозначне чи зрозуміле?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: повідомлення неоднозначне чи зрозуміле?",
+            "feedbackByLocale": {
+              "ru": "Звучит ambiguous — неоднозначный.",
+              "uk": "Звучить ambiguous — неоднозначний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте пропозицію щодо місця розмови.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте пропозицію щодо місця розмови.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i18:audio",
+          "transcript": "I know a place where we can talk."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I know a place where we can talk.",
+        "orderedTokens": [
+          "I",
+          "know",
+          "a",
+          "place",
+          "where",
+          "we",
+          "can",
+          "talk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що не хочете неправильно зрозуміти сестру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-50:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що не хочете неправильно зрозуміти сестру.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-50:i19:audio",
+          "transcript": "I do not want to misunderstand you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I do not want to misunderstand you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Наведений сестрою приклад допоміг вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-50:i20:r1",
+          "text": "you gave"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i20:r2",
+          "text": "you gave it"
+        },
+        {
+          "responseId": "en:lesson-29:session-50:i20:r3",
+          "text": "your gave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Наведений сестрою приклад допоміг вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Приведённый сестрой пример помог вам.",
+          "uk": "Наведений сестрою приклад допоміг вам."
+        },
+        "gappedTargetPhrase": "The example ___ helped me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-50:i20:r1",
+            "text": "you gave"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i20:r2",
+            "text": "you gave it"
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i20:r3",
+            "text": "your gave"
+          }
+        ],
+        "testedDimension": "Наведений сестрою приклад допоміг вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-50:i20:r2",
+            "correct": false,
+            "testedDimension": "Наведений сестрою приклад допоміг вам.",
+            "feedbackByLocale": {
+              "ru": "It повторяет пример.",
+              "uk": "It повторює приклад."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-50:i20:r3",
+            "correct": false,
+            "testedDimension": "Наведений сестрою приклад допоміг вам.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель you, не your.",
+              "uk": "Потрібен виконавець you, не your."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-50:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте сестрі за пояснення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте сестрі за пояснення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for explaining that.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите сестру за объяснение.",
+          "uk": "Подякуйте сестрі за пояснення."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "explaining",
+          "that"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8499635562978b41bdd6034db9587023045f7b422e94fe4bdad8e5dd5f58924d"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "как описать продажу и изготовление вещей, выразить желание и назвать событие раньше вашего возвращения.",
+    "uk": "як описати продаж і виготовлення речей, висловити бажання й назвати подію раніше за ваше повернення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как продаются миски",
+        "uk": "Як продаються миски"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине вы узнаёте, что миски продают наборами. The bowls are sold in sets — миски продают наборами. Начните с The bowls, затем are sold и добавьте in sets. Bowls означает несколько мисок, поэтому are. Sold — нужная здесь форма sell: говорим, что делают с мисками, а не кто их продаёт.",
+        "uk": "У крамниці ви дізнаєтеся, що миски продають наборами. The bowls are sold in sets — миски продають наборами. Почніть із The bowls, потім are sold і додайте in sets. Bowls означає кілька мисок, тому are. Sold — потрібна тут форма sell: говоримо, що роблять із мисками, а не хто їх продає."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-07:intro1:r1",
+              "text": "The bowls are sold in sets."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro1:r2",
+              "text": "The bowls is sold in sets."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro1:r3",
+              "text": "The bowls are sell in sets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-07:intro1:r1",
+              "text": "The bowls are sold in sets."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro1:r2",
+              "text": "The bowls is sold in sets."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro1:r3",
+              "text": "The bowls are sell in sets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Маленький шкаф",
+        "uk": "Маленька шафа"
+      },
+      "bodyByLocale": {
+        "ru": "Новая посуда не помещается в кухонный шкаф. I wish the cupboard were wider — хотелось бы, чтобы шкаф был шире. Соберите I wish + the cupboard + were wider. Were wider после I wish передаёт желаемое отличие сейчас. Мы не утверждаем, что шкаф раньше был шире.",
+        "uk": "Новий посуд не вміщується в кухонну шафу. I wish the cupboard were wider — хотілося б, щоб шафа була ширшою. Складіть I wish + the cupboard + were wider. Were wider після I wish передає бажану відмінність зараз. Ми не стверджуємо, що шафа раніше була ширшою."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-07:intro2:r1",
+              "text": "I wish the cupboard were wider."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro2:r2",
+              "text": "I wish the cupboard is wider."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro2:r3",
+              "text": "I wish the cupboard be wider."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-07:intro2:r1",
+              "text": "I wish the cupboard were wider."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro2:r2",
+              "text": "I wish the cupboard is wider."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro2:r3",
+              "text": "I wish the cupboard be wider."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Доставка раньше вашего прихода",
+        "uk": "Доставка раніше за ваш прихід"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера коробку с посудой доставили, пока вы были на работе. The parcel had arrived by the time I got home — к тому времени, как я пришёл домой, посылка уже прибыла. Сначала The parcel + had arrived: что случилось раньше. Затем by the time + I got home: более поздний момент. После had используем arrived; got home означает «пришёл домой».",
+        "uk": "Учора коробку з посудом доставили, поки ви були на роботі. The parcel had arrived by the time I got home — до того часу, як я прийшов додому, посилка вже прибула. Спочатку The parcel + had arrived: що сталося раніше. Потім by the time + I got home: пізніший момент. Після had використовуємо arrived; got home означає «прийшов додому»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-07:intro3:r1",
+              "text": "The parcel had arrived by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro3:r2",
+              "text": "The parcel had arrive by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro3:r3",
+              "text": "The parcel had arrived by the time I get home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-07:intro3:r1",
+              "text": "The parcel had arrived by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro3:r2",
+              "text": "The parcel had arrive by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-07:intro3:r3",
+              "text": "The parcel had arrived by the time I get home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "910b032ebe98be236db7145de37dcdc126e0f95b933c55c6cf100a2eb629da94"
+}

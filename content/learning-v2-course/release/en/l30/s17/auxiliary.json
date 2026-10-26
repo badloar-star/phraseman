@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-17:intro1:r2": {
+          "ru": "Перед действием после asked me нужно to.",
+          "uk": "Перед дією після asked me потрібне to."
+        },
+        "en:lesson-30:session-17:intro1:r3": {
+          "ru": "Того, кого попросили, здесь обозначаем me, не I.",
+          "uk": "Того, кого попросили, тут позначаємо me, не I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-17:intro2:r2": {
+          "ru": "После not здесь нужно to touch.",
+          "uk": "Після not тут потрібне to touch."
+        },
+        "en:lesson-30:session-17:intro2:r3": {
+          "ru": "После told нужен объект us, не we.",
+          "uk": "Після told потрібен об’єкт us, не we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-17:intro3:r2": {
+          "ru": "После asked здесь нужна форма her.",
+          "uk": "Після asked тут потрібна форма her."
+        },
+        "en:lesson-30:session-17:intro3:r3": {
+          "ru": "Просьбу передаём через to wait, не waiting.",
+          "uk": "Прохання передаємо через to wait, не waiting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6b972575f7d11b1e3a6e6850e1f08eb9c1d65533fb43f0a9c9f55195d9155e71"
+}

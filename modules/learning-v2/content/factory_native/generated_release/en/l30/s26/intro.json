@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать said, told и asked в пересказе; повторите уточнения, вопросы и желание.",
+    "uk": "вибирати said, told і asked у переказі; повторите уточнення, запитання та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить, что номер готов",
+        "uk": "Повідомити, що номер готовий"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приехали в гостиницу. Сотрудница сказала, что номер готов. Передайте это другу: She said the room was ready — она сказала, что номер был готов. Соберите She + said + the room was ready. После said идёт само сообщение; получателя в этой фразе нет.",
+        "uk": "Ви приїхали до готелю. Працівниця сказала, що номер готовий. Передайте це другові: She said the room was ready — вона сказала, що номер був готовий. Складіть She + said + the room was ready. Після said іде саме повідомлення; одержувача в цій фразі немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-26:intro1:r1",
+              "text": "She said the room was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro1:r2",
+              "text": "She told the room was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro1:r3",
+              "text": "She asked the room was ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-26:intro1:r1",
+              "text": "She said the room was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro1:r2",
+              "text": "She told the room was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro1:r3",
+              "text": "She asked the room was ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кому сообщили время завтрака",
+        "uk": "Кому повідомили час сніданку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг не знает, когда завтрак. Сотрудница уже сообщила это вам. Скажите: She told me breakfast was at seven — она сказала мне, что завтрак в семь. Соберите She + told + me + breakfast was at seven. После told ставим me — получателя, затем содержание сообщения.",
+        "uk": "Друг не знає, коли сніданок. Працівниця вже повідомила це вам. Скажіть: She told me breakfast was at seven — вона сказала мені, що сніданок о сьомій. Складіть She + told + me + breakfast was at seven. Після told ставимо me — одержувача, потім зміст повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-26:intro2:r1",
+              "text": "She told me breakfast was at seven."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro2:r2",
+              "text": "She said me breakfast was at seven."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro2:r3",
+              "text": "She told to me breakfast was at seven."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-26:intro2:r1",
+              "text": "She told me breakfast was at seven."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro2:r2",
+              "text": "She said me breakfast was at seven."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro2:r3",
+              "text": "She told to me breakfast was at seven."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "О чём спросил сотрудник",
+        "uk": "Про що запитав працівник"
+      },
+      "bodyByLocale": {
+        "ru": "Утром вы подошли за завтраком. Сотрудник спросил номер вашей комнаты. Расскажите другу: He asked me for my room number — он попросил меня назвать номер моей комнаты. Соберите He + asked + me + for my room number. Asked me for здесь передаёт просьбу сообщить нужные сведения. После for называем их: my room number.",
+        "uk": "Уранці ви підійшли на сніданок. Працівник запитав номер вашої кімнати. Розкажіть другові: He asked me for my room number — він попросив мене назвати номер моєї кімнати. Складіть He + asked + me + for my room number. Asked me for тут передає прохання повідомити потрібні відомості. Після for називаємо їх: my room number."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-26:intro3:r1",
+              "text": "He asked me for my room number."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro3:r2",
+              "text": "He said me for my room number."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro3:r3",
+              "text": "He asked I for my room number."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-26:intro3:r1",
+              "text": "He asked me for my room number."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro3:r2",
+              "text": "He said me for my room number."
+            },
+            {
+              "responseId": "en:lesson-30:session-26:intro3:r3",
+              "text": "He asked I for my room number."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "88e22608ad5f234f556d2fd65f2fb541b6173bef614503dac4e0bf8440b4488b"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-43:intro1:r2": {
+          "ru": "После to нужна форма ask.",
+          "uk": "Після to потрібна форма ask."
+        },
+        "en:lesson-31:session-43:intro1:r3": {
+          "ru": "Перед ask для цели используем to.",
+          "uk": "Перед ask для мети використовуємо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-43:intro2:r2": {
+          "ru": "После could нужна форма remember.",
+          "uk": "Після could потрібна форма remember."
+        },
+        "en:lesson-31:session-43:intro2:r3": {
+          "ru": "В этой части порядок I could, а не could I.",
+          "uk": "У цій частині порядок I could, а не could I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-43:intro3:r2": {
+          "ru": "Внутри используем dinner starts без does.",
+          "uk": "Усередині використовуємо dinner starts без does."
+        },
+        "en:lesson-31:session-43:intro3:r3": {
+          "ru": "С dinner нужна форма starts.",
+          "uk": "З dinner потрібна форма starts."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d44c1d8260ab4370df047389b67b23841825b551a646968640826a3cb6ced90"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "как выразить соболезнования, передать чужие слова и сказать о желании быть ближе.",
+    "uk": "як висловити співчуття, передати чужі слова й сказати про бажання бути ближче."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Передать слова подруги",
+        "uk": "Передати слова подруги"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера подруга рассказала вам о смерти своей бабушки и сказала, что была потрясена. Вы передаёте её слова сестре: She said that she was devastated — она сказала, что была убита горем. Соберите She + said + that + she was devastated. Said вводит её слова, а she was devastated описывает её состояние в тот момент. Оба she относятся к подруге.",
+        "uk": "Учора подруга розповіла вам про смерть своєї бабусі й сказала, що була приголомшена. Ви передаєте її слова сестрі: She said that she was devastated — вона сказала, що була вбита горем. Складіть She + said + that + she was devastated. Said вводить її слова, а she was devastated описує її стан тієї миті. Обидва she стосуються подруги."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-05:intro1:r1",
+              "text": "She said that she was devastated."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro1:r2",
+              "text": "She said that she were devastated."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro1:r3",
+              "text": "She said that she being devastated."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-05:intro1:r1",
+              "text": "She said that she was devastated."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro1:r2",
+              "text": "She said that she were devastated."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro1:r3",
+              "text": "She said that she being devastated."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хотелось бы быть поближе",
+        "uk": "Хотілося б бути ближче"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга сейчас переживает утрату, а вы живёте далеко и хотите быть рядом: I wish I lived closer — хотелось бы жить поближе. Соберите I wish + I lived + closer. После wish форма lived выражает желание изменить нынешнюю ситуацию; она не означает, что вы рассказываете, где жили раньше.",
+        "uk": "Подруга зараз переживає втрату, а ви живете далеко й хочете бути поруч: I wish I lived closer — хотілося б жити ближче. Складіть I wish + I lived + closer. Після wish форма lived виражає бажання змінити нинішню ситуацію; вона не означає, що ви розповідаєте, де жили раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-05:intro2:r1",
+              "text": "I wish I lived closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro2:r2",
+              "text": "I wish I live closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro2:r3",
+              "text": "I wish I living closer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-05:intro2:r1",
+              "text": "I wish I lived closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro2:r2",
+              "text": "I wish I live closer."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro2:r3",
+              "text": "I wish I living closer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поблагодарить за сообщение",
+        "uk": "Подякувати за повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра отправила подруге слова поддержки. Вы хотите похвалить именно это сообщение: The message you sent was kind — в сообщении, которое ты отправила, были добрые слова. Соберите The message + you sent + was kind. You sent уточняет сообщение. Перед you можно опустить that: you называет отправителя, а message — то, что отправили.",
+        "uk": "Сестра надіслала подрузі слова підтримки. Ви хочете похвалити саме це повідомлення: The message you sent was kind — у повідомленні, яке ти надіслала, були добрі слова. Складіть The message + you sent + was kind. You sent уточнює повідомлення. Перед you можна пропустити that: you називає відправницю, а message — те, що надіслали."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-05:intro3:r1",
+              "text": "The message you sent was kind."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro3:r2",
+              "text": "The message you sending was kind."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro3:r3",
+              "text": "The message you sent were kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-05:intro3:r1",
+              "text": "The message you sent was kind."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro3:r2",
+              "text": "The message you sending was kind."
+            },
+            {
+              "responseId": "en:lesson-30:session-05:intro3:r3",
+              "text": "The message you sent were kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a4c9ad89e4214bdc58062df25150716c8524144a6292d9ad04a8b12a6a7ca2a6"
+}

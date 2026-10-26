@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-06:i01",
+    "correctText": "train",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i02",
+    "correctText": "The train must be late.",
+    "correctResponseId": "en:lesson-32:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i04",
+    "correctText": "ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i05",
+    "correctText": "The ticket I bought is in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i06",
+    "correctText": "station",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i07",
+    "correctText": "This must be the right station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i09",
+    "correctText": "The train must be late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i10",
+    "correctText": "The train we saw was full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i11",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i12",
+    "correctText": "seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i13",
+    "correctText": "The seat I chose is near the window.",
+    "correctResponseId": "en:lesson-32:session-06:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i14",
+    "correctText": "This must be my seat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i15",
+    "correctText": "The train was full, so we stood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-06:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i17",
+    "correctText": "The seat I chose is near the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i18",
+    "correctText": "The train must be late.",
+    "correctResponseId": "en:lesson-32:session-06:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i19",
+    "correctText": "The train must be late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-06:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-06:i21",
+    "correctText": "The train was late, so we waited.",
+    "correctResponseId": null
+  }
+]

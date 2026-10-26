@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-06:i01",
+    "correctText": "shelf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i02",
+    "correctText": "Could you tell me where the shelf is?",
+    "correctResponseId": "en:lesson-31:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i03",
+    "correctText": "table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i04",
+    "correctText": "the table is",
+    "correctResponseId": "en:lesson-31:session-06:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i05",
+    "correctText": "Could you tell me where the shelf is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i06",
+    "correctText": "books",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i07",
+    "correctText": "The books were brought by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i09",
+    "correctText": "Do you know where the books are?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i10",
+    "correctText": "card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i11",
+    "correctText": "Do you know where my card is?",
+    "correctResponseId": "en:lesson-31:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i13",
+    "correctText": "Could you tell me when the library closes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i14",
+    "correctText": "The table was cleaned by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i15",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-31:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i16",
+    "correctText": "Do you know if the reading room is open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i17",
+    "correctText": "my card is",
+    "correctResponseId": "en:lesson-31:session-06:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i18",
+    "correctText": "Could you tell me when the library opens?",
+    "correctResponseId": "en:lesson-31:session-06:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i19",
+    "correctText": "Do you know if the table is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i20",
+    "correctText": "closes",
+    "correctResponseId": "en:lesson-31:session-06:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-06:i21",
+    "correctText": "She said she needed my card.",
+    "correctResponseId": null
+  }
+]

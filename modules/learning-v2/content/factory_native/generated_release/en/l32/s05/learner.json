@@ -1,0 +1,1042 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lunch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lunch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i01:audio",
+          "transcript": "lunch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-05:i01:r1",
+            "targetText": "lunch",
+            "meaningByLocale": {
+              "ru": "Обед. Повторение знакомого слова.",
+              "uk": "Обід. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lunch",
+          "definitionByLocale": {
+            "ru": "Обед. Повторение знакомого слова.",
+            "uk": "Обід. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i02:r1",
+          "text": "The lunch I made is ready."
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i02:r2",
+          "text": "The lunch Ben made is ready."
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i02:r3",
+          "text": "The lunch Anna made is ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i02:audio",
+          "transcript": "The lunch I made is ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-05:i02:r1",
+            "targetText": "The lunch I made is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i02:r2",
+            "targetText": "The lunch Ben made is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i02:r3",
+            "targetText": "The lunch Anna made is ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lunch I made is ready.",
+              "uk": "У записі звучить The lunch I made is ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lunch I made is ready.",
+              "uk": "У записі звучить The lunch I made is ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+          "uk": "Анна й Бен пропустили обід. Ви робите висновок про голод. Виберіть зв’язку після must."
+        },
+        "gappedTargetPhrase": "They must ___ hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-05:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+            "feedbackByLocale": {
+              "ru": "Используем be, не is.",
+              "uk": "Використовуємо be, не is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sandwich",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sandwich",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i04:audio",
+          "transcript": "sandwich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-05:i04:r1",
+            "targetText": "sandwich",
+            "meaningByLocale": {
+              "ru": "Бутерброд. Повторение знакомого слова.",
+              "uk": "Бутерброд. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sandwich",
+          "definitionByLocale": {
+            "ru": "Бутерброд. Повторение знакомого слова.",
+            "uk": "Бутерброд. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните бутерброд, который вы приготовили: он для Бена. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните бутерброд, который вы приготовили: он для Бена. Скажите без that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sandwich I made is for Ben.",
+        "localizedMeaning": {
+          "ru": "Уточните бутерброд, который вы приготовили: он для Бена. Скажите без that.",
+          "uk": "Уточніть бутерброд, який ви приготували: він для Бена. Скажіть без that."
+        },
+        "orderedTokens": [
+          "The",
+          "sandwich",
+          "I",
+          "made",
+          "is",
+          "for",
+          "Ben"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — apple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — apple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i06:audio",
+          "transcript": "apple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-05:i06:r1",
+            "targetText": "apple",
+            "meaningByLocale": {
+              "ru": "Яблоко. Повторение знакомого слова.",
+              "uk": "Яблуко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "apple",
+          "definitionByLocale": {
+            "ru": "Яблоко. Повторение знакомого слова.",
+            "uk": "Яблуко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы были голодны, поэтому съели яблоко. Скажите о причине и результате.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Вы были голодны, поэтому съели яблоко. Скажите о причине и результате.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i07:audio",
+          "transcript": "I was hungry, so I ate an apple."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was hungry, so I ate an apple.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i08:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i08:r2",
+          "text": "made it"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i08:r3",
+          "text": "making"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+          "uk": "Уточніть бутерброд, який приготували, не повторюючи sandwich займенником."
+        },
+        "gappedTargetPhrase": "The sandwich I ___ is for Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-05:i08:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i08:r2",
+            "text": "made it"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i08:r3",
+            "text": "making"
+          }
+        ],
+        "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+            "feedbackByLocale": {
+              "ru": "Sandwich уже названо: it после made не нужно.",
+              "uk": "Sandwich уже названо: it після made не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма made.",
+              "uk": "Потрібна минула форма made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друзья не ели с утра. Выразите уверенный вывод о них с They must.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзья не ели с утра. Выразите уверенный вывод о них с They must.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They must be hungry.",
+        "localizedMeaning": {
+          "ru": "Друзья не ели с утра. Выразите уверенный вывод о них с They must.",
+          "uk": "Друзі не їли з ранку. Висловіть упевнений висновок про них із They must."
+        },
+        "orderedTokens": [
+          "They",
+          "must",
+          "be",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен весь день ходил пешком. Вы предполагаете, что он устал.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "Бен весь день ходил пешком. Вы предполагаете, что он устал.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i10:audio",
+          "transcript": "He must be tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He must be tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна сразу назвала любимый хлеб Бена. Вы предполагаете, что она знает его вкус. Используйте know what he likes.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i11:r1",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i11:r2",
+          "text": "knows"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i11:r3",
+          "text": "to know"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна сразу назвала любимый хлеб Бена. Вы предполагаете, что она знает его вкус. Используйте know what he likes.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна сразу назвала любимый хлеб Бена. Вы предполагаете, что она знает его вкус. Используйте know what he likes.",
+          "uk": "Анна одразу назвала улюблений хліб Бена. Ви припускаєте, що вона знає його смак. Використайте know what he likes."
+        },
+        "gappedTargetPhrase": "She must ___ what he likes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-05:i11:r1",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i11:r2",
+            "text": "knows"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i11:r3",
+            "text": "to know"
+          }
+        ],
+        "testedDimension": "Анна сразу назвала любимый хлеб Бена. Вы предполагаете, что она знает его вкус. Используйте know what he likes.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна сразу назвала любимый хлеб Бена. Вы предполагаете, что она знает его вкус. Используйте know what he likes.",
+            "feedbackByLocale": {
+              "ru": "После must используем know без s.",
+              "uk": "Після must використовуємо know без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна сразу назвала любимый хлеб Бена. Вы предполагаете, что она знает его вкус. Используйте know what he likes.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i12:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-05:i12:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода. Повторение знакомого слова.",
+              "uk": "Вода. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода. Повторение знакомого слова.",
+            "uk": "Вода. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i13:r1",
+          "text": "The water I brought is cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i13:r2",
+          "text": "The water I brought is warm."
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i13:r3",
+          "text": "The water I brought is hot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i13:audio",
+          "transcript": "The water I brought is cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-05:i13:r1",
+            "targetText": "The water I brought is cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i13:r2",
+            "targetText": "The water I brought is warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i13:r3",
+            "targetText": "The water I brought is hot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The water I brought is cold.",
+              "uk": "У записі звучить The water I brought is cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The water I brought is cold.",
+              "uk": "У записі звучить The water I brought is cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен долго шёл по жаре и просит большой стакан воды. Вы предполагаете, что он хочет пить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Бен долго шёл по жаре и просит большой стакан воды. Вы предполагаете, что он хочет пить.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i14:audio",
+          "transcript": "He must be thirsty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He must be thirsty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы были голодны, поэтому съели яблоко. Начните с I was hungry.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы были голодны, поэтому съели яблоко. Начните с I was hungry.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was hungry, so I ate an apple.",
+        "localizedMeaning": {
+          "ru": "Вы были голодны, поэтому съели яблоко. Начните с I was hungry.",
+          "uk": "Ви були голодні, тому з’їли яблуко. Почніть з I was hungry."
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "hungry,",
+          "so",
+          "I",
+          "ate",
+          "an",
+          "apple"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Голод стал причиной перекуса. Вставьте «поэтому» перед результатом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Голод стал причиной перекуса. Вставьте «поэтому» перед результатом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Голод стал причиной перекуса. Вставьте «поэтому» перед результатом.",
+          "uk": "Голод став причиною перекусу. Вставте «тому» перед результатом."
+        },
+        "gappedTargetPhrase": "I was hungry, ___ I ate an apple.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-05:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Голод стал причиной перекуса. Вставьте «поэтому» перед результатом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i16:r2",
+            "correct": false,
+            "testedDimension": "Голод стал причиной перекуса. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i16:r3",
+            "correct": false,
+            "testedDimension": "Голод стал причиной перекуса. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните воду, которую принесли: она холодная. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Уточните воду, которую принесли: она холодная. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i17:audio",
+          "transcript": "The water I brought is cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The water I brought is cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вывод о голоде или жажде друзей?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i18:r1",
+          "text": "They must be hungry."
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i18:r2",
+          "text": "They must be thirsty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i18:audioA",
+        "en:lesson-32:session-05:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вывод о голоде или жажде друзей?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "They must be hungry.",
+        "contrastB": "They must be thirsty.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-05:i18:audioA",
+          "transcript": "They must be hungry."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-05:i18:audioB",
+          "transcript": "They must be thirsty."
+        },
+        "testedPhoneticContrast": "Послушайте: вывод о голоде или жажде друзей?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вывод о голоде или жажде друзей?",
+            "feedbackByLocale": {
+              "ru": "Звучит hungry — голодные.",
+              "uk": "Звучить hungry — голодні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод о друзьях.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод о друзьях.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i19:audio",
+          "transcript": "They must be hungry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They must be hungry.",
+        "orderedTokens": [
+          "They",
+          "must",
+          "be",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен просит воды после прогулки по жаре. Завершите вывод с must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-05:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-05:i20:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен просит воды после прогулки по жаре. Завершите вывод с must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен просит воды после прогулки по жаре. Завершите вывод с must.",
+          "uk": "Бен просить води після прогулянки в спеку. Завершіть висновок із must."
+        },
+        "gappedTargetPhrase": "He must ___ thirsty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-05:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i20:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Бен просит воды после прогулки по жаре. Завершите вывод с must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-05:i20:r2",
+            "correct": false,
+            "testedDimension": "Бен просит воды после прогулки по жаре. Завершите вывод с must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна начальная форма be.",
+              "uk": "Після must тут потрібна початкова форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-05:i20:r3",
+            "correct": false,
+            "testedDimension": "Бен просит воды после прогулки по жаре. Завершите вывод с must.",
+            "feedbackByLocale": {
+              "ru": "Используем be, не are.",
+              "uk": "Використовуємо be, не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-05:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У вас с Беном не было хлеба, поэтому вы вместе пошли в магазин. Скажите о причине и результате, используя we.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-05:i21:audio"
+      ],
+      "accessibilityLabel": "У вас с Беном не было хлеба, поэтому вы вместе пошли в магазин. Скажите о причине и результате, используя we.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-05:i21:audio",
+          "transcript": "We had no bread, so we went to the shop."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We had no bread, so we went to the shop.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0be05b504a7b28cd86e470c924873a4045a1c58b95bd73a73f3299cf98a0c855"
+}

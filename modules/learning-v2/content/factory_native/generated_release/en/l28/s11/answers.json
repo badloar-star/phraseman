@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-11:i01",
+    "correctText": "I am here for my first lesson.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i02",
+    "correctText": "wetsuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i03",
+    "correctText": "This wetsuit was washed yesterday.",
+    "correctResponseId": "en:lesson-28:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i04",
+    "correctText": "Do you have a larger size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i05",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i06",
+    "correctText": "surfboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i07",
+    "correctText": "Which surfboard should I take?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i08",
+    "correctText": "The instructor is waiting near the blue flag.",
+    "correctResponseId": "en:lesson-28:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i09",
+    "correctText": "Could you show me where to go?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i10",
+    "correctText": "paddleboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i12",
+    "correctText": "I wish this board were lighter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i13",
+    "correctText": "dinghy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i14",
+    "correctText": "The dinghy was brought here this morning.",
+    "correctResponseId": "en:lesson-28:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i15",
+    "correctText": "Is the equipment included in the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i16",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-28:session-11:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i17",
+    "correctText": "The lifejackets are kept inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i18",
+    "correctText": "Could you explain what I need to do?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i19",
+    "correctText": "The lesson starts in ten minutes.",
+    "correctResponseId": "en:lesson-28:session-11:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i20",
+    "correctText": "I am ready for the lesson.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-11:i21",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-11:i21:r1"
+  }
+]

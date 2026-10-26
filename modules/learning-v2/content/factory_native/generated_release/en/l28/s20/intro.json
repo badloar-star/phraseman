@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "как описать подготовку и хранение материалов, выразить желание и рассказать о порядке прошлых событий.",
+    "uk": "як описати підготовку й зберігання матеріалів, висловити бажання та розповісти про порядок минулих подій."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Материалы уже на месте",
+        "uk": "Матеріали вже на місці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы записали ребёнка на занятие по рисованию и спрашиваете, нужно ли приносить кисти. Организатор отвечает: Brushes are provided here — кисти предоставляют здесь. Соберите Brushes + are provided + here. Brushes — несколько кистей, поэтому are. Provided после are показывает, что кисти дают участникам. Here указывает место.",
+        "uk": "Ви записали дитину на заняття з малювання й запитуєте, чи потрібно приносити пензлі. Організатор відповідає: Brushes are provided here — пензлі надають тут. Складіть Brushes + are provided + here. Brushes — кілька пензлів, тому are. Provided після are показує, що пензлі дають учасникам. Here указує місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-20:intro1:r1",
+              "text": "Brushes are provided here."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro1:r2",
+              "text": "Brushes is provided here."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro1:r3",
+              "text": "Brushes are provide here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-20:intro1:r1",
+              "text": "Brushes are provided here."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro1:r2",
+              "text": "Brushes is provided here."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro1:r3",
+              "text": "Brushes are provide here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работу можно будет забрать",
+        "uk": "Роботу можна буде забрати"
+      },
+      "bodyByLocale": {
+        "ru": "Ребёнок нарисовал картину, и краска ещё влажная. Организатор объясняет: The painting will be kept here overnight — картину оставят здесь на ночь. Соберите The painting + will be + kept + here overnight. Will be kept описывает будущее действие над картиной. Kept — нужная здесь форма keep. Here overnight сообщает, где и как долго её будут хранить.",
+        "uk": "Дитина намалювала картину, і фарба ще волога. Організатор пояснює: The painting will be kept here overnight — картину залишать тут на ніч. Складіть The painting + will be + kept + here overnight. Will be kept описує майбутню дію над картиною. Kept — потрібна тут форма keep. Here overnight повідомляє, де й як довго її зберігатимуть."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-20:intro2:r1",
+              "text": "The painting will be kept here overnight."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro2:r2",
+              "text": "The painting will kept here overnight."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro2:r3",
+              "text": "The painting will be keep here overnight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-20:intro2:r1",
+              "text": "The painting will be kept here overnight."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro2:r2",
+              "text": "The painting will kept here overnight."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro2:r3",
+              "text": "The painting will be keep here overnight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы больше времени",
+        "uk": "Хотілося б більше часу"
+      },
+      "bodyByLocale": {
+        "ru": "Занятие заканчивается, а ребёнок хочет закончить рисунок. Скажите: I wish we had more time — хотелось бы, чтобы у нас было больше времени. Соберите I wish + we + had + more time. После I wish форма had описывает желаемое положение сейчас, а не прошлое. More time — больше времени. Сейчас времени не хватает.",
+        "uk": "Заняття закінчується, а дитина хоче завершити малюнок. Скажіть: I wish we had more time — хотілося б, щоб у нас було більше часу. Складіть I wish + we + had + more time. Після I wish форма had описує бажаний стан зараз, а не минуле. More time — більше часу. Зараз часу бракує."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-20:intro3:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro3:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro3:r3",
+              "text": "I wish we has more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-20:intro3:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro3:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-20:intro3:r3",
+              "text": "I wish we has more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2dfa3c4f259a92fdf49f58ec38aefca17b423429001a2edd809a378a1e8a757b"
+}

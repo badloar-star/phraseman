@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-19:i01",
+    "correctText": "cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i02",
+    "correctText": "I know that the cake is ready.",
+    "correctResponseId": "en:lesson-31:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i03",
+    "correctText": "the cake is",
+    "correctResponseId": "en:lesson-31:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i04",
+    "correctText": "candles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i05",
+    "correctText": "Could you tell me where the candles are?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i06",
+    "correctText": "gift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i07",
+    "correctText": "The gift was wrapped by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i09",
+    "correctText": "box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i10",
+    "correctText": "I know where the box is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i11",
+    "correctText": "The box is heavy, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i13",
+    "correctText": "The candles are short, aren't they?",
+    "correctResponseId": "en:lesson-31:session-19:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i14",
+    "correctText": "She said the candles were short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i15",
+    "correctText": "I understand why he is happy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i16",
+    "correctText": "the gift is",
+    "correctResponseId": "en:lesson-31:session-19:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i17",
+    "correctText": "The cake was baked by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i18",
+    "correctText": "I know where the gift is.",
+    "correctResponseId": "en:lesson-31:session-19:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i19",
+    "correctText": "I know where the candles are.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-19:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-19:i21",
+    "correctText": "I know that she is busy.",
+    "correctResponseId": null
+  }
+]

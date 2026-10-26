@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-13:intro2:r2": {
-          "ru": "Вопрос начинаем с Is there, а не с There is.",
-          "uk": "Запитання починаємо з Is there, а не з There is."
+          "ru": "С an airport в единственном числе нужно Is there.",
+          "uk": "З an airport в однині потрібне Is there."
         },
         "en:lesson-04:session-13:intro2:r3": {
           "ru": "Airport начинается с гласного звука, поэтому нужно an.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "b2fe2e51ce1863aee6a487e3a6091878bf1e882dc9773d2ae0982d3858419103"
+  "auxiliaryFingerprint": "0a6ba7515aa7cc54137fb2831a2946230cfe1224506a8d21fedb57af0cc7b78b"
 }

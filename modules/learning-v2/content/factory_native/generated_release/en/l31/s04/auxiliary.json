@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-04:intro1:r2": {
+          "ru": "После if нужен порядок the park is open.",
+          "uk": "Після if потрібен порядок the park is open."
+        },
+        "en:lesson-31:session-04:intro1:r3": {
+          "ru": "Один park требует is.",
+          "uk": "Один park потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-04:intro2:r2": {
+          "ru": "После where здесь нужен порядок the gate is.",
+          "uk": "Після where тут потрібен порядок the gate is."
+        },
+        "en:lesson-31:session-04:intro2:r3": {
+          "ru": "Gate здесь требует is.",
+          "uk": "Gate тут потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-04:intro3:r2": {
+          "ru": "После was для действия нужна форма painted.",
+          "uk": "Після was для дії потрібна форма painted."
+        },
+        "en:lesson-31:session-04:intro3:r3": {
+          "ru": "Одна bench требует was.",
+          "uk": "Одна bench потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc549cbc11dc90ed529ba5a906dc45dc35c5d7f52455feac6590957507ea4732"
+}

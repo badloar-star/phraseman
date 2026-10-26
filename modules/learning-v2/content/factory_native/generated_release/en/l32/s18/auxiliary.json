@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-18:intro1:r2": {
+          "ru": "После could здесь нужна форма be.",
+          "uk": "Після could тут потрібна форма be."
+        },
+        "en:lesson-32:session-18:intro1:r3": {
+          "ru": "После could не ставим to.",
+          "uk": "Після could не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-18:intro2:r2": {
+          "ru": "После must здесь используем be.",
+          "uk": "Після must тут використовуємо be."
+        },
+        "en:lesson-32:session-18:intro2:r3": {
+          "ru": "После must не ставим to.",
+          "uk": "Після must не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-18:intro3:r2": {
+          "ru": "Предмет уже назван: it после wrote не нужно.",
+          "uk": "Предмет уже названо: it після wrote не потрібне."
+        },
+        "en:lesson-32:session-18:intro3:r3": {
+          "ru": "Для завершённого прошлого действия нужна форма wrote.",
+          "uk": "Для завершеної минулої дії потрібна форма wrote."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "457d25eed3a332fa93458076d32157f8fa6eb284b80e031a967715d5a27fcf59"
+}

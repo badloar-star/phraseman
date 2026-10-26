@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-05:i01",
+    "correctText": "lunch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i02",
+    "correctText": "The lunch I made is ready.",
+    "correctResponseId": "en:lesson-32:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i04",
+    "correctText": "sandwich",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i05",
+    "correctText": "The sandwich I made is for Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i06",
+    "correctText": "apple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i07",
+    "correctText": "I was hungry, so I ate an apple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i08",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-32:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i09",
+    "correctText": "They must be hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i10",
+    "correctText": "He must be tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i11",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i12",
+    "correctText": "water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i13",
+    "correctText": "The water I brought is cold.",
+    "correctResponseId": "en:lesson-32:session-05:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i14",
+    "correctText": "He must be thirsty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i15",
+    "correctText": "I was hungry, so I ate an apple.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-05:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i17",
+    "correctText": "The water I brought is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i18",
+    "correctText": "They must be hungry.",
+    "correctResponseId": "en:lesson-32:session-05:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i19",
+    "correctText": "They must be hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-05:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-05:i21",
+    "correctText": "We had no bread, so we went to the shop.",
+    "correctResponseId": null
+  }
+]

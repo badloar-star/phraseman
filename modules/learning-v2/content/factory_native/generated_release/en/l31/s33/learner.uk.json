@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — jacket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jacket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i01:audio",
+          "transcript": "jacket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-33:i01:r1",
+            "targetText": "jacket",
+            "meaningByLocale": {
+              "ru": "Куртка. Повторение знакомого слова.",
+              "uk": "Куртка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jacket",
+          "definitionByLocale": {
+            "ru": "Куртка. Повторение знакомого слова.",
+            "uk": "Куртка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i02:r1",
+          "text": "The jacket was expensive, but I bought it."
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i02:r2",
+          "text": "The jacket was cheap, but I bought it."
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i02:r3",
+          "text": "The coat was expensive, but I bought it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i02:audio",
+          "transcript": "The jacket was expensive, but I bought it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-33:i02:r1",
+            "targetText": "The jacket was expensive, but I bought it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i02:r2",
+            "targetText": "The jacket was cheap, but I bought it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i02:r3",
+            "targetText": "The coat was expensive, but I bought it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The jacket was expensive, but I bought it.",
+              "uk": "У записі звучить The jacket was expensive, but I bought it."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The jacket was expensive, but I bought it.",
+              "uk": "У записі звучить The jacket was expensive, but I bought it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Куртка була дорогою, але ви її купили. Виберіть «але».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i03:r1",
+          "text": "but"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i03:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i03:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Куртка була дорогою, але ви її купили. Виберіть «але».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Куртка была дорогой, но вы её купили. Выберите «но».",
+          "uk": "Куртка була дорогою, але ви її купили. Виберіть «але»."
+        },
+        "gappedTargetPhrase": "It was expensive, ___ I bought it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-33:i03:r1",
+            "text": "but"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i03:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i03:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Куртка була дорогою, але ви її купили. Виберіть «але».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Куртка була дорогою, але ви її купили. Виберіть «але».",
+            "feedbackByLocale": {
+              "ru": "Because означает «потому что»; здесь нужно but.",
+              "uk": "Because означає «тому що»; тут потрібне but."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Куртка була дорогою, але ви її купили. Виберіть «але».",
+            "feedbackByLocale": {
+              "ru": "Задано соединение через «но»: but.",
+              "uk": "Задано поєднання через «але»: but."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: було дорого, але я купив це. Почніть з It was expensive.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: було дорого, але я купив це. Почніть з It was expensive.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was expensive, but I bought it.",
+        "localizedMeaning": {
+          "ru": "Скажите: было дорого, но я купил это. Начните с It was expensive.",
+          "uk": "Скажіть: було дорого, але я купив це. Почніть з It was expensive."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "expensive,",
+          "but",
+          "I",
+          "bought",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rained",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rained",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i05:audio",
+          "transcript": "rained"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-33:i05:r1",
+            "targetText": "rained",
+            "meaningByLocale": {
+              "ru": "Шёл дождь. Повторение формы rain.",
+              "uk": "Ішов дощ. Повторення форми rain."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rained",
+          "definitionByLocale": {
+            "ru": "Шёл дождь. Повторение формы rain.",
+            "uk": "Ішов дощ. Повторення форми rain."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви з другом не скасували прогулянку через дощ. Скажіть: дощ ішов, але ми вийшли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Ви з другом не скасували прогулянку через дощ. Скажіть: дощ ішов, але ми вийшли.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i06:audio",
+          "transcript": "It rained, but we went out."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It rained, but we went out.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть із «хоча»: хоча йшов дощ, ви з другом вийшли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i07:r1",
+          "text": "Although"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i07:r2",
+          "text": "But"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i07:r3",
+          "text": "Because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із «хоча»: хоча йшов дощ, ви з другом вийшли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните с «хотя»: хотя шёл дождь, вы с другом вышли.",
+          "uk": "Почніть із «хоча»: хоча йшов дощ, ви з другом вийшли."
+        },
+        "gappedTargetPhrase": "___ it rained, we went out.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-33:i07:r1",
+            "text": "Although"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i07:r2",
+            "text": "But"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i07:r3",
+            "text": "Because"
+          }
+        ],
+        "testedDimension": "Почніть із «хоча»: хоча йшов дощ, ви з другом вийшли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i07:r2",
+            "correct": false,
+            "testedDimension": "Почніть із «хоча»: хоча йшов дощ, ви з другом вийшли.",
+            "feedbackByLocale": {
+              "ru": "But не вводит здесь начальную часть «хотя».",
+              "uk": "But не вводить тут початкову частину «хоча»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i07:r3",
+            "correct": false,
+            "testedDimension": "Почніть із «хоча»: хоча йшов дощ, ви з другом вийшли.",
+            "feedbackByLocale": {
+              "ru": "Нужна уступка «хотя», не причина «потому что».",
+              "uk": "Потрібна поступка «хоча», не причина «тому що»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i08:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-33:i08:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "Уставший. Повторение знакомого слова.",
+              "uk": "Втомлений. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "Уставший. Повторение знакомого слова.",
+            "uk": "Втомлений. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви втомилися, але продовжили йти. Почніть з I was tired.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви втомилися, але продовжили йти. Почніть з I was tired.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was tired, but I kept walking.",
+        "localizedMeaning": {
+          "ru": "Вы устали, но продолжили идти. Начните с I was tired.",
+          "uk": "Ви втомилися, але продовжили йти. Почніть з I was tired."
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "tired,",
+          "but",
+          "I",
+          "kept",
+          "walking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dinner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dinner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i10:audio",
+          "transcript": "dinner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-33:i10:r1",
+            "targetText": "dinner",
+            "meaningByLocale": {
+              "ru": "Ужин. Повторение знакомого слова.",
+              "uk": "Вечеря. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dinner",
+          "definitionByLocale": {
+            "ru": "Ужин. Повторение знакомого слова.",
+            "uk": "Вечеря. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна втомилася, але приготувала вечерю. Почніть із «хоча».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Анна втомилася, але приготувала вечерю. Почніть із «хоча».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i11:audio",
+          "transcript": "Although she was tired, she cooked dinner."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Although she was tired, she cooked dinner.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після although не додавайте but. Виберіть правильне продовження про вечерю.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i12:r1",
+          "text": "she cooked dinner"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i12:r2",
+          "text": "but she cooked dinner"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i12:r3",
+          "text": "she cook dinner"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після although не додавайте but. Виберіть правильне продовження про вечерю.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После although не добавляйте but. Выберите правильное продолжение об ужине.",
+          "uk": "Після although не додавайте but. Виберіть правильне продовження про вечерю."
+        },
+        "gappedTargetPhrase": "Although she was tired, ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-33:i12:r1",
+            "text": "she cooked dinner"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i12:r2",
+            "text": "but she cooked dinner"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i12:r3",
+            "text": "she cook dinner"
+          }
+        ],
+        "testedDimension": "Після although не додавайте but. Виберіть правильне продовження про вечерю.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Після although не додавайте but. Виберіть правильне продовження про вечерю.",
+            "feedbackByLocale": {
+              "ru": "Although уже связывает части; but не нужен.",
+              "uk": "Although уже пов’язує частини; but не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Після although не додавайте but. Виберіть правильне продовження про вечерю.",
+            "feedbackByLocale": {
+              "ru": "Действие в прошлом: cooked.",
+              "uk": "Дія в минулому: cooked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i13:r1",
+          "text": "Although it rained, we went out."
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i13:r2",
+          "text": "Although it snowed, we went out."
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i13:r3",
+          "text": "Although it rained, we stayed home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i13:audio",
+          "transcript": "Although it rained, we went out."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-33:i13:r1",
+            "targetText": "Although it rained, we went out.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i13:r2",
+            "targetText": "Although it snowed, we went out.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i13:r3",
+            "targetText": "Although it rained, we stayed home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Although it rained, we went out.",
+              "uk": "У записі звучить Although it rained, we went out."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Although it rained, we went out.",
+              "uk": "У записі звучить Although it rained, we went out."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна втомилася, але приготувала вечерю. Поєднайте факти через «але».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Анна втомилася, але приготувала вечерю. Поєднайте факти через «але».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i14:audio",
+          "transcript": "She was tired, but she cooked dinner."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was tired, but she cooked dinner.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хоча було холодно, ви з другом вийшли. Почніть з Although.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хоча було холодно, ви з другом вийшли. Почніть з Although.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Although it was cold, we went out.",
+        "localizedMeaning": {
+          "ru": "Хотя было холодно, вы с другом вышли. Начните с Although.",
+          "uk": "Хоча було холодно, ви з другом вийшли. Почніть з Although."
+        },
+        "orderedTokens": [
+          "Although",
+          "it",
+          "was",
+          "cold,",
+          "we",
+          "went",
+          "out"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хоча Анна втомилася, вона приготувала вечерю. Вставте форму для стану в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i16:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i16:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i16:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хоча Анна втомилася, вона приготувала вечерю. Вставте форму для стану в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хотя Анна устала, она приготовила ужин. Вставьте форму для состояния в прошлом.",
+          "uk": "Хоча Анна втомилася, вона приготувала вечерю. Вставте форму для стану в минулому."
+        },
+        "gappedTargetPhrase": "Although she ___ tired, she cooked dinner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-33:i16:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i16:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i16:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Хоча Анна втомилася, вона приготувала вечерю. Вставте форму для стану в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i16:r2",
+            "correct": false,
+            "testedDimension": "Хоча Анна втомилася, вона приготувала вечерю. Вставте форму для стану в минулому.",
+            "feedbackByLocale": {
+              "ru": "С she нужна форма was.",
+              "uk": "З she потрібна форма was."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i16:r3",
+            "correct": false,
+            "testedDimension": "Хоча Анна втомилася, вона приготувала вечерю. Вставте форму для стану в минулому.",
+            "feedbackByLocale": {
+              "ru": "Для состояния в прошлом нужна форма was.",
+              "uk": "Для стану в минулому потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сумка важка, але ви можете її нести. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Сумка важка, але ви можете її нести. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i17:audio",
+          "transcript": "The bag is heavy, but I can carry it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag is heavy, but I can carry it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: друзі вийшли, хоча йшов дощ чи сніг?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i18:r1",
+          "text": "Although it rained, we went out."
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i18:r2",
+          "text": "Although it snowed, we went out."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i18:audioA",
+        "en:lesson-31:session-33:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: друзі вийшли, хоча йшов дощ чи сніг?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Although it rained, we went out.",
+        "contrastB": "Although it snowed, we went out.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-33:i18:audioA",
+          "transcript": "Although it rained, we went out."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-33:i18:audioB",
+          "transcript": "Although it snowed, we went out."
+        },
+        "testedPhoneticContrast": "Послухайте: друзі вийшли, хоча йшов дощ чи сніг?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: друзі вийшли, хоча йшов дощ чи сніг?",
+            "feedbackByLocale": {
+              "ru": "Звучит rained — шёл дождь.",
+              "uk": "Звучить rained — ішов дощ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте розповідь про вечерю. Почніть з Although.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте розповідь про вечерю. Почніть з Although.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i19:audio",
+          "transcript": "Although she was tired, she cooked dinner."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Although she was tired, she cooked dinner.",
+        "orderedTokens": [
+          "Although",
+          "she",
+          "was",
+          "tired,",
+          "she",
+          "cooked",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви були зайняті, але зателефонували Анні. Виберіть «але».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-33:i20:r1",
+          "text": "but"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i20:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-33:i20:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви були зайняті, але зателефонували Анні. Виберіть «але».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы были заняты, но позвонили Анне. Выберите «но».",
+          "uk": "Ви були зайняті, але зателефонували Анні. Виберіть «але»."
+        },
+        "gappedTargetPhrase": "I was busy, ___ I called Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-33:i20:r1",
+            "text": "but"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i20:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i20:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Ви були зайняті, але зателефонували Анні. Виберіть «але».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-33:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви були зайняті, але зателефонували Анні. Виберіть «але».",
+            "feedbackByLocale": {
+              "ru": "Because даёт причину, здесь задано «но».",
+              "uk": "Because дає причину, тут задано «але»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-33:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви були зайняті, але зателефонували Анні. Виберіть «але».",
+            "feedbackByLocale": {
+              "ru": "Задано соединение через «но»: but.",
+              "uk": "Задано поєднання через «але»: but."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви були зайняті, але зателефонували Анні. Почніть із «хоча».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-33:i21:audio"
+      ],
+      "accessibilityLabel": "Ви були зайняті, але зателефонували Анні. Почніть із «хоча».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-33:i21:audio",
+          "transcript": "Although I was busy, I called Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Although I was busy, I called Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b17f6415622c4eb863dd50cbfb0f6a2c985213fa885d1cdced3ec3f36374ffca"
+}

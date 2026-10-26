@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-53:i01",
+    "correctText": "curfew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i02",
+    "correctText": "What time is your curfew?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i03",
+    "correctText": "The rule we agreed on is clear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i04",
+    "correctText": "we agreed on",
+    "correctResponseId": "en:lesson-29:session-53:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i05",
+    "correctText": "Could you explain the reason?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i06",
+    "correctText": "tantrum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i07",
+    "correctText": "The child had a tantrum.",
+    "correctResponseId": "en:lesson-29:session-53:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i08",
+    "correctText": "She is the friend whose parents I met.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i10",
+    "correctText": "rebellious",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i11",
+    "correctText": "I was rebellious at school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i12",
+    "correctText": "Let us talk calmly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i13",
+    "correctText": "lenient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i14",
+    "correctText": "Our parents were lenient.",
+    "correctResponseId": "en:lesson-29:session-53:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i15",
+    "correctText": "en:lesson-29:session-53:i15:p1=curfew\nen:lesson-29:session-53:i15:p2=tantrum\nen:lesson-29:session-53:i15:p3=rebellious\nen:lesson-29:session-53:i15:p4=lenient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i16",
+    "correctText": "are late",
+    "correctResponseId": "en:lesson-29:session-53:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i17",
+    "correctText": "Our parents were lenient.",
+    "correctResponseId": "en:lesson-29:session-53:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i18",
+    "correctText": "We will call you if we are late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i19",
+    "correctText": "I understand your concern.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i20",
+    "correctText": "you gave",
+    "correctResponseId": "en:lesson-29:session-53:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-53:i21",
+    "correctText": "Let us find a solution together.",
+    "correctResponseId": null
+  }
+]

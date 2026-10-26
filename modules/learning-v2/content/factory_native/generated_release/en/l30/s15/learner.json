@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bran",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bran",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i01:audio",
+          "transcript": "bran"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-15:i01:r1",
+            "targetText": "bran",
+            "meaningByLocale": {
+              "ru": "Отруби. Оболочки зёрен, которые добавляют, например, в кашу.",
+              "uk": "Висівки. Оболонки зерен, які додають, наприклад, у кашу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bran",
+          "definitionByLocale": {
+            "ru": "Отруби. Оболочки зёрен, которые добавляют, например, в кашу.",
+            "uk": "Висівки. Оболонки зерен, які додають, наприклад, у кашу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i02:r1",
+          "text": "She asked where the bran was."
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i02:r2",
+          "text": "She asked where the bread was."
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i02:r3",
+          "text": "She asked where the rice was."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i02:audio",
+          "transcript": "She asked where the bran was."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-15:i02:r1",
+            "targetText": "She asked where the bran was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i02:r2",
+            "targetText": "She asked where the bread was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i02:r3",
+            "targetText": "She asked where the rice was.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked where the bran was.",
+              "uk": "У записі звучить She asked where the bran was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked where the bran was.",
+              "uk": "У записі звучить She asked where the bran was."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос сестры: был ли у вас рис?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос сестры: был ли у вас рис?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked if I had rice.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос сестры: был ли у вас рис?",
+          "uk": "Передайте запитання сестри: чи був у вас рис?"
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "had",
+          "rice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перескажите вопрос о том, где лежали отруби.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i04:r1",
+          "text": "the bran was"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i04:r2",
+          "text": "was the bran"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i04:r3",
+          "text": "the bran were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перескажите вопрос о том, где лежали отруби.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перескажите вопрос о том, где лежали отруби.",
+          "uk": "Перекажіть запитання про те, де лежали висівки."
+        },
+        "gappedTargetPhrase": "She asked where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-15:i04:r1",
+            "text": "the bran was"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i04:r2",
+            "text": "was the bran"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i04:r3",
+            "text": "the bran were"
+          }
+        ],
+        "testedDimension": "Перескажите вопрос о том, где лежали отруби.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Перескажите вопрос о том, где лежали отруби.",
+            "feedbackByLocale": {
+              "ru": "В пересказе сначала the bran, затем was.",
+              "uk": "У переказі спочатку the bran, потім was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Перескажите вопрос о том, где лежали отруби.",
+            "feedbackByLocale": {
+              "ru": "С названием продукта bran здесь нужно was.",
+              "uk": "Із назвою продукту bran тут потрібне was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — millet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — millet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i05:audio",
+          "transcript": "millet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-15:i05:r1",
+            "targetText": "millet",
+            "meaningByLocale": {
+              "ru": "Просо; пшено как продукт питания. Крупа для каши и гарниров.",
+              "uk": "Просо; пшоно як харчовий продукт. Крупа для каші та гарнірів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "millet",
+          "definitionByLocale": {
+            "ru": "Просо; пшено как продукт питания. Крупа для каши и гарниров.",
+            "uk": "Просо; пшоно як харчовий продукт. Крупа для каші та гарнірів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга спросила, было ли у вас пшено. Передайте вопрос.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга спросила, было ли у вас пшено. Передайте вопрос.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i06:audio",
+          "transcript": "She asked if I had millet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked if I had millet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте пересказ вопроса о местонахождении отрубей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте пересказ вопроса о местонахождении отрубей.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i07:audio",
+          "transcript": "She asked where the bran was."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked where the bran was.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "where",
+          "the",
+          "bran",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Похвалите рецепт, который друг прислал вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i08:r1",
+          "text": "sent"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i08:r2",
+          "text": "sending"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i08:r3",
+          "text": "sends"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Похвалите рецепт, который друг прислал вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Похвалите рецепт, который друг прислал вам.",
+          "uk": "Похваліть рецепт, який друг надіслав вам."
+        },
+        "gappedTargetPhrase": "The recipe you ___ me was easy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-15:i08:r1",
+            "text": "sent"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i08:r2",
+            "text": "sending"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i08:r3",
+            "text": "sends"
+          }
+        ],
+        "testedDimension": "Похвалите рецепт, который друг прислал вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Похвалите рецепт, который друг прислал вам.",
+            "feedbackByLocale": {
+              "ru": "Для завершённой отправки здесь нужна форма sent.",
+              "uk": "Для завершеного надсилання тут потрібна форма sent."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Похвалите рецепт, который друг прислал вам.",
+            "feedbackByLocale": {
+              "ru": "Sends не сочетается с you; здесь нужно sent.",
+              "uk": "Sends не поєднується з you; тут потрібне sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cornflour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cornflour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i09:audio",
+          "transcript": "cornflour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-15:i09:r1",
+            "targetText": "cornflour",
+            "meaningByLocale": {
+              "ru": "Кукурузный крахмал. Порошок для загущения соуса; так его называют в британском английском.",
+              "uk": "Кукурудзяний крохмаль. Порошок для загущення соусу; так його називають у британській англійській."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cornflour",
+          "definitionByLocale": {
+            "ru": "Кукурузный крахмал. Порошок для загущения соуса; так его называют в британском английском.",
+            "uk": "Кукурудзяний крохмаль. Порошок для загущення соусу; так його називають у британській англійській."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i10:r1",
+          "text": "He said we needed cornflour."
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i10:r2",
+          "text": "He said we needed butter."
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i10:r3",
+          "text": "He said we needed sugar."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i10:audio",
+          "transcript": "He said we needed cornflour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-15:i10:r1",
+            "targetText": "He said we needed cornflour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i10:r2",
+            "targetText": "He said we needed butter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i10:r3",
+            "targetText": "He said we needed sugar.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said we needed cornflour.",
+              "uk": "У записі звучить He said we needed cornflour."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said we needed cornflour.",
+              "uk": "У записі звучить He said we needed cornflour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не умеете хорошо готовить и хотели бы уметь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Вы не умеете хорошо готовить и хотели бы уметь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i11:audio",
+          "transcript": "I wish I could cook well."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I could cook well.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — anyhow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — anyhow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i12:audio",
+          "transcript": "anyhow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-15:i12:r1",
+            "targetText": "anyhow",
+            "meaningByLocale": {
+              "ru": "Всё равно, в любом случае. Показывает, что решение не меняется из-за обстоятельств.",
+              "uk": "Усе одно, у будь-якому разі. Показує, що рішення не змінюється через обставини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anyhow",
+          "definitionByLocale": {
+            "ru": "Всё равно, в любом случае. Показывает, что решение не меняется из-за обстоятельств.",
+            "uk": "Усе одно, у будь-якому разі. Показує, що рішення не змінюється через обставини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Нужного продукта в магазине не оказалось, но вы всё равно купили хлеб.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Нужного продукта в магазине не оказалось, но вы всё равно купили хлеб.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i13:audio",
+          "transcript": "I bought bread anyhow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I bought bread anyhow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-15:i14:p1",
+            "target": "bran",
+            "meaningByLocale": {
+              "ru": "отруби",
+              "uk": "висівки"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-15:i14:p2",
+            "target": "millet",
+            "meaningByLocale": {
+              "ru": "пшено",
+              "uk": "пшоно"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-15:i14:p3",
+            "target": "cornflour",
+            "meaningByLocale": {
+              "ru": "кукурузный крахмал",
+              "uk": "кукурудзяний крохмаль"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-15:i14:p4",
+            "target": "anyhow",
+            "meaningByLocale": {
+              "ru": "всё равно",
+              "uk": "усе одно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bran",
+          "millet",
+          "cornflour",
+          "anyhow"
+        ],
+        "rightColumn": [
+          "отруби",
+          "пшено",
+          "кукурузный крахмал",
+          "всё равно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте вопрос подруги о наличии у вас пшена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте вопрос подруги о наличии у вас пшена.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked if I had millet.",
+        "localizedMeaning": {
+          "ru": "Передайте вопрос подруги о наличии у вас пшена.",
+          "uk": "Передайте запитання подруги про наявність у вас пшона."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "had",
+          "millet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра спросила, был ли у вас рис.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i16:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i16:r2",
+          "text": "what"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спросила, был ли у вас рис.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила, был ли у вас рис.",
+          "uk": "Сестра запитала, чи був у вас рис."
+        },
+        "gappedTargetPhrase": "She asked ___ I had rice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-15:i16:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i16:r2",
+            "text": "what"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Сестра спросила, был ли у вас рис.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i16:r2",
+            "correct": false,
+            "testedDimension": "Сестра спросила, был ли у вас рис.",
+            "feedbackByLocale": {
+              "ru": "Вопрос да или нет передаём через if.",
+              "uk": "Запитання так або ні передаємо через if."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i16:r3",
+            "correct": false,
+            "testedDimension": "Сестра спросила, был ли у вас рис.",
+            "feedbackByLocale": {
+              "ru": "Where означает где; здесь нужен вопрос о наличии.",
+              "uk": "Where означає де; тут потрібне запитання про наявність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поваром дня был друг; он сказал, что вам обоим нужен крахмал для соуса. Передайте его слова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Поваром дня был друг; он сказал, что вам обоим нужен крахмал для соуса. Передайте его слова.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i17:audio",
+          "transcript": "He said we needed cornflour."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said we needed cornflour.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте пересказ вопроса о рисе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте пересказ вопроса о рисе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i18:audio",
+          "transcript": "She asked if I had rice."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked if I had rice.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "had",
+          "rice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: она спросила о рисе у вас или у неё?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i19:r1",
+          "text": "She asked if I had rice."
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i19:r2",
+          "text": "She asked if she had rice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i19:audioA",
+        "en:lesson-30:session-15:i19:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: она спросила о рисе у вас или у неё?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked if I had rice.",
+        "contrastB": "She asked if she had rice.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-15:i19:audioA",
+          "transcript": "She asked if I had rice."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-15:i19:audioB",
+          "transcript": "She asked if she had rice."
+        },
+        "testedPhoneticContrast": "Послушайте: она спросила о рисе у вас или у неё?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i19:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: она спросила о рисе у вас или у неё?",
+            "feedbackByLocale": {
+              "ru": "Звучит I had — был у меня.",
+              "uk": "Звучить I had — був у мене."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не умеете хорошо готовить, но хотели бы уметь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-15:i20:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i20:r2",
+          "text": "can"
+        },
+        {
+          "responseId": "en:lesson-30:session-15:i20:r3",
+          "text": "cooking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не умеете хорошо готовить, но хотели бы уметь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не умеете хорошо готовить, но хотели бы уметь.",
+          "uk": "Ви не вмієте добре готувати, але хотіли б уміти."
+        },
+        "gappedTargetPhrase": "I wish I ___ cook well.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-15:i20:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i20:r2",
+            "text": "can"
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i20:r3",
+            "text": "cooking"
+          }
+        ],
+        "testedDimension": "Вы не умеете хорошо готовить, но хотели бы уметь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-15:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы не умеете хорошо готовить, но хотели бы уметь.",
+            "feedbackByLocale": {
+              "ru": "Для нереального желания сейчас используем could.",
+              "uk": "Для нереального бажання зараз використовуємо could."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-15:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы не умеете хорошо готовить, но хотели бы уметь.",
+            "feedbackByLocale": {
+              "ru": "Перед cook нужна форма could; cooking cook не подходит.",
+              "uk": "Перед cook потрібна форма could; cooking cook не підходить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-15:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг узнаёт, пригодился ли его рецепт. Скажите, что он был простым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-15:i21:audio"
+      ],
+      "accessibilityLabel": "Друг узнаёт, пригодился ли его рецепт. Скажите, что он был простым.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-15:i21:audio",
+          "transcript": "The recipe you sent me was easy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The recipe you sent me was easy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "83044a06e7a77442af7f70696a80d99b0eb228cf154ea05cfdb85b6f87c38ee3"
+}

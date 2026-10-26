@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-15:intro1:r2": {
+          "ru": "Для связи женщины с её днём рождения нужна whose.",
+          "uk": "Для зв’язку жінки з її днем народження потрібна whose."
+        },
+        "en:lesson-29:session-15:intro1:r3": {
+          "ru": "После whose не нужно her.",
+          "uk": "Після whose не потрібне her."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-15:intro2:r2": {
+          "ru": "Исполнителя действия вводит by.",
+          "uk": "Виконавця дії позначає by."
+        },
+        "en:lesson-29:session-15:intro2:r3": {
+          "ru": "После was здесь нужна prepared.",
+          "uk": "Після was тут потрібна prepared."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-15:intro3:r2": {
+          "ru": "В этом условии после if нужна is без will.",
+          "uk": "У цій умові після if потрібна is без will."
+        },
+        "en:lesson-29:session-15:intro3:r3": {
+          "ru": "После the shop здесь нужна форма is.",
+          "uk": "Після the shop тут потрібна форма is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "50af19c0629be57dc4e65c0bed2912f96b3e1ba4e6dbe3e1018adc0cdae1c952"
+}

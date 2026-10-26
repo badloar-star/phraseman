@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-56:intro1:r2": {
+          "ru": "С heating здесь нужна is.",
+          "uk": "З heating тут потрібна is."
+        },
+        "en:lesson-28:session-56:intro1:r3": {
+          "ru": "После is нужна included.",
+          "uk": "Після is потрібна included."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-56:intro2:r2": {
+          "ru": "Перед used нужна be.",
+          "uk": "Перед used потрібна be."
+        },
+        "en:lesson-28:session-56:intro2:r3": {
+          "ru": "После be нужна used.",
+          "uk": "Після be потрібна used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-56:intro3:r2": {
+          "ru": "С несколькими windows нужна were.",
+          "uk": "З кількома windows потрібна were."
+        },
+        "en:lesson-28:session-56:intro3:r3": {
+          "ru": "После were нужна replaced.",
+          "uk": "Після were потрібна replaced."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "42be4c226a2671c49c88d65be417fb5b36649e5b2ba6c807ea5d5c5a78c25028"
+}

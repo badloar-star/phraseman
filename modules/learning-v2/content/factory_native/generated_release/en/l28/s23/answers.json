@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-23:i01",
+    "correctText": "moisturiser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i02",
+    "correctText": "Do you have a sample of this moisturiser?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i03",
+    "correctText": "Do you have a smaller size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i04",
+    "correctText": "Samples are given at the counter.",
+    "correctResponseId": "en:lesson-28:session-23:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i05",
+    "correctText": "cleanser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i06",
+    "correctText": "A small bottle of cleanser, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-23:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i08",
+    "correctText": "I wish the smell were weaker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i09",
+    "correctText": "mascara",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i10",
+    "correctText": "The mascara will be delivered tomorrow.",
+    "correctResponseId": "en:lesson-28:session-23:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i11",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i12",
+    "correctText": "Could I have a sealed one, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i13",
+    "correctText": "eyeliner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i14",
+    "correctText": "Do you have this eyeliner in brown?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i15",
+    "correctText": "The display was changed this morning.",
+    "correctResponseId": "en:lesson-28:session-23:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i16",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-23:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i17",
+    "correctText": "The gift will be put in a small bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i18",
+    "correctText": "Do you have a lighter shade?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i19",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-23:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i20",
+    "correctText": "Orders are packed in the back room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-23:i21",
+    "correctText": "I am just looking, thank you.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i01:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-41:i01:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i02:r1",
+          "text": "I went to the shop to buy bread."
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i02:r2",
+          "text": "I went to the shop to buy milk."
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i02:r3",
+          "text": "I went to the shop to buy eggs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i02:audio",
+          "transcript": "I went to the shop to buy bread."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-41:i02:r1",
+            "targetText": "I went to the shop to buy bread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i02:r2",
+            "targetText": "I went to the shop to buy milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i02:r3",
+            "targetText": "I went to the shop to buy eggs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I went to the shop to buy bread.",
+              "uk": "У записі звучить I went to the shop to buy bread."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I went to the shop to buy bread.",
+              "uk": "У записі звучить I went to the shop to buy bread."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пошли в магазин, чтобы купить хлеб. Вставьте форму после to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i03:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i03:r2",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i03:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пошли в магазин, чтобы купить хлеб. Вставьте форму после to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пошли в магазин, чтобы купить хлеб. Вставьте форму после to.",
+          "uk": "Ви пішли до крамниці, щоб купити хліб. Вставте форму після to."
+        },
+        "gappedTargetPhrase": "I went to the shop to ___ bread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-41:i03:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i03:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i03:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Вы пошли в магазин, чтобы купить хлеб. Вставьте форму после to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы пошли в магазин, чтобы купить хлеб. Вставьте форму после to.",
+            "feedbackByLocale": {
+              "ru": "После to здесь нужна начальная форма buy.",
+              "uk": "Після to тут потрібна початкова форма buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы пошли в магазин, чтобы купить хлеб. Вставьте форму после to.",
+            "feedbackByLocale": {
+              "ru": "Для цели используем to buy, не to buying.",
+              "uk": "Для мети використовуємо to buy, не to buying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните поход в магазин покупкой хлеба. Начните с I went to the shop.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните поход в магазин покупкой хлеба. Начните с I went to the shop.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I went to the shop to buy bread.",
+        "localizedMeaning": {
+          "ru": "Объясните поход в магазин покупкой хлеба. Начните с I went to the shop.",
+          "uk": "Поясніть похід до крамниці купівлею хліба. Почніть з I went to the shop."
+        },
+        "orderedTokens": [
+          "I",
+          "went",
+          "to",
+          "the",
+          "shop",
+          "to",
+          "buy",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i05:audio",
+          "transcript": "address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-41:i05:r1",
+            "targetText": "address",
+            "meaningByLocale": {
+              "ru": "Адрес. Повторение знакомого слова.",
+              "uk": "Адреса. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "address",
+          "definitionByLocale": {
+            "ru": "Адрес. Повторение знакомого слова.",
+            "uk": "Адреса. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы записали адрес, чтобы помнить его. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Вы записали адрес, чтобы помнить его. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i06:audio",
+          "transcript": "I wrote the address so that I could remember it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wrote the address so that I could remember it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i07:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i07:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i07:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+          "uk": "Ви записали адресу, щоб пам’ятати її. Виберіть сполуку перед I could remember it."
+        },
+        "gappedTargetPhrase": "I wrote the address ___ I could remember it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-41:i07:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i07:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i07:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i07:r2",
+            "correct": false,
+            "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+            "feedbackByLocale": {
+              "ru": "Перед отдельным I could remember it нужно so that.",
+              "uk": "Перед окремим I could remember it потрібне so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i07:r3",
+            "correct": false,
+            "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью цели нужно so that.",
+              "uk": "Перед цілою частиною мети потрібне so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i08:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-41:i08:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы открыли дверь, чтобы Анна могла войти. Начните с I opened the door.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы открыли дверь, чтобы Анна могла войти. Начните с I opened the door.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I opened the door so that Anna could come in.",
+        "localizedMeaning": {
+          "ru": "Вы открыли дверь, чтобы Анна могла войти. Начните с I opened the door.",
+          "uk": "Ви відчинили двері, щоб Анна могла ввійти. Почніть з I opened the door."
+        },
+        "orderedTokens": [
+          "I",
+          "opened",
+          "the",
+          "door",
+          "so",
+          "that",
+          "Anna",
+          "could",
+          "come",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы позвонили, чтобы спросить адрес. Назовите цель звонка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Вы позвонили, чтобы спросить адрес. Назовите цель звонка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i10:audio",
+          "transcript": "I called to ask for the address."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I called to ask for the address.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверь открыли вы, а войти должна была Анна. Назовите её после so that.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i11:r1",
+          "text": "Anna"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i11:r2",
+          "text": "to Anna"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i11:r3",
+          "text": "Anna to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь открыли вы, а войти должна была Анна. Назовите её после so that.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь открыли вы, а войти должна была Анна. Назовите её после so that.",
+          "uk": "Двері відчинили ви, а ввійти мала Анна. Назвіть її після so that."
+        },
+        "gappedTargetPhrase": "I opened the door so that ___ could come in.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-41:i11:r1",
+            "text": "Anna"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i11:r2",
+            "text": "to Anna"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i11:r3",
+            "text": "Anna to"
+          }
+        ],
+        "testedDimension": "Дверь открыли вы, а войти должна была Анна. Назовите её после so that.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Дверь открыли вы, а войти должна была Анна. Назовите её после so that.",
+            "feedbackByLocale": {
+              "ru": "После so that сразу называем участника Anna.",
+              "uk": "Після so that відразу називаємо учасника Anna."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Дверь открыли вы, а войти должна была Анна. Назовите её после so that.",
+            "feedbackByLocale": {
+              "ru": "Между Anna и could не нужно to.",
+              "uk": "Між Anna й could не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i12:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-41:i12:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i13:r1",
+          "text": "I took a bag to carry the books."
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i13:r2",
+          "text": "I took a bag to carry the shoes."
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i13:r3",
+          "text": "I took a box to carry the books."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i13:audio",
+          "transcript": "I took a bag to carry the books."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-41:i13:r1",
+            "targetText": "I took a bag to carry the books.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i13:r2",
+            "targetText": "I took a bag to carry the shoes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i13:r3",
+            "targetText": "I took a box to carry the books.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took a bag to carry the books.",
+              "uk": "У записі звучить I took a bag to carry the books."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took a bag to carry the books.",
+              "uk": "У записі звучить I took a bag to carry the books."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы взяли сумку, чтобы нести книги. Объясните цель.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Вы взяли сумку, чтобы нести книги. Объясните цель.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i14:audio",
+          "transcript": "I took a bag to carry the books."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I took a bag to carry the books.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы позвонили, чтобы спросить адрес. Начните с I called.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы позвонили, чтобы спросить адрес. Начните с I called.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I called to ask for the address.",
+        "localizedMeaning": {
+          "ru": "Вы позвонили, чтобы спросить адрес. Начните с I called.",
+          "uk": "Ви зателефонували, щоб запитати адресу. Почніть з I called."
+        },
+        "orderedTokens": [
+          "I",
+          "called",
+          "to",
+          "ask",
+          "for",
+          "the",
+          "address"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы записали адрес, чтобы помнить его. Вставьте форму после could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i16:r1",
+          "text": "remember"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i16:r2",
+          "text": "remembered"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i16:r3",
+          "text": "remembering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы записали адрес, чтобы помнить его. Вставьте форму после could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы записали адрес, чтобы помнить его. Вставьте форму после could.",
+          "uk": "Ви записали адресу, щоб пам’ятати її. Вставте форму після could."
+        },
+        "gappedTargetPhrase": "I wrote the address so that I could ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-41:i16:r1",
+            "text": "remember"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i16:r2",
+            "text": "remembered"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i16:r3",
+            "text": "remembering"
+          }
+        ],
+        "testedDimension": "Вы записали адрес, чтобы помнить его. Вставьте форму после could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы записали адрес, чтобы помнить его. Вставьте форму после could.",
+            "feedbackByLocale": {
+              "ru": "После could нужна начальная форма remember.",
+              "uk": "Після could потрібна початкова форма remember."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы записали адрес, чтобы помнить его. Вставьте форму после could.",
+            "feedbackByLocale": {
+              "ru": "После could не используем remembering.",
+              "uk": "Після could не використовуємо remembering."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы подвинули стул, чтобы Анна могла сесть. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Вы подвинули стул, чтобы Анна могла сесть. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i17:audio",
+          "transcript": "I moved the chair so that Anna could sit down."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I moved the chair so that Anna could sit down.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: говорящий взял сумку, чтобы нести книги или обувь?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i18:r1",
+          "text": "I took a bag to carry the books."
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i18:r2",
+          "text": "I took a bag to carry the shoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i18:audioA",
+        "en:lesson-31:session-41:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: говорящий взял сумку, чтобы нести книги или обувь?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I took a bag to carry the books.",
+        "contrastB": "I took a bag to carry the shoes.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-41:i18:audioA",
+          "transcript": "I took a bag to carry the books."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-41:i18:audioB",
+          "transcript": "I took a bag to carry the shoes."
+        },
+        "testedPhoneticContrast": "Послушайте: говорящий взял сумку, чтобы нести книги или обувь?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: говорящий взял сумку, чтобы нести книги или обувь?",
+            "feedbackByLocale": {
+              "ru": "Звучит books — книги.",
+              "uk": "Звучить books — книжки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте цель записи адреса. Начните с I wrote the address.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте цель записи адреса. Начните с I wrote the address.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i19:audio",
+          "transcript": "I wrote the address so that I could remember it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wrote the address so that I could remember it.",
+        "orderedTokens": [
+          "I",
+          "wrote",
+          "the",
+          "address",
+          "so",
+          "that",
+          "I",
+          "could",
+          "remember",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пошли в магазин купить хлеб. Выберите слово перед buy.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-41:i20:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i20:r2",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-31:session-41:i20:r3",
+          "text": "that"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пошли в магазин купить хлеб. Выберите слово перед buy.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пошли в магазин купить хлеб. Выберите слово перед buy.",
+          "uk": "Ви пішли до крамниці купити хліб. Виберіть слово перед buy."
+        },
+        "gappedTargetPhrase": "I went to the shop ___ buy bread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-41:i20:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i20:r2",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i20:r3",
+            "text": "that"
+          }
+        ],
+        "testedDimension": "Вы пошли в магазин купить хлеб. Выберите слово перед buy.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-41:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы пошли в магазин купить хлеб. Выберите слово перед buy.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to buy.",
+              "uk": "Мету виражаємо через to buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-41:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы пошли в магазин купить хлеб. Выберите слово перед buy.",
+            "feedbackByLocale": {
+              "ru": "Перед buy здесь нужно to.",
+              "uk": "Перед buy тут потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-41:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы открыли дверь, чтобы Анна могла войти. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-41:i21:audio"
+      ],
+      "accessibilityLabel": "Вы открыли дверь, чтобы Анна могла войти. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-41:i21:audio",
+          "transcript": "I opened the door so that Anna could come in."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I opened the door so that Anna could come in.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9abb29f8bbadd1562b82be8fa4f8b7cc1cfe03c279be2eb71bd06633d549e5e1"
+}

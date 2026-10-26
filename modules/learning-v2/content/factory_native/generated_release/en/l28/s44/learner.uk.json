@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-44:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати миску ближче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати миску ближче.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i01:audio",
+          "transcript": "Can I have a look at that bowl?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I have a look at that bowl?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tableware",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tableware",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i02:audio",
+          "transcript": "tableware"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-44:i02:r1",
+            "targetText": "tableware",
+            "meaningByLocale": {
+              "ru": "Столовая посуда и приборы. Общее название вещей для сервировки и еды: тарелок, чашек, ложек и других предметов.",
+              "uk": "Столовий посуд і прибори. Загальна назва речей для сервірування та їжі: тарілок, чашок, ложок та інших предметів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tableware",
+          "definitionByLocale": {
+            "ru": "Столовая посуда и приборы. Общее название вещей для сервировки и еды: тарелок, чашек, ложек и других предметов.",
+            "uk": "Столовий посуд і прибори. Загальна назва речей для сервірування та їжі: тарілок, чашок, ложок та інших предметів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що шукаєте столовий посуд і прибори.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що шукаєте столовий посуд і прибори.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am looking for tableware.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ищете столовую посуду и приборы.",
+          "uk": "Скажіть, що шукаєте столовий посуд і прибори."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "looking",
+          "for",
+          "tableware"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-44:i04:r1",
+          "text": "The plates will be delivered on Friday."
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i04:r2",
+          "text": "The plates will be delivered on Monday."
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i04:r3",
+          "text": "The bowls will be delivered on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i04:audio",
+          "transcript": "The plates will be delivered on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-44:i04:r1",
+            "targetText": "The plates will be delivered on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i04:r2",
+            "targetText": "The plates will be delivered on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i04:r3",
+            "targetText": "The bowls will be delivered on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plates will be delivered on Friday.",
+              "uk": "У записі звучить The plates will be delivered on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plates will be delivered on Friday.",
+              "uk": "У записі звучить The plates will be delivered on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи можна мити цю миску в посудомийній машині.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-44:i05:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i05:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i05:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи можна мити цю миску в посудомийній машині.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, можно ли мыть эту миску в посудомоечной машине.",
+          "uk": "Уточніть, чи можна мити цю миску в посудомийній машині."
+        },
+        "gappedTargetPhrase": "Can this be ___ in a dishwasher?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-44:i05:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i05:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i05:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Уточніть, чи можна мити цю миску в посудомийній машині.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи можна мити цю миску в посудомийній машині.",
+            "feedbackByLocale": {
+              "ru": "После be нужна washed.",
+              "uk": "Після be потрібна washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи можна мити цю миску в посудомийній машині.",
+            "feedbackByLocale": {
+              "ru": "Здесь действие над предметом: be washed.",
+              "uk": "Тут дія над предметом: be washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glassware",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glassware",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i06:audio",
+          "transcript": "glassware"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-44:i06:r1",
+            "targetText": "glassware",
+            "meaningByLocale": {
+              "ru": "Стеклянная посуда. Например, стаканы и бокалы; здесь речь о посуде, а не об оконном стекле.",
+              "uk": "Скляний посуд. Наприклад, склянки й келихи; тут ідеться про посуд, а не про віконне скло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glassware",
+          "definitionByLocale": {
+            "ru": "Стеклянная посуда. Например, стаканы и бокалы; здесь речь о посуде, а не об оконном стекле.",
+            "uk": "Скляний посуд. Наприклад, склянки й келихи; тут ідеться про посуд, а не про віконне скло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, де розташований скляний посуд.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте, де розташований скляний посуд.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i07:audio",
+          "transcript": "Where is the glassware?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the glassware?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання продавця щодо пакування.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання продавця щодо пакування.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i08:audio",
+          "transcript": "These glasses must be packed carefully."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These glasses must be packed carefully.",
+        "orderedTokens": [
+          "These",
+          "glasses",
+          "must",
+          "be",
+          "packed",
+          "carefully"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви розповідаєте про кілька чашок ручної роботи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-44:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розповідаєте про кілька чашок ручної роботи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете о нескольких чашках ручной работы.",
+          "uk": "Ви розповідаєте про кілька чашок ручної роботи."
+        },
+        "gappedTargetPhrase": "These cups ___ made by hand.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-44:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви розповідаєте про кілька чашок ручної роботи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про кілька чашок ручної роботи.",
+            "feedbackByLocale": {
+              "ru": "Для нескольких чашек нужна were.",
+              "uk": "Для кількох чашок потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про кілька чашок ручної роботи.",
+            "feedbackByLocale": {
+              "ru": "О прошлом: were made.",
+              "uk": "Про минуле: were made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — enamel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — enamel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i10:audio",
+          "transcript": "enamel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-44:i10:r1",
+            "targetText": "enamel",
+            "meaningByLocale": {
+              "ru": "Эмаль. Гладкое твёрдое покрытие, например на металлической кружке или кастрюле.",
+              "uk": "Емаль. Гладке тверде покриття, наприклад на металевій чашці або каструлі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "enamel",
+          "definitionByLocale": {
+            "ru": "Эмаль. Гладкое твёрдое покрытие, например на металлической кружке или кастрюле.",
+            "uk": "Емаль. Гладке тверде покриття, наприклад на металевій чашці або каструлі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть продавцю пошкодження емалевого покриття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть продавцю пошкодження емалевого покриття.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The enamel is damaged.",
+        "localizedMeaning": {
+          "ru": "Покажите продавцу повреждение эмалевого покрытия.",
+          "uk": "Покажіть продавцю пошкодження емалевого покриття."
+        },
+        "orderedTokens": [
+          "The",
+          "enamel",
+          "is",
+          "damaged"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-44:i12:r1",
+          "text": "These cups were made by a local artist."
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i12:r2",
+          "text": "These cups were made by my sister."
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i12:r3",
+          "text": "These plates were made by a local artist."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i12:audio",
+          "transcript": "These cups were made by a local artist."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-44:i12:r1",
+            "targetText": "These cups were made by a local artist.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i12:r2",
+            "targetText": "These cups were made by my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i12:r3",
+            "targetText": "These plates were made by a local artist.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These cups were made by a local artist.",
+              "uk": "У записі звучить These cups were made by a local artist."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These cups were made by a local artist.",
+              "uk": "У записі звучить These cups were made by a local artist."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть спакувати чашки окремо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i13:audio"
+      ],
+      "accessibilityLabel": "Попросіть спакувати чашки окремо.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i13:audio",
+          "transcript": "Could you wrap each cup separately?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you wrap each cup separately?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stoneware",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stoneware",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i14:audio",
+          "transcript": "stoneware"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-44:i14:r1",
+            "targetText": "stoneware",
+            "meaningByLocale": {
+              "ru": "Каменная керамика. Вид прочной керамики для посуды; это не посуда, вырезанная из камня. Название встречается на этикетках чашек и тарелок.",
+              "uk": "Кам’яна кераміка. Вид міцної кераміки для посуду; це не посуд, вирізаний із каменю. Назва трапляється на етикетках чашок і тарілок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stoneware",
+          "definitionByLocale": {
+            "ru": "Каменная керамика. Вид прочной керамики для посуды; это не посуда, вырезанная из камня. Название встречается на этикетках чашек и тарелок.",
+            "uk": "Кам’яна кераміка. Вид міцної кераміки для посуду; це не посуд, вирізаний із каменю. Назва трапляється на етикетках чашок і тарілок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи ця миска з кам’яної кераміки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи ця миска з кам’яної кераміки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i15:audio",
+          "transcript": "Is this bowl made of stoneware?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this bowl made of stoneware?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви з їхніми значеннями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви з їхніми значеннями.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-44:i16:p1",
+            "target": "tableware",
+            "meaningByLocale": {
+              "ru": "общее название столовой посуды и приборов",
+              "uk": "загальна назва столового посуду й приборів"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-44:i16:p2",
+            "target": "glassware",
+            "meaningByLocale": {
+              "ru": "стеклянная посуда",
+              "uk": "скляний посуд"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-44:i16:p3",
+            "target": "enamel",
+            "meaningByLocale": {
+              "ru": "эмалевое покрытие",
+              "uk": "емалеве покриття"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-44:i16:p4",
+            "target": "stoneware",
+            "meaningByLocale": {
+              "ru": "каменная керамика",
+              "uk": "кам’яна кераміка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tableware",
+          "glassware",
+          "enamel",
+          "stoneware"
+        ],
+        "rightColumn": [
+          "загальна назва столового посуду й приборів",
+          "скляний посуд",
+          "емалеве покриття",
+          "кам’яна кераміка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Потрібну миску продали ще до вашого приходу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-44:i17:r1",
+          "text": "sold"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i17:r2",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i17:r3",
+          "text": "selling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Потрібну миску продали ще до вашого приходу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нужную миску продали ещё до вашего прихода.",
+          "uk": "Потрібну миску продали ще до вашого приходу."
+        },
+        "gappedTargetPhrase": "They had ___ the bowl by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-44:i17:r1",
+            "text": "sold"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i17:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i17:r3",
+            "text": "selling"
+          }
+        ],
+        "testedDimension": "Потрібну миску продали ще до вашого приходу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-44:i17:r2",
+            "correct": false,
+            "testedDimension": "Потрібну миску продали ще до вашого приходу.",
+            "feedbackByLocale": {
+              "ru": "После had нужна sold.",
+              "uk": "Після had потрібна sold."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i17:r3",
+            "correct": false,
+            "testedDimension": "Потрібну миску продали ще до вашого приходу.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had sold.",
+              "uk": "Тут використовуємо had sold."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, як зберігають чашки в цьому магазині.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як зберігають чашки в цьому магазині.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i18:audio",
+          "transcript": "The cups are kept in boxes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cups are kept in boxes.",
+        "orderedTokens": [
+          "The",
+          "cups",
+          "are",
+          "kept",
+          "in",
+          "boxes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гарний набір не вміщується на вашому столі; ви хотіли б більший стіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-44:i19:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i19:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-44:i19:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гарний набір не вміщується на вашому столі; ви хотіли б більший стіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Красивый набор не помещается на вашем столе; вы хотели бы стол побольше.",
+          "uk": "Гарний набір не вміщується на вашому столі; ви хотіли б більший стіл."
+        },
+        "gappedTargetPhrase": "I wish I ___ a bigger table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-44:i19:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i19:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i19:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Гарний набір не вміщується на вашому столі; ви хотіли б більший стіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-44:i19:r2",
+            "correct": false,
+            "testedDimension": "Гарний набір не вміщується на вашому столі; ви хотіли б більший стіл.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-44:i19:r3",
+            "correct": false,
+            "testedDimension": "Гарний набір не вміщується на вашому столі; ви хотіли б більший стіл.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had, не will have.",
+              "uk": "Тут потрібна had, не will have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте загальну вартість покупки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте загальну вартість покупки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How much is the total?",
+        "localizedMeaning": {
+          "ru": "Спросите общую стоимость покупки.",
+          "uk": "Запитайте загальну вартість покупки."
+        },
+        "orderedTokens": [
+          "How",
+          "much",
+          "is",
+          "the",
+          "total"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-44:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте продавцю за допомогу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-44:i21:audio"
+      ],
+      "accessibilityLabel": "Подякуйте продавцю за допомогу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-44:i21:audio",
+          "transcript": "Thank you for your help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for your help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d41a71bd3177ab4dc31ec4317c9910afdc2f78614c63885ee6eea364102520d3"
+}

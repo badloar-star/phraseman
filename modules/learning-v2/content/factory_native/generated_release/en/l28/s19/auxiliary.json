@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-19:intro1:r2": {
+          "ru": "После will нужно be.",
+          "uk": "Після will потрібне be."
+        },
+        "en:lesson-28:session-19:intro1:r3": {
+          "ru": "В этой конструкции нужна washed.",
+          "uk": "У цій конструкції потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-19:intro2:r2": {
+          "ru": "С Towels нужна are.",
+          "uk": "З Towels потрібна are."
+        },
+        "en:lesson-28:session-19:intro2:r3": {
+          "ru": "Здесь нужна washed.",
+          "uk": "Тут потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-19:intro3:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-28:session-19:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "19f27e2f417a29e9c4a7e6982e891257d4452ba0e79b554deb78f94e51ca379e"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-26:i01",
+    "correctText": "bottle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i02",
+    "correctText": "The bottle can't be empty.",
+    "correctResponseId": "en:lesson-32:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i04",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i05",
+    "correctText": "The bag must be heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i06",
+    "correctText": "cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i07",
+    "correctText": "The cup I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i09",
+    "correctText": "The bottle can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i10",
+    "correctText": "It must be heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i12",
+    "correctText": "water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i13",
+    "correctText": "The water may be cold.",
+    "correctResponseId": "en:lesson-32:session-26:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i14",
+    "correctText": "The water may be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i15",
+    "correctText": "This is the cup I washed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-26:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i17",
+    "correctText": "The bag was heavy, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i18",
+    "correctText": "The bottle can't be empty.",
+    "correctResponseId": "en:lesson-32:session-26:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i19",
+    "correctText": "The bag must be heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-26:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-26:i21",
+    "correctText": "It can't be empty.",
+    "correctResponseId": null
+  }
+]

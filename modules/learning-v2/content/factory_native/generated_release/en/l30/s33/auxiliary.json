@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-33:intro1:r2": {
+          "ru": "Is сообщает о занятости сейчас. Здесь передаём вчерашнюю занятость со сдвигом am → was.",
+          "uk": "Is повідомляє про зайнятість зараз. Тут передаємо вчорашню зайнятість зі зсувом am → was."
+        },
+        "en:lesson-30:session-33:intro1:r3": {
+          "ru": "Нужна личная форма прошедшего времени was, не be.",
+          "uk": "Потрібна особова форма минулого часу was, не be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-33:intro2:r2": {
+          "ru": "Needs не выполняет заданный сдвиг в прошлое; здесь нужно needed.",
+          "uk": "Needs не виконує заданий зсув у минуле; тут потрібне needed."
+        },
+        "en:lesson-30:session-33:intro2:r3": {
+          "ru": "Нужна форма needed; needing без вспомогательного глагола здесь не подходит.",
+          "uk": "Потрібна форма needed; needing без допоміжного дієслова тут не підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-33:intro3:r2": {
+          "ru": "В этом задании сдвигаем are в прошлое: were.",
+          "uk": "У цьому завданні зсуваємо are в минуле: were."
+        },
+        "en:lesson-30:session-33:intro3:r3": {
+          "ru": "После they в прошедшем времени нужна форма were, не was.",
+          "uk": "Після they у минулому часі потрібна форма were, не was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "36adf6c48febd25ae7a210713013c96c8647ee4ddde95ed8d9e8ba8ab2bca694"
+}

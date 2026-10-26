@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-28:i01",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i02",
+    "correctText": "The bread can't be fresh.",
+    "correctResponseId": "en:lesson-32:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i04",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i05",
+    "correctText": "The soup must be hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i06",
+    "correctText": "bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i07",
+    "correctText": "The bowl I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i09",
+    "correctText": "The bread can't be fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i10",
+    "correctText": "It must be hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i12",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i13",
+    "correctText": "The milk may be cold.",
+    "correctResponseId": "en:lesson-32:session-28:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i14",
+    "correctText": "The milk may be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i15",
+    "correctText": "This is the bowl I washed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-28:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i17",
+    "correctText": "The soup was hot, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i18",
+    "correctText": "The bread can't be fresh.",
+    "correctResponseId": "en:lesson-32:session-28:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i19",
+    "correctText": "The soup must be hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-28:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-28:i21",
+    "correctText": "It can't be fresh.",
+    "correctResponseId": null
+  }
+]

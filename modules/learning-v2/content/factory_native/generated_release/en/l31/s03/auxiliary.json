@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-03:intro1:r2": {
+          "ru": "После where здесь нужен порядок the bread is.",
+          "uk": "Після where тут потрібен порядок the bread is."
+        },
+        "en:lesson-31:session-03:intro1:r3": {
+          "ru": "Bread здесь требует is.",
+          "uk": "Bread тут потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-03:intro2:r2": {
+          "ru": "После if нужен порядок the cake is fresh.",
+          "uk": "Після if потрібен порядок the cake is fresh."
+        },
+        "en:lesson-31:session-03:intro2:r3": {
+          "ru": "Один cake требует is.",
+          "uk": "Один cake потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-03:intro3:r2": {
+          "ru": "После was для действия нужна форма baked.",
+          "uk": "Після was для дії потрібна форма baked."
+        },
+        "en:lesson-31:session-03:intro3:r3": {
+          "ru": "Bread здесь требует was.",
+          "uk": "Bread тут потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c6eea1c1ce1eba3516ffe33e62d8c31917e727b8d953fb2ed652f428d11d6851"
+}

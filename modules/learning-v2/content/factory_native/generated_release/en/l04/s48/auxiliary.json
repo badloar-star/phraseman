@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-48:intro2:r2": {
-          "ru": "Фартуков несколько, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Фартухів кілька, тому потрібно aren’t, а не isn’t."
+          "ru": "Aprons стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Aprons стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-48:intro2:r3": {
-          "ru": "После any слово ставят во множественном числе: aprons.",
-          "uk": "Після any слово ставлять у множині: aprons."
+          "ru": "После aren’t any здесь нужна форма множественного числа aprons.",
+          "uk": "Після aren’t any тут потрібна форма множини aprons."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a03ecfcdb4697ae72ded7dd3748eb36372d835c52e55722711a7589dc0e33f97"
+  "auxiliaryFingerprint": "30972fef7fe410395879f2341dcd61ae8c2060006b66112ac03fa5cee73ec5b6"
 }

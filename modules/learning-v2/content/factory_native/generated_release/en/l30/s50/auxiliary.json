@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-50:intro1:r2": {
+          "ru": "В пересказе нужен порядок my photo was.",
+          "uk": "У переказі потрібен порядок my photo was."
+        },
+        "en:lesson-30:session-50:intro1:r3": {
+          "ru": "Одна photo требует was.",
+          "uk": "Одна photo потребує was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-50:intro2:r2": {
+          "ru": "После told перед me не нужно to.",
+          "uk": "Після told перед me не потрібне to."
+        },
+        "en:lesson-30:session-50:intro2:r3": {
+          "ru": "Перед получателем me здесь told.",
+          "uk": "Перед одержувачем me тут told."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-50:intro3:r2": {
+          "ru": "В уточнении нужен порядок I found.",
+          "uk": "В уточненні потрібен порядок I found."
+        },
+        "en:lesson-30:session-50:intro3:r3": {
+          "ru": "Одна photo требует is.",
+          "uk": "Одна photo потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "132fdb4b580c436d009960bd6634db629a2cdc6551d031e83ddbccb54cae5cf7"
+}

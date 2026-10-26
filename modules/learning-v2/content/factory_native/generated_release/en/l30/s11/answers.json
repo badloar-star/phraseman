@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-11:i01",
+    "correctText": "She asked what I preferred.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i02",
+    "correctText": "marshmallow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i03",
+    "correctText": "There is a marshmallow in my hot chocolate.",
+    "correctResponseId": "en:lesson-30:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i04",
+    "correctText": "I preferred",
+    "correctResponseId": "en:lesson-30:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i05",
+    "correctText": "He asked if I liked chocolate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i06",
+    "correctText": "toffee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i07",
+    "correctText": "He asked if I liked toffee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i08",
+    "correctText": "She asked what I preferred.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i09",
+    "correctText": "gave",
+    "correctResponseId": "en:lesson-30:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i10",
+    "correctText": "liquorice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i11",
+    "correctText": "She said she liked liquorice.",
+    "correctResponseId": "en:lesson-30:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i12",
+    "correctText": "I wish I had a bigger box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i13",
+    "correctText": "marzipan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i14",
+    "correctText": "He asked if I liked marzipan.",
+    "correctResponseId": "en:lesson-30:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i15",
+    "correctText": "en:lesson-30:session-11:i15:p1=marshmallow\nen:lesson-30:session-11:i15:p2=toffee\nen:lesson-30:session-11:i15:p3=liquorice\nen:lesson-30:session-11:i15:p4=marzipan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i16",
+    "correctText": "if",
+    "correctResponseId": "en:lesson-30:session-11:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i17",
+    "correctText": "He asked if I liked marzipan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i18",
+    "correctText": "He asked if I liked toffee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i19",
+    "correctText": "She said she liked liquorice.",
+    "correctResponseId": "en:lesson-30:session-11:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i20",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-30:session-11:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-11:i21",
+    "correctText": "The box she gave me is on the table.",
+    "correctResponseId": null
+  }
+]

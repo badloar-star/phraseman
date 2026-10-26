@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-06:intro1:r2": {
+          "ru": "С he здесь нужно was.",
+          "uk": "Із he тут потрібне was."
+        },
+        "en:lesson-30:session-06:intro1:r3": {
+          "ru": "Нужна форма was, не отдельное being.",
+          "uk": "Потрібна форма was, не окреме being."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-06:intro2:r2": {
+          "ru": "Для такого желания о настоящем после wish используем knew.",
+          "uk": "Для такого бажання про теперішнє після wish використовуємо knew."
+        },
+        "en:lesson-30:session-06:intro2:r3": {
+          "ru": "Нужно I knew, не I knowing.",
+          "uk": "Потрібне I knew, не I knowing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-06:intro3:r2": {
+          "ru": "В уточнении нужна форма visited.",
+          "uk": "В уточненні потрібна форма visited."
+        },
+        "en:lesson-30:session-06:intro3:r3": {
+          "ru": "Один домик: the cottage was.",
+          "uk": "Один будиночок: the cottage was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5f0b8f475156aa963a476d3f3e26543936c140f751260542c60f305dc8fb4abb"
+}

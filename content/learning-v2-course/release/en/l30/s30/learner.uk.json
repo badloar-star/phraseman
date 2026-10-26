@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i01:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-30:i01:r1",
+            "targetText": "milk",
+            "meaningByLocale": {
+              "ru": "Молоко. Повторение знакомого слова.",
+              "uk": "Молоко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milk",
+          "definitionByLocale": {
+            "ru": "Молоко. Повторение знакомого слова.",
+            "uk": "Молоко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i02:r1",
+          "text": "She asked me to buy some milk."
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i02:r2",
+          "text": "She asked me to buy some rice."
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i02:r3",
+          "text": "She asked me to buy some cheese."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i02:audio",
+          "transcript": "She asked me to buy some milk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-30:i02:r1",
+            "targetText": "She asked me to buy some milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i02:r2",
+            "targetText": "She asked me to buy some rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i02:r3",
+            "targetText": "She asked me to buy some cheese.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked me to buy some milk.",
+              "uk": "У записі звучить She asked me to buy some milk."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked me to buy some milk.",
+              "uk": "У записі звучить She asked me to buy some milk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра повідомила, що холодильник порожній. Одержувача в цій фразі не називаємо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i03:r1",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i03:r2",
+          "text": "told"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i03:r3",
+          "text": "asked"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра повідомила, що холодильник порожній. Одержувача в цій фразі не називаємо.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра сообщила, что холодильник пуст. Получателя в этой фразе не называем.",
+          "uk": "Сестра повідомила, що холодильник порожній. Одержувача в цій фразі не називаємо."
+        },
+        "gappedTargetPhrase": "She ___ the fridge was empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-30:i03:r1",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i03:r2",
+            "text": "told"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i03:r3",
+            "text": "asked"
+          }
+        ],
+        "testedDimension": "Сестра повідомила, що холодильник порожній. Одержувача в цій фразі не називаємо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Сестра повідомила, що холодильник порожній. Одержувача в цій фразі не називаємо.",
+            "feedbackByLocale": {
+              "ru": "После told перед таким сообщением нужно назвать получателя.",
+              "uk": "Після told перед таким повідомленням потрібно назвати одержувача."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Сестра повідомила, що холодильник порожній. Одержувача в цій фразі не називаємо.",
+            "feedbackByLocale": {
+              "ru": "Здесь сообщение, а не вопрос или просьба.",
+              "uk": "Тут повідомлення, а не запитання чи прохання."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i04:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-30:i04:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Продавець повідомив вам, що хліб свіжий. Передайте повідомлення із зазначенням одержувача.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Продавець повідомив вам, що хліб свіжий. Передайте повідомлення із зазначенням одержувача.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i05:audio",
+          "transcript": "He told me the bread was fresh."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He told me the bread was fresh.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра попросила вас узяти сумку. Передайте прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра попросила вас узяти сумку. Передайте прохання.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked me to take a bag.",
+        "localizedMeaning": {
+          "ru": "Сестра попросила вас взять сумку. Передайте просьбу.",
+          "uk": "Сестра попросила вас узяти сумку. Передайте прохання."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "take",
+          "a",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — list",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — list",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i07:audio",
+          "transcript": "list"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-30:i07:r1",
+            "targetText": "list",
+            "meaningByLocale": {
+              "ru": "Список. Повторение знакомого слова.",
+              "uk": "Список. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "list",
+          "definitionByLocale": {
+            "ru": "Список. Повторение знакомого слова.",
+            "uk": "Список. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра запитала, де ваш список. Передайте запитання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i08:r1",
+          "text": "my list was"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i08:r2",
+          "text": "was my list"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i08:r3",
+          "text": "my list were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра запитала, де ваш список. Передайте запитання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила, где находится ваш список. Передайте вопрос.",
+          "uk": "Сестра запитала, де ваш список. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-30:i08:r1",
+            "text": "my list was"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i08:r2",
+            "text": "was my list"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i08:r3",
+            "text": "my list were"
+          }
+        ],
+        "testedDimension": "Сестра запитала, де ваш список. Передайте запитання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Сестра запитала, де ваш список. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "В пересказе ставим my list перед was.",
+              "uk": "У переказі ставимо my list перед was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Сестра запитала, де ваш список. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "List — один предмет; здесь was.",
+              "uk": "List — один предмет; тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що список, який ви написали, короткий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що список, який ви написали, короткий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i09:audio",
+          "transcript": "The list I wrote is short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The list I wrote is short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання продавця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання продавця.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i10:audio",
+          "transcript": "He asked if I needed a bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if I needed a bag.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "needed",
+          "a",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви попросили брата допомогти вам із покупками.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i11:r1",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i11:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i11:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви попросили брата допомогти вам із покупками.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили брата помочь вам с покупками.",
+          "uk": "Ви попросили брата допомогти вам із покупками."
+        },
+        "gappedTargetPhrase": "I asked ___ to help me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-30:i11:r1",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i11:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i11:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Ви попросили брата допомогти вам із покупками.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви попросили брата допомогти вам із покупками.",
+            "feedbackByLocale": {
+              "ru": "После asked используем him для того, кого попросили.",
+              "uk": "Після asked використовуємо him для того, кого попросили."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви попросили брата допомогти вам із покупками.",
+            "feedbackByLocale": {
+              "ru": "His обозначает принадлежность; здесь нужен him.",
+              "uk": "His позначає належність; тут потрібне him."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eggs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eggs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i12:audio",
+          "transcript": "eggs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-30:i12:r1",
+            "targetText": "eggs",
+            "meaningByLocale": {
+              "ru": "Яйца. Повторение знакомого слова.",
+              "uk": "Яйця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eggs",
+          "definitionByLocale": {
+            "ru": "Яйца. Повторение знакомого слова.",
+            "uk": "Яйця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i13:r1",
+          "text": "She asked me to buy six eggs."
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i13:r2",
+          "text": "She asked me to buy ten eggs."
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i13:r3",
+          "text": "She asked me to buy two eggs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i13:audio",
+          "transcript": "She asked me to buy six eggs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-30:i13:r1",
+            "targetText": "She asked me to buy six eggs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i13:r2",
+            "targetText": "She asked me to buy ten eggs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i13:r3",
+            "targetText": "She asked me to buy two eggs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked me to buy six eggs.",
+              "uk": "У записі звучить She asked me to buy six eggs."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked me to buy six eggs.",
+              "uk": "У записі звучить She asked me to buy six eggs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Магазин далеко. Скажіть, що хотіли б, щоб він був ближче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Магазин далеко. Скажіть, що хотіли б, щоб він був ближче.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i14:audio",
+          "transcript": "I wish the shop were closer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the shop were closer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що сир, який ви купили, смачний.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що сир, який ви купили, смачний.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cheese I bought is tasty.",
+        "localizedMeaning": {
+          "ru": "Скажите, что сыр, который вы купили, вкусный.",
+          "uk": "Скажіть, що сир, який ви купили, смачний."
+        },
+        "orderedTokens": [
+          "The",
+          "cheese",
+          "I",
+          "bought",
+          "is",
+          "tasty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра попросила вас не купувати більше цукру.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i16:r1",
+          "text": "not to buy"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i16:r2",
+          "text": "not buy"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i16:r3",
+          "text": "not buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра попросила вас не купувати більше цукру.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра попросила вас не покупать больше сахара.",
+          "uk": "Сестра попросила вас не купувати більше цукру."
+        },
+        "gappedTargetPhrase": "She asked me ___ more sugar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-30:i16:r1",
+            "text": "not to buy"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i16:r2",
+            "text": "not buy"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i16:r3",
+            "text": "not buying"
+          }
+        ],
+        "testedDimension": "Сестра попросила вас не купувати більше цукру.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i16:r2",
+            "correct": false,
+            "testedDimension": "Сестра попросила вас не купувати більше цукру.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to buy.",
+              "uk": "Заперечне прохання передаємо через not to buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i16:r3",
+            "correct": false,
+            "testedDimension": "Сестра попросила вас не купувати більше цукру.",
+            "feedbackByLocale": {
+              "ru": "После asked me здесь нужно not to buy.",
+              "uk": "Після asked me тут потрібне not to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Продавець повідомив вам, що яблука солодкі. Передайте повідомлення із зазначенням одержувача.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Продавець повідомив вам, що яблука солодкі. Передайте повідомлення із зазначенням одержувача.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i17:audio",
+          "transcript": "He told me the apples were sweet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He told me the apples were sweet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: сестра попросила купити молоко чи налити його?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i18:r1",
+          "text": "She asked me to pour the milk."
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i18:r2",
+          "text": "She asked me to buy the milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i18:audioA",
+        "en:lesson-30:session-30:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: сестра попросила купити молоко чи налити його?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked me to pour the milk.",
+        "contrastB": "She asked me to buy the milk.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-30:i18:audioA",
+          "transcript": "She asked me to pour the milk."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-30:i18:audioB",
+          "transcript": "She asked me to buy the milk."
+        },
+        "testedPhoneticContrast": "Послухайте: сестра попросила купити молоко чи налити його?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: сестра попросила купити молоко чи налити його?",
+            "feedbackByLocale": {
+              "ru": "Звучит pour — налить.",
+              "uk": "Звучить pour — налити."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення про магазин.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про магазин.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i19:audio",
+          "transcript": "He said the shop was busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said the shop was busy.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "the",
+          "shop",
+          "was",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра повідомила вам із братом, що вечеря готова. Вставте форму «нам».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-30:i20:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i20:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-30:i20:r3",
+          "text": "to us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра повідомила вам із братом, що вечеря готова. Вставте форму «нам».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра сообщила вам с братом, что ужин готов. Вставьте форму «нам».",
+          "uk": "Сестра повідомила вам із братом, що вечеря готова. Вставте форму «нам»."
+        },
+        "gappedTargetPhrase": "She told ___ dinner was ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-30:i20:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i20:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i20:r3",
+            "text": "to us"
+          }
+        ],
+        "testedDimension": "Сестра повідомила вам із братом, що вечеря готова. Вставте форму «нам».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-30:i20:r2",
+            "correct": false,
+            "testedDimension": "Сестра повідомила вам із братом, що вечеря готова. Вставте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told получателя обозначаем us.",
+              "uk": "Після told одержувача позначаємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-30:i20:r3",
+            "correct": false,
+            "testedDimension": "Сестра повідомила вам із братом, що вечеря готова. Вставте форму «нам».",
+            "feedbackByLocale": {
+              "ru": "После told перед us не ставим to.",
+              "uk": "Після told перед us не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-30:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат попросив вас поставити молоко в холодильник. Передайте прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-30:i21:audio"
+      ],
+      "accessibilityLabel": "Брат попросив вас поставити молоко в холодильник. Передайте прохання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-30:i21:audio",
+          "transcript": "He asked me to put the milk in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to put the milk in the fridge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "80fb433e2099acc33fb1b9273a2523d48db24d2437cfcfc9be6c1f6d268d76ee"
+}

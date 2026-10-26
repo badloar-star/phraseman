@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-47:intro1:r2": {
+          "ru": "Needs не выполняет заданный сдвиг.",
+          "uk": "Needs не виконує заданий зсув."
+        },
+        "en:lesson-30:session-47:intro1:r3": {
+          "ru": "Нужна форма needed.",
+          "uk": "Потрібна форма needed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-47:intro2:r2": {
+          "ru": "После asked нужен получатель me.",
+          "uk": "Після asked потрібен одержувач me."
+        },
+        "en:lesson-30:session-47:intro2:r3": {
+          "ru": "После asked me перед cut нужно to.",
+          "uk": "Після asked me перед cut потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-47:intro3:r2": {
+          "ru": "В уточнении нужен порядок I fixed.",
+          "uk": "В уточненні потрібен порядок I fixed."
+        },
+        "en:lesson-30:session-47:intro3:r3": {
+          "ru": "Одно coat требует is.",
+          "uk": "Одне coat потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0982c64290f3626f4a12bee1ce80c53fc589be823d650fee78cf339d92c3f1cd"
+}

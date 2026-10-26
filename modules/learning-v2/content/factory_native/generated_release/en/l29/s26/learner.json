@@ -1,0 +1,1095 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i01:r1",
+          "text": "The player who scored the goal is over there."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i01:r2",
+          "text": "The player who missed the goal is over there."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i01:r3",
+          "text": "The player who scored the goal is over here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i01:audio",
+          "transcript": "The player who scored the goal is over there."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i01:r1",
+            "targetText": "The player who scored the goal is over there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i01:r2",
+            "targetText": "The player who missed the goal is over there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i01:r3",
+            "targetText": "The player who scored the goal is over here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The player who scored the goal is over there.",
+              "uk": "У записі звучить The player who scored the goal is over there."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The player who scored the goal is over there.",
+              "uk": "У записі звучить The player who scored the goal is over there."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — captain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — captain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i02:audio",
+          "transcript": "captain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i02:r1",
+            "targetText": "captain",
+            "meaningByLocale": {
+              "ru": "Капитан команды. Игрок, который представляет команду и помогает руководить ею на поле.",
+              "uk": "Капітан команди. Гравець, який представляє команду й допомагає керувати нею на полі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "captain",
+          "definitionByLocale": {
+            "ru": "Капитан команды. Игрок, который представляет команду и помогает руководить ею на поле.",
+            "uk": "Капітан команди. Гравець, який представляє команду й допомагає керувати нею на полі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, кто капитан команды.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i03:audio"
+      ],
+      "accessibilityLabel": "Спросите, кто капитан команды.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i03:audio",
+          "transcript": "Who is the captain?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who is the captain?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что игрок, которого вы знаете, живёт рядом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что игрок, которого вы знаете, живёт рядом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The player who I know lives nearby.",
+        "localizedMeaning": {
+          "ru": "Скажите, что игрок, которого вы знаете, живёт рядом.",
+          "uk": "Скажіть, що гравець, якого ви знаєте, живе поруч."
+        },
+        "orderedTokens": [
+          "The",
+          "player",
+          "who",
+          "I",
+          "know",
+          "lives",
+          "nearby"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — striker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — striker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i05:audio",
+          "transcript": "striker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i05:r1",
+            "targetText": "striker",
+            "meaningByLocale": {
+              "ru": "Нападающий. Футболист, чья основная задача — забивать голы.",
+              "uk": "Нападник. Футболіст, чиє основне завдання — забивати голи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "striker",
+          "definitionByLocale": {
+            "ru": "Нападающий. Футболист, чья основная задача — забивать голы.",
+            "uk": "Нападник. Футболіст, чиє основне завдання — забивати голи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i06:r1",
+          "text": "The striker scored twice."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i06:r2",
+          "text": "The striker scored once."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i06:r3",
+          "text": "The goalkeeper scored twice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i06:audio",
+          "transcript": "The striker scored twice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i06:r1",
+            "targetText": "The striker scored twice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i06:r2",
+            "targetText": "The striker scored once.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i06:r3",
+            "targetText": "The goalkeeper scored twice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The striker scored twice.",
+              "uk": "У записі звучить The striker scored twice."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The striker scored twice.",
+              "uk": "У записі звучить The striker scored twice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Именно этот игрок забил гол.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i07:r1",
+          "text": "scored"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i07:r2",
+          "text": "he scored"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i07:r3",
+          "text": "score"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Именно этот игрок забил гол.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Именно этот игрок забил гол.",
+          "uk": "Саме цей гравець забив гол."
+        },
+        "gappedTargetPhrase": "The player who ___ the goal is over there.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-26:i07:r1",
+            "text": "scored"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i07:r2",
+            "text": "he scored"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i07:r3",
+            "text": "score"
+          }
+        ],
+        "testedDimension": "Именно этот игрок забил гол.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i07:r2",
+            "correct": false,
+            "testedDimension": "Именно этот игрок забил гол.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя, he лишнее.",
+              "uk": "Who вже позначає виконавця, he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i07:r3",
+            "correct": false,
+            "testedDimension": "Именно этот игрок забил гол.",
+            "feedbackByLocale": {
+              "ru": "Здесь завершённое действие: scored.",
+              "uk": "Тут завершена дія: scored."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о начале матча.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о начале матча.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i08:audio",
+          "transcript": "What time does the match start?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What time does the match start?",
+        "orderedTokens": [
+          "What",
+          "time",
+          "does",
+          "the",
+          "match",
+          "start"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — defender",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — defender",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i09:audio",
+          "transcript": "defender"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i09:r1",
+            "targetText": "defender",
+            "meaningByLocale": {
+              "ru": "Защитник. Футболист, который мешает соперникам атаковать и забивать голы.",
+              "uk": "Захисник. Футболіст, який заважає суперникам атакувати й забивати голи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "defender",
+          "definitionByLocale": {
+            "ru": "Защитник. Футболист, который мешает соперникам атаковать и забивать голы.",
+            "uk": "Захисник. Футболіст, який заважає суперникам атакувати й забивати голи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что ваш брат играет защитником.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что ваш брат играет защитником.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My brother is a defender.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваш брат играет защитником.",
+          "uk": "Скажіть, що ваш брат грає захисником."
+        },
+        "orderedTokens": [
+          "My",
+          "brother",
+          "is",
+          "a",
+          "defender"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы знаете этого игрока; он живёт рядом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i11:r1",
+          "text": "I know"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i11:r2",
+          "text": "I know him"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i11:r3",
+          "text": "me know"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы знаете этого игрока; он живёт рядом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете этого игрока; он живёт рядом.",
+          "uk": "Ви знаєте цього гравця; він живе поруч."
+        },
+        "gappedTargetPhrase": "The player who ___ lives nearby.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-26:i11:r1",
+            "text": "I know"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i11:r2",
+            "text": "I know him"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i11:r3",
+            "text": "me know"
+          }
+        ],
+        "testedDimension": "Вы знаете этого игрока; он живёт рядом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы знаете этого игрока; он живёт рядом.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает знакомого игрока, him лишнее.",
+              "uk": "Who вже позначає знайомого гравця, him зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы знаете этого игрока; он живёт рядом.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I: I know.",
+              "uk": "Потрібен виконавець I: I know."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите текущий счёт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i12:audio"
+      ],
+      "accessibilityLabel": "Спросите текущий счёт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i12:audio",
+          "transcript": "What is the score?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the score?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — midfielder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — midfielder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i13:audio",
+          "transcript": "midfielder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i13:r1",
+            "targetText": "midfielder",
+            "meaningByLocale": {
+              "ru": "Полузащитник. Футболист, который играет между защитой и нападением.",
+              "uk": "Півзахисник. Футболіст, який грає між захистом і нападом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "midfielder",
+          "definitionByLocale": {
+            "ru": "Полузащитник. Футболист, который играет между защитой и нападением.",
+            "uk": "Півзахисник. Футболіст, який грає між захистом і нападом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i14:r1",
+          "text": "The midfielder passed the ball."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i14:r2",
+          "text": "The midfielder missed the ball."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i14:r3",
+          "text": "The defender passed the ball."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i14:audio",
+          "transcript": "The midfielder passed the ball."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-26:i14:r1",
+            "targetText": "The midfielder passed the ball.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i14:r2",
+            "targetText": "The midfielder missed the ball.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i14:r3",
+            "targetText": "The defender passed the ball.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The midfielder passed the ball.",
+              "uk": "У записі звучить The midfielder passed the ball."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The midfielder passed the ball.",
+              "uk": "У записі звучить The midfielder passed the ball."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините роль игрока с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините роль игрока с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-26:i15:p1",
+            "target": "captain",
+            "meaningByLocale": {
+              "ru": "капитан",
+              "uk": "капітан"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-26:i15:p2",
+            "target": "striker",
+            "meaningByLocale": {
+              "ru": "нападающий",
+              "uk": "нападник"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-26:i15:p3",
+            "target": "defender",
+            "meaningByLocale": {
+              "ru": "защитник",
+              "uk": "захисник"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-26:i15:p4",
+            "target": "midfielder",
+            "meaningByLocale": {
+              "ru": "полузащитник",
+              "uk": "півзахисник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "captain",
+          "striker",
+          "defender",
+          "midfielder"
+        ],
+        "rightColumn": [
+          "капитан",
+          "нападающий",
+          "защитник",
+          "полузащитник"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните игрока через его сумку на скамейке.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i16:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i16:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните игрока через его сумку на скамейке.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните игрока через его сумку на скамейке.",
+          "uk": "Уточніть гравця через його сумку на лавці."
+        },
+        "gappedTargetPhrase": "That is the player ___ bag is on the bench.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-26:i16:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i16:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Уточните игрока через его сумку на скамейке.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточните игрока через его сумку на скамейке.",
+            "feedbackByLocale": {
+              "ru": "Для принадлежности вещи нужна whose.",
+              "uk": "Для належності речі потрібна whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточните игрока через его сумку на скамейке.",
+            "feedbackByLocale": {
+              "ru": "После whose не добавляем his.",
+              "uk": "Після whose не додаємо his."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: нападающий забил один раз или дважды?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i17:r1",
+          "text": "The striker scored twice."
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i17:r2",
+          "text": "The striker scored once."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i17:audioA",
+        "en:lesson-29:session-26:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: нападающий забил один раз или дважды?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The striker scored twice.",
+        "contrastB": "The striker scored once.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-26:i17:audioA",
+          "transcript": "The striker scored twice."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-26:i17:audioB",
+          "transcript": "The striker scored once."
+        },
+        "testedPhoneticContrast": "Послушайте: нападающий забил один раз или дважды?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: нападающий забил один раз или дважды?",
+            "feedbackByLocale": {
+              "ru": "Звучит twice — дважды.",
+              "uk": "Звучить twice — двічі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто остановил игру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто остановил игру.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i18:audio",
+          "transcript": "The game was stopped by the referee."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The game was stopped by the referee.",
+        "orderedTokens": [
+          "The",
+          "game",
+          "was",
+          "stopped",
+          "by",
+          "the",
+          "referee"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите сесть в тени.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-26:i19:audio"
+      ],
+      "accessibilityLabel": "Предложите сесть в тени.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-26:i19:audio",
+          "transcript": "Let us sit in the shade."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us sit in the shade.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Игру остановил судья.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-26:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-26:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Игру остановил судья.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Игру остановил судья.",
+          "uk": "Гру зупинив суддя."
+        },
+        "gappedTargetPhrase": "The game was stopped ___ the referee.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-26:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Игру остановил судья.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-26:i20:r2",
+            "correct": false,
+            "testedDimension": "Игру остановил судья.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-26:i20:r3",
+            "correct": false,
+            "testedDimension": "Игру остановил судья.",
+            "feedbackByLocale": {
+              "ru": "Судью как исполнителя называем после by.",
+              "uk": "Суддю як виконавця називаємо після by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-26:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что ваша команда выиграла матч.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что ваша команда выиграла матч.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our team won the match.",
+        "localizedMeaning": {
+          "ru": "Скажите, что ваша команда выиграла матч.",
+          "uk": "Скажіть, що ваша команда виграла матч."
+        },
+        "orderedTokens": [
+          "Our",
+          "team",
+          "won",
+          "the",
+          "match"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "890744813ea0505c93268e1bcfc5a40f7c23b973069a6ce6436904d7cb3f0af5"
+}

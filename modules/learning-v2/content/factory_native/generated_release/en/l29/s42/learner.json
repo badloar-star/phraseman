@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i01:r1",
+          "text": "The story Grandad told us was funny."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i01:r2",
+          "text": "The story Grandad told us was sad."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i01:r3",
+          "text": "The story Grandma told us was funny."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i01:audio",
+          "transcript": "The story Grandad told us was funny."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i01:r1",
+            "targetText": "The story Grandad told us was funny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i01:r2",
+            "targetText": "The story Grandad told us was sad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i01:r3",
+            "targetText": "The story Grandma told us was funny.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The story Grandad told us was funny.",
+              "uk": "У записі звучить The story Grandad told us was funny."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The story Grandad told us was funny.",
+              "uk": "У записі звучить The story Grandad told us was funny."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ramble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ramble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i02:audio",
+          "transcript": "ramble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i02:r1",
+            "targetText": "ramble",
+            "meaningByLocale": {
+              "ru": "Говорить долго и сбивчиво. Переходить от одной мысли к другой, отвлекаясь от основной темы.",
+              "uk": "Говорити довго й плутано. Переходити від однієї думки до іншої, відхиляючись від основної теми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ramble",
+          "definitionByLocale": {
+            "ru": "Говорить долго и сбивчиво. Переходить от одной мысли к другой, отвлекаясь от основной темы.",
+            "uk": "Говорити довго й плутано. Переходити від однієї думки до іншої, відхиляючись від основної теми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Признайтесь, что можете говорить сбивчиво, когда волнуетесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Признайтесь, что можете говорить сбивчиво, когда волнуетесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i03:audio",
+          "transcript": "I ramble when I am nervous."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I ramble when I am nervous.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам понравилась смешная история, которую рассказал дедушка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i04:r1",
+          "text": "told us"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i04:r2",
+          "text": "told us it"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i04:r3",
+          "text": "tell us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам понравилась смешная история, которую рассказал дедушка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам понравилась смешная история, которую рассказал дедушка.",
+          "uk": "Вам сподобалася кумедна історія, яку розповів дідусь."
+        },
+        "gappedTargetPhrase": "The story Grandad ___ was funny.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-42:i04:r1",
+            "text": "told us"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i04:r2",
+            "text": "told us it"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i04:r3",
+            "text": "tell us"
+          }
+        ],
+        "testedDimension": "Вам понравилась смешная история, которую рассказал дедушка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Вам понравилась смешная история, которую рассказал дедушка.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: story уже называет историю.",
+              "uk": "It зайве: story вже називає історію."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Вам понравилась смешная история, которую рассказал дедушка.",
+            "feedbackByLocale": {
+              "ru": "Для рассказа в прошлом нужно told.",
+              "uk": "Для розповіді в минулому потрібне told."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите рассказать, что случилось потом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите рассказать, что случилось потом.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What happened next?",
+        "localizedMeaning": {
+          "ru": "Попросите рассказать, что случилось потом.",
+          "uk": "Попросіть розповісти, що сталося потім."
+        },
+        "orderedTokens": [
+          "What",
+          "happened",
+          "next"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — babble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — babble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i06:audio",
+          "transcript": "babble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i06:r1",
+            "targetText": "babble",
+            "meaningByLocale": {
+              "ru": "Лепетать. Издавать звуки, похожие на речь, как маленький ребёнок; также говорить быстро и невнятно.",
+              "uk": "Лепетати. Видавати звуки, схожі на мовлення, як маленька дитина; також говорити швидко й невиразно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "babble",
+          "definitionByLocale": {
+            "ru": "Лепетать. Издавать звуки, похожие на речь, как маленький ребёнок; также говорить быстро и невнятно.",
+            "uk": "Лепетати. Видавати звуки, схожі на мовлення, як маленька дитина; також говорити швидко й невиразно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i07:r1",
+          "text": "I can hear the baby babble."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i07:r2",
+          "text": "I can hear the baby cry."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i07:r3",
+          "text": "I can hear the baby laugh."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i07:audio",
+          "transcript": "I can hear the baby babble."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i07:r1",
+            "targetText": "I can hear the baby babble.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i07:r2",
+            "targetText": "I can hear the baby cry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i07:r3",
+            "targetText": "I can hear the baby laugh.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can hear the baby babble.",
+              "uk": "У записі звучить I can hear the baby babble."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can hear the baby babble.",
+              "uk": "У записі звучить I can hear the baby babble."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, чей малыш спит.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, чей малыш спит.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i08:audio",
+          "transcript": "This is the woman whose baby is asleep."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the woman whose baby is asleep.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "woman",
+          "whose",
+          "baby",
+          "is",
+          "asleep"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Покажите женщину, чей малыш заснул.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i09:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите женщину, чей малыш заснул.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Покажите женщину, чей малыш заснул.",
+          "uk": "Покажіть жінку, чиє маля заснуло."
+        },
+        "gappedTargetPhrase": "This is the woman ___ baby is asleep.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-42:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i09:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Покажите женщину, чей малыш заснул.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Покажите женщину, чей малыш заснул.",
+            "feedbackByLocale": {
+              "ru": "Нужно whose baby — чей малыш.",
+              "uk": "Потрібно whose baby — чиє маля."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Покажите женщину, чей малыш заснул.",
+            "feedbackByLocale": {
+              "ru": "Her лишнее после whose.",
+              "uk": "Her зайве після whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chatter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chatter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i10:audio",
+          "transcript": "chatter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i10:r1",
+            "targetText": "chatter",
+            "meaningByLocale": {
+              "ru": "Оживлённо болтать. Быстро и непринуждённо разговаривать, часто о повседневных мелочах.",
+              "uk": "Жваво балакати. Швидко й невимушено розмовляти, часто про повсякденні дрібниці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chatter",
+          "definitionByLocale": {
+            "ru": "Оживлённо болтать. Быстро и непринуждённо разговаривать, часто о повседневных мелочах.",
+            "uk": "Жваво балакати. Швидко й невимушено розмовляти, часто про повсякденні дрібниці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что дети болтают за столом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, что дети болтают за столом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i11:audio",
+          "transcript": "The children chatter at the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The children chatter at the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите говорить немного тише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите говорить немного тише.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you speak a little more quietly?",
+        "localizedMeaning": {
+          "ru": "Попросите говорить немного тише.",
+          "uk": "Попросіть говорити трохи тихіше."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "speak",
+          "a",
+          "little",
+          "more",
+          "quietly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blurt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blurt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i13:audio",
+          "transcript": "blurt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i13:r1",
+            "targetText": "blurt",
+            "meaningByLocale": {
+              "ru": "Выпалить. Неожиданно сказать что-то, не успев подумать; часто употребляется с out.",
+              "uk": "Бовкнути, випалити. Несподівано сказати щось, не встигнувши подумати; часто вживається з out."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blurt",
+          "definitionByLocale": {
+            "ru": "Выпалить. Неожиданно сказать что-то, не успев подумать; часто употребляется с out.",
+            "uk": "Бовкнути, випалити. Несподівано сказати щось, не встигнувши подумати; часто вживається з out."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i14:r1",
+          "text": "Do not blurt out the surprise."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i14:r2",
+          "text": "Do not spoil the surprise."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i14:r3",
+          "text": "Do not blurt out the answer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i14:audio",
+          "transcript": "Do not blurt out the surprise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-42:i14:r1",
+            "targetText": "Do not blurt out the surprise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i14:r2",
+            "targetText": "Do not spoil the surprise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i14:r3",
+            "targetText": "Do not blurt out the answer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do not blurt out the surprise.",
+              "uk": "У записі звучить Do not blurt out the surprise."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do not blurt out the surprise.",
+              "uk": "У записі звучить Do not blurt out the surprise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-42:i15:p1",
+            "target": "ramble",
+            "meaningByLocale": {
+              "ru": "говорить долго и сбивчиво",
+              "uk": "говорити довго й плутано"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-42:i15:p2",
+            "target": "babble",
+            "meaningByLocale": {
+              "ru": "лепетать",
+              "uk": "лепетати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-42:i15:p3",
+            "target": "chatter",
+            "meaningByLocale": {
+              "ru": "оживлённо болтать",
+              "uk": "жваво балакати"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-42:i15:p4",
+            "target": "blurt",
+            "meaningByLocale": {
+              "ru": "выпалить",
+              "uk": "бовкнути"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ramble",
+          "babble",
+          "chatter",
+          "blurt"
+        ],
+        "rightColumn": [
+          "говорить долго и сбивчиво",
+          "лепетать",
+          "оживлённо болтать",
+          "выпалить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Эта женщина принесла торт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i16:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i16:r2",
+          "text": "who she"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Эта женщина принесла торт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эта женщина принесла торт.",
+          "uk": "Ця жінка принесла торт."
+        },
+        "gappedTargetPhrase": "This is the woman ___ brought the cake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-42:i16:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i16:r2",
+            "text": "who she"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Эта женщина принесла торт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i16:r2",
+            "correct": false,
+            "testedDimension": "Эта женщина принесла торт.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнительницу; she лишнее.",
+              "uk": "Who вже позначає виконавицю; she зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i16:r3",
+            "correct": false,
+            "testedDimension": "Эта женщина принесла торт.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь используем who.",
+              "uk": "Для людини тут використовуємо who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: малыш лепечет или плачет?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i17:r1",
+          "text": "I can hear the baby babble."
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i17:r2",
+          "text": "I can hear the baby cry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i17:audioA",
+        "en:lesson-29:session-42:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: малыш лепечет или плачет?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I can hear the baby babble.",
+        "contrastB": "I can hear the baby cry.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-42:i17:audioA",
+          "transcript": "I can hear the baby babble."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-42:i17:audioB",
+          "transcript": "I can hear the baby cry."
+        },
+        "testedPhoneticContrast": "Послушайте: малыш лепечет или плачет?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: малыш лепечет или плачет?",
+            "feedbackByLocale": {
+              "ru": "Звучит babble — лепетать.",
+              "uk": "Звучить babble — лепетати."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто принёс торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто принёс торт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i18:audio",
+          "transcript": "This is the woman who brought the cake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the woman who brought the cake.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "woman",
+          "who",
+          "brought",
+          "the",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что хотите сохранить это в тайне.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-42:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите, что хотите сохранить это в тайне.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-42:i19:audio",
+          "transcript": "I want to keep it a secret."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to keep it a secret.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы попробовали вкусный торт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-42:i20:r1",
+          "text": "we tried"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i20:r2",
+          "text": "we tried it"
+        },
+        {
+          "responseId": "en:lesson-29:session-42:i20:r3",
+          "text": "us tried"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попробовали вкусный торт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попробовали вкусный торт.",
+          "uk": "Ви скуштували смачний торт."
+        },
+        "gappedTargetPhrase": "The cake ___ was delicious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-42:i20:r1",
+            "text": "we tried"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i20:r2",
+            "text": "we tried it"
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i20:r3",
+            "text": "us tried"
+          }
+        ],
+        "testedDimension": "Вы попробовали вкусный торт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-42:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы попробовали вкусный торт.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названный торт.",
+              "uk": "It повторює вже названий торт."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-42:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы попробовали вкусный торт.",
+            "feedbackByLocale": {
+              "ru": "Попробовали мы: we tried.",
+              "uk": "Скуштували ми: we tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-42:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите за приглашение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите за приглашение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for inviting me.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за приглашение.",
+          "uk": "Подякуйте за запрошення."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "inviting",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c81ffb5a81bf9375ed1e8cc0f56ab0449d2391b63f74e14b64c94c63cbf733e5"
+}

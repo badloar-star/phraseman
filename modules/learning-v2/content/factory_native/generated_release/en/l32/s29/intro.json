@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "отвергать невозможный вариант, делать вывод по признакам и уточнять предмет.",
+    "uk": "відкидати неможливий варіант, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Исключаем вариант",
+        "uk": "Відкидаємо варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. The clock can't be right. — Часы не могут показывать верное время. Соберите The clock + can't + be + right. Здесь описываем состояние: перед right нужна связка be. Can’t исключает этот вариант по указанным признакам.",
+        "uk": "Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. The clock can't be right. — Годинник не може показувати правильний час. Складіть The clock + can't + be + right. Тут описуємо стан: перед right потрібна зв’язка be. Can’t відкидає цей варіант за вказаними ознаками."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-29:intro1:r1",
+              "text": "The clock can't be right."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro1:r2",
+              "text": "The clock can't is right."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro1:r3",
+              "text": "The clock can't to be right."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-29:intro1:r1",
+              "text": "The clock can't be right."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro1:r2",
+              "text": "The clock can't is right."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro1:r3",
+              "text": "The clock can't to be right."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. The train must be late. — Поезд, должно быть, опаздывает. Соберите The train + must + be + late. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. The train must be late. — Поїзд, напевно, запізнюється. Складіть The train + must + be + late. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-29:intro2:r1",
+              "text": "The train must be late."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro2:r2",
+              "text": "The train must is late."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro2:r3",
+              "text": "The train must to be late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-29:intro2:r1",
+              "text": "The train must be late."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro2:r2",
+              "text": "The train must is late."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro2:r3",
+              "text": "The train must to be late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне новые наручные часы, которые купили перед поездкой. The watch I bought is new. — Часы, которые я купил, новые. Соберите The watch + I bought + is new. Часть I bought уточняет watch. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви показуєте Анні новий наручний годинник, який купили перед поїздкою. The watch I bought is new. — Годинник, який я купив, новий. Складіть The watch + I bought + is new. Частина I bought уточнює watch. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-29:intro3:r1",
+              "text": "The watch I bought is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro3:r2",
+              "text": "The watch I bought it is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro3:r3",
+              "text": "The watch I buying is new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-29:intro3:r1",
+              "text": "The watch I bought is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro3:r2",
+              "text": "The watch I bought it is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-29:intro3:r3",
+              "text": "The watch I buying is new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9cb083ba7c0dfda70e89519a18d87b97fb8ff9f7e9d80a8d5578896cedef2072"
+}

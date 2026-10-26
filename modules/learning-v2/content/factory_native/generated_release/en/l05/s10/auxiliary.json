@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-10:intro3:r2": {
-          "ru": "Наушники — пара, поэтому нужно are, а не is.",
-          "uk": "Навушники — пара, тому потрібно are, а не is."
+          "ru": "Headphones имеет форму множественного числа, поэтому нужно are, а не is.",
+          "uk": "Headphones має форму множини, тому потрібно are, а не is."
         },
         "en:lesson-05:session-10:intro3:r3": {
           "ru": "his — его, а вы говорите с братом: нужно your.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f8d760c91ad89602d100feb6c4d97df33f922eb95d22fc17a2fdf0babe1f7772"
+  "auxiliaryFingerprint": "b5662ed33775f5f1b114b38498f3f6aac14e45aa9183448752eff15523ae41ed"
 }

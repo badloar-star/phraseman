@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bike",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bike",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i01:audio",
+          "transcript": "bike"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-37:i01:r1",
+            "targetText": "bike",
+            "meaningByLocale": {
+              "ru": "Велосипед. Повторение знакомого слова.",
+              "uk": "Велосипед. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bike",
+          "definitionByLocale": {
+            "ru": "Велосипед. Повторение знакомого слова.",
+            "uk": "Велосипед. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i02:r1",
+          "text": "I use the bike although it is old."
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i02:r2",
+          "text": "I use the bike although it is heavy."
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i02:r3",
+          "text": "I use the bike although it is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i02:audio",
+          "transcript": "I use the bike although it is old."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-37:i02:r1",
+            "targetText": "I use the bike although it is old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i02:r2",
+            "targetText": "I use the bike although it is heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i02:r3",
+            "targetText": "I use the bike although it is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use the bike although it is old.",
+              "uk": "У записі звучить I use the bike although it is old."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use the bike although it is old.",
+              "uk": "У записі звучить I use the bike although it is old."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пользуетесь велосипедом, хотя он старый. Выберите «хотя».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i03:r1",
+          "text": "although"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i03:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i03:r3",
+          "text": "because of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пользуетесь велосипедом, хотя он старый. Выберите «хотя».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пользуетесь велосипедом, хотя он старый. Выберите «хотя».",
+          "uk": "Ви користуєтеся велосипедом, хоча він старий. Виберіть «хоча»."
+        },
+        "gappedTargetPhrase": "I use the bike ___ it is old.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-37:i03:r1",
+            "text": "although"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i03:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i03:r3",
+            "text": "because of"
+          }
+        ],
+        "testedDimension": "Вы пользуетесь велосипедом, хотя он старый. Выберите «хотя».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы пользуетесь велосипедом, хотя он старый. Выберите «хотя».",
+            "feedbackByLocale": {
+              "ru": "Нужно «хотя», не «потому что».",
+              "uk": "Потрібне «хоча», не «тому що»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы пользуетесь велосипедом, хотя он старый. Выберите «хотя».",
+            "feedbackByLocale": {
+              "ru": "Здесь задана уступка although, не причина.",
+              "uk": "Тут задано поступку although, не причину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i04:audio",
+          "transcript": "pump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-37:i04:r1",
+            "targetText": "pump",
+            "meaningByLocale": {
+              "ru": "Насос. Повторение знакомого слова.",
+              "uk": "Насос. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pump",
+          "definitionByLocale": {
+            "ru": "Насос. Повторение знакомого слова.",
+            "uk": "Насос. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что знаете, где насос.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что знаете, где насос.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the pump is.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, где насос.",
+          "uk": "Скажіть, що знаєте, де насос."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "pump",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен починил велосипед. Начните с велосипеда.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Бен починил велосипед. Начните с велосипеда.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i06:audio",
+          "transcript": "The bike was fixed by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bike was fixed by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Бен сказал: «Велосипед готов». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Бен сказал: «Велосипед готов». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Велосипед готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Велосипед готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "He said the bike ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-37:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Бен сказал: «Велосипед готов». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i07:r2",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Велосипед готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i07:r3",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Велосипед готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wheel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wheel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i08:audio",
+          "transcript": "wheel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-37:i08:r1",
+            "targetText": "wheel",
+            "meaningByLocale": {
+              "ru": "Колесо. Повторение знакомого слова.",
+              "uk": "Колесо. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wheel",
+          "definitionByLocale": {
+            "ru": "Колесо. Повторение знакомого слова.",
+            "uk": "Колесо. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колесо готово. Добавьте отрицательное уточнение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колесо готово. Добавьте отрицательное уточнение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The wheel is ready, isn't it?",
+        "localizedMeaning": {
+          "ru": "Колесо готово. Добавьте отрицательное уточнение.",
+          "uk": "Колесо готове. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "wheel",
+          "is",
+          "ready,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что колесо повреждено. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что колесо повреждено. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i10:audio",
+          "transcript": "I know that the wheel is damaged."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the wheel is damaged.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен починил велосипед. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен починил велосипед. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен починил велосипед. Выберите предлог перед его именем.",
+          "uk": "Бен полагодив велосипед. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The bike was fixed ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-37:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен починил велосипед. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен починил велосипед. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен починил велосипед. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — garage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — garage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i12:audio",
+          "transcript": "garage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-37:i12:r1",
+            "targetText": "garage",
+            "meaningByLocale": {
+              "ru": "Гараж. Повторение знакомого слова.",
+              "uk": "Гараж. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garage",
+          "definitionByLocale": {
+            "ru": "Гараж. Повторение знакомого слова.",
+            "uk": "Гараж. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i13:r1",
+          "text": "I know why the garage is open."
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i13:r2",
+          "text": "I know why the garage is closed."
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i13:r3",
+          "text": "I know why the garage is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i13:audio",
+          "transcript": "I know why the garage is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-37:i13:r1",
+            "targetText": "I know why the garage is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i13:r2",
+            "targetText": "I know why the garage is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i13:r3",
+            "targetText": "I know why the garage is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the garage is open.",
+              "uk": "У записі звучить I know why the garage is open."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the garage is open.",
+              "uk": "У записі звучить I know why the garage is open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Колёса готовы». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Колёса готовы». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i14:audio",
+          "transcript": "He said the wheels were ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the wheels were ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы пользуетесь велосипедом, хотя он старый. Начните с I use the bike.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пользуетесь велосипедом, хотя он старый. Начните с I use the bike.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use the bike although it is old.",
+        "localizedMeaning": {
+          "ru": "Вы пользуетесь велосипедом, хотя он старый. Начните с I use the bike.",
+          "uk": "Ви користуєтеся велосипедом, хоча він старий. Почніть з I use the bike."
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "the",
+          "bike",
+          "although",
+          "it",
+          "is",
+          "old"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите друга, знает ли он, находится ли насос в гараже.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i16:r1",
+          "text": "the pump is"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i16:r2",
+          "text": "is the pump"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i16:r3",
+          "text": "the pump are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга, знает ли он, находится ли насос в гараже.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, находится ли насос в гараже.",
+          "uk": "Запитайте друга, чи знає він, чи є насос у гаражі."
+        },
+        "gappedTargetPhrase": "Do you know if ___ in the garage?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-37:i16:r1",
+            "text": "the pump is"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i16:r2",
+            "text": "is the pump"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i16:r3",
+            "text": "the pump are"
+          }
+        ],
+        "testedDimension": "Спросите друга, знает ли он, находится ли насос в гараже.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i16:r2",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, находится ли насос в гараже.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the pump is.",
+              "uk": "Після if порядок the pump is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i16:r3",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, находится ли насос в гараже.",
+            "feedbackByLocale": {
+              "ru": "Один pump требует is.",
+              "uk": "Один pump потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера вы пошли пешком, потому что велосипед был сломан. Назовите причину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Вчера вы пошли пешком, потому что велосипед был сломан. Назовите причину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i17:audio",
+          "transcript": "I walked because the bike was broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I walked because the bike was broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: говорящий пользуется велосипедом, хотя он старый или тяжёлый?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i18:r1",
+          "text": "I use the bike although it is old."
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i18:r2",
+          "text": "I use the bike although it is heavy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i18:audioA",
+        "en:lesson-31:session-37:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: говорящий пользуется велосипедом, хотя он старый или тяжёлый?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I use the bike although it is old.",
+        "contrastB": "I use the bike although it is heavy.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-37:i18:audioA",
+          "transcript": "I use the bike although it is old."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-37:i18:audioB",
+          "transcript": "I use the bike although it is heavy."
+        },
+        "testedPhoneticContrast": "Послушайте: говорящий пользуется велосипедом, хотя он старый или тяжёлый?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: говорящий пользуется велосипедом, хотя он старый или тяжёлый?",
+            "feedbackByLocale": {
+              "ru": "Звучит old — старый.",
+              "uk": "Звучить old — старий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте рассказ о велосипеде. Начните с I use the bike.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте рассказ о велосипеде. Начните с I use the bike.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i19:audio",
+          "transcript": "I use the bike although it is old."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I use the bike although it is old.",
+        "orderedTokens": [
+          "I",
+          "use",
+          "the",
+          "bike",
+          "although",
+          "it",
+          "is",
+          "old"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гараж не закрыт. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-37:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-37:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гараж не закрыт. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Гараж не закрыт. Добавьте утвердительное уточнение.",
+          "uk": "Гараж не зачинений. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The garage isn't closed, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-37:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Гараж не закрыт. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-37:i20:r2",
+            "correct": false,
+            "testedDimension": "Гараж не закрыт. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Один garage требует is.",
+              "uk": "Один garage потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-37:i20:r3",
+            "correct": false,
+            "testedDimension": "Гараж не закрыт. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен открыл гараж. Начните с гаража.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-37:i21:audio"
+      ],
+      "accessibilityLabel": "Бен открыл гараж. Начните с гаража.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-37:i21:audio",
+          "transcript": "The garage was opened by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The garage was opened by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e1bf18fd498e3c5d5e120bdb4e9176b741bcfe32945e4c81aa08bc1b346ae5da"
+}

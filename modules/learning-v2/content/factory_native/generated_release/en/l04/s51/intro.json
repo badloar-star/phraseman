@@ -15,8 +15,8 @@
         "uk": "Куди піти в дощ"
       },
       "bodyByLocale": {
-        "ru": "Сосед хочет провести дождливый вечер с детьми не дома. Вы вспоминаете большое здание, где жители района собираются на занятия и праздники. community centre — «районный центр». Он один, и стоит между банком и библиотекой: There is a community centre between the bank and the library.",
-        "uk": "Сусід хоче провести дощовий вечір із дітьми не вдома. Ви згадуєте велику будівлю, де мешканці району збираються на заняття й свята. community centre — «районний центр». Він один, і стоїть між банком і бібліотекою: There is a community centre between the bank and the library."
+        "ru": "Сосед хочет провести дождливый вечер с детьми не дома. Вы вспоминаете большое здание, где жители района собираются на занятия и праздники. community centre — «районный центр». There is a community centre between the bank and the library — «Между банком и библиотекой есть районный центр». Начинаем с There is, называем один центр — a community centre, затем указываем место: between the bank and the library.",
+        "uk": "Сусід хоче провести дощовий вечір із дітьми не вдома. Ви згадуєте велику будівлю, де мешканці району збираються на заняття й свята. community centre — «районний центр». There is a community centre between the bank and the library — «Між банком і бібліотекою є районний центр». Починаємо з There is, називаємо один центр — a community centre, потім указуємо місце: between the bank and the library."
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Що лежить на столі"
       },
       "bodyByLocale": {
-        "ru": "Вы вошли в центр, и подруга спрашивает, как узнать, какие здесь занятия. У входа стоит стол, а на нём лежат бумажные листы с расписанием кружков, и их несколько. leaflet — «листовка». There are some leaflets on the table — «На столе есть несколько листовок».",
-        "uk": "Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок»."
+        "ru": "Вы вошли в центр, и подруга спрашивает, как узнать, какие здесь занятия. У входа стоит стол, а на нём лежат бумажные листы с расписанием кружков, и их несколько. leaflet — «листовка». There are some leaflets on the table — «На столе есть несколько листовок». Сначала ставим There are, затем some leaflets и место — on the table. Some показывает, что листовки есть, без точного числа; с leaflets во множественном числе нужно are.",
+        "uk": "Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок». Спочатку ставимо There are, потім some leaflets і місце — on the table. Some показує, що листівки є, без точної кількості; з leaflets у множині потрібне are."
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Нудьгуючі діти"
       },
       "bodyByLocale": {
-        "ru": "Дети соседа заскучали и просят во что-нибудь сыграть за столом. Вы подходите к администратору и спрашиваете про коробки с полем, фишками и кубиком, в которые играют вдвоём или втроём. board game — «настольная игра». Are there any board games in the hall?",
-        "uk": "Діти сусіда занудьгували й просять у щось пограти за столом. Ви підходите до адміністратора й питаєте про коробки з полем, фішками й кубиком, у які грають удвох чи втрьох. board game — «настільна гра». Are there any board games in the hall?"
+        "ru": "Дети соседа заскучали и просят во что-нибудь сыграть за столом. Вы подходите к администратору и спрашиваете про коробки с полем, фишками и кубиком, в которые играют вдвоём или втроём. board game — «настольная игра». Are there any board games in the hall? — «В зале есть настольные игры?» Начинаем с Are there, затем ставим any board games и место — in the hall. Any подходит здесь для нейтрального вопроса: мы не знаем, есть ли игры вообще.",
+        "uk": "Діти сусіда занудьгували й просять у щось пограти за столом. Ви підходите до адміністратора й питаєте про коробки з полем, фішками й кубиком, у які грають удвох чи втрьох. board game — «настільна гра». Are there any board games in the hall? — «У залі є настільні ігри?» Починаємо з Are there, потім ставимо any board games і місце — in the hall. Any підходить тут для нейтрального запитання: ми не знаємо, чи є ігри взагалі."
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro3:q",
@@ -140,7 +140,7 @@
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r2",
-              "text": "Are there some board games in the hall?"
+              "text": "Are there any board game in the hall?"
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r3",
@@ -154,7 +154,7 @@
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r2",
-              "text": "Are there some board games in the hall?"
+              "text": "Are there any board game in the hall?"
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r3",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "958f2b010f3d18f102313d0d78668344954b270e31657817893cc5aa5124907d"
+  "introFingerprint": "855a6a7d974684a73141da92cee7dfc58c38ef15c4c07130d2fe7f100df6a1a4"
 }

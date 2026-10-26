@@ -1,0 +1,1067 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви запитуєте, чи входить укладання в ціну.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i01:r1",
+          "text": "included"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i01:r2",
+          "text": "include"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i01:r3",
+          "text": "including"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви запитуєте, чи входить укладання в ціну.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы спрашиваете, входит ли укладка в цену.",
+          "uk": "Ви запитуєте, чи входить укладання в ціну."
+        },
+        "gappedTargetPhrase": "Is fitting ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-49:i01:r1",
+            "text": "included"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i01:r2",
+            "text": "include"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i01:r3",
+            "text": "including"
+          }
+        ],
+        "testedDimension": "Ви запитуєте, чи входить укладання в ціну.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i01:r2",
+            "correct": false,
+            "testedDimension": "Ви запитуєте, чи входить укладання в ціну.",
+            "feedbackByLocale": {
+              "ru": "После is нужна included.",
+              "uk": "Після is потрібна included."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i01:r3",
+            "correct": false,
+            "testedDimension": "Ви запитуєте, чи входить укладання в ціну.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем is included.",
+              "uk": "Тут використовуємо is included."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — laminate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — laminate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i02:audio",
+          "transcript": "laminate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-49:i02:r1",
+            "targetText": "laminate",
+            "meaningByLocale": {
+              "ru": "Ламинат. Напольное покрытие из многослойных панелей.",
+              "uk": "Ламінат. Покриття для підлоги з багатошарових панелей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "laminate",
+          "definitionByLocale": {
+            "ru": "Ламинат. Напольное покрытие из многослойных панелей.",
+            "uk": "Ламінат. Покриття для підлоги з багатошарових панелей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що шукаєте ламінат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що шукаєте ламінат.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i03:audio",
+          "transcript": "I am looking for laminate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am looking for laminate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i04:r1",
+          "text": "The work will be finished tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i04:r2",
+          "text": "The work will be started tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i04:r3",
+          "text": "The work will be finished on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i04:audio",
+          "transcript": "The work will be finished tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-49:i04:r1",
+            "targetText": "The work will be finished tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i04:r2",
+            "targetText": "The work will be started tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i04:r3",
+            "targetText": "The work will be finished on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The work will be finished tomorrow.",
+              "uk": "У записі звучить The work will be finished tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The work will be finished tomorrow.",
+              "uk": "У записі звучить The work will be finished tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть показати зразок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть показати зразок.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you show me a sample?",
+        "localizedMeaning": {
+          "ru": "Попросите показать образец.",
+          "uk": "Попросіть показати зразок."
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "show",
+          "me",
+          "a",
+          "sample"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vinyl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vinyl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i06:audio",
+          "transcript": "vinyl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-49:i06:r1",
+            "targetText": "vinyl",
+            "meaningByLocale": {
+              "ru": "Винил. Здесь виниловое напольное покрытие; по одному названию нельзя определить свойства конкретной модели.",
+              "uk": "Вініл. Тут вінілове покриття для підлоги; за самою назвою не можна визначити властивості конкретної моделі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vinyl",
+          "definitionByLocale": {
+            "ru": "Винил. Здесь виниловое напольное покрытие; по одному названию нельзя определить свойства конкретной модели.",
+            "uk": "Вініл. Тут вінілове покриття для підлоги; за самою назвою не можна визначити властивості конкретної моделі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи підходить це вінілове покриття для кухні.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи підходить це вінілове покриття для кухні.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i07:audio",
+          "transcript": "Is this vinyl suitable for a kitchen?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this vinyl suitable for a kitchen?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи можна прибрати старий ковролін.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи можна прибрати старий ковролін.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли убрать старый ковролин.",
+          "uk": "Запитайте, чи можна прибрати старий ковролін."
+        },
+        "gappedTargetPhrase": "Can the old carpet ___ removed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-49:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Запитайте, чи можна прибрати старий ковролін.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можна прибрати старий ковролін.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи можна прибрати старий ковролін.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be removed.",
+              "uk": "Тут використовуємо can be removed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто уклав плитку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто уклав плитку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i09:audio",
+          "transcript": "The tiles were laid by my brother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The tiles were laid by my brother.",
+        "orderedTokens": [
+          "The",
+          "tiles",
+          "were",
+          "laid",
+          "by",
+          "my",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — underlay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — underlay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i10:audio",
+          "transcript": "underlay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-49:i10:r1",
+            "targetText": "underlay",
+            "meaningByLocale": {
+              "ru": "Подложка под напольное покрытие. Слой, который кладут под ковролин или некоторые другие покрытия; подходящий вид уточняют для выбранного пола.",
+              "uk": "Підкладка під покриття для підлоги. Шар, який кладуть під ковролін або деякі інші покриття; відповідний вид уточнюють для вибраної підлоги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "underlay",
+          "definitionByLocale": {
+            "ru": "Подложка под напольное покрытие. Слой, который кладут под ковролин или некоторые другие покрытия; подходящий вид уточняют для выбранного пола.",
+            "uk": "Підкладка під покриття для підлоги. Шар, який кладуть під ковролін або деякі інші покриття; відповідний вид уточнюють для вибраної підлоги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи потрібна підкладка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи потрібна підкладка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do I need underlay?",
+        "localizedMeaning": {
+          "ru": "Спросите, нужна ли подложка.",
+          "uk": "Запитайте, чи потрібна підкладка."
+        },
+        "orderedTokens": [
+          "Do",
+          "I",
+          "need",
+          "underlay"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i12:r1",
+          "text": "The samples are kept near the entrance."
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i12:r2",
+          "text": "The samples are kept near the window."
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i12:r3",
+          "text": "The tools are kept near the entrance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i12:audio",
+          "transcript": "The samples are kept near the entrance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-49:i12:r1",
+            "targetText": "The samples are kept near the entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i12:r2",
+            "targetText": "The samples are kept near the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i12:r3",
+            "targetText": "The tools are kept near the entrance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The samples are kept near the entrance.",
+              "uk": "У записі звучить The samples are kept near the entrance."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The samples are kept near the entrance.",
+              "uk": "У записі звучить The samples are kept near the entrance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ремонт дорожчий, ніж ви розраховували; ви хотіли б більше грошей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ремонт дорожчий, ніж ви розраховували; ви хотіли б більше грошей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ремонт дороже, чем вы рассчитывали; вы хотели бы больше денег.",
+          "uk": "Ремонт дорожчий, ніж ви розраховували; ви хотіли б більше грошей."
+        },
+        "gappedTargetPhrase": "I wish I ___ more money.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-49:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Ремонт дорожчий, ніж ви розраховували; ви хотіли б більше грошей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i13:r2",
+            "correct": false,
+            "testedDimension": "Ремонт дорожчий, ніж ви розраховували; ви хотіли б більше грошей.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i13:r3",
+            "correct": false,
+            "testedDimension": "Ремонт дорожчий, ніж ви розраховували; ви хотіли б більше грошей.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had.",
+              "uk": "Тут потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i14:audio",
+          "transcript": "grout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-49:i14:r1",
+            "targetText": "grout",
+            "meaningByLocale": {
+              "ru": "Затирка для швов между плитками. Материал, которым заполняют промежутки; здесь существительное.",
+              "uk": "Затирка для швів між плитками. Матеріал, яким заповнюють проміжки; тут іменник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grout",
+          "definitionByLocale": {
+            "ru": "Затирка для швов между плитками. Материал, которым заполняют промежутки; здесь существительное.",
+            "uk": "Затирка для швів між плитками. Матеріал, яким заповнюють проміжки; тут іменник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сіру затирку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть сіру затирку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i15:audio",
+          "transcript": "I would like grey grout."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like grey grout.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте матеріали з назвами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте матеріали з назвами.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-49:i16:p1",
+            "target": "laminate",
+            "meaningByLocale": {
+              "ru": "ламинат",
+              "uk": "ламінат"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-49:i16:p2",
+            "target": "vinyl",
+            "meaningByLocale": {
+              "ru": "виниловое покрытие",
+              "uk": "вінілове покриття"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-49:i16:p3",
+            "target": "underlay",
+            "meaningByLocale": {
+              "ru": "подложка под покрытие",
+              "uk": "підкладка під покриття"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-49:i16:p4",
+            "target": "grout",
+            "meaningByLocale": {
+              "ru": "затирка для швов",
+              "uk": "затирка для швів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laminate",
+          "vinyl",
+          "underlay",
+          "grout"
+        ],
+        "rightColumn": [
+          "ламінат",
+          "вінілове покриття",
+          "підкладка під покриття",
+          "затирка для швів"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майстер прибрав ковролін до вашого повернення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i17:r1",
+          "text": "removed"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i17:r2",
+          "text": "remove"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i17:r3",
+          "text": "removing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Майстер прибрав ковролін до вашого повернення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер убрал ковролин до вашего возвращения.",
+          "uk": "Майстер прибрав ковролін до вашого повернення."
+        },
+        "gappedTargetPhrase": "He had ___ the carpet by the time I returned.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-49:i17:r1",
+            "text": "removed"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i17:r2",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i17:r3",
+            "text": "removing"
+          }
+        ],
+        "testedDimension": "Майстер прибрав ковролін до вашого повернення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i17:r2",
+            "correct": false,
+            "testedDimension": "Майстер прибрав ковролін до вашого повернення.",
+            "feedbackByLocale": {
+              "ru": "После had нужна removed.",
+              "uk": "Після had потрібна removed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i17:r3",
+            "correct": false,
+            "testedDimension": "Майстер прибрав ковролін до вашого повернення.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had removed.",
+              "uk": "Тут використовуємо had removed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи все включено в цю ціну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i18:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи все включено в цю ціну.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i18:audio",
+          "transcript": "Does that include everything?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does that include everything?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте обіцянку щодо доставки матеріалів.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте обіцянку щодо доставки матеріалів.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i19:audio",
+          "transcript": "The materials will be delivered on Monday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The materials will be delivered on Monday.",
+        "orderedTokens": [
+          "The",
+          "materials",
+          "will",
+          "be",
+          "delivered",
+          "on",
+          "Monday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Плитку уклали вчора; ви говорите про кілька плиток.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-49:i20:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i20:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-28:session-49:i20:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Плитку уклали вчора; ви говорите про кілька плиток.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Плитку уложили вчера; вы говорите о нескольких плитках.",
+          "uk": "Плитку уклали вчора; ви говорите про кілька плиток."
+        },
+        "gappedTargetPhrase": "The tiles ___ laid yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-49:i20:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i20:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i20:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Плитку уклали вчора; ви говорите про кілька плиток.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-49:i20:r2",
+            "correct": false,
+            "testedDimension": "Плитку уклали вчора; ви говорите про кілька плиток.",
+            "feedbackByLocale": {
+              "ru": "Tiles — несколько: were.",
+              "uk": "Tiles — кілька: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-49:i20:r3",
+            "correct": false,
+            "testedDimension": "Плитку уклали вчора; ви говорите про кілька плиток.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна were laid.",
+              "uk": "Тут потрібна were laid."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-49:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть записати домовленості.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-49:i21:audio"
+      ],
+      "accessibilityLabel": "Попросіть записати домовленості.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-49:i21:audio",
+          "transcript": "Could you put that in writing?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put that in writing?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f63935cd9fe04afdccea2fbfeb173b8924a6bf1e37211d28b6e80887884ca15e"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-47:i01",
+    "correctText": "needle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i02",
+    "correctText": "She said she needed a needle.",
+    "correctResponseId": "en:lesson-30:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i04",
+    "correctText": "thread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i05",
+    "correctText": "She asked me to cut the thread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i06",
+    "correctText": "She asked if I needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i07",
+    "correctText": "my needle was",
+    "correctResponseId": "en:lesson-30:session-47:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i08",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i09",
+    "correctText": "The coat I fixed is brown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i10",
+    "correctText": "She asked me to turn on the lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i11",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i12",
+    "correctText": "scissors",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i13",
+    "correctText": "She said the scissors were sharp.",
+    "correctResponseId": "en:lesson-30:session-47:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i14",
+    "correctText": "I wish the lamp were brighter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i15",
+    "correctText": "The thread I chose is red.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i16",
+    "correctText": "not to pull",
+    "correctResponseId": "en:lesson-30:session-47:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i17",
+    "correctText": "I asked her to help me with the coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i18",
+    "correctText": "I asked her to wait.",
+    "correctResponseId": "en:lesson-30:session-47:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i19",
+    "correctText": "She said the needle was on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i20",
+    "correctText": "I kept",
+    "correctResponseId": "en:lesson-30:session-47:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-47:i21",
+    "correctText": "She said she wanted to finish.",
+    "correctResponseId": null
+  }
+]

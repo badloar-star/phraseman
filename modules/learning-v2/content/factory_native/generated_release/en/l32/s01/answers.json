@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-01:i01",
+    "correctText": "light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i02",
+    "correctText": "The light must be on.",
+    "correctResponseId": "en:lesson-32:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i04",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i05",
+    "correctText": "His coat must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i06",
+    "correctText": "shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i07",
+    "correctText": "These must be Ben’s shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i08",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i09",
+    "correctText": "They must be at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i10",
+    "correctText": "You must be tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i12",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i13",
+    "correctText": "The door must be open.",
+    "correctResponseId": "en:lesson-32:session-01:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i14",
+    "correctText": "Anna must expect guests.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i15",
+    "correctText": "He must be hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i16",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-01:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i17",
+    "correctText": "You must be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i18",
+    "correctText": "He must be tired.",
+    "correctResponseId": "en:lesson-32:session-01:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i19",
+    "correctText": "They must be at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i20",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-01:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-01:i21",
+    "correctText": "She must be happy.",
+    "correctResponseId": null
+  }
+]

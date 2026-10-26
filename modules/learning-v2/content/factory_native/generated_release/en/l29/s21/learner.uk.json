@@ -1,0 +1,1097 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — halloumi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — halloumi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i01:audio",
+          "transcript": "halloumi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i01:r1",
+            "targetText": "halloumi",
+            "meaningByLocale": {
+              "ru": "Халлуми. Плотный сыр, который часто жарят или готовят на гриле.",
+              "uk": "Халумі. Щільний сир, який часто смажать або готують на грилі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "halloumi",
+          "definitionByLocale": {
+            "ru": "Халлуми. Плотный сыр, который часто жарят или готовят на гриле.",
+            "uk": "Халумі. Щільний сир, який часто смажать або готують на грилі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i02:r1",
+          "text": "We need some halloumi."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i02:r2",
+          "text": "We need some milk."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i02:r3",
+          "text": "They need some halloumi."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i02:audio",
+          "transcript": "We need some halloumi."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i02:r1",
+            "targetText": "We need some halloumi.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i02:r2",
+            "targetText": "We need some milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i02:r3",
+            "targetText": "They need some halloumi.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some halloumi.",
+              "uk": "У записі звучить We need some halloumi."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need some halloumi.",
+              "uk": "У записі звучить We need some halloumi."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте магазин, де можна купити сир.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте магазин, де можна купити сир.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know a shop where you can buy cheese.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете магазин, где можно купить сыр.",
+          "uk": "Скажіть, що знаєте магазин, де можна купити сир."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "a",
+          "shop",
+          "where",
+          "you",
+          "can",
+          "buy",
+          "cheese"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть продавця допомогти знайти продукт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i04:audio"
+      ],
+      "accessibilityLabel": "Попросіть продавця допомогти знайти продукт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i04:audio",
+          "transcript": "Could you help me find this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you help me find this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ricotta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ricotta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i05:audio",
+          "transcript": "ricotta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i05:r1",
+            "targetText": "ricotta",
+            "meaningByLocale": {
+              "ru": "Рикотта. Мягкий нежный сыр, который используют, например, в начинках.",
+              "uk": "Рикота. М’який ніжний сир, який використовують, наприклад, у начинках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ricotta",
+          "definitionByLocale": {
+            "ru": "Рикотта. Мягкий нежный сыр, который используют, например, в начинках.",
+            "uk": "Рикота. М’який ніжний сир, який використовують, наприклад, у начинках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вам потрібна рикота для начинки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вам потрібна рикота для начинки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need ricotta for the filling.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нужна рикотта для начинки.",
+          "uk": "Скажіть, що вам потрібна рикота для начинки."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "ricotta",
+          "for",
+          "the",
+          "filling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Укажіть сестру як авторку списку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i07:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i07:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i07:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажіть сестру як авторку списку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Укажите сестру как автора списка.",
+          "uk": "Укажіть сестру як авторку списку."
+        },
+        "gappedTargetPhrase": "The list was written ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-21:i07:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i07:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i07:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Укажіть сестру як авторку списку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i07:r2",
+            "correct": false,
+            "testedDimension": "Укажіть сестру як авторку списку.",
+            "feedbackByLocale": {
+              "ru": "Автора действия вводит by.",
+              "uk": "Автора дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i07:r3",
+            "correct": false,
+            "testedDimension": "Укажіть сестру як авторку списку.",
+            "feedbackByLocale": {
+              "ru": "Здесь называем автора с by.",
+              "uk": "Тут називаємо автора з by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i08:r1",
+          "text": "The list was written by my sister."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i08:r2",
+          "text": "The list was written by my brother."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i08:r3",
+          "text": "The note was written by my sister."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i08:audio",
+          "transcript": "The list was written by my sister."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i08:r1",
+            "targetText": "The list was written by my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i08:r2",
+            "targetText": "The list was written by my brother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i08:r3",
+            "targetText": "The note was written by my sister.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The list was written by my sister.",
+              "uk": "У записі звучить The list was written by my sister."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The list was written by my sister.",
+              "uk": "У записі звучить The list was written by my sister."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — buttermilk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — buttermilk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i09:audio",
+          "transcript": "buttermilk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i09:r1",
+            "targetText": "buttermilk",
+            "meaningByLocale": {
+              "ru": "Пахта. Молочный продукт, который используют, например, для блинов и выпечки.",
+              "uk": "Маслянка. Молочний продукт, який використовують, наприклад, для млинців і випічки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buttermilk",
+          "definitionByLocale": {
+            "ru": "Пахта. Молочный продукт, который используют, например, для блинов и выпечки.",
+            "uk": "Маслянка. Молочний продукт, який використовують, наприклад, для млинців і випічки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи продається тут маслянка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i10:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи продається тут маслянка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i10:audio",
+          "transcript": "Do you sell buttermilk?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you sell buttermilk?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть упаковку за синьою етикеткою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i11:r1",
+          "text": "which"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i11:r2",
+          "text": "which it"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i11:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть упаковку за синьою етикеткою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните упаковку по синей этикетке.",
+          "uk": "Уточніть упаковку за синьою етикеткою."
+        },
+        "gappedTargetPhrase": "I want the packet ___ has a blue label.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-21:i11:r1",
+            "text": "which"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i11:r2",
+            "text": "which it"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i11:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Уточніть упаковку за синьою етикеткою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Уточніть упаковку за синьою етикеткою.",
+            "feedbackByLocale": {
+              "ru": "Which уже обозначает упаковку, it лишнее.",
+              "uk": "Which вже позначає упаковку, it зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Уточніть упаковку за синьою етикеткою.",
+            "feedbackByLocale": {
+              "ru": "Для упаковки здесь нужно which.",
+              "uk": "Для упаковки тут потрібне which."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання показати ціну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання показати ціну.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i12:audio",
+          "transcript": "Could you show me the price?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you show me the price?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "show",
+          "me",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tofu",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tofu",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i13:audio",
+          "transcript": "tofu"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i13:r1",
+            "targetText": "tofu",
+            "meaningByLocale": {
+              "ru": "Тофу. Продукт из соевых бобов, который часто продаётся в виде мягкого или плотного блока.",
+              "uk": "Тофу. Продукт із соєвих бобів, який часто продається у вигляді м’якого або щільного блока."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tofu",
+          "definitionByLocale": {
+            "ru": "Тофу. Продукт из соевых бобов, который часто продаётся в виде мягкого или плотного блока.",
+            "uk": "Тофу. Продукт із соєвих бобів, який часто продається у вигляді м’якого або щільного блока."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i14:r1",
+          "text": "I would like a packet of tofu."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i14:r2",
+          "text": "I would like a packet of rice."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i14:r3",
+          "text": "She would like a packet of tofu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i14:audio",
+          "transcript": "I would like a packet of tofu."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-21:i14:r1",
+            "targetText": "I would like a packet of tofu.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i14:r2",
+            "targetText": "I would like a packet of rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i14:r3",
+            "targetText": "She would like a packet of tofu.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would like a packet of tofu.",
+              "uk": "У записі звучить I would like a packet of tofu."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would like a packet of tofu.",
+              "uk": "У записі звучить I would like a packet of tofu."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте продукти з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте продукти з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-21:i15:p1",
+            "target": "halloumi",
+            "meaningByLocale": {
+              "ru": "халлуми",
+              "uk": "халумі"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-21:i15:p2",
+            "target": "ricotta",
+            "meaningByLocale": {
+              "ru": "рикотта",
+              "uk": "рикота"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-21:i15:p3",
+            "target": "buttermilk",
+            "meaningByLocale": {
+              "ru": "пахта",
+              "uk": "маслянка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-21:i15:p4",
+            "target": "tofu",
+            "meaningByLocale": {
+              "ru": "тофу",
+              "uk": "тофу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "halloumi",
+          "ricotta",
+          "buttermilk",
+          "tofu"
+        ],
+        "rightColumn": [
+          "халумі",
+          "рикота",
+          "маслянка",
+          "тофу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть магазин через можливість купити там сир.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть магазин через можливість купити там сир.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните магазин через возможность купить там сыр.",
+          "uk": "Уточніть магазин через можливість купити там сир."
+        },
+        "gappedTargetPhrase": "I know a shop ___ you can buy cheese.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-21:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Уточніть магазин через можливість купити там сир.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточніть магазин через можливість купити там сир.",
+            "feedbackByLocale": {
+              "ru": "Для места покупки нужна where.",
+              "uk": "Для місця купівлі потрібна where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточніть магазин через можливість купити там сир.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: етикетка синя чи зелена?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i17:r1",
+          "text": "It has a blue label."
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i17:r2",
+          "text": "It has a green label."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i17:audioA",
+        "en:lesson-29:session-21:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: етикетка синя чи зелена?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "It has a blue label.",
+        "contrastB": "It has a green label.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-21:i17:audioA",
+          "transcript": "It has a blue label."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-21:i17:audioB",
+          "transcript": "It has a green label."
+        },
+        "testedPhoneticContrast": "Послухайте: етикетка синя чи зелена?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: етикетка синя чи зелена?",
+            "feedbackByLocale": {
+              "ru": "В записи blue — синяя.",
+              "uk": "У записі blue — синя."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де стоять продукти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де стоять продукти.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i18:audio",
+          "transcript": "They are in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are in the fridge.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам потрібна лише одна упаковка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-21:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам потрібна лише одна упаковка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-21:i19:audio",
+          "transcript": "We only need one packet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We only need one packet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Якщо товару немає, ви зайдете до іншого магазину.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-21:i20:r1",
+          "text": "do not have"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i20:r2",
+          "text": "will not have"
+        },
+        {
+          "responseId": "en:lesson-29:session-21:i20:r3",
+          "text": "not have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якщо товару немає, ви зайдете до іншого магазину.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если товара нет, вы зайдёте в другой магазин.",
+          "uk": "Якщо товару немає, ви зайдете до іншого магазину."
+        },
+        "gappedTargetPhrase": "We will try another shop if they ___ any.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-21:i20:r1",
+            "text": "do not have"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i20:r2",
+            "text": "will not have"
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i20:r3",
+            "text": "not have"
+          }
+        ],
+        "testedDimension": "Якщо товару немає, ви зайдете до іншого магазину.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-21:i20:r2",
+            "correct": false,
+            "testedDimension": "Якщо товару немає, ви зайдете до іншого магазину.",
+            "feedbackByLocale": {
+              "ru": "После if здесь используем do not have без will.",
+              "uk": "Після if тут використовуємо do not have без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-21:i20:r3",
+            "correct": false,
+            "testedDimension": "Якщо товару немає, ви зайдете до іншого магазину.",
+            "feedbackByLocale": {
+              "ru": "Для отрицания после they нужно do not have.",
+              "uk": "Для заперечення після they потрібне do not have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть чек.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a receipt, please?",
+        "localizedMeaning": {
+          "ru": "Попросите чек.",
+          "uk": "Попросіть чек."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "receipt,",
+          "please"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e49ed2874fc5f291e6b688caaa2c415aa8975f62f3dd8f3ddedea4df360cc15c"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-36:i01",
+    "correctText": "book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i02",
+    "correctText": "He said he needed a short book.",
+    "correctResponseId": "en:lesson-30:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i04",
+    "correctText": "library",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i05",
+    "correctText": "She told me the library was closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i06",
+    "correctText": "I asked her to help me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i07",
+    "correctText": "his book was",
+    "correctResponseId": "en:lesson-30:session-36:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i08",
+    "correctText": "page",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i09",
+    "correctText": "He said the page was torn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i10",
+    "correctText": "She asked me to write my name.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i11",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-30:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i12",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i13",
+    "correctText": "He said his bag was heavy.",
+    "correctResponseId": "en:lesson-30:session-36:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i14",
+    "correctText": "I wish I had more time to read.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i15",
+    "correctText": "The book you chose is interesting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i16",
+    "correctText": "not to write",
+    "correctResponseId": "en:lesson-30:session-36:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i17",
+    "correctText": "He said he wanted another book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i18",
+    "correctText": "She asked me to return the book.",
+    "correctResponseId": "en:lesson-30:session-36:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i19",
+    "correctText": "She said the shelf was empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-36:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-36:i21",
+    "correctText": "I asked her to find the book.",
+    "correctResponseId": null
+  }
+]

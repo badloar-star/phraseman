@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-24:i01",
+    "correctText": "Could you show me the fitting room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i02",
+    "correctText": "headscarf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i03",
+    "correctText": "She is wearing a blue headscarf.",
+    "correctResponseId": "en:lesson-29:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i04",
+    "correctText": "I like the dress that has pockets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i05",
+    "correctText": "turtleneck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i06",
+    "correctText": "Can I try on this turtleneck?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i07",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-24:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i08",
+    "correctText": "Do you have a larger size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i09",
+    "correctText": "pinafore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i10",
+    "correctText": "This pinafore has two pockets.",
+    "correctResponseId": "en:lesson-29:session-24:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i11",
+    "correctText": "that",
+    "correctResponseId": "en:lesson-29:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i12",
+    "correctText": "The mirror is behind you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i13",
+    "correctText": "playsuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i14",
+    "correctText": "Could I see that playsuit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i15",
+    "correctText": "en:lesson-29:session-24:i15:p1=headscarf\nen:lesson-29:session-24:i15:p2=turtleneck\nen:lesson-29:session-24:i15:p3=pinafore\nen:lesson-29:session-24:i15:p4=playsuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i16",
+    "correctText": "fits",
+    "correctResponseId": "en:lesson-29:session-24:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i17",
+    "correctText": "It is too small.",
+    "correctResponseId": "en:lesson-29:session-24:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i18",
+    "correctText": "The dress was made by my aunt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i19",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-24:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i20",
+    "correctText": "It feels comfortable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-24:i21",
+    "correctText": "I will take this one.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cordial",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cordial",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i01:audio",
+          "transcript": "cordial"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i01:r1",
+            "targetText": "cordial",
+            "meaningByLocale": {
+              "ru": "Концентрированный сладкий напиток, который разбавляют водой; здесь обычное британское значение этого слова.",
+              "uk": "Концентрований солодкий напій, який розводять водою; тут звичне британське значення цього слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cordial",
+          "definitionByLocale": {
+            "ru": "Концентрированный сладкий напиток, который разбавляют водой; здесь обычное британское значение этого слова.",
+            "uk": "Концентрований солодкий напій, який розводять водою; тут звичне британське значення цього слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що цей концентрат змішують із водою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що цей концентрат змішують із водою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This cordial is mixed with water.",
+        "localizedMeaning": {
+          "ru": "Скажите, что этот концентрат смешивают с водой.",
+          "uk": "Скажіть, що цей концентрат змішують із водою."
+        },
+        "orderedTokens": [
+          "This",
+          "cordial",
+          "is",
+          "mixed",
+          "with",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть потрібну кількість води на порцію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i03:audio"
+      ],
+      "accessibilityLabel": "Уточніть потрібну кількість води на порцію.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i03:audio",
+          "transcript": "How much water do I need?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much water do I need?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i04:r1",
+          "text": "The instructions are on the label."
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i04:r2",
+          "text": "The instructions are on the lid."
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i04:r3",
+          "text": "The price is on the label."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i04:audio",
+          "transcript": "The instructions are on the label."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i04:r1",
+            "targetText": "The instructions are on the label.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i04:r2",
+            "targetText": "The instructions are on the lid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i04:r3",
+            "targetText": "The price is on the label.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The instructions are on the label.",
+              "uk": "У записі звучить The instructions are on the label."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The instructions are on the label.",
+              "uk": "У записі звучить The instructions are on the label."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — carbonated",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — carbonated",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i05:audio",
+          "transcript": "carbonated"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i05:r1",
+            "targetText": "carbonated",
+            "meaningByLocale": {
+              "ru": "Газированный: с растворённым газом и пузырьками; слово часто встречается на этикетках напитков.",
+              "uk": "Газований: із розчиненим газом і бульбашками; слово часто трапляється на етикетках напоїв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carbonated",
+          "definitionByLocale": {
+            "ru": "Газированный: с растворённым газом и пузырьками; слово часто встречается на этикетках напитков.",
+            "uk": "Газований: із розчиненим газом і бульбашками; слово часто трапляється на етикетках напоїв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи газована ця вода.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i06:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i06:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i06:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи газована ця вода.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, газированная ли эта вода.",
+          "uk": "Запитайте, чи газована ця вода."
+        },
+        "gappedTargetPhrase": "___ this water carbonated?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-08:i06:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i06:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i06:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Запитайте, чи газована ця вода.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи газована ця вода.",
+            "feedbackByLocale": {
+              "ru": "С this water используем is.",
+              "uk": "З this water використовуємо is."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи газована ця вода.",
+            "feedbackByLocale": {
+              "ru": "Am сочетается с I; здесь is.",
+              "uk": "Am поєднується з I; тут is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви віддаєте перевагу воді без газу. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Ви віддаєте перевагу воді без газу. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i07:audio",
+          "transcript": "I would prefer still water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would prefer still water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що хотіли б холодніші напої.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що хотіли б холодніші напої.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish the drinks were colder.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотели бы более холодные напитки.",
+          "uk": "Скажіть, що хотіли б холодніші напої."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "the",
+          "drinks",
+          "were",
+          "colder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tumbler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tumbler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i09:audio",
+          "transcript": "tumbler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i09:r1",
+            "targetText": "tumbler",
+            "meaningByLocale": {
+              "ru": "Стакан для питья без ножки.",
+              "uk": "Склянка для пиття без ніжки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tumbler",
+          "definitionByLocale": {
+            "ru": "Стакан для питья без ножки.",
+            "uk": "Склянка для пиття без ніжки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i10:r1",
+          "text": "This tumbler is made of glass."
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i10:r2",
+          "text": "This tumbler is made of plastic."
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i10:r3",
+          "text": "This bottle is made of glass."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i10:audio",
+          "transcript": "This tumbler is made of glass."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i10:r1",
+            "targetText": "This tumbler is made of glass.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i10:r2",
+            "targetText": "This tumbler is made of plastic.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i10:r3",
+            "targetText": "This bottle is made of glass.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This tumbler is made of glass.",
+              "uk": "У записі звучить This tumbler is made of glass."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This tumbler is made of glass.",
+              "uk": "У записі звучить This tumbler is made of glass."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Склянки продають по чотири в наборі. Завершіть опис.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i11:r1",
+          "text": "sold"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i11:r2",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i11:r3",
+          "text": "sells"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Склянки продають по чотири в наборі. Завершіть опис.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стаканы продают по четыре в наборе. Завершите описание.",
+          "uk": "Склянки продають по чотири в наборі. Завершіть опис."
+        },
+        "gappedTargetPhrase": "The glasses are ___ in sets of four.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-08:i11:r1",
+            "text": "sold"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i11:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i11:r3",
+            "text": "sells"
+          }
+        ],
+        "testedDimension": "Склянки продають по чотири в наборі. Завершіть опис.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Склянки продають по чотири в наборі. Завершіть опис.",
+            "feedbackByLocale": {
+              "ru": "Используем are sold: их продают.",
+              "uk": "Використовуємо are sold: їх продають."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Склянки продають по чотири в наборі. Завершіть опис.",
+            "feedbackByLocale": {
+              "ru": "После are здесь нужна sold.",
+              "uk": "Після are тут потрібна sold."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — carafe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — carafe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i12:audio",
+          "transcript": "carafe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i12:r1",
+            "targetText": "carafe",
+            "meaningByLocale": {
+              "ru": "Графин: сосуд, из которого наливают воду или другой напиток.",
+              "uk": "Графин: посудина, з якої наливають воду або інший напій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carafe",
+          "definitionByLocale": {
+            "ru": "Графин: сосуд, из которого наливают воду или другой напиток.",
+            "uk": "Графин: посудина, з якої наливають воду або інший напій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть графин води.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть графин води.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could we have a carafe of water?",
+        "localizedMeaning": {
+          "ru": "Попросите графин воды.",
+          "uk": "Попросіть графин води."
+        },
+        "orderedTokens": [
+          "Could",
+          "we",
+          "have",
+          "a",
+          "carafe",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i14:r1",
+          "text": "There are six glasses on the table."
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i14:r2",
+          "text": "There are four glasses on the table."
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i14:r3",
+          "text": "There are six plates on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i14:audio",
+          "transcript": "There are six glasses on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-08:i14:r1",
+            "targetText": "There are six glasses on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i14:r2",
+            "targetText": "There are four glasses on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i14:r3",
+            "targetText": "There are six plates on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are six glasses on the table.",
+              "uk": "У записі звучить There are six glasses on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are six glasses on the table.",
+              "uk": "У записі звучить There are six glasses on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Гість хоче ще напою. Запропонуйте долити.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Гість хоче ще напою. Запропонуйте долити.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i15:audio",
+          "transcript": "Would you like some more?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you like some more?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже вимили склянки до приходу друзів учора. Завершіть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i16:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i16:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i16:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже вимили склянки до приходу друзів учора. Завершіть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже вымыли стаканы до прихода друзей вчера. Завершите раннее действие.",
+          "uk": "Ви вже вимили склянки до приходу друзів учора. Завершіть ранішу дію."
+        },
+        "gappedTargetPhrase": "I had ___ the glasses by the time my friends arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-08:i16:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i16:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i16:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Ви вже вимили склянки до приходу друзів учора. Завершіть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви вже вимили склянки до приходу друзів учора. Завершіть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "После had нужна washed.",
+              "uk": "Після had потрібна washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви вже вимили склянки до приходу друзів учора. Завершіть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Для завершённого действия здесь had washed.",
+              "uk": "Для завершеної дії тут had washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зберігають сік.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зберігають сік.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i17:audio",
+          "transcript": "The juice is kept in the fridge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The juice is kept in the fridge.",
+        "orderedTokens": [
+          "The",
+          "juice",
+          "is",
+          "kept",
+          "in",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Льоду досить. Зупиніть друга, поки для напою ще залишилося місце.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i18:audio"
+      ],
+      "accessibilityLabel": "Льоду досить. Зупиніть друга, поки для напою ще залишилося місце.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i18:audio",
+          "transcript": "That is enough ice, thanks."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is enough ice, thanks.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У холодильнику мало місця. Скажіть, що хотіли б більший холодильник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У холодильнику мало місця. Скажіть, що хотіли б більший холодильник.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish we had a bigger fridge.",
+        "localizedMeaning": {
+          "ru": "В холодильнике мало места. Скажите, что хотели бы холодильник побольше.",
+          "uk": "У холодильнику мало місця. Скажіть, що хотіли б більший холодильник."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "we",
+          "had",
+          "a",
+          "bigger",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ці напої подають холодними. Виберіть форму для кількох напоїв.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-08:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-08:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ці напої подають холодними. Виберіть форму для кількох напоїв.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эти напитки подают холодными. Выберите форму для нескольких напитков.",
+          "uk": "Ці напої подають холодними. Виберіть форму для кількох напоїв."
+        },
+        "gappedTargetPhrase": "These drinks ___ served cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-08:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ці напої подають холодними. Виберіть форму для кількох напоїв.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-08:i20:r2",
+            "correct": false,
+            "testedDimension": "Ці напої подають холодними. Виберіть форму для кількох напоїв.",
+            "feedbackByLocale": {
+              "ru": "Drinks — несколько: are.",
+              "uk": "Drinks — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-08:i20:r3",
+            "correct": false,
+            "testedDimension": "Ці напої подають холодними. Виберіть форму для кількох напоїв.",
+            "feedbackByLocale": {
+              "ru": "Am подходит к I; здесь are.",
+              "uk": "Am підходить до I; тут are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-08:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Усі за столом. Запропонуйте почати їсти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-08:i21:audio"
+      ],
+      "accessibilityLabel": "Усі за столом. Запропонуйте почати їсти.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-08:i21:audio",
+          "transcript": "Shall we start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4fa52d49b3e6653fe9d34cafdd935ced346a9fcf55835657881034dafef0e60c"
+}

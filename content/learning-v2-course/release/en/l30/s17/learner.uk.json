@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quarter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quarter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i01:audio",
+          "transcript": "quarter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-17:i01:r1",
+            "targetText": "quarter",
+            "meaningByLocale": {
+              "ru": "Разрезать на четыре части. Например, разделить яблоко на четыре кусочка.",
+              "uk": "Розрізати на чотири частини. Наприклад, поділити яблуко на чотири шматочки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quarter",
+          "definitionByLocale": {
+            "ru": "Разрезать на четыре части. Например, разделить яблоко на четыре кусочка.",
+            "uk": "Розрізати на чотири частини. Наприклад, поділити яблуко на чотири шматочки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра попросила вас розрізати яблуко на чотири частини. Передайте прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Сестра попросила вас розрізати яблуко на чотири частини. Передайте прохання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i02:audio",
+          "transcript": "She asked me to quarter the apple."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked me to quarter the apple.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте прохання сестри нарізати цибулю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте прохання сестри нарізати цибулю.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked me to chop the onion.",
+        "localizedMeaning": {
+          "ru": "Передайте просьбу сестры нарезать лук.",
+          "uk": "Передайте прохання сестри нарізати цибулю."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "chop",
+          "the",
+          "onion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Батько сказав вам із сестрою не чіпати сковороду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i04:r1",
+          "text": "not to touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i04:r2",
+          "text": "not touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i04:r3",
+          "text": "not touching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Батько сказав вам із сестрою не чіпати сковороду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Отец сказал вам с сестрой не трогать сковороду.",
+          "uk": "Батько сказав вам із сестрою не чіпати сковороду."
+        },
+        "gappedTargetPhrase": "He told us ___ the pan.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-17:i04:r1",
+            "text": "not to touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i04:r2",
+            "text": "not touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i04:r3",
+            "text": "not touching"
+          }
+        ],
+        "testedDimension": "Батько сказав вам із сестрою не чіпати сковороду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Батько сказав вам із сестрою не чіпати сковороду.",
+            "feedbackByLocale": {
+              "ru": "В отрицательном указании нужно not to touch.",
+              "uk": "У заперечній вказівці потрібне not to touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i04:r3",
+            "correct": false,
+            "testedDimension": "Батько сказав вам із сестрою не чіпати сковороду.",
+            "feedbackByLocale": {
+              "ru": "После told us здесь используем not to touch.",
+              "uk": "Після told us тут використовуємо not to touch."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deseed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deseed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i05:audio",
+          "transcript": "deseed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-17:i05:r1",
+            "targetText": "deseed",
+            "meaningByLocale": {
+              "ru": "Удалять семена из плода, например из перца.",
+              "uk": "Видаляти насіння з плода, наприклад із перцю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deseed",
+          "definitionByLocale": {
+            "ru": "Удалять семена из плода, например из перца.",
+            "uk": "Видаляти насіння з плода, наприклад із перцю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i06:r1",
+          "text": "She asked me to deseed the pepper."
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i06:r2",
+          "text": "She asked me to wash the pepper."
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i06:r3",
+          "text": "She asked me to chop the pepper."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i06:audio",
+          "transcript": "She asked me to deseed the pepper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-17:i06:r1",
+            "targetText": "She asked me to deseed the pepper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i06:r2",
+            "targetText": "She asked me to wash the pepper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i06:r3",
+            "targetText": "She asked me to chop the pepper.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked me to deseed the pepper.",
+              "uk": "У записі звучить She asked me to deseed the pepper."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked me to deseed the pepper.",
+              "uk": "У записі звучить She asked me to deseed the pepper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання нарізати цибулю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання нарізати цибулю.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i07:audio",
+          "transcript": "She asked me to chop the onion."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked me to chop the onion.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "chop",
+          "the",
+          "onion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви попросили сестру зачекати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i08:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i08:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i08:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви попросили сестру зачекати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили сестру подождать.",
+          "uk": "Ви попросили сестру зачекати."
+        },
+        "gappedTargetPhrase": "I asked ___ to wait.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-17:i08:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i08:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i08:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Ви попросили сестру зачекати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви попросили сестру зачекати.",
+            "feedbackByLocale": {
+              "ru": "She — форма для того, кто действует; после asked здесь нужна her.",
+              "uk": "She — форма для того, хто діє; після asked тут потрібна her."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви попросили сестру зачекати.",
+            "feedbackByLocale": {
+              "ru": "Hers обозначает принадлежность; здесь нужно her.",
+              "uk": "Hers позначає належність; тут потрібне her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — debone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — debone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i09:audio",
+          "transcript": "debone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-17:i09:r1",
+            "targetText": "debone",
+            "meaningByLocale": {
+              "ru": "Удалять кости из мяса или рыбы.",
+              "uk": "Видаляти кістки з м’яса або риби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "debone",
+          "definitionByLocale": {
+            "ru": "Удалять кости из мяса или рыбы.",
+            "uk": "Видаляти кістки з м’яса або риби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Батько сказав вам видалити кістки з риби. Передайте вказівку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Батько сказав вам видалити кістки з риби. Передайте вказівку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i10:audio",
+          "transcript": "He told me to debone the fish."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He told me to debone the fish.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i11:r1",
+          "text": "I asked her to wait."
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i11:r2",
+          "text": "I asked him to wait."
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i11:r3",
+          "text": "I asked them to wait."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i11:audio",
+          "transcript": "I asked her to wait."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-17:i11:r1",
+            "targetText": "I asked her to wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i11:r2",
+            "targetText": "I asked him to wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i11:r3",
+            "targetText": "I asked them to wait.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I asked her to wait.",
+              "uk": "У записі звучить I asked her to wait."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I asked her to wait.",
+              "uk": "У записі звучить I asked her to wait."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dilute",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dilute",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i12:audio",
+          "transcript": "dilute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-17:i12:r1",
+            "targetText": "dilute",
+            "meaningByLocale": {
+              "ru": "Разбавлять жидкость, добавляя воду или другую жидкость.",
+              "uk": "Розбавляти рідину, додаючи воду або іншу рідину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dilute",
+          "definitionByLocale": {
+            "ru": "Разбавлять жидкость, добавляя воду или другую жидкость.",
+            "uk": "Розбавляти рідину, додаючи воду або іншу рідину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра попросила вас розбавити сік. Передайте прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Сестра попросила вас розбавити сік. Передайте прохання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i13:audio",
+          "transcript": "She asked me to dilute the juice."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked me to dilute the juice.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-30:session-17:i14:p1",
+            "target": "quarter",
+            "meaningByLocale": {
+              "ru": "разрезать на четыре части",
+              "uk": "розрізати на чотири частини"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-17:i14:p2",
+            "target": "deseed",
+            "meaningByLocale": {
+              "ru": "удалить семена",
+              "uk": "видалити насіння"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-17:i14:p3",
+            "target": "debone",
+            "meaningByLocale": {
+              "ru": "удалить кости",
+              "uk": "видалити кістки"
+            }
+          },
+          {
+            "pairId": "en:lesson-30:session-17:i14:p4",
+            "target": "dilute",
+            "meaningByLocale": {
+              "ru": "разбавить",
+              "uk": "розбавити"
+            }
+          }
+        ],
+        "leftColumn": [
+          "quarter",
+          "deseed",
+          "debone",
+          "dilute"
+        ],
+        "rightColumn": [
+          "розрізати на чотири частини",
+          "видалити насіння",
+          "видалити кістки",
+          "розбавити"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своє прохання до сестри зачекати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своє прохання до сестри зачекати.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I asked her to wait.",
+        "localizedMeaning": {
+          "ru": "Передайте свою просьбу к сестре подождать.",
+          "uk": "Передайте своє прохання до сестри зачекати."
+        },
+        "orderedTokens": [
+          "I",
+          "asked",
+          "her",
+          "to",
+          "wait"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра попросила саме вас нарізати цибулю.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i16:r1",
+          "text": "me"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i16:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i16:r3",
+          "text": "my"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра попросила саме вас нарізати цибулю.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра попросила именно вас нарезать лук.",
+          "uk": "Сестра попросила саме вас нарізати цибулю."
+        },
+        "gappedTargetPhrase": "She asked ___ to chop the onion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-17:i16:r1",
+            "text": "me"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i16:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i16:r3",
+            "text": "my"
+          }
+        ],
+        "testedDimension": "Сестра попросила саме вас нарізати цибулю.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i16:r2",
+            "correct": false,
+            "testedDimension": "Сестра попросила саме вас нарізати цибулю.",
+            "feedbackByLocale": {
+              "ru": "После asked нужен объект me.",
+              "uk": "Після asked потрібен об’єкт me."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i16:r3",
+            "correct": false,
+            "testedDimension": "Сестра попросила саме вас нарізати цибулю.",
+            "feedbackByLocale": {
+              "ru": "My означает мой; того, кого попросили, здесь обозначаем me.",
+              "uk": "My означає мій; того, кого попросили, тут позначаємо me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви із сестрою не дочекалися вечері й потягнулися до гарячої сковороди. Перекажіть батькову заборону.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Ви із сестрою не дочекалися вечері й потягнулися до гарячої сковороди. Перекажіть батькову заборону.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i17:audio",
+          "transcript": "He told us not to touch the pan."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He told us not to touch the pan.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання зачекати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання зачекати.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i18:audio",
+          "transcript": "I asked her to wait."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I asked her to wait.",
+        "orderedTokens": [
+          "I",
+          "asked",
+          "her",
+          "to",
+          "wait"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: сестра просила розбавити сік чи випити його?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i19:r1",
+          "text": "She asked me to dilute the juice."
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i19:r2",
+          "text": "She asked me to drink the juice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i19:audioA",
+        "en:lesson-30:session-17:i19:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: сестра просила розбавити сік чи випити його?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked me to dilute the juice.",
+        "contrastB": "She asked me to drink the juice.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-17:i19:audioA",
+          "transcript": "She asked me to dilute the juice."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-17:i19:audioB",
+          "transcript": "She asked me to drink the juice."
+        },
+        "testedPhoneticContrast": "Послухайте: сестра просила розбавити сік чи випити його?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i19:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: сестра просила розбавити сік чи випити його?",
+            "feedbackByLocale": {
+              "ru": "Звучит dilute — разбавить.",
+              "uk": "Звучить dilute — розбавити."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Передайте прохання видалити насіння з перцю.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-17:i20:r1",
+          "text": "to deseed"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i20:r2",
+          "text": "deseed"
+        },
+        {
+          "responseId": "en:lesson-30:session-17:i20:r3",
+          "text": "deseeding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте прохання видалити насіння з перцю.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Передайте просьбу удалить семена из перца.",
+          "uk": "Передайте прохання видалити насіння з перцю."
+        },
+        "gappedTargetPhrase": "She asked me ___ the pepper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-17:i20:r1",
+            "text": "to deseed"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i20:r2",
+            "text": "deseed"
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i20:r3",
+            "text": "deseeding"
+          }
+        ],
+        "testedDimension": "Передайте прохання видалити насіння з перцю.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-17:i20:r2",
+            "correct": false,
+            "testedDimension": "Передайте прохання видалити насіння з перцю.",
+            "feedbackByLocale": {
+              "ru": "После asked me перед действием нужно to.",
+              "uk": "Після asked me перед дією потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-17:i20:r3",
+            "correct": false,
+            "testedDimension": "Передайте прохання видалити насіння з перцю.",
+            "feedbackByLocale": {
+              "ru": "Просьбу передаём через to deseed, не deseeding.",
+              "uk": "Прохання передаємо через to deseed, не deseeding."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-17:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Батько доручив вам рибу; у вашій порції кісток тепер бути не повинно. Перекажіть доручення видалити кістки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-17:i21:audio"
+      ],
+      "accessibilityLabel": "Батько доручив вам рибу; у вашій порції кісток тепер бути не повинно. Перекажіть доручення видалити кістки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-17:i21:audio",
+          "transcript": "He told me to debone the fish."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He told me to debone the fish.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3b56f15753be2ae741c5197b1a7fb895491e5cdb0bcc3fb614c062bd5be175ea"
+}

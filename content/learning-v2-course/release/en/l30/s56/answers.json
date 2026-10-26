@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-56:i01",
+    "correctText": "shower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i02",
+    "correctText": "He said he needed a shower.",
+    "correctResponseId": "en:lesson-30:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i04",
+    "correctText": "keys",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i05",
+    "correctText": "He asked where my keys were.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i06",
+    "correctText": "I wish the room were quieter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i07",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-56:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i08",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i09",
+    "correctText": "The bag I brought is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i10",
+    "correctText": "He asked if I wanted dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i11",
+    "correctText": "me",
+    "correctResponseId": "en:lesson-30:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i12",
+    "correctText": "bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i13",
+    "correctText": "He said the bed was ready.",
+    "correctResponseId": "en:lesson-30:session-56:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i14",
+    "correctText": "I asked him to help me with my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i15",
+    "correctText": "The keys I found are mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i16",
+    "correctText": "not to wake",
+    "correctResponseId": "en:lesson-30:session-56:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i17",
+    "correctText": "He said he wanted to rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i18",
+    "correctText": "He asked where my keys were.",
+    "correctResponseId": "en:lesson-30:session-56:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i19",
+    "correctText": "He asked me to turn off the light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i20",
+    "correctText": "told",
+    "correctResponseId": "en:lesson-30:session-56:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-56:i21",
+    "correctText": "I told him the train was late.",
+    "correctResponseId": null
+  }
+]

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-03:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-42:intro1:r2": {
-          "ru": "Вы обе смотрите на одну и ту же ручку, поэтому the: The handle is broken.",
-          "uk": "Ви обидві дивитеся на одну й ту саму ручку, тому the: The handle is broken."
+          "ru": "После The handle нужно is.",
+          "uk": "Після The handle потрібне is."
         },
         "en:lesson-03:session-42:intro1:r3": {
           "ru": "Ручка одна, поэтому нужно is: The handle is broken.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-03:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-42:intro2:r2": {
-          "ru": "Звонок один, и вы оба на него смотрите, поэтому the: The bell is old.",
-          "uk": "Дзвінок один, і ви обидва на нього дивитеся, тому the: The bell is old."
+          "ru": "После The bell нужно is.",
+          "uk": "Після The bell потрібне is."
         },
         "en:lesson-03:session-42:intro2:r3": {
           "ru": "Звонок один, поэтому нужно is: The bell is old.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-03:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-42:intro3:r2": {
-          "ru": "Вы оба смотрите на одно и то же колесо, поэтому the: The wheel is loose.",
-          "uk": "Ви обидва дивитеся на те саме колесо, тому the: The wheel is loose."
+          "ru": "После The wheel нужно is.",
+          "uk": "Після The wheel потрібне is."
         },
         "en:lesson-03:session-42:intro3:r3": {
           "ru": "Колесо одно, поэтому нужно is: The wheel is loose.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f0db0b4764b2afa6e6040b7142a51e03ba291f13c387e788d3ec71d062805ef2"
+  "auxiliaryFingerprint": "eceb5a7ca881bf9a5bf737246198cd7b77f9fc956cf4b6fff266847637237919"
 }

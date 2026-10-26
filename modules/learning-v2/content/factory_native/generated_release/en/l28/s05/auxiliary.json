@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-05:intro1:r2": {
+          "ru": "С Gifts нужна are.",
+          "uk": "З Gifts потрібна are."
+        },
+        "en:lesson-28:session-05:intro1:r3": {
+          "ru": "Здесь нужна wrapped после are.",
+          "uk": "Тут потрібна wrapped після are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-05:intro2:r2": {
+          "ru": "В таком желании о настоящем нужна were.",
+          "uk": "У такому бажанні про теперішнє потрібна were."
+        },
+        "en:lesson-28:session-05:intro2:r3": {
+          "ru": "Здесь используем were bigger.",
+          "uk": "Тут використовуємо were bigger."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-05:intro3:r2": {
+          "ru": "После had нужна decorated.",
+          "uk": "Після had потрібна decorated."
+        },
+        "en:lesson-28:session-05:intro3:r3": {
+          "ru": "Вчерашний приход передаём словом arrived.",
+          "uk": "Учорашній прихід передаємо словом arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8e677209507f7e0686a3ff5a8e98bf8d4caa84756c41f56c957d34ff4c10bd1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "как передать чужие слова, выразить желание о настоящем и уточнить, какой матч обсуждается.",
+    "uk": "як передати чужі слова, висловити бажання про теперішнє й уточнити, який матч обговорюється."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После проигрыша",
+        "uk": "Після програшу"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера друг сказал вам, что разочарован проигранным матчем. Вы передаёте его слова сестре: He said he was disappointed — он сказал, что был разочарован. Соберите He + said + he was disappointed. Said сообщает, что друг говорил; дальше he was disappointed передаёт его состояние в тот момент.",
+        "uk": "Учора друг сказав вам, що розчарований програним матчем. Ви передаєте його слова сестрі: He said he was disappointed — він сказав, що був розчарований. Складіть He + said + he was disappointed. Said повідомляє, що друг говорив; далі he was disappointed передає його стан тієї миті."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-02:intro1:r1",
+              "text": "He said he was disappointed."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro1:r2",
+              "text": "He said he were disappointed."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro1:r3",
+              "text": "He said he being disappointed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-02:intro1:r1",
+              "text": "He said he was disappointed."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro1:r2",
+              "text": "He said he were disappointed."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro1:r3",
+              "text": "He said he being disappointed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не хватает времени на тренировки",
+        "uk": "Бракує часу на тренування"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите чаще тренироваться, но сейчас свободного времени мало: I wish I had more time — жаль, что у меня нет больше времени. Соберите I wish + I had + more time. После wish форма had выражает желание изменить нынешнюю ситуацию: речь о времени сейчас, а не о прошлом.",
+        "uk": "Ви хочете частіше тренуватися, але зараз вільного часу мало: I wish I had more time — шкода, що в мене немає більше часу. Складіть I wish + I had + more time. Після wish форма had виражає бажання змінити нинішню ситуацію: йдеться про час зараз, а не в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-02:intro2:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro2:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro2:r3",
+              "text": "I wish I having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-02:intro2:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro2:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro2:r3",
+              "text": "I wish I having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "О каком матче речь",
+        "uk": "Про який матч ідеться"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете с другом матч, который смотрели вместе: The match we watched was disappointing — матч, который мы смотрели, разочаровал. Соберите The match + we watched + was disappointing. Уточнение we watched показывает, какой матч вы имеете в виду. Здесь можно обойтись без that: внутри уточнения we выполняет действие, а match — то, что смотрели.",
+        "uk": "Ви обговорюєте з другом матч, який дивилися разом: The match we watched was disappointing — матч, який ми дивилися, розчарував. Складіть The match + we watched + was disappointing. Уточнення we watched показує, який матч ви маєте на увазі. Тут можна обійтися без that: усередині уточнення we виконує дію, а match — те, що дивилися."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-02:intro3:r1",
+              "text": "The match we watched was disappointing."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro3:r2",
+              "text": "The match we watching was disappointing."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro3:r3",
+              "text": "The match we watched were disappointing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-02:intro3:r1",
+              "text": "The match we watched was disappointing."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro3:r2",
+              "text": "The match we watching was disappointing."
+            },
+            {
+              "responseId": "en:lesson-30:session-02:intro3:r3",
+              "text": "The match we watched were disappointing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a10c959aa16582de61ef7beea9378832a779e5b43e09be1763cf173c1b841f99"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "как начать с вещи и сказать, что с ней сделали раньше: was или were и нужная форма действия.",
+    "uk": "як почати з речі й сказати, що з нею зробили раніше: was або were та потрібна форма дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дверь покрасили вчера",
+        "uk": "Двері пофарбували вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заходите в обновлённую комнату. Дверь покрасили вчера. The door was painted yesterday — дверь покрасили вчера. Начните с The door: говорим, что сделали с дверью. Затем was painted и в конце yesterday. Для одного предмета и прошлого используем was; к paint добавляем -ed. Имя мастера здесь не требуется.",
+        "uk": "Ви заходите до оновленої кімнати. Двері пофарбували вчора. The door was painted yesterday — двері пофарбували вчора. Почніть із The door: говоримо, що зробили з дверима. Потім was painted і наприкінці yesterday. В англійській door тут означає один предмет: для минулого використовуємо was; до paint додаємо -ed. Ім’я майстра тут не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-09:intro1:r1",
+              "text": "The door was painted yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro1:r2",
+              "text": "The door were painted yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro1:r3",
+              "text": "The door was paint yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-09:intro1:r1",
+              "text": "The door was painted yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro1:r2",
+              "text": "The door were painted yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro1:r3",
+              "text": "The door was paint yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новые ручки",
+        "uk": "Нові ручки"
+      },
+      "bodyByLocale": {
+        "ru": "На шкафу стоят новые ручки: старые заменили в понедельник. The handles were replaced on Monday — ручки заменили в понедельник. Соберите The handles + were replaced + on Monday. Ручек несколько, поэтому were. Replaced обозначает действие над ручками: их заменили. К replace добавляем -d.",
+        "uk": "На шафі нові ручки: старі замінили в понеділок. The handles were replaced on Monday — ручки замінили в понеділок. Складіть The handles + were replaced + on Monday. Ручок кілька, тому were. Replaced позначає дію над ручками: їх замінили. До replace додаємо -d."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-09:intro2:r1",
+              "text": "The handles were replaced on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro2:r2",
+              "text": "The handles was replaced on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro2:r3",
+              "text": "The handles were replace on Monday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-09:intro2:r1",
+              "text": "The handles were replaced on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro2:r2",
+              "text": "The handles was replaced on Monday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro2:r3",
+              "text": "The handles were replace on Monday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стул починили",
+        "uk": "Стілець полагодили"
+      },
+      "bodyByLocale": {
+        "ru": "Шатавшийся стул снова стоит ровно: его починили вчера. The chair was repaired yesterday — стул починили вчера. Сначала The chair, затем was repaired и yesterday. Was показывает прошлое и сочетается с одним chair. Repaired говорит, что сделали со стулом: к repair добавляем -ed.",
+        "uk": "Стілець, що хитався, знову стоїть рівно: його полагодили вчора. The chair was repaired yesterday — стілець полагодили вчора. Спочатку The chair, потім was repaired і yesterday. Was показує минуле й поєднується з одним chair. Repaired говорить, що зробили зі стільцем: до repair додаємо -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-09:intro3:r1",
+              "text": "The chair was repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro3:r2",
+              "text": "The chair were repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro3:r3",
+              "text": "The chair was repair yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-09:intro3:r1",
+              "text": "The chair was repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro3:r2",
+              "text": "The chair were repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-09:intro3:r3",
+              "text": "The chair was repair yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b7692957eedbbca67ac848ae7d799e4cdaf4afa8dadfed39f9e08b67a2046db6"
+}

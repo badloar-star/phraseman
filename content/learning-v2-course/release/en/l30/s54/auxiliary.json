@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-54:intro1:r2": {
+          "ru": "Is не выполняет заданный сдвиг.",
+          "uk": "Is не виконує заданий зсув."
+        },
+        "en:lesson-30:session-54:intro1:r3": {
+          "ru": "Нужна форма was.",
+          "uk": "Потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-54:intro2:r2": {
+          "ru": "В пересказе нужен порядок the platform was.",
+          "uk": "У переказі потрібен порядок the platform was."
+        },
+        "en:lesson-30:session-54:intro2:r3": {
+          "ru": "Одна platform требует was.",
+          "uk": "Одна platform потребує was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-54:intro3:r2": {
+          "ru": "После asked используем us, не we.",
+          "uk": "Після asked використовуємо us, не we."
+        },
+        "en:lesson-30:session-54:intro3:r3": {
+          "ru": "После asked us перед wait нужно to.",
+          "uk": "Після asked us перед wait потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "306a376ddd72a2823f53e3f38baf7cc8a0133c4086960d6b0d1f16806d437022"
+}

@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i01:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-37:i01:r1",
+            "targetText": "chair",
+            "meaningByLocale": {
+              "ru": "Стул. Повторение знакомого слова.",
+              "uk": "Стілець. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chair",
+          "definitionByLocale": {
+            "ru": "Стул. Повторение знакомого слова.",
+            "uk": "Стілець. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i02:r1",
+          "text": "The chair moves, so it might be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i02:r2",
+          "text": "The chair moves, so it must be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i02:r3",
+          "text": "The chair moves, so it can't be broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i02:audio",
+          "transcript": "The chair moves, so it might be broken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-37:i02:r1",
+            "targetText": "The chair moves, so it might be broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i02:r2",
+            "targetText": "The chair moves, so it must be broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i02:r3",
+            "targetText": "The chair moves, so it can't be broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair moves, so it might be broken.",
+              "uk": "У записі звучить The chair moves, so it might be broken."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair moves, so it might be broken.",
+              "uk": "У записі звучить The chair moves, so it might be broken."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стул качается, когда Анна садится. Вы ещё не осмотрели его ножки и допускаете поломку. Стул двигается, поэтому он, возможно, сломан.",
+          "uk": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний."
+        },
+        "gappedTargetPhrase": "The chair moves, so it might ___ broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-37:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i04:audio",
+          "transcript": "leg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-37:i04:r1",
+            "targetText": "leg",
+            "meaningByLocale": {
+              "ru": "Ножка. Повторение знакомого слова.",
+              "uk": "Ніжка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leg",
+          "definitionByLocale": {
+            "ru": "Ножка. Повторение знакомого слова.",
+            "uk": "Ніжка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Ніжка не може бути прямою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Ніжка не може бути прямою.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The leg can't be straight.",
+        "localizedMeaning": {
+          "ru": "Вы приложили линейку к ножке и видите, что она сильно изогнута. Ножка не может быть прямой.",
+          "uk": "Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Ніжка не може бути прямою."
+        },
+        "orderedTokens": [
+          "The",
+          "leg",
+          "can't",
+          "be",
+          "straight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i06:audio",
+          "transcript": "glue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-37:i06:r1",
+            "targetText": "glue",
+            "meaningByLocale": {
+              "ru": "Клей. Повторение знакомого слова.",
+              "uk": "Клей. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glue",
+          "definitionByLocale": {
+            "ru": "Клей. Повторение знакомого слова.",
+            "uk": "Клей. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Клей, який я купив, міцний. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Клей, який я купив, міцний. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i07:audio",
+          "transcript": "The glue I bought is strong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The glue I bought is strong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
+          "uk": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The glue I ___ is strong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-37:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний. Почніть із The chair moves.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний. Почніть із The chair moves.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chair moves, so it might be broken.",
+        "localizedMeaning": {
+          "ru": "Стул качается, когда Анна садится. Вы ещё не осмотрели его ножки и допускаете поломку. Стул двигается, поэтому он, возможно, сломан. Начните с The chair moves.",
+          "uk": "Стілець хитається, коли Анна сідає. Ви ще не оглянули його ніжки й припускаєте поломку. Стілець рухається, тому він, можливо, зламаний. Почніть із The chair moves."
+        },
+        "orderedTokens": [
+          "The",
+          "chair",
+          "moves,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Скажіть висновок, замінивши The leg займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Ви приклали лінійку до ніжки й бачите, що вона сильно зігнута. Скажіть висновок, замінивши The leg займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i10:audio",
+          "transcript": "It can’t be straight."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be straight.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ніжка не може бути прямою. Виберіть форму після can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ніжка не може бути прямою. Виберіть форму після can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ножка не может быть прямой. Выберите форму после can’t.",
+          "uk": "Ніжка не може бути прямою. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The leg can't ___ straight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-37:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Ніжка не може бути прямою. Виберіть форму після can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Ніжка не може бути прямою. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Ніжка не може бути прямою. Виберіть форму після can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i12:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-37:i12:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Пол. Повторение знакомого слова.",
+              "uk": "Підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Пол. Повторение знакомого слова.",
+            "uk": "Підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i13:r1",
+          "text": "The floor must be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i13:r2",
+          "text": "The floor may be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i13:r3",
+          "text": "The floor could be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i13:audio",
+          "transcript": "The floor must be wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-37:i13:r1",
+            "targetText": "The floor must be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i13:r2",
+            "targetText": "The floor may be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i13:r3",
+            "targetText": "The floor could be wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor must be wet.",
+              "uk": "У записі звучить The floor must be wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor must be wet.",
+              "uk": "У записі звучить The floor must be wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i14:audio",
+          "transcript": "The floor must be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The floor must be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть предмет Анні: почніть із This is, потім назвіть the glue й уточнення I bought. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть предмет Анні: почніть із This is, потім назвіть the glue й уточнення I bought. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the glue I bought.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the glue и уточнение I bought. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the glue й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "glue",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стілець рухається, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець рухається, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стул двигается, поэтому он, возможно, сломан. Соедините признак и предположение словом «поэтому».",
+          "uk": "Стілець рухається, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The chair moves, ___ it might be broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-37:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Стілець рухається, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i16:r2",
+            "correct": false,
+            "testedDimension": "Стілець рухається, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i16:r3",
+            "correct": false,
+            "testedDimension": "Стілець рухається, тому він, можливо, зламаний. Поєднайте ознаку й припущення словом «тому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна запитує, на чому ґрунтується ваше припущення. Стілець рухається, тому він, можливо, зламаний. Дайте відповідь, починаючи з The chair moves.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Анна запитує, на чому ґрунтується ваше припущення. Стілець рухається, тому він, можливо, зламаний. Дайте відповідь, починаючи з The chair moves.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i17:audio",
+          "transcript": "The chair moves, so it might be broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chair moves, so it might be broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: названо можливість чи впевнений висновок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i18:r1",
+          "text": "The chair moves, so it might be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i18:r2",
+          "text": "The chair moves, so it must be broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i18:audioA",
+        "en:lesson-32:session-37:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: названо можливість чи впевнений висновок?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The chair moves, so it might be broken.",
+        "contrastB": "The chair moves, so it must be broken.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-37:i18:audioA",
+          "transcript": "The chair moves, so it might be broken."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-37:i18:audioB",
+          "transcript": "The chair moves, so it must be broken."
+        },
+        "testedPhoneticContrast": "Послухайте: названо можливість чи впевнений висновок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: названо можливість чи впевнений висновок?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який варіант виключений.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який варіант виключений.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i19:audio",
+          "transcript": "The leg can't be straight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The leg can't be straight.",
+        "orderedTokens": [
+          "The",
+          "leg",
+          "can't",
+          "be",
+          "straight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-37:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-37:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы слышали, как Анна пролила воду возле стула, и видите мокрые следы от её обуви. Пол, должно быть, мокрый.",
+          "uk": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра."
+        },
+        "gappedTargetPhrase": "The floor must ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-37:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-37:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-37:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви чули, як Анна розлила воду біля стільця, і бачите мокрі сліди від її взуття. Підлога, напевно, мокра.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-37:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стілець рухається, тому він, можливо, зламаний. Назвіть ту саму можливість із could замість might. Почніть із The chair moves.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-37:i21:audio"
+      ],
+      "accessibilityLabel": "Стілець рухається, тому він, можливо, зламаний. Назвіть ту саму можливість із could замість might. Почніть із The chair moves.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-37:i21:audio",
+          "transcript": "The chair moves, so it could be broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chair moves, so it could be broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "695e3027babc0ac7cfe89b61e15877722fc6c37ff0d8eccc4ffeb739c876f3b2"
+}

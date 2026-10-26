@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-09:intro1:r2": {
+          "ru": "You are требует aren’t в таком уточнении.",
+          "uk": "You are потребує aren’t у такому уточненні."
+        },
+        "en:lesson-31:session-09:intro1:r3": {
+          "ru": "Вы обращаетесь к другу: нужен участник you.",
+          "uk": "Ви звертаєтеся до друга: потрібен учасник you."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-09:intro2:r2": {
+          "ru": "Для одной сумки нужно is it.",
+          "uk": "Для однієї сумки потрібно is it."
+        },
+        "en:lesson-31:session-09:intro2:r3": {
+          "ru": "Одну сумку заменяем на it.",
+          "uk": "Одну сумку замінюємо на it."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-09:intro3:r2": {
+          "ru": "С she здесь нужна форма does.",
+          "uk": "З she тут потрібна форма does."
+        },
+        "en:lesson-31:session-09:intro3:r3": {
+          "ru": "Речь об Анне: нужен участник she.",
+          "uk": "Ідеться про Анну: потрібен учасник she."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d252cd94e5d4f1537c58258588664ae4840d54d552baf377a644d7b4cf534d95"
+}

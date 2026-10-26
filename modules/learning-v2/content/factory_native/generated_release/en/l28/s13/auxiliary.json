@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-13:intro1:r2": {
+          "ru": "С Tickets нужна are.",
+          "uk": "З Tickets потрібна are."
+        },
+        "en:lesson-28:session-13:intro1:r3": {
+          "ru": "После are здесь checked.",
+          "uk": "Після are тут checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-13:intro2:r2": {
+          "ru": "Один фильм: was.",
+          "uk": "Один фільм: was."
+        },
+        "en:lesson-28:session-13:intro2:r3": {
+          "ru": "Здесь нужна was made.",
+          "uk": "Тут потрібна was made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-13:intro3:r2": {
+          "ru": "Для этого желания нужна were.",
+          "uk": "Для цього бажання потрібна were."
+        },
+        "en:lesson-28:session-13:intro3:r3": {
+          "ru": "Здесь используем were.",
+          "uk": "Тут використовуємо were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "acbd2a02d6f3a122fdafe9a4305adb1d1f24e999c820a80cad44d1ff78ab143c"
+}

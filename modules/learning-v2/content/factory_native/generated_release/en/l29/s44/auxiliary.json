@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-44:intro1:r2": {
+          "ru": "It повторяет уже названный десерт.",
+          "uk": "It повторює вже названий десерт."
+        },
+        "en:lesson-29:session-44:intro1:r3": {
+          "ru": "Для сделанного совета нужна форма recommended.",
+          "uk": "Для вже даної поради потрібна форма recommended."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-44:intro2:r2": {
+          "ru": "В уточнении нужен порядок I tried it.",
+          "uk": "В уточненні потрібен порядок I tried it."
+        },
+        "en:lesson-29:session-44:intro2:r3": {
+          "ru": "Для места используем where.",
+          "uk": "Для місця використовуємо where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-44:intro3:r2": {
+          "ru": "Who обозначает исполнителя внутри уточнения; его нельзя убрать.",
+          "uk": "Who позначає виконавця всередині уточнення; його не можна прибрати."
+        },
+        "en:lesson-29:session-44:intro3:r3": {
+          "ru": "He повторяет исполнителя, уже обозначенного who.",
+          "uk": "He повторює виконавця, уже позначеного who."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2f1677201a84afb86fd3125696a00ae86effbf932fc36e3c29851a6d7b0a6ea"
+}

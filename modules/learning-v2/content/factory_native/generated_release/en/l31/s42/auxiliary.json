@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-42:intro1:r2": {
+          "ru": "После to нужна начальная форма keep.",
+          "uk": "Після to потрібна початкова форма keep."
+        },
+        "en:lesson-31:session-42:intro1:r3": {
+          "ru": "Перед keep для этой цели нужно to.",
+          "uk": "Перед keep для цієї мети потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-42:intro2:r2": {
+          "ru": "Для отдельного участника Anna нужна целая часть после so that.",
+          "uk": "Для окремого учасника Anna потрібна ціла частина після so that."
+        },
+        "en:lesson-31:session-42:intro2:r3": {
+          "ru": "После could нужна форма find.",
+          "uk": "Після could потрібна форма find."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-42:intro3:r2": {
+          "ru": "После where порядок the box is.",
+          "uk": "Після where порядок the box is."
+        },
+        "en:lesson-31:session-42:intro3:r3": {
+          "ru": "Одна box требует is.",
+          "uk": "Одна box потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "291d91eea6151e766f6362b72770d304216d42cb2f728e1e55e448fa55b27126"
+}

@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-21:intro2:r2": {
-          "ru": "Чай не считают штуками, поэтому вместо a нужно any.",
-          "uk": "Чай не рахують штуками, тому замість a потрібно any."
+          "ru": "Tea здесь неисчисляемое, поэтому нужно isn’t.",
+          "uk": "Tea тут незлічуване, тому потрібне isn’t."
         },
         "en:lesson-04:session-21:intro2:r3": {
           "ru": "Чтобы сказать «нет», нужно isn't: There isn't any tea.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "8089c9aa0bf20696df09b2be5b2d72e7667a8c2b8700df1aa13dc829ffeec6d7"
+  "auxiliaryFingerprint": "830d80af2a6c42ec93662b85d9ad6e32d215a1562a6adcdc6b10e269110552a5"
 }

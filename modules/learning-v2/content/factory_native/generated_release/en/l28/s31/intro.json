@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать нужные вещи, уточнить замену детали и понять условия обмена.",
+    "uk": "як назвати потрібні речі, уточнити заміну деталі й зрозуміти умови обміну."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно ли заменить деталь",
+        "uk": "Чи можна замінити деталь"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине детских товаров вы заметили повреждённую деталь у выбранного изделия. Спросите продавца: Can this part be replaced? — можно заменить эту деталь? Начните с Can, затем поставьте this part, после него — be replaced. Получится Can + this part + be + replaced? Replaced — форма replace с окончанием -d. Вопрос касается действия над деталью.",
+        "uk": "У крамниці дитячих товарів ви помітили пошкоджену деталь у вибраного виробу. Запитайте продавця: Can this part be replaced? — чи можна замінити цю деталь? Почніть із Can, потім поставте this part, після нього — be replaced. Вийде Can + this part + be + replaced? Replaced — форма replace із закінченням -d. Запитання стосується дії над деталлю."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-31:intro1:r1",
+              "text": "Can this part be replaced?"
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro1:r2",
+              "text": "Can this part replaced?"
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro1:r3",
+              "text": "Can this part be replace?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-31:intro1:r1",
+              "text": "Can this part be replaced?"
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro1:r2",
+              "text": "Can this part replaced?"
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro1:r3",
+              "text": "Can this part be replace?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не срезайте бирку",
+        "uk": "Не зрізайте бирку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы купили детскую одежду на подарок и ещё не уверены в размере. Продавец объясняет условие обмена: The label must not be removed — бирку нельзя снимать. Соберите The label + must not + be + removed. Must not выражает запрет. После него нужна be, затем removed — форма remove с окончанием -d.",
+        "uk": "Ви купили дитячий одяг на подарунок і ще не впевнені в розмірі. Продавець пояснює умову обміну: The label must not be removed — бирку не можна знімати. Складіть The label + must not + be + removed. Must not виражає заборону. Після нього потрібна be, потім removed — форма remove із закінченням -d."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-31:intro2:r1",
+              "text": "The label must not be removed."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro2:r2",
+              "text": "The label must not removed."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro2:r3",
+              "text": "The label must not be remove."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-31:intro2:r1",
+              "text": "The label must not be removed."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro2:r2",
+              "text": "The label must not removed."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro2:r3",
+              "text": "The label must not be remove."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Посылка пришла раньше вас",
+        "uk": "Посилка прийшла раніше за вас"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вернулись домой, а заказанный подарок уже лежал у соседки. Расскажите: The parcel had arrived by the time I got home — к моему возвращению домой посылка уже пришла. Начните с The parcel had arrived: had + arrived показывает более раннее событие. Затем добавьте by the time I got home. Got home — ваше более позднее возвращение домой.",
+        "uk": "Ви повернулися додому, а замовлений подарунок уже лежав у сусідки. Розкажіть: The parcel had arrived by the time I got home — до мого повернення додому посилка вже прийшла. Почніть із The parcel had arrived: had + arrived показує ранішу подію. Потім додайте by the time I got home. Got home — ваше пізніше повернення додому."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-31:intro3:r1",
+              "text": "The parcel had arrived by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro3:r2",
+              "text": "The parcel had arrive by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro3:r3",
+              "text": "The parcel had arriving by the time I got home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-31:intro3:r1",
+              "text": "The parcel had arrived by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro3:r2",
+              "text": "The parcel had arrive by the time I got home."
+            },
+            {
+              "responseId": "en:lesson-28:session-31:intro3:r3",
+              "text": "The parcel had arriving by the time I got home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d3c92c0a74d593f3200b6aecde8d09be866ae4dc4e305a82ecd42113171e8c2b"
+}

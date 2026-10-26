@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-32:intro1:r2": {
+          "ru": "В этом порядке с me используем told, не said.",
+          "uk": "У цьому порядку з me використовуємо told, не said."
+        },
+        "en:lesson-30:session-32:intro1:r3": {
+          "ru": "После told перед me не ставим to.",
+          "uk": "Після told перед me не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-32:intro2:r2": {
+          "ru": "После asked me перед keep нужно to.",
+          "uk": "Після asked me перед keep потрібне to."
+        },
+        "en:lesson-30:session-32:intro2:r3": {
+          "ru": "После asked здесь нужна форма me.",
+          "uk": "Після asked тут потрібна форма me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-32:intro3:r2": {
+          "ru": "В уточнении нужен порядок you gave me.",
+          "uk": "В уточненні потрібен порядок you gave me."
+        },
+        "en:lesson-30:session-32:intro3:r3": {
+          "ru": "Одна bowl требует is, не are.",
+          "uk": "Одна bowl потребує is, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1be8bf244a3e2b519995bf2b89599510356fef44a9e9a6a5b8987db232f8376d"
+}

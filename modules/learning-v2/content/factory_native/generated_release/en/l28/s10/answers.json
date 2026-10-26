@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-10:i01",
+    "correctText": "Is the gym open now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i02",
+    "correctText": "sportswear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i03",
+    "correctText": "My sportswear was left in the changing room.",
+    "correctResponseId": "en:lesson-28:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i04",
+    "correctText": "Could you help me find my things?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i05",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i06",
+    "correctText": "barbell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i07",
+    "correctText": "Could you show me the barbell?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i08",
+    "correctText": "The equipment is cleaned every evening.",
+    "correctResponseId": "en:lesson-28:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i09",
+    "correctText": "This is my first time here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i10",
+    "correctText": "kettlebell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-28:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i12",
+    "correctText": "Do you have a lighter one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i13",
+    "correctText": "leotard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i14",
+    "correctText": "My leotard was found in the dance studio.",
+    "correctResponseId": "en:lesson-28:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i15",
+    "correctText": "Yes, that is mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i16",
+    "correctText": "started",
+    "correctResponseId": "en:lesson-28:session-10:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i17",
+    "correctText": "I wish I lived closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i18",
+    "correctText": "The floor was cleaned this morning.",
+    "correctResponseId": "en:lesson-28:session-10:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i19",
+    "correctText": "The mats are kept near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i20",
+    "correctText": "I am ready now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-10:i21",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-10:i21:r1"
+  }
+]

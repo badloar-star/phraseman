@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать выносливость, шаг при ходьбе, ловкость и кардиотренировку, уточнить занятие и тренера.",
+    "uk": "як назвати витривалість, крок під час ходьби, спритність і кардіотренування, уточнити заняття й тренера."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как прошло занятие",
+        "uk": "Як минуло заняття"
+      },
+      "bodyByLocale": {
+        "ru": "После пробного занятия в спортзале друг спрашивает о ваших впечатлениях. Скажите: The class I tried was tiring — занятие, которое я попробовал, было утомительным. Соберите The class + I tried + was tiring. В уточнении действие выполняет I, а class называет занятие. Поэтому that перед I можно опустить; it после tried не добавляем.",
+        "uk": "Після пробного заняття в спортзалі друг запитує про ваші враження. Скажіть: The class I tried was tiring — заняття, яке я спробував, було виснажливим. Складіть The class + I tried + was tiring. В уточненні дію виконує I, а class називає заняття. Тому that перед I можна пропустити; it після tried не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-45:intro1:r1",
+              "text": "The class I tried was tiring."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro1:r2",
+              "text": "The class I tried it was tiring."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro1:r3",
+              "text": "The class me tried was tiring."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-45:intro1:r1",
+              "text": "The class I tried was tiring."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro1:r2",
+              "text": "The class I tried it was tiring."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro1:r3",
+              "text": "The class me tried was tiring."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тренер, который помог",
+        "uk": "Тренер, який допоміг"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу тренера, который помог разобраться с упражнением. Скажите: This is the trainer who helped me — это тренер, который мне помог. Соберите This is the trainer + who helped me. Who здесь само обозначает того, кто помог. Поэтому who оставляем, а he после него не добавляем.",
+        "uk": "Ви показуєте другові тренера, який допоміг розібратися з вправою. Скажіть: This is the trainer who helped me — це тренер, який мені допоміг. Складіть This is the trainer + who helped me. Who тут саме позначає того, хто допоміг. Тому who залишаємо, а he після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-45:intro2:r1",
+              "text": "This is the trainer who helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro2:r2",
+              "text": "This is the trainer helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro2:r3",
+              "text": "This is the trainer who he helped me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-45:intro2:r1",
+              "text": "This is the trainer who helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro2:r2",
+              "text": "This is the trainer helped me."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro2:r3",
+              "text": "This is the trainer who he helped me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где вы встретились",
+        "uk": "Де ви зустрілися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете сестре спортзал, где познакомились с другом. Скажите: This is the gym where we met — это спортзал, где мы познакомились. Соберите This is the gym + where + we met. Where связывает встречу с местом. После where сохраняем порядок we met, без вопросительного did.",
+        "uk": "Ви показуєте сестрі спортзал, де познайомилися з другом. Скажіть: This is the gym where we met — це спортзал, де ми познайомилися. Складіть This is the gym + where + we met. Where пов’язує зустріч із місцем. Після where зберігаємо порядок we met, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-45:intro3:r1",
+              "text": "This is the gym where we met."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro3:r2",
+              "text": "This is the gym where did we meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro3:r3",
+              "text": "This is the gym who we met."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-45:intro3:r1",
+              "text": "This is the gym where we met."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro3:r2",
+              "text": "This is the gym where did we meet."
+            },
+            {
+              "responseId": "en:lesson-29:session-45:intro3:r3",
+              "text": "This is the gym who we met."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f59cb98e2c6fd33bd5335e1e7262a9e7b6467de7238d8f756bcdd79b7c7df00a"
+}

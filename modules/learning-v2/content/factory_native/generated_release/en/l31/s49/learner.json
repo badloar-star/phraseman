@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i01:audio",
+          "transcript": "shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-49:i01:r1",
+            "targetText": "shop",
+            "meaningByLocale": {
+              "ru": "Магазин. Повторение знакомого слова.",
+              "uk": "Магазин. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shop",
+          "definitionByLocale": {
+            "ru": "Магазин. Повторение знакомого слова.",
+            "uk": "Магазин. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i02:r1",
+          "text": "The shop was closed, so we left."
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i02:r2",
+          "text": "The shop was open, so we went in."
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i02:r3",
+          "text": "The shop was busy, so we waited."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i02:audio",
+          "transcript": "The shop was closed, so we left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-49:i02:r1",
+            "targetText": "The shop was closed, so we left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i02:r2",
+            "targetText": "The shop was open, so we went in.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i02:r3",
+            "targetText": "The shop was busy, so we waited.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop was closed, so we left.",
+              "uk": "У записі звучить The shop was closed, so we left."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop was closed, so we left.",
+              "uk": "У записі звучить The shop was closed, so we left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин был закрыт, поэтому вы ушли. Выберите форму прошедшего времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i03:r1",
+          "text": "left"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i03:r2",
+          "text": "leaving"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i03:r3",
+          "text": "leaves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин был закрыт, поэтому вы ушли. Выберите форму прошедшего времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин был закрыт, поэтому вы ушли. Выберите форму прошедшего времени.",
+          "uk": "Магазин був зачинений, тому ви пішли. Виберіть форму минулого часу."
+        },
+        "gappedTargetPhrase": "The shop was closed, so we ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-49:i03:r1",
+            "text": "left"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i03:r2",
+            "text": "leaving"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i03:r3",
+            "text": "leaves"
+          }
+        ],
+        "testedDimension": "Магазин был закрыт, поэтому вы ушли. Выберите форму прошедшего времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Магазин был закрыт, поэтому вы ушли. Выберите форму прошедшего времени.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма left.",
+              "uk": "Потрібна форма left."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Магазин был закрыт, поэтому вы ушли. Выберите форму прошедшего времени.",
+            "feedbackByLocale": {
+              "ru": "После we и для прошлого действия нужна форма left.",
+              "uk": "Після we й для минулої дії потрібна форма left."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — taxi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — taxi",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i04:audio",
+          "transcript": "taxi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-49:i04:r1",
+            "targetText": "taxi",
+            "meaningByLocale": {
+              "ru": "Такси. Повторение знакомого слова.",
+              "uk": "Таксі. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "taxi",
+          "definitionByLocale": {
+            "ru": "Такси. Повторение знакомого слова.",
+            "uk": "Таксі. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Было поздно, поэтому вы взяли такси. Начните с It was late and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Было поздно, поэтому вы взяли такси. Начните с It was late and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was late and therefore we took a taxi.",
+        "localizedMeaning": {
+          "ru": "Было поздно, поэтому вы взяли такси. Начните с It was late and therefore.",
+          "uk": "Було пізно, тому ви взяли таксі. Почніть з It was late and therefore."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "late",
+          "and",
+          "therefore",
+          "we",
+          "took",
+          "a",
+          "taxi"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i06:audio",
+          "transcript": "milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-49:i06:r1",
+            "targetText": "milk",
+            "meaningByLocale": {
+              "ru": "Молоко. Повторение знакомого слова.",
+              "uk": "Молоко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milk",
+          "definitionByLocale": {
+            "ru": "Молоко. Повторение знакомого слова.",
+            "uk": "Молоко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Молока не было, поэтому вы его не купили. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Молока не было, поэтому вы его не купили. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i07:audio",
+          "transcript": "There was no milk, so I didn’t buy any."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There was no milk, so I didn’t buy any.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не купили молоко. Выберите форму после didn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i08:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i08:r2",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не купили молоко. Выберите форму после didn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не купили молоко. Выберите форму после didn’t.",
+          "uk": "Ви не купили молоко. Виберіть форму після didn’t."
+        },
+        "gappedTargetPhrase": "There was no milk, so I didn't ___ any.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-49:i08:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i08:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Вы не купили молоко. Выберите форму после didn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы не купили молоко. Выберите форму после didn’t.",
+            "feedbackByLocale": {
+              "ru": "После didn’t нужна форма buy.",
+              "uk": "Після didn’t потрібна форма buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы не купили молоко. Выберите форму после didn’t.",
+            "feedbackByLocale": {
+              "ru": "Строим отрицание didn’t buy.",
+              "uk": "Будуємо заперечення didn’t buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Магазин был закрыт, поэтому вы ушли. Начните с The shop was closed.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин был закрыт, поэтому вы ушли. Начните с The shop was closed.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shop was closed, so we left.",
+        "localizedMeaning": {
+          "ru": "Магазин был закрыт, поэтому вы ушли. Начните с The shop was closed.",
+          "uk": "Магазин був зачинений, тому ви пішли. Почніть з The shop was closed."
+        },
+        "orderedTokens": [
+          "The",
+          "shop",
+          "was",
+          "closed,",
+          "so",
+          "we",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Шёл дождь, поэтому вы взяли такси. Начните с It was raining.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i10:audio"
+      ],
+      "accessibilityLabel": "Шёл дождь, поэтому вы взяли такси. Начните с It was raining.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i10:audio",
+          "transcript": "It was raining, so we took a taxi."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It was raining, so we took a taxi.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Было поздно, поэтому вы взяли такси. Выберите форму прошедшего времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i11:r1",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i11:r2",
+          "text": "taken"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i11:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Было поздно, поэтому вы взяли такси. Выберите форму прошедшего времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Было поздно, поэтому вы взяли такси. Выберите форму прошедшего времени.",
+          "uk": "Було пізно, тому ви взяли таксі. Виберіть форму минулого часу."
+        },
+        "gappedTargetPhrase": "It was late and therefore we ___ a taxi.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-49:i11:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i11:r2",
+            "text": "taken"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i11:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Было поздно, поэтому вы взяли такси. Выберите форму прошедшего времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Было поздно, поэтому вы взяли такси. Выберите форму прошедшего времени.",
+            "feedbackByLocale": {
+              "ru": "Для прошлого действия нужна форма took.",
+              "uk": "Для минулої дії потрібна форма took."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Было поздно, поэтому вы взяли такси. Выберите форму прошедшего времени.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная часть we took a taxi.",
+              "uk": "Потрібна повна частина we took a taxi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i12:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-49:i12:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i13:r1",
+          "text": "We needed bread, so we went to the shop."
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i13:r2",
+          "text": "We needed milk, so we went to the shop."
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i13:r3",
+          "text": "We needed eggs, so we went to the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i13:audio",
+          "transcript": "We needed bread, so we went to the shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-49:i13:r1",
+            "targetText": "We needed bread, so we went to the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i13:r2",
+            "targetText": "We needed milk, so we went to the shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i13:r3",
+            "targetText": "We needed eggs, so we went to the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needed bread, so we went to the shop.",
+              "uk": "У записі звучить We needed bread, so we went to the shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We needed bread, so we went to the shop.",
+              "uk": "У записі звучить We needed bread, so we went to the shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дома не было хлеба, поэтому вы составили список. Начните с There was no bread.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Дома не было хлеба, поэтому вы составили список. Начните с There was no bread.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i14:audio",
+          "transcript": "There was no bread, so I made a list."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There was no bread, so I made a list.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы устали, поэтому пошли домой. Начните с I was tired.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы устали, поэтому пошли домой. Начните с I was tired.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was tired, so I went home.",
+        "localizedMeaning": {
+          "ru": "Вы устали, поэтому пошли домой. Начните с I was tired.",
+          "uk": "Ви втомилися, тому пішли додому. Почніть з I was tired."
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "tired,",
+          "so",
+          "I",
+          "went",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для обычного разговора соедините причину и результат союзом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для обычного разговора соедините причину и результат союзом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для обычного разговора соедините причину и результат союзом «поэтому».",
+          "uk": "Для звичайної розмови поєднайте причину й результат сполучником «тому»."
+        },
+        "gappedTargetPhrase": "The shop was closed, ___ we left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-49:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Для обычного разговора соедините причину и результат союзом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i16:r2",
+            "correct": false,
+            "testedDimension": "Для обычного разговора соедините причину и результат союзом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину; здесь после пропуска нужен результат.",
+              "uk": "Because вводить причину; тут після пропуску потрібен результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i16:r3",
+            "correct": false,
+            "testedDimension": "Для обычного разговора соедините причину и результат союзом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а здесь нужен результат: so.",
+              "uk": "Although означає «хоча», а тут потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Для письменного рассказа: автобус не пришёл, поэтому вы пошли пешком. Используйте therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Для письменного рассказа: автобус не пришёл, поэтому вы пошли пешком. Используйте therefore.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i17:audio",
+          "transcript": "The bus didn’t come and therefore we walked."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bus didn’t come and therefore we walked.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: магазин был закрыт, поэтому вы ушли или подождали?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i18:r1",
+          "text": "The shop was closed, so we left."
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i18:r2",
+          "text": "The shop was closed, so we waited."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i18:audioA",
+        "en:lesson-31:session-49:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: магазин был закрыт, поэтому вы ушли или подождали?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The shop was closed, so we left.",
+        "contrastB": "The shop was closed, so we waited.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-49:i18:audioA",
+          "transcript": "The shop was closed, so we left."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-49:i18:audioB",
+          "transcript": "The shop was closed, so we waited."
+        },
+        "testedPhoneticContrast": "Послушайте: магазин был закрыт, поэтому вы ушли или подождали?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: магазин был закрыт, поэтому вы ушли или подождали?",
+            "feedbackByLocale": {
+              "ru": "Звучит left — ушли.",
+              "uk": "Звучить left — пішли."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину и результат. Начните с It was late and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину и результат. Начните с It was late and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i19:audio",
+          "transcript": "It was late and therefore we took a taxi."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It was late and therefore we took a taxi.",
+        "orderedTokens": [
+          "It",
+          "was",
+          "late",
+          "and",
+          "therefore",
+          "we",
+          "took",
+          "a",
+          "taxi"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В письменном рассказе выберите более книжное «поэтому» между причиной и результатом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-49:i20:r1",
+          "text": "therefore"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i20:r2",
+          "text": "although"
+        },
+        {
+          "responseId": "en:lesson-31:session-49:i20:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В письменном рассказе выберите более книжное «поэтому» между причиной и результатом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В письменном рассказе выберите более книжное «поэтому» между причиной и результатом.",
+          "uk": "У письмовій розповіді виберіть більш книжне «тому» між причиною й результатом."
+        },
+        "gappedTargetPhrase": "It was late and ___ we took a taxi.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-49:i20:r1",
+            "text": "therefore"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i20:r2",
+            "text": "although"
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i20:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "В письменном рассказе выберите более книжное «поэтому» между причиной и результатом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-49:i20:r2",
+            "correct": false,
+            "testedDimension": "В письменном рассказе выберите более книжное «поэтому» между причиной и результатом.",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат.",
+              "uk": "Although означає «хоча», а потрібен результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-49:i20:r3",
+            "correct": false,
+            "testedDimension": "В письменном рассказе выберите более книжное «поэтому» между причиной и результатом.",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-49:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы были голодны, поэтому поели хлеба. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-49:i21:audio"
+      ],
+      "accessibilityLabel": "Вы были голодны, поэтому поели хлеба. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-49:i21:audio",
+          "transcript": "I was hungry, so I ate some bread."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was hungry, so I ate some bread.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4bb95a53d804ff7f13d0dc48991d9c8c462e186628c7370d3780c14b4b4bc123"
+}

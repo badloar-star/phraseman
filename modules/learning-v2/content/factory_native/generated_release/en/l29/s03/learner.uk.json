@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-03:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, де розташований відділ засобів для догляду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте, де розташований відділ засобів для догляду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i01:audio",
+          "transcript": "Where is the skincare section?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the skincare section?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — antiperspirant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — antiperspirant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i02:audio",
+          "transcript": "antiperspirant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-03:i02:r1",
+            "targetText": "antiperspirant",
+            "meaningByLocale": {
+              "ru": "Антиперспирант. Средство, предназначенное для уменьшения потоотделения.",
+              "uk": "Антиперспірант. Засіб, призначений для зменшення потовиділення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "antiperspirant",
+          "definitionByLocale": {
+            "ru": "Антиперспирант. Средство, предназначенное для уменьшения потоотделения.",
+            "uk": "Антиперспірант. Засіб, призначений для зменшення потовиділення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи є маленька упаковка антиперспіранту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи є маленька упаковка антиперспіранту.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have a small antiperspirant?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли маленькая упаковка антиперспиранта.",
+          "uk": "Запитайте, чи є маленька упаковка антиперспіранту."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "a",
+          "small",
+          "antiperspirant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що працівник, який вам допоміг, уже тут.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i04:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i04:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i04:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що працівник, який вам допоміг, уже тут.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что сотрудник, который вам помог, уже здесь.",
+          "uk": "Уточніть, що працівник, який вам допоміг, уже тут."
+        },
+        "gappedTargetPhrase": "The assistant that helped me ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-03:i04:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i04:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i04:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Уточніть, що працівник, який вам допоміг, уже тут.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що працівник, який вам допоміг, уже тут.",
+            "feedbackByLocale": {
+              "ru": "Об одном сотруднике говорим is.",
+              "uk": "Про одного працівника кажемо is."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що працівник, який вам допоміг, уже тут.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма is.",
+              "uk": "Тут потрібна форма is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i05:r1",
+          "text": "The gift was wrapped by the assistant."
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i05:r2",
+          "text": "The gift was wrapped by my sister."
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i05:r3",
+          "text": "The gift was wrapped by my neighbour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i05:audio",
+          "transcript": "The gift was wrapped by the assistant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-03:i05:r1",
+            "targetText": "The gift was wrapped by the assistant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i05:r2",
+            "targetText": "The gift was wrapped by my sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i05:r3",
+            "targetText": "The gift was wrapped by my neighbour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The gift was wrapped by the assistant.",
+              "uk": "У записі звучить The gift was wrapped by the assistant."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The gift was wrapped by the assistant.",
+              "uk": "У записі звучить The gift was wrapped by the assistant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — exfoliator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — exfoliator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i06:audio",
+          "transcript": "exfoliator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-03:i06:r1",
+            "targetText": "exfoliator",
+            "meaningByLocale": {
+              "ru": "Отшелушивающее средство. Косметическое средство для удаления отмерших клеток с поверхности кожи.",
+              "uk": "Відлущувальний засіб. Косметичний засіб для видалення відмерлих клітин із поверхні шкіри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exfoliator",
+          "definitionByLocale": {
+            "ru": "Отшелушивающее средство. Косметическое средство для удаления отмерших клеток с поверхности кожи.",
+            "uk": "Відлущувальний засіб. Косметичний засіб для видалення відмерлих клітин із поверхні шкіри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте ціну відлущувального засобу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Запитайте ціну відлущувального засобу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i07:audio",
+          "transcript": "How much is this exfoliator?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is this exfoliator?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, який засіб потрібний покупцеві.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, який засіб потрібний покупцеві.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i08:audio",
+          "transcript": "I need a product that contains no perfume."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I need a product that contains no perfume.",
+        "orderedTokens": [
+          "I",
+          "need",
+          "a",
+          "product",
+          "that",
+          "contains",
+          "no",
+          "perfume"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що подарунок запакував продавець.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i09:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i09:r2",
+          "text": "from"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i09:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що подарунок запакував продавець.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что подарок упаковал продавец.",
+          "uk": "Скажіть, що подарунок запакував продавець."
+        },
+        "gappedTargetPhrase": "The gift was wrapped ___ the assistant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-03:i09:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i09:r2",
+            "text": "from"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i09:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Скажіть, що подарунок запакував продавець.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що подарунок запакував продавець.",
+            "feedbackByLocale": {
+              "ru": "Человека, выполнившего действие, вводит by.",
+              "uk": "Людину, яка виконала дію, позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що подарунок запакував продавець.",
+            "feedbackByLocale": {
+              "ru": "Для исполнителя здесь нужна by.",
+              "uk": "Для виконавця тут потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i10:audio",
+          "transcript": "toner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-03:i10:r1",
+            "targetText": "toner",
+            "meaningByLocale": {
+              "ru": "Тоник для лица. Жидкое косметическое средство для ухода за кожей лица.",
+              "uk": "Тонік для обличчя. Рідкий косметичний засіб для догляду за шкірою обличчя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toner",
+          "definitionByLocale": {
+            "ru": "Тоник для лица. Жидкое косметическое средство для ухода за кожей лица.",
+            "uk": "Тонік для обличчя. Рідкий косметичний засіб для догляду за шкірою обличчя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть маленький флакон тоніка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Попросіть маленький флакон тоніка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i11:audio",
+          "transcript": "Could I have a small bottle of toner?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have a small bottle of toner?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i12:r1",
+          "text": "The bottle which has a blue lid is mine."
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i12:r2",
+          "text": "The bottle which has a white lid is mine."
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i12:r3",
+          "text": "The bottle which has a blue lid is hers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i12:audio",
+          "transcript": "The bottle which has a blue lid is mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-03:i12:r1",
+            "targetText": "The bottle which has a blue lid is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i12:r2",
+            "targetText": "The bottle which has a white lid is mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i12:r3",
+            "targetText": "The bottle which has a blue lid is hers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bottle which has a blue lid is mine.",
+              "uk": "У записі звучить The bottle which has a blue lid is mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bottle which has a blue lid is mine.",
+              "uk": "У записі звучить The bottle which has a blue lid is mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Якщо великий флакон дорогий, ви купите менший.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i13:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i13:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i13:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якщо великий флакон дорогий, ви купите менший.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Если большой флакон дорогой, вы купите меньший.",
+          "uk": "Якщо великий флакон дорогий, ви купите менший."
+        },
+        "gappedTargetPhrase": "If it ___ expensive, I will buy a smaller bottle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-03:i13:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i13:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i13:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Якщо великий флакон дорогий, ви купите менший.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i13:r2",
+            "correct": false,
+            "testedDimension": "Якщо великий флакон дорогий, ви купите менший.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if нужна is, без will.",
+              "uk": "У цій умові після if потрібна is, без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i13:r3",
+            "correct": false,
+            "testedDimension": "Якщо великий флакон дорогий, ви купите менший.",
+            "feedbackByLocale": {
+              "ru": "С it здесь нужна is.",
+              "uk": "З it тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — serum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Картка слова — serum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i14:audio",
+          "transcript": "serum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-03:i14:r1",
+            "targetText": "serum",
+            "meaningByLocale": {
+              "ru": "Сыворотка. Здесь косметическое средство для ухода за кожей, обычно жидкое или гелеобразное.",
+              "uk": "Сироватка. Тут косметичний засіб для догляду за шкірою, зазвичай рідкий або гелеподібний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "serum",
+          "definitionByLocale": {
+            "ru": "Сыворотка. Здесь косметическое средство для ухода за кожей, обычно жидкое или гелеобразное.",
+            "uk": "Сироватка. Тут косметичний засіб для догляду за шкірою, зазвичай рідкий або гелеподібний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи продається сироватка окремо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи продається сироватка окремо.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is the serum sold separately?",
+        "localizedMeaning": {
+          "ru": "Спросите, продаётся ли сыворотка отдельно.",
+          "uk": "Запитайте, чи продається сироватка окремо."
+        },
+        "orderedTokens": [
+          "Is",
+          "the",
+          "serum",
+          "sold separately"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте засоби з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте засоби з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-03:i16:p1",
+            "target": "antiperspirant",
+            "meaningByLocale": {
+              "ru": "антиперспирант",
+              "uk": "антиперспірант"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-03:i16:p2",
+            "target": "exfoliator",
+            "meaningByLocale": {
+              "ru": "отшелушивающее средство",
+              "uk": "відлущувальний засіб"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-03:i16:p3",
+            "target": "toner",
+            "meaningByLocale": {
+              "ru": "тоник для лица",
+              "uk": "тонік для обличчя"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-03:i16:p4",
+            "target": "serum",
+            "meaningByLocale": {
+              "ru": "сыворотка",
+              "uk": "сироватка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "antiperspirant",
+          "exfoliator",
+          "toner",
+          "serum"
+        ],
+        "rightColumn": [
+          "антиперспірант",
+          "відлущувальний засіб",
+          "тонік для обличчя",
+          "сироватка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: пакування потрібне чи не потрібне?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i17:r1",
+          "text": "I do not need gift wrapping."
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i17:r2",
+          "text": "I need gift wrapping."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i17:audioA",
+        "en:lesson-29:session-03:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: пакування потрібне чи не потрібне?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I do not need gift wrapping.",
+        "contrastB": "I need gift wrapping.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-03:i17:audioA",
+          "transcript": "I do not need gift wrapping."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-03:i17:audioB",
+          "transcript": "I need gift wrapping."
+        },
+        "testedPhoneticContrast": "Послухайте: пакування потрібне чи не потрібне?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: пакування потрібне чи не потрібне?",
+            "feedbackByLocale": {
+              "ru": "В записи do not need — не нужно.",
+              "uk": "У записі do not need — не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати склад на етикетці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i18:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати склад на етикетці.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i18:audio",
+          "transcript": "Could you show me the ingredients?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me the ingredients?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, який флакон ваш: той, у якого синя кришка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-03:i19:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i19:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-29:session-03:i19:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, який флакон ваш: той, у якого синя кришка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, какой флакон ваш: тот, у которого синяя крышка.",
+          "uk": "Уточніть, який флакон ваш: той, у якого синя кришка."
+        },
+        "gappedTargetPhrase": "The bottle which ___ a blue lid is mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-03:i19:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i19:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i19:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Уточніть, який флакон ваш: той, у якого синя кришка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-03:i19:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, який флакон ваш: той, у якого синя кришка.",
+            "feedbackByLocale": {
+              "ru": "Об одном флаконе говорим has.",
+              "uk": "Про один флакон кажемо has."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-03:i19:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, який флакон ваш: той, у якого синя кришка.",
+            "feedbackByLocale": {
+              "ru": "После which здесь нужна has.",
+              "uk": "Після which тут потрібна has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте умову купівлі набору.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i20:audio"
+      ],
+      "accessibilityLabel": "Послухайте умову купівлі набору.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i20:audio",
+          "transcript": "I will buy the set if it costs less."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will buy the set if it costs less.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "buy",
+          "the",
+          "set",
+          "if",
+          "it",
+          "costs",
+          "less"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-03:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що візьмете лише маленький флакон.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-03:i21:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що візьмете лише маленький флакон.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-03:i21:audio",
+          "transcript": "I will just take the small bottle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will just take the small bottle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c7b9be94eaa858334ce596a1840be875e684c41f9bb14ad5dcdff737c6314fa2"
+}

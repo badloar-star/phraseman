@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать сообщение о задержке, свой вопрос и просьбу к нескольким людям.",
+    "uk": "переказувати повідомлення про затримку, своє запитання й прохання до кількох людей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поезд опаздывает",
+        "uk": "Потяг запізнюється"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сотрудник вокзала сказал: «Поезд опаздывает». Перескажите со сдвигом времени: He said the train was late — он сказал, что поезд опаздывает. Соберите He + said + the train + was late. В исходных словах The train is late форма is сдвигается в was после said.",
+        "uk": "Учора працівник вокзалу сказав: «Потяг запізнюється». Перекажіть зі зсувом часу: He said the train was late — він сказав, що потяг запізнюється. Складіть He + said + the train + was late. У початкових словах The train is late форма is зсувається у was після said."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-54:intro1:r1",
+              "text": "He said the train was late."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro1:r2",
+              "text": "He said the train is late."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro1:r3",
+              "text": "He said the train be late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-54:intro1:r1",
+              "text": "He said the train was late."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro1:r2",
+              "text": "He said the train is late."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro1:r3",
+              "text": "He said the train be late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вы спросили о платформе",
+        "uk": "Ви запитали про платформу"
+      },
+      "bodyByLocale": {
+        "ru": "На вокзале вы спросили: «Где платформа?» Теперь передайте свой вопрос: I asked where the platform was — я спросил, где платформа. Соберите I + asked + where + the platform + was. После where в пересказе сначала называем the platform, затем ставим was.",
+        "uk": "На вокзалі ви запитали: «Де платформа?» Тепер передайте своє запитання: I asked where the platform was — я запитав, де платформа. Складіть I + asked + where + the platform + was. Після where в переказі спочатку називаємо the platform, потім ставимо was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-54:intro2:r1",
+              "text": "I asked where the platform was."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro2:r2",
+              "text": "I asked where was the platform."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro2:r3",
+              "text": "I asked where the platform were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-54:intro2:r1",
+              "text": "I asked where the platform was."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro2:r2",
+              "text": "I asked where was the platform."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro2:r3",
+              "text": "I asked where the platform were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Просьба к вам обоим",
+        "uk": "Прохання до вас обох"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом ждёте на вокзале. Сотрудник попросил вас обоих подождать у двери. Передайте просьбу: He asked us to wait by the door — он попросил нас подождать у двери. Соберите He + asked + us + to wait by the door. Us обозначает вас с другом; после него действие вводим через to wait.",
+        "uk": "Ви з другом чекаєте на вокзалі. Працівник попросив вас обох зачекати біля дверей. Передайте прохання: He asked us to wait by the door — він попросив нас зачекати біля дверей. Складіть He + asked + us + to wait by the door. Us позначає вас із другом; після нього дію вводимо через to wait."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-54:intro3:r1",
+              "text": "He asked us to wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro3:r2",
+              "text": "He asked we to wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro3:r3",
+              "text": "He asked us wait by the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-54:intro3:r1",
+              "text": "He asked us to wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro3:r2",
+              "text": "He asked we to wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-54:intro3:r3",
+              "text": "He asked us wait by the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1b4db682daf14248043ae3a9f98ecde9cbf4ebc1954b2178f63de2dbba9488ba"
+}

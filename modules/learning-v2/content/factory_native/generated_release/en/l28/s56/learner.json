@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-56:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, когда можно посмотреть квартиру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, когда можно посмотреть квартиру.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i01:audio",
+          "transcript": "When can I view the flat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When can I view the flat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — loft",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — loft",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i02:audio",
+          "transcript": "loft"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-56:i02:r1",
+            "targetText": "loft",
+            "meaningByLocale": {
+              "ru": "Чердак, пространство под крышей. Здесь речь о верхнем пространстве дома, которое может использоваться для хранения вещей.",
+              "uk": "Горище, простір під дахом. Тут ідеться про верхній простір будинку, який може використовуватися для зберігання речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loft",
+          "definitionByLocale": {
+            "ru": "Чердак, пространство под крышей. Здесь речь о верхнем пространстве дома, которое может использоваться для хранения вещей.",
+            "uk": "Горище, простір під дахом. Тут ідеться про верхній простір будинку, який може використовуватися для зберігання речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, есть ли в доме чердак.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, есть ли в доме чердак.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a loft in the house?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли в доме чердак.",
+          "uk": "Запитайте, чи є в будинку горище."
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "loft",
+          "in",
+          "the",
+          "house"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, входит ли отопление в арендную плату.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i04:r1",
+          "text": "included"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i04:r2",
+          "text": "include"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i04:r3",
+          "text": "including"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, входит ли отопление в арендную плату.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, входит ли отопление в арендную плату.",
+          "uk": "Запитайте, чи входить опалення до орендної плати."
+        },
+        "gappedTargetPhrase": "Is heating ___ in the rent?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-56:i04:r1",
+            "text": "included"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i04:r2",
+            "text": "include"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i04:r3",
+            "text": "including"
+          }
+        ],
+        "testedDimension": "Спросите, входит ли отопление в арендную плату.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i04:r2",
+            "correct": false,
+            "testedDimension": "Спросите, входит ли отопление в арендную плату.",
+            "feedbackByLocale": {
+              "ru": "После is нужна included.",
+              "uk": "Після is потрібна included."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i04:r3",
+            "correct": false,
+            "testedDimension": "Спросите, входит ли отопление в арендную плату.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем is included.",
+              "uk": "Тут використовуємо is included."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i05:r1",
+          "text": "The windows were replaced last year."
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i05:r2",
+          "text": "The windows were replaced last month."
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i05:r3",
+          "text": "The doors were replaced last year."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i05:audio",
+          "transcript": "The windows were replaced last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-56:i05:r1",
+            "targetText": "The windows were replaced last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i05:r2",
+            "targetText": "The windows were replaced last month.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i05:r3",
+            "targetText": "The doors were replaced last year.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The windows were replaced last year.",
+              "uk": "У записі звучить The windows were replaced last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The windows were replaced last year.",
+              "uk": "У записі звучить The windows were replaced last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alcove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alcove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i06:audio",
+          "transcript": "alcove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-56:i06:r1",
+            "targetText": "alcove",
+            "meaningByLocale": {
+              "ru": "Ниша в комнате. Углублённая часть стены, где может стоять мебель.",
+              "uk": "Ніша в кімнаті. Заглиблена частина стіни, де можуть стояти меблі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alcove",
+          "definitionByLocale": {
+            "ru": "Ниша в комнате. Углублённая часть стены, где может стоять мебель.",
+            "uk": "Ніша в кімнаті. Заглиблена частина стіни, де можуть стояти меблі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, поместится ли кровать в нише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите, поместится ли кровать в нише.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i07:audio",
+          "transcript": "Will the bed fit in the alcove?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Will the bed fit in the alcove?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто покрасил кухню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто покрасил кухню.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i08:audio",
+          "transcript": "The kitchen was painted by the owner."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The kitchen was painted by the owner.",
+        "orderedTokens": [
+          "The",
+          "kitchen",
+          "was",
+          "painted",
+          "by",
+          "the",
+          "owner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, можно ли использовать комнату как спальню.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i09:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i09:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли использовать комнату как спальню.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, можно ли использовать комнату как спальню.",
+          "uk": "Запитайте, чи можна використовувати кімнату як спальню."
+        },
+        "gappedTargetPhrase": "Can this room ___ used as a bedroom?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-56:i09:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i09:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Спросите, можно ли использовать комнату как спальню.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли использовать комнату как спальню.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Спросите, можно ли использовать комнату как спальню.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be used.",
+              "uk": "Тут використовуємо can be used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bedsit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bedsit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i10:audio",
+          "transcript": "bedsit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-56:i10:r1",
+            "targetText": "bedsit",
+            "meaningByLocale": {
+              "ru": "Комната для проживания, где вместе находятся спальное место и место для повседневных занятий. В ней часто есть небольшой уголок для приготовления еды; ванная может быть общей.",
+              "uk": "Кімната для проживання, де разом розташовані спальне місце й місце для повсякденних занять. У ній часто є невеликий куточок для приготування їжі; ванна може бути спільною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bedsit",
+          "definitionByLocale": {
+            "ru": "Комната для проживания, где вместе находятся спальное место и место для повседневных занятий. В ней часто есть небольшой уголок для приготовления еды; ванная может быть общей.",
+            "uk": "Кімната для проживання, де разом розташовані спальне місце й місце для повсякденних занять. У ній часто є невеликий куточок для приготування їжі; ванна може бути спільною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ищете комнату такого типа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ищете комнату такого типа.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i11:audio",
+          "transcript": "I am looking for a bedsit."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am looking for a bedsit.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i12:r1",
+          "text": "The bathroom is shared with one other tenant."
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i12:r2",
+          "text": "The bathroom is shared with two other tenants."
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i12:r3",
+          "text": "The kitchen is shared with one other tenant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i12:audio",
+          "transcript": "The bathroom is shared with one other tenant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-56:i12:r1",
+            "targetText": "The bathroom is shared with one other tenant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i12:r2",
+            "targetText": "The bathroom is shared with two other tenants.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i12:r3",
+            "targetText": "The kitchen is shared with one other tenant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bathroom is shared with one other tenant.",
+              "uk": "У записі звучить The bathroom is shared with one other tenant."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bathroom is shared with one other tenant.",
+              "uk": "У записі звучить The bathroom is shared with one other tenant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы больше места.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i13:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы больше места.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы больше места.",
+          "uk": "Вам хотілося б більше місця."
+        },
+        "gappedTargetPhrase": "I wish I ___ more space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-56:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i13:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы больше места.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i13:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы больше места.",
+            "feedbackByLocale": {
+              "ru": "Для желания о настоящем после wish нужна had.",
+              "uk": "Для бажання щодо теперішнього після wish потрібна had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i13:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы больше места.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем wish I had.",
+              "uk": "Тут використовуємо wish I had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — duplex",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — duplex",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i14:audio",
+          "transcript": "duplex"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-56:i14:r1",
+            "targetText": "duplex",
+            "meaningByLocale": {
+              "ru": "Двухуровневая квартира. В этом объявлении слово обозначает одну квартиру на двух этажах, соединённых внутренней лестницей.",
+              "uk": "Дворівнева квартира. У цьому оголошенні слово позначає одну квартиру на двох поверхах, з’єднаних внутрішніми сходами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "duplex",
+          "definitionByLocale": {
+            "ru": "Двухуровневая квартира. В этом объявлении слово обозначает одну квартиру на двух этажах, соединённых внутренней лестницей.",
+            "uk": "Дворівнева квартира. У цьому оголошенні слово позначає одну квартиру на двох поверхах, з’єднаних внутрішніми сходами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, есть ли балкон у этой двухуровневой квартиры.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, есть ли балкон у этой двухуровневой квартиры.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Does this duplex have a balcony?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли балкон у этой двухуровневой квартиры.",
+          "uk": "Запитайте, чи є балкон у цієї дворівневої квартири."
+        },
+        "orderedTokens": [
+          "Does",
+          "this",
+          "duplex",
+          "have",
+          "a",
+          "balcony"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями в этом занятии.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями в этом занятии.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-56:i16:p1",
+            "target": "loft",
+            "meaningByLocale": {
+              "ru": "чердак",
+              "uk": "горище"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-56:i16:p2",
+            "target": "alcove",
+            "meaningByLocale": {
+              "ru": "ниша",
+              "uk": "ніша"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-56:i16:p3",
+            "target": "bedsit",
+            "meaningByLocale": {
+              "ru": "комната для проживания",
+              "uk": "кімната для проживання"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-56:i16:p4",
+            "target": "duplex",
+            "meaningByLocale": {
+              "ru": "двухуровневая квартира",
+              "uk": "дворівнева квартира"
+            }
+          }
+        ],
+        "leftColumn": [
+          "loft",
+          "alcove",
+          "bedsit",
+          "duplex"
+        ],
+        "rightColumn": [
+          "чердак",
+          "ниша",
+          "комната для проживания",
+          "двухуровневая квартира"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: отопление включено или не включено?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i17:r1",
+          "text": "Heating is not included."
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i17:r2",
+          "text": "Heating is included."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i17:audioA",
+        "en:lesson-28:session-56:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: отопление включено или не включено?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Heating is not included.",
+        "contrastB": "Heating is included.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-28:session-56:i17:audioA",
+          "transcript": "Heating is not included."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-28:session-56:i17:audioB",
+          "transcript": "Heating is included."
+        },
+        "testedPhoneticContrast": "Послушайте: отопление включено или не включено?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: отопление включено или не включено?",
+            "feedbackByLocale": {
+              "ru": "В записи есть not: не включено.",
+              "uk": "У записі є not: не включено."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите открыть окно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите открыть окно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i18:audio",
+          "transcript": "Could you open the window?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you open the window?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хозяин уже ушёл, когда вы пришли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-56:i19:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i19:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-56:i19:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хозяин уже ушёл, когда вы пришли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хозяин уже ушёл, когда вы пришли.",
+          "uk": "Господар уже пішов, коли ви прийшли."
+        },
+        "gappedTargetPhrase": "The owner ___ left by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-56:i19:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i19:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i19:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Хозяин уже ушёл, когда вы пришли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-56:i19:r2",
+            "correct": false,
+            "testedDimension": "Хозяин уже ушёл, когда вы пришли.",
+            "feedbackByLocale": {
+              "ru": "Более раннее действие: had left.",
+              "uk": "Раніша дія: had left."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-56:i19:r3",
+            "correct": false,
+            "testedDimension": "Хозяин уже ушёл, когда вы пришли.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had left.",
+              "uk": "Тут потрібна had left."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте обещание убрать квартиру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте обещание убрать квартиру.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i20:audio",
+          "transcript": "The flat will be cleaned tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The flat will be cleaned tomorrow.",
+        "orderedTokens": [
+          "The",
+          "flat",
+          "will",
+          "be",
+          "cleaned",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-56:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что хотите подумать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-56:i21:audio"
+      ],
+      "accessibilityLabel": "Скажите, что хотите подумать.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-56:i21:audio",
+          "transcript": "I would like to think about it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like to think about it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9feb303d0e1213936a28d5b8b2473c1a9802b64bf98fbec306a9ef7068c3a378"
+}

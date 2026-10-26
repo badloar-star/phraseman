@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-20:i01",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i02",
+    "correctText": "I know where the bread is.",
+    "correctResponseId": "en:lesson-31:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i03",
+    "correctText": "the bread is",
+    "correctResponseId": "en:lesson-31:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i04",
+    "correctText": "eggs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i05",
+    "correctText": "The eggs are fresh, aren't they?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i06",
+    "correctText": "The bread was baked by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-20:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i08",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i09",
+    "correctText": "Could you tell me where the milk is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i10",
+    "correctText": "I know that the milk is fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i12",
+    "correctText": "shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i13",
+    "correctText": "I understand why the shop is closed.",
+    "correctResponseId": "en:lesson-31:session-20:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i14",
+    "correctText": "He said the eggs were fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i15",
+    "correctText": "I know where the eggs are.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i16",
+    "correctText": "the shop is",
+    "correctResponseId": "en:lesson-31:session-20:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i17",
+    "correctText": "The door was closed by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i18",
+    "correctText": "I know where the milk is.",
+    "correctResponseId": "en:lesson-31:session-20:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i19",
+    "correctText": "I understand why the shop is closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-20:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-20:i21",
+    "correctText": "I know that he is busy.",
+    "correctResponseId": null
+  }
+]

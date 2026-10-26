@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-48:intro1:r2": {
+          "ru": "В пересказе нужен порядок I needed, без did.",
+          "uk": "У переказі потрібен порядок I needed, без did."
+        },
+        "en:lesson-30:session-48:intro1:r3": {
+          "ru": "Нужна форма needed.",
+          "uk": "Потрібна форма needed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-48:intro2:r2": {
+          "ru": "После asked используем her, не she.",
+          "uk": "Після asked використовуємо her, не she."
+        },
+        "en:lesson-30:session-48:intro2:r3": {
+          "ru": "Перед bring нужно to.",
+          "uk": "Перед bring потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-48:intro3:r2": {
+          "ru": "После told перед her не ставим to.",
+          "uk": "Після told перед her не ставимо to."
+        },
+        "en:lesson-30:session-48:intro3:r3": {
+          "ru": "Перед получателем her здесь told.",
+          "uk": "Перед одержувачем her тут told."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8cec12118a4551f5e0e76e279e9787489895740d79caeff873529c1f7765422d"
+}

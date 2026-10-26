@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-27:i01",
+    "correctText": "tyre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i02",
+    "correctText": "He told me the tyre was flat.",
+    "correctResponseId": "en:lesson-30:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i03",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i04",
+    "correctText": "pump",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i05",
+    "correctText": "He asked if I had a pump.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i06",
+    "correctText": "The pump I lent you is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i07",
+    "correctText": "my helmet was",
+    "correctResponseId": "en:lesson-30:session-27:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i08",
+    "correctText": "wheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i09",
+    "correctText": "He asked me to check the wheel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i10",
+    "correctText": "She asked me to bring the pump.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i11",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i12",
+    "correctText": "bike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i13",
+    "correctText": "She asked me to move the bike.",
+    "correctResponseId": "en:lesson-30:session-27:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i14",
+    "correctText": "I wish I had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i15",
+    "correctText": "The helmet I bought is light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i16",
+    "correctText": "not to leave",
+    "correctResponseId": "en:lesson-30:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i17",
+    "correctText": "She told me her pump was in the garage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i18",
+    "correctText": "He asked about my bike.",
+    "correctResponseId": "en:lesson-30:session-27:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i19",
+    "correctText": "He said the bike was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-27:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-27:i21",
+    "correctText": "I asked him to wait by the gate.",
+    "correctResponseId": null
+  }
+]

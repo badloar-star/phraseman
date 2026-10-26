@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-10:i01",
+    "correctText": "maze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i02",
+    "correctText": "He asked if the maze was open.",
+    "correctResponseId": "en:lesson-30:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i03",
+    "correctText": "the entrance was",
+    "correctResponseId": "en:lesson-30:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i04",
+    "correctText": "I wish we had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i05",
+    "correctText": "viewpoint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i06",
+    "correctText": "She asked where the viewpoint was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i07",
+    "correctText": "He asked where the entrance was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i08",
+    "correctText": "if",
+    "correctResponseId": "en:lesson-30:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i09",
+    "correctText": "arcade",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i10",
+    "correctText": "She asked if the arcade was open.",
+    "correctResponseId": "en:lesson-30:session-10:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i11",
+    "correctText": "The map you gave me helped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i12",
+    "correctText": "planetarium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i13",
+    "correctText": "He asked where the planetarium was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i14",
+    "correctText": "en:lesson-30:session-10:i14:p1=maze\nen:lesson-30:session-10:i14:p2=viewpoint\nen:lesson-30:session-10:i14:p3=arcade\nen:lesson-30:session-10:i14:p4=planetarium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i15",
+    "correctText": "She asked if the arcade was open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i16",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-30:session-10:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i17",
+    "correctText": "He asked where the exit was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i18",
+    "correctText": "She asked where the viewpoint was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i19",
+    "correctText": "He asked where the planetarium was.",
+    "correctResponseId": "en:lesson-30:session-10:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i20",
+    "correctText": "gave",
+    "correctResponseId": "en:lesson-30:session-10:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-10:i21",
+    "correctText": "He said he was tired.",
+    "correctResponseId": null
+  }
+]

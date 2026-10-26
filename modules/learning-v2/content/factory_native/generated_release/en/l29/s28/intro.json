@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать игры, предложить занятие и различить того, кто учил, и того, кого учили.",
+    "uk": "як назвати ігри, запропонувати заняття й розрізнити того, хто навчав, і того, кого навчали."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто объяснил правила",
+        "uk": "Хто пояснив правила"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знакомите друга с человеком, который объяснил вам правила игры. Скажите: This is the person who taught me the rules — это человек, который научил меня правилам. Соберите This is the person + who taught me the rules. Действие выполняет этот человек: who заменяет его внутри уточнения. После who сразу ставим taught me the rules, без he.",
+        "uk": "Ви знайомите друга з людиною, яка пояснила вам правила гри. Скажіть: This is the person who taught me the rules — це людина, яка навчила мене правил. Складіть This is the person + who taught me the rules. Дію виконує ця людина: who замінює її всередині уточнення. Після who відразу ставимо taught me the rules, без he."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-28:intro1:r1",
+              "text": "This is the person who taught me the rules."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro1:r2",
+              "text": "This is the person who he taught me the rules."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro1:r3",
+              "text": "This is the person who taught I the rules."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-28:intro1:r1",
+              "text": "This is the person who taught me the rules."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro1:r2",
+              "text": "This is the person who he taught me the rules."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro1:r3",
+              "text": "This is the person who taught I the rules."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кого вы научили",
+        "uk": "Кого ви навчили"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете, что друг, которого вы научили играть, теперь часто выигрывает. Скажите: The friend who I taught often wins — друг, которого я научил, часто выигрывает. Соберите The friend + who I taught + often wins. Учили вы, поэтому после who ставим I taught. Who обозначает друга, которого учили; him после taught не добавляем.",
+        "uk": "Ви розповідаєте, що друг, якого ви навчили грати, тепер часто виграє. Скажіть: The friend who I taught often wins — друг, якого я навчив, часто виграє. Складіть The friend + who I taught + often wins. Навчали ви, тому після who ставимо I taught. Who позначає друга, якого навчали; him після taught не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-28:intro2:r1",
+              "text": "The friend who I taught often wins."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro2:r2",
+              "text": "The friend who I taught him often wins."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro2:r3",
+              "text": "The friend who me taught often wins."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-28:intro2:r1",
+              "text": "The friend who I taught often wins."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro2:r2",
+              "text": "The friend who I taught him often wins."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro2:r3",
+              "text": "The friend who me taught often wins."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если пойдёт дождь",
+        "uk": "Якщо піде дощ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договариваетесь с друзьями поиграть дома, если прогулке помешает дождь. Скажите: If it rains, we will play cards — если пойдёт дождь, мы поиграем в карты. Соберите If it rains + we will play cards. Условие поставьте первым: после if нужна rains без will. Затем после запятой назовите решение we will play cards.",
+        "uk": "Ви домовляєтеся з друзями пограти вдома, якщо прогулянці завадить дощ. Скажіть: If it rains, we will play cards — якщо піде дощ, ми пограємо в карти. Складіть If it rains + we will play cards. Умову поставте першою: після if потрібна rains без will. Потім після коми назвіть рішення we will play cards."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-28:intro3:r1",
+              "text": "If it rains, we will play cards."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro3:r2",
+              "text": "If it will rain, we will play cards."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro3:r3",
+              "text": "If it rains, we will played cards."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-28:intro3:r1",
+              "text": "If it rains, we will play cards."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro3:r2",
+              "text": "If it will rain, we will play cards."
+            },
+            {
+              "responseId": "en:lesson-29:session-28:intro3:r3",
+              "text": "If it rains, we will played cards."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6d26f6d11006e0c8bf5d41073579fc26d09664e443d18a942a3beb6bb92ee9ac"
+}

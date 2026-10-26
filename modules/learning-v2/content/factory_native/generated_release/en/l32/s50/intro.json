@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Стоящий поезд не издаёт звуков, и голосов из него не слышно. Вы ещё не видели, есть ли внутри пассажиры. The train is quiet, so it might be empty. — Поезд тихий, поэтому он, возможно, пустой. Соберите The train is quiet + so + it might be empty. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием empty нужна связка be.",
+        "uk": "Поїзд, що стоїть, не видає звуків, і голосів із нього не чути. Ви ще не бачили, чи є всередині пасажири. The train is quiet, so it might be empty. — Поїзд тихий, тому він, можливо, порожній. Складіть The train is quiet + so + it might be empty. До so назвіть спостереження, після so — можливий висновок із might. Перед станом empty потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-50:intro1:r1",
+              "text": "The train is quiet, so it might be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro1:r2",
+              "text": "The train is quiet, so it might is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro1:r3",
+              "text": "The train is quiet, so it might to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-50:intro1:r1",
+              "text": "The train is quiet, so it might be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro1:r2",
+              "text": "The train is quiet, so it might is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro1:r3",
+              "text": "The train is quiet, so it might to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна думает, что сумка лёгкая, но весы показывают двадцать килограммов. The bag can't be light. — Сумка не может быть лёгкой. Соберите The bag + can’t + be + light. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед light здесь нужна связка be.",
+        "uk": "Анна думає, що сумка легка, але ваги показують двадцять кілограмів. The bag can't be light. — Сумка не може бути легкою. Складіть The bag + can’t + be + light. Спостереження виключає названий стан. Can’t виражає цей висновок; перед light тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-50:intro2:r1",
+              "text": "The bag can't be light."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro2:r2",
+              "text": "The bag can't is light."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro2:r3",
+              "text": "The bag can't to be light."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-50:intro2:r1",
+              "text": "The bag can't be light."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro2:r2",
+              "text": "The bag can't is light."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro2:r3",
+              "text": "The bag can't to be light."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The ticket I bought is expensive. — Билет, который я купил, дорогой. Соберите The ticket + I bought + is expensive. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The ticket I bought is expensive. — Квиток, який я купив, дорогий. Складіть The ticket + I bought + is expensive. Частина I bought уточнює ticket. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-50:intro3:r1",
+              "text": "The ticket I bought is expensive."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro3:r2",
+              "text": "The ticket I bought it is expensive."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro3:r3",
+              "text": "The ticket I buying is expensive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-50:intro3:r1",
+              "text": "The ticket I bought is expensive."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro3:r2",
+              "text": "The ticket I bought it is expensive."
+            },
+            {
+              "responseId": "en:lesson-32:session-50:intro3:r3",
+              "text": "The ticket I buying is expensive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a6b04d47d47e83c6b43001ddd04ec41a8380a0a2e3c5718e64529cfe3f164cbc"
+}

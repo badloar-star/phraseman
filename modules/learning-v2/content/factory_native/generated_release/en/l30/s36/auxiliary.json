@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-36:intro1:r2": {
+          "ru": "Needs не выполняет заданный сдвиг в прошлое; здесь needed.",
+          "uk": "Needs не виконує заданий зсув у минуле; тут needed."
+        },
+        "en:lesson-30:session-36:intro1:r3": {
+          "ru": "Нужна форма needed, не needing.",
+          "uk": "Потрібна форма needed, не needing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-36:intro2:r2": {
+          "ru": "В данном порядке перед me нужен told, не said.",
+          "uk": "У цьому порядку перед me потрібне told, не said."
+        },
+        "en:lesson-30:session-36:intro2:r3": {
+          "ru": "После told перед me не нужен to.",
+          "uk": "Після told перед me не потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-36:intro3:r2": {
+          "ru": "В уточнении нужен порядок you chose.",
+          "uk": "В уточненні потрібен порядок you chose."
+        },
+        "en:lesson-30:session-36:intro3:r3": {
+          "ru": "Одна book требует is, не are.",
+          "uk": "Одна book потребує is, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9dcdd686cb4c0de32a1f274f0619c4bee3e2b589d4bd4322911c0262b14e2d12"
+}

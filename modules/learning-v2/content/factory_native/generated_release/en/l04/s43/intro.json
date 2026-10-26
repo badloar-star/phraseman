@@ -15,8 +15,8 @@
         "uk": "Мішок під дощем"
       },
       "bodyByLocale": {
-        "ru": "Вы вышли из дома с мешком бумаги и пластика, а на улице льёт дождь. Нужны баки, куда сортируют отходы для переработки. recycling bin — «контейнер для вторсырья». Таких баков обычно несколько, поэтому: Are there any recycling bins near the school?",
-        "uk": "Ви вийшли з дому з мішком паперу й пластику, а на вулиці ллє дощ. Потрібні баки, куди сортують відходи для переробки. recycling bin — «контейнер для вторсировини». Таких баків зазвичай кілька, тому: Are there any recycling bins near the school?"
+        "ru": "Вы несёте мешок бумаги и пластика и ищете контейнеры для переработки. Recycling bin — «контейнер для вторсырья». Are there any recycling bins near the school? — «Рядом со школой есть контейнеры для вторсырья?» Начинаем вопрос с Are there, затем ставим any recycling bins и место — near the school. Recycling bins стоит во множественном числе, поэтому нужно are; any подходит для вопроса, есть ли контейнеры вообще.",
+        "uk": "Ви несете мішок паперу й пластику та шукаєте контейнери для переробки. Recycling bin — «контейнер для вторсировини». Are there any recycling bins near the school? — «Поруч зі школою є контейнери для вторсировини?» Починаємо запитання з Are there, потім ставимо any recycling bins і місце — near the school. Recycling bins стоїть у множині, тому потрібне are; any підходить для запитання, чи є контейнери взагалі."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Порожні пляшки"
       },
       "bodyByLocale": {
-        "ru": "Вы несёте пустые стеклянные бутылки из-под сока. В обычный бак их не бросают: для стекла нужен особый контейнер. bottle bank — «контейнер для стекла». Продавец у ларька показывает рукой: There is a bottle bank behind the market — «За рынком есть контейнер для стекла».",
-        "uk": "Ви несете порожні скляні пляшки з-під соку. У звичайний бак їх не кидають: для скла потрібен особливий контейнер. bottle bank — «контейнер для скла». Продавець біля ятки показує рукою: There is a bottle bank behind the market — «За ринком є контейнер для скла»."
+        "ru": "Соседка ищет, куда отнести стеклянные бутылки. Вы знаете контейнер за рынком. Bottle bank — «контейнер для стекла». There is a bottle bank behind the market — «За рынком есть контейнер для стекла». Начинаем с There is, затем называем один контейнер — a bottle bank — и место: behind the market.",
+        "uk": "Сусідка шукає, куди віднести скляні пляшки. Ви знаєте контейнер за ринком. Bottle bank — «контейнер для скла». There is a bottle bank behind the market — «За ринком є контейнер для скла». Починаємо з There is, потім називаємо один контейнер — a bottle bank — і місце: behind the market."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Дощ не вщухає"
       },
       "bodyByLocale": {
-        "ru": "Дождь не стихает, а зонт остался дома. Подруга зовёт вас в прихожую, где на вешалке висит верхняя одежда. raincoat — «плащ», он не пропускает воду. Плащей там несколько, поэтому: There are some raincoats in the hall — «В прихожей есть плащи».",
-        "uk": "Дощ не вщухає, а парасолька залишилася вдома. Подруга кличе вас у передпокій, де на вішаку висить верхній одяг. raincoat — «плащ», він не пропускає воду. Плащів там кілька, тому: There are some raincoats in the hall — «У передпокої є плащі»."
+        "ru": "Подруга ищет, что надеть под дождь. Вы видите несколько плащей в прихожей. Raincoat — «плащ от дождя». There are some raincoats in the hall — «В прихожей есть плащи». Сначала ставим There are, затем some raincoats и место — in the hall. Some сообщает о наличии без точного числа; raincoats стоит во множественном числе.",
+        "uk": "Подруга шукає, що вдягнути під дощ. Ви бачите кілька плащів у передпокої. Raincoat — «плащ від дощу». There are some raincoats in the hall — «У передпокої є плащі». Спочатку ставимо There are, потім some raincoats і місце — in the hall. Some повідомляє про наявність без точної кількості; raincoats стоїть у множині."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ec5a7c3202d1884b6d38185c39a83e8775a2dd6dd90622b5dae45f46ba5d4227"
+  "introFingerprint": "e99ebd560fc403c8dfe12ede28d338267f387f9bd298311e1b328d17ea12e9f0"
 }

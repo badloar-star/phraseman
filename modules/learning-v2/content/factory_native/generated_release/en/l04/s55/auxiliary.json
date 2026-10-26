@@ -23,8 +23,8 @@
           "uk": "Стежка одна, тому запитання починаємо з Is there, а не з Are there."
         },
         "en:lesson-04:session-55:intro2:r3": {
-          "ru": "Это порядок слов утверждения. В вопросе сначала Is: Is there a footpath?",
-          "uk": "Це порядок слів твердження. У запитанні спочатку Is: Is there a footpath?"
+          "ru": "Перед footpath в единственном числе здесь нужно a.",
+          "uk": "Перед footpath в однині тут потрібне a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-55:intro3:r2": {
-          "ru": "Луж несколько, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Калюж кілька, тому потрібно aren’t, а не isn’t."
+          "ru": "Puddles стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Puddles стоїть у множині, тому потрібно aren’t."
         },
         "en:lesson-04:session-55:intro3:r3": {
-          "ru": "Луж несколько, поэтому на конце puddles, а не puddle.",
-          "uk": "Калюж кілька, тому наприкінці puddles, а не puddle."
+          "ru": "После aren’t any здесь нужна форма множественного числа puddles.",
+          "uk": "Після aren’t any тут потрібна форма множини puddles."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "52b69e3b2b34799e887409db16b87d2a974f42786a819eab55424ed74bac002c"
+  "auxiliaryFingerprint": "837550ea4bb460083c2b7d2a559928125063af28e4c1bb06a4224f71c1ac74aa"
 }

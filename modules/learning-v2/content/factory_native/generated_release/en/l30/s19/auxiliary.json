@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-19:intro1:r2": {
+          "ru": "После asked me перед действием нужно to.",
+          "uk": "Після asked me перед дією потрібне to."
+        },
+        "en:lesson-30:session-19:intro1:r3": {
+          "ru": "Кого попросили — me; I здесь не подходит.",
+          "uk": "Кого попросили — me; I тут не підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-19:intro2:r2": {
+          "ru": "Нужно not to make: после not сохраняем to.",
+          "uk": "Потрібне not to make: після not зберігаємо to."
+        },
+        "en:lesson-30:session-19:intro2:r3": {
+          "ru": "После told здесь нужна форма us, не we.",
+          "uk": "Після told тут потрібна форма us, не we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-19:intro3:r2": {
+          "ru": "В пересказе порядок the keys were, без перестановки как в вопросе.",
+          "uk": "У переказі порядок the keys were, без переставляння як у запитанні."
+        },
+        "en:lesson-30:session-19:intro3:r3": {
+          "ru": "Keys — множественное число; здесь нужно were.",
+          "uk": "Keys — множина; тут потрібне were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2f108fbf9594f74d4fbc043dd825ce21971581d4850bc8640431b6b4397f5439"
+}

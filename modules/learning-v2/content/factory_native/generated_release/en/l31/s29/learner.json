@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — train",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — train",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i01:audio",
+          "transcript": "train"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-29:i01:r1",
+            "targetText": "train",
+            "meaningByLocale": {
+              "ru": "Поезд. Повторение знакомого слова.",
+              "uk": "Потяг. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train",
+          "definitionByLocale": {
+            "ru": "Поезд. Повторение знакомого слова.",
+            "uk": "Потяг. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i02:r1",
+          "text": "I know when the train leaves."
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i02:r2",
+          "text": "I know when the train arrives."
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i02:r3",
+          "text": "I know when the bus leaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i02:audio",
+          "transcript": "I know when the train leaves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-29:i02:r1",
+            "targetText": "I know when the train leaves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i02:r2",
+            "targetText": "I know when the train arrives.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i02:r3",
+            "targetText": "I know when the bus leaves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know when the train leaves.",
+              "uk": "У записі звучить I know when the train leaves."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know when the train leaves.",
+              "uk": "У записі звучить I know when the train leaves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — snow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — snow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i03:audio",
+          "transcript": "snow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-29:i03:r1",
+            "targetText": "snow",
+            "meaningByLocale": {
+              "ru": "Снег. Повторение знакомого слова.",
+              "uk": "Сніг. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snow",
+          "definitionByLocale": {
+            "ru": "Снег. Повторение знакомого слова.",
+            "uk": "Сніг. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i04:r1",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i04:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i04:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
+          "uk": "Потяг запізнився через сніг. Виберіть сполуку перед the snow."
+        },
+        "gappedTargetPhrase": "The train was late ___ the snow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-29:i04:r1",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i04:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i04:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i04:r2",
+            "correct": false,
+            "testedDimension": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
+            "feedbackByLocale": {
+              "ru": "Перед названием причины нужно because of.",
+              "uk": "Перед назвою причини потрібне because of."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i04:r3",
+            "correct": false,
+            "testedDimension": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная связка because of.",
+              "uk": "Потрібна повна сполука because of."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что знаете, когда поезд отправляется.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что знаете, когда поезд отправляется.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know when the train leaves.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, когда поезд отправляется.",
+          "uk": "Скажіть, що знаєте, коли потяг вирушає."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "when",
+          "the",
+          "train",
+          "leaves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ticket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ticket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i06:audio",
+          "transcript": "ticket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-29:i06:r1",
+            "targetText": "ticket",
+            "meaningByLocale": {
+              "ru": "Билет. Повторение знакомого слова.",
+              "uk": "Квиток. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ticket",
+          "definitionByLocale": {
+            "ru": "Билет. Повторение знакомого слова.",
+            "uk": "Квиток. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна купила билет. Начните с билета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Анна купила билет. Начните с билета.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i07:audio",
+          "transcript": "The ticket was bought by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ticket was bought by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Поезд опаздывает». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Поезд опаздывает». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Поезд опаздывает». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Потяг запізнюється». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the train ___ late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-29:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Поезд опаздывает». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Поезд опаздывает». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Поезд опаздывает». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — station",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i09:audio",
+          "transcript": "station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-29:i09:r1",
+            "targetText": "station",
+            "meaningByLocale": {
+              "ru": "Станция, вокзал. Повторение знакомого слова.",
+              "uk": "Станція, вокзал. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "station",
+          "definitionByLocale": {
+            "ru": "Станция, вокзал. Повторение знакомого слова.",
+            "uk": "Станція, вокзал. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где станция.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где станция.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the station is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где станция.",
+          "uk": "Ввічливо запитайте, де станція."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "station",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что билет у Анны. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что билет у Анны. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i11:audio",
+          "transcript": "I know that Anna has the ticket."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that Anna has the ticket.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна купила билет. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i12:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна купила билет. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна купила билет. Выберите предлог перед её именем.",
+          "uk": "Анна купила квиток. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The ticket was bought ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-29:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i12:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна купила билет. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Анна купила билет. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Анна купила билет. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i13:r1",
+          "text": "The train was late because of the snow."
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i13:r2",
+          "text": "The train was late because of the rain."
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i13:r3",
+          "text": "The train was late because of the fog."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i13:audio",
+          "transcript": "The train was late because of the snow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-29:i13:r1",
+            "targetText": "The train was late because of the snow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i13:r2",
+            "targetText": "The train was late because of the rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i13:r3",
+            "targetText": "The train was late because of the fog.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The train was late because of the snow.",
+              "uk": "У записі звучить The train was late because of the snow."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The train was late because of the snow.",
+              "uk": "У записі звучить The train was late because of the snow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Мы замёрзли», имея в виду себя и брата, без вас. Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Мы замёрзли», имея в виду себя и брата, без вас. Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i14:audio",
+          "transcript": "She said they were cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said they were cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поезда здесь нет. Добавьте утвердительное уточнение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поезда здесь нет. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The train isn't here, is it?",
+        "localizedMeaning": {
+          "ru": "Поезда здесь нет. Добавьте утвердительное уточнение.",
+          "uk": "Потяга тут немає. Додайте стверджувальне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "train",
+          "isn't",
+          "here,",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите друга, знает ли он, действителен ли билет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i16:r1",
+          "text": "the ticket is"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i16:r2",
+          "text": "is the ticket"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i16:r3",
+          "text": "the ticket are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга, знает ли он, действителен ли билет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, действителен ли билет.",
+          "uk": "Запитайте друга, чи знає він, чи дійсний квиток."
+        },
+        "gappedTargetPhrase": "Do you know if ___ valid?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-29:i16:r1",
+            "text": "the ticket is"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i16:r2",
+            "text": "is the ticket"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i16:r3",
+            "text": "the ticket are"
+          }
+        ],
+        "testedDimension": "Спросите друга, знает ли он, действителен ли билет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i16:r2",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, действителен ли билет.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the ticket is.",
+              "uk": "Після if порядок the ticket is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i16:r3",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, действителен ли билет.",
+            "feedbackByLocale": {
+              "ru": "Один ticket требует is.",
+              "uk": "Один ticket потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы зашли в помещение, потому что было холодно. Объясните это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Вы зашли в помещение, потому что было холодно. Объясните это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i17:audio",
+          "transcript": "I went inside because it was cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I went inside because it was cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: поезд опоздал из-за снега или дождя?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i18:r1",
+          "text": "The train was late because of the snow."
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i18:r2",
+          "text": "The train was late because of the rain."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i18:audioA",
+        "en:lesson-31:session-29:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: поезд опоздал из-за снега или дождя?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The train was late because of the snow.",
+        "contrastB": "The train was late because of the rain.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-29:i18:audioA",
+          "transcript": "The train was late because of the snow."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-29:i18:audioB",
+          "transcript": "The train was late because of the rain."
+        },
+        "testedPhoneticContrast": "Послушайте: поезд опоздал из-за снега или дождя?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: поезд опоздал из-за снега или дождя?",
+            "feedbackByLocale": {
+              "ru": "Звучит snow — снег.",
+              "uk": "Звучить snow — сніг."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину задержки. Начните с The train was late.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину задержки. Начните с The train was late.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i19:audio",
+          "transcript": "The train was late because of the snow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The train was late because of the snow.",
+        "orderedTokens": [
+          "The",
+          "train",
+          "was",
+          "late",
+          "because",
+          "of",
+          "the",
+          "snow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Билет у Анны. Завершите сообщение о том, что вы знаете.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-29:i20:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i20:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-31:session-29:i20:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Билет у Анны. Завершите сообщение о том, что вы знаете.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Билет у Анны. Завершите сообщение о том, что вы знаете.",
+          "uk": "Квиток в Анни. Завершіть повідомлення про те, що ви знаєте."
+        },
+        "gappedTargetPhrase": "I know that Anna ___ the ticket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-29:i20:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i20:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i20:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Билет у Анны. Завершите сообщение о том, что вы знаете.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-29:i20:r2",
+            "correct": false,
+            "testedDimension": "Билет у Анны. Завершите сообщение о том, что вы знаете.",
+            "feedbackByLocale": {
+              "ru": "С Anna нужна форма has.",
+              "uk": "З Anna потрібна форма has."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-29:i20:r3",
+            "correct": false,
+            "testedDimension": "Билет у Анны. Завершите сообщение о том, что вы знаете.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма has.",
+              "uk": "Тут потрібна особова форма has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему поезд опаздывает. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-29:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему поезд опаздывает. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-29:i21:audio",
+          "transcript": "I understand why the train is late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why the train is late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "87027d58b940794dcdf67f2c56e2bea27a3b90faa4f1f6daa36f83c9ae111eba"
+}

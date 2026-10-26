@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i01:r1",
+          "text": "The memoir I borrowed was moving."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i01:r2",
+          "text": "The memoir I borrowed was funny."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i01:r3",
+          "text": "The novel I borrowed was moving."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i01:audio",
+          "transcript": "The memoir I borrowed was moving."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i01:r1",
+            "targetText": "The memoir I borrowed was moving.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i01:r2",
+            "targetText": "The memoir I borrowed was funny.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i01:r3",
+            "targetText": "The novel I borrowed was moving.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The memoir I borrowed was moving.",
+              "uk": "У записі звучить The memoir I borrowed was moving."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The memoir I borrowed was moving.",
+              "uk": "У записі звучить The memoir I borrowed was moving."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — resemble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — resemble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i02:audio",
+          "transcript": "resemble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i02:r1",
+            "targetText": "resemble",
+            "meaningByLocale": {
+              "ru": "Быть похожим. Иметь сходство с кем-то или чем-то; после глагола сразу называем человека или предмет, без to.",
+              "uk": "Бути схожим. Мати схожість із кимось або чимось; після дієслова відразу називаємо людину чи предмет, без to."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "resemble",
+          "definitionByLocale": {
+            "ru": "Быть похожим. Иметь сходство с кем-то или чем-то; после глагола сразу называем человека или предмет, без to.",
+            "uk": "Бути схожим. Мати схожість із кимось або чимось; після дієслова відразу називаємо людину чи предмет, без to."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть сестрі, що вона схожа на бабусю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть сестрі, що вона схожа на бабусю.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i03:audio",
+          "transcript": "You resemble our grandmother."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You resemble our grandmother.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вас зворушила книжка спогадів, яку ви позичили.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i04:r1",
+          "text": "I borrowed"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i04:r2",
+          "text": "I borrowed it"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i04:r3",
+          "text": "me borrowed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вас зворушила книжка спогадів, яку ви позичили.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вас тронула книга воспоминаний, которую вы одолжили.",
+          "uk": "Вас зворушила книжка спогадів, яку ви позичили."
+        },
+        "gappedTargetPhrase": "The memoir ___ was moving.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-38:i04:r1",
+            "text": "I borrowed"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i04:r2",
+            "text": "I borrowed it"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i04:r3",
+            "text": "me borrowed"
+          }
+        ],
+        "testedDimension": "Вас зворушила книжка спогадів, яку ви позичили.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i04:r2",
+            "correct": false,
+            "testedDimension": "Вас зворушила книжка спогадів, яку ви позичили.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: книга уже названа.",
+              "uk": "It зайве: книжку вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i04:r3",
+            "correct": false,
+            "testedDimension": "Вас зворушила книжка спогадів, яку ви позичили.",
+            "feedbackByLocale": {
+              "ru": "Одолжили вы: I borrowed.",
+              "uk": "Позичили ви: I borrowed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, де вона виросла.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, де вона виросла.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where did she grow up?",
+        "localizedMeaning": {
+          "ru": "Спросите, где она выросла.",
+          "uk": "Запитайте, де вона виросла."
+        },
+        "orderedTokens": [
+          "Where",
+          "did",
+          "she",
+          "grow",
+          "up"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — upbringing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — upbringing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i06:audio",
+          "transcript": "upbringing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i06:r1",
+            "targetText": "upbringing",
+            "meaningByLocale": {
+              "ru": "Воспитание в детстве. То, как о ребёнке заботились, чему его учили и какие привычки ему прививали.",
+              "uk": "Виховання в дитинстві. Те, як про дитину піклувалися, чого її навчали та які звички їй прищеплювали."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upbringing",
+          "definitionByLocale": {
+            "ru": "Воспитание в детстве. То, как о ребёнке заботились, чему его учили и какие привычки ему прививали.",
+            "uk": "Виховання в дитинстві. Те, як про дитину піклувалися, чого її навчали та які звички їй прищеплювали."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i07:r1",
+          "text": "She had a strict upbringing."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i07:r2",
+          "text": "She had a happy childhood."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i07:r3",
+          "text": "He had a strict upbringing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i07:audio",
+          "transcript": "She had a strict upbringing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i07:r1",
+            "targetText": "She had a strict upbringing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i07:r2",
+            "targetText": "She had a happy childhood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i07:r3",
+            "targetText": "He had a strict upbringing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had a strict upbringing.",
+              "uk": "У записі звучить She had a strict upbringing."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had a strict upbringing.",
+              "uk": "У записі звучить She had a strict upbringing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, чию історію прочитав співрозмовник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чию історію прочитав співрозмовник.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i08:audio",
+          "transcript": "This is the woman whose story I read."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the woman whose story I read.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "woman",
+          "whose",
+          "story",
+          "I",
+          "read"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви показуєте жінку, чию історію прочитали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i09:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте жінку, чию історію прочитали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы показываете женщину, чью историю прочли.",
+          "uk": "Ви показуєте жінку, чию історію прочитали."
+        },
+        "gappedTargetPhrase": "This is the woman ___ story I read.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-38:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i09:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Ви показуєте жінку, чию історію прочитали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви показуєте жінку, чию історію прочитали.",
+            "feedbackByLocale": {
+              "ru": "Для связи с историей нужно whose.",
+              "uk": "Для зв’язку з історією потрібне whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви показуєте жінку, чию історію прочитали.",
+            "feedbackByLocale": {
+              "ru": "Her лишнее после whose.",
+              "uk": "Her зайве після whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — anecdote",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — anecdote",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i10:audio",
+          "transcript": "anecdote"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i10:r1",
+            "targetText": "anecdote",
+            "meaningByLocale": {
+              "ru": "Короткая история из жизни. Рассказ о конкретном случае, часто забавном; это не обязательно выдуманная шутка.",
+              "uk": "Коротка історія з життя. Розповідь про конкретний випадок, часто кумедний; це не обов’язково вигаданий жарт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anecdote",
+          "definitionByLocale": {
+            "ru": "Короткая история из жизни. Рассказ о конкретном случае, часто забавном; это не обязательно выдуманная шутка.",
+            "uk": "Коротка історія з життя. Розповідь про конкретний випадок, часто кумедний; це не обов’язково вигаданий жарт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що дідусь розповів кумедну історію з життя.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що дідусь розповів кумедну історію з життя.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i11:audio",
+          "transcript": "Grandad told us a funny anecdote."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Grandad told us a funny anecdote.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть сестру розповісти вам ще.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть сестру розповісти вам ще.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me more?",
+        "localizedMeaning": {
+          "ru": "Попросите сестру рассказать вам ещё.",
+          "uk": "Попросіть сестру розповісти вам ще."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "more"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — milestone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — milestone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i13:audio",
+          "transcript": "milestone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i13:r1",
+            "targetText": "milestone",
+            "meaningByLocale": {
+              "ru": "Важная веха. Значимое событие или достижение, отмечающее новый этап в жизни.",
+              "uk": "Важлива віха. Значуща подія або досягнення, що позначає новий етап у житті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "milestone",
+          "definitionByLocale": {
+            "ru": "Важная веха. Значимое событие или достижение, отмечающее новый этап в жизни.",
+            "uk": "Важлива віха. Значуща подія або досягнення, що позначає новий етап у житті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i14:r1",
+          "text": "Graduation was an important milestone."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i14:r2",
+          "text": "Graduation was an important meeting."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i14:r3",
+          "text": "Graduation was an important lesson."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i14:audio",
+          "transcript": "Graduation was an important milestone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-38:i14:r1",
+            "targetText": "Graduation was an important milestone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i14:r2",
+            "targetText": "Graduation was an important meeting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i14:r3",
+            "targetText": "Graduation was an important lesson.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Graduation was an important milestone.",
+              "uk": "У записі звучить Graduation was an important milestone."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Graduation was an important milestone.",
+              "uk": "У записі звучить Graduation was an important milestone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-38:i15:p1",
+            "target": "resemble",
+            "meaningByLocale": {
+              "ru": "быть похожим",
+              "uk": "бути схожим"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-38:i15:p2",
+            "target": "upbringing",
+            "meaningByLocale": {
+              "ru": "воспитание в детстве",
+              "uk": "виховання в дитинстві"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-38:i15:p3",
+            "target": "anecdote",
+            "meaningByLocale": {
+              "ru": "короткая история из жизни",
+              "uk": "коротка історія з життя"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-38:i15:p4",
+            "target": "milestone",
+            "meaningByLocale": {
+              "ru": "важная веха",
+              "uk": "важлива віха"
+            }
+          }
+        ],
+        "leftColumn": [
+          "resemble",
+          "upbringing",
+          "anecdote",
+          "milestone"
+        ],
+        "rightColumn": [
+          "бути схожим",
+          "виховання в дитинстві",
+          "коротка історія з життя",
+          "важлива віха"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ця людина написала книжку спогадів.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i16:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i16:r2",
+          "text": "who he"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i16:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ця людина написала книжку спогадів.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этот человек написал книгу воспоминаний.",
+          "uk": "Ця людина написала книжку спогадів."
+        },
+        "gappedTargetPhrase": "This is the person ___ wrote the memoir.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-38:i16:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i16:r2",
+            "text": "who he"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i16:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Ця людина написала книжку спогадів.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i16:r2",
+            "correct": false,
+            "testedDimension": "Ця людина написала книжку спогадів.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя; he лишнее.",
+              "uk": "Who вже позначає виконавця; he зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i16:r3",
+            "correct": false,
+            "testedDimension": "Ця людина написала книжку спогадів.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: йдеться про жінку чи чоловіка?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i17:r1",
+          "text": "She had a strict upbringing."
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i17:r2",
+          "text": "He had a strict upbringing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i17:audioA",
+        "en:lesson-29:session-38:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: йдеться про жінку чи чоловіка?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She had a strict upbringing.",
+        "contrastB": "He had a strict upbringing.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-38:i17:audioA",
+          "transcript": "She had a strict upbringing."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-38:i17:audioB",
+          "transcript": "He had a strict upbringing."
+        },
+        "testedPhoneticContrast": "Послухайте: йдеться про жінку чи чоловіка?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: йдеться про жінку чи чоловіка?",
+            "feedbackByLocale": {
+              "ru": "Звучит she — она.",
+              "uk": "Звучить she — вона."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, що розповів дідусь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, що розповів дідусь.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i18:audio",
+          "transcript": "Grandad told us a funny anecdote."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Grandad told us a funny anecdote.",
+        "orderedTokens": [
+          "Grandad",
+          "told",
+          "us",
+          "a",
+          "funny",
+          "anecdote"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам сподобалося читати про її життя.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-38:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам сподобалося читати про її життя.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-38:i19:audio",
+          "transcript": "I enjoyed reading about her life."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I enjoyed reading about her life.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Історія, яку розповіла сестра, вас зворушила.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-38:i20:r1",
+          "text": "you told me"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i20:r2",
+          "text": "you told me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-38:i20:r3",
+          "text": "you telling me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Історія, яку розповіла сестра, вас зворушила.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "История, которую рассказала сестра, вас тронула.",
+          "uk": "Історія, яку розповіла сестра, вас зворушила."
+        },
+        "gappedTargetPhrase": "The story ___ was moving.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-38:i20:r1",
+            "text": "you told me"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i20:r2",
+            "text": "you told me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i20:r3",
+            "text": "you telling me"
+          }
+        ],
+        "testedDimension": "Історія, яку розповіла сестра, вас зворушила.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-38:i20:r2",
+            "correct": false,
+            "testedDimension": "Історія, яку розповіла сестра, вас зворушила.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: история уже названа.",
+              "uk": "It зайве: історію вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-38:i20:r3",
+            "correct": false,
+            "testedDimension": "Історія, яку розповіла сестра, вас зворушила.",
+            "feedbackByLocale": {
+              "ru": "О рассказанном говорим told.",
+              "uk": "Про розказане кажемо told."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-38:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте за книжку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте за книжку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for lending me the book.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите за книгу.",
+          "uk": "Подякуйте за книжку."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "lending",
+          "me",
+          "the",
+          "book"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0fd6e98c68913a0abd8383df7da0b5dcfbc8908d40e384dddd8214ad55d219bd"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-31:i01",
+    "correctText": "film",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i02",
+    "correctText": "She told me the film was at seven.",
+    "correctResponseId": "en:lesson-30:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i03",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i04",
+    "correctText": "ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i05",
+    "correctText": "He asked me to show my ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i06",
+    "correctText": "She asked me where the entrance was.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i07",
+    "correctText": "seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i08",
+    "correctText": "I wish I had a better seat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i09",
+    "correctText": "my seat was",
+    "correctResponseId": "en:lesson-30:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i10",
+    "correctText": "He asked us to wait by the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i11",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i12",
+    "correctText": "queue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i13",
+    "correctText": "He said the queue was short.",
+    "correctResponseId": "en:lesson-30:session-31:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i14",
+    "correctText": "The film you chose is funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i15",
+    "correctText": "The ticket I bought is in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i16",
+    "correctText": "not to stand",
+    "correctResponseId": "en:lesson-30:session-31:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i17",
+    "correctText": "She asked if I wanted a drink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i18",
+    "correctText": "He asked me to keep the ticket.",
+    "correctResponseId": "en:lesson-30:session-31:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i19",
+    "correctText": "She said the film was long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-31:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-31:i21",
+    "correctText": "She asked me to wait outside.",
+    "correctResponseId": null
+  }
+]

@@ -12,7 +12,7 @@
 
 ### Опаздываем на автобус
 
-Подруга опаздывает на автобус, а идёт домой кружным путём. Вы знаете дорогу, которая идёт напрямую и экономит десять минут. shortcut — «короткий путь». Он один и проходит между парком и библиотекой: There is a shortcut between the park and the library.
+Подруга опаздывает на автобус и идёт к остановке кружным путём. Вы знаете дорогу, которая идёт напрямую и экономит десять минут. shortcut — «короткий путь». There is a shortcut between the park and the library — «Между парком и библиотекой есть короткий путь». Сначала ставим There is, затем называем путь — a shortcut — и место: between the park and the library. Два ориентира после between соединяем словом and.
 
 **Подруга опаздывает на автобус. Скажите ей, что между парком и библиотекой есть короткий путь.**
 
@@ -26,13 +26,13 @@
 
 ### Подальше от машин
 
-Подруга не хочет идти по шоссе рядом с машинами и спрашивает, как пройти пешком. Вы думаете об узкой дорожке в траве, по которой ходят только люди. footpath — «пешая тропа». Вы не уверены и спрашиваете у прохожего: Is there a footpath between the park and the school?
+Подруга не хочет идти по шоссе рядом с машинами и спрашивает, как пройти пешком. Вы думаете об узкой дорожке в траве, по которой ходят только люди. footpath — «пешая тропа». Is there a footpath between the park and the school? — «Между парком и школой есть пешая тропа?» Чтобы узнать о наличии тропы, ставим Is there, затем a footpath и место — between the park and the school.
 
 **Подруга не хочет идти рядом с машинами. Спросите прохожего, есть ли между парком и школой пешая тропа.**
 
 - ✅ **Is there a footpath between the park and the school?**
 - ❌ Are there a footpath between the park and the school? — *Тропа одна, поэтому вопрос начинаем с Is there, а не с Are there.*
-- ❌ There is a footpath between the park and the school? — *Это порядок слов утверждения. В вопросе сначала Is: Is there a footpath?*
+- ❌ Is there footpath between the park and the school? — *Перед footpath в единственном числе здесь нужно a.*
 
 ---
 
@@ -40,13 +40,13 @@
 
 ### После дождя
 
-Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». Таких ям нет совсем, поэтому aren’t any: There aren’t any puddles on the footpath.
+Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». There aren’t any puddles on the footpath — «На тропе нет луж». Начинаем с There aren’t any, затем называем то, чего нет, во множественном числе — puddles — и место: on the footpath. Aren’t означает are not, а any в этом отрицании подчёркивает, что луж нет совсем.
 
 **Подруга боится промочить ноги. Скажите ей, что на тропе луж нет.**
 
 - ✅ **There aren’t any puddles on the footpath.**
-- ❌ There isn’t any puddles on the footpath. — *Луж несколько, поэтому нужно aren’t, а не isn’t.*
-- ❌ There aren’t any puddle on the footpath. — *Луж несколько, поэтому на конце puddles, а не puddle.*
+- ❌ There isn’t any puddles on the footpath. — *Puddles стоит во множественном числе, поэтому нужно aren’t.*
+- ❌ There aren’t any puddle on the footpath. — *После aren’t any здесь нужна форма множественного числа puddles.*
 
 ---
 

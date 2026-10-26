@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-53:intro1:r2": {
-          "ru": "It — для того, о чём вы оба уже говорили, а участок для гостя новый: There is a police station.",
-          "uk": "It — для того, про що ви обоє вже говорили, а дільниця для гостя нова: There is a police station."
+          "ru": "С одним участком нужно There is.",
+          "uk": "З однією дільницею потрібне There is."
         },
         "en:lesson-04:session-53:intro1:r3": {
           "ru": "Участок один и назван впервые, поэтому нужно a: a police station.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-53:intro2:r2": {
-          "ru": "There is a… — для нового места, а участок вы с гостем уже знаете: It is.",
-          "uk": "There is a… — для нового місця, а дільницю ви з гостем уже знаєте: It is."
+          "ru": "После it перед указанием места нужно is.",
+          "uk": "Після it перед указанням місця потрібне is."
         },
         "en:lesson-04:session-53:intro2:r3": {
           "ru": "Участок один, поэтому нужно is, а не are.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-04:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-53:intro3:r2": {
-          "ru": "The — для того, кого вы оба уже знаете, а сотрудник для гостя новый: There is an officer.",
-          "uk": "The — для того, кого ви обоє вже знаєте, а співробітник для гостя новий: There is an officer."
+          "ru": "Говорим об одном сотруднике, поэтому нужно is.",
+          "uk": "Говоримо про одного співробітника, тому потрібне is."
         },
         "en:lesson-04:session-53:intro3:r3": {
           "ru": "Слово officer начинается с гласного звука, поэтому нужно an: an officer.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "708036197ce28ebe14781185e6223e7e8293fc0aad3e65fce902dafb2debd384"
+  "auxiliaryFingerprint": "56717990833c2924a5df4c6b4fbcaf7803ec015a3acc9fe3faa3b1d18d4a2ce3"
 }

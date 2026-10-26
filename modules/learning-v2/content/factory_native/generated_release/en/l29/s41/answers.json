@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-41:i01",
+    "correctText": "Could you give me a minute?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i02",
+    "correctText": "flustered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i03",
+    "correctText": "I felt flustered at the station.",
+    "correctResponseId": "en:lesson-29:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i04",
+    "correctText": "The ticket I lost was in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i05",
+    "correctText": "I lost",
+    "correctResponseId": "en:lesson-29:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i06",
+    "correctText": "frantic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i07",
+    "correctText": "I was frantic when I lost my ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i08",
+    "correctText": "I am waiting for a friend whose train is late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i10",
+    "correctText": "baffled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i11",
+    "correctText": "I was baffled by the instructions.",
+    "correctResponseId": "en:lesson-29:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i12",
+    "correctText": "Could you explain that again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i13",
+    "correctText": "jittery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i14",
+    "correctText": "I feel jittery before a journey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i15",
+    "correctText": "en:lesson-29:session-41:i15:p1=flustered\nen:lesson-29:session-41:i15:p2=frantic\nen:lesson-29:session-41:i15:p3=baffled\nen:lesson-29:session-41:i15:p4=jittery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-41:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i17",
+    "correctText": "I was baffled by the instructions.",
+    "correctResponseId": "en:lesson-29:session-41:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i18",
+    "correctText": "The ticket I lost was in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i19",
+    "correctText": "I feel much calmer now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i20",
+    "correctText": "you sent me",
+    "correctResponseId": "en:lesson-29:session-41:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-41:i21",
+    "correctText": "Thank you for waiting for me.",
+    "correctResponseId": null
+  }
+]

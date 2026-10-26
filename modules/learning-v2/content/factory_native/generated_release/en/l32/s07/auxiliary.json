@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-07:intro1:r2": {
+          "ru": "После must используем need без s.",
+          "uk": "Після must використовуємо need без s."
+        },
+        "en:lesson-32:session-07:intro1:r3": {
+          "ru": "Перед глаголом need дополнительное be не нужно.",
+          "uk": "Перед дієсловом need додаткове be не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-07:intro2:r2": {
+          "ru": "Map уже названо: it после found не нужно.",
+          "uk": "Map уже названо: it після found не потрібне."
+        },
+        "en:lesson-32:session-07:intro2:r3": {
+          "ru": "Для завершённого прошлого действия нужна форма found.",
+          "uk": "Для завершеної минулої дії потрібна форма found."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-07:intro3:r2": {
+          "ru": "Нужна прошедшая форма went.",
+          "uk": "Потрібна минула форма went."
+        },
+        "en:lesson-32:session-07:intro3:r3": {
+          "ru": "Нужна полная часть we went back.",
+          "uk": "Потрібна повна частина we went back."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2c0420bae30f1dc329830c7a2328a667f18e40c622f45821d6a2df3bf7cb13fd"
+}

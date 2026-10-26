@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — park",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — park",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i01:audio",
+          "transcript": "park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-04:i01:r1",
+            "targetText": "park",
+            "meaningByLocale": {
+              "ru": "Парк. Повторение знакомого слова.",
+              "uk": "Парк. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "park",
+          "definitionByLocale": {
+            "ru": "Парк. Повторение знакомого слова.",
+            "uk": "Парк. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i02:r1",
+          "text": "Do you know if the park is open?"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i02:r2",
+          "text": "Do you know if the shop is open?"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i02:r3",
+          "text": "Do you know if the café is open?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i02:audio",
+          "transcript": "Do you know if the park is open?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-04:i02:r1",
+            "targetText": "Do you know if the park is open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i02:r2",
+            "targetText": "Do you know if the shop is open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i02:r3",
+            "targetText": "Do you know if the café is open?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the park is open?",
+              "uk": "У записі звучить Do you know if the park is open?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the park is open?",
+              "uk": "У записі звучить Do you know if the park is open?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ввічливо запитайте, коли зачиняється парк.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i03:r1",
+          "text": "closes"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i03:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i03:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, коли зачиняється парк.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, когда закрывается парк.",
+          "uk": "Ввічливо запитайте, коли зачиняється парк."
+        },
+        "gappedTargetPhrase": "Could you tell me when the park ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-04:i03:r1",
+            "text": "closes"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i03:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i03:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Ввічливо запитайте, коли зачиняється парк.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, коли зачиняється парк.",
+            "feedbackByLocale": {
+              "ru": "С the park нужна форма closes.",
+              "uk": "З the park потрібна форма closes."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, коли зачиняється парк.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма closes.",
+              "uk": "Потрібна форма closes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i04:audio",
+          "transcript": "gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-04:i04:r1",
+            "targetText": "gate",
+            "meaningByLocale": {
+              "ru": "Ворота. Повторение знакомого слова.",
+              "uk": "Ворота. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gate",
+          "definitionByLocale": {
+            "ru": "Ворота. Повторение знакомого слова.",
+            "uk": "Ворота. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де ворота.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де ворота.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the gate is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где ворота.",
+          "uk": "Ввічливо запитайте, де ворота."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "gate",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора працівник сказав: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Учора працівник сказав: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i06:audio",
+          "transcript": "He said the park was open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the park was open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи знає працівник, де кафе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i07:r1",
+          "text": "the café is"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i07:r2",
+          "text": "is the café"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i07:r3",
+          "text": "the café are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи знає працівник, де кафе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, знает ли сотрудник, где кафе.",
+          "uk": "Запитайте, чи знає працівник, де кафе."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-04:i07:r1",
+            "text": "the café is"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i07:r2",
+            "text": "is the café"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i07:r3",
+            "text": "the café are"
+          }
+        ],
+        "testedDimension": "Запитайте, чи знає працівник, де кафе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i07:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає працівник, де кафе.",
+            "feedbackByLocale": {
+              "ru": "После where нужен порядок the café is.",
+              "uk": "Після where потрібен порядок the café is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i07:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає працівник, де кафе.",
+            "feedbackByLocale": {
+              "ru": "Одно café требует is.",
+              "uk": "Одне café потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bench",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bench",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i08:audio",
+          "transcript": "bench"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-04:i08:r1",
+            "targetText": "bench",
+            "meaningByLocale": {
+              "ru": "Скамейка. Повторение знакомого слова.",
+              "uk": "Лавка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bench",
+          "definitionByLocale": {
+            "ru": "Скамейка. Повторение знакомого слова.",
+            "uk": "Лавка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том пофарбував лавку. Скажіть це, починаючи з лавки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Том пофарбував лавку. Скажіть це, починаючи з лавки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i09:audio",
+          "transcript": "The bench was painted by Tom."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bench was painted by Tom.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про туалет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про туалет.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i10:audio",
+          "transcript": "Do you know if the toilet is open?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the toilet is open?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "toilet",
+          "is",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Том полагодив ворота. Назвіть його після was repaired.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Том полагодив ворота. Назвіть його після was repaired.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Том починил ворота. Назовите его после was repaired.",
+          "uk": "Том полагодив ворота. Назвіть його після was repaired."
+        },
+        "gappedTargetPhrase": "The gate was repaired ___ Tom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-04:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Том полагодив ворота. Назвіть його після was repaired.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Том полагодив ворота. Назвіть його після was repaired.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Том полагодив ворота. Назвіть його після was repaired.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sign",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sign",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i12:audio",
+          "transcript": "sign"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-04:i12:r1",
+            "targetText": "sign",
+            "meaningByLocale": {
+              "ru": "Табличка, знак. Повторение знакомого слова.",
+              "uk": "Табличка, знак. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sign",
+          "definitionByLocale": {
+            "ru": "Табличка, знак. Повторение знакомого слова.",
+            "uk": "Табличка, знак. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i13:r1",
+          "text": "Could you tell me where the sign is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i13:r2",
+          "text": "Could you tell me where the bench is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i13:r3",
+          "text": "Could you tell me where the gate is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i13:audio",
+          "transcript": "Could you tell me where the sign is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-04:i13:r1",
+            "targetText": "Could you tell me where the sign is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i13:r2",
+            "targetText": "Could you tell me where the bench is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i13:r3",
+            "targetText": "Could you tell me where the gate is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the sign is?",
+              "uk": "У записі звучить Could you tell me where the sign is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the sign is?",
+              "uk": "У записі звучить Could you tell me where the sign is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора працівник сказав: «Лавка мокра». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Учора працівник сказав: «Лавка мокра». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i14:audio",
+          "transcript": "He said the bench was wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the bench was wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, коли відчиняється кафе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, коли відчиняється кафе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me when the café opens?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, когда открывается кафе.",
+          "uk": "Ввічливо запитайте, коли відчиняється кафе."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "when",
+          "the",
+          "café",
+          "opens"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи знає працівник, чи вільна лавка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i16:r1",
+          "text": "the bench is"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i16:r2",
+          "text": "is the bench"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i16:r3",
+          "text": "the bench are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи знає працівник, чи вільна лавка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, знает ли сотрудник, свободна ли скамейка.",
+          "uk": "Запитайте, чи знає працівник, чи вільна лавка."
+        },
+        "gappedTargetPhrase": "Do you know if ___ free?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-04:i16:r1",
+            "text": "the bench is"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i16:r2",
+            "text": "is the bench"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i16:r3",
+            "text": "the bench are"
+          }
+        ],
+        "testedDimension": "Запитайте, чи знає працівник, чи вільна лавка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає працівник, чи вільна лавка.",
+            "feedbackByLocale": {
+              "ru": "После if нужен порядок the bench is.",
+              "uk": "Після if потрібен порядок the bench is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає працівник, чи вільна лавка.",
+            "feedbackByLocale": {
+              "ru": "Одна bench требует is.",
+              "uk": "Одна bench потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Том пофарбував табличку. Скажіть це, починаючи з таблички.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Том пофарбував табличку. Скажіть це, починаючи з таблички.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i17:audio",
+          "transcript": "The sign was painted by Tom."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sign was painted by Tom.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: відвідувач запитує, де парк чи коли він зачиняється?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i18:r1",
+          "text": "Could you tell me when the park closes?"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i18:r2",
+          "text": "Could you tell me where the park is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i18:audioA",
+        "en:lesson-31:session-04:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: відвідувач запитує, де парк чи коли він зачиняється?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Could you tell me when the park closes?",
+        "contrastB": "Could you tell me where the park is?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-04:i18:audioA",
+          "transcript": "Could you tell me when the park closes?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-04:i18:audioB",
+          "transcript": "Could you tell me where the park is?"
+        },
+        "testedPhoneticContrast": "Послухайте: відвідувач запитує, де парк чи коли він зачиняється?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: відвідувач запитує, де парк чи коли він зачиняється?",
+            "feedbackByLocale": {
+              "ru": "Звучит when — когда.",
+              "uk": "Звучить when — коли."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про вихід.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про вихід.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i19:audio",
+          "transcript": "Could you tell me where the exit is?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you tell me where the exit is?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "exit",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора працівник сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-04:i20:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i20:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-31:session-04:i20:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора працівник сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера сотрудник сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+          "uk": "Учора працівник сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-04:i20:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i20:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i20:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Учора працівник сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-04:i20:r2",
+            "correct": false,
+            "testedDimension": "Учора працівник сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг.",
+              "uk": "Needs не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-04:i20:r3",
+            "correct": false,
+            "testedDimension": "Учора працівник сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма needed.",
+              "uk": "Потрібна форма needed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-04:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи знає перехожий, коли вирушає автобус.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-04:i21:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи знає перехожий, коли вирушає автобус.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-04:i21:audio",
+          "transcript": "Do you know when the bus leaves?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you know when the bus leaves?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fe6c80d1fd1c1fc744d5a687837bdebd7a3bc3a32d6a266e16b87f6aaa7a7011"
+}

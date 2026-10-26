@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать музыкантов, спросить о записи и рассказать о концерте.",
+    "uk": "як назвати музикантів, запитати про запис і розповісти про концерт."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто написал музыку",
+        "uk": "Хто написав музику"
+      },
+      "bodyByLocale": {
+        "ru": "После концерта вы спрашиваете о музыке. Друг отвечает: The music was written by my sister — музыку написала моя сестра. Соберите The music + was written + by + my sister. Начните с музыки, о которой говорите. Was written сообщает, что её написали; written — третья форма write. By my sister называет автора.",
+        "uk": "Після концерту ви запитуєте про музику. Друг відповідає: The music was written by my sister — музику написала моя сестра. Складіть The music + was written + by + my sister. Почніть із музики, про яку говорите. Was written повідомляє, що її написали; written — третя форма write. By my sister називає автора."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-35:intro1:r1",
+              "text": "The music was written by my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro1:r2",
+              "text": "The music was wrote by my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro1:r3",
+              "text": "The music was written my sister."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-35:intro1:r1",
+              "text": "The music was written by my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro1:r2",
+              "text": "The music was wrote by my sister."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro1:r3",
+              "text": "The music was written my sister."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно ли записывать",
+        "uk": "Чи можна записувати"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите записать концерт на телефон и уточняете разрешение: Can the concert be recorded? — можно записывать концерт? Соберите Can + the concert + be + recorded? В вопросе поставьте Can перед the concert. Затем нужны be и recorded: речь о действии над концертом.",
+        "uk": "Ви хочете записати концерт на телефон і уточнюєте дозвіл: Can the concert be recorded? — чи можна записувати концерт? Складіть Can + the concert + be + recorded? У запитанні поставте Can перед the concert. Далі потрібні be та recorded: ідеться про дію над концертом."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-35:intro2:r1",
+              "text": "Can the concert be recorded?"
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro2:r2",
+              "text": "Can the concert recorded?"
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro2:r3",
+              "text": "Can the concert be record?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-35:intro2:r1",
+              "text": "Can the concert be recorded?"
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro2:r2",
+              "text": "Can the concert recorded?"
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro2:r3",
+              "text": "Can the concert be record?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "К вашему приходу",
+        "uk": "До вашого приходу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы опоздали на концерт: выступление закончилось до того, как вы пришли. Скажите: The concert had ended by the time I arrived — к моему приходу концерт закончился. Соберите The concert + had ended + by the time + I arrived. Had ended обозначает более раннее действие. После by the time назовите более позднее событие: I arrived.",
+        "uk": "Ви запізнилися на концерт: виступ закінчився до того, як ви прийшли. Скажіть: The concert had ended by the time I arrived — до мого приходу концерт закінчився. Складіть The concert + had ended + by the time + I arrived. Had ended позначає ранішу дію. Після by the time назвіть пізнішу подію: I arrived."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-35:intro3:r1",
+              "text": "The concert had ended by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro3:r2",
+              "text": "The concert had end by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro3:r3",
+              "text": "The concert had ended by the time I arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-35:intro3:r1",
+              "text": "The concert had ended by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro3:r2",
+              "text": "The concert had end by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-35:intro3:r3",
+              "text": "The concert had ended by the time I arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "12e11d500ca7829211bf504336aa9949f3c9efdb6a9d2fe4138f11a17fb05c83"
+}

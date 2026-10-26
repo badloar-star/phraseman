@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "обычный сдвиг настоящего в прошедшее после said: am/is → was, are → were, need → needed. Здесь тренируем этот способ пересказа; сохранение настоящего в других контекстах не объявляем ошибкой.",
+    "uk": "звичайний зсув теперішнього в минуле після said: am/is → was, are → were, need → needed. Тут тренуємо цей спосіб переказу; збереження теперішнього в інших контекстах не оголошуємо помилкою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Занята была тогда",
+        "uk": "Зайнята була тоді"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера перед поездкой сестра сказала: «Я занята». Сегодня она свободна, а вы пересказываете вчерашний разговор: She said she was busy — она сказала, что была занята. Соберите She + said + she + was busy. При обычном сдвиге времени после прошедшего said форма am из её слов меняется на was. Это сообщение о том моменте вчера.",
+        "uk": "Учора перед поїздкою сестра сказала: «Я зайнята». Сьогодні вона вільна, а ви переказуєте вчорашню розмову: She said she was busy — вона сказала, що була зайнята. Складіть She + said + she + was busy. За звичайного зсуву часу після минулого said форма am з її слів змінюється на was. Це повідомлення про той момент учора."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-33:intro1:r1",
+              "text": "She said she was busy."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro1:r2",
+              "text": "She said she is busy."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro1:r3",
+              "text": "She said she be busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-33:intro1:r1",
+              "text": "She said she was busy."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro1:r2",
+              "text": "She said she is busy."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro1:r3",
+              "text": "She said she be busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Помощь нужна была вчера",
+        "uk": "Допомога потрібна була вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера брат сказал: «Мне нужна помощь» — и вы помогли ему собрать сумку. Сегодня перескажите его слова с обычным сдвигом в прошлое: He said he needed help — он сказал, что ему нужна была помощь. Соберите He + said + he + needed help. Действие need из его слов переходит в needed после прошедшего said.",
+        "uk": "Учора брат сказав: «Мені потрібна допомога» — і ви допомогли йому зібрати сумку. Сьогодні перекажіть його слова зі звичайним зсувом у минуле: He said he needed help — він сказав, що йому потрібна була допомога. Складіть He + said + he + needed help. Дія need з його слів переходить у needed після минулого said."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-33:intro2:r1",
+              "text": "He said he needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro2:r2",
+              "text": "He said he needs help."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro2:r3",
+              "text": "He said he needing help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-33:intro2:r1",
+              "text": "He said he needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro2:r2",
+              "text": "He said he needs help."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro2:r3",
+              "text": "He said he needing help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Родители были готовы",
+        "uk": "Батьки були готові"
+      },
+      "bodyByLocale": {
+        "ru": "Перед отъездом вчера родители сказали: «Мы готовы». Сегодня расскажите об этом с обычным сдвигом времени: They said they were ready — они сказали, что были готовы. Соберите They + said + they + were ready. В их словах с «мы» была форма are; в пересказе после said используем were и называем родителей they.",
+        "uk": "Перед від’їздом учора батьки сказали: «Ми готові». Сьогодні розкажіть про це зі звичайним зсувом часу: They said they were ready — вони сказали, що були готові. Складіть They + said + they + were ready. У їхніх словах із «ми» була форма are; у переказі після said використовуємо were й називаємо батьків they."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-33:intro3:r1",
+              "text": "They said they were ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro3:r2",
+              "text": "They said they are ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro3:r3",
+              "text": "They said they was ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-33:intro3:r1",
+              "text": "They said they were ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro3:r2",
+              "text": "They said they are ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-33:intro3:r3",
+              "text": "They said they was ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "098ed132395c5aec4d6dfdab0d3da9a6694341fa7e6b5eeeb32b2bd32cc74a17"
+}

@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — needle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — needle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i01:audio",
+          "transcript": "needle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-47:i01:r1",
+            "targetText": "needle",
+            "meaningByLocale": {
+              "ru": "Иголка. Повторение знакомого слова.",
+              "uk": "Голка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "needle",
+          "definitionByLocale": {
+            "ru": "Иголка. Повторение знакомого слова.",
+            "uk": "Голка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i02:r1",
+          "text": "She said she needed a needle."
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i02:r2",
+          "text": "She said she needed a spoon."
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i02:r3",
+          "text": "She said she needed a brush."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i02:audio",
+          "transcript": "She said she needed a needle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-47:i02:r1",
+            "targetText": "She said she needed a needle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i02:r2",
+            "targetText": "She said she needed a spoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i02:r3",
+            "targetText": "She said she needed a brush.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she needed a needle.",
+              "uk": "У записі звучить She said she needed a needle."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said she needed a needle.",
+              "uk": "У записі звучить She said she needed a needle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера мама сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера мама сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мама сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+          "uk": "Учора мама сказала: «Я зайнята». Перекажіть зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-47:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера мама сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера мама сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера мама сказала: «Я занята». Перескажите со сдвигом am в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i04:audio",
+          "transcript": "thread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-47:i04:r1",
+            "targetText": "thread",
+            "meaningByLocale": {
+              "ru": "Нитка. Повторение знакомого слова.",
+              "uk": "Нитка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thread",
+          "definitionByLocale": {
+            "ru": "Нитка. Повторение знакомого слова.",
+            "uk": "Нитка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мама попросила вас обрезать нитку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама попросила вас обрезать нитку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked me to cut the thread.",
+        "localizedMeaning": {
+          "ru": "Мама попросила вас обрезать нитку.",
+          "uk": "Мама попросила вас обрізати нитку."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "cut",
+          "the",
+          "thread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мама спросила, нужна ли вам помощь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Мама спросила, нужна ли вам помощь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i06:audio",
+          "transcript": "She asked if I needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked if I needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама спросила, где ваша иголка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i07:r1",
+          "text": "my needle was"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i07:r2",
+          "text": "was my needle"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i07:r3",
+          "text": "my needle were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама спросила, где ваша иголка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама спросила, где ваша иголка.",
+          "uk": "Мама запитала, де ваша голка."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-47:i07:r1",
+            "text": "my needle was"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i07:r2",
+            "text": "was my needle"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i07:r3",
+            "text": "my needle were"
+          }
+        ],
+        "testedDimension": "Мама спросила, где ваша иголка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i07:r2",
+            "correct": false,
+            "testedDimension": "Мама спросила, где ваша иголка.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок my needle was.",
+              "uk": "У переказі потрібен порядок my needle was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i07:r3",
+            "correct": false,
+            "testedDimension": "Мама спросила, где ваша иголка.",
+            "feedbackByLocale": {
+              "ru": "Одна needle требует was.",
+              "uk": "Одна needle потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i08:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-47:i08:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пальто, которое вы починили, коричневое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Пальто, которое вы починили, коричневое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i09:audio",
+          "transcript": "The coat I fixed is brown."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat I fixed is brown.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте просьбу мамы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте просьбу мамы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i10:audio",
+          "transcript": "She asked me to turn on the lamp."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked me to turn on the lamp.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "turn",
+          "on",
+          "the",
+          "lamp"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама сообщила вам, что пальто готово.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i11:r1",
+          "text": "me"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i11:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i11:r3",
+          "text": "to me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама сообщила вам, что пальто готово.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама сообщила вам, что пальто готово.",
+          "uk": "Мама повідомила вам, що пальто готове."
+        },
+        "gappedTargetPhrase": "She told ___ the coat was ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-47:i11:r1",
+            "text": "me"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i11:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i11:r3",
+            "text": "to me"
+          }
+        ],
+        "testedDimension": "Мама сообщила вам, что пальто готово.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Мама сообщила вам, что пальто готово.",
+            "feedbackByLocale": {
+              "ru": "После told используем me.",
+              "uk": "Після told використовуємо me."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Мама сообщила вам, что пальто готово.",
+            "feedbackByLocale": {
+              "ru": "После told перед me не ставим to.",
+              "uk": "Після told перед me не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scissors",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scissors",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i12:audio",
+          "transcript": "scissors"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-47:i12:r1",
+            "targetText": "scissors",
+            "meaningByLocale": {
+              "ru": "Ножницы. Повторение знакомого слова.",
+              "uk": "Ножиці. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scissors",
+          "definitionByLocale": {
+            "ru": "Ножницы. Повторение знакомого слова.",
+            "uk": "Ножиці. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i13:r1",
+          "text": "She said the scissors were sharp."
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i13:r2",
+          "text": "She said the scissors were small."
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i13:r3",
+          "text": "She said the scissors were new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i13:audio",
+          "transcript": "She said the scissors were sharp."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-47:i13:r1",
+            "targetText": "She said the scissors were sharp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i13:r2",
+            "targetText": "She said the scissors were small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i13:r3",
+            "targetText": "She said the scissors were new.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the scissors were sharp.",
+              "uk": "У записі звучить She said the scissors were sharp."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the scissors were sharp.",
+              "uk": "У записі звучить She said the scissors were sharp."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В комнате темновато. Хотелось бы, чтобы лампа была ярче сейчас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "В комнате темновато. Хотелось бы, чтобы лампа была ярче сейчас.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i14:audio",
+          "transcript": "I wish the lamp were brighter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the lamp were brighter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Нитка, которую вы выбрали, красная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нитка, которую вы выбрали, красная.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The thread I chose is red.",
+        "localizedMeaning": {
+          "ru": "Нитка, которую вы выбрали, красная.",
+          "uk": "Нитка, яку ви обрали, червона."
+        },
+        "orderedTokens": [
+          "The",
+          "thread",
+          "I",
+          "chose",
+          "is",
+          "red"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама попросила вас не тянуть нитку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i16:r1",
+          "text": "not to pull"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i16:r2",
+          "text": "not pull"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i16:r3",
+          "text": "not pulling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама попросила вас не тянуть нитку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама попросила вас не тянуть нитку.",
+          "uk": "Мама попросила вас не тягнути нитку."
+        },
+        "gappedTargetPhrase": "She asked me ___ the thread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-47:i16:r1",
+            "text": "not to pull"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i16:r2",
+            "text": "not pull"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i16:r3",
+            "text": "not pulling"
+          }
+        ],
+        "testedDimension": "Мама попросила вас не тянуть нитку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i16:r2",
+            "correct": false,
+            "testedDimension": "Мама попросила вас не тянуть нитку.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to pull.",
+              "uk": "Заперечне прохання передаємо через not to pull."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i16:r3",
+            "correct": false,
+            "testedDimension": "Мама попросила вас не тянуть нитку.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно not to pull.",
+              "uk": "Тут потрібне not to pull."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы попросили маму помочь вам с пальто.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Вы попросили маму помочь вам с пальто.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i17:audio",
+          "transcript": "I asked her to help me with the coat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I asked her to help me with the coat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: мама попросила вас или вы попросили её?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i18:r1",
+          "text": "I asked her to wait."
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i18:r2",
+          "text": "She asked me to wait."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i18:audioA",
+        "en:lesson-30:session-47:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: мама попросила вас или вы попросили её?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I asked her to wait.",
+        "contrastB": "She asked me to wait.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-47:i18:audioA",
+          "transcript": "I asked her to wait."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-47:i18:audioB",
+          "transcript": "She asked me to wait."
+        },
+        "testedPhoneticContrast": "Послушайте: мама попросила вас или вы попросили её?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: мама попросила вас или вы попросили её?",
+            "feedbackByLocale": {
+              "ru": "Звучит I asked her — я попросил её.",
+              "uk": "Звучить I asked her — я попросив її."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте сообщение мамы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение мамы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i19:audio",
+          "transcript": "She said the needle was on the table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She said the needle was on the table.",
+        "orderedTokens": [
+          "She",
+          "said",
+          "the",
+          "needle",
+          "was",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама спросила, где вы храните нитки. Передайте вопрос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-47:i20:r1",
+          "text": "I kept"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i20:r2",
+          "text": "did I keep"
+        },
+        {
+          "responseId": "en:lesson-30:session-47:i20:r3",
+          "text": "I keeping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама спросила, где вы храните нитки. Передайте вопрос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама спросила, где вы храните нитки. Передайте вопрос.",
+          "uk": "Мама запитала, де ви зберігаєте нитки. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked where ___ my thread.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-47:i20:r1",
+            "text": "I kept"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i20:r2",
+            "text": "did I keep"
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i20:r3",
+            "text": "I keeping"
+          }
+        ],
+        "testedDimension": "Мама спросила, где вы храните нитки. Передайте вопрос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-47:i20:r2",
+            "correct": false,
+            "testedDimension": "Мама спросила, где вы храните нитки. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок I kept.",
+              "uk": "У переказі потрібен порядок I kept."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-47:i20:r3",
+            "correct": false,
+            "testedDimension": "Мама спросила, где вы храните нитки. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма kept.",
+              "uk": "Потрібна форма kept."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-47:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера мама сказала: «Я хочу закончить». Перескажите со сдвигом want в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-47:i21:audio"
+      ],
+      "accessibilityLabel": "Вчера мама сказала: «Я хочу закончить». Перескажите со сдвигом want в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-47:i21:audio",
+          "transcript": "She said she wanted to finish."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she wanted to finish.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a1f31e67a790e1250ff05cae35dd43129aad4fd2c31863213a6afee74b7b02d5"
+}

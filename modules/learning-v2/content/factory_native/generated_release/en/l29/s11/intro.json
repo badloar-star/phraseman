@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "как описать тёплую одежду, уточнить её владельца и объяснить свой выбор.",
+    "uk": "як описати теплий одяг, уточнити його власника й пояснити свій вибір."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чья куртка на стуле",
+        "uk": "Чия куртка на стільці"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине продавец ищет покупателя, чья куртка лежит на стуле. Покажите на мужчину: That is the man whose jacket is on the chair — вот мужчина, чья куртка лежит на стуле. Соберите That is the man + whose jacket + is on the chair. После the man добавьте whose jacket: это куртка данного мужчины. Затем is on the chair указывает её место. His перед jacket не нужно: принадлежность уже выражена словом whose.",
+        "uk": "У магазині продавець шукає покупця, чия куртка лежить на стільці. Покажіть на чоловіка: That is the man whose jacket is on the chair — ось чоловік, чия куртка лежить на стільці. Складіть That is the man + whose jacket + is on the chair. Після the man додайте whose jacket: це куртка цього чоловіка. Потім is on the chair указує її місце. His перед jacket не потрібне: належність уже виражена словом whose."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-11:intro1:r1",
+              "text": "That is the man whose jacket is on the chair."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro1:r2",
+              "text": "That is the man who jacket is on the chair."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro1:r3",
+              "text": "That is the man whose his jacket is on the chair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-11:intro1:r1",
+              "text": "That is the man whose jacket is on the chair."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro1:r2",
+              "text": "That is the man who jacket is on the chair."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro1:r3",
+              "text": "That is the man whose his jacket is on the chair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто связал шарф",
+        "uk": "Хто зв’язав шарф"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга спрашивает, кто связал ваш шарф. Ответьте: The scarf was made by my aunt — шарф сделала моя тётя. Соберите The scarf + was made + by my aunt. После названия вещи поставьте was made: с ней выполнили действие. Made — третья форма make. Часть by my aunt называет человека, который сделал шарф.",
+        "uk": "Подруга запитує, хто зв’язав ваш шарф. Дайте відповідь: The scarf was made by my aunt — шарф зробила моя тітка. Складіть The scarf + was made + by my aunt. Після назви речі поставте was made: з нею виконали дію. Made — третя форма make. Частина by my aunt називає людину, яка зробила шарф."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-11:intro2:r1",
+              "text": "The scarf was made by my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro2:r2",
+              "text": "The scarf was made from my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro2:r3",
+              "text": "The scarf was make by my aunt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-11:intro2:r1",
+              "text": "The scarf was made by my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro2:r2",
+              "text": "The scarf was made from my aunt."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro2:r3",
+              "text": "The scarf was make by my aunt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если размер подойдёт",
+        "uk": "Якщо розмір підійде"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь примерить куртку и объясняете, когда купите её. Скажите: I will buy it if it fits — я куплю её, если она подойдёт по размеру. Соберите I will buy it + if it fits. Сначала назовите будущее действие с will buy. Затем добавьте условие if it fits: после if здесь используем fits без will. Условие стоит в конце, поэтому запятая не нужна.",
+        "uk": "Ви збираєтеся приміряти куртку й пояснюєте, коли купите її. Скажіть: I will buy it if it fits — я куплю її, якщо вона підійде за розміром. Складіть I will buy it + if it fits. Спочатку назвіть майбутню дію з will buy. Потім додайте умову if it fits: після if тут використовуємо fits без will. Умова стоїть наприкінці, тому кома не потрібна."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-11:intro3:r1",
+              "text": "I will buy it if it fits."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro3:r2",
+              "text": "I will buy it if it will fit."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro3:r3",
+              "text": "I will buy it if it fitting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-11:intro3:r1",
+              "text": "I will buy it if it fits."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro3:r2",
+              "text": "I will buy it if it will fit."
+            },
+            {
+              "responseId": "en:lesson-29:session-11:intro3:r3",
+              "text": "I will buy it if it fitting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0bf9546af9b20b68eba102514be70ed001a0a15e1972f3b5d1ac9cfb178d6d4"
+}

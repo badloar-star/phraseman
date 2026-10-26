@@ -12,7 +12,7 @@
 
 ### Строка про кухню
 
-В описании квартиры написано: There are a microwave in the kitchen. Вы стоите на кухне и видите одну печку, в которой еду разогревают за минуту. microwave — «микроволновка». Она одна, поэтому строку исправляют: There is a microwave in the kitchen.
+Агент просит уточнить, какая техника стоит на кухне. Вы стоите на кухне и видите одну печку, в которой еду разогревают за минуту. microwave — «микроволновка». There is a microwave in the kitchen — «На кухне есть микроволновка». Начинаем с There is, затем называем один прибор — a microwave — и место: in the kitchen.
 
 **Агент ждёт поправки. Скажите ему верную фразу: на кухне есть микроволновка.**
 
@@ -26,13 +26,13 @@
 
 ### Строка про подвал
 
-Дальше в описании: There is some washing machines in the basement. Вы спускаетесь в подвал и видите там несколько машин, в которые загружают бельё и включают стирку. washing machine — «стиральная машина». Машин несколько, поэтому: There are some washing machines in the basement.
+Агент просит описать технику в подвале. Вы спускаетесь в подвал и видите там несколько машин, в которые загружают бельё и включают стирку. washing machine — «стиральная машина». There are some washing machines in the basement — «В подвале есть несколько стиральных машин». Сначала ставим There are, затем some washing machines и место — in the basement. С названием машин во множественном числе нужно are.
 
 **Агент ждёт поправки. Скажите ему верную фразу: в подвале есть стиральные машины.**
 
 - ✅ **There are some washing machines in the basement.**
 - ❌ There is some washing machines in the basement. — *Машин несколько, поэтому нужно There are, а не There is.*
-- ❌ There are some washing machine in the basement. — *После some слово ставят во множественном числе: washing machines.*
+- ❌ There are some washing machine in the basement. — *Здесь говорим о нескольких машинах: washing machines.*
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Строка про холл
 
-В описании записано: There isn’t no ironing board in the hall. Вы смотрите в холл: длинной узкой доски на ножках, на которой гладят бельё, там нет. ironing board — «гладильная доска». Достаточно одного «нет»: There isn’t an ironing board in the hall.
+Агент спрашивает, есть ли в холле гладильная доска. Вы смотрите в холл: длинной узкой доски на ножках, на которой гладят бельё, там нет. ironing board — «гладильная доска». There isn’t an ironing board in the hall — «В холле нет гладильной доски». Начинаем с There isn’t, затем называем предмет — an ironing board — и место: in the hall. Isn’t означает is not, поэтому дополнительное no в этой конструкции не нужно.
 
 **Агент ждёт поправки. Скажите ему верную фразу: в холле нет гладильной доски.**
 

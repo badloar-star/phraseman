@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-47:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте перевірити список речей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте перевірити список речей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i01:audio",
+          "transcript": "Let us check the list."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us check the list.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — foresight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — foresight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i02:audio",
+          "transcript": "foresight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-47:i02:r1",
+            "targetText": "foresight",
+            "meaningByLocale": {
+              "ru": "Предусмотрительность. Умение заранее подумать о том, что может понадобиться или случиться.",
+              "uk": "Передбачливість. Уміння заздалегідь подумати про те, що може знадобитися або статися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foresight",
+          "definitionByLocale": {
+            "ru": "Предусмотрительность. Умение заранее подумать о том, что может понадобиться или случиться.",
+            "uk": "Передбачливість. Уміння заздалегідь подумати про те, що може знадобитися або статися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i03:r1",
+          "text": "You had the foresight to bring extra water."
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i03:r2",
+          "text": "You had the time to bring extra water."
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i03:r3",
+          "text": "You had the chance to bring extra water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i03:audio",
+          "transcript": "You had the foresight to bring extra water."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-47:i03:r1",
+            "targetText": "You had the foresight to bring extra water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i03:r2",
+            "targetText": "You had the time to bring extra water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i03:r3",
+            "targetText": "You had the chance to bring extra water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You had the foresight to bring extra water.",
+              "uk": "У записі звучить You had the foresight to bring extra water."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You had the foresight to bring extra water.",
+              "uk": "У записі звучить You had the foresight to bring extra water."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що спакована вами сумка готова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що спакована вами сумка готова.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag I packed is ready.",
+        "localizedMeaning": {
+          "ru": "Скажите, что упакованная вами сумка готова.",
+          "uk": "Скажіть, що спакована вами сумка готова."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "I",
+          "packed",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви самі спакували цю сумку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i05:r1",
+          "text": "I packed"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i05:r2",
+          "text": "I packed it"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i05:r3",
+          "text": "me packed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви самі спакували цю сумку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сами упаковали эту сумку.",
+          "uk": "Ви самі спакували цю сумку."
+        },
+        "gappedTargetPhrase": "The bag ___ is ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-47:i05:r1",
+            "text": "I packed"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i05:r2",
+            "text": "I packed it"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i05:r3",
+            "text": "me packed"
+          }
+        ],
+        "testedDimension": "Ви самі спакували цю сумку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Ви самі спакували цю сумку.",
+            "feedbackByLocale": {
+              "ru": "It повторяет сумку.",
+              "uk": "It повторює сумку."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Ви самі спакували цю сумку.",
+            "feedbackByLocale": {
+              "ru": "Нужен исполнитель I.",
+              "uk": "Потрібен виконавець I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — precaution",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — precaution",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i06:audio",
+          "transcript": "precaution"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-47:i06:r1",
+            "targetText": "precaution",
+            "meaningByLocale": {
+              "ru": "Мера предосторожности. Действие, которое заранее помогает избежать неприятности.",
+              "uk": "Запобіжний захід. Дія, яка заздалегідь допомагає уникнути неприємності."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "precaution",
+          "definitionByLocale": {
+            "ru": "Мера предосторожности. Действие, которое заранее помогает избежать неприятности.",
+            "uk": "Запобіжний захід. Дія, яка заздалегідь допомагає уникнути неприємності."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що берете запасну воду про всяк випадок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що берете запасну воду про всяк випадок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i07:audio",
+          "transcript": "I am taking extra water as a precaution."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am taking extra water as a precaution.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де ви зустрінетеся.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де ви зустрінетеся.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i08:audio",
+          "transcript": "This is the café where we will meet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the café where we will meet.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "café",
+          "where",
+          "we",
+          "will",
+          "meet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви називаєте кафе для зустрічі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i09:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i09:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви називаєте кафе для зустрічі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы называете кафе для встречи.",
+          "uk": "Ви називаєте кафе для зустрічі."
+        },
+        "gappedTargetPhrase": "This is the café ___ we will meet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-47:i09:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i09:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Ви називаєте кафе для зустрічі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви називаєте кафе для зустрічі.",
+            "feedbackByLocale": {
+              "ru": "Для места встречи нужно where.",
+              "uk": "Для місця зустрічі потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви називаєте кафе для зустрічі.",
+            "feedbackByLocale": {
+              "ru": "Whose обозначает принадлежность; здесь место.",
+              "uk": "Whose позначає належність; тут місце."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — headlamp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — headlamp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i10:audio",
+          "transcript": "headlamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-47:i10:r1",
+            "targetText": "headlamp",
+            "meaningByLocale": {
+              "ru": "Налобный фонарь. Фонарь, который крепится на голове и оставляет руки свободными.",
+              "uk": "Налобний ліхтар. Ліхтар, який кріпиться на голові й залишає руки вільними."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headlamp",
+          "definitionByLocale": {
+            "ru": "Налобный фонарь. Фонарь, который крепится на голове и оставляет руки свободными.",
+            "uk": "Налобний ліхтар. Ліхтар, який кріпиться на голові й залишає руки вільними."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i11:r1",
+          "text": "Does your headlamp work?"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i11:r2",
+          "text": "Does your phone work?"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i11:r3",
+          "text": "Does your camera work?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i11:audio",
+          "transcript": "Does your headlamp work?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-47:i11:r1",
+            "targetText": "Does your headlamp work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i11:r2",
+            "targetText": "Does your phone work?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i11:r3",
+            "targetText": "Does your camera work?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does your headlamp work?",
+              "uk": "У записі звучить Does your headlamp work?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does your headlamp work?",
+              "uk": "У записі звучить Does your headlamp work?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть друга перевірити батарейки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть друга перевірити батарейки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you check the batteries?",
+        "localizedMeaning": {
+          "ru": "Попросите друга проверить батарейки.",
+          "uk": "Попросіть друга перевірити батарейки."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "check",
+          "the",
+          "batteries"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — perishable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — perishable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i13:audio",
+          "transcript": "perishable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-47:i13:r1",
+            "targetText": "perishable",
+            "meaningByLocale": {
+              "ru": "Скоропортящийся. О еде, которая быстро портится, если хранить её неправильно или слишком долго.",
+              "uk": "Швидкопсувний. Про їжу, яка швидко псується, якщо зберігати її неправильно або надто довго."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perishable",
+          "definitionByLocale": {
+            "ru": "Скоропортящийся. О еде, которая быстро портится, если хранить её неправильно или слишком долго.",
+            "uk": "Швидкопсувний. Про їжу, яка швидко псується, якщо зберігати її неправильно або надто довго."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ця їжа швидко псується.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ця їжа швидко псується.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i14:audio",
+          "transcript": "This food is perishable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This food is perishable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-47:i15:p1",
+            "target": "foresight",
+            "meaningByLocale": {
+              "ru": "предусмотрительность",
+              "uk": "передбачливість"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-47:i15:p2",
+            "target": "precaution",
+            "meaningByLocale": {
+              "ru": "мера предосторожности",
+              "uk": "запобіжний захід"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-47:i15:p3",
+            "target": "headlamp",
+            "meaningByLocale": {
+              "ru": "налобный фонарь",
+              "uk": "налобний ліхтар"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-47:i15:p4",
+            "target": "perishable",
+            "meaningByLocale": {
+              "ru": "скоропортящийся",
+              "uk": "швидкопсувний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "foresight",
+          "precaution",
+          "headlamp",
+          "perishable"
+        ],
+        "rightColumn": [
+          "передбачливість",
+          "запобіжний захід",
+          "налобний ліхтар",
+          "швидкопсувний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви залишитеся вдома, якщо піде дощ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i16:r1",
+          "text": "rains"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i16:r2",
+          "text": "will rain"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i16:r3",
+          "text": "raining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви залишитеся вдома, якщо піде дощ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы останетесь дома, если пойдёт дождь.",
+          "uk": "Ви залишитеся вдома, якщо піде дощ."
+        },
+        "gappedTargetPhrase": "We will stay home if it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-47:i16:r1",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i16:r2",
+            "text": "will rain"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i16:r3",
+            "text": "raining"
+          }
+        ],
+        "testedDimension": "Ви залишитеся вдома, якщо піде дощ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви залишитеся вдома, якщо піде дощ.",
+            "feedbackByLocale": {
+              "ru": "После if здесь не ставим will.",
+              "uk": "Після if тут не ставимо will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви залишитеся вдома, якщо піде дощ.",
+            "feedbackByLocale": {
+              "ru": "Для условия нужна форма rains.",
+              "uk": "Для умови потрібна форма rains."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: йдеться про ліхтар чи телефон?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i17:r1",
+          "text": "Does your headlamp work?"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i17:r2",
+          "text": "Does your phone work?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i17:audioA",
+        "en:lesson-29:session-47:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: йдеться про ліхтар чи телефон?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Does your headlamp work?",
+        "contrastB": "Does your phone work?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-47:i17:audioA",
+          "transcript": "Does your headlamp work?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-47:i17:audioB",
+          "transcript": "Does your phone work?"
+        },
+        "testedPhoneticContrast": "Послухайте: йдеться про ліхтар чи телефон?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: йдеться про ліхтар чи телефон?",
+            "feedbackByLocale": {
+              "ru": "Звучит headlamp — налобный фонарь.",
+              "uk": "Звучить headlamp — налобний ліхтар."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте ваш план на випадок дощу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте ваш план на випадок дощу.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i18:audio",
+          "transcript": "We will stay home if it rains."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will stay home if it rains.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "stay",
+          "home",
+          "if",
+          "it",
+          "rains"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте покласти їжу в сумку-холодильник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-47:i19:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте покласти їжу в сумку-холодильник.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-47:i19:audio",
+          "transcript": "Let us put the food in the cool bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us put the food in the cool bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг приніс ліхтар, який вам потрібен.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-47:i20:r1",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i20:r2",
+          "text": "you it"
+        },
+        {
+          "responseId": "en:lesson-29:session-47:i20:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг приніс ліхтар, який вам потрібен.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг принёс фонарь, который вам нужен.",
+          "uk": "Друг приніс ліхтар, який вам потрібен."
+        },
+        "gappedTargetPhrase": "This is the headlamp ___ brought.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-47:i20:r1",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i20:r2",
+            "text": "you it"
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i20:r3",
+            "text": "your"
+          }
+        ],
+        "testedDimension": "Друг приніс ліхтар, який вам потрібен.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-47:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг приніс ліхтар, який вам потрібен.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названный фонарь.",
+              "uk": "It повторює вже названий ліхтар."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-47:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг приніс ліхтар, який вам потрібен.",
+            "feedbackByLocale": {
+              "ru": "Действие выполняет you, не your.",
+              "uk": "Дію виконує you, не your."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-47:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте другові за допомогу зі зборами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте другові за допомогу зі зборами.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for helping me pack.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите друга за помощь со сборами.",
+          "uk": "Подякуйте другові за допомогу зі зборами."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "helping",
+          "me",
+          "pack"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f6be5025a16f609ddd275966d496aa9b489d4b30800393e6025c4d4770a9286c"
+}

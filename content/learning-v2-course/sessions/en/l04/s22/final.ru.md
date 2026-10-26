@@ -12,12 +12,12 @@
 
 ### Заказ из магазина
 
-Курьер привёз продукты, и вы сверяете пакеты со списком. Подруга ждёт морковь для супа, но в пакетах её нет. carrot — «морковь», а несколько морковок — carrots. В отрицании снова any, а are not сокращаем до aren't. Скажите ей: There aren't any carrots here. — «Здесь нет моркови».
+Курьер привёз продукты, и вы сверяете пакеты со списком. Подруга ждёт морковь для супа, но в пакетах её нет. carrot — «морковь», а несколько морковок — carrots. В отрицании снова any, а are not сокращаем до aren't. Скажите ей: There aren't any carrots here. — «Здесь нет моркови». Начинаем с There aren’t any, затем ставим carrots во множественном числе и место — here. Фраза сообщает, что нет ни одной морковки.
 
 **Подруга ждёт морковь для супа. Скажите ей, что моркови здесь нет.**
 
 - ✅ **There aren't any carrots here.**
-- ❌ There isn't any carrots here. — *Морковок несколько, поэтому нужно aren't, а не isn't.*
+- ❌ There isn't any carrots here. — *Carrots стоит во множественном числе, поэтому нужно aren’t.*
 - ❌ There aren't some carrots here. — *В отрицании вместо some нужно any: There aren't any carrots.*
 
 ---
@@ -26,12 +26,12 @@
 
 ### Печенье к чаю
 
-К чаю придут гости, и вы ищете печенье. Вы осматриваете стол и видите только пустую тарелку и крошки. biscuit — «печенье» (одно печенье), а несколько — biscuits. Скажите: There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья».
+К чаю придут гости, и вы ищете печенье. Вы осматриваете стол и видите только пустую тарелку и крошки. biscuit — «печенье» (одно печенье), а несколько — biscuits. Скажите: There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья». Начинаем с There aren’t any, затем ставим biscuits во множественном числе и место — near the plate. Aren’t означает are not.
 
 **Гости придут к чаю. Скажите, что рядом с тарелкой печенья нет.**
 
 - ✅ **There aren't any biscuits near the plate.**
-- ❌ There aren't any biscuit near the plate. — *Печенья несколько, поэтому на конце biscuits, а не biscuit.*
+- ❌ There aren't any biscuit near the plate. — *После aren’t any здесь нужна форма множественного числа biscuits.*
 - ❌ There are any biscuits near the plate. — *Чтобы сказать «нет», нужно aren't: There aren't any biscuits.*
 
 ---
@@ -40,13 +40,13 @@
 
 ### Сосиски на огне
 
-На выходные вы с друзьями собираетесь жарить сосиски на огне. Брат заглядывает за коробку, где лежал пакет, но там пусто. sausage — «сосиска», а несколько — sausages. Скажите ему: There aren't any sausages behind the box. — «За коробкой нет сосисок».
+На выходные вы с друзьями собираетесь жарить сосиски на огне. Брат заглядывает за коробку, где лежал пакет, но там пусто. sausage — «сосиска», а несколько — sausages. Скажите ему: There aren't any sausages behind the box. — «За коробкой нет сосисок». Сначала ставим There aren’t any, затем sausages во множественном числе и место — behind the box. Так сообщаем, что за коробкой нет ни одной сосиски.
 
 **Брат ищет сосиски для огня. Скажите ему, что за коробкой сосисок нет.**
 
 - ✅ **There aren't any sausages behind the box.**
-- ❌ There isn't any sausages behind the box. — *Сосисок несколько, поэтому нужно aren't, а не isn't.*
-- ❌ There aren't any sausage behind the box. — *Сосисок несколько, поэтому на конце sausages, а не sausage.*
+- ❌ There isn't any sausages behind the box. — *Sausages стоит во множественном числе, поэтому нужно aren’t.*
+- ❌ There aren't any sausage behind the box. — *После aren’t any здесь нужна форма множественного числа sausages.*
 
 ---
 

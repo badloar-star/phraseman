@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-32:i01",
+    "correctText": "Could I speak to a volunteer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i02",
+    "correctText": "foster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i03",
+    "correctText": "I would like to foster a dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i04",
+    "correctText": "The volunteer who I met was helpful.",
+    "correctResponseId": "en:lesson-29:session-32:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i05",
+    "correctText": "I met",
+    "correctResponseId": "en:lesson-29:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i06",
+    "correctText": "microchip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i07",
+    "correctText": "Does the dog have a microchip?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i08",
+    "correctText": "The papers are in this folder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i09",
+    "correctText": "neuter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i10",
+    "correctText": "Does the shelter neuter male cats?",
+    "correctResponseId": "en:lesson-29:session-32:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i11",
+    "correctText": "looked",
+    "correctResponseId": "en:lesson-29:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i12",
+    "correctText": "What does this word mean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i13",
+    "correctText": "spay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i14",
+    "correctText": "Does the shelter spay female cats?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i15",
+    "correctText": "en:lesson-29:session-32:i15:p1=foster\nen:lesson-29:session-32:i15:p2=microchip\nen:lesson-29:session-32:i15:p3=neuter\nen:lesson-29:session-32:i15:p4=spay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-32:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i17",
+    "correctText": "Does the shelter neuter male cats?",
+    "correctResponseId": "en:lesson-29:session-32:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i18",
+    "correctText": "The papers were prepared by a volunteer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i19",
+    "correctText": "Could you write down the number?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-32:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-32:i21",
+    "correctText": "Thank you for the information.",
+    "correctResponseId": null
+  }
+]

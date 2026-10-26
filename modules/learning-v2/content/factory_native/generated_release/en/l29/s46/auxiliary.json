@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-46:intro1:r2": {
+          "ru": "It повторяет уже названный совет.",
+          "uk": "It повторює вже названу пораду."
+        },
+        "en:lesson-29:session-46:intro1:r3": {
+          "ru": "Для данного совета нужна форма gave.",
+          "uk": "Для наданої поради потрібна форма gave."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-46:intro2:r2": {
+          "ru": "Для принадлежности нужно whose bike.",
+          "uk": "Для належності потрібне whose bike."
+        },
+        "en:lesson-29:session-46:intro2:r3": {
+          "ru": "Whose уже показывает принадлежность; his лишнее.",
+          "uk": "Whose вже показує належність; his зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-46:intro3:r2": {
+          "ru": "Перед исполнителем нужна связка by.",
+          "uk": "Перед виконавцем потрібна зв’язка by."
+        },
+        "en:lesson-29:session-46:intro3:r3": {
+          "ru": "После was нужна форма checked.",
+          "uk": "Після was потрібна форма checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d8961efe1761bdff4153f84330819e65200844c105898944026ef6419de6348b"
+}

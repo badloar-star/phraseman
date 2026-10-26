@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — parcel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — parcel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i01:audio",
+          "transcript": "parcel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-46:i01:r1",
+            "targetText": "parcel",
+            "meaningByLocale": {
+              "ru": "Посылка. Повторение знакомого слова.",
+              "uk": "Посилка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parcel",
+          "definitionByLocale": {
+            "ru": "Посылка. Повторение знакомого слова.",
+            "uk": "Посилка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i02:r1",
+          "text": "She said the parcel was ready."
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i02:r2",
+          "text": "She said the parcel was heavy."
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i02:r3",
+          "text": "She said the parcel was wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i02:audio",
+          "transcript": "She said the parcel was ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-46:i02:r1",
+            "targetText": "She said the parcel was ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i02:r2",
+            "targetText": "She said the parcel was heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i02:r3",
+            "targetText": "She said the parcel was wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the parcel was ready.",
+              "uk": "У записі звучить She said the parcel was ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the parcel was ready.",
+              "uk": "У записі звучить She said the parcel was ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора працівниця сказала: «Я готова». Передайте зі зсувом am у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора працівниця сказала: «Я готова». Передайте зі зсувом am у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера сотрудница сказала: «Я готова». Передайте со сдвигом am в прошлое.",
+          "uk": "Учора працівниця сказала: «Я готова». Передайте зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-46:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора працівниця сказала: «Я готова». Передайте зі зсувом am у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора працівниця сказала: «Я готова». Передайте зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора працівниця сказала: «Я готова». Передайте зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — name",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — name",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i04:audio",
+          "transcript": "name"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-46:i04:r1",
+            "targetText": "name",
+            "meaningByLocale": {
+              "ru": "Имя. Повторение знакомого слова.",
+              "uk": "Ім’я. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "name",
+          "definitionByLocale": {
+            "ru": "Имя. Повторение знакомого слова.",
+            "uk": "Ім’я. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівниця попросила вас назвати ваше ім’я по літерах.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівниця попросила вас назвати ваше ім’я по літерах.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked me to spell my name.",
+        "localizedMeaning": {
+          "ru": "Сотрудница попросила вас назвать ваше имя по буквам.",
+          "uk": "Працівниця попросила вас назвати ваше ім’я по літерах."
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "me",
+          "to",
+          "spell",
+          "my",
+          "name"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Працівниця запитала, де ви живете.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Працівниця запитала, де ви живете.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i06:audio",
+          "transcript": "She asked where I lived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked where I lived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівниця запитала, де ваша сумка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i07:r1",
+          "text": "my bag was"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i07:r2",
+          "text": "was my bag"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i07:r3",
+          "text": "my bag were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівниця запитала, де ваша сумка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудница спросила, где ваша сумка.",
+          "uk": "Працівниця запитала, де ваша сумка."
+        },
+        "gappedTargetPhrase": "She asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-46:i07:r1",
+            "text": "my bag was"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i07:r2",
+            "text": "was my bag"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i07:r3",
+            "text": "my bag were"
+          }
+        ],
+        "testedDimension": "Працівниця запитала, де ваша сумка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i07:r2",
+            "correct": false,
+            "testedDimension": "Працівниця запитала, де ваша сумка.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок my bag was.",
+              "uk": "У переказі потрібен порядок my bag was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i07:r3",
+            "correct": false,
+            "testedDimension": "Працівниця запитала, де ваша сумка.",
+            "feedbackByLocale": {
+              "ru": "Одна bag требует was.",
+              "uk": "Одна bag потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i08:audio",
+          "transcript": "address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-46:i08:r1",
+            "targetText": "address",
+            "meaningByLocale": {
+              "ru": "Адрес. Повторение знакомого слова.",
+              "uk": "Адреса. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "address",
+          "definitionByLocale": {
+            "ru": "Адрес. Повторение знакомого слова.",
+            "uk": "Адреса. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Працівниця попросила вас написати вашу адресу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Працівниця попросила вас написати вашу адресу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i09:audio",
+          "transcript": "She asked me to write my address."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She asked me to write my address.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання працівниці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання працівниці.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i10:audio",
+          "transcript": "She asked if I needed help."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked if I needed help.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "if",
+          "I",
+          "needed",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви попросили працівницю допомогти вам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i11:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i11:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i11:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви попросили працівницю допомогти вам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили сотрудницу помочь вам.",
+          "uk": "Ви попросили працівницю допомогти вам."
+        },
+        "gappedTargetPhrase": "I asked ___ to help me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-46:i11:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i11:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i11:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Ви попросили працівницю допомогти вам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви попросили працівницю допомогти вам.",
+            "feedbackByLocale": {
+              "ru": "После asked используем her.",
+              "uk": "Після asked використовуємо her."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви попросили працівницю допомогти вам.",
+            "feedbackByLocale": {
+              "ru": "Hers обозначает принадлежность; здесь her.",
+              "uk": "Hers позначає належність; тут her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i12:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-46:i12:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i13:r1",
+          "text": "She said the box was heavy."
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i13:r2",
+          "text": "She said the box was empty."
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i13:r3",
+          "text": "She said the box was small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i13:audio",
+          "transcript": "She said the box was heavy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-46:i13:r1",
+            "targetText": "She said the box was heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i13:r2",
+            "targetText": "She said the box was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i13:r3",
+            "targetText": "She said the box was small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the box was heavy.",
+              "uk": "У записі звучить She said the box was heavy."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She said the box was heavy.",
+              "uk": "У записі звучить She said the box was heavy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коробка важка. Хотілося б, щоб вона була легшою зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Коробка важка. Хотілося б, щоб вона була легшою зараз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i14:audio",
+          "transcript": "I wish the box were lighter."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the box were lighter.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Посилка, яку ви забрали, маленька.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посилка, яку ви забрали, маленька.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The parcel I collected is small.",
+        "localizedMeaning": {
+          "ru": "Посылка, которую вы забрали, маленькая.",
+          "uk": "Посилка, яку ви забрали, маленька."
+        },
+        "orderedTokens": [
+          "The",
+          "parcel",
+          "I",
+          "collected",
+          "is",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівниця попросила вас поки не відкривати коробку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i16:r1",
+          "text": "not to open"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i16:r2",
+          "text": "not open"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i16:r3",
+          "text": "not opening"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівниця попросила вас поки не відкривати коробку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудница попросила вас пока не открывать коробку.",
+          "uk": "Працівниця попросила вас поки не відкривати коробку."
+        },
+        "gappedTargetPhrase": "She asked me ___ the box yet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-46:i16:r1",
+            "text": "not to open"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i16:r2",
+            "text": "not open"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i16:r3",
+            "text": "not opening"
+          }
+        ],
+        "testedDimension": "Працівниця попросила вас поки не відкривати коробку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i16:r2",
+            "correct": false,
+            "testedDimension": "Працівниця попросила вас поки не відкривати коробку.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to open.",
+              "uk": "Заперечне прохання передаємо через not to open."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i16:r3",
+            "correct": false,
+            "testedDimension": "Працівниця попросила вас поки не відкривати коробку.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно not to open.",
+              "uk": "Тут потрібне not to open."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора працівниця сказала: «Мені потрібна ручка». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Учора працівниця сказала: «Мені потрібна ручка». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i17:audio",
+          "transcript": "She said she needed a pen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed a pen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: працівниця попросила написати ваше ім’я чи вашу адресу?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i18:r1",
+          "text": "She asked me to write my name."
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i18:r2",
+          "text": "She asked me to write my address."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i18:audioA",
+        "en:lesson-30:session-46:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: працівниця попросила написати ваше ім’я чи вашу адресу?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "She asked me to write my name.",
+        "contrastB": "She asked me to write my address.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-46:i18:audioA",
+          "transcript": "She asked me to write my name."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-46:i18:audioB",
+          "transcript": "She asked me to write my address."
+        },
+        "testedPhoneticContrast": "Послухайте: працівниця попросила написати ваше ім’я чи вашу адресу?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: працівниця попросила написати ваше ім’я чи вашу адресу?",
+            "feedbackByLocale": {
+              "ru": "Звучит my name — моё имя.",
+              "uk": "Звучить my name — моє ім’я."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення працівниці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення працівниці.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i19:audio",
+          "transcript": "She told me the door was open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She told me the door was open.",
+        "orderedTokens": [
+          "She",
+          "told",
+          "me",
+          "the",
+          "door",
+          "was",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівниця повідомила вам, що адреса правильна.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-46:i20:r1",
+          "text": "told"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i20:r2",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-30:session-46:i20:r3",
+          "text": "asked"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівниця повідомила вам, що адреса правильна.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудница сообщила вам, что адрес правильный.",
+          "uk": "Працівниця повідомила вам, що адреса правильна."
+        },
+        "gappedTargetPhrase": "She ___ me the address was right.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-46:i20:r1",
+            "text": "told"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i20:r2",
+            "text": "said"
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i20:r3",
+            "text": "asked"
+          }
+        ],
+        "testedDimension": "Працівниця повідомила вам, що адреса правильна.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-46:i20:r2",
+            "correct": false,
+            "testedDimension": "Працівниця повідомила вам, що адреса правильна.",
+            "feedbackByLocale": {
+              "ru": "Перед me используем told.",
+              "uk": "Перед me використовуємо told."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-46:i20:r3",
+            "correct": false,
+            "testedDimension": "Працівниця повідомила вам, що адреса правильна.",
+            "feedbackByLocale": {
+              "ru": "Это сообщение, не вопрос или просьба.",
+              "uk": "Це повідомлення, не запитання чи прохання."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-46:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коробка, яку ви принесли додому, на столі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-46:i21:audio"
+      ],
+      "accessibilityLabel": "Коробка, яку ви принесли додому, на столі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-46:i21:audio",
+          "transcript": "The box I brought home is on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The box I brought home is on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b6e60a7160e15c32c8d153c55eb5deb9b89216be75a8e93741c7a50f0fe5437a"
+}

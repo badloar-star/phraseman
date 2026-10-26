@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-13:intro1:r2": {
+          "ru": "Для связи женщины с её дочерью нужна whose.",
+          "uk": "Для зв’язку жінки з її донькою потрібна whose."
+        },
+        "en:lesson-29:session-13:intro1:r3": {
+          "ru": "Her после whose лишнее.",
+          "uk": "Her після whose зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-13:intro2:r2": {
+          "ru": "Исполнителя ремонта вводит by.",
+          "uk": "Виконавицю ремонту позначає by."
+        },
+        "en:lesson-29:session-13:intro2:r3": {
+          "ru": "После was здесь нужна repaired.",
+          "uk": "Після was тут потрібна repaired."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-13:intro3:r2": {
+          "ru": "Для этого условия используем does not fit без will.",
+          "uk": "Для цієї умови використовуємо does not fit без will."
+        },
+        "en:lesson-29:session-13:intro3:r3": {
+          "ru": "После does not нужна начальная форма fit.",
+          "uk": "Після does not потрібна початкова форма fit."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "87e1485be3e0d3a53bcf68853b8e7c1365f00d708045ad82b1e39f87fb8e76ba"
+}

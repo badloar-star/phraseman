@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-55:intro1:r2": {
+          "ru": "В прямом вопросе was ставим перед my appointment.",
+          "uk": "У прямому запитанні was ставимо перед my appointment."
+        },
+        "en:lesson-28:session-55:intro1:r3": {
+          "ru": "После was нужна changed.",
+          "uk": "Після was потрібна changed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-55:intro2:r2": {
+          "ru": "Перед removed нужна be.",
+          "uk": "Перед removed потрібна be."
+        },
+        "en:lesson-28:session-55:intro2:r3": {
+          "ru": "После be нужна removed.",
+          "uk": "Після be потрібна removed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-55:intro3:r2": {
+          "ru": "Для этого желания после wish нужна had.",
+          "uk": "Для цього бажання після wish потрібна had."
+        },
+        "en:lesson-28:session-55:intro3:r3": {
+          "ru": "Здесь нужна had, а не will have.",
+          "uk": "Тут потрібна had, а не will have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "55a3abc72172ce4b3d6bb7a752de599b179442e6dc1c24db5953b2d292ccab74"
+}

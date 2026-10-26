@@ -1,0 +1,1059 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-46:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть друга допомогти вам вирішити.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть друга допомогти вам вирішити.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i01:audio",
+          "transcript": "Can you help me decide?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you help me decide?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gullible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gullible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i02:audio",
+          "transcript": "gullible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-46:i02:r1",
+            "targetText": "gullible",
+            "meaningByLocale": {
+              "ru": "Легковерный. Тот, кто слишком легко верит другим, даже когда его могут обмануть.",
+              "uk": "Легковірний. Той, хто надто легко вірить іншим, навіть коли його можуть обманути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gullible",
+          "definitionByLocale": {
+            "ru": "Легковерный. Тот, кто слишком легко верит другим, даже когда его могут обмануть.",
+            "uk": "Легковірний. Той, хто надто легко вірить іншим, навіть коли його можуть обманути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i03:r1",
+          "text": "I do not want to be gullible."
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i03:r2",
+          "text": "I do not want to be rude."
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i03:r3",
+          "text": "I do not want to be late."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i03:audio",
+          "transcript": "I do not want to be gullible."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-46:i03:r1",
+            "targetText": "I do not want to be gullible.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i03:r2",
+            "targetText": "I do not want to be rude.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i03:r3",
+            "targetText": "I do not want to be late.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to be gullible.",
+              "uk": "У записі звучить I do not want to be gullible."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to be gullible.",
+              "uk": "У записі звучить I do not want to be gullible."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть другові, що його порада була корисною.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть другові, що його порада була корисною.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The advice you gave me was useful.",
+        "localizedMeaning": {
+          "ru": "Скажите другу, что его совет был полезным.",
+          "uk": "Скажіть другові, що його порада була корисною."
+        },
+        "orderedTokens": [
+          "The",
+          "advice",
+          "you",
+          "gave",
+          "me",
+          "was",
+          "useful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви дякуєте другові за пораду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i05:r1",
+          "text": "you gave me"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i05:r2",
+          "text": "you gave me it"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i05:r3",
+          "text": "you giving me"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви дякуєте другові за пораду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы благодарите друга за совет.",
+          "uk": "Ви дякуєте другові за пораду."
+        },
+        "gappedTargetPhrase": "The advice ___ was useful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-46:i05:r1",
+            "text": "you gave me"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i05:r2",
+            "text": "you gave me it"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i05:r3",
+            "text": "you giving me"
+          }
+        ],
+        "testedDimension": "Ви дякуєте другові за пораду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Ви дякуєте другові за пораду.",
+            "feedbackByLocale": {
+              "ru": "It повторяет совет.",
+              "uk": "It повторює пораду."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Ви дякуєте другові за пораду.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма gave.",
+              "uk": "Потрібна форма gave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sceptical",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sceptical",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i06:audio",
+          "transcript": "sceptical"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-46:i06:r1",
+            "targetText": "sceptical",
+            "meaningByLocale": {
+              "ru": "Скептически настроенный. Не готовый сразу поверить, пока нет убедительных оснований.",
+              "uk": "Скептично налаштований. Не готовий одразу повірити, поки немає переконливих підстав."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sceptical",
+          "definitionByLocale": {
+            "ru": "Скептически настроенный. Не готовый сразу поверить, пока нет убедительных оснований.",
+            "uk": "Скептично налаштований. Не готовий одразу повірити, поки немає переконливих підстав."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що сумніваєтеся в обіцянці продавця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що сумніваєтеся в обіцянці продавця.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i07:audio",
+          "transcript": "I am sceptical about that promise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am sceptical about that promise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, чий велосипед ви хочете купити.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чий велосипед ви хочете купити.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i08:audio",
+          "transcript": "That is the man whose bike I want to buy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is the man whose bike I want to buy.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "the",
+          "man",
+          "whose",
+          "bike",
+          "I",
+          "want",
+          "to",
+          "buy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вказуєте на власника велосипеда.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i09:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вказуєте на власника велосипеда.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы указываете на владельца велосипеда.",
+          "uk": "Ви вказуєте на власника велосипеда."
+        },
+        "gappedTargetPhrase": "That is the man ___ bike I want to buy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-46:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i09:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Ви вказуєте на власника велосипеда.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вказуєте на власника велосипеда.",
+            "feedbackByLocale": {
+              "ru": "Для принадлежности нужно whose.",
+              "uk": "Для належності потрібне whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вказуєте на власника велосипеда.",
+            "feedbackByLocale": {
+              "ru": "His после whose лишнее.",
+              "uk": "His після whose зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — biased",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — biased",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i10:audio",
+          "transcript": "biased"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-46:i10:r1",
+            "targetText": "biased",
+            "meaningByLocale": {
+              "ru": "Предвзятый. Оценивающий не беспристрастно, а под влиянием своих симпатий или интересов.",
+              "uk": "Упереджений. Той, хто оцінює не безсторонньо, а під впливом власних симпатій або інтересів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "biased",
+          "definitionByLocale": {
+            "ru": "Предвзятый. Оценивающий не беспристрастно, а под влиянием своих симпатий или интересов.",
+            "uk": "Упереджений. Той, хто оцінює не безсторонньо, а під впливом власних симпатій або інтересів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i11:r1",
+          "text": "That review sounds biased."
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i11:r2",
+          "text": "That review sounds honest."
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i11:r3",
+          "text": "That review sounds helpful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i11:audio",
+          "transcript": "That review sounds biased."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-46:i11:r1",
+            "targetText": "That review sounds biased.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i11:r2",
+            "targetText": "That review sounds honest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i11:r3",
+            "targetText": "That review sounds helpful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That review sounds biased.",
+              "uk": "У записі звучить That review sounds biased."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That review sounds biased.",
+              "uk": "У записі звучить That review sounds biased."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть час подумати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть час подумати.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have some time to think?",
+        "localizedMeaning": {
+          "ru": "Попросите время подумать.",
+          "uk": "Попросіть час подумати."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "some",
+          "time",
+          "to",
+          "think"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hasty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hasty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i13:audio",
+          "transcript": "hasty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-46:i13:r1",
+            "targetText": "hasty",
+            "meaningByLocale": {
+              "ru": "Поспешный. Сделанный слишком быстро, без достаточного обдумывания.",
+              "uk": "Поспішний. Зроблений надто швидко, без достатнього обмірковування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hasty",
+          "definitionByLocale": {
+            "ru": "Поспешный. Сделанный слишком быстро, без достаточного обдумывания.",
+            "uk": "Поспішний. Зроблений надто швидко, без достатнього обмірковування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що не хочете ухвалювати поспішне рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що не хочете ухвалювати поспішне рішення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i14:audio",
+          "transcript": "I do not want to make a hasty decision."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I do not want to make a hasty decision.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-46:i15:p1",
+            "target": "gullible",
+            "meaningByLocale": {
+              "ru": "легковерный",
+              "uk": "легковірний"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-46:i15:p2",
+            "target": "sceptical",
+            "meaningByLocale": {
+              "ru": "скептически настроенный",
+              "uk": "скептично налаштований"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-46:i15:p3",
+            "target": "biased",
+            "meaningByLocale": {
+              "ru": "предвзятый",
+              "uk": "упереджений"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-46:i15:p4",
+            "target": "hasty",
+            "meaningByLocale": {
+              "ru": "поспешный",
+              "uk": "поспішний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gullible",
+          "sceptical",
+          "biased",
+          "hasty"
+        ],
+        "rightColumn": [
+          "легковірний",
+          "скептично налаштований",
+          "упереджений",
+          "поспішний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Велосипед перевірив механік.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i16:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i16:r2",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i16:r3",
+          "text": "who"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Велосипед перевірив механік.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Велосипед проверил механик.",
+          "uk": "Велосипед перевірив механік."
+        },
+        "gappedTargetPhrase": "The bike was checked ___ a mechanic.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-46:i16:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i16:r2",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i16:r3",
+            "text": "who"
+          }
+        ],
+        "testedDimension": "Велосипед перевірив механік.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i16:r2",
+            "correct": false,
+            "testedDimension": "Велосипед перевірив механік.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя после was checked вводим через by.",
+              "uk": "Виконавця після was checked вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i16:r3",
+            "correct": false,
+            "testedDimension": "Велосипед перевірив механік.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связка by, а не who.",
+              "uk": "Тут потрібна зв’язка by, а не who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: відгук упереджений чи чесний?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i17:r1",
+          "text": "That review sounds biased."
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i17:r2",
+          "text": "That review sounds honest."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i17:audioA",
+        "en:lesson-29:session-46:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: відгук упереджений чи чесний?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "That review sounds biased.",
+        "contrastB": "That review sounds honest.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-46:i17:audioA",
+          "transcript": "That review sounds biased."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-46:i17:audioB",
+          "transcript": "That review sounds honest."
+        },
+        "testedPhoneticContrast": "Послухайте: відгук упереджений чи чесний?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: відгук упереджений чи чесний?",
+            "feedbackByLocale": {
+              "ru": "Звучит biased — предвзятый.",
+              "uk": "Звучить biased — упереджений."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, хто перевірив велосипед.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, хто перевірив велосипед.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i18:audio",
+          "transcript": "The bike was checked by a mechanic."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bike was checked by a mechanic.",
+        "orderedTokens": [
+          "The",
+          "bike",
+          "was",
+          "checked",
+          "by",
+          "a",
+          "mechanic"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що спочатку хочете перевірити гальма.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-46:i19:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що спочатку хочете перевірити гальма.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-46:i19:audio",
+          "transcript": "I want to check the brakes first."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I want to check the brakes first.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг дав вам пораду перед купівлею.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-46:i20:r1",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i20:r2",
+          "text": "who he"
+        },
+        {
+          "responseId": "en:lesson-29:session-46:i20:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг дав вам пораду перед купівлею.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг дал вам совет перед покупкой.",
+          "uk": "Друг дав вам пораду перед купівлею."
+        },
+        "gappedTargetPhrase": "You are the friend ___ gave me that advice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-46:i20:r1",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i20:r2",
+            "text": "who he"
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i20:r3",
+            "text": "where"
+          }
+        ],
+        "testedDimension": "Друг дав вам пораду перед купівлею.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-46:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг дав вам пораду перед купівлею.",
+            "feedbackByLocale": {
+              "ru": "Who уже обозначает исполнителя.",
+              "uk": "Who вже позначає виконавця."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-46:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг дав вам пораду перед купівлею.",
+            "feedbackByLocale": {
+              "ru": "Для человека здесь нужно who.",
+              "uk": "Для людини тут потрібне who."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-46:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте другові за чесну думку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте другові за чесну думку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for your honest opinion.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите друга за честное мнение.",
+          "uk": "Подякуйте другові за чесну думку."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "your",
+          "honest",
+          "opinion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7c60e022be25152b013cf41ccb45e1a94bfca70795fb189ff893dee647b2f86d"
+}

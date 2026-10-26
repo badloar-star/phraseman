@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-35:intro2:r2": {
-          "ru": "Ступеньки — несколько предметов, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Сходинки — кілька предметів, тому потрібно aren’t, а не isn’t."
+          "ru": "Steps стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Steps стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-35:intro2:r3": {
-          "ru": "После any слово ставят во множественном числе: steps.",
-          "uk": "Після any слово ставлять у множині: steps."
+          "ru": "После aren’t any здесь нужна форма множественного числа steps.",
+          "uk": "Після aren’t any тут потрібна форма множини steps."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "fbbb9aea225837ddf573160b788ca14719ad591bb39ea70e8092134f0e201ea9"
+  "auxiliaryFingerprint": "4849b96c484799de0c70745a2306c82a36b2bdb3ba963eaad025f50a6470e194"
 }

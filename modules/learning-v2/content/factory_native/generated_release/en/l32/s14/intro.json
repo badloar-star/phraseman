@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "называть возможное состояние, делать вывод по признакам и уточнять предмет.",
+    "uk": "називати можливий стан, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможное состояние",
+        "uk": "Можливий стан"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите хлеб за стеклом, но ещё не спросили, когда его испекли. The bread might be fresh. — Возможно, хлеб свежий. Соберите The bread + might + be + fresh. Здесь описываем состояние: перед fresh нужна связка be. Might показывает, что это возможный вариант.",
+        "uk": "Ви бачите хліб за склом, але ще не запитали, коли його спекли. The bread might be fresh. — Можливо, хліб свіжий. Складіть The bread + might + be + fresh. Тут описуємо стан: перед fresh потрібна зв’язка be. Might показує, що це можливий варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-14:intro1:r1",
+              "text": "The bread might be fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro1:r2",
+              "text": "The bread might is fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro1:r3",
+              "text": "The bread might to be fresh."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-14:intro1:r1",
+              "text": "The bread might be fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro1:r2",
+              "text": "The bread might is fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro1:r3",
+              "text": "The bread might to be fresh."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Из-за полок вы не видите кассу, но слышите много голосов, а новые покупатели продолжают входить. The shop must be busy. — В магазине, должно быть, много покупателей. Соберите The shop + must + be + busy. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. The shop must be busy. — У магазині, напевно, багато покупців. Складіть The shop + must + be + busy. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-14:intro2:r1",
+              "text": "The shop must be busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro2:r2",
+              "text": "The shop must is busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro2:r3",
+              "text": "The shop must to be busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-14:intro2:r1",
+              "text": "The shop must be busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro2:r2",
+              "text": "The shop must is busy."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro2:r3",
+              "text": "The shop must to be busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже купили молоко и показываете холодную бутылку из холодильника. The milk I bought is cold. — Молоко, которое я купил, холодное. Соберите The milk + I bought + is cold. Часть I bought уточняет milk. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви вже купили молоко й показуєте холодну пляшку з холодильника. The milk I bought is cold. — Молоко, яке я купив, холодне. Складіть The milk + I bought + is cold. Частина I bought уточнює milk. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-14:intro3:r1",
+              "text": "The milk I bought is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro3:r2",
+              "text": "The milk I bought it is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro3:r3",
+              "text": "The milk I buying is cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-14:intro3:r1",
+              "text": "The milk I bought is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro3:r2",
+              "text": "The milk I bought it is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-14:intro3:r3",
+              "text": "The milk I buying is cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "38e5af1ba2b4e231e2b5ea44b2be075de3b825b2bd4c96e5c4c53d07d2393c15"
+}

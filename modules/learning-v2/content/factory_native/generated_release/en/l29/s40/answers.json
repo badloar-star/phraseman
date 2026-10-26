@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-40:i01",
+    "correctText": "The photo you took is lovely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i02",
+    "correctText": "somersault",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i03",
+    "correctText": "The child did a somersault.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i04",
+    "correctText": "The photo you took is lovely.",
+    "correctResponseId": "en:lesson-29:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i05",
+    "correctText": "you took",
+    "correctResponseId": "en:lesson-29:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i06",
+    "correctText": "cartwheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i07",
+    "correctText": "My sister can do a cartwheel.",
+    "correctResponseId": "en:lesson-29:session-40:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i08",
+    "correctText": "This is the child whose ball we found.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i09",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i10",
+    "correctText": "leapfrog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i11",
+    "correctText": "The children played leapfrog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i12",
+    "correctText": "Where was this photo taken?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i13",
+    "correctText": "piggyback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i14",
+    "correctText": "Dad gave me a piggyback.",
+    "correctResponseId": "en:lesson-29:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i15",
+    "correctText": "en:lesson-29:session-40:i15:p1=somersault\nen:lesson-29:session-40:i15:p2=cartwheel\nen:lesson-29:session-40:i15:p3=leapfrog\nen:lesson-29:session-40:i15:p4=piggyback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-40:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i17",
+    "correctText": "My sister can do a cartwheel.",
+    "correctResponseId": "en:lesson-29:session-40:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i18",
+    "correctText": "Dad gave me a piggyback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i19",
+    "correctText": "Could you send me the photos?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i20",
+    "correctText": "we visited",
+    "correctResponseId": "en:lesson-29:session-40:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-40:i21",
+    "correctText": "The children had a lovely time.",
+    "correctResponseId": null
+  }
+]

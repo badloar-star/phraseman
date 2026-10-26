@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-51:i01",
+    "correctText": "Your hair will be washed first.",
+    "correctResponseId": "en:lesson-28:session-51:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i02",
+    "correctText": "goatee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i03",
+    "correctText": "Please keep my goatee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-51:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i05",
+    "correctText": "Please leave the top longer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i06",
+    "correctText": "perm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i07",
+    "correctText": "How much is a perm?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i08",
+    "correctText": "included",
+    "correctResponseId": "en:lesson-28:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i09",
+    "correctText": "My beard was trimmed by my brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i10",
+    "correctText": "undercut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i11",
+    "correctText": "Can you show me an undercut?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i12",
+    "correctText": "The towels are washed after each use.",
+    "correctResponseId": "en:lesson-28:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-51:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i14",
+    "correctText": "plait",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i15",
+    "correctText": "Could you put my hair in a plait?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i16",
+    "correctText": "en:lesson-28:session-51:i16:p1=goatee\nen:lesson-28:session-51:i16:p2=perm\nen:lesson-28:session-51:i16:p3=undercut\nen:lesson-28:session-51:i16:p4=plait",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i17",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-28:session-51:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i18",
+    "correctText": "Please do not cut it too short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i19",
+    "correctText": "Your hair will be dried with a towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i20",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-51:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-51:i21",
+    "correctText": "Could you show me the back?",
+    "correctResponseId": null
+  }
+]

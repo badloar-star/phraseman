@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-41:intro1:r2": {
+          "ru": "It повторяет уже названный билет.",
+          "uk": "It повторює вже названий квиток."
+        },
+        "en:lesson-29:session-41:intro1:r3": {
+          "ru": "Потеряли вы: I lost, не me lost.",
+          "uk": "Загубили ви: I lost, не me lost."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-41:intro2:r2": {
+          "ru": "Нужно whose train — поезд, на котором едет друг.",
+          "uk": "Потрібно whose train — потяг, яким їде друг."
+        },
+        "en:lesson-29:session-41:intro2:r3": {
+          "ru": "Whose уже связывает поезд с другом; his лишнее.",
+          "uk": "Whose вже пов’язує потяг із другом; his зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-41:intro3:r2": {
+          "ru": "В уточнении нужен порядок we met.",
+          "uk": "В уточненні потрібен порядок we met."
+        },
+        "en:lesson-29:session-41:intro3:r3": {
+          "ru": "Для места встречи нужно where.",
+          "uk": "Для місця зустрічі потрібне where."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "15c9e2fe31be89770ff0ed57ee3654906a6e886b1dc2576279a05d0d092725be"
+}

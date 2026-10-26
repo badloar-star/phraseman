@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-02:i01",
+    "correctText": "jumpsuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i02",
+    "correctText": "This jumpsuit is too long.",
+    "correctResponseId": "en:lesson-28:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i03",
+    "correctText": "Do you have a smaller size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i04",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-02:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i05",
+    "correctText": "waistcoat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i06",
+    "correctText": "Can I try on this waistcoat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i07",
+    "correctText": "The fitting rooms are upstairs.",
+    "correctResponseId": "en:lesson-28:session-02:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i08",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i09",
+    "correctText": "dungarees",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i10",
+    "correctText": "These dungarees have deep pockets.",
+    "correctResponseId": "en:lesson-28:session-02:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i11",
+    "correctText": "My phone fits in the pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i12",
+    "correctText": "This shirt is washed by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i13",
+    "correctText": "bodysuit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i14",
+    "correctText": "This bodysuit is for my baby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i15",
+    "correctText": "Is it made of cotton?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i16",
+    "correctText": "chosen",
+    "correctResponseId": "en:lesson-28:session-02:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i17",
+    "correctText": "The buttons are made of wood.",
+    "correctResponseId": "en:lesson-28:session-02:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i18",
+    "correctText": "I wish it were cheaper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i19",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-02:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i20",
+    "correctText": "I will take both, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-02:i21",
+    "correctText": "You can return it within thirty days.",
+    "correctResponseId": null
+  }
+]

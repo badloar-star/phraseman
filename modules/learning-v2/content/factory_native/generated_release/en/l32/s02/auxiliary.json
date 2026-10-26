@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-02:intro1:r2": {
+          "ru": "После must используем be, не are.",
+          "uk": "Після must використовуємо be, не are."
+        },
+        "en:lesson-32:session-02:intro1:r3": {
+          "ru": "Перед местом нужна связка be.",
+          "uk": "Перед місцем потрібна зв’язка be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-02:intro2:r2": {
+          "ru": "Coat уже названо: дополнительное it после wore не нужно.",
+          "uk": "Coat уже названо: додаткове it після wore не потрібне."
+        },
+        "en:lesson-32:session-02:intro2:r3": {
+          "ru": "Для прошлого действия нужна форма wore.",
+          "uk": "Для минулої дії потрібна форма wore."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-02:intro3:r2": {
+          "ru": "Прошедшая форма — put, не putted.",
+          "uk": "Минула форма — put, не putted."
+        },
+        "en:lesson-32:session-02:intro3:r3": {
+          "ru": "Нужна полная часть I put it down.",
+          "uk": "Потрібна повна частина I put it down."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d281006c1e6aaaf00853a8a00680c75d26c0ab6748e009f19abd5d422ffea3d1"
+}

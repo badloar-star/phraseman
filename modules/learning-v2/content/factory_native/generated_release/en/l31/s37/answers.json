@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-37:i01",
+    "correctText": "bike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i02",
+    "correctText": "I use the bike although it is old.",
+    "correctResponseId": "en:lesson-31:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i03",
+    "correctText": "although",
+    "correctResponseId": "en:lesson-31:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i04",
+    "correctText": "pump",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i05",
+    "correctText": "I know where the pump is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i06",
+    "correctText": "The bike was fixed by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-37:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i08",
+    "correctText": "wheel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i09",
+    "correctText": "The wheel is ready, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i10",
+    "correctText": "I know that the wheel is damaged.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i12",
+    "correctText": "garage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i13",
+    "correctText": "I know why the garage is open.",
+    "correctResponseId": "en:lesson-31:session-37:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i14",
+    "correctText": "He said the wheels were ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i15",
+    "correctText": "I use the bike although it is old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i16",
+    "correctText": "the pump is",
+    "correctResponseId": "en:lesson-31:session-37:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i17",
+    "correctText": "I walked because the bike was broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i18",
+    "correctText": "I use the bike although it is old.",
+    "correctResponseId": "en:lesson-31:session-37:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i19",
+    "correctText": "I use the bike although it is old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-37:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-37:i21",
+    "correctText": "The garage was opened by Ben.",
+    "correctResponseId": null
+  }
+]

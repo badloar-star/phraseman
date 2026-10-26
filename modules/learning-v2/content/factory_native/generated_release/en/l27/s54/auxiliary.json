@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-54:intro1:r2": {
+          "ru": "Last year — законченный прошлый период: met.",
+          "uk": "Last year — завершений минулий період: met."
+        },
+        "en:lesson-27:session-54:intro1:r3": {
+          "ru": "Meet — форма настоящего времени; о той встрече нужно met.",
+          "uk": "Meet — форма теперішнього часу; про ту зустріч потрібно met."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-54:intro2:r2": {
+          "ru": "Для этого желания о настоящем после wish нужна форма had.",
+          "uk": "Для цього бажання про теперішнє після wish потрібна форма had."
+        },
+        "en:lesson-27:session-54:intro2:r3": {
+          "ru": "Having не образует нужную часть предложения; используйте I had.",
+          "uk": "Having не утворює потрібної частини речення; використайте I had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-54:intro3:r2": {
+          "ru": "После would ставим meet, не met.",
+          "uk": "Після would ставимо meet, не met."
+        },
+        "en:lesson-27:session-54:intro3:r3": {
+          "ru": "В условии нужна личная форма lived, не living.",
+          "uk": "В умові потрібна особова форма lived, не living."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "071f32515f8b792a634801bb688610456132aa6b8e5990ccd2236d639ec5d1d3"
+}

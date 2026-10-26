@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-47:intro1:r2": {
-          "ru": "Остатки — это несколько порций, поэтому нужно There are, а не There is.",
-          "uk": "Залишки — це кілька порцій, тому потрібно There are, а не There is."
+          "ru": "Leftovers имеет форму множественного числа, поэтому нужно There are.",
+          "uk": "Leftovers має форму множини, тому потрібне There are."
         },
         "en:lesson-04:session-47:intro1:r3": {
           "ru": "Внутри холодильника говорят in the fridge, а не on.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-47:intro2:r2": {
-          "ru": "В вопросе о наличии ставят any, а не some.",
-          "uk": "У запитанні про наявність ставлять any, а не some."
+          "ru": "Место называем так: in the oven.",
+          "uk": "Місце називаємо так: in the oven."
         },
         "en:lesson-04:session-47:intro2:r3": {
           "ru": "Лазанья — одно блюдо без счёта, поэтому Is there, а не Are there.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "8fd1319600c501cb9762c003f1e100f68df0663c6860e8dbf3c92140090c57c4"
+  "auxiliaryFingerprint": "65d570090d889cea6d21801719603d2ef0102ae82a45311365c4b9dc334976e8"
 }

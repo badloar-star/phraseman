@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать вопросы и просьбы, уточнять нужную вещь; повторите сообщения и желание.",
+    "uk": "переказувати запитання й прохання, уточнювати потрібну річ; повторите повідомлення та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пересказать вопрос о сумке",
+        "uk": "Переказати запитання про сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы забыли сумку в поезде. Сотрудница спросила, где вы сидели. Перескажите её вопрос другу: She asked where I sat — она спросила, где я сидел. Соберите She + asked + where + I + sat. После where идёт человек I, затем действие sat. В пересказе вопроса не добавляем did перед I.",
+        "uk": "Ви забули сумку в поїзді. Працівниця запитала, де ви сиділи. Перекажіть її запитання другові: She asked where I sat — вона запитала, де я сидів. Складіть She + asked + where + I + sat. Після where йде людина I, потім дія sat. У переказі запитання не додаємо did перед I."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-23:intro1:r1",
+              "text": "She asked where I sat."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro1:r2",
+              "text": "She asked where did I sit."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro1:r3",
+              "text": "She asked where me sat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-23:intro1:r1",
+              "text": "She asked where I sat."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro1:r2",
+              "text": "She asked where did I sit."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro1:r3",
+              "text": "She asked where me sat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Передать просьбу описать сумку",
+        "uk": "Передати прохання описати сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудница попросила вас описать потерянную сумку. Расскажите другу: She asked me to describe the bag — она попросила меня описать сумку. Соберите She + asked + me + to describe the bag. Me называет того, кого попросили, а to describe — нужное действие.",
+        "uk": "Працівниця попросила вас описати загублену сумку. Розкажіть другові: She asked me to describe the bag — вона попросила мене описати сумку. Складіть She + asked + me + to describe the bag. Me називає того, кого попросили, а to describe — потрібну дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-23:intro2:r1",
+              "text": "She asked me to describe the bag."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro2:r2",
+              "text": "She asked me describe the bag."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro2:r3",
+              "text": "She asked I to describe the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-23:intro2:r1",
+              "text": "She asked me to describe the bag."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro2:r2",
+              "text": "She asked me describe the bag."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro2:r3",
+              "text": "She asked I to describe the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить, какую сумку нашли",
+        "uk": "Уточнити, яку сумку знайшли"
+      },
+      "bodyByLocale": {
+        "ru": "Вам показывают найденную сумку. Объясните, что потерянная вами сумка синяя: The bag I lost is blue — сумка, которую я потерял, синяя. Соберите The bag + I lost + is blue. I lost уточняет нужную сумку. Здесь I — тот, кто потерял, а bag — потерянный предмет, поэтому that перед I можно опустить.",
+        "uk": "Вам показують знайдену сумку. Поясніть, що загублена вами сумка синя: The bag I lost is blue — сумка, яку я загубив, синя. Складіть The bag + I lost + is blue. I lost уточнює потрібну сумку. Тут I — той, хто загубив, а bag — загублений предмет, тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-23:intro3:r1",
+              "text": "The bag I lost is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro3:r2",
+              "text": "The bag lost I is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro3:r3",
+              "text": "The bag I lost are blue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-23:intro3:r1",
+              "text": "The bag I lost is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro3:r2",
+              "text": "The bag lost I is blue."
+            },
+            {
+              "responseId": "en:lesson-30:session-23:intro3:r3",
+              "text": "The bag I lost are blue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f864b297b9b62f37d7bcd5960ac5f120e86186cf5fb5666ece4c0ef817d4e096"
+}

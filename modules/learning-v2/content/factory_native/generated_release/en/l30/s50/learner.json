@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — photo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — photo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i01:audio",
+          "transcript": "photo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-50:i01:r1",
+            "targetText": "photo",
+            "meaningByLocale": {
+              "ru": "Фотография. Повторение знакомого слова.",
+              "uk": "Фотографія. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "photo",
+          "definitionByLocale": {
+            "ru": "Фотография. Повторение знакомого слова.",
+            "uk": "Фотографія. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i02:r1",
+          "text": "He asked where my photo was."
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i02:r2",
+          "text": "He asked where my coat was."
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i02:r3",
+          "text": "He asked where my bag was."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i02:audio",
+          "transcript": "He asked where my photo was."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-50:i02:r1",
+            "targetText": "He asked where my photo was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i02:r2",
+            "targetText": "He asked where my coat was.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i02:r3",
+            "targetText": "He asked where my bag was.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked where my photo was.",
+              "uk": "У записі звучить He asked where my photo was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked where my photo was.",
+              "uk": "У записі звучить He asked where my photo was."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера папа сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i03:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i03:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i03:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера папа сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера папа сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+          "uk": "Учора тато сказав: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-50:i03:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i03:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i03:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Вчера папа сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера папа сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг.",
+              "uk": "Needs не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера папа сказал: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма needed.",
+              "uk": "Потрібна форма needed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i04:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-50:i04:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Папа сообщил вам, что коробка тяжёлая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Папа сообщил вам, что коробка тяжёлая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He told me the box was heavy.",
+        "localizedMeaning": {
+          "ru": "Папа сообщил вам, что коробка тяжёлая.",
+          "uk": "Тато повідомив вам, що коробка важка."
+        },
+        "orderedTokens": [
+          "He",
+          "told",
+          "me",
+          "the",
+          "box",
+          "was",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фотография, которую вы нашли, старая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Фотография, которую вы нашли, старая.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i06:audio",
+          "transcript": "The photo I found is old."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The photo I found is old.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Папа попросил вас открыть коробку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i07:r1",
+          "text": "me"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i07:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i07:r3",
+          "text": "my"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Папа попросил вас открыть коробку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Папа попросил вас открыть коробку.",
+          "uk": "Тато попросив вас відкрити коробку."
+        },
+        "gappedTargetPhrase": "He asked ___ to open the box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-50:i07:r1",
+            "text": "me"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i07:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i07:r3",
+            "text": "my"
+          }
+        ],
+        "testedDimension": "Папа попросил вас открыть коробку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i07:r2",
+            "correct": false,
+            "testedDimension": "Папа попросил вас открыть коробку.",
+            "feedbackByLocale": {
+              "ru": "После asked используем me.",
+              "uk": "Після asked використовуємо me."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i07:r3",
+            "correct": false,
+            "testedDimension": "Папа попросил вас открыть коробку.",
+            "feedbackByLocale": {
+              "ru": "My означает «мой»; здесь me.",
+              "uk": "My означає «мій»; тут me."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shelf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shelf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i08:audio",
+          "transcript": "shelf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-50:i08:r1",
+            "targetText": "shelf",
+            "meaningByLocale": {
+              "ru": "Полка. Повторение знакомого слова.",
+              "uk": "Полиця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shelf",
+          "definitionByLocale": {
+            "ru": "Полка. Повторение знакомого слова.",
+            "uk": "Полиця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Папа попросил вас вытереть полку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Папа попросил вас вытереть полку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i09:audio",
+          "transcript": "He asked me to wipe the shelf."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to wipe the shelf.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос папы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос папы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i10:audio",
+          "transcript": "He asked if I wanted the old books."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He asked if I wanted the old books.",
+        "orderedTokens": [
+          "He",
+          "asked",
+          "if",
+          "I",
+          "wanted",
+          "the",
+          "old",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы попросили папу помочь вам поднять коробку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i11:r1",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i11:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i11:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попросили папу помочь вам поднять коробку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили папу помочь вам поднять коробку.",
+          "uk": "Ви попросили тата допомогти вам підняти коробку."
+        },
+        "gappedTargetPhrase": "I asked ___ to help me lift the box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-50:i11:r1",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i11:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i11:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Вы попросили папу помочь вам поднять коробку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы попросили папу помочь вам поднять коробку.",
+            "feedbackByLocale": {
+              "ru": "После asked используем him.",
+              "uk": "Після asked використовуємо him."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы попросили папу помочь вам поднять коробку.",
+            "feedbackByLocale": {
+              "ru": "His обозначает принадлежность; здесь him.",
+              "uk": "His позначає належність; тут him."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dust",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dust",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i12:audio",
+          "transcript": "dust"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-50:i12:r1",
+            "targetText": "dust",
+            "meaningByLocale": {
+              "ru": "Пыль. Повторение знакомого слова.",
+              "uk": "Пил. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dust",
+          "definitionByLocale": {
+            "ru": "Пыль. Повторение знакомого слова.",
+            "uk": "Пил. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i13:r1",
+          "text": "He said the dust was on the shelf."
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i13:r2",
+          "text": "He said the dust was on the floor."
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i13:r3",
+          "text": "He said the dust was on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i13:audio",
+          "transcript": "He said the dust was on the shelf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-50:i13:r1",
+            "targetText": "He said the dust was on the shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i13:r2",
+            "targetText": "He said the dust was on the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i13:r3",
+            "targetText": "He said the dust was on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the dust was on the shelf.",
+              "uk": "У записі звучить He said the dust was on the shelf."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the dust was on the shelf.",
+              "uk": "У записі звучить He said the dust was on the shelf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полка слишком высоко. Хотелось бы, чтобы она была ниже сейчас.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Полка слишком высоко. Хотелось бы, чтобы она была ниже сейчас.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i14:audio",
+          "transcript": "I wish the shelf were lower."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the shelf were lower.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Книга, которую вы нашли, интересная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Книга, которую вы нашли, интересная.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The book I found is interesting.",
+        "localizedMeaning": {
+          "ru": "Книга, которую вы нашли, интересная.",
+          "uk": "Книжка, яку ви знайшли, цікава."
+        },
+        "orderedTokens": [
+          "The",
+          "book",
+          "I",
+          "found",
+          "is",
+          "interesting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Папа попросил вас не выбрасывать фотографию.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i16:r1",
+          "text": "not to throw"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i16:r2",
+          "text": "not throw"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i16:r3",
+          "text": "not throwing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Папа попросил вас не выбрасывать фотографию.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Папа попросил вас не выбрасывать фотографию.",
+          "uk": "Тато попросив вас не викидати фотографію."
+        },
+        "gappedTargetPhrase": "He asked me ___ the photo away.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-50:i16:r1",
+            "text": "not to throw"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i16:r2",
+            "text": "not throw"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i16:r3",
+            "text": "not throwing"
+          }
+        ],
+        "testedDimension": "Папа попросил вас не выбрасывать фотографию.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i16:r2",
+            "correct": false,
+            "testedDimension": "Папа попросил вас не выбрасывать фотографию.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to throw.",
+              "uk": "Заперечне прохання передаємо через not to throw."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i16:r3",
+            "correct": false,
+            "testedDimension": "Папа попросил вас не выбрасывать фотографию.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно not to throw.",
+              "uk": "Тут потрібне not to throw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера папа сказал: «Я устал». Перескажите со сдвигом am в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Вчера папа сказал: «Я устал». Перескажите со сдвигом am в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i17:audio",
+          "transcript": "He said he was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: папа попросил сохранить фотографию или выбросить её?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i18:r1",
+          "text": "He asked me to keep the photo."
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i18:r2",
+          "text": "He asked me to throw the photo away."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i18:audioA",
+        "en:lesson-30:session-50:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: папа попросил сохранить фотографию или выбросить её?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He asked me to keep the photo.",
+        "contrastB": "He asked me to throw the photo away.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-50:i18:audioA",
+          "transcript": "He asked me to keep the photo."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-50:i18:audioB",
+          "transcript": "He asked me to throw the photo away."
+        },
+        "testedPhoneticContrast": "Послушайте: папа попросил сохранить фотографию или выбросить её?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: папа попросил сохранить фотографию или выбросить её?",
+            "feedbackByLocale": {
+              "ru": "Звучит keep — сохранить.",
+              "uk": "Звучить keep — зберегти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте сообщение папы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение папы.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i19:audio",
+          "transcript": "He said the box was empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said the box was empty.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "the",
+          "box",
+          "was",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Папа спросил, где вы храните книги. Передайте вопрос.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-50:i20:r1",
+          "text": "I kept"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i20:r2",
+          "text": "did I keep"
+        },
+        {
+          "responseId": "en:lesson-30:session-50:i20:r3",
+          "text": "I keeping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Папа спросил, где вы храните книги. Передайте вопрос.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Папа спросил, где вы храните книги. Передайте вопрос.",
+          "uk": "Тато запитав, де ви зберігаєте книжки. Передайте запитання."
+        },
+        "gappedTargetPhrase": "He asked where ___ my books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-50:i20:r1",
+            "text": "I kept"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i20:r2",
+            "text": "did I keep"
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i20:r3",
+            "text": "I keeping"
+          }
+        ],
+        "testedDimension": "Папа спросил, где вы храните книги. Передайте вопрос.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-50:i20:r2",
+            "correct": false,
+            "testedDimension": "Папа спросил, где вы храните книги. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок I kept.",
+              "uk": "У переказі потрібен порядок I kept."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-50:i20:r3",
+            "correct": false,
+            "testedDimension": "Папа спросил, где вы храните книги. Передайте вопрос.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма kept.",
+              "uk": "Потрібна форма kept."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-50:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера папа сказал: «Я хочу отдохнуть». Перескажите со сдвигом want в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-50:i21:audio"
+      ],
+      "accessibilityLabel": "Вчера папа сказал: «Я хочу отдохнуть». Перескажите со сдвигом want в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-50:i21:audio",
+          "transcript": "He said he wanted to rest."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he wanted to rest.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2d455ad919825557678f923cb2aef944affcdb0c421f399b798467a818be5acf"
+}

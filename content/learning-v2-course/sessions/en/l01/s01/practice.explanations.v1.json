@@ -4,11 +4,11 @@
   "sourceBindings": {
     "ru": {
       "path": "final.ru.md",
-      "sha256": "f304b0a3eaa93c27b352a4c166146cd54466fa6120a1de71a409e14f12fc2dd6"
+      "sha256": "ac8854570c2e83a57bf2e8d22232992747b35e5f1e720600a3a11d208c5cce29"
     },
     "uk": {
       "path": "final.uk.md",
-      "sha256": "27a243f41de40d0205cb39be6babc491d13969a3b0e2f9fe55b792f46997f346"
+      "sha256": "28f00dfc3f8aee0dbb97b4c8b78c22590fbf116aa6b6158ad26a3aec55a49f42"
     }
   },
   "interactions": {

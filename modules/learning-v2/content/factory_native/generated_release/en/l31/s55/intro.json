@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять последствия маленькой неприятности и цель уборки.",
+    "uk": "пояснювати наслідки маленької прикрості й мету прибирання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пролил воду — взял тряпку",
+        "uk": "Пролив воду — взяв ганчірку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пролили воду на стол и взяли тряпку: I spilled some water, so I got a cloth — я пролил немного воды, поэтому взял тряпку. Соберите I spilled some water + so + I got a cloth. Перед so стоит причина, после него — ваше действие в результате. Got — прошедшая форма get.",
+        "uk": "Ви пролили воду на стіл і взяли ганчірку: I spilled some water, so I got a cloth — я пролив трохи води, тому взяв ганчірку. Складіть I spilled some water + so + I got a cloth. Перед so стоїть причина, після нього — ваша дія в результаті. Got — минула форма get."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-55:intro1:r1",
+              "text": "I spilled some water, so I got a cloth."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro1:r2",
+              "text": "I spilled some water, so I getting a cloth."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro1:r3",
+              "text": "I spilled some water, so I gets a cloth."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-55:intro1:r1",
+              "text": "I spilled some water, so I got a cloth."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro1:r2",
+              "text": "I spilled some water, so I getting a cloth."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro1:r3",
+              "text": "I spilled some water, so I gets a cloth."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мокрый пол — шли медленно",
+        "uk": "Мокра підлога — йшли повільно"
+      },
+      "bodyByLocale": {
+        "ru": "В письменном рассказе вы объясняете, почему шли осторожно: The floor was wet and therefore we walked slowly — пол был мокрым, и поэтому мы шли медленно. Соберите The floor was wet + and therefore + we walked slowly. Therefore связывает состояние пола с результатом — вашим медленным шагом.",
+        "uk": "У письмовій розповіді ви пояснюєте, чому йшли обережно: The floor was wet and therefore we walked slowly — підлога була мокра, і тому ми йшли повільно. Складіть The floor was wet + and therefore + we walked slowly. Therefore пов’язує стан підлоги з результатом — вашою повільною ходою."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-55:intro2:r1",
+              "text": "The floor was wet and therefore we walked slowly."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro2:r2",
+              "text": "The floor was wet and therefore we walking slowly."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro2:r3",
+              "text": "The floor was wet and therefore we walks slowly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-55:intro2:r1",
+              "text": "The floor was wet and therefore we walked slowly."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro2:r2",
+              "text": "The floor was wet and therefore we walking slowly."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro2:r3",
+              "text": "The floor was wet and therefore we walks slowly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Взял тряпку, чтобы вытереть стол",
+        "uk": "Взяв ганчірку, щоб витерти стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Анна спрашивает, зачем вам тряпка: I got a cloth to dry the table — я взял тряпку, чтобы вытереть стол насухо. Соберите I got a cloth + to + dry the table. После to называем цель, используя начальную форму dry. Один человек берёт тряпку и вытирает стол.",
+        "uk": "Анна запитує, навіщо вам ганчірка: I got a cloth to dry the table — я взяв ганчірку, щоб витерти стіл насухо. Складіть I got a cloth + to + dry the table. Після to називаємо мету, використовуючи початкову форму dry. Одна людина бере ганчірку й витирає стіл."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-55:intro3:r1",
+              "text": "I got a cloth to dry the table."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro3:r2",
+              "text": "I got a cloth to dried the table."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro3:r3",
+              "text": "I got a cloth for dry the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-55:intro3:r1",
+              "text": "I got a cloth to dry the table."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro3:r2",
+              "text": "I got a cloth to dried the table."
+            },
+            {
+              "responseId": "en:lesson-31:session-55:intro3:r3",
+              "text": "I got a cloth for dry the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fc821170f6d29f34144e5fec98fe16f89572d394212a73dd10cfbe5e110cabf8"
+}

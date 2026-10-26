@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать вопрос, свою просьбу и сообщение другому человеку.",
+    "uk": "переказувати запитання, своє прохання та повідомлення іншій людині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Соседка спросила о помощи",
+        "uk": "Сусідка запитала про допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы накрывали на стол. Соседка спросила вас: «Тебе нужна помощь?» Передайте вопрос: She asked if I needed help — она спросила, нужна ли мне помощь. Соберите She + asked + if + I + needed help. If передаёт «ли»; после него ставим I перед needed, без вопросительного did.",
+        "uk": "Ви накривали на стіл. Сусідка запитала вас: «Тобі потрібна допомога?» Передайте запитання: She asked if I needed help — вона запитала, чи потрібна мені допомога. Складіть She + asked + if + I + needed help. If передає «чи»; після нього ставимо I перед needed, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-48:intro1:r1",
+              "text": "She asked if I needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro1:r2",
+              "text": "She asked if did I need help."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro1:r3",
+              "text": "She asked if I needing help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-48:intro1:r1",
+              "text": "She asked if I needed help."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro1:r2",
+              "text": "She asked if did I need help."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro1:r3",
+              "text": "She asked if I needing help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вы попросили принести стул",
+        "uk": "Ви попросили принести стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Для ужина не хватает стула. Вы попросили соседку принести ещё один. Передайте просьбу: I asked her to bring another chair — я попросил её принести ещё один стул. Соберите I + asked + her + to bring another chair. Her — соседка, к которой вы обратились; to bring — действие, о котором попросили.",
+        "uk": "Для вечері бракує стільця. Ви попросили сусідку принести ще один. Передайте прохання: I asked her to bring another chair — я попросив її принести ще один стілець. Складіть I + asked + her + to bring another chair. Her — сусідка, до якої ви звернулися; to bring — дія, про яку попросили."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-48:intro2:r1",
+              "text": "I asked her to bring another chair."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro2:r2",
+              "text": "I asked she to bring another chair."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro2:r3",
+              "text": "I asked her bring another chair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-48:intro2:r1",
+              "text": "I asked her to bring another chair."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro2:r2",
+              "text": "I asked she to bring another chair."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro2:r3",
+              "text": "I asked her bring another chair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вы сообщили о супе",
+        "uk": "Ви повідомили про суп"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сказали соседке, что суп готов. Передайте через told: I told her the soup was ready — я сказал ей, что суп готов. Соберите I + told + her + the soup was ready. Сразу после told ставим получателя her, без to; затем сообщаем, что именно сказали.",
+        "uk": "Ви сказали сусідці, що суп готовий. Передайте через told: I told her the soup was ready — я сказав їй, що суп готовий. Складіть I + told + her + the soup was ready. Відразу після told ставимо одержувача her, без to; потім повідомляємо, що саме сказали."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-48:intro3:r1",
+              "text": "I told her the soup was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro3:r2",
+              "text": "I told to her the soup was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro3:r3",
+              "text": "I said her the soup was ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-48:intro3:r1",
+              "text": "I told her the soup was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro3:r2",
+              "text": "I told to her the soup was ready."
+            },
+            {
+              "responseId": "en:lesson-30:session-48:intro3:r3",
+              "text": "I said her the soup was ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7846eebe2187014242689262c7e793d4a9909846b146ff188e2e9c926c3eb5e6"
+}

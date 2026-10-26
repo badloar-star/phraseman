@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "как описать манеру общения, уточнить человека и найти спокойное место.",
+    "uk": "як описати манеру спілкування, уточнити людину й знайти спокійне місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто вас пригласил",
+        "uk": "Хто вас запросив"
+      },
+      "bodyByLocale": {
+        "ru": "На встрече с друзьями вы показываете спутнику хозяйку вечера. Скажите: That is the woman who invited us — это женщина, которая нас пригласила. Соберите That is the woman + who + invited us. Who заменяет эту женщину в уточнении и само обозначает того, кто пригласил. Поэтому после who сразу ставим invited us, без she.",
+        "uk": "На зустрічі з друзями ви показуєте супутникові господиню вечора. Скажіть: That is the woman who invited us — це жінка, яка нас запросила. Складіть That is the woman + who + invited us. Who замінює цю жінку в уточненні й саме позначає того, хто запросив. Тому після who відразу ставимо invited us, без she."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-20:intro1:r1",
+              "text": "That is the woman who invited us."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro1:r2",
+              "text": "That is the woman who she invited us."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro1:r3",
+              "text": "That is the woman which invited us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-20:intro1:r1",
+              "text": "That is the woman who invited us."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro1:r2",
+              "text": "That is the woman who she invited us."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro1:r3",
+              "text": "That is the woman which invited us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Место для спокойного разговора",
+        "uk": "Місце для спокійної розмови"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате шумно, и вы предлагаете другу выйти в сад. Скажите: There is a garden where we can talk — есть сад, где мы можем поговорить. Соберите There is a garden + where + we can talk. Where связывает разговор с садом. После него ставим обычный порядок слов we can talk, а не вопросительный can we talk.",
+        "uk": "У кімнаті гамірно, і ви пропонуєте другові вийти в сад. Скажіть: There is a garden where we can talk — є сад, де ми можемо поговорити. Складіть There is a garden + where + we can talk. Where пов’язує розмову із садом. Після нього ставимо звичайний порядок слів we can talk, а не питальний can we talk."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-20:intro2:r1",
+              "text": "There is a garden where we can talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro2:r2",
+              "text": "There is a garden where can we talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro2:r3",
+              "text": "There is a garden who we can talk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-20:intro2:r1",
+              "text": "There is a garden where we can talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro2:r2",
+              "text": "There is a garden where can we talk."
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro2:r3",
+              "text": "There is a garden who we can talk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Владелец телефона",
+        "uk": "Власник телефона"
+      },
+      "bodyByLocale": {
+        "ru": "На столе звонит телефон, и вы ищете его владельца среди гостей. Спросите: Where is the man whose phone is ringing? — где мужчина, чей телефон звонит? Соберите Where is the man + whose phone + is ringing? Whose phone обозначает телефон этого мужчины. После whose ставим phone, без his.",
+        "uk": "На столі дзвонить телефон, і ви шукаєте його власника серед гостей. Запитайте: Where is the man whose phone is ringing? — де чоловік, чий телефон дзвонить? Складіть Where is the man + whose phone + is ringing? Whose phone позначає телефон цього чоловіка. Після whose ставимо phone, без his."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-20:intro3:r1",
+              "text": "Where is the man whose phone is ringing?"
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro3:r2",
+              "text": "Where is the man who phone is ringing?"
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro3:r3",
+              "text": "Where is the man whose his phone is ringing?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-20:intro3:r1",
+              "text": "Where is the man whose phone is ringing?"
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro3:r2",
+              "text": "Where is the man who phone is ringing?"
+            },
+            {
+              "responseId": "en:lesson-29:session-20:intro3:r3",
+              "text": "Where is the man whose his phone is ringing?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "589a0988dbfaf3be28cdccefcb461e715acab4742b549e2c926d26493de32786"
+}

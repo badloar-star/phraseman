@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы спрашиваете, можно ли приготовить соус заранее.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i01:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i01:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i01:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы спрашиваете, можно ли приготовить соус заранее.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы спрашиваете, можно ли приготовить соус заранее.",
+          "uk": "Ви запитуєте, чи можна приготувати соус заздалегідь."
+        },
+        "gappedTargetPhrase": "Can the sauce ___ prepared in advance?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-45:i01:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i01:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i01:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Вы спрашиваете, можно ли приготовить соус заранее.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i01:r2",
+            "correct": false,
+            "testedDimension": "Вы спрашиваете, можно ли приготовить соус заранее.",
+            "feedbackByLocale": {
+              "ru": "После can нужна be.",
+              "uk": "Після can потрібна be."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i01:r3",
+            "correct": false,
+            "testedDimension": "Вы спрашиваете, можно ли приготовить соус заранее.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем can be prepared.",
+              "uk": "Тут використовуємо can be prepared."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mince",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mince",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i02:audio",
+          "transcript": "mince"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-45:i02:r1",
+            "targetText": "mince",
+            "meaningByLocale": {
+              "ru": "Очень мелко рубить или измельчать. Здесь глагол: так можно измельчить чеснок; о мясе слово также означает «пропускать через мясорубку».",
+              "uk": "Дуже дрібно сікти або подрібнювати. Тут дієслово: так можна подрібнити часник; щодо м’яса слово також означає «пропускати через м’ясорубку»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mince",
+          "definitionByLocale": {
+            "ru": "Очень мелко рубить или измельчать. Здесь глагол: так можно измельчить чеснок; о мясе слово также означает «пропускать через мясорубку».",
+            "uk": "Дуже дрібно сікти або подрібнювати. Тут дієслово: так можна подрібнити часник; щодо м’яса слово також означає «пропускати через м’ясорубку»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, нужно ли мелко порубить чеснок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i03:audio"
+      ],
+      "accessibilityLabel": "Уточните, нужно ли мелко порубить чеснок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i03:audio",
+          "transcript": "Should I mince the garlic?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Should I mince the garlic?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто приготовил суп.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто приготовил суп.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i04:audio",
+          "transcript": "The soup was made by my brother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The soup was made by my brother.",
+        "orderedTokens": [
+          "The",
+          "soup",
+          "was",
+          "made",
+          "by",
+          "my",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i05:r1",
+          "text": "He had washed the vegetables by the time I arrived."
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i05:r2",
+          "text": "He had washed the plates by the time I arrived."
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i05:r3",
+          "text": "She had washed the vegetables by the time I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i05:audio",
+          "transcript": "He had washed the vegetables by the time I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-45:i05:r1",
+            "targetText": "He had washed the vegetables by the time I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i05:r2",
+            "targetText": "He had washed the plates by the time I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i05:r3",
+            "targetText": "She had washed the vegetables by the time I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He had washed the vegetables by the time I arrived.",
+              "uk": "У записі звучить He had washed the vegetables by the time I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He had washed the vegetables by the time I arrived.",
+              "uk": "У записі звучить He had washed the vegetables by the time I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fillet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fillet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i06:audio",
+          "transcript": "fillet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-45:i06:r1",
+            "targetText": "fillet",
+            "meaningByLocale": {
+              "ru": "Разделывать на филе. Здесь глагол о рыбе: отделять мясо от костей. То же слово бывает существительным «филе».",
+              "uk": "Розбирати на філе. Тут дієслово про рибу: відділяти м’ясо від кісток. Те саме слово буває іменником «філе»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fillet",
+          "definitionByLocale": {
+            "ru": "Разделывать на филе. Здесь глагол о рыбе: отделять мясо от костей. То же слово бывает существительным «филе».",
+            "uk": "Розбирати на філе. Тут дієслово про рибу: відділяти м’ясо від кісток. Те саме слово буває іменником «філе»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите помочь разделать рыбу на филе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите помочь разделать рыбу на филе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you fillet this fish?",
+        "localizedMeaning": {
+          "ru": "Попросите помочь разделать рыбу на филе.",
+          "uk": "Попросіть допомогти розібрати рибу на філе."
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "fillet",
+          "this",
+          "fish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брат уже нарезал овощи к вашему приходу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i08:r1",
+          "text": "chopped"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i08:r2",
+          "text": "chop"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i08:r3",
+          "text": "chopping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат уже нарезал овощи к вашему приходу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брат уже нарезал овощи к вашему приходу.",
+          "uk": "Брат уже нарізав овочі на момент вашого приходу."
+        },
+        "gappedTargetPhrase": "He had ___ the vegetables by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-45:i08:r1",
+            "text": "chopped"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i08:r2",
+            "text": "chop"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i08:r3",
+            "text": "chopping"
+          }
+        ],
+        "testedDimension": "Брат уже нарезал овощи к вашему приходу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Брат уже нарезал овощи к вашему приходу.",
+            "feedbackByLocale": {
+              "ru": "После had нужна chopped.",
+              "uk": "Після had потрібна chopped."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Брат уже нарезал овощи к вашему приходу.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had chopped.",
+              "uk": "Тут використовуємо had chopped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите передать большую миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i09:audio"
+      ],
+      "accessibilityLabel": "Попросите передать большую миску.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i09:audio",
+          "transcript": "Could you pass me the large bowl?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you pass me the large bowl?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sauté",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sauté",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i10:audio",
+          "transcript": "sauté"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-45:i10:r1",
+            "targetText": "sauté",
+            "meaningByLocale": {
+              "ru": "Быстро обжаривать в небольшом количестве масла. Например, на сковороде; в английских текстах встречается и написание без значка над буквой.",
+              "uk": "Швидко обсмажувати в невеликій кількості олії або масла. Наприклад, на сковороді; в англійських текстах трапляється й написання без значка над літерою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sauté",
+          "definitionByLocale": {
+            "ru": "Быстро обжаривать в небольшом количестве масла. Например, на сковороде; в английских текстах встречается и написание без значка над буквой.",
+            "uk": "Швидко обсмажувати в невеликій кількості олії або масла. Наприклад, на сковороді; в англійських текстах трапляється й написання без значка над літерою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, нужно ли обжарить лук.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Уточните, нужно ли обжарить лук.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i11:audio",
+          "transcript": "Should I sauté the onions?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Should I sauté the onions?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы говорите, кто приготовил суп.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i12:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i12:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы говорите, кто приготовил суп.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорите, кто приготовил суп.",
+          "uk": "Ви кажете, хто приготував суп."
+        },
+        "gappedTargetPhrase": "The soup was made ___ my brother.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-45:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i12:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i12:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Вы говорите, кто приготовил суп.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы говорите, кто приготовил суп.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводит by.",
+              "uk": "Виконавця вводить by."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы говорите, кто приготовил суп.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна by my brother.",
+              "uk": "Тут потрібна by my brother."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте обещание о подаче ужина.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте обещание о подаче ужина.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i13:audio",
+          "transcript": "Dinner will be served at seven."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Dinner will be served at seven.",
+        "orderedTokens": [
+          "Dinner",
+          "will",
+          "be",
+          "served",
+          "at",
+          "seven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — braise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — braise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i14:audio",
+          "transcript": "braise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-45:i14:r1",
+            "targetText": "braise",
+            "meaningByLocale": {
+              "ru": "Тушить в небольшом количестве жидкости под крышкой. Часто продукт сначала обжаривают; это способ готовки, а не название блюда.",
+              "uk": "Тушкувати в невеликій кількості рідини під кришкою. Часто продукт спочатку обсмажують; це спосіб приготування, а не назва страви."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "braise",
+          "definitionByLocale": {
+            "ru": "Тушить в небольшом количестве жидкости под крышкой. Часто продукт сначала обжаривают; это способ готовки, а не название блюда.",
+            "uk": "Тушкувати в невеликій кількості рідини під кришкою. Часто продукт спочатку обсмажують; це спосіб приготування, а не назва страви."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, как тушить это мясо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Спросите, как тушить это мясо.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i15:audio",
+          "transcript": "How do I braise this meat?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How do I braise this meat?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините действия с объяснениями.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините действия с объяснениями.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-45:i16:p1",
+            "target": "mince",
+            "meaningByLocale": {
+              "ru": "очень мелко измельчать",
+              "uk": "дуже дрібно подрібнювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-45:i16:p2",
+            "target": "fillet",
+            "meaningByLocale": {
+              "ru": "разделывать рыбу на филе",
+              "uk": "розбирати рибу на філе"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-45:i16:p3",
+            "target": "sauté",
+            "meaningByLocale": {
+              "ru": "быстро обжаривать с небольшим количеством масла",
+              "uk": "швидко обсмажувати з невеликою кількістю олії або масла"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-45:i16:p4",
+            "target": "braise",
+            "meaningByLocale": {
+              "ru": "тушить под крышкой в небольшом количестве жидкости",
+              "uk": "тушкувати під кришкою в невеликій кількості рідини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mince",
+          "fillet",
+          "sauté",
+          "braise"
+        ],
+        "rightColumn": [
+          "очень мелко измельчать",
+          "разделывать рыбу на филе",
+          "быстро обжаривать с небольшим количеством масла",
+          "тушить под крышкой в небольшом количестве жидкости"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i17:r1",
+          "text": "The knives are kept in this drawer."
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i17:r2",
+          "text": "The knives are kept in that cupboard."
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i17:r3",
+          "text": "The spoons are kept in this drawer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i17:audio",
+          "transcript": "The knives are kept in this drawer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-45:i17:r1",
+            "targetText": "The knives are kept in this drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i17:r2",
+            "targetText": "The knives are kept in that cupboard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i17:r3",
+            "targetText": "The spoons are kept in this drawer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The knives are kept in this drawer.",
+              "uk": "У записі звучить The knives are kept in this drawer."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i17:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The knives are kept in this drawer.",
+              "uk": "У записі звучить The knives are kept in this drawer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тесной кухне вы мечтаете о большей рабочей поверхности.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i18:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i18:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i18:r3",
+          "text": "will have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тесной кухне вы мечтаете о большей рабочей поверхности.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тесной кухне вы мечтаете о большей рабочей поверхности.",
+          "uk": "У тісній кухні ви мрієте про більшу робочу поверхню."
+        },
+        "gappedTargetPhrase": "I wish I ___ more space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-45:i18:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i18:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i18:r3",
+            "text": "will have"
+          }
+        ],
+        "testedDimension": "В тесной кухне вы мечтаете о большей рабочей поверхности.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i18:r2",
+            "correct": false,
+            "testedDimension": "В тесной кухне вы мечтаете о большей рабочей поверхности.",
+            "feedbackByLocale": {
+              "ru": "Желание о настоящем: wish I had.",
+              "uk": "Бажання щодо теперішнього: wish I had."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i18:r3",
+            "correct": false,
+            "testedDimension": "В тесной кухне вы мечтаете о большей рабочей поверхности.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна had.",
+              "uk": "Тут потрібна had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что соус уже готов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что соус уже готов.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sauce is ready.",
+        "localizedMeaning": {
+          "ru": "Скажите, что соус уже готов.",
+          "uk": "Скажіть, що соус уже готовий."
+        },
+        "orderedTokens": [
+          "The",
+          "sauce",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В этом доме тарелки хранят в буфете.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-45:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-45:i20:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В этом доме тарелки хранят в буфете.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В этом доме тарелки хранят в буфете.",
+          "uk": "У цьому домі тарілки зберігають у буфеті."
+        },
+        "gappedTargetPhrase": "The plates ___ kept in the cupboard.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-45:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i20:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "В этом доме тарелки хранят в буфете.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-45:i20:r2",
+            "correct": false,
+            "testedDimension": "В этом доме тарелки хранят в буфете.",
+            "feedbackByLocale": {
+              "ru": "Plates — несколько: are.",
+              "uk": "Plates — кілька: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-45:i20:r3",
+            "correct": false,
+            "testedDimension": "В этом доме тарелки хранят в буфете.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна are kept.",
+              "uk": "Тут потрібна are kept."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-45:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите накрыть на стол.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-45:i21:audio"
+      ],
+      "accessibilityLabel": "Предложите накрыть на стол.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-45:i21:audio",
+          "transcript": "Shall I set the table?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I set the table?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3cfe77e53be58a3321f6bf32e63d8b397bddf2d675b421914c5283cb006127af"
+}

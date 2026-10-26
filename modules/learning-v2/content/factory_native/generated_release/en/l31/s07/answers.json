@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-07:i01",
+    "correctText": "doctor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i02",
+    "correctText": "Could you tell me where the doctor is?",
+    "correctResponseId": "en:lesson-31:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i03",
+    "correctText": "the doctor is",
+    "correctResponseId": "en:lesson-31:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i04",
+    "correctText": "nurse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i05",
+    "correctText": "Could you tell me where the nurse is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i06",
+    "correctText": "card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i07",
+    "correctText": "The card was checked by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i08",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-31:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i09",
+    "correctText": "chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i10",
+    "correctText": "Do you know if the chair is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i11",
+    "correctText": "Could you tell me where the toilet is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i13",
+    "correctText": "Do you know if the door is open?",
+    "correctResponseId": "en:lesson-31:session-07:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i14",
+    "correctText": "She said the doctor was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i15",
+    "correctText": "Could you tell me where the exit is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i16",
+    "correctText": "my card is",
+    "correctResponseId": "en:lesson-31:session-07:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i17",
+    "correctText": "The door was opened by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i18",
+    "correctText": "Could you tell me where the nurse is?",
+    "correctResponseId": "en:lesson-31:session-07:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i19",
+    "correctText": "Do you know if the chair is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i20",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-31:session-07:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-07:i21",
+    "correctText": "She said the chairs were free.",
+    "correctResponseId": null
+  }
+]

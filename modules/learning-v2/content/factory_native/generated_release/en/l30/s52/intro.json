@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "передавать обычную и отрицательную просьбу и сообщение конкретному человеку.",
+    "uk": "передавати звичайне й заперечне прохання та повідомлення конкретній людині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Соседка попросила покормить кошку",
+        "uk": "Сусідка попросила нагодувати кішку"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка уехала и попросила вас покормить её кошку. Передайте просьбу: She asked me to feed her cat — она попросила меня покормить её кошку. Соберите She + asked + me + to feed her cat. Me обозначает вас, her cat — кошку соседки; действие вводим через to feed.",
+        "uk": "Сусідка поїхала й попросила вас нагодувати її кішку. Передайте прохання: She asked me to feed her cat — вона попросила мене нагодувати її кішку. Складіть She + asked + me + to feed her cat. Me позначає вас, her cat — кішку сусідки; дію вводимо через to feed."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-52:intro1:r1",
+              "text": "She asked me to feed her cat."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro1:r2",
+              "text": "She asked I to feed her cat."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro1:r3",
+              "text": "She asked me feed her cat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-52:intro1:r1",
+              "text": "She asked me to feed her cat."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro1:r2",
+              "text": "She asked I to feed her cat."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro1:r3",
+              "text": "She asked me feed her cat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Соседка объяснила, где миска",
+        "uk": "Сусідка пояснила, де миска"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка сообщила вам, что миска на полу. Передайте через told: She told me the bowl was on the floor — она сказала мне, что миска на полу. Соберите She + told + me + the bowl was on the floor. После told сразу называем получателя me, без to, затем само сообщение.",
+        "uk": "Сусідка повідомила вам, що миска на підлозі. Передайте через told: She told me the bowl was on the floor — вона сказала мені, що миска на підлозі. Складіть She + told + me + the bowl was on the floor. Після told відразу називаємо одержувача me, без to, потім саме повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-52:intro2:r1",
+              "text": "She told me the bowl was on the floor."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro2:r2",
+              "text": "She told to me the bowl was on the floor."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro2:r3",
+              "text": "She said me the bowl was on the floor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-52:intro2:r1",
+              "text": "She told me the bowl was on the floor."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro2:r2",
+              "text": "She told to me the bowl was on the floor."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro2:r3",
+              "text": "She said me the bowl was on the floor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не открывать окно",
+        "uk": "Не відчиняти вікно"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка попросила вас не открывать окно, пока кошка в комнате. Передайте саму просьбу: She asked me not to open the window — она попросила меня не открывать окно. Соберите She + asked + me + not to open the window. После me отрицательное действие вводим через not to open.",
+        "uk": "Сусідка попросила вас не відчиняти вікно, поки кішка в кімнаті. Передайте саме прохання: She asked me not to open the window — вона попросила мене не відчиняти вікно. Складіть She + asked + me + not to open the window. Після me заперечну дію вводимо через not to open."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-52:intro3:r1",
+              "text": "She asked me not to open the window."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro3:r2",
+              "text": "She asked me not open the window."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro3:r3",
+              "text": "She asked me not opening the window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-52:intro3:r1",
+              "text": "She asked me not to open the window."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro3:r2",
+              "text": "She asked me not open the window."
+            },
+            {
+              "responseId": "en:lesson-30:session-52:intro3:r3",
+              "text": "She asked me not opening the window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a5e3c972ab27cb88a57ecdf8fb421679f02e0cc9dec103f805c3e3e49d4234b4"
+}

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro1:r2": {
-          "ru": "Поручни — несколько предметов, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Поручні — кілька предметів, тому потрібно aren’t, а не isn’t."
+          "ru": "Handrails стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Handrails стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-34:intro1:r3": {
-          "ru": "После any слово ставят во множественном числе: handrails.",
-          "uk": "Після any слово ставлять у множині: handrails."
+          "ru": "После aren’t any здесь нужна форма множественного числа handrails.",
+          "uk": "Після aren’t any тут потрібна форма множини handrails."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro2:r2": {
-          "ru": "Для «нет ни одной» нужно слово any: aren’t any bulbs.",
-          "uk": "Для «немає жодної» потрібне слово any: aren’t any bulbs."
+          "ru": "С bulbs во множественном числе нужно aren’t.",
+          "uk": "З bulbs у множині потрібне aren’t."
         },
         "en:lesson-04:session-34:intro2:r3": {
           "ru": "Лампочек нет, поэтому перед any нужно aren’t, а не are.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro3:r2": {
-          "ru": "Таблички — несколько предметов, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Таблички — кілька предметів, тому потрібно aren’t, а не isn’t."
+          "ru": "Signs стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Signs стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-34:intro3:r3": {
-          "ru": "После any слово ставят во множественном числе: signs.",
-          "uk": "Після any слово ставлять у множині: signs."
+          "ru": "После aren’t any здесь нужна форма множественного числа signs.",
+          "uk": "Після aren’t any тут потрібна форма множини signs."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c10d9211188e75c6b36ea08f152fe79f5c5527707d2b17ad0183c7b9079753a3"
+  "auxiliaryFingerprint": "eb8704d5392f1ce35402d4750ac35ec4958fb5eee9fd42660340b02d191fc4c7"
 }

@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i01:audio",
+          "transcript": "noise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-17:i01:r1",
+            "targetText": "noise",
+            "meaningByLocale": {
+              "ru": "Шум. Повторение знакомого слова.",
+              "uk": "Шум. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noise",
+          "definitionByLocale": {
+            "ru": "Шум. Повторение знакомого слова.",
+            "uk": "Шум. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i02:r1",
+          "text": "The noise could wake Ben."
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i02:r2",
+          "text": "The noise could wake Anna."
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i02:r3",
+          "text": "The noise could wake me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i02:audio",
+          "transcript": "The noise could wake Ben."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-17:i02:r1",
+            "targetText": "The noise could wake Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i02:r2",
+            "targetText": "The noise could wake Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i02:r3",
+            "targetText": "The noise could wake me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The noise could wake Ben.",
+              "uk": "У записі звучить The noise could wake Ben."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The noise could wake Ben.",
+              "uk": "У записі звучить The noise could wake Ben."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен спит. Шум может его разбудить. Выберите форму после could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i03:r1",
+          "text": "wake"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i03:r2",
+          "text": "wakes"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i03:r3",
+          "text": "to wake"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен спит. Шум может его разбудить. Выберите форму после could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен спит. Шум может его разбудить. Выберите форму после could.",
+          "uk": "Бен спить. Шум може його розбудити. Виберіть форму після could."
+        },
+        "gappedTargetPhrase": "The noise could ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-17:i03:r1",
+            "text": "wake"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i03:r2",
+            "text": "wakes"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i03:r3",
+            "text": "to wake"
+          }
+        ],
+        "testedDimension": "Бен спит. Шум может его разбудить. Выберите форму после could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Бен спит. Шум может его разбудить. Выберите форму после could.",
+            "feedbackByLocale": {
+              "ru": "После could используем wake без s.",
+              "uk": "Після could використовуємо wake без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Бен спит. Шум может его разбудить. Выберите форму после could.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i04:audio",
+          "transcript": "wind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-17:i04:r1",
+            "targetText": "wind",
+            "meaningByLocale": {
+              "ru": "Ветер. Повторение знакомого слова.",
+              "uk": "Вітер. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wind",
+          "definitionByLocale": {
+            "ru": "Ветер. Повторение знакомого слова.",
+            "uk": "Вітер. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы слышите стук и допускаете, что его вызывает ветер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы слышите стук и допускаете, что его вызывает ветер.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It could be the wind.",
+        "localizedMeaning": {
+          "ru": "Вы слышите стук и допускаете, что его вызывает ветер.",
+          "uk": "Ви чуєте стукіт і припускаєте, що його спричиняє вітер."
+        },
+        "orderedTokens": [
+          "It",
+          "could",
+          "be",
+          "the",
+          "wind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kitchen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kitchen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i06:audio",
+          "transcript": "kitchen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-17:i06:r1",
+            "targetText": "kitchen",
+            "meaningByLocale": {
+              "ru": "Кухня. Повторение знакомого слова.",
+              "uk": "Кухня. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kitchen",
+          "definitionByLocale": {
+            "ru": "Кухня. Повторение знакомого слова.",
+            "uk": "Кухня. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы пока не знаете, откуда идёт звук. Возможно, из кухни.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Вы пока не знаете, откуда идёт звук. Возможно, из кухни.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i07:audio",
+          "transcript": "It could come from the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It could come from the kitchen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Допустите, что звук идёт из кухни. Выберите форму после could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i08:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i08:r2",
+          "text": "comes"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i08:r3",
+          "text": "to come"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Допустите, что звук идёт из кухни. Выберите форму после could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Допустите, что звук идёт из кухни. Выберите форму после could.",
+          "uk": "Припустіть, що звук іде з кухні. Виберіть форму після could."
+        },
+        "gappedTargetPhrase": "It could ___ from the kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-17:i08:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i08:r2",
+            "text": "comes"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i08:r3",
+            "text": "to come"
+          }
+        ],
+        "testedDimension": "Допустите, что звук идёт из кухни. Выберите форму после could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Допустите, что звук идёт из кухни. Выберите форму после could.",
+            "feedbackByLocale": {
+              "ru": "После could используем come без s.",
+              "uk": "Після could використовуємо come без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Допустите, что звук идёт из кухни. Выберите форму после could.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шум может разбудить Бена. Скажите о возможном результате.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шум может разбудить Бена. Скажите о возможном результате.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The noise could wake Ben.",
+        "localizedMeaning": {
+          "ru": "Шум может разбудить Бена. Скажите о возможном результате.",
+          "uk": "Шум може розбудити Бена. Скажіть про можливий результат."
+        },
+        "orderedTokens": [
+          "The",
+          "noise",
+          "could",
+          "wake",
+          "Ben"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стук может быть вызван ветром. Назовите возможное объяснение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Стук может быть вызван ветром. Назовите возможное объяснение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i10:audio",
+          "transcript": "It could be the wind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It could be the wind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это может быть ветер. Выберите связку после could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i11:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это может быть ветер. Выберите связку после could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это может быть ветер. Выберите связку после could.",
+          "uk": "Це може бути вітер. Виберіть зв’язку після could."
+        },
+        "gappedTargetPhrase": "It could ___ the wind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-17:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i11:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Это может быть ветер. Выберите связку после could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Это может быть ветер. Выберите связку после could.",
+            "feedbackByLocale": {
+              "ru": "После could здесь нужна форма be.",
+              "uk": "Після could тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Это может быть ветер. Выберите связку после could.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i12:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-17:i12:r1",
+            "targetText": "window",
+            "meaningByLocale": {
+              "ru": "Окно. Повторение знакомого слова.",
+              "uk": "Вікно. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "window",
+          "definitionByLocale": {
+            "ru": "Окно. Повторение знакомого слова.",
+            "uk": "Вікно. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i13:r1",
+          "text": "The window could be open."
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i13:r2",
+          "text": "The window could be closed."
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i13:r3",
+          "text": "The window could be broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i13:audio",
+          "transcript": "The window could be open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-17:i13:r1",
+            "targetText": "The window could be open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i13:r2",
+            "targetText": "The window could be closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i13:r3",
+            "targetText": "The window could be broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The window could be open.",
+              "uk": "У записі звучить The window could be open."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The window could be open.",
+              "uk": "У записі звучить The window could be open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы чувствуете сквозняк. Возможно, окно открыто.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Вы чувствуете сквозняк. Возможно, окно открыто.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i14:audio",
+          "transcript": "The window could be open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The window could be open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Звук, возможно, идёт из кухни.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Звук, возможно, идёт из кухни.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It could come from the kitchen.",
+        "localizedMeaning": {
+          "ru": "Звук, возможно, идёт из кухни.",
+          "uk": "Звук, можливо, йде з кухні."
+        },
+        "orderedTokens": [
+          "It",
+          "could",
+          "come",
+          "from",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Окно может быть открыто. Завершите фразу о возможном состоянии.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i16:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i16:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Окно может быть открыто. Завершите фразу о возможном состоянии.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Окно может быть открыто. Завершите фразу о возможном состоянии.",
+          "uk": "Вікно може бути відчинене. Завершіть фразу про можливий стан."
+        },
+        "gappedTargetPhrase": "The window could ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-17:i16:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i16:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Окно может быть открыто. Завершите фразу о возможном состоянии.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i16:r2",
+            "correct": false,
+            "testedDimension": "Окно может быть открыто. Завершите фразу о возможном состоянии.",
+            "feedbackByLocale": {
+              "ru": "После could здесь нужна форма be.",
+              "uk": "Після could тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i16:r3",
+            "correct": false,
+            "testedDimension": "Окно может быть открыто. Завершите фразу о возможном состоянии.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен спит, а стук усиливается. Вы допускаете, что шум разбудит его.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Бен спит, а стук усиливается. Вы допускаете, что шум разбудит его.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i17:audio",
+          "transcript": "The noise could wake Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The noise could wake Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: шум может разбудить Бена или Анну?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i18:r1",
+          "text": "The noise could wake Ben."
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i18:r2",
+          "text": "The noise could wake Anna."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i18:audioA",
+        "en:lesson-32:session-17:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: шум может разбудить Бена или Анну?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The noise could wake Ben.",
+        "contrastB": "The noise could wake Anna.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-17:i18:audioA",
+          "transcript": "The noise could wake Ben."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-17:i18:audioB",
+          "transcript": "The noise could wake Anna."
+        },
+        "testedPhoneticContrast": "Послушайте: шум может разбудить Бена или Анну?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: шум может разбудить Бена или Анну?",
+            "feedbackByLocale": {
+              "ru": "Звучит Ben — Бен.",
+              "uk": "Звучить Ben — Бен."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте возможное объяснение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте возможное объяснение.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i19:audio",
+          "transcript": "It could be the wind."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It could be the wind.",
+        "orderedTokens": [
+          "It",
+          "could",
+          "be",
+          "the",
+          "wind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Шум может прекратиться. Выберите форму глагола после could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-17:i20:r1",
+          "text": "stop"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i20:r2",
+          "text": "stops"
+        },
+        {
+          "responseId": "en:lesson-32:session-17:i20:r3",
+          "text": "to stop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шум может прекратиться. Выберите форму глагола после could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Шум может прекратиться. Выберите форму глагола после could.",
+          "uk": "Шум може припинитися. Виберіть форму дієслова після could."
+        },
+        "gappedTargetPhrase": "The noise could ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-17:i20:r1",
+            "text": "stop"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i20:r2",
+            "text": "stops"
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i20:r3",
+            "text": "to stop"
+          }
+        ],
+        "testedDimension": "Шум может прекратиться. Выберите форму глагола после could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-17:i20:r2",
+            "correct": false,
+            "testedDimension": "Шум может прекратиться. Выберите форму глагола после could.",
+            "feedbackByLocale": {
+              "ru": "После could используем stop без s.",
+              "uk": "Після could використовуємо stop без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-17:i20:r3",
+            "correct": false,
+            "testedDimension": "Шум может прекратиться. Выберите форму глагола после could.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-17:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не заглянули на кухню. Возможно, Бен уже там.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-17:i21:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не заглянули на кухню. Возможно, Бен уже там.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-17:i21:audio",
+          "transcript": "Ben could be in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben could be in the kitchen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7d7c65436abb9cda31f55af80ebfc759497a129afb9a91f37055535e8cefec8d"
+}

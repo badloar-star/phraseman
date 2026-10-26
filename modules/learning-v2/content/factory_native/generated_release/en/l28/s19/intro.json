@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "как описать действия в салоне, выразить желание и связать события в прошлом.",
+    "uk": "як описати дії в салоні, висловити бажання та пов’язати події в минулому."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала вымоют волосы",
+        "uk": "Спочатку помиють волосся"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли на стрижку. Мастер объясняет порядок работы: Your hair will be washed first — сначала вам вымоют волосы. Соберите Your hair + will be + washed + first. Will be washed сообщает о будущем действии над волосами. После will нужна be, после неё — washed. First показывает, что это сделают сначала.",
+        "uk": "Ви прийшли на стрижку. Майстер пояснює порядок роботи: Your hair will be washed first — спочатку вам помиють волосся. Складіть Your hair + will be + washed + first. Will be washed повідомляє про майбутню дію над волоссям. Після will потрібна be, після неї — washed. First показує, що це зроблять спочатку."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-19:intro1:r1",
+              "text": "Your hair will be washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro1:r2",
+              "text": "Your hair will washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro1:r3",
+              "text": "Your hair will be wash first."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-19:intro1:r1",
+              "text": "Your hair will be washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro1:r2",
+              "text": "Your hair will washed first."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro1:r3",
+              "text": "Your hair will be wash first."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как готовят полотенца",
+        "uk": "Як готують рушники"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете, чистые ли полотенца для клиентов. Мастер объясняет правило салона: Towels are washed after each use — полотенца стирают после каждого использования. Соберите Towels + are washed + after each use. Towels — несколько полотенец, поэтому are. Washed после are показывает действие над ними. Последняя часть говорит, когда его выполняют.",
+        "uk": "Ви запитуєте, чи чисті рушники для клієнтів. Майстер пояснює правило салону: Towels are washed after each use — рушники перуть після кожного використання. Складіть Towels + are washed + after each use. Towels — кілька рушників, тому are. Washed після are показує дію над ними. Остання частина говорить, коли її виконують."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-19:intro2:r1",
+              "text": "Towels are washed after each use."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro2:r2",
+              "text": "Towels is washed after each use."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro2:r3",
+              "text": "Towels are wash after each use."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-19:intro2:r1",
+              "text": "Towels are washed after each use."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro2:r2",
+              "text": "Towels is washed after each use."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro2:r3",
+              "text": "Towels are wash after each use."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы более длинные волосы",
+        "uk": "Хотілося б довше волосся"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете мастеру причёску на фото, но для неё ваши волосы пока слишком короткие. Скажите: I wish my hair were longer — хотелось бы, чтобы мои волосы были длиннее. Соберите I wish + my hair + were + longer. Were после I wish описывает желаемое положение сейчас. Longer — длиннее. Это желание, а не рассказ о прошлом.",
+        "uk": "Ви показуєте майстрові зачіску на фото, але для неї ваше волосся поки занадто коротке. Скажіть: I wish my hair were longer — хотілося б, щоб моє волосся було довшим. Складіть I wish + my hair + were + longer. Were після I wish описує бажаний стан зараз. Longer — довше. Це бажання, а не розповідь про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-19:intro3:r1",
+              "text": "I wish my hair were longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro3:r2",
+              "text": "I wish my hair is longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro3:r3",
+              "text": "I wish my hair be longer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-19:intro3:r1",
+              "text": "I wish my hair were longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro3:r2",
+              "text": "I wish my hair is longer."
+            },
+            {
+              "responseId": "en:lesson-28:session-19:intro3:r3",
+              "text": "I wish my hair be longer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "11c8f4fb247c34e1c5035f6cc853b7d1c08ccbf240fa8d3eb206ab72cf9856aa"
+}

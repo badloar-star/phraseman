@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-26:intro1:r2": {
+          "ru": "Перед сообщением после told нужно назвать получателя. Здесь нужен said.",
+          "uk": "Перед повідомленням після told потрібно назвати одержувача. Тут потрібне said."
+        },
+        "en:lesson-30:session-26:intro1:r3": {
+          "ru": "Она сообщила, что номер готов, а не задала вопрос.",
+          "uk": "Вона повідомила, що номер готовий, а не поставила запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-26:intro2:r2": {
+          "ru": "В таком порядке с me используем told, не said.",
+          "uk": "У такому порядку з me використовуємо told, не said."
+        },
+        "en:lesson-30:session-26:intro2:r3": {
+          "ru": "После told перед me не ставим to.",
+          "uk": "Після told перед me не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-26:intro3:r2": {
+          "ru": "Просьбу назвать сведения здесь передаёт asked me for.",
+          "uk": "Прохання назвати відомості тут передає asked me for."
+        },
+        "en:lesson-30:session-26:intro3:r3": {
+          "ru": "После asked того, кого спросили, обозначаем me, не I.",
+          "uk": "Після asked того, кого запитали, позначаємо me, не I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "20ef1c74b35fb8060dbaf9abe957b0f5c8c515400cd660b827f531c657783e11"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "описывать возможное состояние и делать вывод по заметному признаку.",
+    "uk": "описувати можливий стан і робити висновок за помітною ознакою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможно, полотенце высохло",
+        "uk": "Можливо, рушник висох"
+      },
+      "bodyByLocale": {
+        "ru": "Полотенце давно висит после стирки, но вы ещё не трогали его: The towel might be dry — возможно, полотенце сухое. Соберите The towel + might + be + dry. Dry описывает состояние, поэтому перед ним нужна связка be. Might оставляет возможность, что полотенце ещё влажное.",
+        "uk": "Рушник давно висить після прання, але ви ще не торкалися його: The towel might be dry — можливо, рушник сухий. Складіть The towel + might + be + dry. Dry описує стан, тому перед ним потрібна зв’язка be. Might залишає можливість, що рушник іще вологий."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-11:intro1:r1",
+              "text": "The towel might be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro1:r2",
+              "text": "The towel might dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro1:r3",
+              "text": "The towel might is dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-11:intro1:r1",
+              "text": "The towel might be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro1:r2",
+              "text": "The towel might dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro1:r3",
+              "text": "The towel might is dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рубашка, должно быть, мокрая",
+        "uk": "Сорочка, напевно, мокра"
+      },
+      "bodyByLocale": {
+        "ru": "С рукава рубашки капает вода. Вы делаете вывод: The shirt must be wet — рубашка, должно быть, мокрая. Соберите The shirt + must + be + wet. Must здесь передаёт уверенный вывод по видимому признаку, а be связывает shirt с состоянием wet.",
+        "uk": "З рукава сорочки крапає вода. Ви робите висновок: The shirt must be wet — сорочка, напевно, мокра. Складіть The shirt + must + be + wet. Must тут передає впевнений висновок за видимою ознакою, а be пов’язує shirt зі станом wet."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-11:intro2:r1",
+              "text": "The shirt must be wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro2:r2",
+              "text": "The shirt must wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro2:r3",
+              "text": "The shirt must are wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-11:intro2:r1",
+              "text": "The shirt must be wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro2:r2",
+              "text": "The shirt must wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro2:r3",
+              "text": "The shirt must are wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пальто, которое я постирал",
+        "uk": "Пальто, яке я виправ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы отделяете постиранное пальто от грязных вещей: The coat I washed is clean — пальто, которое я постирал, чистое. Соберите The coat + I washed + is clean. I washed уточняет coat. That можно опустить: в уточнении I называет того, кто постирал пальто.",
+        "uk": "Ви відокремлюєте випране пальто від брудних речей: The coat I washed is clean — пальто, яке я виправ, чисте. Складіть The coat + I washed + is clean. I washed уточнює coat. That можна опустити: в уточненні I називає того, хто виправ пальто."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-11:intro3:r1",
+              "text": "The coat I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro3:r2",
+              "text": "The coat I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro3:r3",
+              "text": "The coat I washing is clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-11:intro3:r1",
+              "text": "The coat I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro3:r2",
+              "text": "The coat I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-11:intro3:r3",
+              "text": "The coat I washing is clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "386a9f8cc13bb7d3d1b426f9d41d0851484ceb57d6f31bf8a6a6adf43359135b"
+}

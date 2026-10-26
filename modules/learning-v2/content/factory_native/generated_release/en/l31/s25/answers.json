@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-25:i01",
+    "correctText": "home",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i02",
+    "correctText": "I stayed home because it was cold.",
+    "correctResponseId": "en:lesson-31:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i03",
+    "correctText": "tired",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i04",
+    "correctText": "because",
+    "correctResponseId": "en:lesson-31:session-25:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i05",
+    "correctText": "I stayed home because I was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i06",
+    "correctText": "rain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i07",
+    "correctText": "I stayed home because of the rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i08",
+    "correctText": "because of",
+    "correctResponseId": "en:lesson-31:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i09",
+    "correctText": "bus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i10",
+    "correctText": "I was late because the bus was late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i11",
+    "correctText": "I went home because I was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i12",
+    "correctText": "because",
+    "correctResponseId": "en:lesson-31:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i13",
+    "correctText": "I stayed home because of the rain.",
+    "correctResponseId": "en:lesson-31:session-25:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i14",
+    "correctText": "I sat down because I was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i15",
+    "correctText": "I took an umbrella because of the rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i16",
+    "correctText": "it was cold",
+    "correctResponseId": "en:lesson-31:session-25:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i17",
+    "correctText": "I closed the window because it was cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i18",
+    "correctText": "I stayed home because of the rain.",
+    "correctResponseId": "en:lesson-31:session-25:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i19",
+    "correctText": "I stayed home because I was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i20",
+    "correctText": "of",
+    "correctResponseId": "en:lesson-31:session-25:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-25:i21",
+    "correctText": "I took a taxi because I was late.",
+    "correctResponseId": null
+  }
+]

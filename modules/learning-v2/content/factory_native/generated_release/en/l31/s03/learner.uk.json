@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i01:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-03:i01:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i02:r1",
+          "text": "Could you tell me where the bread is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i02:r2",
+          "text": "Could you tell me where the milk is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i02:r3",
+          "text": "Could you tell me where the butter is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i02:audio",
+          "transcript": "Could you tell me where the bread is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-03:i02:r1",
+            "targetText": "Could you tell me where the bread is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i02:r2",
+            "targetText": "Could you tell me where the milk is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i02:r3",
+            "targetText": "Could you tell me where the butter is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the bread is?",
+              "uk": "У записі звучить Could you tell me where the bread is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the bread is?",
+              "uk": "У записі звучить Could you tell me where the bread is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи знає продавчиня, чи свіжий хліб.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i03:r1",
+          "text": "the bread is"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i03:r2",
+          "text": "is the bread"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i03:r3",
+          "text": "the bread are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи знає продавчиня, чи свіжий хліб.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, знает ли продавщица, свежий ли хлеб.",
+          "uk": "Запитайте, чи знає продавчиня, чи свіжий хліб."
+        },
+        "gappedTargetPhrase": "Do you know if ___ fresh?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-03:i03:r1",
+            "text": "the bread is"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i03:r2",
+            "text": "is the bread"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i03:r3",
+            "text": "the bread are"
+          }
+        ],
+        "testedDimension": "Запитайте, чи знає продавчиня, чи свіжий хліб.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає продавчиня, чи свіжий хліб.",
+            "feedbackByLocale": {
+              "ru": "После if нужен порядок the bread is.",
+              "uk": "Після if потрібен порядок the bread is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає продавчиня, чи свіжий хліб.",
+            "feedbackByLocale": {
+              "ru": "Bread здесь требует is.",
+              "uk": "Bread тут потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i04:audio",
+          "transcript": "cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-03:i04:r1",
+            "targetText": "cake",
+            "meaningByLocale": {
+              "ru": "Торт. Повторение знакомого слова.",
+              "uk": "Торт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cake",
+          "definitionByLocale": {
+            "ru": "Торт. Повторение знакомого слова.",
+            "uk": "Торт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи знає продавчиня, чи свіжий торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи знає продавчиня, чи свіжий торт.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know if the cake is fresh?",
+        "localizedMeaning": {
+          "ru": "Спросите, знает ли продавщица, свежий ли торт.",
+          "uk": "Запитайте, чи знає продавчиня, чи свіжий торт."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "cake",
+          "is",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен спік хліб. Скажіть це, починаючи з хліба.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Бен спік хліб. Скажіть це, починаючи з хліба.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i06:audio",
+          "transcript": "The bread was baked by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bread was baked by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора продавчиня сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора продавчиня сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера продавщица сказала: «Торт готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора продавчиня сказала: «Торт готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the cake ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-03:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора продавчиня сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора продавчиня сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора продавчиня сказала: «Торт готовий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i08:audio",
+          "transcript": "price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-03:i08:r1",
+            "targetText": "price",
+            "meaningByLocale": {
+              "ru": "Цена. Повторение знакомого слова.",
+              "uk": "Ціна. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "price",
+          "definitionByLocale": {
+            "ru": "Цена. Повторение знакомого слова.",
+            "uk": "Ціна. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи знає ваш супутник, яка ціна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи знає ваш супутник, яка ціна.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i09:audio",
+          "transcript": "Do you know what the price is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you know what the price is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про пекарню.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про пекарню.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i10:audio",
+          "transcript": "Could you tell me when the bakery closes?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you tell me when the bakery closes?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "when",
+          "the",
+          "bakery",
+          "closes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен приготував торт. Назвіть його після was made.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен приготував торт. Назвіть його після was made.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен приготовил торт. Назовите его после was made.",
+          "uk": "Бен приготував торт. Назвіть його після was made."
+        },
+        "gappedTargetPhrase": "The cake was made ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-03:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен приготував торт. Назвіть його після was made.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен приготував торт. Назвіть його після was made.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен приготував торт. Назвіть його після was made.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i12:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-03:i12:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Пакет, сумка. Повторение знакомого слова.",
+              "uk": "Пакет, сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Пакет, сумка. Повторение знакомого слова.",
+            "uk": "Пакет, сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i13:r1",
+          "text": "Could you tell me where my bag is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i13:r2",
+          "text": "Could you tell me where my coat is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i13:r3",
+          "text": "Could you tell me where my key is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i13:audio",
+          "transcript": "Could you tell me where my bag is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-03:i13:r1",
+            "targetText": "Could you tell me where my bag is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i13:r2",
+            "targetText": "Could you tell me where my coat is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i13:r3",
+            "targetText": "Could you tell me where my key is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where my bag is?",
+              "uk": "У записі звучить Could you tell me where my bag is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where my bag is?",
+              "uk": "У записі звучить Could you tell me where my bag is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора продавчиня сказала: «Хліб теплий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Учора продавчиня сказала: «Хліб теплий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i14:audio",
+          "transcript": "She said the bread was warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the bread was warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, коли відчиняється пекарня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, коли відчиняється пекарня.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me when the bakery opens?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, когда открывается пекарня.",
+          "uk": "Ввічливо запитайте, коли відчиняється пекарня."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "when",
+          "the",
+          "bakery",
+          "opens"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи знає продавчиня, де ваш чек.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i16:r1",
+          "text": "my receipt is"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i16:r2",
+          "text": "is my receipt"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i16:r3",
+          "text": "my receipt are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи знає продавчиня, де ваш чек.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, знает ли продавщица, где ваш чек.",
+          "uk": "Запитайте, чи знає продавчиня, де ваш чек."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-03:i16:r1",
+            "text": "my receipt is"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i16:r2",
+            "text": "is my receipt"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i16:r3",
+            "text": "my receipt are"
+          }
+        ],
+        "testedDimension": "Запитайте, чи знає продавчиня, де ваш чек.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає продавчиня, де ваш чек.",
+            "feedbackByLocale": {
+              "ru": "После where нужен порядок my receipt is.",
+              "uk": "Після where потрібен порядок my receipt is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає продавчиня, де ваш чек.",
+            "feedbackByLocale": {
+              "ru": "Один receipt требует is.",
+              "uk": "Один receipt потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен спік печиво. Скажіть це, починаючи з печива.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Бен спік печиво. Скажіть це, починаючи з печива.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i17:audio",
+          "transcript": "The biscuits were baked by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The biscuits were baked by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: покупець запитує, де пекарня чи коли вона відчиняється?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i18:r1",
+          "text": "Could you tell me where the bakery is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i18:r2",
+          "text": "Could you tell me when the bakery opens?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i18:audioA",
+        "en:lesson-31:session-03:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: покупець запитує, де пекарня чи коли вона відчиняється?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Could you tell me where the bakery is?",
+        "contrastB": "Could you tell me when the bakery opens?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-03:i18:audioA",
+          "transcript": "Could you tell me where the bakery is?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-03:i18:audioB",
+          "transcript": "Could you tell me when the bakery opens?"
+        },
+        "testedPhoneticContrast": "Послухайте: покупець запитує, де пекарня чи коли вона відчиняється?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: покупець запитує, де пекарня чи коли вона відчиняється?",
+            "feedbackByLocale": {
+              "ru": "Звучит where — где.",
+              "uk": "Звучить where — де."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про торт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i19:audio",
+          "transcript": "Do you know if the cake is ready?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the cake is ready?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "cake",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ввічливо запитайте, скільки коштує хліб.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-03:i20:r1",
+          "text": "costs"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i20:r2",
+          "text": "cost"
+        },
+        {
+          "responseId": "en:lesson-31:session-03:i20:r3",
+          "text": "costing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, скільки коштує хліб.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, сколько стоит хлеб.",
+          "uk": "Ввічливо запитайте, скільки коштує хліб."
+        },
+        "gappedTargetPhrase": "Could you tell me how much the bread ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-03:i20:r1",
+            "text": "costs"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i20:r2",
+            "text": "cost"
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i20:r3",
+            "text": "costing"
+          }
+        ],
+        "testedDimension": "Ввічливо запитайте, скільки коштує хліб.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-03:i20:r2",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, скільки коштує хліб.",
+            "feedbackByLocale": {
+              "ru": "С the bread нужна форма costs.",
+              "uk": "З the bread потрібна форма costs."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-03:i20:r3",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, скільки коштує хліб.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма costs.",
+              "uk": "Потрібна форма costs."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-03:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора продавчиня сказала: «Мені потрібна коробка». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-03:i21:audio"
+      ],
+      "accessibilityLabel": "Учора продавчиня сказала: «Мені потрібна коробка». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-03:i21:audio",
+          "transcript": "She said she needed a box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed a box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "39f98ed6b17e0bf82719fb27f9c1411e34dc3728bdc2398064cde0055b230fd6"
+}

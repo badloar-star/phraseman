@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — house",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — house",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i01:audio",
+          "transcript": "house"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-54:i01:r1",
+            "targetText": "house",
+            "meaningByLocale": {
+              "ru": "Дом. Повторение знакомого слова.",
+              "uk": "Будинок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "house",
+          "definitionByLocale": {
+            "ru": "Дом. Повторение знакомого слова.",
+            "uk": "Будинок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i02:r1",
+          "text": "The house is quiet, so it might be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i02:r2",
+          "text": "The house is quiet, so it must be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i02:r3",
+          "text": "The house is quiet, so it can't be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i02:audio",
+          "transcript": "The house is quiet, so it might be empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-54:i02:r1",
+            "targetText": "The house is quiet, so it might be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i02:r2",
+            "targetText": "The house is quiet, so it must be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i02:r3",
+            "targetText": "The house is quiet, so it can't be empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The house is quiet, so it might be empty.",
+              "uk": "У записі звучить The house is quiet, so it might be empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The house is quiet, so it might be empty.",
+              "uk": "У записі звучить The house is quiet, so it might be empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой.",
+          "uk": "Ви з Беном не чуєте з будинку голосів і припускаєте, що всередині нікого немає. У будинку тихо, тому він, можливо, порожній."
+        },
+        "gappedTargetPhrase": "The house is quiet, so it might ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-54:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i04:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-54:i04:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Дверь не может быть открытой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Дверь не может быть открытой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door can't be open.",
+        "localizedMeaning": {
+          "ru": "Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Дверь не может быть открытой.",
+          "uk": "Бен припускає, що двері відчинені, але ви бачите щільно зачинені двері перед собою. Двері не можуть бути відчиненими."
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i06:audio",
+          "transcript": "gift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-54:i06:r1",
+            "targetText": "gift",
+            "meaningByLocale": {
+              "ru": "Подарок. Повторение знакомого слова.",
+              "uk": "Подарунок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gift",
+          "definitionByLocale": {
+            "ru": "Подарок. Повторение знакомого слова.",
+            "uk": "Подарунок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подарок, который я принёс, маленький. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Подарок, который я принёс, маленький. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i07:audio",
+          "transcript": "The gift I brought is small."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The gift I brought is small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i08:r1",
+          "text": "brought"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i08:r2",
+          "text": "brought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i08:r3",
+          "text": "bringing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
+          "uk": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The gift I ___ is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-54:i08:r1",
+            "text": "brought"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i08:r2",
+            "text": "brought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i08:r3",
+            "text": "bringing"
+          }
+        ],
+        "testedDimension": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма brought.",
+              "uk": "Потрібна минула форма brought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой. Начните с The house is quiet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой. Начните с The house is quiet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The house is quiet, so it might be empty.",
+        "localizedMeaning": {
+          "ru": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. В доме тихо, поэтому он, возможно, пустой. Начните с The house is quiet.",
+          "uk": "Ви з Беном не чуєте з будинку голосів і припускаєте, що всередині нікого немає. У будинку тихо, тому він, можливо, порожній. Почніть із The house is quiet."
+        },
+        "orderedTokens": [
+          "The",
+          "house",
+          "is",
+          "quiet,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Скажите вывод, заменив The door местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. Скажите вывод, заменив The door местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i10:audio",
+          "transcript": "It can’t be open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверь не может быть открытой. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь не может быть открытой. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь не может быть открытой. Выберите форму после can’t.",
+          "uk": "Двері не можуть бути відчиненими. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The door can't ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-54:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Дверь не может быть открытой. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Дверь не может быть открытой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Дверь не может быть открытой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i12:audio",
+          "transcript": "room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-54:i12:r1",
+            "targetText": "room",
+            "meaningByLocale": {
+              "ru": "Комната. Повторение знакомого слова.",
+              "uk": "Кімната. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room",
+          "definitionByLocale": {
+            "ru": "Комната. Повторение знакомого слова.",
+            "uk": "Кімната. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i13:r1",
+          "text": "The room must be warm."
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i13:r2",
+          "text": "The room may be warm."
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i13:r3",
+          "text": "The room could be warm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i13:audio",
+          "transcript": "The room must be warm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-54:i13:r1",
+            "targetText": "The room must be warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i13:r2",
+            "targetText": "The room may be warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i13:r3",
+            "targetText": "The room could be warm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room must be warm.",
+              "uk": "У записі звучить The room must be warm."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room must be warm.",
+              "uk": "У записі звучить The room must be warm."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i14:audio",
+          "transcript": "The room must be warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The room must be warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the gift и уточнение I brought. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the gift и уточнение I brought. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the gift I brought.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the gift и уточнение I brought. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the gift й уточнення I brought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "gift",
+          "I",
+          "brought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В доме тихо, поэтому он, возможно, пустой. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В доме тихо, поэтому он, возможно, пустой. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В доме тихо, поэтому он, возможно, пустой. Соедините признак и предположение словом «поэтому».",
+          "uk": "У будинку тихо, тому він, можливо, порожній. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The house is quiet, ___ it might be empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-54:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "В доме тихо, поэтому он, возможно, пустой. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i16:r2",
+            "correct": false,
+            "testedDimension": "В доме тихо, поэтому он, возможно, пустой. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i16:r3",
+            "correct": false,
+            "testedDimension": "В доме тихо, поэтому он, возможно, пустой. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вернитесь к моменту ожидания у закрытой двери: Бен спрашивает, на чём основано ваше предположение. В доме тихо, поэтому он, возможно, пустой. Ответьте, начиная с The house is quiet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Вернитесь к моменту ожидания у закрытой двери: Бен спрашивает, на чём основано ваше предположение. В доме тихо, поэтому он, возможно, пустой. Ответьте, начиная с The house is quiet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i17:audio",
+          "transcript": "The house is quiet, so it might be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The house is quiet, so it might be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i18:r1",
+          "text": "The house is quiet, so it might be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i18:r2",
+          "text": "The house is quiet, so it must be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i18:audioA",
+        "en:lesson-32:session-54:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The house is quiet, so it might be empty.",
+        "contrastB": "The house is quiet, so it must be empty.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-54:i18:audioA",
+          "transcript": "The house is quiet, so it might be empty."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-54:i18:audioB",
+          "transcript": "The house is quiet, so it must be empty."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i19:audio",
+          "transcript": "The door can't be open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door can't be open.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-54:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-54:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+          "uk": "Згодом Анна відчиняє двері й каже, що опалення працювало в кімнаті весь ранок. Ви ще не зайшли туди. Кімната, напевно, тепла."
+        },
+        "gappedTargetPhrase": "The room must ___ warm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-54:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-54:i20:r2",
+            "correct": false,
+            "testedDimension": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-54:i20:r3",
+            "correct": false,
+            "testedDimension": "Позже Анна открывает дверь и говорит, что отопление работало в комнате всё утро. Вы ещё не вошли туда. Комната, должно быть, тёплая.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-54:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В доме тихо, поэтому он, возможно, пустой. Назовите ту же возможность с could вместо might. Начните с The house is quiet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-54:i21:audio"
+      ],
+      "accessibilityLabel": "В доме тихо, поэтому он, возможно, пустой. Назовите ту же возможность с could вместо might. Начните с The house is quiet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-54:i21:audio",
+          "transcript": "The house is quiet, so it could be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The house is quiet, so it could be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1a497f21391541495b23896d06792252f01cab4592c32d71759c50196be1d214"
+}

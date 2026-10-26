@@ -1,0 +1,1094 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i01:r1",
+          "text": "This is the garden where we grow herbs."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i01:r2",
+          "text": "This is the garden where we grow flowers."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i01:r3",
+          "text": "This is the shop where we buy herbs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i01:audio",
+          "transcript": "This is the garden where we grow herbs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i01:r1",
+            "targetText": "This is the garden where we grow herbs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i01:r2",
+            "targetText": "This is the garden where we grow flowers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i01:r3",
+            "targetText": "This is the shop where we buy herbs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the garden where we grow herbs.",
+              "uk": "У записі звучить This is the garden where we grow herbs."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the garden where we grow herbs.",
+              "uk": "У записі звучить This is the garden where we grow herbs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chives",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chives",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i02:audio",
+          "transcript": "chives"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i02:r1",
+            "targetText": "chives",
+            "meaningByLocale": {
+              "ru": "Шнитт-лук. Зелень с тонкими трубчатыми листьями и мягким луковым вкусом.",
+              "uk": "Шніт-цибуля. Зелень із тонкими трубчастими листками й м’яким цибулевим смаком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chives",
+          "definitionByLocale": {
+            "ru": "Шнитт-лук. Зелень с тонкими трубчатыми листьями и мягким луковым вкусом.",
+            "uk": "Шніт-цибуля. Зелень із тонкими трубчастими листками й м’яким цибулевим смаком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите добавить шнитт-лук в салат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите добавить шнитт-лук в салат.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can add chives to the salad.",
+        "localizedMeaning": {
+          "ru": "Предложите добавить шнитт-лук в салат.",
+          "uk": "Запропонуйте додати шніт-цибулю до салату."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "add",
+          "chives",
+          "to",
+          "the",
+          "salad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли попробовать листик.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли попробовать листик.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i04:audio",
+          "transcript": "Can I taste a leaf?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I taste a leaf?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните сад через то, что вы там выращиваете.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i05:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i05:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i05:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните сад через то, что вы там выращиваете.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните сад через то, что вы там выращиваете.",
+          "uk": "Уточніть сад через те, що ви там вирощуєте."
+        },
+        "gappedTargetPhrase": "This is the garden ___ we grow herbs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-23:i05:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i05:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i05:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Уточните сад через то, что вы там выращиваете.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Уточните сад через то, что вы там выращиваете.",
+            "feedbackByLocale": {
+              "ru": "Для места действия нужно where.",
+              "uk": "Для місця дії потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Уточните сад через то, что вы там выращиваете.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, а не принадлежность: where.",
+              "uk": "Тут місце, а не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i06:audio",
+          "transcript": "cress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i06:r1",
+            "targetText": "cress",
+            "meaningByLocale": {
+              "ru": "Кресс-салат. Мелкая зелень с островатым вкусом, которую часто выращивают как ростки.",
+              "uk": "Крес-салат. Дрібна зелень із гоструватим смаком, яку часто вирощують як паростки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cress",
+          "definitionByLocale": {
+            "ru": "Кресс-салат. Мелкая зелень с островатым вкусом, которую часто выращивают как ростки.",
+            "uk": "Крес-салат. Дрібна зелень із гоструватим смаком, яку часто вирощують як паростки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i07:r1",
+          "text": "The cress is on the windowsill."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i07:r2",
+          "text": "The cress is on the table."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i07:r3",
+          "text": "The mint is on the windowsill."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i07:audio",
+          "transcript": "The cress is on the windowsill."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i07:r1",
+            "targetText": "The cress is on the windowsill.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i07:r2",
+            "targetText": "The cress is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i07:r3",
+            "targetText": "The mint is on the windowsill.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cress is on the windowsill.",
+              "uk": "У записі звучить The cress is on the windowsill."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cress is on the windowsill.",
+              "uk": "У записі звучить The cress is on the windowsill."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто посадил зелень.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто посадил зелень.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i08:audio",
+          "transcript": "These herbs were planted by my mother."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These herbs were planted by my mother.",
+        "orderedTokens": [
+          "These",
+          "herbs",
+          "were",
+          "planted",
+          "by",
+          "my",
+          "mother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — watercress",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — watercress",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i09:audio",
+          "transcript": "watercress"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i09:r1",
+            "targetText": "watercress",
+            "meaningByLocale": {
+              "ru": "Водяной кресс. Листовая зелень с перечным вкусом, которую добавляют в салаты и другие блюда.",
+              "uk": "Водяний крес. Листова зелень із перцевим смаком, яку додають до салатів та інших страв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watercress",
+          "definitionByLocale": {
+            "ru": "Водяной кресс. Листовая зелень с перечным вкусом, которую добавляют в салаты и другие блюда.",
+            "uk": "Водяний крес. Листова зелень із перцевим смаком, яку додають до салатів та інших страв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что любите водяной кресс в супе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите, что любите водяной кресс в супе.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i10:audio",
+          "transcript": "I like watercress in soup."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I like watercress in soup.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зелень посадила ваша мать.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i11:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i11:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зелень посадила ваша мать.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Зелень посадила ваша мать.",
+          "uk": "Зелень посадила ваша мати."
+        },
+        "gappedTargetPhrase": "These herbs ___ planted by my mother.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-23:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i11:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i11:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Зелень посадила ваша мать.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Зелень посадила ваша мать.",
+            "feedbackByLocale": {
+              "ru": "Herbs во множественном числе: were.",
+              "uk": "Herbs у множині: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Зелень посадила ваша мать.",
+            "feedbackByLocale": {
+              "ru": "Здесь прошлое действие и множественное число: were.",
+              "uk": "Тут минула дія й множина: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите передать миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите передать миску.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you pass me the bowl?",
+        "localizedMeaning": {
+          "ru": "Попросите передать миску.",
+          "uk": "Попросіть передати миску."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "pass",
+          "me",
+          "the",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i13:audio",
+          "transcript": "chard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i13:r1",
+            "targetText": "chard",
+            "meaningByLocale": {
+              "ru": "Мангольд. Листовая свёкла, листья и стебли которой используют в еде.",
+              "uk": "Мангольд. Листовий буряк, листки та стебла якого використовують у їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chard",
+          "definitionByLocale": {
+            "ru": "Мангольд. Листовая свёкла, листья и стебли которой используют в еде.",
+            "uk": "Мангольд. Листовий буряк, листки та стебла якого використовують у їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i14:r1",
+          "text": "We will cook the chard tonight."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i14:r2",
+          "text": "We will cook the chard tomorrow."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i14:r3",
+          "text": "They will cook the chard tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i14:audio",
+          "transcript": "We will cook the chard tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-23:i14:r1",
+            "targetText": "We will cook the chard tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i14:r2",
+            "targetText": "We will cook the chard tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i14:r3",
+            "targetText": "They will cook the chard tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will cook the chard tonight.",
+              "uk": "У записі звучить We will cook the chard tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will cook the chard tonight.",
+              "uk": "У записі звучить We will cook the chard tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините зелень с переводом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините зелень с переводом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-23:i15:p1",
+            "target": "chives",
+            "meaningByLocale": {
+              "ru": "шнитт-лук",
+              "uk": "шніт-цибуля"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-23:i15:p2",
+            "target": "cress",
+            "meaningByLocale": {
+              "ru": "кресс-салат",
+              "uk": "крес-салат"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-23:i15:p3",
+            "target": "watercress",
+            "meaningByLocale": {
+              "ru": "водяной кресс",
+              "uk": "водяний крес"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-23:i15:p4",
+            "target": "chard",
+            "meaningByLocale": {
+              "ru": "мангольд",
+              "uk": "мангольд"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chives",
+          "cress",
+          "watercress",
+          "chard"
+        ],
+        "rightColumn": [
+          "шнитт-лук",
+          "кресс-салат",
+          "водяной кресс",
+          "мангольд"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните женщину через её растения на подоконнике.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i16:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i16:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните женщину через её растения на подоконнике.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните женщину через её растения на подоконнике.",
+          "uk": "Уточніть жінку через її рослини на підвіконні."
+        },
+        "gappedTargetPhrase": "That is the woman ___ plants are on the windowsill.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-23:i16:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i16:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Уточните женщину через её растения на подоконнике.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточните женщину через её растения на подоконнике.",
+            "feedbackByLocale": {
+              "ru": "Для связи владельца с растениями нужна whose.",
+              "uk": "Для зв’язку власника з рослинами потрібна whose."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточните женщину через её растения на подоконнике.",
+            "feedbackByLocale": {
+              "ru": "После whose не добавляем her.",
+              "uk": "Після whose не додаємо her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: растения на подоконнике или на столе?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i17:r1",
+          "text": "The plants are on the windowsill."
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i17:r2",
+          "text": "The plants are on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i17:audioA",
+        "en:lesson-29:session-23:i17:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: растения на подоконнике или на столе?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The plants are on the windowsill.",
+        "contrastB": "The plants are on the table.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-23:i17:audioA",
+          "transcript": "The plants are on the windowsill."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-23:i17:audioB",
+          "transcript": "The plants are on the table."
+        },
+        "testedPhoneticContrast": "Послушайте: растения на подоконнике или на столе?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: растения на подоконнике или на столе?",
+            "feedbackByLocale": {
+              "ru": "Звучит on the windowsill — на подоконнике.",
+              "uk": "Звучить on the windowsill — на підвіконні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите сначала вымыть листья.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i18:audio"
+      ],
+      "accessibilityLabel": "Предложите сначала вымыть листья.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i18:audio",
+          "transcript": "Let us wash the leaves first."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us wash the leaves first.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кто принёс миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-23:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кто принёс миску.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-23:i19:audio",
+          "transcript": "My neighbour brought the bowl."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My neighbour brought the bowl.",
+        "orderedTokens": [
+          "My",
+          "neighbour",
+          "brought",
+          "the",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Салат приготовил ваш друг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-23:i20:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i20:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-23:i20:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Салат приготовил ваш друг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Салат приготовил ваш друг.",
+          "uk": "Салат приготував ваш друг."
+        },
+        "gappedTargetPhrase": "The salad was made ___ my friend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-23:i20:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i20:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i20:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Салат приготовил ваш друг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-23:i20:r2",
+            "correct": false,
+            "testedDimension": "Салат приготовил ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавця дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-23:i20:r3",
+            "correct": false,
+            "testedDimension": "Салат приготовил ваш друг.",
+            "feedbackByLocale": {
+              "ru": "Человека, приготовившего салат, называем после by.",
+              "uk": "Людину, яка приготувала салат, називаємо після by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-23:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что салат готов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что салат готов.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The salad is ready.",
+        "localizedMeaning": {
+          "ru": "Скажите, что салат готов.",
+          "uk": "Скажіть, що салат готовий."
+        },
+        "orderedTokens": [
+          "The",
+          "salad",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1c34de68c01d4553f9eac8917df6650076cc07652dc15f784bcc9210f2606a0a"
+}

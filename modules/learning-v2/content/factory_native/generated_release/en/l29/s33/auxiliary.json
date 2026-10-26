@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-33:intro1:r2": {
+          "ru": "После found не нужно it: объект уже назван словом photo.",
+          "uk": "Після found не потрібне it: об’єкт уже названо словом photo."
+        },
+        "en:lesson-29:session-33:intro1:r3": {
+          "ru": "Действие выполняет I, не me.",
+          "uk": "Дію виконує I, не me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-33:intro2:r2": {
+          "ru": "Her повторяет уже названного человека.",
+          "uk": "Her повторює вже названу людину."
+        },
+        "en:lesson-29:session-33:intro2:r3": {
+          "ru": "Нужно I met: встретили её вы.",
+          "uk": "Потрібно I met: зустріли її ви."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-33:intro3:r2": {
+          "ru": "It лишнее: подаренная вещь уже названа словом ring.",
+          "uk": "It зайве: подаровану річ уже названо словом ring."
+        },
+        "en:lesson-29:session-33:intro3:r3": {
+          "ru": "О подарке в прошлом говорим gave.",
+          "uk": "Про подарунок у минулому кажемо gave."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b71a356f665bc61be4c06dff1fd489abfd814a71175d80c981d9f04eea1eaa44"
+}

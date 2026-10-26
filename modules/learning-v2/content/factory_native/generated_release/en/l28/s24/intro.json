@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "как описать обработку вещей в настоящем, прошлом и будущем, выразить желание и связать прошлые события.",
+    "uk": "як описати обробку речей у теперішньому, минулому й майбутньому, висловити бажання та пов’язати минулі події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рубашки будут готовы завтра",
+        "uk": "Сорочки будуть готові завтра"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сдаёте рубашки в прачечную и спрашиваете о сроке глажки. Сотрудник обещает: The shirts will be ironed tomorrow — рубашки погладят завтра. Соберите The shirts + will be + ironed + tomorrow. Will be ironed описывает будущее действие над рубашками. После will нужна be, даже когда предметов несколько. Ironed — форма iron с окончанием -ed.",
+        "uk": "Ви здаєте сорочки до пральні й запитуєте про строк прасування. Працівник обіцяє: The shirts will be ironed tomorrow — сорочки попрасують завтра. Складіть The shirts + will be + ironed + tomorrow. Will be ironed описує майбутню дію над сорочками. Після will потрібна be, навіть коли предметів кілька. Ironed — форма iron із закінченням -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-24:intro1:r1",
+              "text": "The shirts will be ironed tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro1:r2",
+              "text": "The shirts will are ironed tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro1:r3",
+              "text": "The shirts will be iron tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-24:intro1:r1",
+              "text": "The shirts will be ironed tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro1:r2",
+              "text": "The shirts will are ironed tomorrow."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro1:r3",
+              "text": "The shirts will be iron tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вещи стирают отдельно",
+        "uk": "Речі перуть окремо"
+      },
+      "bodyByLocale": {
+        "ru": "Вы не хотите, чтобы белые рубашки стирали с цветной одеждой. Сотрудник объясняет правило прачечной: White clothes are washed separately — белые вещи стирают отдельно. Соберите White clothes + are washed + separately. Clothes — несколько вещей, поэтому are. Washed после are описывает действие над ними. Separately — отдельно.",
+        "uk": "Ви не хочете, щоб білі сорочки прали з кольоровим одягом. Працівник пояснює правило пральні: White clothes are washed separately — білі речі перуть окремо. Складіть White clothes + are washed + separately. Clothes — кілька речей, тому are. Washed після are описує дію над ними. Separately — окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-24:intro2:r1",
+              "text": "White clothes are washed separately."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro2:r2",
+              "text": "White clothes is washed separately."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro2:r3",
+              "text": "White clothes are wash separately."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-24:intro2:r1",
+              "text": "White clothes are washed separately."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro2:r2",
+              "text": "White clothes is washed separately."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro2:r3",
+              "text": "White clothes are wash separately."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стирка на прошлой неделе",
+        "uk": "Прання минулого тижня"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник спрашивает, когда вы в последний раз стирали этот свитер. Это было на прошлой неделе. Ответьте: This jumper was washed last week — этот свитер постирали на прошлой неделе. Соберите This jumper + was washed + last week. Один свитер и прошлое действие: was. Washed сообщает, что сделали со свитером. Last week называет время.",
+        "uk": "Працівник запитує, коли ви востаннє прали цей светр. Це було минулого тижня. Дайте відповідь: This jumper was washed last week — цей светр випрали минулого тижня. Складіть This jumper + was washed + last week. Один светр і минула дія: was. Washed повідомляє, що зробили зі светром. Last week називає час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-24:intro3:r1",
+              "text": "This jumper was washed last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro3:r2",
+              "text": "This jumper were washed last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro3:r3",
+              "text": "This jumper was wash last week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-24:intro3:r1",
+              "text": "This jumper was washed last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro3:r2",
+              "text": "This jumper were washed last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-24:intro3:r3",
+              "text": "This jumper was wash last week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "699f27dd3ee94e02e85b9e65e939827225a71bc4a910f57beb8f40ebc6591c24"
+}

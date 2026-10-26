@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i01:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-11:i01:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "Полотенце. Повторение знакомого слова.",
+              "uk": "Рушник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "Полотенце. Повторение знакомого слова.",
+            "uk": "Рушник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i02:r1",
+          "text": "The towel might be dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i02:r2",
+          "text": "The towel might be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i02:r3",
+          "text": "The towel might be dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i02:audio",
+          "transcript": "The towel might be dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-11:i02:r1",
+            "targetText": "The towel might be dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i02:r2",
+            "targetText": "The towel might be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i02:r3",
+            "targetText": "The towel might be dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The towel might be dry.",
+              "uk": "У записі звучить The towel might be dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The towel might be dry.",
+              "uk": "У записі звучить The towel might be dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ещё не проверяли полотенце. Возможно, оно сухое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ещё не проверяли полотенце. Возможно, оно сухое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не проверяли полотенце. Возможно, оно сухое.",
+          "uk": "Ви ще не перевіряли рушник. Можливо, він сухий."
+        },
+        "gappedTargetPhrase": "The towel might ___ dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-11:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы ещё не проверяли полотенце. Возможно, оно сухое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы ещё не проверяли полотенце. Возможно, оно сухое.",
+            "feedbackByLocale": {
+              "ru": "После might перед dry ставим be.",
+              "uk": "Після might перед dry ставимо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы ещё не проверяли полотенце. Возможно, оно сухое.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shirt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shirt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i04:audio",
+          "transcript": "shirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-11:i04:r1",
+            "targetText": "shirt",
+            "meaningByLocale": {
+              "ru": "Рубашка. Повторение знакомого слова.",
+              "uk": "Сорочка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shirt",
+          "definitionByLocale": {
+            "ru": "Рубашка. Повторение знакомого слова.",
+            "uk": "Сорочка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "С рубашки капает вода. Вы делаете вывод, что она мокрая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "С рубашки капает вода. Вы делаете вывод, что она мокрая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shirt must be wet.",
+        "localizedMeaning": {
+          "ru": "С рубашки капает вода. Вы делаете вывод, что она мокрая.",
+          "uk": "Із сорочки крапає вода. Ви робите висновок, що вона мокра."
+        },
+        "orderedTokens": [
+          "The",
+          "shirt",
+          "must",
+          "be",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i06:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-11:i06:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните постиранное вами пальто: оно чистое. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Уточните постиранное вами пальто: оно чистое. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i07:audio",
+          "transcript": "The coat I washed is clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat I washed is clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните пальто, которое постирали, без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i08:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i08:r2",
+          "text": "washed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i08:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните пальто, которое постирали, без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните пальто, которое постирали, без лишнего местоимения.",
+          "uk": "Уточніть пальто, яке випрали, без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The coat I ___ is clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-11:i08:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i08:r2",
+            "text": "washed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i08:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Уточните пальто, которое постирали, без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточните пальто, которое постирали, без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Coat уже названо: it не нужно.",
+              "uk": "Coat уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточните пальто, которое постирали, без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма washed.",
+              "uk": "Потрібна форма washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Полотенце давно висит. Возможно, оно сухое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Полотенце давно висит. Возможно, оно сухое.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The towel might be dry.",
+        "localizedMeaning": {
+          "ru": "Полотенце давно висит. Возможно, оно сухое.",
+          "uk": "Рушник давно висить. Можливо, він сухий."
+        },
+        "orderedTokens": [
+          "The",
+          "towel",
+          "might",
+          "be",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "С рукава капает вода. Скажите, что рубашка, должно быть, мокрая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i10:audio"
+      ],
+      "accessibilityLabel": "С рукава капает вода. Скажите, что рубашка, должно быть, мокрая.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i10:audio",
+          "transcript": "The shirt must be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shirt must be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы делаете вывод по каплям воды на рубашке. Завершите фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы делаете вывод по каплям воды на рубашке. Завершите фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы делаете вывод по каплям воды на рубашке. Завершите фразу.",
+          "uk": "Ви робите висновок за краплями води на сорочці. Завершіть фразу."
+        },
+        "gappedTargetPhrase": "The shirt must ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-11:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Вы делаете вывод по каплям воды на рубашке. Завершите фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы делаете вывод по каплям воды на рубашке. Завершите фразу.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы делаете вывод по каплям воды на рубашке. Завершите фразу.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i12:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-11:i12:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Пол. Повторение знакомого слова.",
+              "uk": "Підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Пол. Повторение знакомого слова.",
+            "uk": "Підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i13:r1",
+          "text": "The floor may be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i13:r2",
+          "text": "The floor may be dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i13:r3",
+          "text": "The floor may be dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i13:audio",
+          "transcript": "The floor may be wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-11:i13:r1",
+            "targetText": "The floor may be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i13:r2",
+            "targetText": "The floor may be dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i13:r3",
+            "targetText": "The floor may be dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor may be wet.",
+              "uk": "У записі звучить The floor may be wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor may be wet.",
+              "uk": "У записі звучить The floor may be wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На пол могла попасть вода. Вы предупреждаете о возможности.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "На пол могла попасть вода. Вы предупреждаете о возможности.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i14:audio",
+          "transcript": "The floor may be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The floor may be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назовите чистое пальто, которое вы постирали. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите чистое пальто, которое вы постирали. Скажите без that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The coat I washed is clean.",
+        "localizedMeaning": {
+          "ru": "Назовите чистое пальто, которое вы постирали. Скажите без that.",
+          "uk": "Назвіть чисте пальто, яке ви випрали. Скажіть без that."
+        },
+        "orderedTokens": [
+          "The",
+          "coat",
+          "I",
+          "washed",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пол был мокрый, поэтому вы подождали. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пол был мокрый, поэтому вы подождали. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пол был мокрый, поэтому вы подождали. Вставьте «поэтому».",
+          "uk": "Підлога була мокра, тому ви зачекали. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The floor was wet, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-11:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Пол был мокрый, поэтому вы подождали. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i16:r2",
+            "correct": false,
+            "testedDimension": "Пол был мокрый, поэтому вы подождали. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Здесь назван результат: нужен so.",
+              "uk": "Тут названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i16:r3",
+            "correct": false,
+            "testedDimension": "Пол был мокрый, поэтому вы подождали. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужна связь причины и результата.",
+              "uk": "Потрібен зв’язок причини й результату."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы подождали, потому что пол был мокрый. Начните с причины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Вы подождали, потому что пол был мокрый. Начните с причины.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i17:audio",
+          "transcript": "The floor was wet, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The floor was wet, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: полотенце, возможно, сухое или мокрое?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i18:r1",
+          "text": "The towel might be dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i18:r2",
+          "text": "The towel might be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i18:audioA",
+        "en:lesson-32:session-11:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: полотенце, возможно, сухое или мокрое?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The towel might be dry.",
+        "contrastB": "The towel might be wet.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-11:i18:audioA",
+          "transcript": "The towel might be dry."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-11:i18:audioB",
+          "transcript": "The towel might be wet."
+        },
+        "testedPhoneticContrast": "Послушайте: полотенце, возможно, сухое или мокрое?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: полотенце, возможно, сухое или мокрое?",
+            "feedbackByLocale": {
+              "ru": "Звучит dry — сухое.",
+              "uk": "Звучить dry — сухий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод о рубашке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод о рубашке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i19:audio",
+          "transcript": "The shirt must be wet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The shirt must be wet.",
+        "orderedTokens": [
+          "The",
+          "shirt",
+          "must",
+          "be",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На полу может быть вода. Завершите предположение о его состоянии.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-11:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-11:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На полу может быть вода. Завершите предположение о его состоянии.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На полу может быть вода. Завершите предположение о его состоянии.",
+          "uk": "На підлозі може бути вода. Завершіть припущення про її стан."
+        },
+        "gappedTargetPhrase": "The floor may ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-11:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "На полу может быть вода. Завершите предположение о его состоянии.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-11:i20:r2",
+            "correct": false,
+            "testedDimension": "На полу может быть вода. Завершите предположение о его состоянии.",
+            "feedbackByLocale": {
+              "ru": "После may используем be.",
+              "uk": "Після may використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-11:i20:r3",
+            "correct": false,
+            "testedDimension": "На полу может быть вода. Завершите предположение о его состоянии.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-11:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не проверили пальто. Возможно, оно сухое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-11:i21:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не проверили пальто. Возможно, оно сухое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-11:i21:audio",
+          "transcript": "The coat might be dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat might be dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "12e2d8f658323237ca18c05ff8be347c415484f8bdb84f24af05fa4f2377d66a"
+}

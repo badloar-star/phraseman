@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-42:i01",
+    "correctText": "flour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i02",
+    "correctText": "She asked if I needed flour.",
+    "correctResponseId": "en:lesson-30:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i04",
+    "correctText": "pan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i05",
+    "correctText": "She asked me not to touch the pan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i06",
+    "correctText": "The pan I bought is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i07",
+    "correctText": "my bowl was",
+    "correctResponseId": "en:lesson-30:session-42:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i08",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i09",
+    "correctText": "She told me the milk was in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i10",
+    "correctText": "She asked me to stir the batter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i11",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-30:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i12",
+    "correctText": "egg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i13",
+    "correctText": "She said she needed an egg.",
+    "correctResponseId": "en:lesson-30:session-42:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i14",
+    "correctText": "I wish the kitchen were bigger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i15",
+    "correctText": "The milk I bought is fresh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i16",
+    "correctText": "not to add",
+    "correctResponseId": "en:lesson-30:session-42:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i17",
+    "correctText": "She said she needed a spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i18",
+    "correctText": "She asked if I needed milk.",
+    "correctResponseId": "en:lesson-30:session-42:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i19",
+    "correctText": "She said breakfast was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i20",
+    "correctText": "told",
+    "correctResponseId": "en:lesson-30:session-42:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-42:i21",
+    "correctText": "She said she wanted another pancake.",
+    "correctResponseId": null
+  }
+]

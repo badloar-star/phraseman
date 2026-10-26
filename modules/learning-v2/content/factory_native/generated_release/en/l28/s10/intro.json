@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "как описать сделанное раньше и обычный порядок сейчас, выразить желание и назвать действие до вашего прихода.",
+    "uk": "як описати зроблене раніше та звичний порядок зараз, висловити бажання й назвати дію до вашого приходу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тренажёр снова работает",
+        "uk": "Тренажер знову працює"
+      },
+      "bodyByLocale": {
+        "ru": "В спортивном центре вам говорят, что беговую дорожку починили вчера. The treadmill was repaired yesterday — беговую дорожку починили вчера. Соберите The treadmill + was repaired + yesterday. Начинаем с вещи, затем называем, что с ней сделали. Treadmill здесь один, поэтому was; repaired — форма repair с -ed.",
+        "uk": "У спортивному центрі вам кажуть, що бігову доріжку полагодили вчора. The treadmill was repaired yesterday — бігову доріжку полагодили вчора. Складіть The treadmill + was repaired + yesterday. Починаємо з речі, потім називаємо, що з нею зробили. Treadmill тут один, тому was; repaired — форма repair із -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-10:intro1:r1",
+              "text": "The treadmill was repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro1:r2",
+              "text": "The treadmill were repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro1:r3",
+              "text": "The treadmill was repair yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-10:intro1:r1",
+              "text": "The treadmill was repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro1:r2",
+              "text": "The treadmill were repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro1:r3",
+              "text": "The treadmill was repair yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полотенца после занятий",
+        "uk": "Рушники після занять"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете о полотенцах центра: их стирают каждый день. The towels are washed every day — полотенца стирают каждый день. Начните с The towels, добавьте are washed и every day. Полотенец несколько, поэтому are. Говорим об обычном порядке сейчас, а washed показывает, что с полотенцами делают.",
+        "uk": "Ви запитуєте про рушники центру: їх перуть щодня. The towels are washed every day — рушники перуть щодня. Почніть із The towels, додайте are washed і every day. Рушників кілька, тому are. Говоримо про звичний порядок зараз, а washed показує, що з рушниками роблять."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-10:intro2:r1",
+              "text": "The towels are washed every day."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro2:r2",
+              "text": "The towels is washed every day."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro2:r3",
+              "text": "The towels are wash every day."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-10:intro2:r1",
+              "text": "The towels are washed every day."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro2:r2",
+              "text": "The towels is washed every day."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro2:r3",
+              "text": "The towels are wash every day."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы больше времени",
+        "uk": "Хотілося б більше часу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы можете остаться в центре только на полчаса и хотели бы дольше. I wish I had more time — хотелось бы, чтобы у меня было больше времени. Соберите I wish + I + had more time. Had после I wish здесь передаёт желание о настоящем. Мы не рассказываем о времени, которое было вчера.",
+        "uk": "Ви можете залишитися в центрі лише на пів години й хотіли б довше. I wish I had more time — хотілося б, щоб у мене було більше часу. Складіть I wish + I + had more time. Had після I wish тут передає бажання про теперішнє. Ми не розповідаємо про час, який був учора."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-10:intro3:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro3:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro3:r3",
+              "text": "I wish I having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-10:intro3:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro3:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-28:session-10:intro3:r3",
+              "text": "I wish I having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e23cc9a3ea865a3069b083428882e749792069ed0053eaec06e5fb116320fcb6"
+}

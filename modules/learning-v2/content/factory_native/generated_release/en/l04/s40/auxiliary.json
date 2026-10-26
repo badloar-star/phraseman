@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-40:intro2:r2": {
-          "ru": "Матрасы — несколько предметов, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Матраци — кілька предметів, тому потрібно aren’t, а не isn’t."
+          "ru": "Mattresses стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Mattresses стоїть у множині, тому потрібне aren’t."
         },
         "en:lesson-04:session-40:intro2:r3": {
-          "ru": "После any слово ставят во множественном числе: mattresses.",
-          "uk": "Після any слово ставлять у множині: mattresses."
+          "ru": "После aren’t any здесь нужна форма множественного числа mattresses.",
+          "uk": "Після aren’t any тут потрібна форма множини mattresses."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "dcef01b737768c09629e354ef3c21197d5fb7b73d27cb5a67c5bfebb8fa9dc10"
+  "auxiliaryFingerprint": "92840c8d318c34622d58dc57ece2c99025c5f6354c2e2169cbee6607c678b3b5"
 }

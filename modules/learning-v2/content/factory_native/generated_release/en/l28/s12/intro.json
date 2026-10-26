@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "как описать доставку и упаковку, назвать событие до вашего прихода и выразить желание.",
+    "uk": "як описати доставку й пакування, назвати подію до вашого приходу та висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга пришла вчера",
+        "uk": "Книжка надійшла вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец достаёт заказанную вами книгу: её доставили вчера. The book was delivered yesterday — книгу доставили вчера. Начните с The book, затем was delivered и yesterday. Для одного предмета в прошлом используем was. Delivered говорит, что сделали с книгой: к deliver добавляем -ed.",
+        "uk": "Продавець дістає замовлену вами книжку: її доставили вчора. The book was delivered yesterday — книжку доставили вчора. Почніть із The book, потім was delivered і yesterday. Для одного предмета в минулому використовуємо was. Delivered говорить, що зробили з книжкою: до deliver додаємо -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-12:intro1:r1",
+              "text": "The book was delivered yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro1:r2",
+              "text": "The book were delivered yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro1:r3",
+              "text": "The book was deliver yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-12:intro1:r1",
+              "text": "The book was delivered yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro1:r2",
+              "text": "The book were delivered yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro1:r3",
+              "text": "The book was deliver yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Упаковка на подарок",
+        "uk": "Пакування на подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете книгу на подарок. Продавец объясняет: книги упаковывают у кассы. Books are wrapped at the till — книги упаковывают у кассы. Соберите Books + are wrapped + at the till. Books означает несколько книг, поэтому are. Wrapped показывает действие над книгами, а at the till — где оно происходит.",
+        "uk": "Ви вибираєте книжку на подарунок. Продавець пояснює: книжки пакують біля каси. Books are wrapped at the till — книжки пакують біля каси. Складіть Books + are wrapped + at the till. Books означає кілька книжок, тому are. Wrapped показує дію над книжками, а at the till — де вона відбувається."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-12:intro2:r1",
+              "text": "Books are wrapped at the till."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro2:r2",
+              "text": "Books is wrapped at the till."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro2:r3",
+              "text": "Books are wrap at the till."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-12:intro2:r1",
+              "text": "Books are wrapped at the till."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro2:r2",
+              "text": "Books is wrapped at the till."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro2:r3",
+              "text": "Books are wrap at the till."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заказ уже на месте",
+        "uk": "Замовлення вже на місці"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера заказ прибыл в магазин раньше, чем вы пришли за ним. My order had arrived by the time I got there — к тому времени, как я туда пришёл, мой заказ уже прибыл. Сначала My order + had arrived: более раннее событие. Затем by the time + I got there: момент вашего прихода. Had arrived связывает прибытие заказа с тем, что случилось позже.",
+        "uk": "Учора замовлення прибуло до крамниці раніше, ніж ви прийшли по нього. My order had arrived by the time I got there — до того часу, як я туди прийшов, моє замовлення вже прибуло. Спочатку My order + had arrived: раніша подія. Потім by the time + I got there: момент вашого приходу. Had arrived пов’язує прибуття замовлення з тим, що сталося пізніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-12:intro3:r1",
+              "text": "My order had arrived by the time I got there."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro3:r2",
+              "text": "My order had arrive by the time I got there."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro3:r3",
+              "text": "My order had arrived by the time I get there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-12:intro3:r1",
+              "text": "My order had arrived by the time I got there."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro3:r2",
+              "text": "My order had arrive by the time I got there."
+            },
+            {
+              "responseId": "en:lesson-28:session-12:intro3:r3",
+              "text": "My order had arrived by the time I get there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "af162edfc19fd99ba8555073cb4193d66ab9ef4bff41a157434e421392a15873"
+}

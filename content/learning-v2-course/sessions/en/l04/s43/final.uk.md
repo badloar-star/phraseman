@@ -12,13 +12,13 @@
 
 ### Мішок під дощем
 
-Ви вийшли з дому з мішком паперу й пластику, а на вулиці ллє дощ. Потрібні баки, куди сортують відходи для переробки. recycling bin — «контейнер для вторсировини». Таких баків зазвичай кілька, тому: Are there any recycling bins near the school?
+Ви несете мішок паперу й пластику та шукаєте контейнери для переробки. Recycling bin — «контейнер для вторсировини». Are there any recycling bins near the school? — «Поруч зі школою є контейнери для вторсировини?» Починаємо запитання з Are there, потім ставимо any recycling bins і місце — near the school. Recycling bins стоїть у множині, тому потрібне are; any підходить для запитання, чи є контейнери взагалі.
 
 **Перехожий стоїть під парасолькою. Запитайте його, чи є поруч зі школою контейнери для вторсировини.**
 
 - ✅ **Are there any recycling bins near the school?**
 - ❌ Is there any recycling bins near the school? — *Контейнерів кілька, тому запитання починають з Are there, а не з Is there.*
-- ❌ Are there any recycling bin near the school? — *Після any слово ставлять у множині: recycling bins.*
+- ❌ Are there any recycling bin near the school? — *Після Are there any тут потрібна форма множини recycling bins.*
 
 ---
 
@@ -26,7 +26,7 @@
 
 ### Порожні пляшки
 
-Ви несете порожні скляні пляшки з-під соку. У звичайний бак їх не кидають: для скла потрібен особливий контейнер. bottle bank — «контейнер для скла». Продавець біля ятки показує рукою: There is a bottle bank behind the market — «За ринком є контейнер для скла».
+Сусідка шукає, куди віднести скляні пляшки. Ви знаєте контейнер за ринком. Bottle bank — «контейнер для скла». There is a bottle bank behind the market — «За ринком є контейнер для скла». Починаємо з There is, потім називаємо один контейнер — a bottle bank — і місце: behind the market.
 
 **Сусідка теж хоче здати пляшки. Скажіть їй, що за ринком є контейнер для скла.**
 
@@ -40,13 +40,13 @@
 
 ### Дощ не вщухає
 
-Дощ не вщухає, а парасолька залишилася вдома. Подруга кличе вас у передпокій, де на вішаку висить верхній одяг. raincoat — «плащ», він не пропускає воду. Плащів там кілька, тому: There are some raincoats in the hall — «У передпокої є плащі».
+Подруга шукає, що вдягнути під дощ. Ви бачите кілька плащів у передпокої. Raincoat — «плащ від дощу». There are some raincoats in the hall — «У передпокої є плащі». Спочатку ставимо There are, потім some raincoats і місце — in the hall. Some повідомляє про наявність без точної кількості; raincoats стоїть у множині.
 
 **Подруга шукає, що вдягнути під дощ. Скажіть їй, що в передпокої є плащі.**
 
 - ✅ **There are some raincoats in the hall.**
 - ❌ There is some raincoats in the hall. — *Плащів кілька, тому потрібно There are, а не There is.*
-- ❌ There are some raincoat in the hall. — *Після some слово ставлять у множині: raincoats.*
+- ❌ There are some raincoat in the hall. — *Тут говоримо про кілька плащів: raincoats.*
 
 ---
 

@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — brush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — brush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i01:audio",
+          "transcript": "brush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-21:i01:r1",
+            "targetText": "brush",
+            "meaningByLocale": {
+              "ru": "Кисть. Повторение знакомого слова.",
+              "uk": "Пензель. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brush",
+          "definitionByLocale": {
+            "ru": "Кисть. Повторение знакомого слова.",
+            "uk": "Пензель. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i02:r1",
+          "text": "The brush you gave me is wet."
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i02:r2",
+          "text": "The brush you gave me is dry."
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i02:r3",
+          "text": "The brush you gave me is new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i02:audio",
+          "transcript": "The brush you gave me is wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-21:i02:r1",
+            "targetText": "The brush you gave me is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i02:r2",
+            "targetText": "The brush you gave me is dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i02:r3",
+            "targetText": "The brush you gave me is new.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brush you gave me is wet.",
+              "uk": "У записі звучить The brush you gave me is wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brush you gave me is wet.",
+              "uk": "У записі звучить The brush you gave me is wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг попросив вас пересунути стіл. Передайте прохання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i03:r1",
+          "text": "to move"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i03:r2",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i03:r3",
+          "text": "moving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг попросив вас пересунути стіл. Передайте прохання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг попросил вас передвинуть стол. Передайте просьбу.",
+          "uk": "Друг попросив вас пересунути стіл. Передайте прохання."
+        },
+        "gappedTargetPhrase": "He asked me ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-21:i03:r1",
+            "text": "to move"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i03:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i03:r3",
+            "text": "moving"
+          }
+        ],
+        "testedDimension": "Друг попросив вас пересунути стіл. Передайте прохання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг попросив вас пересунути стіл. Передайте прохання.",
+            "feedbackByLocale": {
+              "ru": "После asked me перед действием нужно to.",
+              "uk": "Після asked me перед дією потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг попросив вас пересунути стіл. Передайте прохання.",
+            "feedbackByLocale": {
+              "ru": "Для просьбы используем to move.",
+              "uk": "Для прохання використовуємо to move."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paint",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paint",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i04:audio",
+          "transcript": "paint"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-21:i04:r1",
+            "targetText": "paint",
+            "meaningByLocale": {
+              "ru": "Краска. Повторение знакомого слова.",
+              "uk": "Фарба. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paint",
+          "definitionByLocale": {
+            "ru": "Краска. Повторение знакомого слова.",
+            "uk": "Фарба. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг попросив вас принести фарбу. Перекажіть прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Друг попросив вас принести фарбу. Перекажіть прохання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i05:audio",
+          "transcript": "He asked me to bring the paint."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to bring the paint.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви попросили друга відчинити вікно. Перекажіть своє прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви попросили друга відчинити вікно. Перекажіть своє прохання.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I asked him to open the window.",
+        "localizedMeaning": {
+          "ru": "Вы попросили друга открыть окно. Перескажите свою просьбу.",
+          "uk": "Ви попросили друга відчинити вікно. Перекажіть своє прохання."
+        },
+        "orderedTokens": [
+          "I",
+          "asked",
+          "him",
+          "to",
+          "open",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав, де відро. Передайте запитання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i07:r1",
+          "text": "the bucket was"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i07:r2",
+          "text": "was the bucket"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i07:r3",
+          "text": "the bucket were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав, де відро. Передайте запитання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, где находится ведро. Передайте вопрос.",
+          "uk": "Друг запитав, де відро. Передайте запитання."
+        },
+        "gappedTargetPhrase": "He asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-21:i07:r1",
+            "text": "the bucket was"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i07:r2",
+            "text": "was the bucket"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i07:r3",
+            "text": "the bucket were"
+          }
+        ],
+        "testedDimension": "Друг запитав, де відро. Передайте запитання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i07:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав, де відро. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "В пересказе the bucket идёт перед was.",
+              "uk": "У переказі the bucket йде перед was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i07:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав, де відро. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "Bucket — один предмет; здесь was.",
+              "uk": "Bucket — один предмет; тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ladder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ladder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i08:audio",
+          "transcript": "ladder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-21:i08:r1",
+            "targetText": "ladder",
+            "meaningByLocale": {
+              "ru": "Лестница, которую можно переносить. Повторение знакомого слова.",
+              "uk": "Драбина, яку можна переносити. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ladder",
+          "definitionByLocale": {
+            "ru": "Лестница, которую можно переносить. Повторение знакомого слова.",
+            "uk": "Драбина, яку можна переносити. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг сказав вам не підійматися драбиною. Передайте заборону.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Друг сказав вам не підійматися драбиною. Передайте заборону.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i09:audio",
+          "transcript": "He told me not to climb the ladder."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He told me not to climb the ladder.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення про стіну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про стіну.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i10:audio",
+          "transcript": "He said the wall was dry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said the wall was dry.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "the",
+          "wall",
+          "was",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви попросили друга трохи відпочити.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i11:r1",
+          "text": "him"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i11:r2",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i11:r3",
+          "text": "his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви попросили друга трохи відпочити.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попросили друга немного отдохнуть.",
+          "uk": "Ви попросили друга трохи відпочити."
+        },
+        "gappedTargetPhrase": "I asked ___ to rest.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-21:i11:r1",
+            "text": "him"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i11:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i11:r3",
+            "text": "his"
+          }
+        ],
+        "testedDimension": "Ви попросили друга трохи відпочити.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви попросили друга трохи відпочити.",
+            "feedbackByLocale": {
+              "ru": "После asked здесь нужна форма him.",
+              "uk": "Після asked тут потрібна форма him."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви попросили друга трохи відпочити.",
+            "feedbackByLocale": {
+              "ru": "His обозначает принадлежность; человека здесь обозначаем him.",
+              "uk": "His позначає належність; людину тут позначаємо him."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i12:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-21:i12:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Пол. Повторение знакомого слова.",
+              "uk": "Підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Пол. Повторение знакомого слова.",
+            "uk": "Підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i13:r1",
+          "text": "He asked me to clean the floor."
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i13:r2",
+          "text": "He asked me to clean the window."
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i13:r3",
+          "text": "He asked me to clean the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i13:audio",
+          "transcript": "He asked me to clean the floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-21:i13:r1",
+            "targetText": "He asked me to clean the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i13:r2",
+            "targetText": "He asked me to clean the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i13:r3",
+            "targetText": "He asked me to clean the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked me to clean the floor.",
+              "uk": "У записі звучить He asked me to clean the floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He asked me to clean the floor.",
+              "uk": "У записі звучить He asked me to clean the floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам бракує ще одного пензля. Висловіть бажання мати ще один.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Вам бракує ще одного пензля. Висловіть бажання мати ще один.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i14:audio",
+          "transcript": "I wish I had another brush."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I had another brush.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що стілець, який вибрав друг, завеликий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що стілець, який вибрав друг, завеликий.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chair you chose is too big.",
+        "localizedMeaning": {
+          "ru": "Скажите, что стул, который выбрал друг, слишком большой.",
+          "uk": "Скажіть, що стілець, який вибрав друг, завеликий."
+        },
+        "orderedTokens": [
+          "The",
+          "chair",
+          "you",
+          "chose",
+          "is",
+          "too",
+          "big"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг попросив вас не торкатися мокрої стіни.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i16:r1",
+          "text": "not to touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i16:r2",
+          "text": "not touch"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i16:r3",
+          "text": "not touching"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг попросив вас не торкатися мокрої стіни.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг попросил вас не трогать мокрую стену.",
+          "uk": "Друг попросив вас не торкатися мокрої стіни."
+        },
+        "gappedTargetPhrase": "He asked me ___ the wall.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-21:i16:r1",
+            "text": "not to touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i16:r2",
+            "text": "not touch"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i16:r3",
+            "text": "not touching"
+          }
+        ],
+        "testedDimension": "Друг попросив вас не торкатися мокрої стіни.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i16:r2",
+            "correct": false,
+            "testedDimension": "Друг попросив вас не торкатися мокрої стіни.",
+            "feedbackByLocale": {
+              "ru": "В отрицательной просьбе нужно not to touch.",
+              "uk": "У заперечному проханні потрібне not to touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i16:r3",
+            "correct": false,
+            "testedDimension": "Друг попросив вас не торкатися мокрої стіни.",
+            "feedbackByLocale": {
+              "ru": "После asked me здесь используем not to touch.",
+              "uk": "Після asked me тут використовуємо not to touch."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Для великого столу затісно. Скажіть, що хотіли б, щоб кімната була більшою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Для великого столу затісно. Скажіть, що хотіли б, щоб кімната була більшою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i17:audio",
+          "transcript": "I wish this room were bigger."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish this room were bigger.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: друг попросив принести фарбу чи купити її?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i18:r1",
+          "text": "He asked me to bring the paint."
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i18:r2",
+          "text": "He asked me to buy the paint."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i18:audioA",
+        "en:lesson-30:session-21:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: друг попросив принести фарбу чи купити її?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He asked me to bring the paint.",
+        "contrastB": "He asked me to buy the paint.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-21:i18:audioA",
+          "transcript": "He asked me to bring the paint."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-21:i18:audioB",
+          "transcript": "He asked me to buy the paint."
+        },
+        "testedPhoneticContrast": "Послухайте: друг попросив принести фарбу чи купити її?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: друг попросив принести фарбу чи купити її?",
+            "feedbackByLocale": {
+              "ru": "Звучит bring — принести.",
+              "uk": "Звучить bring — принести."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте прохання зробити перерву.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте прохання зробити перерву.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i19:audio",
+          "transcript": "She asked us to take a break."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She asked us to take a break.",
+        "orderedTokens": [
+          "She",
+          "asked",
+          "us",
+          "to",
+          "take",
+          "a",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра запитала вас із другом, чи готові ви обідати. Передайте запитання.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-21:i20:r1",
+          "text": "we were"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i20:r2",
+          "text": "were we"
+        },
+        {
+          "responseId": "en:lesson-30:session-21:i20:r3",
+          "text": "us were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра запитала вас із другом, чи готові ви обідати. Передайте запитання.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спросила вас с другом, готовы ли вы обедать. Передайте вопрос.",
+          "uk": "Сестра запитала вас із другом, чи готові ви обідати. Передайте запитання."
+        },
+        "gappedTargetPhrase": "She asked if ___ ready for lunch.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-21:i20:r1",
+            "text": "we were"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i20:r2",
+            "text": "were we"
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i20:r3",
+            "text": "us were"
+          }
+        ],
+        "testedDimension": "Сестра запитала вас із другом, чи готові ви обідати. Передайте запитання.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-21:i20:r2",
+            "correct": false,
+            "testedDimension": "Сестра запитала вас із другом, чи готові ви обідати. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "В пересказе после if идёт we, затем were.",
+              "uk": "У переказі після if йде we, потім were."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-21:i20:r3",
+            "correct": false,
+            "testedDimension": "Сестра запитала вас із другом, чи готові ви обідати. Передайте запитання.",
+            "feedbackByLocale": {
+              "ru": "Кто готов — we; форма us здесь не подходит.",
+              "uk": "Хто готовий — we; форма us тут не підходить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-21:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг повідомив, що йому подобається колір. Передайте його повідомлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-21:i21:audio"
+      ],
+      "accessibilityLabel": "Друг повідомив, що йому подобається колір. Передайте його повідомлення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-21:i21:audio",
+          "transcript": "He said he liked the colour."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he liked the colour.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a78600abb3c2e1e8eb989ee81661ff8cd38bf1c6dc987ac7559cc46f50e8d3f7"
+}

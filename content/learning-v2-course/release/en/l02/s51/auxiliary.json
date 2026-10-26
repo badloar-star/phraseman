@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-02:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-02:session-51:intro1:r2": {
-          "ru": "С not выходит «Она сидит как надо». А рукава закрывают пальцы: It is baggy.",
-          "uk": "З not виходить «Вона сидить як треба». А рукави закривають пальці: It is baggy."
+          "ru": "С not выходит «Она не мешковатая». А рукава закрывают пальцы: It is baggy.",
+          "uk": "З not виходить «Вона не мішкувата». А рукави закривають пальці: It is baggy."
         },
         "en:lesson-02:session-51:intro1:r3": {
           "ru": "Между It и baggy нужно is: It is baggy.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "aa589da9c425c7026dab8ef9b6b33dce4655e36e6099cf3e1c87a82de360cdbf"
+  "auxiliaryFingerprint": "0f3c662cfc1ab7b10a845ecfda7a9cb3b6a969dbcf4116ea8b4e5904af24125a"
 }

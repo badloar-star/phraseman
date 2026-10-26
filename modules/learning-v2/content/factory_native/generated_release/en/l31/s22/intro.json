@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "сообщать о знакомых вещах, объяснять понимание причины и уточнять готовность комнаты.",
+    "uk": "повідомляти про знайомі речі, пояснювати розуміння причини й уточнювати готовність кімнати."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, где чашки",
+        "uk": "Я знаю, де чашки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы готовите комнату к приходу гостей. Друг ищет чашки, а вы помните, где они: I know where the cups are — я знаю, где чашки. Соберите I know + where + the cups + are. После where ставим the cups are: мы сообщаем, что знаем, а не задаём прямой вопрос.",
+        "uk": "Ви готуєте кімнату до приходу гостей. Друг шукає чашки, а ви пам’ятаєте, де вони: I know where the cups are — я знаю, де чашки. Складіть I know + where + the cups + are. Після where ставимо the cups are: ми повідомляємо, що знаємо, а не ставимо пряме запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-22:intro1:r1",
+              "text": "I know where the cups are."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro1:r2",
+              "text": "I know where are the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro1:r3",
+              "text": "I know where the cups is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-22:intro1:r1",
+              "text": "I know where the cups are."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro1:r2",
+              "text": "I know where are the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro1:r3",
+              "text": "I know where the cups is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стол уже чистый?",
+        "uk": "Стіл уже чистий?"
+      },
+      "bodyByLocale": {
+        "ru": "Друг протёр стол. Вы хотите убедиться, что всё готово: The table is clean, isn’t it? — стол чистый, правда? Соберите The table is clean + isn’t + it. После утвердительного is здесь добавляем отрицательное isn’t; один стол заменяем на it.",
+        "uk": "Друг витер стіл. Ви хочете переконатися, що все готово: The table is clean, isn’t it? — стіл чистий, правда? Складіть The table is clean + isn’t + it. Після стверджувального is тут додаємо заперечне isn’t; один стіл замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-22:intro2:r1",
+              "text": "The table is clean, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro2:r2",
+              "text": "The table is clean, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro2:r3",
+              "text": "The table is clean, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-22:intro2:r1",
+              "text": "The table is clean, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro2:r2",
+              "text": "The table is clean, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro2:r3",
+              "text": "The table is clean, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почему окно открыто",
+        "uk": "Чому вікно відчинене"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате жарко, поэтому друг открыл окно. Вы понимаете причину: I understand why the window is open — я понимаю, почему окно открыто. Соберите I understand + why + the window + is open. Why связывает ваше понимание с причиной; порядок the window is open сохраняется.",
+        "uk": "У кімнаті спекотно, тому друг відчинив вікно. Ви розумієте причину: I understand why the window is open — я розумію, чому вікно відчинене. Складіть I understand + why + the window + is open. Why пов’язує ваше розуміння з причиною; порядок the window is open зберігається."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-22:intro3:r1",
+              "text": "I understand why the window is open."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro3:r2",
+              "text": "I understand why is the window open."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro3:r3",
+              "text": "I understand why the window are open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-22:intro3:r1",
+              "text": "I understand why the window is open."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro3:r2",
+              "text": "I understand why is the window open."
+            },
+            {
+              "responseId": "en:lesson-31:session-22:intro3:r3",
+              "text": "I understand why the window are open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "73eb0f5b524938646ce6b67d336f90ca48197169283b2def457eb401b19dbf46"
+}

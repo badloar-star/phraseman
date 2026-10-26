@@ -1,0 +1,1084 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shelf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shelf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i01:audio",
+          "transcript": "shelf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-06:i01:r1",
+            "targetText": "shelf",
+            "meaningByLocale": {
+              "ru": "Полка. Повторение знакомого слова.",
+              "uk": "Полиця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shelf",
+          "definitionByLocale": {
+            "ru": "Полка. Повторение знакомого слова.",
+            "uk": "Полиця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i02:r1",
+          "text": "Could you tell me where the shelf is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i02:r2",
+          "text": "Could you tell me where the door is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i02:r3",
+          "text": "Could you tell me where the desk is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i02:audio",
+          "transcript": "Could you tell me where the shelf is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-06:i02:r1",
+            "targetText": "Could you tell me where the shelf is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i02:r2",
+            "targetText": "Could you tell me where the door is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i02:r3",
+            "targetText": "Could you tell me where the desk is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the shelf is?",
+              "uk": "У записі звучить Could you tell me where the shelf is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the shelf is?",
+              "uk": "У записі звучить Could you tell me where the shelf is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i03:audio",
+          "transcript": "table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-06:i03:r1",
+            "targetText": "table",
+            "meaningByLocale": {
+              "ru": "Стол. Повторение знакомого слова.",
+              "uk": "Стіл. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "table",
+          "definitionByLocale": {
+            "ru": "Стол. Повторение знакомого слова.",
+            "uk": "Стіл. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи вільний стіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i04:r1",
+          "text": "the table is"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i04:r2",
+          "text": "is the table"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i04:r3",
+          "text": "the table are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, чи вільний стіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, свободен ли стол.",
+          "uk": "Уточніть, чи вільний стіл."
+        },
+        "gappedTargetPhrase": "Do you know if ___ free?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-06:i04:r1",
+            "text": "the table is"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i04:r2",
+            "text": "is the table"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i04:r3",
+            "text": "the table are"
+          }
+        ],
+        "testedDimension": "Уточніть, чи вільний стіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи вільний стіл.",
+            "feedbackByLocale": {
+              "ru": "После if нужен порядок the table is.",
+              "uk": "Після if потрібен порядок the table is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи вільний стіл.",
+            "feedbackByLocale": {
+              "ru": "Один table требует is.",
+              "uk": "Один table потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де полиця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де полиця.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the shelf is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где полка.",
+          "uk": "Ввічливо запитайте, де полиця."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "shelf",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — books",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — books",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i06:audio",
+          "transcript": "books"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-06:i06:r1",
+            "targetText": "books",
+            "meaningByLocale": {
+              "ru": "Книги. Повторение знакомого слова.",
+              "uk": "Книжки. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "books",
+          "definitionByLocale": {
+            "ru": "Книги. Повторение знакомого слова.",
+            "uk": "Книжки. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна принесла книжки. Почніть із книжок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Анна принесла книжки. Почніть із книжок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i07:audio",
+          "transcript": "The books were brought by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The books were brought by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Стіл вільний». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Стіл вільний». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Стол свободен». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Стіл вільний». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the table ___ free.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-06:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Стіл вільний». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Стіл вільний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Стіл вільний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте працівницю, чи знає вона, де книжки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте працівницю, чи знає вона, де книжки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know where the books are?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудницу, знает ли она, где книги.",
+          "uk": "Запитайте працівницю, чи знає вона, де книжки."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "where",
+          "the",
+          "books",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i10:audio",
+          "transcript": "card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-06:i10:r1",
+            "targetText": "card",
+            "meaningByLocale": {
+              "ru": "Карточка. Повторение знакомого слова.",
+              "uk": "Картка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "card",
+          "definitionByLocale": {
+            "ru": "Карточка. Повторение знакомого слова.",
+            "uk": "Картка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i11:r1",
+          "text": "Do you know where my card is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i11:r2",
+          "text": "Do you know where my bag is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i11:r3",
+          "text": "Do you know where my book is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i11:audio",
+          "transcript": "Do you know where my card is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-06:i11:r1",
+            "targetText": "Do you know where my card is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i11:r2",
+            "targetText": "Do you know where my bag is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i11:r3",
+            "targetText": "Do you know where my book is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know where my card is?",
+              "uk": "У записі звучить Do you know where my card is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know where my card is?",
+              "uk": "У записі звучить Do you know where my card is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна принесла книжки. Виберіть прийменник перед ім’ям виконавця.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i12:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна принесла книжки. Виберіть прийменник перед ім’ям виконавця.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна принесла книги. Выберите предлог перед именем исполнителя.",
+          "uk": "Анна принесла книжки. Виберіть прийменник перед ім’ям виконавця."
+        },
+        "gappedTargetPhrase": "The books were brought ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-06:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i12:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна принесла книжки. Виберіть прийменник перед ім’ям виконавця.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Анна принесла книжки. Виберіть прийменник перед ім’ям виконавця.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Анна принесла книжки. Виберіть прийменник перед ім’ям виконавця.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ввічливо запитайте, коли зачиняється бібліотека.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Ввічливо запитайте, коли зачиняється бібліотека.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i13:audio",
+          "transcript": "Could you tell me when the library closes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me when the library closes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна вимила стіл. Почніть зі столу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна вимила стіл. Почніть зі столу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The table was cleaned by Anna.",
+        "localizedMeaning": {
+          "ru": "Анна вымыла стол. Начните со стола.",
+          "uk": "Анна вимила стіл. Почніть зі столу."
+        },
+        "orderedTokens": [
+          "The",
+          "table",
+          "was",
+          "cleaned",
+          "by",
+          "Anna"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Книжки тут». Перекажіть зі зсувом are у минуле, перебуваючи біля тієї самої полиці.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i15:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i15:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i15:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Книжки тут». Перекажіть зі зсувом are у минуле, перебуваючи біля тієї самої полиці.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Книги здесь». Перескажите со сдвигом are в прошлое, находясь у той же полки.",
+          "uk": "Учора Анна сказала: «Книжки тут». Перекажіть зі зсувом are у минуле, перебуваючи біля тієї самої полиці."
+        },
+        "gappedTargetPhrase": "She said the books ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-06:i15:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i15:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i15:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Книжки тут». Перекажіть зі зсувом are у минуле, перебуваючи біля тієї самої полиці.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i15:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Книжки тут». Перекажіть зі зсувом are у минуле, перебуваючи біля тієї самої полиці.",
+            "feedbackByLocale": {
+              "ru": "Are не выполняет заданный сдвиг.",
+              "uk": "Are не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i15:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Книжки тут». Перекажіть зі зсувом are у минуле, перебуваючи біля тієї самої полиці.",
+            "feedbackByLocale": {
+              "ru": "Множественное books требует were.",
+              "uk": "Множина books потребує were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте працівницю, чи знає вона, чи відкрита читальна зала.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте працівницю, чи знає вона, чи відкрита читальна зала.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i16:audio",
+          "transcript": "Do you know if the reading room is open?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you know if the reading room is open?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть у працівниці, де ваша картка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i17:r1",
+          "text": "my card is"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i17:r2",
+          "text": "is my card"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i17:r3",
+          "text": "my card are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть у працівниці, де ваша картка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните у сотрудницы, где ваша карточка.",
+          "uk": "Уточніть у працівниці, де ваша картка."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-06:i17:r1",
+            "text": "my card is"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i17:r2",
+            "text": "is my card"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i17:r3",
+            "text": "my card are"
+          }
+        ],
+        "testedDimension": "Уточніть у працівниці, де ваша картка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i17:r2",
+            "correct": false,
+            "testedDimension": "Уточніть у працівниці, де ваша картка.",
+            "feedbackByLocale": {
+              "ru": "После where нужен порядок my card is.",
+              "uk": "Після where потрібен порядок my card is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i17:r3",
+            "correct": false,
+            "testedDimension": "Уточніть у працівниці, де ваша картка.",
+            "feedbackByLocale": {
+              "ru": "Одна card требует is.",
+              "uk": "Одна card потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: читач уточнює час відкриття чи закриття?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i18:r1",
+          "text": "Could you tell me when the library opens?"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i18:r2",
+          "text": "Could you tell me when the library closes?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i18:audioA",
+        "en:lesson-31:session-06:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: читач уточнює час відкриття чи закриття?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Could you tell me when the library opens?",
+        "contrastB": "Could you tell me when the library closes?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-06:i18:audioA",
+          "transcript": "Could you tell me when the library opens?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-06:i18:audioB",
+          "transcript": "Could you tell me when the library closes?"
+        },
+        "testedPhoneticContrast": "Послухайте: читач уточнює час відкриття чи закриття?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: читач уточнює час відкриття чи закриття?",
+            "feedbackByLocale": {
+              "ru": "Звучит opens — открывается.",
+              "uk": "Звучить opens — відчиняється."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про стіл.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про стіл.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i19:audio",
+          "transcript": "Do you know if the table is free?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the table is free?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "table",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ввічливо запитайте, коли зачиняється бібліотека.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-06:i20:r1",
+          "text": "closes"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i20:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-31:session-06:i20:r3",
+          "text": "closing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, коли зачиняється бібліотека.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, когда закрывается библиотека.",
+          "uk": "Ввічливо запитайте, коли зачиняється бібліотека."
+        },
+        "gappedTargetPhrase": "Could you tell me when the library ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-06:i20:r1",
+            "text": "closes"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i20:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i20:r3",
+            "text": "closing"
+          }
+        ],
+        "testedDimension": "Ввічливо запитайте, коли зачиняється бібліотека.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-06:i20:r2",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, коли зачиняється бібліотека.",
+            "feedbackByLocale": {
+              "ru": "С the library нужна форма closes.",
+              "uk": "З the library потрібна форма closes."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-06:i20:r3",
+            "correct": false,
+            "testedDimension": "Ввічливо запитайте, коли зачиняється бібліотека.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма closes.",
+              "uk": "Потрібна форма closes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Мені потрібна ваша картка». Перекажіть зі зсувом need у минуле; картка ваша.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-06:i21:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Мені потрібна ваша картка». Перекажіть зі зсувом need у минуле; картка ваша.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-06:i21:audio",
+          "transcript": "She said she needed my card."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed my card.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a33b5557b7782b9c674be09b188ae826b50ee0f87a997dd198e8f1c2a296882d"
+}

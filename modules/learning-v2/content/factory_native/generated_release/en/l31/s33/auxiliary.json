@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-33:intro1:r2": {
+          "ru": "Нужно «но», а не объяснение причины: but.",
+          "uk": "Потрібне «але», а не пояснення причини: but."
+        },
+        "en:lesson-31:session-33:intro1:r3": {
+          "ru": "Прошедшая форма buy — bought.",
+          "uk": "Минула форма buy — bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-33:intro2:r2": {
+          "ru": "В этой конструкции although уже задаёт связь; but не добавляем.",
+          "uk": "У цій конструкції although вже задає зв’язок; but не додаємо."
+        },
+        "en:lesson-31:session-33:intro2:r3": {
+          "ru": "Для дождя в прошлом нужна форма rained.",
+          "uk": "Для дощу в минулому потрібна форма rained."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-33:intro3:r2": {
+          "ru": "После although во второй части не добавляем but.",
+          "uk": "Після although у другій частині не додаємо but."
+        },
+        "en:lesson-31:session-33:intro3:r3": {
+          "ru": "Для состояния в прошлом нужно was tired.",
+          "uk": "Для стану в минулому потрібне was tired."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "38e70a6d80f39f26b82186e244a803611cf97129bdef5a095ca69781d49f87c8"
+}

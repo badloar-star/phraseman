@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать растения, уточнить происхождение и заказать доставку.",
+    "uk": "як назвати рослини, уточнити походження й замовити доставку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мало места в саду",
+        "uk": "Мало місця в саду"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине вам понравилось крупное растение, но в саду для него мало места. Скажите: I wish I had a bigger garden — жаль, что у меня нет сада побольше. Соберите I wish + I + had + a bigger garden. После I wish назовите себя: I. Had выражает желание изменить ситуацию сейчас, а не сообщает о саде, который у вас был раньше.",
+        "uk": "У магазині вам сподобалася велика рослина, але в саду для неї мало місця. Скажіть: I wish I had a bigger garden — шкода, що в мене немає більшого саду. Складіть I wish + I + had + a bigger garden. Після I wish назвіть себе: I. Had виражає бажання змінити ситуацію зараз, а не повідомляє про сад, який у вас був раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-42:intro1:r1",
+              "text": "I wish I had a bigger garden."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro1:r2",
+              "text": "I wish I have a bigger garden."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro1:r3",
+              "text": "I wish I will have a bigger garden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-42:intro1:r1",
+              "text": "I wish I had a bigger garden."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro1:r2",
+              "text": "I wish I have a bigger garden."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro1:r3",
+              "text": "I wish I will have a bigger garden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно ли доставить",
+        "uk": "Чи можна доставити"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбрали растение в тяжёлом горшке и спрашиваете продавца о доставке: Can this plant be delivered? — можно доставить это растение? Соберите Can + this plant + be + delivered? Поставьте Can перед this plant. Затем нужны be и delivered: вы спрашиваете о возможном действии над растением.",
+        "uk": "Ви вибрали рослину у важкому горщику й запитуєте продавця про доставку: Can this plant be delivered? — чи можна доставити цю рослину? Складіть Can + this plant + be + delivered? Поставте Can перед this plant. Далі потрібні be та delivered: ви запитуєте про можливу дію з рослиною."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-42:intro2:r1",
+              "text": "Can this plant be delivered?"
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro2:r2",
+              "text": "Can this plant delivered?"
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro2:r3",
+              "text": "Can this plant be deliver?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-42:intro2:r1",
+              "text": "Can this plant be delivered?"
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro2:r2",
+              "text": "Can this plant delivered?"
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro2:r3",
+              "text": "Can this plant be deliver?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто вырастил растения",
+        "uk": "Хто виростив рослини"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец показывает несколько растений и рассказывает об их происхождении: These plants were grown by my father — эти растения вырастил мой отец. Соберите These plants + were grown + by + my father. Для нескольких растений нужна were. Grown — третья форма grow. После by назовите человека, который их вырастил.",
+        "uk": "Продавець показує кілька рослин і розповідає про їхнє походження: These plants were grown by my father — ці рослини виростив мій батько. Складіть These plants + were grown + by + my father. Для кількох рослин потрібна were. Grown — третя форма grow. Після by назвіть людину, яка їх виростила."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-42:intro3:r1",
+              "text": "These plants were grown by my father."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro3:r2",
+              "text": "These plants was grown by my father."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro3:r3",
+              "text": "These plants were grew by my father."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-42:intro3:r1",
+              "text": "These plants were grown by my father."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro3:r2",
+              "text": "These plants was grown by my father."
+            },
+            {
+              "responseId": "en:lesson-28:session-42:intro3:r3",
+              "text": "These plants were grew by my father."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f0b6a0d583cf71858fcfeab9e96307efff9f9250a4a608906734fd8fc970d729"
+}

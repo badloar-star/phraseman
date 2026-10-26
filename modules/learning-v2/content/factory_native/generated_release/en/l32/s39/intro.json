@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. The bread is warm, so it might be fresh. — Хлеб тёплый, поэтому он, возможно, свежий. Соберите The bread is warm + so + it might be fresh. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием fresh нужна связка be.",
+        "uk": "Ви берете теплий хліб, але не знаєте, коли його спекли. The bread is warm, so it might be fresh. — Хліб теплий, тому він, можливо, свіжий. Складіть The bread is warm + so + it might be fresh. До so назвіть спостереження, після so — можливий висновок із might. Перед станом fresh потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-39:intro1:r1",
+              "text": "The bread is warm, so it might be fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro1:r2",
+              "text": "The bread is warm, so it might is fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro1:r3",
+              "text": "The bread is warm, so it might to be fresh."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-39:intro1:r1",
+              "text": "The bread is warm, so it might be fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro1:r2",
+              "text": "The bread is warm, so it might is fresh."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro1:r3",
+              "text": "The bread is warm, so it might to be fresh."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. The bag can't be empty. — Пакет не может быть пустым. Соберите The bag + can’t + be + empty. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед empty здесь нужна связка be.",
+        "uk": "Анна каже, що пакет порожній, але крізь прозору стінку ви бачите хліб. The bag can't be empty. — Пакет не може бути порожнім. Складіть The bag + can’t + be + empty. Спостереження виключає названий стан. Can’t виражає цей висновок; перед empty тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-39:intro2:r1",
+              "text": "The bag can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro2:r2",
+              "text": "The bag can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro2:r3",
+              "text": "The bag can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-39:intro2:r1",
+              "text": "The bag can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro2:r2",
+              "text": "The bag can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro2:r3",
+              "text": "The bag can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The knife I bought is sharp. — Нож, который я купил, острый. Соберите The knife + I bought + is sharp. Часть I bought уточняет knife. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The knife I bought is sharp. — Ніж, який я купив, гострий. Складіть The knife + I bought + is sharp. Частина I bought уточнює knife. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-39:intro3:r1",
+              "text": "The knife I bought is sharp."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro3:r2",
+              "text": "The knife I bought it is sharp."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro3:r3",
+              "text": "The knife I buying is sharp."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-39:intro3:r1",
+              "text": "The knife I bought is sharp."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro3:r2",
+              "text": "The knife I bought it is sharp."
+            },
+            {
+              "responseId": "en:lesson-32:session-39:intro3:r3",
+              "text": "The knife I buying is sharp."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3500b1debc3a7997e6ad0e271b9e2f43d14d8b094c3023f345feeb78c41097bc"
+}

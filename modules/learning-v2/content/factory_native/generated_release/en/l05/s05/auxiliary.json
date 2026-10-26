@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-05:intro2:r2": {
-          "ru": "Здесь бумага вообще, а не один предмет, поэтому a не нужно.",
-          "uk": "Тут папір узагалі, а не один предмет, тому a не потрібно."
+          "ru": "Paper здесь означает бумагу как материал, поэтому употребляется без a.",
+          "uk": "Paper тут означає папір як матеріал, тому вживається без a."
         },
         "en:lesson-05:session-05:intro2:r3": {
           "ru": "Стол один, как it: нужно has, а не have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f3e0948fc494703b017815c9baed41599b8082070d0942ec098ee1227e9e3bd8"
+  "auxiliaryFingerprint": "099853abe28fdba3e86ed046f5eb85f163172e0a17144979b1f8ef9080b6e2c5"
 }

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-22:i01",
+    "correctText": "oven",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i02",
+    "correctText": "The oven could be cold.",
+    "correctResponseId": "en:lesson-32:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i04",
+    "correctText": "cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i05",
+    "correctText": "The cake must be ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i06",
+    "correctText": "dish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i07",
+    "correctText": "The dish I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i09",
+    "correctText": "The oven could be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i10",
+    "correctText": "It must be ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i12",
+    "correctText": "plate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i13",
+    "correctText": "The plate may be hot.",
+    "correctResponseId": "en:lesson-32:session-22:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i14",
+    "correctText": "The plate may be hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i15",
+    "correctText": "This is the dish I washed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-22:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i17",
+    "correctText": "The cake was hot, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i18",
+    "correctText": "The oven could be cold.",
+    "correctResponseId": "en:lesson-32:session-22:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i19",
+    "correctText": "The cake must be ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-22:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-22:i21",
+    "correctText": "The oven may be cold.",
+    "correctResponseId": null
+  }
+]

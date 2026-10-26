@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-31:i01",
+    "correctText": "beanbag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i02",
+    "correctText": "May I sit on the beanbag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i03",
+    "correctText": "The visitor who I met was friendly.",
+    "correctResponseId": "en:lesson-29:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i04",
+    "correctText": "I met",
+    "correctResponseId": "en:lesson-29:session-31:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i05",
+    "correctText": "ornament",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i06",
+    "correctText": "I like this ornament.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i07",
+    "correctText": "Who made this gift?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i08",
+    "correctText": "Your room looks lovely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i09",
+    "correctText": "keepsake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i10",
+    "correctText": "This is a keepsake from my grandmother.",
+    "correctResponseId": "en:lesson-29:session-31:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i11",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-29:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i12",
+    "correctText": "This is the room where we can relax.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i13",
+    "correctText": "trinket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i14",
+    "correctText": "I keep this trinket in a box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i15",
+    "correctText": "en:lesson-29:session-31:i15:p1=beanbag\nen:lesson-29:session-31:i15:p2=ornament\nen:lesson-29:session-31:i15:p3=keepsake\nen:lesson-29:session-31:i15:p4=trinket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i16",
+    "correctText": "where",
+    "correctResponseId": "en:lesson-29:session-31:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i17",
+    "correctText": "This is a keepsake from my grandmother.",
+    "correctResponseId": "en:lesson-29:session-31:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i18",
+    "correctText": "The ornament was made by my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i19",
+    "correctText": "May I have a closer look?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i20",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-31:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-31:i21",
+    "correctText": "Thank you for inviting me.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-29:intro1:r2": {
+          "ru": "После must нужна be.",
+          "uk": "Після must потрібна be."
+        },
+        "en:lesson-28:session-29:intro1:r3": {
+          "ru": "Здесь нужна kept.",
+          "uk": "Тут потрібна kept."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-29:intro2:r2": {
+          "ru": "С shirts нужна are.",
+          "uk": "Із shirts потрібна are."
+        },
+        "en:lesson-28:session-29:intro2:r3": {
+          "ru": "Здесь нужна made.",
+          "uk": "Тут потрібна made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-29:intro3:r2": {
+          "ru": "После had нужна sold.",
+          "uk": "Після had потрібна sold."
+        },
+        "en:lesson-28:session-29:intro3:r3": {
+          "ru": "Здесь нужна had sold.",
+          "uk": "Тут потрібна had sold."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "37e4e3c08986ad56680692f265006a8157455acdd216e3227ba513c3d7f210f8"
+}

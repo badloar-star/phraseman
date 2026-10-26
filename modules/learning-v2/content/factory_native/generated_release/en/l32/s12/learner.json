@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i01:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-12:i01:r1",
+            "targetText": "soup",
+            "meaningByLocale": {
+              "ru": "Суп. Повторение знакомого слова.",
+              "uk": "Суп. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soup",
+          "definitionByLocale": {
+            "ru": "Суп. Повторение знакомого слова.",
+            "uk": "Суп. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i02:r1",
+          "text": "The soup might be hot."
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i02:r2",
+          "text": "The soup might be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i02:r3",
+          "text": "The soup might be ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i02:audio",
+          "transcript": "The soup might be hot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-12:i02:r1",
+            "targetText": "The soup might be hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i02:r2",
+            "targetText": "The soup might be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i02:r3",
+            "targetText": "The soup might be ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup might be hot.",
+              "uk": "У записі звучить The soup might be hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup might be hot.",
+              "uk": "У записі звучить The soup might be hot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+          "uk": "Ви нещодавно зняли суп із плити, але ще не куштували його. Можливо, суп гарячий."
+        },
+        "gappedTargetPhrase": "The soup might ___ hot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-12:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+            "feedbackByLocale": {
+              "ru": "После might здесь нужна форма be.",
+              "uk": "Після might тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i04:audio",
+          "transcript": "rice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-12:i04:r1",
+            "targetText": "rice",
+            "meaningByLocale": {
+              "ru": "Рис. Повторение знакомого слова.",
+              "uk": "Рис. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rice",
+          "definitionByLocale": {
+            "ru": "Рис. Повторение знакомого слова.",
+            "uk": "Рис. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Рис, должно быть, готов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Рис, должно быть, готов.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The rice must be ready.",
+        "localizedMeaning": {
+          "ru": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Рис, должно быть, готов.",
+          "uk": "Рис варився належний час, і таймер щойно задзвенів. Ви ще не відкривали кришку. Рис, напевно, готовий."
+        },
+        "orderedTokens": [
+          "The",
+          "rice",
+          "must",
+          "be",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i06:audio",
+          "transcript": "bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-12:i06:r1",
+            "targetText": "bowl",
+            "meaningByLocale": {
+              "ru": "Миска. Повторение знакомого слова.",
+              "uk": "Миска. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bowl",
+          "definitionByLocale": {
+            "ru": "Миска. Повторение знакомого слова.",
+            "uk": "Миска. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Миска, которую я помыл, чистая. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Миска, которую я помыл, чистая. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i07:audio",
+          "transcript": "The bowl I washed is clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bowl I washed is clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i08:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i08:r2",
+          "text": "washed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i08:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+          "uk": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The bowl I ___ is clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-12:i08:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i08:r2",
+            "text": "washed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i08:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма washed.",
+              "uk": "Потрібна минула форма washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soup might be hot.",
+        "localizedMeaning": {
+          "ru": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий.",
+          "uk": "Ви нещодавно зняли суп із плити, але ще не куштували його. Можливо, суп гарячий."
+        },
+        "orderedTokens": [
+          "The",
+          "soup",
+          "might",
+          "be",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i10:audio",
+          "transcript": "It must be ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рис, должно быть, готов. Выберите форму после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рис, должно быть, готов. Выберите форму после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рис, должно быть, готов. Выберите форму после must.",
+          "uk": "Рис, напевно, готовий. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The rice must ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-12:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Рис, должно быть, готов. Выберите форму после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Рис, должно быть, готов. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Рис, должно быть, готов. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i12:audio",
+          "transcript": "spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-12:i12:r1",
+            "targetText": "spoon",
+            "meaningByLocale": {
+              "ru": "Ложка. Повторение знакомого слова.",
+              "uk": "Ложка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spoon",
+          "definitionByLocale": {
+            "ru": "Ложка. Повторение знакомого слова.",
+            "uk": "Ложка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i13:r1",
+          "text": "The spoon may be dirty."
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i13:r2",
+          "text": "The spoon may be clean."
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i13:r3",
+          "text": "The spoon may be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i13:audio",
+          "transcript": "The spoon may be dirty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-12:i13:r1",
+            "targetText": "The spoon may be dirty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i13:r2",
+            "targetText": "The spoon may be clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i13:r3",
+            "targetText": "The spoon may be wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The spoon may be dirty.",
+              "uk": "У записі звучить The spoon may be dirty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The spoon may be dirty.",
+              "uk": "У записі звучить The spoon may be dirty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i14:audio",
+          "transcript": "The spoon may be dirty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The spoon may be dirty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете чистую миску, которую только что помыли. Покажите предмет: начните с This is, затем назовите the bowl и уточнение I washed. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете чистую миску, которую только что помыли. Покажите предмет: начните с This is, затем назовите the bowl и уточнение I washed. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the bowl I washed.",
+        "localizedMeaning": {
+          "ru": "Вы показываете чистую миску, которую только что помыли. Покажите предмет: начните с This is, затем назовите the bowl и уточнение I washed. Не добавляйте that.",
+          "uk": "Ви показуєте чисту миску, яку щойно помили. Покажіть предмет: почніть із This is, потім назвіть the bowl й уточнення I washed. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "bowl",
+          "I",
+          "washed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп был горячий, поэтому вы подождали перед едой. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп был горячий, поэтому вы подождали перед едой. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп был горячий, поэтому вы подождали перед едой. Вставьте «поэтому».",
+          "uk": "Суп був гарячий, тому ви зачекали перед їжею. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The soup was hot, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-12:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Суп был горячий, поэтому вы подождали перед едой. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i16:r2",
+            "correct": false,
+            "testedDimension": "Суп был горячий, поэтому вы подождали перед едой. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i16:r3",
+            "correct": false,
+            "testedDimension": "Суп был горячий, поэтому вы подождали перед едой. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Суп был горячий, поэтому вы подождали перед едой. Начните с причины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Суп был горячий, поэтому вы подождали перед едой. Начните с причины.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i17:audio",
+          "transcript": "The soup was hot, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soup was hot, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какое состояние названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i18:r1",
+          "text": "The soup might be hot."
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i18:r2",
+          "text": "The soup might be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i18:audioA",
+        "en:lesson-32:session-12:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте, какое состояние названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The soup might be hot.",
+        "contrastB": "The soup might be cold.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-12:i18:audioA",
+          "transcript": "The soup might be hot."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-12:i18:audioB",
+          "transcript": "The soup might be cold."
+        },
+        "testedPhoneticContrast": "Послушайте, какое состояние названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какое состояние названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит hot.",
+              "uk": "Звучить hot."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод по признакам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод по признакам.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i19:audio",
+          "transcript": "The rice must be ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The rice must be ready.",
+        "orderedTokens": [
+          "The",
+          "rice",
+          "must",
+          "be",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-12:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-12:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+          "uk": "Ви не знаєте, чи користувався хтось цією ложкою. Можливо, вона брудна."
+        },
+        "gappedTargetPhrase": "The spoon may ___ dirty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-12:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-12:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+            "feedbackByLocale": {
+              "ru": "После may здесь используем be.",
+              "uk": "Після may тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-12:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете, пользовался ли кто-то этой ложкой. Возможно, она грязная.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-12:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий. Теперь назовите эту возможность с may.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-12:i21:audio"
+      ],
+      "accessibilityLabel": "Вы недавно сняли суп с плиты, но ещё не пробовали его. Возможно, суп горячий. Теперь назовите эту возможность с may.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-12:i21:audio",
+          "transcript": "The soup may be hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soup may be hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d426bf1fe64fc0e056b8260de2b93f6db489fd0415407f1f940b73a323ffe7f2"
+}

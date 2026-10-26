@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-53:i01",
+    "correctText": "Do you have a lighter shade?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i02",
+    "correctText": "concealer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i03",
+    "correctText": "This concealer is too dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-53:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i05",
+    "correctText": "The brush is sold separately.",
+    "correctResponseId": "en:lesson-28:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i06",
+    "correctText": "blusher",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i07",
+    "correctText": "Where can I find blusher?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i08",
+    "correctText": "My makeup was done by my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i10",
+    "correctText": "eyeshadow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i11",
+    "correctText": "I would like some brown eyeshadow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i12",
+    "correctText": "The mirror was broken in my bag.",
+    "correctResponseId": "en:lesson-28:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-53:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i14",
+    "correctText": "bronzer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i15",
+    "correctText": "How much is this bronzer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i16",
+    "correctText": "en:lesson-28:session-53:i16:p1=concealer\nen:lesson-28:session-53:i16:p2=blusher\nen:lesson-28:session-53:i16:p3=eyeshadow\nen:lesson-28:session-53:i16:p4=bronzer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i17",
+    "correctText": "This product cannot be returned.",
+    "correctResponseId": "en:lesson-28:session-53:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i18",
+    "correctText": "Could I have a small pack?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i19",
+    "correctText": "Your order will be sent tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i20",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-28:session-53:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-53:i21",
+    "correctText": "Please keep the receipt.",
+    "correctResponseId": null
+  }
+]

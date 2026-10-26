@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-54:intro1:r2": {
+          "ru": "В этом вопросе перед dessert нужна is.",
+          "uk": "У цьому запитанні перед dessert потрібна is."
+        },
+        "en:lesson-28:session-54:intro1:r3": {
+          "ru": "После is нужна served.",
+          "uk": "Після is потрібна served."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-54:intro2:r2": {
+          "ru": "Перед packed нужна be.",
+          "uk": "Перед packed потрібна be."
+        },
+        "en:lesson-28:session-54:intro2:r3": {
+          "ru": "После be нужна packed.",
+          "uk": "Після be потрібна packed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-54:intro3:r2": {
+          "ru": "С несколькими cakes нужна were.",
+          "uk": "З кількома cakes потрібна were."
+        },
+        "en:lesson-28:session-54:intro3:r3": {
+          "ru": "После were нужна made.",
+          "uk": "Після were потрібна made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a441a608ad700b6ce772078224d233c933bb50c55ed56dda8a19939c36a23bd0"
+}

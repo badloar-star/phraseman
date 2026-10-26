@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-52:intro1:r2": {
+          "ru": "После asked используем me.",
+          "uk": "Після asked використовуємо me."
+        },
+        "en:lesson-30:session-52:intro1:r3": {
+          "ru": "После asked me перед feed нужно to.",
+          "uk": "Після asked me перед feed потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-52:intro2:r2": {
+          "ru": "После told перед me не нужно to.",
+          "uk": "Після told перед me не потрібне to."
+        },
+        "en:lesson-30:session-52:intro2:r3": {
+          "ru": "Перед me здесь используем told.",
+          "uk": "Перед me тут використовуємо told."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-52:intro3:r2": {
+          "ru": "После not перед open нужно to.",
+          "uk": "Після not перед open потрібне to."
+        },
+        "en:lesson-30:session-52:intro3:r3": {
+          "ru": "Здесь нужно not to open.",
+          "uk": "Тут потрібне not to open."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dd055f0a26857f3a637f8f690471cead5d12421a498c64f844c2aed7c7cf165a"
+}

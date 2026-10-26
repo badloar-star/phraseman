@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-48:intro1:r2": {
+          "ru": "После to нужна форма dry.",
+          "uk": "Після to потрібна форма dry."
+        },
+        "en:lesson-31:session-48:intro1:r3": {
+          "ru": "Перед dry для цели используем to.",
+          "uk": "Перед dry для мети використовуємо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-48:intro2:r2": {
+          "ru": "Перед частью she could get in нужна связка so that.",
+          "uk": "Перед частиною she could get in потрібна сполука so that."
+        },
+        "en:lesson-31:session-48:intro2:r3": {
+          "ru": "После could нужна форма get.",
+          "uk": "Після could потрібна форма get."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-48:intro3:r2": {
+          "ru": "После if порядок the pool is open.",
+          "uk": "Після if порядок the pool is open."
+        },
+        "en:lesson-31:session-48:intro3:r3": {
+          "ru": "С pool нужна форма is.",
+          "uk": "З pool потрібна форма is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3518fd9839bbbc3b20cd02b8054db187b7444690c3200dcdd97e40247feb3a67"
+}

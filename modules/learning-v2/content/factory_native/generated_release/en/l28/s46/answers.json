@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-46:i01",
+    "correctText": "This ring was made by my sister.",
+    "correctResponseId": "en:lesson-28:session-46:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i02",
+    "correctText": "charm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i03",
+    "correctText": "Can you add this charm?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i04",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-46:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i05",
+    "correctText": "How much will the repair cost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i06",
+    "correctText": "anklet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i07",
+    "correctText": "Can I try on this anklet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i08",
+    "correctText": "The earrings will be wrapped for you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i09",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-28:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i10",
+    "correctText": "sequin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i11",
+    "correctText": "A sequin is missing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i12",
+    "correctText": "The bracelet was repaired yesterday.",
+    "correctResponseId": "en:lesson-28:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i13",
+    "correctText": "Could I have a gift box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i14",
+    "correctText": "rhinestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i15",
+    "correctText": "Can you replace this rhinestone?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i16",
+    "correctText": "en:lesson-28:session-46:i16:p1=charm\nen:lesson-28:session-46:i16:p2=anklet\nen:lesson-28:session-46:i16:p3=sequin\nen:lesson-28:session-46:i16:p4=rhinestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i17",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-28:session-46:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i18",
+    "correctText": "The rings are kept in a glass case.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i19",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-28:session-46:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i20",
+    "correctText": "When can I collect the bracelet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-46:i21",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-46:i21:r1"
+  }
+]

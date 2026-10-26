@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-03:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-46:intro1:r2": {
-          "ru": "У дома одна крыша, и она понятна вам обоим, поэтому the: The roof is old.",
-          "uk": "У будинку один дах, і він зрозумілий вам обом, тому the: The roof is old."
+          "ru": "После The roof нужно is.",
+          "uk": "Після The roof потрібне is."
         },
         "en:lesson-03:session-46:intro1:r3": {
           "ru": "Крыша одна, поэтому нужно is: The roof is old.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-03:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-46:intro2:r2": {
-          "ru": "Лифт в подъезде один, и он понятен вам обеим, поэтому the: The lift is slow.",
-          "uk": "Ліфт у під’їзді один, і він зрозумілий вам обом, тому the: The lift is slow."
+          "ru": "После The lift нужно is.",
+          "uk": "Після The lift потрібне is."
         },
         "en:lesson-03:session-46:intro2:r3": {
           "ru": "Лифт один, поэтому нужно is: The lift is slow.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4a7f81545d16620a91587640711dfb2cd21116c2d0ccd35bf7e2cb4eaff6bb52"
+  "auxiliaryFingerprint": "48a2d8b9edbf49587eb1701d986463bb093976d47d353e71a8c98d6d5ac8e46b"
 }

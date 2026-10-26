@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-14:intro1:r2": {
+          "ru": "Несколько средств: are.",
+          "uk": "Кілька засобів: are."
+        },
+        "en:lesson-28:session-14:intro1:r3": {
+          "ru": "Здесь нужна are kept.",
+          "uk": "Тут потрібна are kept."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-14:intro2:r2": {
+          "ru": "Один фильтр: was.",
+          "uk": "Один фільтр: was."
+        },
+        "en:lesson-28:session-14:intro2:r3": {
+          "ru": "Was clean означает «был чистым»; о выполненной чистке скажите was cleaned.",
+          "uk": "Was clean означає «був чистим»; про виконане чищення скажіть was cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-14:intro3:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-28:session-14:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "921dfcb8bd7664f98164d6638665f47e14e41546ffbaa33183ee0afce6ff26f2"
+}

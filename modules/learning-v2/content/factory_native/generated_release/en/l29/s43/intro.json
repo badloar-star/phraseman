@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать маленькую форму, плоскую жарочную поверхность, сковороду и пароварку, уточнить покупку и место.",
+    "uk": "як назвати маленьку форму, пласку жарильну поверхню, сковороду та пароварку, уточнити покупку й місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слишком тяжёлая сковорода",
+        "uk": "Занадто важка сковорода"
+      },
+      "bodyByLocale": {
+        "ru": "Дома вы пробуете поднять новую сковороду и жалуетесь сестре. Скажите: The pan I bought is too heavy — сковорода, которую я купил, слишком тяжёлая. Соберите The pan + I bought + is too heavy. В уточнении действие выполняет I, а pan называет покупку. Поэтому that перед I можно опустить; it после bought не добавляем.",
+        "uk": "Удома ви пробуєте підняти нову сковороду й скаржитеся сестрі. Скажіть: The pan I bought is too heavy — сковорода, яку я купив, занадто важка. Складіть The pan + I bought + is too heavy. В уточненні дію виконує I, а pan називає покупку. Тому that перед I можна пропустити; it після bought не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-43:intro1:r1",
+              "text": "The pan I bought is too heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro1:r2",
+              "text": "The pan I bought it is too heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro1:r3",
+              "text": "The pan me bought is too heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-43:intro1:r1",
+              "text": "The pan I bought is too heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro1:r2",
+              "text": "The pan I bought it is too heavy."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro1:r3",
+              "text": "The pan me bought is too heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Магазин, где вы купили посуду",
+        "uk": "Магазин, де ви купили посуд"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проходите с сестрой мимо магазина, в котором купили сковороду. Скажите: This is the shop where I bought the pan — это магазин, где я купил сковороду. Соберите This is the shop + where + I bought the pan. Where связывает покупку с местом. После where сохраняем порядок I bought, без вопросительного did.",
+        "uk": "Ви проходите із сестрою повз магазин, у якому купили сковороду. Скажіть: This is the shop where I bought the pan — це магазин, де я купив сковороду. Складіть This is the shop + where + I bought the pan. Where пов’язує покупку з місцем. Після where зберігаємо порядок I bought, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-43:intro2:r1",
+              "text": "This is the shop where I bought the pan."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro2:r2",
+              "text": "This is the shop where did I buy the pan."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro2:r3",
+              "text": "This is the shop who I bought the pan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-43:intro2:r1",
+              "text": "This is the shop where I bought the pan."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro2:r2",
+              "text": "This is the shop where did I buy the pan."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro2:r3",
+              "text": "This is the shop who I bought the pan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто починил ручку",
+        "uk": "Хто полагодив ручку"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра замечает, что ручка старой кастрюли больше не шатается. Скажите: The handle was repaired by my father — ручку починил мой отец. Соберите The handle + was repaired + by my father. Начните с ручки, затем поставьте was repaired — была починена. By вводит человека, который её починил.",
+        "uk": "Сестра помічає, що ручка старої каструлі більше не хитається. Скажіть: The handle was repaired by my father — ручку полагодив мій батько. Складіть The handle + was repaired + by my father. Почніть із ручки, потім поставте was repaired — була полагоджена. By вводить людину, яка її полагодила."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-43:intro3:r1",
+              "text": "The handle was repaired by my father."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro3:r2",
+              "text": "The handle was repair by my father."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro3:r3",
+              "text": "The handle was repaired of my father."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-43:intro3:r1",
+              "text": "The handle was repaired by my father."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro3:r2",
+              "text": "The handle was repair by my father."
+            },
+            {
+              "responseId": "en:lesson-29:session-43:intro3:r3",
+              "text": "The handle was repaired of my father."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a5192fdcb8538dfb685e3029d6814a9cbd6f87568288ee24a5509a1d08cd02c9"
+}

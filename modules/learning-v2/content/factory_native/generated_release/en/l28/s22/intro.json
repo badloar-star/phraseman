@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "как описать проверку и замену деталей, выразить желание и связать события в прошлом.",
+    "uk": "як описати перевірку й заміну деталей, висловити бажання та пов’язати події в минулому."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проверят утром",
+        "uk": "Перевірять уранці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы оставляете машину в сервисе и спрашиваете, когда её осмотрят. Сотрудник отвечает: Your car will be checked in the morning — вашу машину проверят утром. Соберите Your car + will be + checked + in the morning. Will be checked сообщает о будущем действии над машиной. Между will и checked нужна be. Последняя часть указывает время.",
+        "uk": "Ви залишаєте машину в сервісі й запитуєте, коли її оглянуть. Працівник відповідає: Your car will be checked in the morning — вашу машину перевірять уранці. Складіть Your car + will be + checked + in the morning. Will be checked повідомляє про майбутню дію над машиною. Між will і checked потрібна be. Остання частина вказує час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-22:intro1:r1",
+              "text": "Your car will be checked in the morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro1:r2",
+              "text": "Your car will checked in the morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro1:r3",
+              "text": "Your car will be check in the morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-22:intro1:r1",
+              "text": "Your car will be checked in the morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro1:r2",
+              "text": "Your car will checked in the morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro1:r3",
+              "text": "Your car will be check in the morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что уже заменили",
+        "uk": "Що вже замінили"
+      },
+      "bodyByLocale": {
+        "ru": "Механик спрашивает, давно ли меняли аккумулятор. Это сделали на прошлой неделе. Ответьте: The battery was replaced last week — аккумулятор заменили на прошлой неделе. Соберите The battery + was replaced + last week. Один аккумулятор и прошлое действие: was. Replaced после was описывает, что с ним сделали. Last week называет время.",
+        "uk": "Механік запитує, чи давно міняли акумулятор. Це зробили минулого тижня. Дайте відповідь: The battery was replaced last week — акумулятор замінили минулого тижня. Складіть The battery + was replaced + last week. Один акумулятор і минула дія: was. Replaced після was описує, що з ним зробили. Last week називає час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-22:intro2:r1",
+              "text": "The battery was replaced last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro2:r2",
+              "text": "The battery were replaced last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro2:r3",
+              "text": "The battery was replace last week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-22:intro2:r1",
+              "text": "The battery was replaced last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro2:r2",
+              "text": "The battery were replaced last week."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro2:r3",
+              "text": "The battery was replace last week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы более тихую машину",
+        "uk": "Хотілося б тихішу машину"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша машина шумная, и это утомляет в долгой поездке. Скажите: I wish my car were quieter — хотелось бы, чтобы моя машина была тише. Соберите I wish + my car + were + quieter. Were после I wish описывает желаемое положение сейчас. Quieter — тише. Вы выражаете желание, а не рассказываете о прошлом.",
+        "uk": "Ваша машина шумна, і це втомлює в довгій поїздці. Скажіть: I wish my car were quieter — хотілося б, щоб моя машина була тихішою. Складіть I wish + my car + were + quieter. Were після I wish описує бажаний стан зараз. Quieter — тихіша. Ви висловлюєте бажання, а не розповідаєте про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-22:intro3:r1",
+              "text": "I wish my car were quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro3:r2",
+              "text": "I wish my car is quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro3:r3",
+              "text": "I wish my car be quieter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-22:intro3:r1",
+              "text": "I wish my car were quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro3:r2",
+              "text": "I wish my car is quieter."
+            },
+            {
+              "responseId": "en:lesson-28:session-22:intro3:r3",
+              "text": "I wish my car be quieter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ef692c87460c48cea92e2da2813f3be9ac858ad6675260b02efdd40d1829d847"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "передавать слова о нескольких предметах, пересказывать вопрос и уточнять покупку.",
+    "uk": "передавати слова про кілька предметів, переказувати запитання й уточнювати покупку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Продавец рассказал о яблоках",
+        "uk": "Продавець розповів про яблука"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера продавец сказал: «Яблоки свежие». Перескажите со сдвигом времени: He said the apples were fresh — он сказал, что яблоки свежие. Соберите He + said + the apples + were fresh. В исходных словах The apples are fresh форма are сдвигается в were после said. Apples — несколько яблок, поэтому were.",
+        "uk": "Учора продавець сказав: «Яблука свіжі». Перекажіть зі зсувом часу: He said the apples were fresh — він сказав, що яблука свіжі. Складіть He + said + the apples + were fresh. У початкових словах The apples are fresh форма are зсувається у were після said. Apples — кілька яблук, тому were."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-51:intro1:r1",
+              "text": "He said the apples were fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro1:r2",
+              "text": "He said the apples are fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro1:r3",
+              "text": "He said the apples was fresh."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-51:intro1:r1",
+              "text": "He said the apples were fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro1:r2",
+              "text": "He said the apples are fresh."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro1:r3",
+              "text": "He said the apples was fresh."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Продавец предложил груши",
+        "uk": "Продавець запропонував груші"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец спросил вас: «Хочешь груш?» Перескажите вопрос: He asked if I wanted pears — он спросил, хочу ли я груш. Соберите He + asked + if + I + wanted pears. If передаёт «ли»; после него ставим I перед wanted, без вопросительного did.",
+        "uk": "Продавець запитав вас: «Хочеш груш?» Перекажіть запитання: He asked if I wanted pears — він запитав, чи хочу я груш. Складіть He + asked + if + I + wanted pears. If передає «чи»; після нього ставимо I перед wanted, без питального did."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-51:intro2:r1",
+              "text": "He asked if I wanted pears."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro2:r2",
+              "text": "He asked if did I want pears."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro2:r3",
+              "text": "He asked if I wanting pears."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-51:intro2:r1",
+              "text": "He asked if I wanted pears."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro2:r2",
+              "text": "He asked if did I want pears."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro2:r3",
+              "text": "He asked if I wanting pears."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Какие яблоки сладкие",
+        "uk": "Які яблука солодкі"
+      },
+      "bodyByLocale": {
+        "ru": "Дома вы рассказываете о покупке: The apples I bought are sweet — яблоки, которые я купил, сладкие. Соберите The apples + I bought + are sweet. I bought уточняет яблоки: I — покупатель, apples — купленный предмет. Поэтому that перед I можно опустить.",
+        "uk": "Удома ви розповідаєте про покупку: The apples I bought are sweet — яблука, які я купив, солодкі. Складіть The apples + I bought + are sweet. I bought уточнює яблука: I — покупець, apples — куплений предмет. Тому that перед I можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-51:intro3:r1",
+              "text": "The apples I bought are sweet."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro3:r2",
+              "text": "The apples bought I are sweet."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro3:r3",
+              "text": "The apples I bought is sweet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-51:intro3:r1",
+              "text": "The apples I bought are sweet."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro3:r2",
+              "text": "The apples bought I are sweet."
+            },
+            {
+              "responseId": "en:lesson-30:session-51:intro3:r3",
+              "text": "The apples I bought is sweet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dbe0f34391da8f6fa3b5eec6df55f6678bcd468c0b5d653e87157da4dcddb685"
+}

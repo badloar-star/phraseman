@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "соединять результат с причиной: because перед целой частью предложения, because of перед названием причины.",
+    "uk": "поєднувати результат із причиною: because перед цілою частиною речення, because of перед назвою причини."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Остался дома, потому что устал",
+        "uk": "Залишився вдома, бо втомився"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, почему вы вчера не пошли гулять. Вы устали и остались дома: I stayed home because I was tired — я остался дома, потому что устал. Соберите I stayed home + because + I was tired. После because идёт целая причина: кто — I, в каком состоянии — was tired.",
+        "uk": "Друг запитує, чому ви вчора не пішли гуляти. Ви втомилися й залишилися вдома: I stayed home because I was tired — я залишився вдома, бо втомився. Складіть I stayed home + because + I was tired. Після because йде ціла причина: хто — I, у якому стані — was tired."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-25:intro1:r1",
+              "text": "I stayed home because I was tired."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro1:r2",
+              "text": "I stayed home because of I was tired."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro1:r3",
+              "text": "I stayed home because I tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-25:intro1:r1",
+              "text": "I stayed home because I was tired."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro1:r2",
+              "text": "I stayed home because of I was tired."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro1:r3",
+              "text": "I stayed home because I tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Остался дома из-за дождя",
+        "uk": "Залишився вдома через дощ"
+      },
+      "bodyByLocale": {
+        "ru": "В другой день вы отменили прогулку из-за дождя: I stayed home because of the rain — я остался дома из-за дождя. Соберите I stayed home + because of + the rain. Здесь причина названа предметным словом rain, без отдельного действия. Перед такой причиной используем because of.",
+        "uk": "Іншого дня ви скасували прогулянку через дощ: I stayed home because of the rain — я залишився вдома через дощ. Складіть I stayed home + because of + the rain. Тут причину названо іменником rain, без окремої дії. Перед такою причиною використовуємо because of."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-25:intro2:r1",
+              "text": "I stayed home because of the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro2:r2",
+              "text": "I stayed home because the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro2:r3",
+              "text": "I stayed home because of was raining."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-25:intro2:r1",
+              "text": "I stayed home because of the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro2:r2",
+              "text": "I stayed home because the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro2:r3",
+              "text": "I stayed home because of was raining."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Опоздал, потому что автобус опоздал",
+        "uk": "Запізнився, бо автобус запізнився"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приехали к другу позже, чем обещали. Автобус задержался. Объясните: I was late because the bus was late — я опоздал, потому что автобус опоздал. Соберите I was late + because + the bus was late. До because говорим о себе, после — об автобусе: у каждой части свой участник и was.",
+        "uk": "Ви приїхали до друга пізніше, ніж обіцяли. Автобус затримався. Поясніть: I was late because the bus was late — я запізнився, бо автобус запізнився. Складіть I was late + because + the bus was late. До because говоримо про себе, після — про автобус: у кожної частини свій учасник і was."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-25:intro3:r1",
+              "text": "I was late because the bus was late."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro3:r2",
+              "text": "I was late because of the bus was late."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro3:r3",
+              "text": "I was late because the bus were late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-25:intro3:r1",
+              "text": "I was late because the bus was late."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro3:r2",
+              "text": "I was late because of the bus was late."
+            },
+            {
+              "responseId": "en:lesson-31:session-25:intro3:r3",
+              "text": "I was late because the bus were late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "05087fdd772fded2b96971ec8202f21b460e19f591880c26b5f88a6574bd9bc0"
+}

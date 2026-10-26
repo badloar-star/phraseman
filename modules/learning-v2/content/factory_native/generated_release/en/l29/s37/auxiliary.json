@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-37:intro1:r2": {
+          "ru": "It повторяет уже названную книгу.",
+          "uk": "It повторює вже названу книжку."
+        },
+        "en:lesson-29:session-37:intro1:r3": {
+          "ru": "Нужно I borrowed: одолжили вы.",
+          "uk": "Потрібно I borrowed: позичили ви."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-37:intro2:r2": {
+          "ru": "Чья книга — whose book.",
+          "uk": "Чия книжка — whose book."
+        },
+        "en:lesson-29:session-37:intro2:r3": {
+          "ru": "Whose уже выражает принадлежность; his лишнее.",
+          "uk": "Whose вже виражає належність; his зайве."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-37:intro3:r2": {
+          "ru": "После will not используем tell без to.",
+          "uk": "Після will not використовуємо tell без to."
+        },
+        "en:lesson-29:session-37:intro3:r3": {
+          "ru": "После will not нужна основная форма tell.",
+          "uk": "Після will not потрібна основна форма tell."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "69debade89c631225ce323585400c5dcbbc289b8fc780fa8f51daa491081a86d"
+}

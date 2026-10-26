@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-20:i01",
+    "correctText": "Where is the class for children?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i02",
+    "correctText": "playdough",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i03",
+    "correctText": "The playdough is kept in a box.",
+    "correctResponseId": "en:lesson-28:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i04",
+    "correctText": "Do we need to bring our own brushes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i05",
+    "correctText": "glitter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i06",
+    "correctText": "Can we use glitter?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i07",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-28:session-20:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i08",
+    "correctText": "I wish we had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i09",
+    "correctText": "stencil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i10",
+    "correctText": "Could I have a star stencil?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i11",
+    "correctText": "The paper was cut before the class.",
+    "correctResponseId": "en:lesson-28:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i13",
+    "correctText": "watercolours",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i14",
+    "correctText": "Are these watercolours suitable for beginners?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i15",
+    "correctText": "The painting will be kept here overnight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i16",
+    "correctText": "started",
+    "correctResponseId": "en:lesson-28:session-20:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i17",
+    "correctText": "Could we have an apron, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i18",
+    "correctText": "The brushes were washed after the class.",
+    "correctResponseId": "en:lesson-28:session-20:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i19",
+    "correctText": "The pictures will be displayed on the wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i20",
+    "correctText": "put",
+    "correctResponseId": "en:lesson-28:session-20:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-20:i21",
+    "correctText": "When can we collect the painting?",
+    "correctResponseId": null
+  }
+]

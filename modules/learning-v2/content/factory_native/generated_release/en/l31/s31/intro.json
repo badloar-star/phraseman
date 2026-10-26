@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять, почему прекратили играть, уточнять итог и говорить о вещах.",
+    "uk": "пояснювати, чому припинили грати, уточнювати підсумок і говорити про речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перестали играть из-за дождя",
+        "uk": "Перестали грати через дощ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы играли с друзьями во дворе, но пошёл дождь. Объясните: We stopped playing because of the rain — мы перестали играть из-за дождя. Соберите We stopped playing + because of + the rain. Причина названа словами the rain; перед ними ставим because of.",
+        "uk": "Ви грали з друзями у дворі, але пішов дощ. Поясніть: We stopped playing because of the rain — ми перестали грати через дощ. Складіть We stopped playing + because of + the rain. Причину названо словами the rain; перед ними ставимо because of."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-31:intro1:r1",
+              "text": "We stopped playing because of the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro1:r2",
+              "text": "We stopped playing because the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro1:r3",
+              "text": "We stopped playing because of it was raining."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-31:intro1:r1",
+              "text": "We stopped playing because of the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro1:r2",
+              "text": "We stopped playing because the rain."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro1:r3",
+              "text": "We stopped playing because of it was raining."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я понимаю, почему игра закончилась",
+        "uk": "Я розумію, чому гра закінчилася"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли во двор позже и увидели мокрую площадку. Теперь понятно, почему друзья закончили играть: I understand why the game ended — я понимаю, почему игра закончилась. Соберите I understand + why + the game + ended. После why сохраняем обычный порядок the game ended, без did перед the game.",
+        "uk": "Ви прийшли у двір пізніше й побачили мокрий майданчик. Тепер зрозуміло, чому друзі закінчили грати: I understand why the game ended — я розумію, чому гра закінчилася. Складіть I understand + why + the game + ended. Після why зберігаємо звичайний порядок the game ended, без did перед the game."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-31:intro2:r1",
+              "text": "I understand why the game ended."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro2:r2",
+              "text": "I understand why did the game end."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro2:r3",
+              "text": "I understand why the game did ended."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-31:intro2:r1",
+              "text": "I understand why the game ended."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro2:r2",
+              "text": "I understand why did the game end."
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro2:r3",
+              "text": "I understand why the game did ended."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Игра закончилась, правда?",
+        "uk": "Гра закінчилася, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья уже собирают вещи. Вы уточняете: The game is over, isn’t it? — игра закончилась, правда? Соберите The game is over + isn’t + it. После утвердительного is добавляем отрицательное isn’t; game заменяем на it.",
+        "uk": "Друзі вже збирають речі. Ви уточнюєте: The game is over, isn’t it? — гра закінчилася, правда? Складіть The game is over + isn’t + it. Після стверджувального is додаємо заперечне isn’t; game замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-31:intro3:r1",
+              "text": "The game is over, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro3:r2",
+              "text": "The game is over, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro3:r3",
+              "text": "The game is over, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-31:intro3:r1",
+              "text": "The game is over, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro3:r2",
+              "text": "The game is over, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-31:intro3:r3",
+              "text": "The game is over, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "defb4866c2f4a6244bf55b7b3942085687e260fd18b13d087020097f4289c595"
+}

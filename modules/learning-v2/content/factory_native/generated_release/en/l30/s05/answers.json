@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-05:i01",
+    "correctText": "devastated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i02",
+    "correctText": "She said she was devastated.",
+    "correctResponseId": "en:lesson-30:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i03",
+    "correctText": "I wish I lived closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i04",
+    "correctText": "sent",
+    "correctResponseId": "en:lesson-30:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i05",
+    "correctText": "grief",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i06",
+    "correctText": "She said she was overwhelmed with grief.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i07",
+    "correctText": "The message you sent was kind.",
+    "correctResponseId": "en:lesson-30:session-05:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i08",
+    "correctText": "I wish I lived closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i09",
+    "correctText": "mourn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i10",
+    "correctText": "People mourn in different ways.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i12",
+    "correctText": "condolences",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i13",
+    "correctText": "Please accept my condolences.",
+    "correctResponseId": "en:lesson-30:session-05:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i14",
+    "correctText": "en:lesson-30:session-05:i14:p1=devastated\nen:lesson-30:session-05:i14:p2=grief\nen:lesson-30:session-05:i14:p3=mourn\nen:lesson-30:session-05:i14:p4=condolences",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i15",
+    "correctText": "She said she needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i16",
+    "correctText": "Please accept my condolences.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i17",
+    "correctText": "lived",
+    "correctResponseId": "en:lesson-30:session-05:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i18",
+    "correctText": "She said she was overwhelmed with grief.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i19",
+    "correctText": "She said she was devastated.",
+    "correctResponseId": "en:lesson-30:session-05:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i20",
+    "correctText": "The message you sent was kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-05:i21",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-05:i21:r1"
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "как описать обработку почты, связать прошлые события и выразить желание.",
+    "uk": "як описати обробку пошти, пов’язати минулі події та висловити бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда взвесили посылку",
+        "uk": "Коли зважили посилку"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник почты спрашивает, взвесили ли вашу посылку. Это сделали несколько минут назад. Ответьте: The parcel was weighed a few minutes ago — посылку взвесили несколько минут назад. Соберите The parcel + was weighed + a few minutes ago. Одна посылка и прошлое действие: was. Weighed после was означает, что взвесили посылку. Последняя часть указывает время.",
+        "uk": "Працівник пошти запитує, чи зважили вашу посилку. Це зробили кілька хвилин тому. Дайте відповідь: The parcel was weighed a few minutes ago — посилку зважили кілька хвилин тому. Складіть The parcel + was weighed + a few minutes ago. Одна посилка й минула дія: was. Weighed після was означає, що зважили посилку. Остання частина вказує час."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-15:intro1:r1",
+              "text": "The parcel was weighed a few minutes ago."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro1:r2",
+              "text": "The parcel were weighed a few minutes ago."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro1:r3",
+              "text": "The parcel was weigh a few minutes ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-15:intro1:r1",
+              "text": "The parcel was weighed a few minutes ago."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro1:r2",
+              "text": "The parcel were weighed a few minutes ago."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro1:r3",
+              "text": "The parcel was weigh a few minutes ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где сортируют письма",
+        "uk": "Де сортують листи"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете сотрудника, что происходит с письмами после отправки. Он объясняет: Letters are sorted here — письма сортируют здесь. Соберите Letters + are sorted + here. Letters — несколько писем, поэтому are. Sorted после are описывает действие над письмами. Here указывает место сортировки.",
+        "uk": "Ви запитуєте працівника, що відбувається з листами після відправлення. Він пояснює: Letters are sorted here — листи сортують тут. Складіть Letters + are sorted + here. Letters — кілька листів, тому are. Sorted після are описує дію над листами. Here указує місце сортування."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-15:intro2:r1",
+              "text": "Letters are sorted here."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro2:r2",
+              "text": "Letters is sorted here."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro2:r3",
+              "text": "Letters are sort here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-15:intro2:r1",
+              "text": "Letters are sorted here."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro2:r2",
+              "text": "Letters is sorted here."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro2:r3",
+              "text": "Letters are sort here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пришли после закрытия",
+        "uk": "Прийшли після закриття"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера вы пришли на почту, но она уже закрылась. Расскажите: The post office had closed by the time I arrived — к тому времени, как я пришёл, почта уже закрылась. Сначала The post office + had closed: более раннее событие. Затем by the time + I arrived: более поздний приход. Had closed показывает, что закрытие произошло раньше прихода.",
+        "uk": "Учора ви прийшли на пошту, але вона вже зачинилася. Розкажіть: The post office had closed by the time I arrived — до того часу, як я прийшов, пошта вже зачинилася. Спочатку The post office + had closed: раніша подія. Потім by the time + I arrived: пізніший прихід. Had closed показує, що закриття сталося раніше за прихід."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-15:intro3:r1",
+              "text": "The post office had closed by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro3:r2",
+              "text": "The post office had close by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro3:r3",
+              "text": "The post office had closed by the time I arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-15:intro3:r1",
+              "text": "The post office had closed by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro3:r2",
+              "text": "The post office had close by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-28:session-15:intro3:r3",
+              "text": "The post office had closed by the time I arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2b06e496f46f522e8c26606aeaee97ecb9e8363a48ac5e2226caa7deebfbf90c"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-37:intro1:r2": {
+          "ru": "После although не добавляем of.",
+          "uk": "Після although не додаємо of."
+        },
+        "en:lesson-31:session-37:intro1:r3": {
+          "ru": "С it нужна форма is.",
+          "uk": "З it потрібна форма is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-37:intro2:r2": {
+          "ru": "После where порядок the pump is.",
+          "uk": "Після where порядок the pump is."
+        },
+        "en:lesson-31:session-37:intro2:r3": {
+          "ru": "Один pump требует is.",
+          "uk": "Один pump потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-37:intro3:r2": {
+          "ru": "Один bike требует was.",
+          "uk": "Один bike потребує was."
+        },
+        "en:lesson-31:session-37:intro3:r3": {
+          "ru": "Здесь нужна форма fixed.",
+          "uk": "Тут потрібна форма fixed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f95fb52290b19f812b0e03ebfa549688511e04e29b7697ddbaa72a0b0d8a204f"
+}

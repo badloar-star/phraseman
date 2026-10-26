@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-28:intro1:r2": {
+          "ru": "Перед rented нужна be.",
+          "uk": "Перед rented потрібна be."
+        },
+        "en:lesson-28:session-28:intro1:r3": {
+          "ru": "Здесь нужна rented.",
+          "uk": "Тут потрібна rented."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-28:intro2:r2": {
+          "ru": "После must not нужна be.",
+          "uk": "Після must not потрібна be."
+        },
+        "en:lesson-28:session-28:intro2:r3": {
+          "ru": "Здесь нужна taken.",
+          "uk": "Тут потрібна taken."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-28:intro3:r2": {
+          "ru": "Для желания о ситуации сейчас после wish используем were.",
+          "uk": "Для бажання щодо ситуації зараз після wish використовуємо were."
+        },
+        "en:lesson-28:session-28:intro3:r3": {
+          "ru": "Здесь нужно were cheaper.",
+          "uk": "Тут потрібно were cheaper."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43a5cc5eec87022cf0f05b7e22a03913bdb02dd4767373e1da30cb071e29bf7c"
+}

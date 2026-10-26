@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "как уточнить запись, назвать детали ухода за ногтями и спросить о составе средства.",
+    "uk": "як уточнити запис, назвати деталі догляду за нігтями й запитати про склад засобу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Запись перенесли",
+        "uk": "Запис перенесли"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли в салон, а вашу запись перенесли без предупреждения. Спросите: Why was my appointment changed? — почему мою запись перенесли? Соберите Why + was + my appointment + changed? Начните с Why, затем поставьте was перед my appointment. В конце нужна changed, третья форма change. Запись изменилась по чьему-то действию; здесь вы спрашиваете о причине.",
+        "uk": "Ви прийшли до салону, а ваш запис перенесли без попередження. Запитайте: Why was my appointment changed? — чому мій запис перенесли? Складіть Why + was + my appointment + changed? Почніть із Why, потім поставте was перед my appointment. Наприкінці потрібна changed, третя форма change. Запис змінився через чиюсь дію; тут ви запитуєте про причину."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-55:intro1:r1",
+              "text": "Why was my appointment changed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro1:r2",
+              "text": "Why my appointment was changed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro1:r3",
+              "text": "Why was my appointment change?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-55:intro1:r1",
+              "text": "Why was my appointment changed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro1:r2",
+              "text": "Why my appointment was changed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro1:r3",
+              "text": "Why was my appointment change?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Снять старый цвет",
+        "uk": "Зняти старий колір"
+      },
+      "bodyByLocale": {
+        "ru": "Перед маникюром вы показываете старое покрытие на ногтях. Спросите: Can this colour be removed? — можно снять этот цвет? Соберите Can + this colour + be removed? После Can назовите покрытие словами this colour, затем поставьте be и removed, третью форму remove. Так вы спрашиваете, возможно ли выполнить действие над покрытием.",
+        "uk": "Перед манікюром ви показуєте старе покриття на нігтях. Запитайте: Can this colour be removed? — чи можна зняти цей колір? Складіть Can + this colour + be removed? Після Can назвіть покриття словами this colour, потім поставте be та removed, третю форму remove. Так ви запитуєте, чи можливо виконати дію з покриттям."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-55:intro2:r1",
+              "text": "Can this colour be removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro2:r2",
+              "text": "Can this colour removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro2:r3",
+              "text": "Can this colour be remove?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-55:intro2:r1",
+              "text": "Can this colour be removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro2:r2",
+              "text": "Can this colour removed?"
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro2:r3",
+              "text": "Can this colour be remove?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Покупки не поместились",
+        "uk": "Покупки не помістилися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы купили несколько принадлежностей для маникюра, но ваша сумка слишком мала. Скажите: I wish I had a bigger bag — жаль, что у меня нет сумки побольше. Соберите I wish + I + had + a bigger bag. После I wish поставьте I had. Форма had здесь выражает желание о настоящем: сейчас вам нужна другая сумка.",
+        "uk": "Ви купили кілька речей для манікюру, але ваша сумка замала. Скажіть: I wish I had a bigger bag — шкода, що в мене немає більшої сумки. Складіть I wish + I + had + a bigger bag. Після I wish поставте I had. Форма had тут виражає бажання щодо теперішнього: зараз вам потрібна інша сумка."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-55:intro3:r1",
+              "text": "I wish I had a bigger bag."
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro3:r2",
+              "text": "I wish I have a bigger bag."
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro3:r3",
+              "text": "I wish I will have a bigger bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-55:intro3:r1",
+              "text": "I wish I had a bigger bag."
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro3:r2",
+              "text": "I wish I have a bigger bag."
+            },
+            {
+              "responseId": "en:lesson-28:session-55:intro3:r3",
+              "text": "I wish I will have a bigger bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "193d2357c74702fe51168b527f1e88e2f8e1982f50b0f7fe3bca6657917f8d2f"
+}

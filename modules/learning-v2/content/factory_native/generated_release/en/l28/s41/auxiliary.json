@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-41:intro1:r2": {
+          "ru": "После wish здесь нужна were.",
+          "uk": "Після wish тут потрібна were."
+        },
+        "en:lesson-28:session-41:intro1:r3": {
+          "ru": "Для желания о настоящем используем were here.",
+          "uk": "Для бажання щодо теперішнього використовуємо were here."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-41:intro2:r2": {
+          "ru": "Исполнителя вводит by.",
+          "uk": "Виконавця вводить by."
+        },
+        "en:lesson-28:session-41:intro2:r3": {
+          "ru": "Перед my aunt нужна by.",
+          "uk": "Перед my aunt потрібна by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-41:intro3:r2": {
+          "ru": "После had нужна left.",
+          "uk": "Після had потрібна left."
+        },
+        "en:lesson-28:session-41:intro3:r3": {
+          "ru": "Приезд тоже был в прошлом: arrived.",
+          "uk": "Приїзд теж був у минулому: arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b124ed1912c1ab435d10cde10b831691f90e3075a652121ec637ccb7239a52c3"
+}

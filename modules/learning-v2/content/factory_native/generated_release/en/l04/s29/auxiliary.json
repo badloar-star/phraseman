@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-04:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-29:intro3:r2": {
-          "ru": "Скамейку вы оба видите, поэтому и перед ней нужно the: the bench.",
-          "uk": "Лавку ви обоє бачите, тому й перед нею потрібно the: the bench."
+          "ru": "С одной статуей нужно is.",
+          "uk": "З однією статуєю потрібне is."
         },
         "en:lesson-04:session-29:intro3:r3": {
           "ru": "under — «под», а статуя стоит посередине между ними: нужно between.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3870875005912db34a95f54635c3b5f3edb9883aa15b826e45329484a4c8a258"
+  "auxiliaryFingerprint": "5725498eb14ee0f02108048e1ebd852f229d59ddc6cba2bc0e76762cc9d38359"
 }

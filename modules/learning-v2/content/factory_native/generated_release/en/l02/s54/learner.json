@@ -96,7 +96,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что соседка говорит о мальчике перед выходом",
+      "prompt": "Послушайте и выберите — соседка по ряду наклоняется к вам перед выходом",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-54:i02:r1",
@@ -115,7 +115,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-54:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, что соседка говорит о мальчике перед выходом",
+      "accessibilityLabel": "Послушайте и выберите — соседка по ряду наклоняется к вам перед выходом",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -145,7 +145,7 @@
           {
             "responseId": "en:lesson-02:session-54:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что соседка говорит о мальчике перед выходом",
+            "testedDimension": "Послушайте и выберите — соседка по ряду наклоняется к вам перед выходом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `nervous`, а в этом варианте — `shy`.",
               "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `shy`."
@@ -154,7 +154,7 @@
           {
             "responseId": "en:lesson-02:session-54:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что соседка говорит о мальчике перед выходом",
+            "testedDimension": "Послушайте и выберите — соседка по ряду наклоняется к вам перед выходом",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `nervous`, а в этом варианте — `brave`.",
               "uk": "У записі останнє слово — `nervous`, а в цьому варіанті — `brave`."
@@ -594,11 +594,11 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что ведущий говорит о последнем номере",
+      "prompt": "Послушайте и выберите — ведущий объявляет последний номер концерта",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-54:i09:r1",
-          "text": "It is dramatic."
+          "text": "It is stunning."
         },
         {
           "responseId": "en:lesson-02:session-54:i09:r2",
@@ -606,25 +606,25 @@
         },
         {
           "responseId": "en:lesson-02:session-54:i09:r3",
-          "text": "It is stunning."
+          "text": "It is dramatic."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-54:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что ведущий говорит о последнем номере",
+      "accessibilityLabel": "Послушайте и выберите — ведущий объявляет последний номер концерта",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-02:session-54:i09:audio",
-          "transcript": "It is dramatic."
+          "transcript": "It is stunning."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-02:session-54:i09:r1",
-            "targetText": "It is dramatic.",
+            "targetText": "It is stunning.",
             "meaningByLocale": null
           },
           {
@@ -634,7 +634,7 @@
           },
           {
             "responseId": "en:lesson-02:session-54:i09:r3",
-            "targetText": "It is stunning.",
+            "targetText": "It is dramatic.",
             "meaningByLocale": null
           }
         ],
@@ -643,19 +643,19 @@
           {
             "responseId": "en:lesson-02:session-54:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что ведущий говорит о последнем номере",
+            "testedDimension": "Послушайте и выберите — ведущий объявляет последний номер концерта",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dramatic`, а в этом варианте — `loud`.",
-              "uk": "У записі останнє слово — `dramatic`, а в цьому варіанті — `loud`."
+              "ru": "В записи последнее слово — `stunning`, а в этом варианте — `loud`.",
+              "uk": "У записі останнє слово — `stunning`, а в цьому варіанті — `loud`."
             }
           },
           {
             "responseId": "en:lesson-02:session-54:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что ведущий говорит о последнем номере",
+            "testedDimension": "Послушайте и выберите — ведущий объявляет последний номер концерта",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dramatic`, а в этом варианте — `stunning`.",
-              "uk": "У записі останнє слово — `dramatic`, а в цьому варіанті — `stunning`."
+              "ru": "В записи последнее слово — `stunning`, а в этом варианте — `dramatic`.",
+              "uk": "У записі останнє слово — `stunning`, а в цьому варіанті — `dramatic`."
             }
           }
         ],
@@ -980,7 +980,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте вопрос мамы",
+      "prompt": "Послушайте и выберите — мама шепчется с вами на школьном концерте",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-54:i15:r1",
@@ -999,7 +999,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-54:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте вопрос мамы",
+      "accessibilityLabel": "Послушайте и выберите — мама шепчется с вами на школьном концерте",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1029,7 +1029,7 @@
           {
             "responseId": "en:lesson-02:session-54:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте вопрос мамы",
+            "testedDimension": "Послушайте и выберите — мама шепчется с вами на школьном концерте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `talented`, а в этом варианте — `graceful`.",
               "uk": "У записі останнє слово — `talented`, а в цьому варіанті — `graceful`."
@@ -1038,7 +1038,7 @@
           {
             "responseId": "en:lesson-02:session-54:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте вопрос мамы",
+            "testedDimension": "Послушайте и выберите — мама шепчется с вами на школьном концерте",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `talented`, а в этом варианте — `shy`.",
               "uk": "У записі останнє слово — `talented`, а в цьому варіанті — `shy`."
@@ -1171,5 +1171,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "28ad2ed22447682c0d0601195478ad397f65dd13e145aa11191e95cb28fc5d9e"
+  "learnerFingerprint": "d104fcafb3f68f553463d0eb7b1ed04c005b59105b90f378cd8b1f3ba2bf0bc6"
 }

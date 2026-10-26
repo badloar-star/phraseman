@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-30:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-30:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — train",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — train",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i01:audio",
+          "transcript": "train"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-54:i01:r1",
+            "targetText": "train",
+            "meaningByLocale": {
+              "ru": "Поезд. Повторение знакомого слова.",
+              "uk": "Потяг. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train",
+          "definitionByLocale": {
+            "ru": "Поезд. Повторение знакомого слова.",
+            "uk": "Потяг. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i02:r1",
+          "text": "He said the train was late."
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i02:r2",
+          "text": "He said the train was full."
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i02:r3",
+          "text": "He said the train was empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i02:audio",
+          "transcript": "He said the train was late."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-54:i02:r1",
+            "targetText": "He said the train was late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i02:r2",
+            "targetText": "He said the train was full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i02:r3",
+            "targetText": "He said the train was empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the train was late.",
+              "uk": "У записі звучить He said the train was late."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the train was late.",
+              "uk": "У записі звучить He said the train was late."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівник попросив вас із другом зачекати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i03:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i03:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i03:r3",
+          "text": "our"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник попросив вас із другом зачекати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник попросил вас с другом подождать.",
+          "uk": "Працівник попросив вас із другом зачекати."
+        },
+        "gappedTargetPhrase": "He asked ___ to wait.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-54:i03:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i03:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i03:r3",
+            "text": "our"
+          }
+        ],
+        "testedDimension": "Працівник попросив вас із другом зачекати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Працівник попросив вас із другом зачекати.",
+            "feedbackByLocale": {
+              "ru": "После asked используем us.",
+              "uk": "Після asked використовуємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Працівник попросив вас із другом зачекати.",
+            "feedbackByLocale": {
+              "ru": "Our означает «наш»; здесь us.",
+              "uk": "Our означає «наш»; тут us."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ticket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ticket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i04:audio",
+          "transcript": "ticket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-54:i04:r1",
+            "targetText": "ticket",
+            "meaningByLocale": {
+              "ru": "Билет. Повторение знакомого слова.",
+              "uk": "Квиток. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ticket",
+          "definitionByLocale": {
+            "ru": "Билет. Повторение знакомого слова.",
+            "uk": "Квиток. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Працівник попросив вас показати ваш квиток.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Працівник попросив вас показати ваш квиток.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i05:audio",
+          "transcript": "He asked me to show my ticket."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked me to show my ticket.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівник попросив вас із другом зачекати біля дверей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник попросив вас із другом зачекати біля дверей.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He asked us to wait by the door.",
+        "localizedMeaning": {
+          "ru": "Сотрудник попросил вас с другом подождать у двери.",
+          "uk": "Працівник попросив вас із другом зачекати біля дверей."
+        },
+        "orderedTokens": [
+          "He",
+          "asked",
+          "us",
+          "to",
+          "wait",
+          "by",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора друг сказав: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i07:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i07:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i07:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора друг сказав: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера друг сказал: «Мне нужна вода». Перескажите со сдвигом need в прошлое.",
+          "uk": "Учора друг сказав: «Мені потрібна вода». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-54:i07:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i07:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i07:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Учора друг сказав: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора друг сказав: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг.",
+              "uk": "Needs не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора друг сказав: «Мені потрібна вода». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма needed.",
+              "uk": "Потрібна форма needed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — platform",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — platform",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i08:audio",
+          "transcript": "platform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-54:i08:r1",
+            "targetText": "platform",
+            "meaningByLocale": {
+              "ru": "Платформа. Повторение знакомого слова.",
+              "uk": "Платформа. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "platform",
+          "definitionByLocale": {
+            "ru": "Платформа. Повторение знакомого слова.",
+            "uk": "Платформа. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своє запитання про те, де платформа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своє запитання про те, де платформа.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I asked where the platform was.",
+        "localizedMeaning": {
+          "ru": "Передайте свой вопрос о том, где платформа.",
+          "uk": "Передайте своє запитання про те, де платформа."
+        },
+        "orderedTokens": [
+          "I",
+          "asked",
+          "where",
+          "the",
+          "platform",
+          "was"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Працівник запитав, чи потрібна вам із другом допомога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Працівник запитав, чи потрібна вам із другом допомога.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i10:audio",
+          "transcript": "He asked if we needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He asked if we needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівник повідомив вам із другом, що кафе відчинене.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i11:r1",
+          "text": "us"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i11:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i11:r3",
+          "text": "to us"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник повідомив вам із другом, що кафе відчинене.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник сообщил вам с другом, что кафе открыто.",
+          "uk": "Працівник повідомив вам із другом, що кафе відчинене."
+        },
+        "gappedTargetPhrase": "He told ___ the café was open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-54:i11:r1",
+            "text": "us"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i11:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i11:r3",
+            "text": "to us"
+          }
+        ],
+        "testedDimension": "Працівник повідомив вам із другом, що кафе відчинене.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Працівник повідомив вам із другом, що кафе відчинене.",
+            "feedbackByLocale": {
+              "ru": "После told используем us.",
+              "uk": "Після told використовуємо us."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Працівник повідомив вам із другом, що кафе відчинене.",
+            "feedbackByLocale": {
+              "ru": "После told перед us не ставим to.",
+              "uk": "Після told перед us не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i12:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-54:i12:r1",
+            "targetText": "seat",
+            "meaningByLocale": {
+              "ru": "Место для сидения. Повторение знакомого слова.",
+              "uk": "Місце для сидіння. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat",
+          "definitionByLocale": {
+            "ru": "Место для сидения. Повторение знакомого слова.",
+            "uk": "Місце для сидіння. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i13:r1",
+          "text": "He said the seat was free."
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i13:r2",
+          "text": "He said the seat was wet."
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i13:r3",
+          "text": "He said the seat was broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i13:audio",
+          "transcript": "He said the seat was free."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-30:session-54:i13:r1",
+            "targetText": "He said the seat was free.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i13:r2",
+            "targetText": "He said the seat was wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i13:r3",
+            "targetText": "He said the seat was broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the seat was free.",
+              "uk": "У записі звучить He said the seat was free."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He said the seat was free.",
+              "uk": "У записі звучить He said the seat was free."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Потяг довго їде до вашого міста. Хотілося б, щоб він був швидшим зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Потяг довго їде до вашого міста. Хотілося б, щоб він був швидшим зараз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i14:audio",
+          "transcript": "I wish the train were faster."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish the train were faster.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Квиток, який ви купили, у вашій сумці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Квиток, який ви купили, у вашій сумці.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The ticket I bought is in my bag.",
+        "localizedMeaning": {
+          "ru": "Билет, который вы купили, в вашей сумке.",
+          "uk": "Квиток, який ви купили, у вашій сумці."
+        },
+        "orderedTokens": [
+          "The",
+          "ticket",
+          "I",
+          "bought",
+          "is",
+          "in",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Працівник попросив вас із другом не йти з платформи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i16:r1",
+          "text": "not to leave"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i16:r2",
+          "text": "not leave"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i16:r3",
+          "text": "not leaving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівник попросив вас із другом не йти з платформи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сотрудник попросил вас с другом не уходить с платформы.",
+          "uk": "Працівник попросив вас із другом не йти з платформи."
+        },
+        "gappedTargetPhrase": "He asked us ___ the platform.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-54:i16:r1",
+            "text": "not to leave"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i16:r2",
+            "text": "not leave"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i16:r3",
+            "text": "not leaving"
+          }
+        ],
+        "testedDimension": "Працівник попросив вас із другом не йти з платформи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i16:r2",
+            "correct": false,
+            "testedDimension": "Працівник попросив вас із другом не йти з платформи.",
+            "feedbackByLocale": {
+              "ru": "Отрицательную просьбу передаём через not to leave.",
+              "uk": "Заперечне прохання передаємо через not to leave."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i16:r3",
+            "correct": false,
+            "testedDimension": "Працівник попросив вас із другом не йти з платформи.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно not to leave.",
+              "uk": "Тут потрібне not to leave."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора друг сказав: «Я втомився». Перекажіть зі зсувом am у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Учора друг сказав: «Я втомився». Перекажіть зі зсувом am у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i17:audio",
+          "transcript": "He said he was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said he was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: працівник попросив лише вас чи вас із другом?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i18:r1",
+          "text": "He asked us to wait."
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i18:r2",
+          "text": "He asked me to wait."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i18:audioA",
+        "en:lesson-30:session-54:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: працівник попросив лише вас чи вас із другом?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He asked us to wait.",
+        "contrastB": "He asked me to wait.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-30:session-54:i18:audioA",
+          "transcript": "He asked us to wait."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-30:session-54:i18:audioB",
+          "transcript": "He asked me to wait."
+        },
+        "testedPhoneticContrast": "Послухайте: працівник попросив лише вас чи вас із другом?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: працівник попросив лише вас чи вас із другом?",
+            "feedbackByLocale": {
+              "ru": "Звучит us — нас.",
+              "uk": "Звучить us — нас."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення працівника.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення працівника.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i19:audio",
+          "transcript": "He said the train was ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He said the train was ready.",
+        "orderedTokens": [
+          "He",
+          "said",
+          "the",
+          "train",
+          "was",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав, де ваш квиток.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-30:session-54:i20:r1",
+          "text": "my ticket was"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i20:r2",
+          "text": "was my ticket"
+        },
+        {
+          "responseId": "en:lesson-30:session-54:i20:r3",
+          "text": "my ticket were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав, де ваш квиток.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил, где ваш билет.",
+          "uk": "Друг запитав, де ваш квиток."
+        },
+        "gappedTargetPhrase": "He asked where ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-30:session-54:i20:r1",
+            "text": "my ticket was"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i20:r2",
+            "text": "was my ticket"
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i20:r3",
+            "text": "my ticket were"
+          }
+        ],
+        "testedDimension": "Друг запитав, де ваш квиток.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-30:session-54:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав, де ваш квиток.",
+            "feedbackByLocale": {
+              "ru": "В пересказе нужен порядок my ticket was.",
+              "uk": "У переказі потрібен порядок my ticket was."
+            }
+          },
+          {
+            "responseId": "en:lesson-30:session-54:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав, де ваш квиток.",
+            "feedbackByLocale": {
+              "ru": "Один ticket требует was.",
+              "uk": "Один ticket потребує was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-30:session-54:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви попросили друга допомогти вам із сумкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-30:session-54:i21:audio"
+      ],
+      "accessibilityLabel": "Ви попросили друга допомогти вам із сумкою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-30:session-54:i21:audio",
+          "transcript": "I asked him to help me with my bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I asked him to help me with my bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bffb83086a9e7ab1e97c9ef272df4f37dfc9001eeb41c179910230f833f86657"
+}

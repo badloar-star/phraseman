@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-48:i01",
+    "correctText": "fridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i02",
+    "correctText": "The fridge is noisy, so it might be old.",
+    "correctResponseId": "en:lesson-32:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i04",
+    "correctText": "bottle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i05",
+    "correctText": "The bottle can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i06",
+    "correctText": "cheese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i07",
+    "correctText": "The cheese I bought is soft.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i09",
+    "correctText": "The fridge is noisy, so it might be old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i10",
+    "correctText": "It can’t be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i12",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i13",
+    "correctText": "The soup must be cold.",
+    "correctResponseId": "en:lesson-32:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i14",
+    "correctText": "The soup must be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i15",
+    "correctText": "This is the cheese I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-48:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i17",
+    "correctText": "The fridge is noisy, so it might be old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i18",
+    "correctText": "The fridge is noisy, so it might be old.",
+    "correctResponseId": "en:lesson-32:session-48:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i19",
+    "correctText": "The bottle can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-48:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-48:i21",
+    "correctText": "The fridge is noisy, so it could be old.",
+    "correctResponseId": null
+  }
+]

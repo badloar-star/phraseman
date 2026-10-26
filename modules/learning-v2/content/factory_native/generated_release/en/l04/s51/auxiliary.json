@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-51:intro3:r2": {
-          "ru": "В вопросе говорим any, а не some: Are there any.",
-          "uk": "У запитанні кажемо any, а не some: Are there any."
+          "ru": "После Are there any здесь нужна форма множественного числа board games.",
+          "uk": "Після Are there any тут потрібна форма множини board games."
         },
         "en:lesson-04:session-51:intro3:r3": {
-          "ru": "Игр несколько, поэтому вопрос начинаем с Are there, а не с Is there.",
-          "uk": "Ігор кілька, тому запитання починаємо з Are there, а не з Is there."
+          "ru": "Board games стоит во множественном числе, поэтому вопрос начинаем с Are there.",
+          "uk": "Board games стоїть у множині, тому запитання починаємо з Are there."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b6257c31e4710897d73035f7e694d1473fd513078e7b6dd188cd0bb679fb7ff9"
+  "auxiliaryFingerprint": "4d20cae3317cbaef9018c08ec7222307a36a15da7636e9cf72a2e365afd7b173"
 }

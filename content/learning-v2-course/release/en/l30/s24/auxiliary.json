@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-24:intro1:r2": {
+          "ru": "В сообщении о погоде здесь нужно it перед was.",
+          "uk": "У повідомленні про погоду тут потрібне it перед was."
+        },
+        "en:lesson-30:session-24:intro1:r3": {
+          "ru": "В этом обычном сообщении после it ставим was.",
+          "uk": "У цьому звичайному повідомленні після it ставимо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-24:intro2:r2": {
+          "ru": "После asked me перед bring нужно to.",
+          "uk": "Після asked me перед bring потрібне to."
+        },
+        "en:lesson-30:session-24:intro2:r3": {
+          "ru": "После asked здесь нужна форма me.",
+          "uk": "Після asked тут потрібна форма me."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-24:intro3:r2": {
+          "ru": "Для этого желания о нереальном состоянии сейчас используем were dry.",
+          "uk": "Для цього бажання про нереальний стан зараз використовуємо were dry."
+        },
+        "en:lesson-30:session-24:intro3:r3": {
+          "ru": "В данной конструкции нужна форма were, не be.",
+          "uk": "У цій конструкції потрібна форма were, не be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "49f96bfa59e5b04d2770a5813e436bcbae1c9e5b6b3e699271e02af6b98b1aba"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-21:intro1:r2": {
+          "ru": "В уточнении нужен обычный порядок you can buy.",
+          "uk": "В уточненні потрібен звичайний порядок you can buy."
+        },
+        "en:lesson-29:session-21:intro1:r3": {
+          "ru": "Место покупки связываем словом where.",
+          "uk": "Місце купівлі пов’язуємо словом where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-21:intro2:r2": {
+          "ru": "Человека, выполнившего действие, вводит by.",
+          "uk": "Людину, яка виконала дію, позначає by."
+        },
+        "en:lesson-29:session-21:intro2:r3": {
+          "ru": "После was здесь нужна форма written.",
+          "uk": "Після was тут потрібна форма written."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-21:intro3:r2": {
+          "ru": "Which уже обозначает упаковку, it лишнее.",
+          "uk": "Which вже позначає упаковку, it зайве."
+        },
+        "en:lesson-29:session-21:intro3:r3": {
+          "ru": "Для предмета здесь используем which.",
+          "uk": "Для предмета тут використовуємо which."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "73807af21e05f8be7605bad3d09026514d59fd8bd95c19b467e3ecf1bc6a5f60"
+}

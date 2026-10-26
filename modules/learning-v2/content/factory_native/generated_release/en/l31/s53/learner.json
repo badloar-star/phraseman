@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i01:audio",
+          "transcript": "cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-53:i01:r1",
+            "targetText": "cake",
+            "meaningByLocale": {
+              "ru": "Торт. Повторение знакомого слова.",
+              "uk": "Торт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cake",
+          "definitionByLocale": {
+            "ru": "Торт. Повторение знакомого слова.",
+            "uk": "Торт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i02:r1",
+          "text": "The cake was made by Ben."
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i02:r2",
+          "text": "The cake was made by Anna."
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i02:r3",
+          "text": "The cake was made by Tom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i02:audio",
+          "transcript": "The cake was made by Ben."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-53:i02:r1",
+            "targetText": "The cake was made by Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i02:r2",
+            "targetText": "The cake was made by Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i02:r3",
+            "targetText": "The cake was made by Tom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cake was made by Ben.",
+              "uk": "У записі звучить The cake was made by Ben."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cake was made by Ben.",
+              "uk": "У записі звучить The cake was made by Ben."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торт приготовил Бен. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i03:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i03:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i03:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торт приготовил Бен. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Торт приготовил Бен. Выберите предлог перед его именем.",
+          "uk": "Торт приготував Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The cake was made ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-53:i03:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i03:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i03:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Торт приготовил Бен. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Торт приготовил Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Того, кто приготовил, называем после by.",
+              "uk": "Того, хто приготував, називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Торт приготовил Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Бен приготовил торт: by Ben.",
+              "uk": "Бен приготував торт: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — candles",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — candles",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i04:audio",
+          "transcript": "candles"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-53:i04:r1",
+            "targetText": "candles",
+            "meaningByLocale": {
+              "ru": "Свечи. Повторение формы candle.",
+              "uk": "Свічки. Повторення форми candle."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "candles",
+          "definitionByLocale": {
+            "ru": "Свечи. Повторение формы candle.",
+            "uk": "Свічки. Повторення форми candle."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы знаете, где свечи. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы знаете, где свечи. Скажите это.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the candles are.",
+        "localizedMeaning": {
+          "ru": "Вы знаете, где свечи. Скажите это.",
+          "uk": "Ви знаєте, де свічки. Скажіть це."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "candles",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i06:audio",
+          "transcript": "plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-53:i06:r1",
+            "targetText": "plate",
+            "meaningByLocale": {
+              "ru": "Тарелка. Повторение знакомого слова.",
+              "uk": "Тарілка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plate",
+          "definitionByLocale": {
+            "ru": "Тарелка. Повторение знакомого слова.",
+            "uk": "Тарілка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам нужна тарелка, чтобы подать торт. Начните с I need a plate.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Вам нужна тарелка, чтобы подать торт. Начните с I need a plate.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i07:audio",
+          "transcript": "I need a plate to serve the cake."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need a plate to serve the cake.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Бен сказал: «Торт готов». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Бен сказал: «Торт готов». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Торт готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Торт готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "Ben said the cake ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-53:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Бен сказал: «Торт готов». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Торт готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Торт готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У Анны был день рождения, поэтому вы приготовили торт. Начните с It was Anna’s birthday.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У Анны был день рождения, поэтому вы приготовили торт. Начните с It was Anna’s birthday.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was Anna’s birthday, so we made a cake.",
+        "localizedMeaning": {
+          "ru": "У Анны был день рождения, поэтому вы приготовили торт. Начните с It was Anna’s birthday.",
+          "uk": "В Анни був день народження, тому ви приготували торт. Почніть з It was Anna’s birthday."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "Anna’s",
+          "birthday,",
+          "so",
+          "we",
+          "made",
+          "a",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите, где тарелки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите, где тарелки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i10:audio",
+          "transcript": "Could you tell me where the plates are?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the plates are?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Для дня рождения вы приготовили торт. Выберите форму прошлого времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i11:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i11:r2",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i11:r3",
+          "text": "makes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Для дня рождения вы приготовили торт. Выберите форму прошлого времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Для дня рождения вы приготовили торт. Выберите форму прошлого времени.",
+          "uk": "До дня народження ви приготували торт. Виберіть форму минулого часу."
+        },
+        "gappedTargetPhrase": "It was Anna’s birthday, so we ___ a cake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-53:i11:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i11:r2",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i11:r3",
+            "text": "makes"
+          }
+        ],
+        "testedDimension": "Для дня рождения вы приготовили торт. Выберите форму прошлого времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Для дня рождения вы приготовили торт. Выберите форму прошлого времени.",
+            "feedbackByLocale": {
+              "ru": "Для прошлого действия нужна форма made.",
+              "uk": "Для минулої дії потрібна форма made."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Для дня рождения вы приготовили торт. Выберите форму прошлого времени.",
+            "feedbackByLocale": {
+              "ru": "После we и в прошлом используем made.",
+              "uk": "Після we й у минулому використовуємо made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gift",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gift",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i12:audio",
+          "transcript": "gift"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-53:i12:r1",
+            "targetText": "gift",
+            "meaningByLocale": {
+              "ru": "Подарок. Повторение знакомого слова.",
+              "uk": "Подарунок. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gift",
+          "definitionByLocale": {
+            "ru": "Подарок. Повторение знакомого слова.",
+            "uk": "Подарунок. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i13:r1",
+          "text": "I know that the gift is for Anna."
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i13:r2",
+          "text": "I know that the gift is for Ben."
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i13:r3",
+          "text": "I know that the gift is for Tom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i13:audio",
+          "transcript": "I know that the gift is for Anna."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-53:i13:r1",
+            "targetText": "I know that the gift is for Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i13:r2",
+            "targetText": "I know that the gift is for Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i13:r3",
+            "targetText": "I know that the gift is for Tom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the gift is for Anna.",
+              "uk": "У записі звучить I know that the gift is for Anna."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the gift is for Anna.",
+              "uk": "У записі звучить I know that the gift is for Anna."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Свечи в коробке». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Свечи в коробке». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i14:audio",
+          "transcript": "Ben said the candles were in the box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben said the candles were in the box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Торт был готов, и поэтому вы сели. Начните с The cake was ready and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торт был готов, и поэтому вы сели. Начните с The cake was ready and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cake was ready and therefore we sat down.",
+        "localizedMeaning": {
+          "ru": "Торт был готов, и поэтому вы сели. Начните с The cake was ready and therefore.",
+          "uk": "Торт був готовий, і тому ви сіли. Почніть з The cake was ready and therefore."
+        },
+        "orderedTokens": [
+          "The",
+          "cake",
+          "was",
+          "ready",
+          "and",
+          "therefore",
+          "we",
+          "sat",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торт был готов, и в результате вы сели. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торт был готов, и в результате вы сели. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Торт был готов, и в результате вы сели. Вставьте «поэтому».",
+          "uk": "Торт був готовий, і в результаті ви сіли. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The cake was ready, ___ we sat down.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-53:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Торт был готов, и в результате вы сели. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i16:r2",
+            "correct": false,
+            "testedDimension": "Торт был готов, и в результате вы сели. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i16:r3",
+            "correct": false,
+            "testedDimension": "Торт был готов, и в результате вы сели. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен приготовил торт, хотя был занят. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Бен приготовил торт, хотя был занят. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i17:audio",
+          "transcript": "Ben made a cake although he was busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben made a cake although he was busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы приготовили торт или ужин?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i18:r1",
+          "text": "It was Anna’s birthday, so we made a cake."
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i18:r2",
+          "text": "It was Anna’s birthday, so we made dinner."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i18:audioA",
+        "en:lesson-31:session-53:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы приготовили торт или ужин?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "It was Anna’s birthday, so we made a cake.",
+        "contrastB": "It was Anna’s birthday, so we made dinner.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-53:i18:audioA",
+          "transcript": "It was Anna’s birthday, so we made a cake."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-53:i18:audioB",
+          "transcript": "It was Anna’s birthday, so we made dinner."
+        },
+        "testedPhoneticContrast": "Послушайте: вы приготовили торт или ужин?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы приготовили торт или ужин?",
+            "feedbackByLocale": {
+              "ru": "Звучит a cake — торт.",
+              "uk": "Звучить a cake — торт."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину и результат. Начните с The cake was ready and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину и результат. Начните с The cake was ready and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i19:audio",
+          "transcript": "The cake was ready and therefore we sat down."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cake was ready and therefore we sat down.",
+        "orderedTokens": [
+          "The",
+          "cake",
+          "was",
+          "ready",
+          "and",
+          "therefore",
+          "we",
+          "sat",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торт не горячий. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-53:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-53:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торт не горячий. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Торт не горячий. Добавьте утвердительное уточнение.",
+          "uk": "Торт не гарячий. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The cake isn't hot, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-53:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Торт не горячий. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-53:i20:r2",
+            "correct": false,
+            "testedDimension": "Торт не горячий. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Один cake требует is.",
+              "uk": "Один cake потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-53:i20:r3",
+            "correct": false,
+            "testedDimension": "Торт не горячий. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Анна улыбается. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-53:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Анна улыбается. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-53:i21:audio",
+          "transcript": "I understand why Anna is smiling."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna is smiling.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dabf4336d13ff967eb66f33ae42f2f5bd232dace590872f191e0cd317202be17"
+}

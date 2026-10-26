@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять причину возврата, сообщать о чеке и уточнять детали.",
+    "uk": "пояснювати причину повернення, повідомляти про чек і уточнювати деталі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почему вернули обувь",
+        "uk": "Чому повернули взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вернули обувь в магазин: она оказалась слишком маленькой. Объясните другу: I took the shoes back because they were too small — я вернул обувь, потому что она была слишком маленькой. Соберите I took the shoes back + because + they were too small. После because даём целую причину. Английское shoes — множественное число, поэтому дальше they were.",
+        "uk": "Ви повернули взуття до крамниці: воно виявилося замалим. Поясніть другові: I took the shoes back because they were too small — я повернув взуття, бо воно було замалим. Складіть I took the shoes back + because + they were too small. Після because даємо цілу причину. Англійське shoes — множина, тому далі they were."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-28:intro1:r1",
+              "text": "I took the shoes back because they were too small."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro1:r2",
+              "text": "I took the shoes back because of they were too small."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro1:r3",
+              "text": "I took the shoes back because they was too small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-28:intro1:r1",
+              "text": "I took the shoes back because they were too small."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro1:r2",
+              "text": "I took the shoes back because of they were too small."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro1:r3",
+              "text": "I took the shoes back because they was too small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю, где чек",
+        "uk": "Я знаю, де чек"
+      },
+      "bodyByLocale": {
+        "ru": "Перед возвратом друг просит найти чек. Вы помните, куда его положили: I know where the receipt is — я знаю, где чек. Соберите I know + where + the receipt + is. После where сохраняем порядок the receipt is: это сообщение о том, что вы знаете.",
+        "uk": "Перед поверненням друг просить знайти чек. Ви пам’ятаєте, куди його поклали: I know where the receipt is — я знаю, де чек. Складіть I know + where + the receipt + is. Після where зберігаємо порядок the receipt is: це повідомлення про те, що ви знаєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-28:intro2:r1",
+              "text": "I know where the receipt is."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro2:r2",
+              "text": "I know where is the receipt."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro2:r3",
+              "text": "I know where the receipt are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-28:intro2:r1",
+              "text": "I know where the receipt is."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro2:r2",
+              "text": "I know where is the receipt."
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro2:r3",
+              "text": "I know where the receipt are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Магазин открыт, правда?",
+        "uk": "Крамниця відчинена, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы подходите к магазину с коробкой обуви и уточняете у друга: The shop is open, isn’t it? — магазин открыт, правда? Соберите The shop is open + isn’t + it. После утвердительного is добавляем отрицательное isn’t; shop заменяем на it.",
+        "uk": "Ви підходите до крамниці з коробкою взуття й уточнюєте в друга: The shop is open, isn’t it? — крамниця відчинена, правда? Складіть The shop is open + isn’t + it. Після стверджувального is додаємо заперечне isn’t; shop замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-28:intro3:r1",
+              "text": "The shop is open, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro3:r2",
+              "text": "The shop is open, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro3:r3",
+              "text": "The shop is open, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-28:intro3:r1",
+              "text": "The shop is open, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro3:r2",
+              "text": "The shop is open, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-28:intro3:r3",
+              "text": "The shop is open, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d3dfedf300efce64c92f72151dbdaf7eea4a02fe1aec7a3f0aebc617f51fc36b"
+}

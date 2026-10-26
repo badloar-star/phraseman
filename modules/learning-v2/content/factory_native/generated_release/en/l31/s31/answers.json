@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-31:i01",
+    "correctText": "rain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i02",
+    "correctText": "We stopped playing because of the rain.",
+    "correctResponseId": "en:lesson-31:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i03",
+    "correctText": "because of",
+    "correctResponseId": "en:lesson-31:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i04",
+    "correctText": "game",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i05",
+    "correctText": "I understand why the game ended.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i06",
+    "correctText": "ball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i07",
+    "correctText": "The ball was caught by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i09",
+    "correctText": "shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i10",
+    "correctText": "Could you tell me where my shoes are?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i11",
+    "correctText": "I know that Ben has the ball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i12",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i13",
+    "correctText": "I know where my shoes are.",
+    "correctResponseId": "en:lesson-31:session-31:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i14",
+    "correctText": "He said his shoes were wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i15",
+    "correctText": "The game is over, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i16",
+    "correctText": "the ball is",
+    "correctResponseId": "en:lesson-31:session-31:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i17",
+    "correctText": "I went home because I was cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i18",
+    "correctText": "We stopped playing because of the rain.",
+    "correctResponseId": "en:lesson-31:session-31:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i19",
+    "correctText": "We stopped playing because of the rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-31:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-31:i21",
+    "correctText": "I understand why Ben went home.",
+    "correctResponseId": null
+  }
+]

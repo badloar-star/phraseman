@@ -1,0 +1,1095 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Похваліть фотографію, яку зробила сестра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Похваліть фотографію, яку зробила сестра.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The photo you took is lovely.",
+        "localizedMeaning": {
+          "ru": "Похвалите фотографию, которую сделала сестра.",
+          "uk": "Похваліть фотографію, яку зробила сестра."
+        },
+        "orderedTokens": [
+          "The",
+          "photo",
+          "you",
+          "took",
+          "is",
+          "lovely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — somersault",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — somersault",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i02:audio",
+          "transcript": "somersault"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i02:r1",
+            "targetText": "somersault",
+            "meaningByLocale": {
+              "ru": "Кувырок. Переворот тела вперёд или назад через голову.",
+              "uk": "Перекид. Перевертання тіла вперед або назад через голову."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "somersault",
+          "definitionByLocale": {
+            "ru": "Кувырок. Переворот тела вперёд или назад через голову.",
+            "uk": "Перекид. Перевертання тіла вперед або назад через голову."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що дитина зробила перекид.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що дитина зробила перекид.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i03:audio",
+          "transcript": "The child did a somersault."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The child did a somersault.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i04:r1",
+          "text": "The photo you took is lovely."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i04:r2",
+          "text": "The photo you took is blurry."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i04:r3",
+          "text": "The picture you drew is lovely."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i04:audio",
+          "transcript": "The photo you took is lovely."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i04:r1",
+            "targetText": "The photo you took is lovely.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i04:r2",
+            "targetText": "The photo you took is blurry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i04:r3",
+            "targetText": "The picture you drew is lovely.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photo you took is lovely.",
+              "uk": "У записі звучить The photo you took is lovely."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The photo you took is lovely.",
+              "uk": "У записі звучить The photo you took is lovely."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам сподобалася фотографія сестри.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i05:r1",
+          "text": "you took"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i05:r2",
+          "text": "you took it"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i05:r3",
+          "text": "you taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам сподобалася фотографія сестри.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам понравилась фотография сестры.",
+          "uk": "Вам сподобалася фотографія сестри."
+        },
+        "gappedTargetPhrase": "The photo ___ is lovely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-40:i05:r1",
+            "text": "you took"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i05:r2",
+            "text": "you took it"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i05:r3",
+            "text": "you taking"
+          }
+        ],
+        "testedDimension": "Вам сподобалася фотографія сестри.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Вам сподобалася фотографія сестри.",
+            "feedbackByLocale": {
+              "ru": "It лишнее: фотография уже названа.",
+              "uk": "It зайве: фотографію вже названо."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Вам сподобалася фотографія сестри.",
+            "feedbackByLocale": {
+              "ru": "О сделанном снимке говорим took.",
+              "uk": "Про зроблений знімок кажемо took."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cartwheel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cartwheel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i06:audio",
+          "transcript": "cartwheel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i06:r1",
+            "targetText": "cartwheel",
+            "meaningByLocale": {
+              "ru": "Колесо. Гимнастический переворот боком с опорой на руки.",
+              "uk": "Колесо. Гімнастичний переворот боком з опорою на руки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cartwheel",
+          "definitionByLocale": {
+            "ru": "Колесо. Гимнастический переворот боком с опорой на руки.",
+            "uk": "Колесо. Гімнастичний переворот боком з опорою на руки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i07:r1",
+          "text": "My sister can do a cartwheel."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i07:r2",
+          "text": "My brother can do a cartwheel."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i07:r3",
+          "text": "My sister can do a somersault."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i07:audio",
+          "transcript": "My sister can do a cartwheel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i07:r1",
+            "targetText": "My sister can do a cartwheel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i07:r2",
+            "targetText": "My brother can do a cartwheel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i07:r3",
+            "targetText": "My sister can do a somersault.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sister can do a cartwheel.",
+              "uk": "У записі звучить My sister can do a cartwheel."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sister can do a cartwheel.",
+              "uk": "У записі звучить My sister can do a cartwheel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, чий м’яч ви знайшли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте, чий м’яч ви знайшли.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i08:audio",
+          "transcript": "This is the child whose ball we found."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the child whose ball we found.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "child",
+          "whose",
+          "ball",
+          "we",
+          "found"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Це дитина, чий м’яч ви знайшли.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i09:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i09:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i09:r3",
+          "text": "whose his"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це дитина, чий м’яч ви знайшли.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это ребёнок, чей мяч вы нашли.",
+          "uk": "Це дитина, чий м’яч ви знайшли."
+        },
+        "gappedTargetPhrase": "This is the child ___ ball we found.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-40:i09:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i09:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i09:r3",
+            "text": "whose his"
+          }
+        ],
+        "testedDimension": "Це дитина, чий м’яч ви знайшли.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Це дитина, чий м’яч ви знайшли.",
+            "feedbackByLocale": {
+              "ru": "Чей мяч — whose ball.",
+              "uk": "Чий м’яч — whose ball."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Це дитина, чий м’яч ви знайшли.",
+            "feedbackByLocale": {
+              "ru": "His лишнее после whose.",
+              "uk": "His зайве після whose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leapfrog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i10:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leapfrog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i10:audio",
+          "transcript": "leapfrog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i10:r1",
+            "targetText": "leapfrog",
+            "meaningByLocale": {
+              "ru": "Чехарда. Игра, в которой по очереди перепрыгивают через наклонившегося участника.",
+              "uk": "Чехарда. Гра, у якій по черзі перестрибують через учасника, що нахилився."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leapfrog",
+          "definitionByLocale": {
+            "ru": "Чехарда. Игра, в которой по очереди перепрыгивают через наклонившегося участника.",
+            "uk": "Чехарда. Гра, у якій по черзі перестрибують через учасника, що нахилився."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що діти грали в чехарду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що діти грали в чехарду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i11:audio",
+          "transcript": "The children played leapfrog."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The children played leapfrog.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, де зробили цю фотографію.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, де зробили цю фотографію.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where was this photo taken?",
+        "localizedMeaning": {
+          "ru": "Спросите, где сделали эту фотографию.",
+          "uk": "Запитайте, де зробили цю фотографію."
+        },
+        "orderedTokens": [
+          "Where",
+          "was",
+          "this",
+          "photo",
+          "taken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — piggyback",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Картка слова — piggyback",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i13:audio",
+          "transcript": "piggyback"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i13:r1",
+            "targetText": "piggyback",
+            "meaningByLocale": {
+              "ru": "На спине у другого человека. Так несут человека, который держится за плечи или шею несущего; a piggyback — такое катание на спине.",
+              "uk": "На спині в іншої людини. Так несуть людину, яка тримається за плечі або шию того, хто несе; a piggyback — таке катання на спині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "piggyback",
+          "definitionByLocale": {
+            "ru": "На спине у другого человека. Так несут человека, который держится за плечи или шею несущего; a piggyback — такое катание на спине.",
+            "uk": "На спині в іншої людини. Так несуть людину, яка тримається за плечі або шию того, хто несе; a piggyback — таке катання на спині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i14:r1",
+          "text": "Dad gave me a piggyback."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i14:r2",
+          "text": "Dad gave me a present."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i14:r3",
+          "text": "Mum gave me a piggyback."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i14:audio",
+          "transcript": "Dad gave me a piggyback."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-40:i14:r1",
+            "targetText": "Dad gave me a piggyback.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i14:r2",
+            "targetText": "Dad gave me a present.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i14:r3",
+            "targetText": "Mum gave me a piggyback.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Dad gave me a piggyback.",
+              "uk": "У записі звучить Dad gave me a piggyback."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Dad gave me a piggyback.",
+              "uk": "У записі звучить Dad gave me a piggyback."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-40:i15:p1",
+            "target": "somersault",
+            "meaningByLocale": {
+              "ru": "кувырок",
+              "uk": "перекид"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-40:i15:p2",
+            "target": "cartwheel",
+            "meaningByLocale": {
+              "ru": "колесо",
+              "uk": "колесо"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-40:i15:p3",
+            "target": "leapfrog",
+            "meaningByLocale": {
+              "ru": "чехарда",
+              "uk": "чехарда"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-40:i15:p4",
+            "target": "piggyback",
+            "meaningByLocale": {
+              "ru": "на спине у другого человека",
+              "uk": "на спині в іншої людини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "somersault",
+          "cartwheel",
+          "leapfrog",
+          "piggyback"
+        ],
+        "rightColumn": [
+          "перекид",
+          "колесо",
+          "чехарда",
+          "на спині в іншої людини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Це парк, у якому грали діти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i16:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i16:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i16:r3",
+          "text": "whose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це парк, у якому грали діти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это парк, в котором играли дети.",
+          "uk": "Це парк, у якому грали діти."
+        },
+        "gappedTargetPhrase": "This is the park ___ the children played.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-40:i16:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i16:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i16:r3",
+            "text": "whose"
+          }
+        ],
+        "testedDimension": "Це парк, у якому грали діти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i16:r2",
+            "correct": false,
+            "testedDimension": "Це парк, у якому грали діти.",
+            "feedbackByLocale": {
+              "ru": "Для места игры нужно where.",
+              "uk": "Для місця гри потрібне where."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i16:r3",
+            "correct": false,
+            "testedDimension": "Це парк, у якому грали діти.",
+            "feedbackByLocale": {
+              "ru": "Здесь место, не принадлежность: where.",
+              "uk": "Тут місце, не належність: where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: сестра вміє робити колесо чи перекид?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i17:r1",
+          "text": "My sister can do a cartwheel."
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i17:r2",
+          "text": "My sister can do a somersault."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i17:audioA",
+        "en:lesson-29:session-40:i17:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: сестра вміє робити колесо чи перекид?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "My sister can do a cartwheel.",
+        "contrastB": "My sister can do a somersault.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-40:i17:audioA",
+          "transcript": "My sister can do a cartwheel."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-40:i17:audioB",
+          "transcript": "My sister can do a somersault."
+        },
+        "testedPhoneticContrast": "Послухайте: сестра вміє робити колесо чи перекид?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: сестра вміє робити колесо чи перекид?",
+            "feedbackByLocale": {
+              "ru": "Звучит cartwheel — колесо.",
+              "uk": "Звучить cartwheel — колесо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, як тато ніс дитину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i18:audio"
+      ],
+      "accessibilityLabel": "Послухайте, як тато ніс дитину.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i18:audio",
+          "transcript": "Dad gave me a piggyback."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Dad gave me a piggyback.",
+        "orderedTokens": [
+          "Dad",
+          "gave",
+          "me",
+          "a",
+          "piggyback"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть надіслати вам фотографії.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-40:i19:audio"
+      ],
+      "accessibilityLabel": "Попросіть надіслати вам фотографії.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-40:i19:audio",
+          "transcript": "Could you send me the photos?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you send me the photos?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви добре провели час у цьому парку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-40:i20:r1",
+          "text": "we visited"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i20:r2",
+          "text": "we visited it"
+        },
+        {
+          "responseId": "en:lesson-29:session-40:i20:r3",
+          "text": "us visited"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви добре провели час у цьому парку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хорошо провели время в этом парке.",
+          "uk": "Ви добре провели час у цьому парку."
+        },
+        "gappedTargetPhrase": "The park ___ was lovely.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-40:i20:r1",
+            "text": "we visited"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i20:r2",
+            "text": "we visited it"
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i20:r3",
+            "text": "us visited"
+          }
+        ],
+        "testedDimension": "Ви добре провели час у цьому парку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-40:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви добре провели час у цьому парку.",
+            "feedbackByLocale": {
+              "ru": "It повторяет уже названный парк.",
+              "uk": "It повторює вже названий парк."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-40:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви добре провели час у цьому парку.",
+            "feedbackByLocale": {
+              "ru": "Посетили мы: we visited.",
+              "uk": "Відвідали ми: we visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-40:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що діти добре провели час.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що діти добре провели час.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The children had a lovely time.",
+        "localizedMeaning": {
+          "ru": "Скажите, что дети хорошо провели время.",
+          "uk": "Скажіть, що діти добре провели час."
+        },
+        "orderedTokens": [
+          "The",
+          "children",
+          "had",
+          "a",
+          "lovely",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7112090a22cc8fbc4f887bd49a5750717c35705b37fa3f9d17919aad5b61d841"
+}

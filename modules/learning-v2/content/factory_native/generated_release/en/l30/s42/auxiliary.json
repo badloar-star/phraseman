@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-42:intro1:r2": {
+          "ru": "После if нужен порядок I needed, без did.",
+          "uk": "Після if потрібен порядок I needed, без did."
+        },
+        "en:lesson-30:session-42:intro1:r3": {
+          "ru": "Нужна форма needed, не needing.",
+          "uk": "Потрібна форма needed, не needing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-42:intro2:r2": {
+          "ru": "После not перед touch нужно to.",
+          "uk": "Після not перед touch потрібне to."
+        },
+        "en:lesson-30:session-42:intro2:r3": {
+          "ru": "Здесь нужно not to touch, не not touching.",
+          "uk": "Тут потрібне not to touch, не not touching."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-42:intro3:r2": {
+          "ru": "После told перед me не нужно to.",
+          "uk": "Після told перед me не потрібне to."
+        },
+        "en:lesson-30:session-42:intro3:r3": {
+          "ru": "С получателем me используем told me.",
+          "uk": "З одержувачем me використовуємо told me."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4a5d0abf53008c140fafe9058b40f8e14a44efb846ef44b75e7d0baec2ee2707"
+}

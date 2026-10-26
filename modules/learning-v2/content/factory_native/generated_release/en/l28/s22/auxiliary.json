@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-22:intro1:r2": {
+          "ru": "После will нужна be.",
+          "uk": "Після will потрібна be."
+        },
+        "en:lesson-28:session-22:intro1:r3": {
+          "ru": "В этой конструкции нужна checked.",
+          "uk": "У цій конструкції потрібна checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-22:intro2:r2": {
+          "ru": "Один аккумулятор: was.",
+          "uk": "Один акумулятор: was."
+        },
+        "en:lesson-28:session-22:intro2:r3": {
+          "ru": "Здесь нужна replaced.",
+          "uk": "Тут потрібна replaced."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-22:intro3:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-28:session-22:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "718c14d147e58e6e08eff592fce10a4b732f6bf5e078f5e139fc7c45e2f1cfde"
+}

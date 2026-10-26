@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "передавать сообщения и просьбы, уточнять предмет; повторите вопросы и желание.",
+    "uk": "передавати повідомлення й прохання, уточнювати предмет; повторите запитання та бажання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Передать слова соседки",
+        "uk": "Передати слова сусідки"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка попросила вас присмотреть за собакой и сказала, что собака дружелюбная. Передайте сообщение брату: She told me the dog was friendly — она сказала мне, что собака дружелюбная. Соберите She + told + me + the dog was friendly. После told ставим получателя me, затем содержание сообщения.",
+        "uk": "Сусідка попросила вас доглянути собаку й сказала, що собака доброзичливий. Передайте повідомлення братові: She told me the dog was friendly — вона сказала мені, що собака доброзичливий. Складіть She + told + me + the dog was friendly. Після told ставимо одержувача me, потім зміст повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-32:intro1:r1",
+              "text": "She told me the dog was friendly."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro1:r2",
+              "text": "She said me the dog was friendly."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro1:r3",
+              "text": "She told to me the dog was friendly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-32:intro1:r1",
+              "text": "She told me the dog was friendly."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro1:r2",
+              "text": "She said me the dog was friendly."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro1:r3",
+              "text": "She told to me the dog was friendly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Передать просьбу о калитке",
+        "uk": "Передати прохання про хвіртку"
+      },
+      "bodyByLocale": {
+        "ru": "Соседка попросила вас держать калитку закрытой, пока собака во дворе. Расскажите брату: She asked me to keep the gate closed — она попросила меня держать калитку закрытой. Соберите She + asked + me + to keep the gate closed. Me — тот, кого попросили. После него действие вводится через to: to keep.",
+        "uk": "Сусідка попросила вас тримати хвіртку зачиненою, поки собака у дворі. Розкажіть братові: She asked me to keep the gate closed — вона попросила мене тримати хвіртку зачиненою. Складіть She + asked + me + to keep the gate closed. Me — той, кого попросили. Після нього дія вводиться через to: to keep."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-32:intro2:r1",
+              "text": "She asked me to keep the gate closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro2:r2",
+              "text": "She asked me keep the gate closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro2:r3",
+              "text": "She asked I to keep the gate closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-32:intro2:r1",
+              "text": "She asked me to keep the gate closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro2:r2",
+              "text": "She asked me keep the gate closed."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro2:r3",
+              "text": "She asked I to keep the gate closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить нужную миску",
+        "uk": "Уточнити потрібну миску"
+      },
+      "bodyByLocale": {
+        "ru": "У соседки несколько мисок. Сообщите ей, что миска, которую она вам дала, пустая: The bowl you gave me is empty — миска, которую ты мне дала, пустая. Соберите The bowl + you gave me + is empty. You gave me уточняет миску. You — тот, кто дал, а bowl — данный предмет, поэтому that перед you можно опустить.",
+        "uk": "У сусідки кілька мисок. Повідомте їй, що миска, яку вона вам дала, порожня: The bowl you gave me is empty — миска, яку ти мені дала, порожня. Складіть The bowl + you gave me + is empty. You gave me уточнює миску. You — той, хто дав, а bowl — предмет, який дали, тому that перед you можна опустити."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-32:intro3:r1",
+              "text": "The bowl you gave me is empty."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro3:r2",
+              "text": "The bowl gave you me is empty."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro3:r3",
+              "text": "The bowl you gave me are empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-32:intro3:r1",
+              "text": "The bowl you gave me is empty."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro3:r2",
+              "text": "The bowl gave you me is empty."
+            },
+            {
+              "responseId": "en:lesson-30:session-32:intro3:r3",
+              "text": "The bowl you gave me are empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd7461c06512524c5b273dfa2d14a4f840d01169562c7074bc3d47eb70828388"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-28:i01",
+    "correctText": "shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i02",
+    "correctText": "I took the shoes back because they were too small.",
+    "correctResponseId": "en:lesson-31:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i03",
+    "correctText": "because",
+    "correctResponseId": "en:lesson-31:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i04",
+    "correctText": "receipt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i05",
+    "correctText": "I know where the receipt is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i06",
+    "correctText": "The receipt was printed by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i07",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-31:session-28:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i08",
+    "correctText": "box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i09",
+    "correctText": "Could you tell me where the box is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i10",
+    "correctText": "I know that the receipt is in the box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i12",
+    "correctText": "shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i13",
+    "correctText": "I know when the shop opens.",
+    "correctResponseId": "en:lesson-31:session-28:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i14",
+    "correctText": "She said the shop was open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i15",
+    "correctText": "The shop is open, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i16",
+    "correctText": "the shop is",
+    "correctResponseId": "en:lesson-31:session-28:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i17",
+    "correctText": "I took a taxi because of the rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i18",
+    "correctText": "I know where the receipt is.",
+    "correctResponseId": "en:lesson-31:session-28:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i19",
+    "correctText": "I took the shoes back because they were too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i20",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-31:session-28:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-28:i21",
+    "correctText": "I understand why Anna took the shoes back.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-26:intro1:r2": {
+          "ru": "Перед I was hungry нужен because без of.",
+          "uk": "Перед I was hungry потрібне because без of."
+        },
+        "en:lesson-31:session-26:intro1:r3": {
+          "ru": "Для состояния в прошлом нужна форма was.",
+          "uk": "Для стану в минулому потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-26:intro2:r2": {
+          "ru": "Внутри сообщения не ставим вопрос с did.",
+          "uk": "Усередині повідомлення не ставимо запитання з did."
+        },
+        "en:lesson-31:session-26:intro2:r3": {
+          "ru": "Здесь достаточно формы left без did.",
+          "uk": "Тут достатньо форми left без did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-26:intro3:r2": {
+          "ru": "С is здесь нужно isn’t.",
+          "uk": "З is тут потрібне isn’t."
+        },
+        "en:lesson-31:session-26:intro3:r3": {
+          "ru": "Soup заменяем на it.",
+          "uk": "Soup замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92021a863f1378691e25a9d35c337143d57480f5f25b428d26634441113887b4"
+}

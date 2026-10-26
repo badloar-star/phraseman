@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-51:intro1:r2": {
+          "ru": "Перед trimmed нужна be.",
+          "uk": "Перед trimmed потрібна be."
+        },
+        "en:lesson-28:session-51:intro1:r3": {
+          "ru": "После be нужна trimmed.",
+          "uk": "Після be потрібна trimmed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-51:intro2:r2": {
+          "ru": "Одна услуга: is.",
+          "uk": "Одна послуга: is."
+        },
+        "en:lesson-28:session-51:intro2:r3": {
+          "ru": "После is нужна included.",
+          "uk": "Після is потрібна included."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-51:intro3:r2": {
+          "ru": "Между will и washed нужна be.",
+          "uk": "Між will та washed потрібна be."
+        },
+        "en:lesson-28:session-51:intro3:r3": {
+          "ru": "После will be нужна washed.",
+          "uk": "Після will be потрібна washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5d1f98c65800ee428990d8b2175d755ccc38d688f15a3c5890efec1f26834695"
+}

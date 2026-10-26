@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-33:i01",
+    "correctText": "busy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i02",
+    "correctText": "She said she was busy.",
+    "correctResponseId": "en:lesson-30:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i04",
+    "correctText": "ready",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i05",
+    "correctText": "They said they were ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i06",
+    "correctText": "He said he was hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i07",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-30:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i08",
+    "correctText": "help",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i09",
+    "correctText": "He said he needed help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i10",
+    "correctText": "She said the keys were in her bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i11",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-30:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i12",
+    "correctText": "late",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i13",
+    "correctText": "He said he was late.",
+    "correctResponseId": "en:lesson-30:session-33:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i14",
+    "correctText": "She said her bag was heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i15",
+    "correctText": "He said he needed a ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i16",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-30:session-33:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i17",
+    "correctText": "They said they needed a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i18",
+    "correctText": "He said he needed help.",
+    "correctResponseId": "en:lesson-30:session-33:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i19",
+    "correctText": "They said they were outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i20",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-30:session-33:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-33:i21",
+    "correctText": "She said the train was already here.",
+    "correctResponseId": null
+  }
+]

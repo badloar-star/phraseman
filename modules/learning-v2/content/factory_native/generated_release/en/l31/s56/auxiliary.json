@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-56:intro1:r2": {
+          "ru": "Для результата в прошлом нужна форма went.",
+          "uk": "Для результату в минулому потрібна форма went."
+        },
+        "en:lesson-31:session-56:intro1:r3": {
+          "ru": "Нужна полная часть we went home.",
+          "uk": "Потрібна повна частина we went home."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-56:intro2:r2": {
+          "ru": "Для прошлого действия нужна форма ate.",
+          "uk": "Для минулої дії потрібна форма ate."
+        },
+        "en:lesson-31:session-56:intro2:r3": {
+          "ru": "Нужна полная часть we ate some bread.",
+          "uk": "Потрібна повна частина we ate some bread."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-56:intro3:r2": {
+          "ru": "После where порядок our bag is.",
+          "uk": "Після where порядок our bag is."
+        },
+        "en:lesson-31:session-56:intro3:r3": {
+          "ru": "Одна bag требует is.",
+          "uk": "Одна bag потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "55fcd35697696e3465d323420d6821cc1da30d50043d5c53333677c135d1d1ce"
+}

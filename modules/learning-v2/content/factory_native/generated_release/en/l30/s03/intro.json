@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "как передать чужие слова о раздражении, выразить желание стать терпеливее и уточнить разговор.",
+    "uk": "як передати чужі слова про роздратування, висловити бажання стати терплячішими й уточнити розмову."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что сказала сестра",
+        "uk": "Що сказала сестра"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра безуспешно пыталась договориться с братом об уборке и сказала, что раздражена. Вы пересказываете это маме: She said that she was frustrated — она сказала, что была раздражена. Соберите She + said + that + she was frustrated. Said вводит её слова; после that назовите её состояние во время того разговора: she was frustrated.",
+        "uk": "Учора сестра безуспішно намагалася домовитися з братом про прибирання й сказала, що роздратована. Ви переказуєте це мамі: She said that she was frustrated — вона сказала, що була роздратована. Складіть She + said + that + she was frustrated. Said вводить її слова; після that назвіть її стан під час тієї розмови: she was frustrated."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-03:intro1:r1",
+              "text": "She said that she was frustrated."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro1:r2",
+              "text": "She said that she were frustrated."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro1:r3",
+              "text": "She said that she be frustrated."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-03:intro1:r1",
+              "text": "She said that she was frustrated."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro1:r2",
+              "text": "She said that she were frustrated."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro1:r3",
+              "text": "She said that she be frustrated."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хочется больше терпения",
+        "uk": "Хочеться більше терпіння"
+      },
+      "bodyByLocale": {
+        "ru": "Вы быстро раздражаетесь во время домашних споров и хотите стать терпеливее: I wish I were more patient — хотелось бы быть терпеливее. Соберите I wish + I were + more patient. Were после wish показывает, каким вы хотели бы быть сейчас; это желание, а не рассказ о прошлом.",
+        "uk": "Ви швидко дратуєтеся під час домашніх суперечок і хочете стати терплячішими: I wish I were more patient — хотілося б бути терплячішими. Складіть I wish + I were + more patient. Were після wish показує, якими ви хотіли б бути зараз; це бажання, а не розповідь про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-03:intro2:r1",
+              "text": "I wish I were more patient."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro2:r2",
+              "text": "I wish I am more patient."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro2:r3",
+              "text": "I wish I being more patient."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-03:intro2:r1",
+              "text": "I wish I were more patient."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro2:r2",
+              "text": "I wish I am more patient."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro2:r3",
+              "text": "I wish I being more patient."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Тот самый разговор",
+        "uk": "Та сама розмова"
+      },
+      "bodyByLocale": {
+        "ru": "Вы объясняете другу, какой разговор помог помириться: The conversation we had was useful — разговор, который у нас состоялся, был полезным. Соберите The conversation + we had + was useful. We had уточняет разговор. Перед we можно опустить that: we называет участников действия, а conversation — то, о чём идёт уточнение.",
+        "uk": "Ви пояснюєте другові, яка розмова допомогла помиритися: The conversation we had was useful — розмова, яка в нас відбулася, була корисною. Складіть The conversation + we had + was useful. We had уточнює розмову. Перед we можна пропустити that: we називає учасників дії, а conversation — те, про що йдеться в уточненні."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-03:intro3:r1",
+              "text": "The conversation we had was useful."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro3:r2",
+              "text": "The conversation we having was useful."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro3:r3",
+              "text": "The conversation we had were useful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-03:intro3:r1",
+              "text": "The conversation we had was useful."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro3:r2",
+              "text": "The conversation we having was useful."
+            },
+            {
+              "responseId": "en:lesson-30:session-03:intro3:r3",
+              "text": "The conversation we had were useful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "76678174176a570014751715412bb199e3e67f3f4a4fc67c291f363a1da30492"
+}

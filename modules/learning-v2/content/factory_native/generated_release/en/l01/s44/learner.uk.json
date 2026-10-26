@@ -139,47 +139,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — подруга тихо говорить з вами в музеї",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i02:r1",
-          "text": "It is ancient."
-        },
-        {
-          "responseId": "en:lesson-01:session-44:i02:r2",
           "text": "It is weird."
         },
         {
+          "responseId": "en:lesson-01:session-44:i02:r2",
+          "text": "It is ancient."
+        },
+        {
           "responseId": "en:lesson-01:session-44:i02:r3",
-          "text": "He is ancient."
+          "text": "He is weird."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-44:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — подруга тихо говорить з вами в музеї",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-44:i02:audio",
-          "transcript": "It is ancient."
+          "transcript": "It is weird."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-44:i02:r1",
-            "targetText": "It is ancient.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-01:session-44:i02:r2",
             "targetText": "It is weird.",
             "meaningByLocale": null
           },
           {
+            "responseId": "en:lesson-01:session-44:i02:r2",
+            "targetText": "It is ancient.",
+            "meaningByLocale": null
+          },
+          {
             "responseId": "en:lesson-01:session-44:i02:r3",
-            "targetText": "He is ancient.",
+            "targetText": "He is weird.",
             "meaningByLocale": null
           }
         ],
@@ -188,16 +188,16 @@
           {
             "responseId": "en:lesson-01:session-44:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — подруга тихо говорить з вами в музеї",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `ancient`, а в этом варианте — `weird`.",
-              "uk": "У записі останнє слово — `ancient`, а в цьому варіанті — `weird`."
+              "ru": "В записи последнее слово — `weird`, а в этом варианте — `ancient`.",
+              "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `ancient`."
             }
           },
           {
             "responseId": "en:lesson-01:session-44:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — подруга тихо говорить з вами в музеї",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `It`, а в этом варианте — `He`.",
               "uk": "У записі перше слово — `It`, а в цьому варіанті — `He`."
@@ -635,7 +635,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть почуте",
+      "prompt": "Послухайте й виберіть — подруга в музеї звертається до вас",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i09:r1",
@@ -654,7 +654,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-44:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть почуте",
+      "accessibilityLabel": "Послухайте й виберіть — подруга в музеї звертається до вас",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -684,7 +684,7 @@
           {
             "responseId": "en:lesson-01:session-44:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — подруга в музеї звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `weird`, а в этом варианте — `complicated`.",
               "uk": "У записі останнє слово — `weird`, а в цьому варіанті — `complicated`."
@@ -693,7 +693,7 @@
           {
             "responseId": "en:lesson-01:session-44:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть почуте",
+            "testedDimension": "Послухайте й виберіть — подруга в музеї звертається до вас",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `It's`, а в этом варианте — `I'm`.",
               "uk": "У записі перше слово — `It's`, а в цьому варіанті — `I'm`."
@@ -976,7 +976,7 @@
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть коротку фразу",
+      "prompt": "Послухайте й виберіть — друзі в музеї діляться думками одне з одним",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i15:r1",
@@ -995,7 +995,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-44:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть коротку фразу",
+      "accessibilityLabel": "Послухайте й виберіть — друзі в музеї діляться думками одне з одним",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -1025,7 +1025,7 @@
           {
             "responseId": "en:lesson-01:session-44:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "testedDimension": "Послухайте й виберіть — друзі в музеї діляться думками одне з одним",
             "feedbackByLocale": {
               "ru": "В записи первое слово — `They're`, а в этом варианте — `We're`.",
               "uk": "У записі перше слово — `They're`, а в цьому варіанті — `We're`."
@@ -1034,7 +1034,7 @@
           {
             "responseId": "en:lesson-01:session-44:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть коротку фразу",
+            "testedDimension": "Послухайте й виберіть — друзі в музеї діляться думками одне з одним",
             "feedbackByLocale": {
               "ru": "В записи последнее слово — `sleepy`, а в этом варианте — `curious`.",
               "uk": "У записі останнє слово — `sleepy`, а в цьому варіанті — `curious`."
@@ -1167,5 +1167,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f9680f5d5c2bd29cfc7cfbd4e419c071d3db7986cf93f768b78b757a9c4429ac"
+  "learnerFingerprint": "2714eb5e5b6416e8bb383bfd7f2740e94c0dda03df7a34e98b1a8a4a886cbd65"
 }

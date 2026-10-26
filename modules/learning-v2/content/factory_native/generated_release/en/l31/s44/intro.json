@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять цель действий на кухне через to и so that.",
+    "uk": "пояснювати мету дій на кухні через to і so that."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Читаю рецепт, чтобы приготовить суп",
+        "uk": "Читаю рецепт, щоб приготувати суп"
+      },
+      "bodyByLocale": {
+        "ru": "Вы готовите суп по рецепту: I am reading the recipe to make soup — я читаю рецепт, чтобы приготовить суп. Соберите I am reading the recipe + to + make soup. После to нужна начальная форма make. Один человек читает и готовит.",
+        "uk": "Ви готуєте суп за рецептом: I am reading the recipe to make soup — я читаю рецепт, щоб приготувати суп. Складіть I am reading the recipe + to + make soup. Після to потрібна початкова форма make. Одна людина читає й готує."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-44:intro1:r1",
+              "text": "I am reading the recipe to make soup."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro1:r2",
+              "text": "I am reading the recipe to made soup."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro1:r3",
+              "text": "I am reading the recipe for make soup."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-44:intro1:r1",
+              "text": "I am reading the recipe to make soup."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro1:r2",
+              "text": "I am reading the recipe to made soup."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro1:r3",
+              "text": "I am reading the recipe for make soup."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Читаю вслух, чтобы Анна слышала",
+        "uk": "Читаю вголос, щоб Анна чула"
+      },
+      "bodyByLocale": {
+        "ru": "Анна режет овощи, а вы читаете ей рецепт: I am reading aloud so that Anna can hear me — я читаю вслух, чтобы Анна меня слышала. Соберите I am reading aloud + so that + Anna can hear me. Читаете вы, слышит Анна. После so that называем Anna, затем can и начальную форму hear.",
+        "uk": "Анна ріже овочі, а ви читаєте їй рецепт: I am reading aloud so that Anna can hear me — я читаю вголос, щоб Анна мене чула. Складіть I am reading aloud + so that + Anna can hear me. Читаєте ви, чує Анна. Після so that називаємо Anna, потім can і початкову форму hear."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-44:intro2:r1",
+              "text": "I am reading aloud so that Anna can hear me."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro2:r2",
+              "text": "I am reading aloud to Anna hear me."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro2:r3",
+              "text": "I am reading aloud so that Anna can hears me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-44:intro2:r1",
+              "text": "I am reading aloud so that Anna can hear me."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro2:r2",
+              "text": "I am reading aloud to Anna hear me."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro2:r3",
+              "text": "I am reading aloud so that Anna can hears me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Знаю, что суп горячий",
+        "uk": "Знаю, що суп гарячий"
+      },
+      "bodyByLocale": {
+        "ru": "Анна предупреждает о горячем супе, но вы уже знаете: I know that the soup is hot — я знаю, что суп горячий. Соберите I know + that + the soup is hot. That вводит то, что вам известно; внутри порядок the soup + is + hot.",
+        "uk": "Анна попереджає про гарячий суп, але ви вже знаєте: I know that the soup is hot — я знаю, що суп гарячий. Складіть I know + that + the soup is hot. That вводить те, що вам відомо; усередині порядок the soup + is + hot."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-44:intro3:r1",
+              "text": "I know that the soup is hot."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro3:r2",
+              "text": "I know that is the soup hot."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro3:r3",
+              "text": "I know that the soup are hot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-44:intro3:r1",
+              "text": "I know that the soup is hot."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro3:r2",
+              "text": "I know that is the soup hot."
+            },
+            {
+              "responseId": "en:lesson-31:session-44:intro3:r3",
+              "text": "I know that the soup are hot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9a4271c6a9d142a24049e52f168272ee18201432c6fda5db578bfb7c0e2ac267"
+}

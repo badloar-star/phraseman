@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-10:intro3:r2": {
-          "ru": "Стойка одна, поэтому перед ней нужно a: a reception.",
-          "uk": "Стійка одна, тому перед нею потрібно a: a reception."
+          "ru": "В этой модели с a reception нужно Is, а не Are.",
+          "uk": "У цій моделі з a reception потрібне Is, а не Are."
         },
         "en:lesson-04:session-10:intro3:r3": {
-          "ru": "Вопрос начинаем с Is there, а не с There is.",
-          "uk": "Запитання починаємо з Is there, а не з There is."
+          "ru": "После Is ставим there, затем называем место.",
+          "uk": "Після Is ставимо there, потім називаємо місце."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ee526a222c7f10009f4f78cb9672dd275323b7727499ab13fede82cdac68bfde"
+  "auxiliaryFingerprint": "4ff8e2c3710c7ee777134d1d27e68c69e2a7c1ae73c9adc5288251a9a03fcb1d"
 }

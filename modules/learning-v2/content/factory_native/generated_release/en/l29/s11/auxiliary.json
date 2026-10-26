@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-11:intro1:r2": {
+          "ru": "Перед принадлежащей мужчине вещью нужна whose.",
+          "uk": "Перед належною чоловікові річчю потрібна whose."
+        },
+        "en:lesson-29:session-11:intro1:r3": {
+          "ru": "His после whose не добавляем.",
+          "uk": "His після whose не додаємо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-11:intro2:r2": {
+          "ru": "Человека, сделавшего вещь, вводит by.",
+          "uk": "Людину, яка зробила річ, позначає by."
+        },
+        "en:lesson-29:session-11:intro2:r3": {
+          "ru": "Здесь нужна третья форма made.",
+          "uk": "Тут потрібна третя форма made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-11:intro3:r2": {
+          "ru": "В этом условии нужна fits без will.",
+          "uk": "У цій умові потрібна fits без will."
+        },
+        "en:lesson-29:session-11:intro3:r3": {
+          "ru": "После it здесь нужна форма fits.",
+          "uk": "Після it тут потрібна форма fits."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "910a2d8595a400e3e20ec0b69bd48c3e9567668fa1dee18448f506ccca7569c7"
+}

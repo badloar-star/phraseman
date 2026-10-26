@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "пересказывать вчерашние слова со сдвигом времени и передавать просьбы к другому человеку.",
+    "uk": "переказувати вчорашні слова зі зсувом часу й передавати прохання до іншої людини."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Волосы были длинными",
+        "uk": "Волосся було довгим"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера брат перед стрижкой сказал: «Мои волосы слишком длинные». Сегодня перескажите его слова со сдвигом времени: He said his hair was too long — он сказал, что его волосы были слишком длинными. Соберите He + said + his hair + was too long. В английском hair здесь обозначает волосы как целое, поэтому is сдвигается в was, не were.",
+        "uk": "Учора брат перед стрижкою сказав: «Моє волосся занадто довге». Сьогодні перекажіть його слова зі зсувом часу: He said his hair was too long — він сказав, що його волосся було занадто довгим. Складіть He + said + his hair + was too long. В англійській hair тут позначає волосся як ціле, тому is зсувається у was, не were."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-37:intro1:r1",
+              "text": "He said his hair was too long."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro1:r2",
+              "text": "He said his hair is too long."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro1:r3",
+              "text": "He said his hair were too long."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-37:intro1:r1",
+              "text": "He said his hair was too long."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro1:r2",
+              "text": "He said his hair is too long."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro1:r3",
+              "text": "He said his hair were too long."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кого попросили сесть",
+        "uk": "Кого попросили сісти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли с братом к парикмахеру. Парикмахер-женщина попросила брата сесть. Передайте её просьбу: She asked him to sit down — она попросила его сесть. Соберите She + asked + him + to sit down. Him обозначает брата, которого попросили; после него действие вводим через to.",
+        "uk": "Ви прийшли з братом до перукарки. Вона попросила брата сісти. Передайте її прохання: She asked him to sit down — вона попросила його сісти. Складіть She + asked + him + to sit down. Him позначає брата, якого попросили; після нього дію вводимо через to."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-37:intro2:r1",
+              "text": "She asked him to sit down."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro2:r2",
+              "text": "She asked he to sit down."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro2:r3",
+              "text": "She asked him sit down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-37:intro2:r1",
+              "text": "She asked him to sit down."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro2:r2",
+              "text": "She asked he to sit down."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro2:r3",
+              "text": "She asked him sit down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что брат хотел вчера",
+        "uk": "Чого брат хотів учора"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера брат сказал: «Я хочу короткие волосы». Сегодня расскажите об этом со сдвигом времени: He said he wanted short hair — он сказал, что хотел короткие волосы. Соберите He + said + he + wanted short hair. Want из его слов сдвигается в wanted после прошедшего said.",
+        "uk": "Учора брат сказав: «Я хочу коротке волосся». Сьогодні розкажіть про це зі зсувом часу: He said he wanted short hair — він сказав, що хотів коротке волосся. Складіть He + said + he + wanted short hair. Want з його слів зсувається у wanted після минулого said."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-37:intro3:r1",
+              "text": "He said he wanted short hair."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro3:r2",
+              "text": "He said he wants short hair."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro3:r3",
+              "text": "He said he wanting short hair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-37:intro3:r1",
+              "text": "He said he wanted short hair."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro3:r2",
+              "text": "He said he wants short hair."
+            },
+            {
+              "responseId": "en:lesson-30:session-37:intro3:r3",
+              "text": "He said he wanting short hair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c1e28313e3a8dd122b8a4ed5884e3cd4fb440dd4967911e1f7337a0a81624f8c"
+}

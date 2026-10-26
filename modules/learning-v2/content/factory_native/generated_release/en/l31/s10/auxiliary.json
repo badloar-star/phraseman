@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-10:intro1:r2": {
+          "ru": "Один park требует isn’t it.",
+          "uk": "Один park потребує isn’t it."
+        },
+        "en:lesson-31:session-10:intro1:r3": {
+          "ru": "Один парк заменяем на it.",
+          "uk": "Один парк замінюємо на it."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-10:intro2:r2": {
+          "ru": "После where нужен порядок the gate is.",
+          "uk": "Після where потрібен порядок the gate is."
+        },
+        "en:lesson-31:session-10:intro2:r3": {
+          "ru": "Один gate требует is.",
+          "uk": "Один gate потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-10:intro3:r2": {
+          "ru": "Для действия после was нужна форма opened.",
+          "uk": "Для дії після was потрібна форма opened."
+        },
+        "en:lesson-31:session-10:intro3:r3": {
+          "ru": "Один gate требует was.",
+          "uk": "Один gate потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aafcb794842eca47fca45d4a51c2ba7bd1f61d1e90c87a31ee1a7bb27ebc4dbb"
+}

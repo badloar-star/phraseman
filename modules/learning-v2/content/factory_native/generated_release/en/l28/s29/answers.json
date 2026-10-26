@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-29:i01",
+    "correctText": "unisex",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i02",
+    "correctText": "These jackets are unisex.",
+    "correctResponseId": "en:lesson-28:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i03",
+    "correctText": "The label must be kept.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i04",
+    "correctText": "Could I try this on?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i05",
+    "correctText": "maternity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i06",
+    "correctText": "Where is the maternity section?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i07",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-29:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i08",
+    "correctText": "Your order will be sent tomorrow.",
+    "correctResponseId": "en:lesson-28:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i09",
+    "correctText": "The dress was repaired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i10",
+    "correctText": "petite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i11",
+    "correctText": "Do you have these trousers in petite sizes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i13",
+    "correctText": "Can the sleeves be shortened?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i14",
+    "correctText": "seamless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i15",
+    "correctText": "I am looking for a seamless bra.",
+    "correctResponseId": "en:lesson-28:session-29:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i16",
+    "correctText": "en:lesson-28:session-29:i16:p1=unisex\nen:lesson-28:session-29:i16:p2=maternity\nen:lesson-28:session-29:i16:p3=petite\nen:lesson-28:session-29:i16:p4=seamless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i17",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-28:session-29:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i18",
+    "correctText": "Does it come in another colour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i19",
+    "correctText": "The receipt must be shown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i20",
+    "correctText": "This can be exchanged.",
+    "correctResponseId": "en:lesson-28:session-29:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-29:i21",
+    "correctText": "Thanks, I will think about it.",
+    "correctResponseId": null
+  }
+]

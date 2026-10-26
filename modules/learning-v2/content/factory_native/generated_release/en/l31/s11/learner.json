@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i01:audio",
+          "transcript": "soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-11:i01:r1",
+            "targetText": "soup",
+            "meaningByLocale": {
+              "ru": "Суп. Повторение знакомого слова.",
+              "uk": "Суп. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soup",
+          "definitionByLocale": {
+            "ru": "Суп. Повторение знакомого слова.",
+            "uk": "Суп. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i02:r1",
+          "text": "The soup is hot, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i02:r2",
+          "text": "The soup is cold, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i02:r3",
+          "text": "The soup is ready, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i02:audio",
+          "transcript": "The soup is hot, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-11:i02:r1",
+            "targetText": "The soup is hot, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i02:r2",
+            "targetText": "The soup is cold, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i02:r3",
+            "targetText": "The soup is ready, isn't it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup is hot, isn't it?",
+              "uk": "У записі звучить The soup is hot, isn't it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup is hot, isn't it?",
+              "uk": "У записі звучить The soup is hot, isn't it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп горячий. Добавьте отрицательное уточнение о нём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i03:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i03:r2",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп горячий. Добавьте отрицательное уточнение о нём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп горячий. Добавьте отрицательное уточнение о нём.",
+          "uk": "Суп гарячий. Додайте заперечне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The soup is hot, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-11:i03:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i03:r2",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Суп горячий. Добавьте отрицательное уточнение о нём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Суп горячий. Добавьте отрицательное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "В основной части is: здесь нужно isn’t.",
+              "uk": "В основній частині is: тут потрібно isn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Суп горячий. Добавьте отрицательное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Здесь уточнение строим с isn’t.",
+              "uk": "Тут уточнення будуємо з isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bowls",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bowls",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i04:audio",
+          "transcript": "bowls"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-11:i04:r1",
+            "targetText": "bowls",
+            "meaningByLocale": {
+              "ru": "Миски. Повторение знакомого слова.",
+              "uk": "Миски. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bowls",
+          "definitionByLocale": {
+            "ru": "Миски. Повторение знакомого слова.",
+            "uk": "Миски. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите Анну, знает ли она, где миски.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите Анну, знает ли она, где миски.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know where the bowls are?",
+        "localizedMeaning": {
+          "ru": "Спросите Анну, знает ли она, где миски.",
+          "uk": "Запитайте Анну, чи знає вона, де миски."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "where",
+          "the",
+          "bowls",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна приготовила суп. Начните с супа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Анна приготовила суп. Начните с супа.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i06:audio",
+          "transcript": "The soup was made by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soup was made by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Суп готовий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the soup ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-11:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i07:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i07:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Суп готов». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i08:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-11:i08:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где хлеб.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где хлеб.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the bread is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где хлеб.",
+          "uk": "Ввічливо запитайте, де хліб."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "bread",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Хлеб свежий. Добавьте отрицательное уточнение о нём.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i10:audio"
+      ],
+      "accessibilityLabel": "Хлеб свежий. Добавьте отрицательное уточнение о нём.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i10:audio",
+          "transcript": "The bread is fresh, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bread is fresh, isn't it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна приготовила суп. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна приготовила суп. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна приготовила суп. Выберите предлог перед её именем.",
+          "uk": "Анна приготувала суп. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The soup was made ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-11:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна приготовила суп. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна приготовила суп. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна приготовила суп. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i12:audio",
+          "transcript": "table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-11:i12:r1",
+            "targetText": "table",
+            "meaningByLocale": {
+              "ru": "Стол. Повторение знакомого слова.",
+              "uk": "Стіл. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "table",
+          "definitionByLocale": {
+            "ru": "Стол. Повторение знакомого слова.",
+            "uk": "Стіл. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i13:r1",
+          "text": "Do you know if the table is clean?"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i13:r2",
+          "text": "Do you know if the bowl is clean?"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i13:r3",
+          "text": "Do you know if the spoon is clean?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i13:audio",
+          "transcript": "Do you know if the table is clean?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-11:i13:r1",
+            "targetText": "Do you know if the table is clean?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i13:r2",
+            "targetText": "Do you know if the bowl is clean?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i13:r3",
+            "targetText": "Do you know if the spoon is clean?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the table is clean?",
+              "uk": "У записі звучить Do you know if the table is clean?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the table is clean?",
+              "uk": "У записі звучить Do you know if the table is clean?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Миски чистые». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Миски чистые». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i14:audio",
+          "transcript": "She said the bowls were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the bowls were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Миски чистые. Добавьте отрицательное уточнение о них.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Миски чистые. Добавьте отрицательное уточнение о них.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bowls are clean, aren't they?",
+        "localizedMeaning": {
+          "ru": "Миски чистые. Добавьте отрицательное уточнение о них.",
+          "uk": "Миски чисті. Додайте заперечне уточнення про них."
+        },
+        "orderedTokens": [
+          "The",
+          "bowls",
+          "are",
+          "clean,",
+          "aren't",
+          "they"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i16:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i16:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i16:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+          "uk": "Суп не холодний. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The soup isn't cold, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-11:i16:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i16:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i16:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i16:r2",
+            "correct": false,
+            "testedDimension": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Soup требует is.",
+              "uk": "Soup потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i16:r3",
+            "correct": false,
+            "testedDimension": "Суп не холодный. Добавьте утвердительное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна вымыла стол. Начните со стола.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Анна вымыла стол. Начните со стола.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i17:audio",
+          "transcript": "The table was cleaned by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The table was cleaned by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: гость уточняет, горячий суп или холодный?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i18:r1",
+          "text": "The soup is cold, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i18:r2",
+          "text": "The soup is hot, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i18:audioA",
+        "en:lesson-31:session-11:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: гость уточняет, горячий суп или холодный?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The soup is cold, isn't it?",
+        "contrastB": "The soup is hot, isn't it?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-11:i18:audioA",
+          "transcript": "The soup is cold, isn't it?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-11:i18:audioB",
+          "transcript": "The soup is hot, isn't it?"
+        },
+        "testedPhoneticContrast": "Послушайте: гость уточняет, горячий суп или холодный?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: гость уточняет, горячий суп или холодный?",
+            "feedbackByLocale": {
+              "ru": "Звучит cold — холодный.",
+              "uk": "Звучить cold — холодний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о хлебе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о хлебе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i19:audio",
+          "transcript": "Do you know where the bread is?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know where the bread is?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "where",
+          "the",
+          "bread",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вежливо спросите, где ложки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-11:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-11:i20:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где ложки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, где ложки.",
+          "uk": "Ввічливо запитайте, де ложки."
+        },
+        "gappedTargetPhrase": "Could you tell me where the spoons ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-11:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i20:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вежливо спросите, где ложки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-11:i20:r2",
+            "correct": false,
+            "testedDimension": "Вежливо спросите, где ложки.",
+            "feedbackByLocale": {
+              "ru": "Множественное spoons требует are.",
+              "uk": "Множина spoons потребує are."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-11:i20:r3",
+            "correct": false,
+            "testedDimension": "Вежливо спросите, где ложки.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма are.",
+              "uk": "Потрібна форма are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-11:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-11:i21:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-11:i21:audio",
+          "transcript": "She said she needed help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said she needed help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "599d9a166a49fc77f37a4e6be219543c0a57d44b4f4a5a4ca4fcec7b14eeb2e1"
+}

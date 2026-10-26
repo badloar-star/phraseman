@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-47:i01",
+    "correctText": "list",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i02",
+    "correctText": "I know where the list is.",
+    "correctResponseId": "en:lesson-31:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i03",
+    "correctText": "remember",
+    "correctResponseId": "en:lesson-31:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i04",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i05",
+    "correctText": "I know that we need bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i06",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i07",
+    "correctText": "Could you tell me if we have milk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i09",
+    "correctText": "I gave Anna the list so that she could buy the bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i10",
+    "correctText": "I know what we need.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i12",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i13",
+    "correctText": "I took a bag to carry the bread.",
+    "correctResponseId": "en:lesson-31:session-47:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i14",
+    "correctText": "She said the bags were empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i15",
+    "correctText": "I made a list because I forgot the milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i16",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-47:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i17",
+    "correctText": "Anna went to the shop although she was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i18",
+    "correctText": "I gave Anna the list so that she could buy the bread.",
+    "correctResponseId": "en:lesson-31:session-47:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i19",
+    "correctText": "I made a list to remember what we need.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-47:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-47:i21",
+    "correctText": "I understand why Anna took a bag.",
+    "correctResponseId": null
+  }
+]

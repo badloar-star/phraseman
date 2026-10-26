@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "как описать впечатление, уточнить фильм и актёра, договориться о следующем просмотре.",
+    "uk": "як описати враження, уточнити фільм і актора, домовитися про наступний перегляд."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Фильм, который вы посмотрели",
+        "uk": "Фільм, який ви подивилися"
+      },
+      "bodyByLocale": {
+        "ru": "После кино вы рассказываете другу о вчерашнем просмотре. Скажите: The film which we watched was great — фильм, который мы посмотрели, был отличным. Соберите The film + which we watched + was great. Смотрели вы вместе, поэтому после which ставим we watched. Which обозначает просмотренный фильм; it после watched не добавляем.",
+        "uk": "Після кіно ви розповідаєте другові про вчорашній перегляд. Скажіть: The film which we watched was great — фільм, який ми подивилися, був чудовим. Складіть The film + which we watched + was great. Дивилися ви разом, тому після which ставимо we watched. Which позначає переглянутий фільм; it після watched не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-30:intro1:r1",
+              "text": "The film which we watched was great."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro1:r2",
+              "text": "The film which we watched it was great."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro1:r3",
+              "text": "The film which us watched was great."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-30:intro1:r1",
+              "text": "The film which we watched was great."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro1:r2",
+              "text": "The film which we watched it was great."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro1:r3",
+              "text": "The film which us watched was great."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Знакомый актёр",
+        "uk": "Знайомий актор"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнали актёра, который сыграл отца в фильме, и сообщаете другу, что он известен. Скажите: The actor who played the father is famous — актёр, который сыграл отца, известен. Соберите The actor + who played the father + is famous. Актёр сам выполняет действие: who обозначает его внутри уточнения. Поэтому после who сразу ставим played, без he.",
+        "uk": "Ви впізнали актора, який зіграв батька у фільмі, й повідомляєте другові, що він відомий. Скажіть: The actor who played the father is famous — актор, який зіграв батька, відомий. Складіть The actor + who played the father + is famous. Актор сам виконує дію: who позначає його всередині уточнення. Тому після who відразу ставимо played, без he."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-30:intro2:r1",
+              "text": "The actor who played the father is famous."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro2:r2",
+              "text": "The actor who he played the father is famous."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro2:r3",
+              "text": "The actor which played the father is famous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-30:intro2:r1",
+              "text": "The actor who played the father is famous."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro2:r2",
+              "text": "The actor who he played the father is famous."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro2:r3",
+              "text": "The actor which played the father is famous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если понравится начало",
+        "uk": "Якщо сподобається початок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы предлагаете другу начать сериал и продолжить просмотр, если первая серия понравится. Скажите: If we like it, we will watch another episode — если нам понравится, мы посмотрим ещё одну серию. Соберите If we like it + we will watch another episode. В условии после if ставим like без will. Затем после запятой называем будущее решение с will watch.",
+        "uk": "Ви пропонуєте другові почати серіал і продовжити перегляд, якщо перша серія сподобається. Скажіть: If we like it, we will watch another episode — якщо нам сподобається, ми подивимося ще одну серію. Складіть If we like it + we will watch another episode. В умові після if ставимо like без will. Потім після коми називаємо майбутнє рішення з will watch."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-30:intro3:r1",
+              "text": "If we like it, we will watch another episode."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro3:r2",
+              "text": "If we will like it, we will watch another episode."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro3:r3",
+              "text": "If we like it, we will watched another episode."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-30:intro3:r1",
+              "text": "If we like it, we will watch another episode."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro3:r2",
+              "text": "If we will like it, we will watch another episode."
+            },
+            {
+              "responseId": "en:lesson-29:session-30:intro3:r3",
+              "text": "If we like it, we will watched another episode."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3fdf54f54502a0fb5a0a3016af2c72c6cf7cfca7d379b03d3f525b7af6def7ef"
+}

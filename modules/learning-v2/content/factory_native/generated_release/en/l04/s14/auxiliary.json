@@ -36,11 +36,11 @@
           "uk": "Оголошення одне, тому потрібно Is there, а не Are there."
         },
         "en:lesson-04:session-14:intro3:r3": {
-          "ru": "Вопрос начинаем с Is there, а не с There is.",
-          "uk": "Запитання починаємо з Is there, а не з There is."
+          "ru": "Перед notice в единственном числе здесь нужно a.",
+          "uk": "Перед notice в однині тут потрібне a."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c3fa732d59b7d8be4c7ae0e330a932515803d9c0d4f4a7f31cd542cc3ec4a11e"
+  "auxiliaryFingerprint": "a9551e29ae6e2b307d1cf479661a121732e0f6255071e275bd5dbd517e791756"
 }

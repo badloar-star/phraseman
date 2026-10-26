@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-50:intro1:r2": {
+          "ru": "Перед shortened нужна be.",
+          "uk": "Перед shortened потрібна be."
+        },
+        "en:lesson-28:session-50:intro1:r3": {
+          "ru": "После be нужна shortened.",
+          "uk": "Після be потрібна shortened."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-50:intro2:r2": {
+          "ru": "Между will и delivered нужна be.",
+          "uk": "Між will та delivered потрібна be."
+        },
+        "en:lesson-28:session-50:intro2:r3": {
+          "ru": "После will be нужна delivered.",
+          "uk": "Після will be потрібна delivered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-50:intro3:r2": {
+          "ru": "Hooks — несколько: are.",
+          "uk": "Hooks — кілька: are."
+        },
+        "en:lesson-28:session-50:intro3:r3": {
+          "ru": "После are нужна included.",
+          "uk": "Після are потрібна included."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "45a3a2369db49e0fd2478c51103fb1d6feaefb7a6f9941246d6bf0407102f4c9"
+}

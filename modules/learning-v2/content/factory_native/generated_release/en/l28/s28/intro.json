@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "как спросить о прокате инструмента, понять запрет и рассказать о подготовке к уроку.",
+    "uk": "як запитати про прокат інструмента, зрозуміти заборону й розповісти про підготовку до уроку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Взять инструмент на время",
+        "uk": "Взяти інструмент на певний час"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли на первое занятие в музыкальную школу и пока не хотите покупать инструмент. Спросите: Can this instrument be rented? — можно взять этот инструмент напрокат? Начните вопрос с Can, затем назовите предмет: this instrument. После него поставьте be rented. Получится Can + this instrument + be + rented? Rented — форма rent с окончанием -ed; здесь действие выполняют над инструментом.",
+        "uk": "Ви прийшли на перше заняття до музичної школи й поки що не хочете купувати інструмент. Запитайте: Can this instrument be rented? — чи можна взяти цей інструмент напрокат? Почніть запитання з Can, потім назвіть предмет: this instrument. Після нього поставте be rented. Вийде Can + this instrument + be + rented? Rented — форма rent із закінченням -ed; тут дію виконують над інструментом."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-28:intro1:r1",
+              "text": "Can this instrument be rented?"
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro1:r2",
+              "text": "Can this instrument rented?"
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro1:r3",
+              "text": "Can this instrument be rent?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-28:intro1:r1",
+              "text": "Can this instrument be rented?"
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro1:r2",
+              "text": "Can this instrument rented?"
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro1:r3",
+              "text": "Can this instrument be rent?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Правило школы",
+        "uk": "Правило школи"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите вынести школьный инструмент во двор. Преподаватель объясняет запрет: Instruments must not be taken outside — инструменты нельзя выносить на улицу. Соберите Instruments + must not + be taken + outside. Must not означает запрет. После него нужна be, затем taken — форма take для этой конструкции. Outside показывает, куда нельзя выносить инструменты.",
+        "uk": "Ви хочете винести шкільний інструмент у двір. Викладач пояснює заборону: Instruments must not be taken outside — інструменти не можна виносити надвір. Складіть Instruments + must not + be taken + outside. Must not означає заборону. Після нього потрібна be, потім taken — форма take для цієї конструкції. Outside показує, куди не можна виносити інструменти."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-28:intro2:r1",
+              "text": "Instruments must not be taken outside."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro2:r2",
+              "text": "Instruments must not taken outside."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro2:r3",
+              "text": "Instruments must not be take outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-28:intro2:r1",
+              "text": "Instruments must not be taken outside."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro2:r2",
+              "text": "Instruments must not taken outside."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro2:r3",
+              "text": "Instruments must not be take outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Занятия дороговаты",
+        "uk": "Заняття задорогі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы посмотрели цену уроков музыки: она выше, чем вам хотелось бы. Скажите: I wish lessons were cheaper — жаль, что занятия не дешевле. Начните с I wish, затем назовите то, что хотите изменить: lessons. Добавьте were cheaper. Were после wish описывает желаемую ситуацию сейчас; речь не о цене в прошлом.",
+        "uk": "Ви подивилися ціну уроків музики: вона вища, ніж вам хотілося б. Скажіть: I wish lessons were cheaper — шкода, що заняття не дешевші. Почніть з I wish, потім назвіть те, що хочете змінити: lessons. Додайте were cheaper. Were після wish описує бажану ситуацію зараз; ідеться не про ціну в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-28:intro3:r1",
+              "text": "I wish lessons were cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro3:r2",
+              "text": "I wish lessons are cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro3:r3",
+              "text": "I wish lessons will be cheaper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-28:intro3:r1",
+              "text": "I wish lessons were cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro3:r2",
+              "text": "I wish lessons are cheaper."
+            },
+            {
+              "responseId": "en:lesson-28:session-28:intro3:r3",
+              "text": "I wish lessons will be cheaper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "974d072732de73586360f4d171e501e3dfa13f8dfafa0f78abbd3e9c86bcd266"
+}

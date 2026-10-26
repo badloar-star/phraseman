@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "как понять описание жилья и уточнить условия проживания.",
+    "uk": "як зрозуміти опис житла й уточнити умови проживання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Плата за отопление",
+        "uk": "Плата за опалення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите квартиру и знаете месячную плату, но не знаете, нужно ли отдельно платить за отопление. Спросите: Is heating included in the rent? — отопление включено в арендную плату? Соберите Is + heating + included + in the rent? Поставьте Is перед heating, затем included, третью форму include. В конце уточните, в какую плату должно входить отопление.",
+        "uk": "Ви оглядаєте квартиру й знаєте місячну плату, але не знаєте, чи потрібно окремо платити за опалення. Запитайте: Is heating included in the rent? — опалення включено в орендну плату? Складіть Is + heating + included + in the rent? Поставте Is перед heating, потім included, третю форму include. Наприкінці уточніть, до якої плати має входити опалення."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-56:intro1:r1",
+              "text": "Is heating included in the rent?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro1:r2",
+              "text": "Are heating included in the rent?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro1:r3",
+              "text": "Is heating include in the rent?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-56:intro1:r1",
+              "text": "Is heating included in the rent?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro1:r2",
+              "text": "Are heating included in the rent?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro1:r3",
+              "text": "Is heating include in the rent?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё одна спальня",
+        "uk": "Ще одна спальня"
+      },
+      "bodyByLocale": {
+        "ru": "В квартире есть небольшая свободная комната. Спросите хозяина: Can this room be used as a bedroom? — можно использовать эту комнату как спальню? Соберите Can + this room + be used + as a bedroom? После Can назовите комнату. Затем поставьте be и used, третью форму use. Часть as a bedroom объясняет, для чего вы хотите её использовать.",
+        "uk": "У квартирі є невелика вільна кімната. Запитайте господаря: Can this room be used as a bedroom? — чи можна використовувати цю кімнату як спальню? Складіть Can + this room + be used + as a bedroom? Після Can назвіть кімнату. Потім поставте be та used, третю форму use. Частина as a bedroom пояснює, для чого ви хочете її використовувати."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-56:intro2:r1",
+              "text": "Can this room be used as a bedroom?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro2:r2",
+              "text": "Can this room used as a bedroom?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro2:r3",
+              "text": "Can this room be use as a bedroom?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-56:intro2:r1",
+              "text": "Can this room be used as a bedroom?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro2:r2",
+              "text": "Can this room used as a bedroom?"
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro2:r3",
+              "text": "Can this room be use as a bedroom?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Новые окна",
+        "uk": "Нові вікна"
+      },
+      "bodyByLocale": {
+        "ru": "Во время осмотра квартиры хозяин рассказывает об окнах: The windows were replaced last year — окна заменили в прошлом году. Соберите The windows + were replaced + last year. После The windows нужна were, потому что окон несколько. Затем поставьте replaced, третью форму replace. Last year в конце называет время выполненной замены.",
+        "uk": "Під час огляду квартири господар розповідає про вікна: The windows were replaced last year — вікна замінили торік. Складіть The windows + were replaced + last year. Після The windows потрібна were, бо вікон кілька. Потім поставте replaced, третю форму replace. Last year наприкінці називає час виконаної заміни."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-56:intro3:r1",
+              "text": "The windows were replaced last year."
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro3:r2",
+              "text": "The windows was replaced last year."
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro3:r3",
+              "text": "The windows were replace last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-56:intro3:r1",
+              "text": "The windows were replaced last year."
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro3:r2",
+              "text": "The windows was replaced last year."
+            },
+            {
+              "responseId": "en:lesson-28:session-56:intro3:r3",
+              "text": "The windows were replace last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8b8b37ff00684c4bc3a02469ef4e7f670f7ec2a20d89bedc4fd7520ea81afbe9"
+}

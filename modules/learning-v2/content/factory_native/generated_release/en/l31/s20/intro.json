@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять, что знаете и понимаете, уточнять качество продуктов и пересказывать слова.",
+    "uk": "пояснювати, що знаєте й розумієте, уточнювати якість продуктів і переказувати слова."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, где хлеб",
+        "uk": "Я знаю, де хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли с другом за продуктами. Он ищет хлеб, а вы знаете нужную полку. Скажите: I know where the bread is — я знаю, где хлеб. Соберите I know + where + the bread + is. После where сохраняем порядок the bread is: это часть сообщения о том, что вы знаете.",
+        "uk": "Ви прийшли з другом по продукти. Він шукає хліб, а ви знаєте потрібну полицю. Скажіть: I know where the bread is — я знаю, де хліб. Складіть I know + where + the bread + is. Після where зберігаємо порядок the bread is: це частина повідомлення про те, що ви знаєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-20:intro1:r1",
+              "text": "I know where the bread is."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro1:r2",
+              "text": "I know where is the bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro1:r3",
+              "text": "I know where the bread are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-20:intro1:r1",
+              "text": "I know where the bread is."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro1:r2",
+              "text": "I know where is the bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro1:r3",
+              "text": "I know where the bread are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Яйца свежие, правда?",
+        "uk": "Яйця свіжі, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете яйца и хотите подтверждения продавца: The eggs are fresh, aren’t they? — яйца свежие, правда? Соберите The eggs are fresh + aren’t + they. После утвердительного are здесь ставим отрицательное aren’t. Несколько яиц заменяем словом they.",
+        "uk": "Ви обираєте яйця й хочете підтвердження продавця: The eggs are fresh, aren’t they? — яйця свіжі, правда? Складіть The eggs are fresh + aren’t + they. Після стверджувального are тут ставимо заперечне aren’t. Кілька яєць замінюємо словом they."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-20:intro2:r1",
+              "text": "The eggs are fresh, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro2:r2",
+              "text": "The eggs are fresh, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro2:r3",
+              "text": "The eggs are fresh, aren't it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-20:intro2:r1",
+              "text": "The eggs are fresh, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro2:r2",
+              "text": "The eggs are fresh, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro2:r3",
+              "text": "The eggs are fresh, aren't it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почему другой магазин закрыт",
+        "uk": "Чому інша крамниця зачинена"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите записку на двери соседнего магазина: у продавца выходной. Теперь вы понимаете причину и говорите другу: I understand why the shop is closed — я понимаю, почему магазин закрыт. Соберите I understand + why + the shop + is closed. Why вводит причину; после него порядок the shop is closed, без перестановки is.",
+        "uk": "Ви бачите записку на дверях сусідньої крамниці: у продавця вихідний. Тепер ви розумієте причину й кажете другові: I understand why the shop is closed — я розумію, чому крамниця зачинена. Складіть I understand + why + the shop + is closed. Why вводить причину; після нього порядок the shop is closed, без перестановки is."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-20:intro3:r1",
+              "text": "I understand why the shop is closed."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro3:r2",
+              "text": "I understand why is the shop closed."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro3:r3",
+              "text": "I understand why the shop are closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-20:intro3:r1",
+              "text": "I understand why the shop is closed."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro3:r2",
+              "text": "I understand why is the shop closed."
+            },
+            {
+              "responseId": "en:lesson-31:session-20:intro3:r3",
+              "text": "I understand why the shop are closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4f323c06877c86322963714580af2bf0b2d1df3cdce78d41ab27d84d59a67811"
+}

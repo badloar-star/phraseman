@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "уточнять место и время, пересказывать слова и называть исполнителя действия.",
+    "uk": "уточнювати місце й час, переказувати слова й називати виконавця дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где раздевалка",
+        "uk": "Де роздягальня"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли в бассейн и хотите переодеться. Спросите сотрудника: Could you tell me where the changing room is? — не подскажете, где раздевалка? Соберите Could you tell me + where + the changing room + is. После where называем место, the changing room, затем ставим is.",
+        "uk": "Ви прийшли до басейну й хочете переодягнутися. Запитайте працівника: Could you tell me where the changing room is? — не підкажете, де роздягальня? Складіть Could you tell me + where + the changing room + is. Після where називаємо місце, the changing room, потім ставимо is."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-08:intro1:r1",
+              "text": "Could you tell me where the changing room is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro1:r2",
+              "text": "Could you tell me where is the changing room?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro1:r3",
+              "text": "Could you tell me where the changing room are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-08:intro1:r1",
+              "text": "Could you tell me where the changing room is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro1:r2",
+              "text": "Could you tell me where is the changing room?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro1:r3",
+              "text": "Could you tell me where the changing room are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Открыт ли бассейн",
+        "uk": "Чи відкритий басейн"
+      },
+      "bodyByLocale": {
+        "ru": "Перед входом вы уточняете, можно ли уже плавать: Do you know if the pool is open? — вы не знаете, открыт ли бассейн? Соберите Do you know + if + the pool + is open. If передаёт «ли». После if порядок the pool is open, без перестановки is перед pool.",
+        "uk": "Перед входом ви уточнюєте, чи можна вже плавати: Do you know if the pool is open? — ви не знаєте, чи відкритий басейн? Складіть Do you know + if + the pool + is open. If передає «чи». Після if порядок the pool is open, без перестановки is перед pool."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-08:intro2:r1",
+              "text": "Do you know if the pool is open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro2:r2",
+              "text": "Do you know if is the pool open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro2:r3",
+              "text": "Do you know if the pool are open?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-08:intro2:r1",
+              "text": "Do you know if the pool is open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro2:r2",
+              "text": "Do you know if is the pool open?"
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro2:r3",
+              "text": "Do you know if the pool are open?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто нашёл полотенце",
+        "uk": "Хто знайшов рушник"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник Тим нашёл ваше полотенце. Начните рассказ с полотенца: My towel was found by Tim — моё полотенце нашёл Тим. Соберите My towel + was + found + by Tim. Was found описывает действие над полотенцем; found — форма find для этой конструкции. By Tim называет нашедшего.",
+        "uk": "Працівник Тім знайшов ваш рушник. Почніть розповідь із рушника: My towel was found by Tim — мій рушник знайшов Тім. Складіть My towel + was + found + by Tim. Was found описує дію над рушником; found — форма find для цієї конструкції. By Tim називає того, хто знайшов."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-08:intro3:r1",
+              "text": "My towel was found by Tim."
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro3:r2",
+              "text": "My towel was find by Tim."
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro3:r3",
+              "text": "My towel were found by Tim."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-08:intro3:r1",
+              "text": "My towel was found by Tim."
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro3:r2",
+              "text": "My towel was find by Tim."
+            },
+            {
+              "responseId": "en:lesson-31:session-08:intro3:r3",
+              "text": "My towel were found by Tim."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "98242721f62c5bf1e36885859b9df6735ff317f0ce9c863fa7c786d812f5d752"
+}

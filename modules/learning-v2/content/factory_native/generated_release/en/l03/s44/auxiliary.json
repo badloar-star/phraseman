@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-03:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-03:session-44:intro1:r2": {
-          "ru": "Про этого человека продавец говорит впервые, поэтому a: A customer is happy.",
-          "uk": "Про цього чоловіка продавець говорить уперше, тому a: A customer is happy."
+          "ru": "После A customer нужно is.",
+          "uk": "Після A customer потрібне is."
         },
         "en:lesson-03:session-44:intro1:r3": {
           "ru": "Покупатель один, поэтому нужно is: A customer is happy.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-03:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-44:intro2:r2": {
-          "ru": "О продавце вы уже говорили, вы оба знаете, о ком речь, поэтому the: The seller is busy.",
-          "uk": "Про продавця ви вже говорили, ви обоє знаєте, про кого мова, тому the: The seller is busy."
+          "ru": "После The seller нужно is.",
+          "uk": "Після The seller потрібне is."
         },
         "en:lesson-03:session-44:intro2:r3": {
           "ru": "Продавец один, поэтому нужно is: The seller is busy.",
@@ -36,11 +36,11 @@
           "uk": "Слово assistant починається з голосного звуку, тому an: An assistant is here."
         },
         "en:lesson-03:session-44:intro3:r3": {
-          "ru": "О консультанте вы говорите впервые, поэтому an: An assistant is here.",
-          "uk": "Про консультанта ви говорите вперше, тому an: An assistant is here."
+          "ru": "С assistant в единственном числе нужно is.",
+          "uk": "З assistant в однині потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c0ff7e16c41143dc90884be05a6dc02ce66d50831c29830b90dc20e312175a1e"
+  "auxiliaryFingerprint": "0c700647f0cfb276aee89a0ebdec8779ac0499a037fe5ab4bd9372a6648a2b32"
 }

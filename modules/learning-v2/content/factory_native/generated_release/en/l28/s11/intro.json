@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "как описать подготовку вещей сейчас и раньше, выразить желание и назвать событие до вашего прихода.",
+    "uk": "як описати підготовку речей зараз і раніше, висловити бажання й назвати подію до вашого приходу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Снаряжение готовят к занятию",
+        "uk": "Спорядження готують до заняття"
+      },
+      "bodyByLocale": {
+        "ru": "В пункте проката вам объясняют обычный порядок: доски проверяют перед каждым занятием. The boards are checked before each lesson — доски проверяют перед каждым занятием. Соберите The boards + are checked + before each lesson. Досок несколько, поэтому are. Checked показывает, что делают с досками: к check добавляем -ed.",
+        "uk": "У пункті прокату вам пояснюють звичний порядок: дошки перевіряють перед кожним заняттям. The boards are checked before each lesson — дошки перевіряють перед кожним заняттям. Складіть The boards + are checked + before each lesson. Дошок кілька, тому are. Checked показує, що роблять із дошками: до check додаємо -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-11:intro1:r1",
+              "text": "The boards are checked before each lesson."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro1:r2",
+              "text": "The boards is checked before each lesson."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro1:r3",
+              "text": "The boards are check before each lesson."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-11:intro1:r1",
+              "text": "The boards are checked before each lesson."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro1:r2",
+              "text": "The boards is checked before each lesson."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro1:r3",
+              "text": "The boards are check before each lesson."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доску починили",
+        "uk": "Дошку полагодили"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник показывает доску, которую починили вчера. This board was repaired yesterday — эту доску починили вчера. Сначала This board, затем was repaired и yesterday. Для одного предмета в прошлом используем was; repaired сообщает, что с ним сделали.",
+        "uk": "Працівник показує дошку, яку полагодили вчора. This board was repaired yesterday — цю дошку полагодили вчора. Спочатку This board, потім was repaired і yesterday. Для одного предмета в минулому використовуємо was; repaired повідомляє, що з ним зробили."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-11:intro2:r1",
+              "text": "This board was repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro2:r2",
+              "text": "This board were repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro2:r3",
+              "text": "This board was repair yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-11:intro2:r1",
+              "text": "This board was repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro2:r2",
+              "text": "This board were repaired yesterday."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro2:r3",
+              "text": "This board was repair yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Прохладное утро",
+        "uk": "Прохолодний ранок"
+      },
+      "bodyByLocale": {
+        "ru": "У воды прохладно, а вам хотелось бы тепла. I wish it were warmer — хотелось бы, чтобы было теплее. Начните с I wish, затем it и were warmer. It здесь помогает говорить о погоде. Were warmer после I wish описывает желаемую погоду сейчас, а не вчерашнюю.",
+        "uk": "Біля води прохолодно, а вам хотілося б тепла. I wish it were warmer — хотілося б, щоб було тепліше. Почніть з I wish, потім it і were warmer. It тут допомагає говорити про погоду. Were warmer після I wish описує бажану погоду зараз, а не вчорашню."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-11:intro3:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro3:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro3:r3",
+              "text": "I wish it be warmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-11:intro3:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro3:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-28:session-11:intro3:r3",
+              "text": "I wish it be warmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fc8c39cb6ba1f43eb242e4ae1ef3cb1190aed6da8dcf238a21ed1f1bebf37f51"
+}

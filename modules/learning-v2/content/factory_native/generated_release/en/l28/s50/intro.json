@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "как описать ткань, назвать повреждённую деталь и уточнить комплектацию.",
+    "uk": "як описати тканину, назвати пошкоджену деталь і уточнити комплектацію."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Укоротить шторы",
+        "uk": "Укоротити штори"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли подходящие шторы, но они слишком длинные для вашего окна. Спросите: Can these curtains be shortened? — можно укоротить эти шторы? Соберите Can + these curtains + be shortened? Сначала поставьте Can, затем назовите шторы. После них нужны be и shortened, третья форма shorten. Вы спрашиваете о возможном действии над шторами.",
+        "uk": "Ви знайшли відповідні штори, але вони задовгі для вашого вікна. Запитайте: Can these curtains be shortened? — чи можна вкоротити ці штори? Складіть Can + these curtains + be shortened? Спочатку поставте Can, потім назвіть штори. Після них потрібні be та shortened, третя форма shorten. Ви запитуєте про можливу дію зі шторами."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-50:intro1:r1",
+              "text": "Can these curtains be shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro1:r2",
+              "text": "Can these curtains shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro1:r3",
+              "text": "Can these curtains be shorten?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-50:intro1:r1",
+              "text": "Can these curtains be shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro1:r2",
+              "text": "Can these curtains shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro1:r3",
+              "text": "Can these curtains be shorten?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда привезут заказ",
+        "uk": "Коли привезуть замовлення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заказали жалюзи и ждёте дату доставки. Продавец говорит: The blinds will be delivered next week — жалюзи доставят на следующей неделе. Соберите The blinds + will be + delivered + next week. Начните с названия покупки, затем поставьте will be и delivered, третью форму deliver. Так вы говорите о будущем действии над покупкой. Next week сообщает время доставки.",
+        "uk": "Ви замовили жалюзі й чекаєте дату доставки. Продавець каже: The blinds will be delivered next week — жалюзі доставлять наступного тижня. Складіть The blinds + will be + delivered + next week. Почніть із назви покупки, потім поставте will be та delivered, третю форму deliver. Так ви говорите про майбутню дію з покупкою. Next week повідомляє час доставки."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-50:intro2:r1",
+              "text": "The blinds will be delivered next week."
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro2:r2",
+              "text": "The blinds will delivered next week."
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro2:r3",
+              "text": "The blinds will be deliver next week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-50:intro2:r1",
+              "text": "The blinds will be delivered next week."
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro2:r2",
+              "text": "The blinds will delivered next week."
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro2:r3",
+              "text": "The blinds will be deliver next week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Крючки в комплекте",
+        "uk": "Гачки в комплекті"
+      },
+      "bodyByLocale": {
+        "ru": "Вы покупаете шторы и не знаете, нужно ли отдельно платить за крючки. Уточните: Are the hooks included? — крючки включены? Соберите Are + the hooks + included? Крючков несколько, поэтому начните с Are. Затем назовите их: the hooks. В конце поставьте included, третью форму include, чтобы спросить, входят ли они в покупку.",
+        "uk": "Ви купуєте штори й не знаєте, чи потрібно окремо платити за гачки. Уточніть: Are the hooks included? — гачки включено? Складіть Are + the hooks + included? Гачків кілька, тому почніть із Are. Потім назвіть їх: the hooks. Наприкінці поставте included, третю форму include, щоб запитати, чи входять вони в покупку."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-50:intro3:r1",
+              "text": "Are the hooks included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro3:r2",
+              "text": "Is the hooks included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro3:r3",
+              "text": "Are the hooks include?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-50:intro3:r1",
+              "text": "Are the hooks included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro3:r2",
+              "text": "Is the hooks included?"
+            },
+            {
+              "responseId": "en:lesson-28:session-50:intro3:r3",
+              "text": "Are the hooks include?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ebe93e3ded44ba1f706f10cc28f261f57898d67a3c0d73febd5ebef3ecefba21"
+}

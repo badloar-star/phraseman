@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-04:intro1:r2": {
+          "ru": "Перед the wrong house нужна связка be.",
+          "uk": "Перед the wrong house потрібна зв’язка be."
+        },
+        "en:lesson-32:session-04:intro1:r3": {
+          "ru": "После must здесь нужна форма be, не is.",
+          "uk": "Після must тут потрібна форма be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-04:intro2:r2": {
+          "ru": "Address уже названо: it после wrote не нужно.",
+          "uk": "Address уже названо: it після wrote не потрібне."
+        },
+        "en:lesson-32:session-04:intro2:r3": {
+          "ru": "Нужна прошедшая форма wrote.",
+          "uk": "Потрібна минула форма wrote."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-04:intro3:r2": {
+          "ru": "Нужна полная часть we waited.",
+          "uk": "Потрібна повна частина we waited."
+        },
+        "en:lesson-32:session-04:intro3:r3": {
+          "ru": "Для прошлого действия используем waited.",
+          "uk": "Для минулої дії використовуємо waited."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5cb571b08c31437ade76fef078c148c2fe9730855fae90e4e36e1ba6f8410070"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-29:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-29:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-18:intro1:r2": {
+          "ru": "Where уже обозначает место, there лишнее.",
+          "uk": "Where вже позначає місце, there зайве."
+        },
+        "en:lesson-29:session-18:intro1:r3": {
+          "ru": "Для места проживания здесь нужна where.",
+          "uk": "Для місця проживання тут потрібна where."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-18:intro2:r2": {
+          "ru": "Принадлежность машины показывает whose.",
+          "uk": "Належність машини показує whose."
+        },
+        "en:lesson-29:session-18:intro2:r3": {
+          "ru": "His после whose не добавляем.",
+          "uk": "His після whose не додаємо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-29:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-29:session-18:intro3:r2": {
+          "ru": "В этом условии используем rains без will.",
+          "uk": "У цій умові використовуємо rains без will."
+        },
+        "en:lesson-29:session-18:intro3:r3": {
+          "ru": "После it здесь нужна rains.",
+          "uk": "Після it тут потрібна rains."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b3f2a601b6b5ab1179e56109867d683d3d600aaa2aa6f72a846ae9aba8f82fa7"
+}

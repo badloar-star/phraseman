@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-35:i01",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i02",
+    "correctText": "I ate the soup although it was cold.",
+    "correctResponseId": "en:lesson-31:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i03",
+    "correctText": "although",
+    "correctResponseId": "en:lesson-31:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i04",
+    "correctText": "fridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i05",
+    "correctText": "I know that the fridge is full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i06",
+    "correctText": "The soup was made by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-35:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i08",
+    "correctText": "box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i09",
+    "correctText": "The box is clean, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i10",
+    "correctText": "I know where the box is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i12",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i13",
+    "correctText": "I know where the bread is.",
+    "correctResponseId": "en:lesson-31:session-35:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i14",
+    "correctText": "She said the boxes were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i15",
+    "correctText": "I ate the soup although it was cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i16",
+    "correctText": "the bread is",
+    "correctResponseId": "en:lesson-31:session-35:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i17",
+    "correctText": "I ate because I was hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i18",
+    "correctText": "I ate the soup although it was cold.",
+    "correctResponseId": "en:lesson-31:session-35:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i19",
+    "correctText": "I ate the soup although it was cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-35:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-35:i21",
+    "correctText": "I understand why the fridge is full.",
+    "correctResponseId": null
+  }
+]

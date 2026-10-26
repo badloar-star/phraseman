@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-03:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-03:session-43:intro2:r2": {
-          "ru": "Вы оба смотрите на конкретные журналы, поэтому the: The magazines are new.",
-          "uk": "Ви обоє дивитеся на конкретні журнали, тому the: The magazines are new."
+          "ru": "После The magazines нужно are.",
+          "uk": "Після The magazines потрібне are."
         },
         "en:lesson-03:session-43:intro2:r3": {
           "ru": "Журналов несколько, поэтому нужно are: The magazines are new.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "52866bcf848019b9376b5446f3e71651c97c958368e572cf49693472824aee5c"
+  "auxiliaryFingerprint": "2dcf923a78185c9ec74222d40ff60784faeb60558892a870e1b56d5d4c5a2f43"
 }

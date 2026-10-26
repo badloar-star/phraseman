@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-29:session-12:i01",
+    "correctText": "pickle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i02",
+    "correctText": "Could I have a pickle with my sandwich?",
+    "correctResponseId": "en:lesson-29:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i03",
+    "correctText": "Whose bowl is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i04",
+    "correctText": "whose",
+    "correctResponseId": "en:lesson-29:session-12:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i05",
+    "correctText": "sauerkraut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i06",
+    "correctText": "Would you like some sauerkraut?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i07",
+    "correctText": "The salad was made by my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i08",
+    "correctText": "The woman whose bowl is here is outside.",
+    "correctResponseId": "en:lesson-29:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i09",
+    "correctText": "tahini",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i10",
+    "correctText": "Could you pass the tahini?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-29:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i12",
+    "correctText": "If we need more bread, I will bring some.",
+    "correctResponseId": "en:lesson-29:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i13",
+    "correctText": "vinaigrette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i14",
+    "correctText": "There is some vinaigrette for the salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i15",
+    "correctText": "en:lesson-29:session-12:i15:p1=pickle\nen:lesson-29:session-12:i15:p2=sauerkraut\nen:lesson-29:session-12:i15:p3=tahini\nen:lesson-29:session-12:i15:p4=vinaigrette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i16",
+    "correctText": "need",
+    "correctResponseId": "en:lesson-29:session-12:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i17",
+    "correctText": "Could I have the dressing on the side?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i18",
+    "correctText": "Could you bring a clean spoon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i19",
+    "correctText": "that",
+    "correctResponseId": "en:lesson-29:session-12:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i20",
+    "correctText": "I would like a small portion first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-29:session-12:i21",
+    "correctText": "Thank you for bringing lunch.",
+    "correctResponseId": null
+  }
+]

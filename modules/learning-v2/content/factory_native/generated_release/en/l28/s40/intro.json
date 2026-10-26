@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "как назвать отделку одежды и спросить о нужной вещи.",
+    "uk": "як назвати оздоблення одягу й запитати про потрібну річ."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто сделал шарф",
+        "uk": "Хто зробив шарф"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассматриваете шарф в небольшом магазине. Продавец рассказывает: This scarf was made by a local artist — этот шарф сделал местный мастер. Соберите This scarf + was made + by + a local artist. Начните с шарфа. Was made сообщает, что его изготовили; made — третья форма make. By a local artist называет того, кто выполнил работу.",
+        "uk": "Ви розглядаєте шарф у невеликому магазині. Продавець розповідає: This scarf was made by a local artist — цей шарф зробив місцевий майстер. Складіть This scarf + was made + by + a local artist. Почніть із шарфа. Was made повідомляє, що його виготовили; made — третя форма make. By a local artist називає того, хто виконав роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-40:intro1:r1",
+              "text": "This scarf was made by a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro1:r2",
+              "text": "This scarf was made of a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro1:r3",
+              "text": "This scarf was made a local artist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-40:intro1:r1",
+              "text": "This scarf was made by a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro1:r2",
+              "text": "This scarf was made of a local artist."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro1:r3",
+              "text": "This scarf was made a local artist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Юбка слишком длинная",
+        "uk": "Спідниця надто довга"
+      },
+      "bodyByLocale": {
+        "ru": "Вам понравилась юбка, но она слишком длинная. Уточните возможность подгонки: Can this skirt be shortened? — можно укоротить эту юбку? Соберите Can + this skirt + be + shortened? В вопросе Can стоит перед this skirt. После названия вещи нужны be и shortened — форма shorten, «укорачивать», с окончанием -ed.",
+        "uk": "Вам сподобалася спідниця, але вона надто довга. Уточніть можливість підгонки: Can this skirt be shortened? — чи можна вкоротити цю спідницю? Складіть Can + this skirt + be + shortened? У запитанні Can стоїть перед this skirt. Після назви речі потрібні be та shortened — форма shorten, «вкорочувати», із закінченням -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-40:intro2:r1",
+              "text": "Can this skirt be shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro2:r2",
+              "text": "Can this skirt shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro2:r3",
+              "text": "Can this skirt be shorten?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-40:intro2:r1",
+              "text": "Can this skirt be shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro2:r2",
+              "text": "Can this skirt shortened?"
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro2:r3",
+              "text": "Can this skirt be shorten?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как стирать свитер",
+        "uk": "Як прати светр"
+      },
+      "bodyByLocale": {
+        "ru": "Вы читаете указание по уходу на ярлыке свитера: This jumper must be washed by hand — этот свитер нужно стирать вручную. Соберите This jumper + must + be + washed + by hand. Must be washed передаёт необходимое действие над свитером: после must нужна be, затем washed. By hand здесь означает «вручную».",
+        "uk": "Ви читаєте вказівку щодо догляду на ярлику светра: This jumper must be washed by hand — цей светр потрібно прати вручну. Складіть This jumper + must + be + washed + by hand. Must be washed передає необхідну дію зі светром: після must потрібна be, потім washed. By hand тут означає «вручну»."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-40:intro3:r1",
+              "text": "This jumper must be washed by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro3:r2",
+              "text": "This jumper must washed by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro3:r3",
+              "text": "This jumper must be wash by hand."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-40:intro3:r1",
+              "text": "This jumper must be washed by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro3:r2",
+              "text": "This jumper must washed by hand."
+            },
+            {
+              "responseId": "en:lesson-28:session-40:intro3:r3",
+              "text": "This jumper must be wash by hand."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1b702b6acc24a2d05fa68bb733bfa669ea2f92650984722d6bd42ca97d829fc4"
+}

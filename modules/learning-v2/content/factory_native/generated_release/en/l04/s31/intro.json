@@ -15,8 +15,8 @@
         "uk": "Де залишити машину"
       },
       "bodyByLocale": {
-        "ru": "Гость приехал на машине и не знает вашего района. Он спрашивает, где её оставить. Вы смотрите на карту и находите площадку для машин рядом с отелем. car park — «автостоянка». Гость о ней ещё не слышал, поэтому: There is a car park near the hotel — «Рядом с отелем есть автостоянка».",
-        "uk": "Гість приїхав на машині й не знає вашого району. Він питає, де її залишити. Ви дивитеся на мапу й знаходите майданчик для машин поруч із готелем. car park — «автостоянка». Гість про неї ще не чув, тому: There is a car park near the hotel — «Поруч із готелем є автостоянка»."
+        "ru": "Гость приехал на машине и не знает вашего района. Он спрашивает, где её оставить. Вы смотрите на карту и находите площадку для машин рядом с отелем. car park — «автостоянка». There is a car park near the hotel — «Рядом с отелем есть автостоянка». Чтобы сообщить о наличии стоянки, начинаем с There is, затем называем её — a car park — и место: near the hotel.",
+        "uk": "Гість приїхав на машині й не знає вашого району. Він питає, де її залишити. Ви дивитеся на мапу й знаходите майданчик для машин поруч із готелем. car park — «автостоянка». There is a car park near the hotel — «Поруч із готелем є автостоянка». Щоб повідомити про наявність стоянки, починаємо з There is, потім називаємо її — a car park — і місце: near the hotel."
       },
       "question": {
         "interactionId": "en:lesson-04:session-31:intro1:q",
@@ -32,7 +32,7 @@
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r2",
-              "text": "The car park is near the hotel."
+              "text": "There are a car park near the hotel."
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r3",
@@ -46,7 +46,7 @@
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r2",
-              "text": "The car park is near the hotel."
+              "text": "There are a car park near the hotel."
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r3",
@@ -69,8 +69,8 @@
         "uk": "Біля в’їзду"
       },
       "bodyByLocale": {
-        "ru": "Вы подъехали к стоянке. Перед въездом лежит длинная полосатая перекладина, которая поднимается, когда машине нужно проехать. Вы оба её видите. barrier — «шлагбаум». Предмет известен, поэтому the: The barrier is near the gate — «Шлагбаум рядом с воротами».",
-        "uk": "Ви під’їхали до стоянки. Перед в’їздом лежить довга смугаста перекладина, яка піднімається, коли машині треба проїхати. Ви обоє її бачите. barrier — «шлагбаум». Предмет відомий, тому the: The barrier is near the gate — «Шлагбаум поруч із воротами»."
+        "ru": "Вы подъехали к стоянке. Перед въездом лежит длинная полосатая перекладина, которая поднимается, когда машине нужно проехать. Вы оба её видите. barrier — «шлагбаум». The barrier is near the gate — «Шлагбаум рядом с воротами». Называем конкретный видимый шлагбаум — the barrier, затем ставим is и место — near the gate.",
+        "uk": "Ви під’їхали до стоянки. Перед в’їздом лежить довга смугаста перекладина, яка піднімається, коли машині треба проїхати. Ви обоє її бачите. barrier — «шлагбаум». The barrier is near the gate — «Шлагбаум поруч із воротами». Називаємо конкретний видимий шлагбаум — the barrier, потім ставимо is і місце — near the gate."
       },
       "question": {
         "interactionId": "en:lesson-04:session-31:intro2:q",
@@ -86,7 +86,7 @@
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r2",
-              "text": "There is a barrier near the gate."
+              "text": "The barrier near the gate."
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r3",
@@ -100,7 +100,7 @@
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r2",
-              "text": "There is a barrier near the gate."
+              "text": "The barrier near the gate."
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r3",
@@ -123,8 +123,8 @@
         "uk": "Не вистачає бензину"
       },
       "bodyByLocale": {
-        "ru": "Гость собирается ехать обратно, но бензина в машине почти нет. Он спрашивает, где его купить. Вы помните одно такое место в вашем районе, рядом с банком. petrol station — «заправка». Для гостя она новая: There is a petrol station next to the bank.",
-        "uk": "Гість збирається їхати назад, але бензину в машині майже немає. Він питає, де його купити. Ви пам’ятаєте одне таке місце у вашому районі, поруч із банком. petrol station — «заправка». Для гостя вона нова: There is a petrol station next to the bank."
+        "ru": "Гость собирается ехать обратно, но бензина в машине почти нет. Он спрашивает, где его купить. Вы помните одно такое место в вашем районе, рядом с банком. petrol station — «заправка». There is a petrol station next to the bank — «Рядом с банком есть заправка». Начинаем с There is, затем называем заправку — a petrol station — и место: next to the bank.",
+        "uk": "Гість збирається їхати назад, але бензину в машині майже немає. Він питає, де його купити. Ви пам’ятаєте одне таке місце у вашому районі, поруч із банком. petrol station — «заправка». There is a petrol station next to the bank — «Поруч із банком є заправка». Починаємо з There is, потім називаємо заправку — a petrol station — і місце: next to the bank."
       },
       "question": {
         "interactionId": "en:lesson-04:session-31:intro3:q",
@@ -140,7 +140,7 @@
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r2",
-              "text": "The petrol station is next to the bank."
+              "text": "There is petrol station next to the bank."
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r3",
@@ -154,7 +154,7 @@
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r2",
-              "text": "The petrol station is next to the bank."
+              "text": "There is petrol station next to the bank."
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r3",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9751be3a43b70f91805facbc5e8914d8656e34ee7eebd6424548106bff2f10d5"
+  "introFingerprint": "609beb668ff56b900dcb692ed57b6e4acf7ff451ba9a98ad8787f1f5d7d27773"
 }

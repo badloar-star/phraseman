@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-29:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-29:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i01:r1",
+          "text": "Is anyone looking for a jacket?"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i01:r2",
+          "text": "Is anyone looking for a blanket?"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i01:r3",
+          "text": "Is anyone looking for a bag?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i01:audio",
+          "transcript": "Is anyone looking for a jacket?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-13:i01:r1",
+            "targetText": "Is anyone looking for a jacket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i01:r2",
+            "targetText": "Is anyone looking for a blanket?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i01:r3",
+            "targetText": "Is anyone looking for a bag?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is anyone looking for a jacket?",
+              "uk": "У записі звучить Is anyone looking for a jacket?"
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is anyone looking for a jacket?",
+              "uk": "У записі звучить Is anyone looking for a jacket?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — anorak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — anorak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i02:audio",
+          "transcript": "anorak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-13:i02:r1",
+            "targetText": "anorak",
+            "meaningByLocale": {
+              "ru": "Куртка с капюшоном для защиты от ветра и дождя. Обычно лёгкая, для прогулок на улице.",
+              "uk": "Куртка з каптуром для захисту від вітру й дощу. Зазвичай легка, для прогулянок надворі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anorak",
+          "definitionByLocale": {
+            "ru": "Куртка с капюшоном для защиты от ветра и дождя. Обычно лёгкая, для прогулок на улице.",
+            "uk": "Куртка з каптуром для захисту від вітру й дощу. Зазвичай легка, для прогулянок надворі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите другу свой анорак.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Предложите другу свой анорак.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i03:audio",
+          "transcript": "Would you like my anorak?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you like my anorak?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что пальто починила ваша сестра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что пальто починила ваша сестра.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The coat was repaired by my sister.",
+        "localizedMeaning": {
+          "ru": "Скажите, что пальто починила ваша сестра.",
+          "uk": "Скажіть, що пальто полагодила ваша сестра."
+        },
+        "orderedTokens": [
+          "The",
+          "coat",
+          "was",
+          "repaired",
+          "by",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ищете мать девочки, которой нужна куртка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i05:r1",
+          "text": "whose"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i05:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i05:r3",
+          "text": "whose her"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ищете мать девочки, которой нужна куртка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ищете мать девочки, которой нужна куртка.",
+          "uk": "Ви шукаєте матір дівчинки, якій потрібна куртка."
+        },
+        "gappedTargetPhrase": "Where is the woman ___ daughter needs a jacket?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-13:i05:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i05:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i05:r3",
+            "text": "whose her"
+          }
+        ],
+        "testedDimension": "Вы ищете мать девочки, которой нужна куртка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы ищете мать девочки, которой нужна куртка.",
+            "feedbackByLocale": {
+              "ru": "Для этой связи нужна whose daughter.",
+              "uk": "Для цього зв’язку потрібна whose daughter."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы ищете мать девочки, которой нужна куртка.",
+            "feedbackByLocale": {
+              "ru": "Whose уже связывает дочь с женщиной, her лишнее.",
+              "uk": "Whose вже пов’язує доньку з жінкою, her зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tunic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tunic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i06:audio",
+          "transcript": "tunic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-13:i06:r1",
+            "targetText": "tunic",
+            "meaningByLocale": {
+              "ru": "Туника. Длинная свободная верхняя часть одежды, обычно ниже бёдер.",
+              "uk": "Туніка. Довга вільна верхня частина одягу, зазвичай нижче стегон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tunic",
+          "definitionByLocale": {
+            "ru": "Туника. Длинная свободная верхняя часть одежды, обычно ниже бёдер.",
+            "uk": "Туніка. Довга вільна верхня частина одягу, зазвичай нижче стегон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что тунику можно носить с легинсами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что тунику можно носить с легинсами.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can wear the tunic with leggings.",
+        "localizedMeaning": {
+          "ru": "Скажите, что тунику можно носить с легинсами.",
+          "uk": "Скажіть, що туніку можна носити з легінсами."
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "wear",
+          "the tunic",
+          "with leggings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: пальто починила сестра или мама?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i08:r1",
+          "text": "The coat was repaired by my sister."
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i08:r2",
+          "text": "The coat was repaired by my mother."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i08:audioA",
+        "en:lesson-29:session-13:i08:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: пальто починила сестра или мама?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The coat was repaired by my sister.",
+        "contrastB": "The coat was repaired by my mother.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-29:session-13:i08:audioA",
+          "transcript": "The coat was repaired by my sister."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-29:session-13:i08:audioB",
+          "transcript": "The coat was repaired by my mother."
+        },
+        "testedPhoneticContrast": "Послушайте: пальто починила сестра или мама?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: пальто починила сестра или мама?",
+            "feedbackByLocale": {
+              "ru": "В записи my sister — моя сестра.",
+              "uk": "У записі my sister — моя сестра."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, нужен ли другу другой размер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Спросите, нужен ли другу другой размер.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i09:audio",
+          "transcript": "Do you need a different size?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you need a different size?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chinos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chinos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i10:audio",
+          "transcript": "chinos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-13:i10:r1",
+            "targetText": "chinos",
+            "meaningByLocale": {
+              "ru": "Брюки из хлопковой ткани. Обычно повседневные, аккуратные, без характерной для джинсов плотной ткани.",
+              "uk": "Штани з бавовняної тканини. Зазвичай повсякденні, охайні, без характерної для джинсів цупкої тканини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chinos",
+          "definitionByLocale": {
+            "ru": "Брюки из хлопковой ткани. Обычно повседневные, аккуратные, без характерной для джинсов плотной ткани.",
+            "uk": "Штани з бавовняної тканини. Зазвичай повсякденні, охайні, без характерної для джинсів цупкої тканини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i11:r1",
+          "text": "These chinos are too small for me."
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i11:r2",
+          "text": "These chinos are too big for me."
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i11:r3",
+          "text": "These shorts are too small for me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i11:audio",
+          "transcript": "These chinos are too small for me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-13:i11:r1",
+            "targetText": "These chinos are too small for me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i11:r2",
+            "targetText": "These chinos are too big for me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i11:r3",
+            "targetText": "These shorts are too small for me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These chinos are too small for me.",
+              "uk": "У записі звучить These chinos are too small for me."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These chinos are too small for me.",
+              "uk": "У записі звучить These chinos are too small for me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы вернёте вещь, если размер не подойдёт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i12:r1",
+          "text": "does not"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i12:r2",
+          "text": "will not"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i12:r3",
+          "text": "do not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы вернёте вещь, если размер не подойдёт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вернёте вещь, если размер не подойдёт.",
+          "uk": "Ви повернете річ, якщо розмір не підійде."
+        },
+        "gappedTargetPhrase": "I will return it if it ___ fit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-13:i12:r1",
+            "text": "does not"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i12:r2",
+            "text": "will not"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i12:r3",
+            "text": "do not"
+          }
+        ],
+        "testedDimension": "Вы вернёте вещь, если размер не подойдёт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы вернёте вещь, если размер не подойдёт.",
+            "feedbackByLocale": {
+              "ru": "В этом условии после if нужна does not без will.",
+              "uk": "У цій умові після if потрібна does not без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы вернёте вещь, если размер не подойдёт.",
+            "feedbackByLocale": {
+              "ru": "С it используем does not.",
+              "uk": "З it використовуємо does not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, кому нужны брюки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте, кому нужны брюки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i13:audio",
+          "transcript": "The man whose son needs trousers is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The man whose son needs trousers is here.",
+        "orderedTokens": [
+          "The",
+          "man",
+          "whose",
+          "son",
+          "needs",
+          "trousers",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gilet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gilet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i14:audio",
+          "transcript": "gilet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-29:session-13:i14:r1",
+            "targetText": "gilet",
+            "meaningByLocale": {
+              "ru": "Утеплённый жилет. Верхняя одежда без рукавов, которую надевают поверх свитера или другой одежды.",
+              "uk": "Утеплений жилет. Верхній одяг без рукавів, який надягають поверх светра або іншого одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gilet",
+          "definitionByLocale": {
+            "ru": "Утеплённый жилет. Верхняя одежда без рукавов, которую надевают поверх свитера или другой одежды.",
+            "uk": "Утеплений жилет. Верхній одяг без рукавів, який надягають поверх светра або іншого одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, что жилет можно надеть поверх свитера.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Объясните, что жилет можно надеть поверх свитера.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i15:audio",
+          "transcript": "You can wear the gilet over a jumper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You can wear the gilet over a jumper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, кто починил пальто.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i16:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i16:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i16:r3",
+          "text": "from"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, кто починил пальто.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, кто починил пальто.",
+          "uk": "Скажіть, хто полагодив пальто."
+        },
+        "gappedTargetPhrase": "The coat was repaired ___ my sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-13:i16:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i16:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i16:r3",
+            "text": "from"
+          }
+        ],
+        "testedDimension": "Скажите, кто починил пальто.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i16:r2",
+            "correct": false,
+            "testedDimension": "Скажите, кто починил пальто.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводит by.",
+              "uk": "Виконавицю дії позначає by."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i16:r3",
+            "correct": false,
+            "testedDimension": "Скажите, кто починил пальто.",
+            "feedbackByLocale": {
+              "ru": "Для человека, выполнившего ремонт, нужна by.",
+              "uk": "Для людини, яка виконала ремонт, потрібна by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините одежду с описанием.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините одежду с описанием.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-29:session-13:i17:p1",
+            "target": "anorak",
+            "meaningByLocale": {
+              "ru": "куртка с капюшоном от ветра и дождя",
+              "uk": "куртка з каптуром від вітру й дощу"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-13:i17:p2",
+            "target": "tunic",
+            "meaningByLocale": {
+              "ru": "туника",
+              "uk": "туніка"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-13:i17:p3",
+            "target": "chinos",
+            "meaningByLocale": {
+              "ru": "повседневные хлопковые брюки",
+              "uk": "повсякденні бавовняні штани"
+            }
+          },
+          {
+            "pairId": "en:lesson-29:session-13:i17:p4",
+            "target": "gilet",
+            "meaningByLocale": {
+              "ru": "утеплённый жилет",
+              "uk": "утеплений жилет"
+            }
+          }
+        ],
+        "leftColumn": [
+          "anorak",
+          "tunic",
+          "chinos",
+          "gilet"
+        ],
+        "rightColumn": [
+          "куртка с капюшоном от ветра и дождя",
+          "туника",
+          "повседневные хлопковые брюки",
+          "утеплённый жилет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите оставить тунику для сестры.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i18:audio"
+      ],
+      "accessibilityLabel": "Попросите оставить тунику для сестры.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i18:audio",
+          "transcript": "Could you keep the tunic for my sister?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you keep the tunic for my sister?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Укажите куртку, которая подходит к вашим ботинкам.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-29:session-13:i19:r1",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i19:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-29:session-13:i19:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Укажите куртку, которая подходит к вашим ботинкам.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Укажите куртку, которая подходит к вашим ботинкам.",
+          "uk": "Укажіть куртку, яка пасує до ваших черевиків."
+        },
+        "gappedTargetPhrase": "I want the jacket ___ matches my boots.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-29:session-13:i19:r1",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i19:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i19:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Укажите куртку, которая подходит к вашим ботинкам.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-29:session-13:i19:r2",
+            "correct": false,
+            "testedDimension": "Укажите куртку, которая подходит к вашим ботинкам.",
+            "feedbackByLocale": {
+              "ru": "Куртка — вещь, здесь подходит that.",
+              "uk": "Куртка — річ, тут підходить that."
+            }
+          },
+          {
+            "responseId": "en:lesson-29:session-13:i19:r3",
+            "correct": false,
+            "testedDimension": "Укажите куртку, которая подходит к вашим ботинкам.",
+            "feedbackByLocale": {
+              "ru": "После the jacket уточнение вводит that.",
+              "uk": "Після the jacket уточнення вводить that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте предложение вернуть вещь завтра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте предложение вернуть вещь завтра.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i20:audio",
+          "transcript": "I can return it tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can return it tomorrow.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "return",
+          "it",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-29:session-13:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите друга за одежду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-29:session-13:i21:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите друга за одежду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-29:session-13:i21:audio",
+          "transcript": "Thank you for the clothes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for the clothes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5585d077f6da50d98830e4131bcc57a0044021e6823b742db213b3c14e63feab"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-12:intro1:r2": {
+          "ru": "Нужен порядок the restaurant was.",
+          "uk": "Потрібен порядок the restaurant was."
+        },
+        "en:lesson-30:session-12:intro1:r3": {
+          "ru": "С одним рестораном здесь используем was.",
+          "uk": "З одним рестораном тут використовуємо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-12:intro2:r2": {
+          "ru": "В пересказе сначала идёт the restaurant, затем was.",
+          "uk": "У переказі спочатку йде the restaurant, потім was."
+        },
+        "en:lesson-30:session-12:intro2:r3": {
+          "ru": "С the restaurant здесь нужно was.",
+          "uk": "Із the restaurant тут потрібне was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-12:intro3:r2": {
+          "ru": "Для такого желания после wish используем knew.",
+          "uk": "Для такого бажання після wish використовуємо knew."
+        },
+        "en:lesson-30:session-12:intro3:r3": {
+          "ru": "Нужно I knew, не I knowing.",
+          "uk": "Потрібне I knew, не I knowing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "db063a76f7fa88f7c33a1e5a501a55752d32512c0a0e8be5ffbbb323d7ab127e"
+}

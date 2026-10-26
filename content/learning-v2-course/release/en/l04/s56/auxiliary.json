@@ -23,8 +23,8 @@
           "uk": "Заклад один, тому запитання починаємо з Is there, а не з Are there."
         },
         "en:lesson-04:session-56:intro2:r3": {
-          "ru": "Это порядок слов утверждения. В вопросе сначала Is: Is there a takeaway?",
-          "uk": "Це порядок слів твердження. У запитанні спочатку Is: Is there a takeaway?"
+          "ru": "Название остановки собираем так: the bus stop.",
+          "uk": "Назву зупинки складаємо так: the bus stop."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "08fa77fcbec95d4fb46568acce1c39d8e489792913b2b325a7bc99e1b5e39468"
+  "auxiliaryFingerprint": "cf4697f09e400dffbecf6240401f119a8936550e98a7ea8dae7b90235aecf8f1"
 }

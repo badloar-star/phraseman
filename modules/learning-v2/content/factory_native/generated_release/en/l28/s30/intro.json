@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-28:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "как понимать надписи на упаковке, уточнять хранение и договариваться о доставке.",
+    "uk": "як розуміти написи на упаковці, уточнювати зберігання й домовлятися про доставку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-28:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Условие хранения",
+        "uk": "Умова зберігання"
+      },
+      "bodyByLocale": {
+        "ru": "Вы читаете надпись на бутылке молока из холодильника магазина: This milk must be kept cold — это молоко необходимо хранить в холоде. Соберите This milk + must + be + kept + cold. Must передаёт требование на упаковке. После must нужна be, затем kept — форма keep. Cold показывает, в каком состоянии нужно сохранять молоко.",
+        "uk": "Ви читаєте напис на пляшці молока з холодильника крамниці: This milk must be kept cold — це молоко необхідно зберігати в холоді. Складіть This milk + must + be + kept + cold. Must передає вимогу на упаковці. Після must потрібна be, потім kept — форма keep. Cold показує, у якому стані потрібно зберігати молоко."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-30:intro1:r1",
+              "text": "This milk must be kept cold."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro1:r2",
+              "text": "This milk must kept cold."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro1:r3",
+              "text": "This milk must be keep cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-30:intro1:r1",
+              "text": "This milk must be kept cold."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro1:r2",
+              "text": "This milk must kept cold."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro1:r3",
+              "text": "This milk must be keep cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-28:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда испекли хлеб",
+        "uk": "Коли спекли хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спрашиваете продавца, когда испекли хлеб на прилавке. Он отвечает: This bread was baked this morning — этот хлеб испекли сегодня утром. Начните с This bread, затем поставьте was baked и добавьте this morning. Bread здесь неисчисляемое, поэтому нужна was. Baked — форма bake с окончанием -d: хлеб не печёт, его испекли.",
+        "uk": "Ви запитуєте продавця, коли спекли хліб на прилавку. Він відповідає: This bread was baked this morning — цей хліб спекли сьогодні вранці. Почніть із This bread, потім поставте was baked і додайте this morning. Bread тут незлічуване, тому потрібна was. Baked — форма bake із закінченням -d: хліб не пече, його спекли."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-30:intro2:r1",
+              "text": "This bread was baked this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro2:r2",
+              "text": "This bread were baked this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro2:r3",
+              "text": "This bread was bake this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-30:intro2:r1",
+              "text": "This bread was baked this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro2:r2",
+              "text": "This bread were baked this morning."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro2:r3",
+              "text": "This bread was bake this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-28:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Доставка покупок",
+        "uk": "Доставка покупок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы оставляете тяжёлые покупки в магазине и оформляете доставку домой. Сотрудник обещает: Your shopping will be delivered today — ваши покупки доставят сегодня. Соберите Your shopping + will + be + delivered + today. Will показывает будущее действие, be delivered — что покупки доставят. После will нужна be; delivered — форма deliver с окончанием -ed.",
+        "uk": "Ви залишаєте важкі покупки в крамниці й оформлюєте доставку додому. Працівник обіцяє: Your shopping will be delivered today — ваші покупки доставлять сьогодні. Складіть Your shopping + will + be + delivered + today. Will показує майбутню дію, be delivered — що покупки доставлять. Після will потрібна be; delivered — форма deliver із закінченням -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-28:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-28:session-30:intro3:r1",
+              "text": "Your shopping will be delivered today."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro3:r2",
+              "text": "Your shopping will delivered today."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro3:r3",
+              "text": "Your shopping will be deliver today."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-28:session-30:intro3:r1",
+              "text": "Your shopping will be delivered today."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro3:r2",
+              "text": "Your shopping will delivered today."
+            },
+            {
+              "responseId": "en:lesson-28:session-30:intro3:r3",
+              "text": "Your shopping will be deliver today."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e75f7f3d53413f2d55ab4a33fdd174cc189dc720a9b52ecbe473783a2988db2"
+}

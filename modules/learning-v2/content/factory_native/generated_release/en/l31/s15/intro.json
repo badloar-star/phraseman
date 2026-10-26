@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "уточнять неисправность, спрашивать о предметах и пересказывать события.",
+    "uk": "уточнювати несправність, запитувати про предмети й переказувати події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тормоз не работает, правда?",
+        "uk": "Гальмо не працює, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с Беном проверяете велосипед перед поездкой. Тормоз кажется неисправным; уточните: The brake doesn’t work, does it? — тормоз не работает, правда? Соберите The brake doesn’t work + does + it. Основная часть отрицательная, поэтому берём does из doesn’t без not. Один тормоз заменяем на it.",
+        "uk": "Ви з Беном перевіряєте велосипед перед поїздкою. Гальмо здається несправним; уточніть: The brake doesn’t work, does it? — гальмо не працює, правда? Складіть The brake doesn’t work + does + it. Основна частина заперечна, тому беремо does із doesn’t без not. Одне гальмо замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-15:intro1:r1",
+              "text": "The brake doesn't work, does it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro1:r2",
+              "text": "The brake doesn't work, do it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro1:r3",
+              "text": "The brake doesn't work, does they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-15:intro1:r1",
+              "text": "The brake doesn't work, does it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro1:r2",
+              "text": "The brake doesn't work, do it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro1:r3",
+              "text": "The brake doesn't work, does they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где насос",
+        "uk": "Де насос"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите накачать колесо и ищете насос. Спросите Бена: Do you know where the pump is? — ты не знаешь, где насос? Соберите Do you know + where + the pump + is. После where называем the pump перед is.",
+        "uk": "Ви хочете накачати колесо й шукаєте насос. Запитайте Бена: Do you know where the pump is? — ти не знаєш, де насос? Складіть Do you know + where + the pump + is. Після where називаємо the pump перед is."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-15:intro2:r1",
+              "text": "Do you know where the pump is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro2:r2",
+              "text": "Do you know where is the pump?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro2:r3",
+              "text": "Do you know where the pump are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-15:intro2:r1",
+              "text": "Do you know where the pump is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro2:r2",
+              "text": "Do you know where is the pump?"
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro2:r3",
+              "text": "Do you know where the pump are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто починил тормоз",
+        "uk": "Хто полагодив гальмо"
+      },
+      "bodyByLocale": {
+        "ru": "Бен починил тормоз. Начните рассказ с тормоза: The brake was fixed by Ben — тормоз починил Бен. Соберите The brake + was + fixed + by Ben. Was fixed описывает действие над тормозом. By Ben называет того, кто его починил.",
+        "uk": "Бен полагодив гальмо. Почніть розповідь із гальма: The brake was fixed by Ben — гальмо полагодив Бен. Складіть The brake + was + fixed + by Ben. Was fixed описує дію над гальмом. By Ben називає того, хто його полагодив."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-15:intro3:r1",
+              "text": "The brake was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro3:r2",
+              "text": "The brake was fix by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro3:r3",
+              "text": "The brake were fixed by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-15:intro3:r1",
+              "text": "The brake was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro3:r2",
+              "text": "The brake was fix by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-15:intro3:r3",
+              "text": "The brake were fixed by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e246e26f3be5b0d5cf13a3befcfe7ff6a53159b6120f43a1b96a15b15b4bef4d"
+}

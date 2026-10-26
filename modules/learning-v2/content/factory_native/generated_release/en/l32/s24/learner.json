@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — train",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — train",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i01:audio",
+          "transcript": "train"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-24:i01:r1",
+            "targetText": "train",
+            "meaningByLocale": {
+              "ru": "Поезд. Повторение знакомого слова.",
+              "uk": "Поїзд. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "train",
+          "definitionByLocale": {
+            "ru": "Поезд. Повторение знакомого слова.",
+            "uk": "Поїзд. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i02:r1",
+          "text": "The train could be late."
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i02:r2",
+          "text": "The train could be early."
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i02:r3",
+          "text": "The train could be full."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i02:audio",
+          "transcript": "The train could be late."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-24:i02:r1",
+            "targetText": "The train could be late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i02:r2",
+            "targetText": "The train could be early.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i02:r3",
+            "targetText": "The train could be full.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The train could be late.",
+              "uk": "У записі звучить The train could be late."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The train could be late.",
+              "uk": "У записі звучить The train could be late."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+          "uk": "Поїзда ще не видно. Ви поки не прочитали інформацію на табло. Можливо, поїзд запізнюється."
+        },
+        "gappedTargetPhrase": "The train could ___ late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-24:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+            "feedbackByLocale": {
+              "ru": "После could здесь нужна форма be.",
+              "uk": "Після could тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i04:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-24:i04:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна поднимает сумку двумя руками и с трудом ставит её на полку. Вы сами сумку ещё не брали. Сумка, должно быть, тяжёлая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна поднимает сумку двумя руками и с трудом ставит её на полку. Вы сами сумку ещё не брали. Сумка, должно быть, тяжёлая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag must be heavy.",
+        "localizedMeaning": {
+          "ru": "Анна поднимает сумку двумя руками и с трудом ставит её на полку. Вы сами сумку ещё не брали. Сумка, должно быть, тяжёлая.",
+          "uk": "Анна піднімає сумку двома руками й насилу ставить її на полицю. Ви самі сумку ще не брали. Сумка, напевно, важка."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "must",
+          "be",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ticket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ticket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i06:audio",
+          "transcript": "ticket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-24:i06:r1",
+            "targetText": "ticket",
+            "meaningByLocale": {
+              "ru": "Билет. Повторение знакомого слова.",
+              "uk": "Квиток. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ticket",
+          "definitionByLocale": {
+            "ru": "Билет. Повторение знакомого слова.",
+            "uk": "Квиток. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Билет, который я купил, действителен. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i07:audio"
+      ],
+      "accessibilityLabel": "Билет, который я купил, действителен. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i07:audio",
+          "transcript": "The ticket I bought is valid."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ticket I bought is valid.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+          "uk": "Квиток, який я купив, дійсний. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The ticket I ___ is valid.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-24:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The train could be late.",
+        "localizedMeaning": {
+          "ru": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает.",
+          "uk": "Поїзда ще не видно. Ви поки не прочитали інформацію на табло. Можливо, поїзд запізнюється."
+        },
+        "orderedTokens": [
+          "The",
+          "train",
+          "could",
+          "be",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна поднимает сумку двумя руками и с трудом ставит её на полку. Вы сами сумку ещё не брали. Скажите вывод ещё раз, заменив The bag местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i10:audio"
+      ],
+      "accessibilityLabel": "Анна поднимает сумку двумя руками и с трудом ставит её на полку. Вы сами сумку ещё не брали. Скажите вывод ещё раз, заменив The bag местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i10:audio",
+          "transcript": "It must be heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+          "uk": "Сумка, напевно, важка. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The bag must ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-24:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i12:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-24:i12:r1",
+            "targetText": "seat",
+            "meaningByLocale": {
+              "ru": "Место, сиденье. Повторение знакомого слова.",
+              "uk": "Місце, сидіння. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat",
+          "definitionByLocale": {
+            "ru": "Место, сиденье. Повторение знакомого слова.",
+            "uk": "Місце, сидіння. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i13:r1",
+          "text": "The seat may be free."
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i13:r2",
+          "text": "The seat may be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i13:r3",
+          "text": "The seat may be dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i13:audio",
+          "transcript": "The seat may be free."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-24:i13:r1",
+            "targetText": "The seat may be free.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i13:r2",
+            "targetText": "The seat may be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i13:r3",
+            "targetText": "The seat may be dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seat may be free.",
+              "uk": "У записі звучить The seat may be free."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seat may be free.",
+              "uk": "У записі звучить The seat may be free."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i14:audio",
+          "transcript": "The seat may be free."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The seat may be free.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете проводнику купленный билет на эту поездку. Покажите предмет: начните с This is, затем назовите the ticket и уточнение I bought. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете проводнику купленный билет на эту поездку. Покажите предмет: начните с This is, затем назовите the ticket и уточнение I bought. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the ticket I bought.",
+        "localizedMeaning": {
+          "ru": "Вы показываете проводнику купленный билет на эту поездку. Покажите предмет: начните с This is, затем назовите the ticket и уточнение I bought. Не добавляйте that.",
+          "uk": "Ви показуєте провідникові куплений квиток на цю поїздку. Покажіть предмет: почніть із This is, потім назвіть the ticket й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "ticket",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поезд опаздывал, поэтому вы ждали на платформе. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поезд опаздывал, поэтому вы ждали на платформе. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Поезд опаздывал, поэтому вы ждали на платформе. Вставьте «поэтому».",
+          "uk": "Поїзд запізнювався, тому ви чекали на платформі. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The train was late, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-24:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Поезд опаздывал, поэтому вы ждали на платформе. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i16:r2",
+            "correct": false,
+            "testedDimension": "Поезд опаздывал, поэтому вы ждали на платформе. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i16:r3",
+            "correct": false,
+            "testedDimension": "Поезд опаздывал, поэтому вы ждали на платформе. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поезд опаздывал, поэтому вы ждали на платформе. Начните с причины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Поезд опаздывал, поэтому вы ждали на платформе. Начните с причины.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i17:audio",
+          "transcript": "The train was late, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The train was late, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какое состояние названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i18:r1",
+          "text": "The train could be late."
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i18:r2",
+          "text": "The train could be early."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i18:audioA",
+        "en:lesson-32:session-24:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте, какое состояние названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The train could be late.",
+        "contrastB": "The train could be early.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-24:i18:audioA",
+          "transcript": "The train could be late."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-24:i18:audioB",
+          "transcript": "The train could be early."
+        },
+        "testedPhoneticContrast": "Послушайте, какое состояние названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какое состояние названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит late.",
+              "uk": "Звучить late."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод по признакам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод по признакам.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i19:audio",
+          "transcript": "The bag must be heavy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag must be heavy.",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "must",
+          "be",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-24:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-24:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+          "uk": "На сидінні ніхто не сидить, але ви ще не запитали, чи воно зайняте. Можливо, місце вільне."
+        },
+        "gappedTargetPhrase": "The seat may ___ free.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-24:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-24:i20:r2",
+            "correct": false,
+            "testedDimension": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+            "feedbackByLocale": {
+              "ru": "После may здесь используем be.",
+              "uk": "Після may тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-24:i20:r3",
+            "correct": false,
+            "testedDimension": "На сиденье никто не сидит, но вы ещё не спросили, занято ли оно. Возможно, место свободно.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-24:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает. Теперь назовите эту возможность с may.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-24:i21:audio"
+      ],
+      "accessibilityLabel": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. Возможно, поезд опаздывает. Теперь назовите эту возможность с may.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-24:i21:audio",
+          "transcript": "The train may be late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The train may be late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8edaf6015024b2e3763d0846580b3162e85a8c739535fc425832ea8d23b6f557"
+}

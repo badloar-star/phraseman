@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-30:session-28:i01",
+    "correctText": "party",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i02",
+    "correctText": "She told me the party was at six.",
+    "correctResponseId": "en:lesson-30:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i03",
+    "correctText": "said",
+    "correctResponseId": "en:lesson-30:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i04",
+    "correctText": "cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i05",
+    "correctText": "She asked me to bring the cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i06",
+    "correctText": "She asked me to come early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i07",
+    "correctText": "my brother was",
+    "correctResponseId": "en:lesson-30:session-28:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i08",
+    "correctText": "candle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i09",
+    "correctText": "She asked if I had a candle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i10",
+    "correctText": "She asked us to set the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i11",
+    "correctText": "him",
+    "correctResponseId": "en:lesson-30:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i12",
+    "correctText": "gift",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i13",
+    "correctText": "The gift you chose is on the table.",
+    "correctResponseId": "en:lesson-30:session-28:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i14",
+    "correctText": "I wish we had a bigger table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i15",
+    "correctText": "The cake I bought is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i16",
+    "correctText": "not to open",
+    "correctResponseId": "en:lesson-30:session-28:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i17",
+    "correctText": "He told me the guests were here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i18",
+    "correctText": "She asked me to cut the cake.",
+    "correctResponseId": "en:lesson-30:session-28:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i19",
+    "correctText": "He said the music was too loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i20",
+    "correctText": "us",
+    "correctResponseId": "en:lesson-30:session-28:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-30:session-28:i21",
+    "correctText": "She asked us to sit down.",
+    "correctResponseId": null
+  }
+]

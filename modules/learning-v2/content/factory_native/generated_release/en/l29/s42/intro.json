@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-29:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "как описать длинный сбивчивый рассказ, лепет, оживлённую болтовню и случайно вырвавшиеся слова.",
+    "uk": "як описати довгу плутану розповідь, лепет, жваву балаканину та слова, що випадково вихопилися."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-29:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Смешная история дедушки",
+        "uk": "Кумедна історія дідуся"
+      },
+      "bodyByLocale": {
+        "ru": "После семейного праздника вы вспоминаете рассказ дедушки. Скажите: The story Grandad told us was funny — история, которую нам рассказал дедушка, была смешной. Соберите The story + Grandad told us + was funny. Grandad — кто рассказал, us — кому. That перед Grandad можно опустить: story уже называет рассказанную историю. Us оставляем, потому что оно обозначает слушателей.",
+        "uk": "Після сімейного свята ви згадуєте розповідь дідуся. Скажіть: The story Grandad told us was funny — історія, яку нам розповів дідусь, була кумедною. Складіть The story + Grandad told us + was funny. Grandad — хто розповів, us — кому. That перед Grandad можна пропустити: story вже називає розказану історію. Us залишаємо, тому що воно позначає слухачів."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-42:intro1:r1",
+              "text": "The story Grandad told us was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro1:r2",
+              "text": "The story Grandad told us it was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro1:r3",
+              "text": "The story Grandad tell us was funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-42:intro1:r1",
+              "text": "The story Grandad told us was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro1:r2",
+              "text": "The story Grandad told us it was funny."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro1:r3",
+              "text": "The story Grandad tell us was funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-29:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чей малыш заснул",
+        "uk": "Чиє маля заснуло"
+      },
+      "bodyByLocale": {
+        "ru": "Вы просите гостей говорить тише и показываете маму спящего малыша. Скажите: This is the woman whose baby is asleep — это женщина, чей малыш спит. Соберите This is the woman + whose baby + is asleep. Whose baby связывает ребёнка с мамой. После whose не добавляем her.",
+        "uk": "Ви просите гостей говорити тихіше й показуєте маму малюка, що спить. Скажіть: This is the woman whose baby is asleep — це жінка, чиє маля спить. Складіть This is the woman + whose baby + is asleep. Whose baby пов’язує дитину з мамою. Після whose не додаємо her."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-42:intro2:r1",
+              "text": "This is the woman whose baby is asleep."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro2:r2",
+              "text": "This is the woman who baby is asleep."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro2:r3",
+              "text": "This is the woman whose her baby is asleep."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-42:intro2:r1",
+              "text": "This is the woman whose baby is asleep."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro2:r2",
+              "text": "This is the woman who baby is asleep."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro2:r3",
+              "text": "This is the woman whose her baby is asleep."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-29:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто принёс торт",
+        "uk": "Хто приніс торт"
+      },
+      "bodyByLocale": {
+        "ru": "Гость хочет поблагодарить женщину, которая принесла торт. Вы показываете её: This is the woman who brought the cake — это женщина, которая принесла торт. Соберите This is the woman + who brought the cake. Who здесь обозначает исполнителя brought. Его оставляем, а she после него не добавляем.",
+        "uk": "Гість хоче подякувати жінці, яка принесла торт. Ви показуєте її: This is the woman who brought the cake — це жінка, яка принесла торт. Складіть This is the woman + who brought the cake. Who тут позначає виконавця brought. Його залишаємо, а she після нього не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-29:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-29:session-42:intro3:r1",
+              "text": "This is the woman who brought the cake."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro3:r2",
+              "text": "This is the woman brought the cake."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro3:r3",
+              "text": "This is the woman who she brought the cake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-29:session-42:intro3:r1",
+              "text": "This is the woman who brought the cake."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro3:r2",
+              "text": "This is the woman brought the cake."
+            },
+            {
+              "responseId": "en:lesson-29:session-42:intro3:r3",
+              "text": "This is the woman who she brought the cake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "820079cf003b9f82ffbc16f8830d94391a7dfed71d2c4be2c0f98357ef686072"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "как передать вопросы о расположении и часах работы, выразить желание знать адрес и уточнить выбранное место.",
+    "uk": "як передати запитання про розташування й час роботи, висловити бажання знати адресу та уточнити вибране місце."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где был ресторан",
+        "uk": "Де був ресторан"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера друг спросил, где ресторан, в котором вы договорились встретиться. Вы передаёте его вопрос сестре: He asked where the restaurant was — он спросил, где ресторан. Соберите He + asked + where + the restaurant + was. Внутри пересказа после where сначала идёт the restaurant, затем was.",
+        "uk": "Учора друг запитав, де ресторан, у якому ви домовилися зустрітися. Ви передаєте його запитання сестрі: He asked where the restaurant was — він запитав, де ресторан. Складіть He + asked + where + the restaurant + was. Усередині переказу після where спочатку йде the restaurant, потім was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-12:intro1:r1",
+              "text": "He asked where the restaurant was."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro1:r2",
+              "text": "He asked where was the restaurant."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro1:r3",
+              "text": "He asked where the restaurant were."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-12:intro1:r1",
+              "text": "He asked where the restaurant was."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro1:r2",
+              "text": "He asked where was the restaurant."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro1:r3",
+              "text": "He asked where the restaurant were."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Был ли ресторан открыт",
+        "uk": "Чи був ресторан відчинений"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера сестра спросила, открыт ли ресторан. Вы пересказываете это другу: She asked if the restaurant was open — она спросила, открыт ли ресторан. Соберите She + asked + if + the restaurant was open. If передаёт «ли» в вопросе да или нет; после него сохраняем порядок the restaurant was.",
+        "uk": "Учора сестра запитала, чи відчинений ресторан. Ви переказуєте це другові: She asked if the restaurant was open — вона запитала, чи відчинений ресторан. Складіть She + asked + if + the restaurant was open. If передає «чи» в запитанні так або ні; після нього зберігаємо порядок the restaurant was."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-12:intro2:r1",
+              "text": "She asked if the restaurant was open."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro2:r2",
+              "text": "She asked if was the restaurant open."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro2:r3",
+              "text": "She asked if the restaurant were open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-12:intro2:r1",
+              "text": "She asked if the restaurant was open."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro2:r2",
+              "text": "She asked if was the restaurant open."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro2:r3",
+              "text": "She asked if the restaurant were open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не знаете адрес",
+        "uk": "Не знаєте адресу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете место встречи, но сейчас не знаете точный адрес: I wish I knew the address — жаль, что я не знаю адрес. Соберите I wish + I knew + the address. Knew после wish выражает желание знать адрес сейчас; это не воспоминание о том, что вы знали раньше.",
+        "uk": "Ви шукаєте місце зустрічі, але зараз не знаєте точної адреси: I wish I knew the address — шкода, що я не знаю адресу. Складіть I wish + I knew + the address. Knew після wish виражає бажання знати адресу зараз; це не спогад про те, що ви знали раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-12:intro3:r1",
+              "text": "I wish I knew the address."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro3:r2",
+              "text": "I wish I know the address."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro3:r3",
+              "text": "I wish I knowing the address."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-12:intro3:r1",
+              "text": "I wish I knew the address."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro3:r2",
+              "text": "I wish I know the address."
+            },
+            {
+              "responseId": "en:lesson-30:session-12:intro3:r3",
+              "text": "I wish I knowing the address."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd46e8261e4b236c0a01a745a963072e7fb0306b9aae2b9387604442e1bc9d80"
+}

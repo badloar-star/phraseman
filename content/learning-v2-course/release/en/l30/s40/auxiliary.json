@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-30:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-30:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-40:intro1:r2": {
+          "ru": "Is не выполняет заданный сдвиг в прошлое.",
+          "uk": "Is не виконує заданий зсув у минуле."
+        },
+        "en:lesson-30:session-40:intro1:r3": {
+          "ru": "Здесь нужна форма was, не be.",
+          "uk": "Тут потрібна форма was, не be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-40:intro2:r2": {
+          "ru": "В пересказе нужен порядок my jacket was.",
+          "uk": "У переказі потрібен порядок my jacket was."
+        },
+        "en:lesson-30:session-40:intro2:r3": {
+          "ru": "Одна jacket требует was.",
+          "uk": "Одна jacket потребує was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-30:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-30:session-40:intro3:r2": {
+          "ru": "Для такого желания используем were warmer.",
+          "uk": "Для такого бажання використовуємо were warmer."
+        },
+        "en:lesson-30:session-40:intro3:r3": {
+          "ru": "Здесь нужна форма were, не be.",
+          "uk": "Тут потрібна форма were, не be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "27adc24cfe6ee4890ccaf094e2bfd59a06b73d66bfe691899c28ab9f9a2c9266"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-28:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-28:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-53:intro1:r2": {
+          "ru": "После product нужна be.",
+          "uk": "Після product потрібна be."
+        },
+        "en:lesson-28:session-53:intro1:r3": {
+          "ru": "После be нужна returned.",
+          "uk": "Після be потрібна returned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-53:intro2:r2": {
+          "ru": "После was нужна done.",
+          "uk": "Після was потрібна done."
+        },
+        "en:lesson-28:session-53:intro2:r3": {
+          "ru": "Исполнителя действия здесь вводит by.",
+          "uk": "Виконавця дії тут позначає by."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-28:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-28:session-53:intro3:r2": {
+          "ru": "Для желания о настоящем после wish нужна had.",
+          "uk": "Для бажання щодо теперішнього після wish потрібна had."
+        },
+        "en:lesson-28:session-53:intro3:r3": {
+          "ru": "Здесь нужна had, а не will have.",
+          "uk": "Тут потрібна had, а не will have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e2fde4d320a3bdb802abd707a4e3ef354da3b38bbd012dc9fcf9b1114fe34374"
+}

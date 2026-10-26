@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-10",
   "learningOutcomeByLocale": {
-    "ru": "сказать, чья вещь и где она лежит, и согласовать are с вещами в паре",
-    "uk": "сказати, чия річ і де вона лежить, та узгодити are з речами в парі"
+    "ru": "сказать, чья вещь и где она лежит, и согласовать are с существительными во множественном числе",
+    "uk": "сказати, чия річ і де вона лежить, та узгодити are з іменниками у множині"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Навушники в трамваї"
       },
       "bodyByLocale": {
-        "ru": "В трамвае по дороге домой ваш брат ищет наушники и не находит. Вы видели, как он убрал их в свой рюкзак. headphones — «наушники», это пара, поэтому в предложении are: Your headphones are in your backpack — «Твои наушники в твоём рюкзаке». Перед your не ставим the.",
-        "uk": "У трамваї дорогою додому ваш брат шукає навушники й не знаходить. Ви бачили, як він поклав їх у свій рюкзак. headphones — «навушники», це пара, тому в реченні are: Your headphones are in your backpack — «Твої навушники у твоєму рюкзаку». Перед your не ставимо the."
+        "ru": "В трамвае по дороге домой ваш брат ищет наушники и не находит. Вы видели, как он убрал их в свой рюкзак. Headphones — «наушники»: слово имеет форму множественного числа, даже когда говорим об одном комплекте. Поэтому ставим are: Your headphones are in your backpack — «Твои наушники в твоём рюкзаке». Сначала называем вещь — your headphones, затем ставим are и место — in your backpack. Оба your относятся к брату, которому вы отвечаете.",
+        "uk": "У трамваї дорогою додому ваш брат шукає навушники й не знаходить. Ви бачили, як він поклав їх у свій рюкзак. Headphones — «навушники»: слово має форму множини, навіть коли говоримо про один комплект. Тому ставимо are: Your headphones are in your backpack — «Твої навушники у твоєму рюкзаку». Спочатку називаємо річ — your headphones, потім ставимо are і місце — in your backpack. Обидва your стосуються брата, якому ви відповідаєте."
       },
       "question": {
         "interactionId": "en:lesson-05:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "741fb39869e18bc4da6649d23d4becc00503182bc6bea38cd248a331b56bf582"
+  "introFingerprint": "7e0e2c72e76892c4b1c8d8bbc14af56ddc8c09c21685061d5d126ddb2db4d1e5"
 }

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-30:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "сдвигать настоящее в прошедшее в заданном пересказе; повторите просьбы, вопросы и уточнения.",
+    "uk": "зсувати теперішнє в минуле в заданому переказі; повторите прохання, запитання та уточнення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-30:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Суп был холодным тогда",
+        "uk": "Суп був холодним тоді"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера в кафе подруга сказала: «Мой суп холодный». Его потом заменили. Сегодня перескажите её слова со сдвигом времени: She said her soup was cold — она сказала, что её суп был холодным. Соберите She + said + her soup + was cold. Is из её слов сдвигаем в was; my soup становится her soup, потому что теперь о подруге рассказываете вы.",
+        "uk": "Учора в кафе подруга сказала: «Мій суп холодний». Його потім замінили. Сьогодні перекажіть її слова зі зсувом часу: She said her soup was cold — вона сказала, що її суп був холодним. Складіть She + said + her soup + was cold. Is з її слів зсуваємо у was; my soup стає her soup, бо тепер про подругу розповідаєте ви."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-35:intro1:r1",
+              "text": "She said her soup was cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro1:r2",
+              "text": "She said her soup is cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro1:r3",
+              "text": "She said her soup were cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-35:intro1:r1",
+              "text": "She said her soup was cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro1:r2",
+              "text": "She said her soup is cold."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro1:r3",
+              "text": "She said her soup were cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-30:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ложка нужна была подруге",
+        "uk": "Ложка потрібна була подрузі"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера подруга сказала: «Мне нужна ложка». Сегодня перескажите это с обычным сдвигом времени: She said she needed a spoon — она сказала, что ей нужна была ложка. Соберите She + said + she + needed a spoon. После прошедшего said форма need из её слов меняется на needed.",
+        "uk": "Учора подруга сказала: «Мені потрібна ложка». Сьогодні перекажіть це зі звичайним зсувом часу: She said she needed a spoon — вона сказала, що їй потрібна була ложка. Складіть She + said + she + needed a spoon. Після минулого said форма need з її слів змінюється на needed."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-35:intro2:r1",
+              "text": "She said she needed a spoon."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro2:r2",
+              "text": "She said she needs a spoon."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro2:r3",
+              "text": "She said she needing a spoon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-35:intro2:r1",
+              "text": "She said she needed a spoon."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro2:r2",
+              "text": "She said she needs a spoon."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro2:r3",
+              "text": "She said she needing a spoon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-30:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Передать просьбу официанта",
+        "uk": "Передати прохання офіціанта"
+      },
+      "bodyByLocale": {
+        "ru": "Официант попросил вас немного подождать у двери. Расскажите подруге: He asked me to wait by the door — он попросил меня подождать у двери. Соберите He + asked + me + to wait by the door. Me обозначает вас, а to wait — действие, которое попросили сделать.",
+        "uk": "Офіціант попросив вас трохи зачекати біля дверей. Розкажіть подрузі: He asked me to wait by the door — він попросив мене зачекати біля дверей. Складіть He + asked + me + to wait by the door. Me позначає вас, а to wait — дію, яку попросили виконати."
+      },
+      "question": {
+        "interactionId": "en:lesson-30:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-30:session-35:intro3:r1",
+              "text": "He asked me to wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro3:r2",
+              "text": "He asked me wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro3:r3",
+              "text": "He asked I to wait by the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-30:session-35:intro3:r1",
+              "text": "He asked me to wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro3:r2",
+              "text": "He asked me wait by the door."
+            },
+            {
+              "responseId": "en:lesson-30:session-35:intro3:r3",
+              "text": "He asked I to wait by the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b75db8b9b7af8c6ecdea8cdcc36dfa7220f7a305e6130b602d0c49c1544468ed"
+}

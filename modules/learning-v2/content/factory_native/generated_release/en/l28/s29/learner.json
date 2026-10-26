@@ -1,0 +1,1079 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-28:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-28:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unisex",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unisex",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i01:audio",
+          "transcript": "unisex"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i01:r1",
+            "targetText": "unisex",
+            "meaningByLocale": {
+              "ru": "Унисекс. Об одежде, предназначенной и для мужчин, и для женщин.",
+              "uk": "Унісекс. Про одяг, призначений і для чоловіків, і для жінок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unisex",
+          "definitionByLocale": {
+            "ru": "Унисекс. Об одежде, предназначенной и для мужчин, и для женщин.",
+            "uk": "Унісекс. Про одяг, призначений і для чоловіків, і для жінок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i02:r1",
+          "text": "These jackets are unisex."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i02:r2",
+          "text": "These shirts are unisex."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i02:r3",
+          "text": "Those jackets are unisex."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i02:audio",
+          "transcript": "These jackets are unisex."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i02:r1",
+            "targetText": "These jackets are unisex.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i02:r2",
+            "targetText": "These shirts are unisex.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i02:r3",
+            "targetText": "Those jackets are unisex.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These jackets are unisex.",
+              "uk": "У записі звучить These jackets are unisex."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These jackets are unisex.",
+              "uk": "У записі звучить These jackets are unisex."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что бирку необходимо сохранить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что бирку необходимо сохранить.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The label must be kept.",
+        "localizedMeaning": {
+          "ru": "Скажите, что бирку необходимо сохранить.",
+          "uk": "Скажіть, що бирку необхідно зберегти."
+        },
+        "orderedTokens": [
+          "The",
+          "label",
+          "must",
+          "be",
+          "kept"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите дать вам примерить вещь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i04:audio"
+      ],
+      "accessibilityLabel": "Попросите дать вам примерить вещь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i04:audio",
+          "transcript": "Could I try this on?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I try this on?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — maternity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — maternity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i05:audio",
+          "transcript": "maternity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i05:r1",
+            "targetText": "maternity",
+            "meaningByLocale": {
+              "ru": "Материнство. В названии одежды это слово указывает, что она предназначена для беременных.",
+              "uk": "Материнство. У назві одягу це слово вказує, що він призначений для вагітних."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "maternity",
+          "definitionByLocale": {
+            "ru": "Материнство. В названии одежды это слово указывает, что она предназначена для беременных.",
+            "uk": "Материнство. У назві одягу це слово вказує, що він призначений для вагітних."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, где находится отдел одежды для беременных.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Спросите, где находится отдел одежды для беременных.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i06:audio",
+          "transcript": "Where is the maternity section?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the maternity section?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец говорит о нескольких хлопковых рубашках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i07:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец говорит о нескольких хлопковых рубашках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец говорит о нескольких хлопковых рубашках.",
+          "uk": "Продавець говорить про кілька бавовняних сорочок."
+        },
+        "gappedTargetPhrase": "These shirts ___ made of cotton.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-29:i07:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Продавец говорит о нескольких хлопковых рубашках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i07:r2",
+            "correct": false,
+            "testedDimension": "Продавец говорит о нескольких хлопковых рубашках.",
+            "feedbackByLocale": {
+              "ru": "С shirts нужна are.",
+              "uk": "Із shirts потрібна are."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i07:r3",
+            "correct": false,
+            "testedDimension": "Продавец говорит о нескольких хлопковых рубашках.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем are made.",
+              "uk": "Тут використовуємо are made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i08:r1",
+          "text": "Your order will be sent tomorrow."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i08:r2",
+          "text": "Your order was sent yesterday."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i08:r3",
+          "text": "Your order will be sent on Monday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i08:audio",
+          "transcript": "Your order will be sent tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i08:r1",
+            "targetText": "Your order will be sent tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i08:r2",
+            "targetText": "Your order was sent yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i08:r3",
+            "targetText": "Your order will be sent on Monday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your order will be sent tomorrow.",
+              "uk": "У записі звучить Your order will be sent tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your order will be sent tomorrow.",
+              "uk": "У записі звучить Your order will be sent tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, что сделали с порванной вещью.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте, что сделали с порванной вещью.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i09:audio",
+          "transcript": "The dress was repaired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The dress was repaired.",
+        "orderedTokens": [
+          "The",
+          "dress",
+          "was",
+          "repaired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — petite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — petite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i10:audio",
+          "transcript": "petite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i10:r1",
+            "targetText": "petite",
+            "meaningByLocale": {
+              "ru": "Миниатюрный. В отделе одежды обозначает модели для женщин невысокого роста с соответствующими пропорциями.",
+              "uk": "Мініатюрний. У відділі одягу позначає моделі для жінок невисокого зросту з відповідними пропорціями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "petite",
+          "definitionByLocale": {
+            "ru": "Миниатюрный. В отделе одежды обозначает модели для женщин невысокого роста с соответствующими пропорциями.",
+            "uk": "Мініатюрний. У відділі одягу позначає моделі для жінок невисокого зросту з відповідними пропорціями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, есть ли такие брюки в линейке для невысоких женщин.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, есть ли такие брюки в линейке для невысоких женщин.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have these trousers in petite sizes?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли такие брюки в линейке для невысоких женщин.",
+          "uk": "Запитайте, чи є такі штани в лінійці для невисоких жінок."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "these",
+          "trousers",
+          "in",
+          "petite",
+          "sizes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рукава оказались длинными. Вы хотите, чтобы они были короче.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i12:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рукава оказались длинными. Вы хотите, чтобы они были короче.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рукава оказались длинными. Вы хотите, чтобы они были короче.",
+          "uk": "Рукави виявилися довгими. Ви хочете, щоб вони були коротшими."
+        },
+        "gappedTargetPhrase": "I wish the sleeves ___ shorter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-29:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i12:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Рукава оказались длинными. Вы хотите, чтобы они были короче.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Рукава оказались длинными. Вы хотите, чтобы они были короче.",
+            "feedbackByLocale": {
+              "ru": "После wish о желаемой ситуации сейчас нужна were.",
+              "uk": "Після wish про бажану ситуацію зараз потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Рукава оказались длинными. Вы хотите, чтобы они были короче.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем were shorter.",
+              "uk": "Тут використовуємо were shorter."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, можно ли укоротить рукава.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Уточните, можно ли укоротить рукава.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i13:audio",
+          "transcript": "Can the sleeves be shortened?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can the sleeves be shortened?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seamless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seamless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i14:audio",
+          "transcript": "seamless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i14:r1",
+            "targetText": "seamless",
+            "meaningByLocale": {
+              "ru": "Бесшовный. Об одежде без обычных швов, например о белье.",
+              "uk": "Безшовний. Про одяг без звичайних швів, наприклад про білизну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seamless",
+          "definitionByLocale": {
+            "ru": "Бесшовный. Об одежде без обычных швов, например о белье.",
+            "uk": "Безшовний. Про одяг без звичайних швів, наприклад про білизну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i15:r1",
+          "text": "I am looking for a seamless bra."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i15:r2",
+          "text": "I am looking for a seamless top."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i15:r3",
+          "text": "She is looking for a seamless bra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i15:audio",
+          "transcript": "I am looking for a seamless bra."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i15:r1",
+            "targetText": "I am looking for a seamless bra.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i15:r2",
+            "targetText": "I am looking for a seamless top.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i15:r3",
+            "targetText": "She is looking for a seamless bra.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am looking for a seamless bra.",
+              "uk": "У записі звучить I am looking for a seamless bra."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am looking for a seamless bra.",
+              "uk": "У записі звучить I am looking for a seamless bra."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с их значениями на ярлыках одежды.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с их значениями на ярлыках одежды.",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-28:session-29:i16:p1",
+            "target": "unisex",
+            "meaningByLocale": {
+              "ru": "для мужчин и женщин",
+              "uk": "для чоловіків і жінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-29:i16:p2",
+            "target": "maternity",
+            "meaningByLocale": {
+              "ru": "для беременных",
+              "uk": "для вагітних"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-29:i16:p3",
+            "target": "petite",
+            "meaningByLocale": {
+              "ru": "для невысоких женщин",
+              "uk": "для невисоких жінок"
+            }
+          },
+          {
+            "pairId": "en:lesson-28:session-29:i16:p4",
+            "target": "seamless",
+            "meaningByLocale": {
+              "ru": "бесшовный",
+              "uk": "безшовний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unisex",
+          "maternity",
+          "petite",
+          "seamless"
+        ],
+        "rightColumn": [
+          "для мужчин и женщин",
+          "для беременных",
+          "для невысоких женщин",
+          "бесшовный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Продавец уже продал куртку к вашему приходу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i17:r1",
+          "text": "sold"
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i17:r2",
+          "text": "sell"
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i17:r3",
+          "text": "selling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продавец уже продал куртку к вашему приходу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Продавец уже продал куртку к вашему приходу.",
+          "uk": "Продавець уже продав куртку до вашого приходу."
+        },
+        "gappedTargetPhrase": "He had ___ it by the time I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-28:session-29:i17:r1",
+            "text": "sold"
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i17:r2",
+            "text": "sell"
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i17:r3",
+            "text": "selling"
+          }
+        ],
+        "testedDimension": "Продавец уже продал куртку к вашему приходу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i17:r2",
+            "correct": false,
+            "testedDimension": "Продавец уже продал куртку к вашему приходу.",
+            "feedbackByLocale": {
+              "ru": "После had нужна sold.",
+              "uk": "Після had потрібна sold."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i17:r3",
+            "correct": false,
+            "testedDimension": "Продавец уже продал куртку к вашему приходу.",
+            "feedbackByLocale": {
+              "ru": "Здесь используем had sold.",
+              "uk": "Тут використовуємо had sold."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, есть ли вещь другого цвета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i18:audio"
+      ],
+      "accessibilityLabel": "Уточните, есть ли вещь другого цвета.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i18:audio",
+          "transcript": "Does it come in another colour?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does it come in another colour?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте условие обмена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте условие обмена.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i19:audio",
+          "transcript": "The receipt must be shown."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The receipt must be shown.",
+        "orderedTokens": [
+          "The",
+          "receipt",
+          "must",
+          "be",
+          "shown"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-28:session-29:i20:r1",
+          "text": "This can be exchanged."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i20:r2",
+          "text": "This cannot be exchanged."
+        },
+        {
+          "responseId": "en:lesson-28:session-29:i20:r3",
+          "text": "This was exchanged."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i20:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i20:audio",
+          "transcript": "This can be exchanged."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-28:session-29:i20:r1",
+            "targetText": "This can be exchanged.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i20:r2",
+            "targetText": "This cannot be exchanged.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i20:r3",
+            "targetText": "This was exchanged.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-28:session-29:i20:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can be exchanged.",
+              "uk": "У записі звучить This can be exchanged."
+            }
+          },
+          {
+            "responseId": "en:lesson-28:session-29:i20:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This can be exchanged.",
+              "uk": "У записі звучить This can be exchanged."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-28:session-29:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите продавца и скажите, что подумаете.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-28:session-29:i21:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите продавца и скажите, что подумаете.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-28:session-29:i21:audio",
+          "transcript": "Thanks, I will think about it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thanks, I will think about it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9516569a1534dc7f61d8b1f2eb7af7df548a0a1f2b85b753fb9acfe98142af75"
+}

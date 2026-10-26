@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "повторить результат сейчас и законченное прошлое, совет if I were you, желания и воображаемые условия.",
+    "uk": "повторити результат зараз і завершене минуле, пораду if I were you, бажання та уявні умови."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Билеты уже в сумке",
+        "uk": "Квитки вже в сумці"
+      },
+      "bodyByLocale": {
+        "ru": "Перед поездкой сестра спрашивает про билеты. Вы уже положили их в сумку. I have put the tickets in my bag — я положил билеты в сумку. Сначала I + have + put: сообщаем о результате сейчас. У put третья форма тоже put. Затем the tickets — что положили, и in my bag — куда; my показывает, что сумка ваша.",
+        "uk": "Перед поїздкою сестра питає про квитки. Ви вже поклали їх у сумку. I have put the tickets in my bag — я поклав квитки в сумку. Спочатку I + have + put: повідомляємо про результат зараз. У put третя форма теж put. Потім the tickets — що поклали, і in my bag — куди; my показує, що сумка ваша."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-56:intro1:r1",
+              "text": "I have put the tickets in my bag."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro1:r2",
+              "text": "I have putting the tickets in my bag."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro1:r3",
+              "text": "I has put the tickets in my bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-56:intro1:r1",
+              "text": "I have put the tickets in my bag."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro1:r2",
+              "text": "I have putting the tickets in my bag."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro1:r3",
+              "text": "I has put the tickets in my bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хотелось бы тепла",
+        "uk": "Хотілося б тепла"
+      },
+      "bodyByLocale": {
+        "ru": "Вы приехали к морю, но сегодня холодно. I wish it were warmer — жаль, что сейчас не теплее. Соберите фразу: I wish — желание; it — о погоде; were — желаемое состояние сейчас; warmer — теплее. Здесь were после wish не означает, что вы рассказываете о вчерашней погоде.",
+        "uk": "Ви приїхали до моря, але сьогодні холодно. I wish it were warmer — шкода, що зараз не тепліше. Складіть фразу: I wish — бажання; it — про погоду; were — бажаний стан зараз; warmer — тепліше. Тут were після wish не означає, що ви розповідаєте про вчорашню погоду."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-56:intro2:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro2:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro2:r3",
+              "text": "I wish it being warmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-56:intro2:r1",
+              "text": "I wish it were warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro2:r2",
+              "text": "I wish it is warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro2:r3",
+              "text": "I wish it being warmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Погулять до ужина",
+        "uk": "Прогулятися до вечері"
+      },
+      "bodyByLocale": {
+        "ru": "До ужина осталось несколько минут, и вы не успеваете пройти вдоль берега. Представьте, что времени больше: We would go for a walk if we had more time — мы бы пошли гулять, если бы у нас было больше времени. Сначала результат: We + would + go for a walk. Затем условие: if + we + had + more time. Would стоит в части с результатом; had показывает воображаемое условие.",
+        "uk": "До вечері лишилося кілька хвилин, і ви не встигаєте пройти вздовж берега. Уявіть, що часу більше: We would go for a walk if we had more time — ми б пішли гуляти, якби мали більше часу. Спочатку результат: We + would + go for a walk. Потім умова: if + we + had + more time. Would стоїть у частині з результатом; had показує уявну умову."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-56:intro3:r1",
+              "text": "We would go for a walk if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro3:r2",
+              "text": "We would went for a walk if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro3:r3",
+              "text": "We would go for a walk if we having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-56:intro3:r1",
+              "text": "We would go for a walk if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro3:r2",
+              "text": "We would went for a walk if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-56:intro3:r3",
+              "text": "We would go for a walk if we having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4d936f2ba8094785af6534f54467e7dc305ab5dcaafe8f9769571b55a15dcb47"
+}

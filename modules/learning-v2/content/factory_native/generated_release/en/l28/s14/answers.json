@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-28:session-14:i01",
+    "correctText": "Where are the cleaning products?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i02",
+    "correctText": "descaler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i03",
+    "correctText": "Is this descaler suitable for kettles?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i04",
+    "correctText": "The filter was cleaned yesterday.",
+    "correctResponseId": "en:lesson-28:session-14:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i05",
+    "correctText": "sanitiser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i06",
+    "correctText": "A small bottle of hand sanitiser, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i07",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-28:session-14:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i08",
+    "correctText": "I wish my flat were drier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i09",
+    "correctText": "microfibre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i10",
+    "correctText": "This cloth is made of microfibre.",
+    "correctResponseId": "en:lesson-28:session-14:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i12",
+    "correctText": "Can I wash this cloth?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i13",
+    "correctText": "dehumidifier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i14",
+    "correctText": "How does this dehumidifier work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i15",
+    "correctText": "The tank is emptied every morning.",
+    "correctResponseId": "en:lesson-28:session-14:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i16",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-28:session-14:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i17",
+    "correctText": "The instructions were put inside the box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i18",
+    "correctText": "How much electricity does it use?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i19",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-28:session-14:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i20",
+    "correctText": "It was delivered this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-28:session-14:i21",
+    "correctText": "Could you put the receipt in the bag?",
+    "correctResponseId": null
+  }
+]

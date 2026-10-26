@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "уточнять детали поездки, просить подтверждения и пересказывать слова.",
+    "uk": "уточнювати деталі поїздки, просити підтвердження й переказувати слова."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Твоя обувь мокрая, правда?",
+        "uk": "Твоє взуття мокре, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом ждёте автобус под дождём. Вы заметили его мокрую обувь и уточняете: Your shoes are wet, aren’t they? — твоя обувь мокрая, правда? Соберите Your shoes are wet + aren’t + they. После утвердительного are здесь нужно отрицательное aren’t. Shoes — несколько предметов, поэтому заменяем на they.",
+        "uk": "Ви з другом чекаєте на автобус під дощем. Ви помітили його мокре взуття й уточнюєте: Your shoes are wet, aren’t they? — твоє взуття мокре, правда? Складіть Your shoes are wet + aren’t + they. Після стверджувального are тут потрібне заперечне aren’t. Shoes — кілька предметів, тому замінюємо на they."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-14:intro1:r1",
+              "text": "Your shoes are wet, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro1:r2",
+              "text": "Your shoes are wet, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro1:r3",
+              "text": "Your shoes are wet, aren't it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-14:intro1:r1",
+              "text": "Your shoes are wet, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro1:r2",
+              "text": "Your shoes are wet, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro1:r3",
+              "text": "Your shoes are wet, aren't it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Есть ли место в автобусе",
+        "uk": "Чи є місце в автобусі"
+      },
+      "bodyByLocale": {
+        "ru": "Подошёл автобус. Вы хотите узнать, полон ли он: Do you know if the bus is full? — вы не знаете, полон ли автобус? Соберите Do you know + if + the bus + is full. If вводит «ли». После него порядок the bus is full, как в утверждении.",
+        "uk": "Підійшов автобус. Ви хочете дізнатися, чи він повний: Do you know if the bus is full? — ви не знаєте, чи повний автобус? Складіть Do you know + if + the bus + is full. If вводить «чи». Після нього порядок the bus is full, як у твердженні."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-14:intro2:r1",
+              "text": "Do you know if the bus is full?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro2:r2",
+              "text": "Do you know if is the bus full?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro2:r3",
+              "text": "Do you know if the bus are full?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-14:intro2:r1",
+              "text": "Do you know if the bus is full?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro2:r2",
+              "text": "Do you know if is the bus full?"
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro2:r3",
+              "text": "Do you know if the bus are full?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто проверил билеты",
+        "uk": "Хто перевірив квитки"
+      },
+      "bodyByLocale": {
+        "ru": "Водитель Бен проверил ваши с другом билеты. Начните рассказ с билетов: Our tickets were checked by Ben — наши билеты проверил Бен. Соберите Our tickets + were + checked + by Ben. Несколько билетов требуют were; checked обозначает действие над ними. By Ben называет проверявшего.",
+        "uk": "Водій Бен перевірив ваші з другом квитки. Почніть розповідь із квитків: Our tickets were checked by Ben — наші квитки перевірив Бен. Складіть Our tickets + were + checked + by Ben. Кілька квитків потребують were; checked позначає дію над ними. By Ben називає того, хто перевіряв."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-14:intro3:r1",
+              "text": "Our tickets were checked by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro3:r2",
+              "text": "Our tickets was checked by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro3:r3",
+              "text": "Our tickets were check by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-14:intro3:r1",
+              "text": "Our tickets were checked by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro3:r2",
+              "text": "Our tickets was checked by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-14:intro3:r3",
+              "text": "Our tickets were check by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5df62bc4ac910b73f42b34238c482e8cfdcdd77dbbe2094912559165c45d3b4"
+}

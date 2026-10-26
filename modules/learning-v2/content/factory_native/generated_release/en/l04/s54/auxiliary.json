@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-54:intro2:r2": {
-          "ru": "Грузовиков несколько, поэтому нужно aren’t, а не isn’t.",
-          "uk": "Вантажівок кілька, тому потрібно aren’t, а не isn’t."
+          "ru": "Lorries стоит во множественном числе, поэтому нужно aren’t.",
+          "uk": "Lorries стоїть у множині, тому потрібно aren’t."
         },
         "en:lesson-04:session-54:intro2:r3": {
-          "ru": "Грузовиков несколько, поэтому на конце lorries, а не lorry.",
-          "uk": "Вантажівок кілька, тому наприкінці lorries, а не lorry."
+          "ru": "После aren’t any здесь нужна форма множественного числа lorries.",
+          "uk": "Після aren’t any тут потрібна форма множини lorries."
         }
       }
     },
@@ -36,11 +36,11 @@
           "uk": "Дорожні роботи — слово у множині, тому запитання починаємо з Are there."
         },
         "en:lesson-04:session-54:intro3:r3": {
-          "ru": "Это порядок слов утверждения. В вопросе сначала Are: Are there roadworks?",
-          "uk": "Це порядок слів твердження. У запитанні спочатку Are: Are there roadworks?"
+          "ru": "Перед roadworks во множественном числе a не ставим.",
+          "uk": "Перед roadworks у множині a не ставимо."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6d2cd14247df73c8e55f5abfed6c0de4ea4966fdd0df2cd2f8ecdd98bff028fc"
+  "auxiliaryFingerprint": "a78fb7de63a85c6317299de70a7c652e67a9d7ddb6c882c741d54649ac7c7c9f"
 }

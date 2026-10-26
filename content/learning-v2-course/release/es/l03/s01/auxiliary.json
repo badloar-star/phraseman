@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-01:intro1:r2": {
+          "ru": "Формы granda здесь нет: grande.",
+          "uk": "Форми granda тут немає: grande."
+        },
+        "es:lesson-03:session-01:intro1:r3": {
+          "ru": "Коробка одна: es.",
+          "uk": "Коробка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-01:intro2:r2": {
+          "ru": "Не заменяйте -e на -o: grande.",
+          "uk": "Не замінюйте -e на -o: grande."
+        },
+        "es:lesson-03:session-01:intro2:r3": {
+          "ru": "Libro мужского рода: el.",
+          "uk": "Libro чоловічого роду: el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-01:intro3:r2": {
+          "ru": "Это утверждение, а нужно отрицание.",
+          "uk": "Це ствердження, а потрібне заперечення."
+        },
+        "es:lesson-03:session-01:intro3:r3": {
+          "ru": "Коробка одна: no es.",
+          "uk": "Коробка одна: no es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52d808a20d3061b60a2574b198c5a3e7d4a58a5e2ead4c6e5bc69a9d9f8a0a4e"
+}

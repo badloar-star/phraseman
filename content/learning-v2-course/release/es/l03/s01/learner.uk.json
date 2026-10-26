@@ -1,0 +1,693 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-01",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grande",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grande",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-01:i01:audio",
+          "transcript": "grande"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-01:i01:r1",
+            "targetText": "grande",
+            "meaningByLocale": {
+              "ru": "большой, большая. Одинаковая форма для мужского и женского рода. 🔊 *grande*",
+              "uk": "великий, велика. Однакова форма для чоловічого й жіночого роду. 🔊 *grande*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grande",
+          "definitionByLocale": {
+            "ru": "большой, большая. Одинаковая форма для мужского и женского рода. 🔊 *grande*",
+            "uk": "великий, велика. Однакова форма для чоловічого й жіночого роду. 🔊 *grande*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i02:r1",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i02:r2",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-01:i02:audio",
+          "transcript": "grande"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-01:i02:r1",
+            "targetText": "grande",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i02:r2",
+            "targetText": "difícil",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит grande — большой, большая.",
+              "uk": "Звучить grande — великий, велика."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробка велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i03:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i03:r3",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i03:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробка велика",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка большая",
+          "uk": "Зберіть фразу — коробка велика"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробка велика",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — коробка велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i04:r1",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i04:r2",
+          "text": "granda"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i04:r3",
+          "text": "grando"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — коробка велика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробка большая",
+          "uk": "Вставте слово — коробка велика"
+        },
+        "gappedTargetPhrase": "La caja es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-01:i04:r1",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i04:r2",
+            "text": "granda"
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i04:r3",
+            "text": "grando"
+          }
+        ],
+        "testedDimension": "Вставте слово — коробка велика",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробка велика",
+            "feedbackByLocale": {
+              "ru": "Форма grande подходит женскому роду без изменения.",
+              "uk": "Форма grande підходить жіночому роду без зміни."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — коробка велика",
+            "feedbackByLocale": {
+              "ru": "Не меняйте grande на grando.",
+              "uk": "Не змінюйте grande на grando."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книга велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i05:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i05:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книга велика",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El libro es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книга большая",
+          "uk": "Зберіть фразу — книга велика"
+        },
+        "orderedTokens": [
+          "El",
+          "libro",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книга велика",
+            "feedbackByLocale": {
+              "ru": "испанское libro мужского рода.",
+              "uk": "іспанське libro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна книга велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i06:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i06:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна книга велика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна книга большая",
+          "uk": "Вставте слово — одна книга велика"
+        },
+        "gappedTargetPhrase": "El libro ___ grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-01:i06:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i06:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i06:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна книга велика",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна книга велика",
+            "feedbackByLocale": {
+              "ru": "Книга одна: es.",
+              "uk": "Книга одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна книга велика",
+            "feedbackByLocale": {
+              "ru": "Речь о книге: es.",
+              "uk": "Мова про книгу: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коробка не велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i07:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i07:r4",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i07:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коробка не велика",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La caja no es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коробка не большая",
+          "uk": "Зберіть фразу — коробка не велика"
+        },
+        "orderedTokens": [
+          "La",
+          "caja",
+          "no",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коробка не велика",
+            "feedbackByLocale": {
+              "ru": "коробка одна.",
+              "uk": "коробка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i08:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i08:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i08:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i08:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-01:i08:audio",
+          "transcript": "El libro es grande."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El libro es grande.",
+        "orderedTokens": [
+          "El",
+          "libro",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит el.",
+              "uk": "звучить el."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробка велика; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробка велика; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-01:i09:audio",
+          "transcript": "La caja es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книга не велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-01:i10:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i10:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-01:i10:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книга не велика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книга не большая",
+          "uk": "Вставте слово — книга не велика"
+        },
+        "gappedTargetPhrase": "El libro ___ es grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-01:i10:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i10:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i10:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — книга не велика",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-01:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книга не велика",
+            "feedbackByLocale": {
+              "ru": "Для отрицания перед es нужно no.",
+              "uk": "Для заперечення перед es потрібно no."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-01:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книга не велика",
+            "feedbackByLocale": {
+              "ru": "Una — артикль, не отрицание.",
+              "uk": "Una — артикль, не заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — книга велика; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — книга велика; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-01:i11:audio",
+          "transcript": "El libro es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El libro es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коробка не велика; назвіть предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коробка не велика; назвіть предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-01:i12:audio",
+          "transcript": "La caja no es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La caja no es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a19364eff3892e60278c6ae7af53d10f1fb81d69ed90e39dacaa7a9f6499b04d"
+}

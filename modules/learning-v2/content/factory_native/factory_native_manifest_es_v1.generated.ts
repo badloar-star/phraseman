@@ -1579,4 +1579,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l02/s56/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l02/s56/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 1,
+    sourceFingerprint: "29d07fd93b71ca2e2b6b6f72bf372708638cc4dd9c50bd242bc6f253902d82e6",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что коробка большая.","Скажите, что книга большая.","Скажите, что коробка не большая."],"uk":["Скажіть, що коробка велика.","Скажіть, що книга велика.","Скажіть, що коробка не велика."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Формы granda здесь нет: grande.","Коробка одна: es."],["Не заменяйте -e на -o: grande.","Libro мужского рода: el."],["Это утверждение, а нужно отрицание.","Коробка одна: no es."]],"uk":[["Форми granda тут немає: grande.","Коробка одна: es."],["Не замінюйте -e на -o: grande.","Libro чоловічого роду: el."],["Це ствердження, а потрібне заперечення.","Коробка одна: no es."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать размер словом grande, не меняя его по роду.","uk":"описати розмір словом grande, не змінюючи його за родом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — grande"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — коробка большая"},{"ordinal":4,"title":"Вставьте слово — коробка большая"},{"ordinal":5,"title":"Соберите фразу — книга большая"},{"ordinal":6,"title":"Вставьте слово — одна книга большая"},{"ordinal":7,"title":"Соберите фразу — коробка не большая"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — коробка большая; назовите предмет"},{"ordinal":10,"title":"Вставьте слово — книга не большая"},{"ordinal":11,"title":"Скажите вслух — книга большая; назовите предмет"},{"ordinal":12,"title":"Скажите вслух — коробка не большая; назовите предмет"}],"uk":[{"ordinal":1,"title":"Картка слова — grande"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — коробка велика"},{"ordinal":4,"title":"Вставте слово — коробка велика"},{"ordinal":5,"title":"Зберіть фразу — книга велика"},{"ordinal":6,"title":"Вставте слово — одна книга велика"},{"ordinal":7,"title":"Зберіть фразу — коробка не велика"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — коробка велика; назвіть предмет"},{"ordinal":10,"title":"Вставте слово — книга не велика"},{"ordinal":11,"title":"Скажіть уголос — книга велика; назвіть предмет"},{"ordinal":12,"title":"Скажіть уголос — коробка не велика; назвіть предмет"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s01/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s01/learner.uk.json") as unknown : require("./generated_release/es/l03/s01/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s01/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s01/auxiliary.json") as unknown,
+  }),
 ]);

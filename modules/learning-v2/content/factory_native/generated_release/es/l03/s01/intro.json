@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "описать размер словом grande, не меняя его по роду.",
+    "uk": "описати розмір словом grande, не змінюючи його за родом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Места достаточно",
+        "uk": "Місця достатньо"
+      },
+      "bodyByLocale": {
+        "ru": "Друг принёс просторную коробку. `Grande` — «большой, большая». Скажите `La caja es grande` — «Коробка большая». Соберите `la caja` + `es` + `grande`. Caja женского рода, но grande не получает окончания -a: форма уже подходит.",
+        "uk": "Друг приніс містку коробку. `Grande` — «великий, велика». Скажіть `La caja es grande` — «Коробка велика». Складіть `la caja` + `es` + `grande`. Caja жіночого роду, але grande не отримує закінчення -a: форма вже підходить."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробка большая.",
+          "uk": "Скажіть, що коробка велика."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-01:intro1:r1",
+              "text": "La caja es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro1:r2",
+              "text": "La caja es granda."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro1:r3",
+              "text": "La caja son grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-01:intro1:r1",
+              "text": "La caja es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro1:r2",
+              "text": "La caja es granda."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro1:r3",
+              "text": "La caja son grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробка большая.",
+          "uk": "Скажіть, що коробка велика."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга для этой коробки",
+        "uk": "Книга для цієї коробки"
+      },
+      "bodyByLocale": {
+        "ru": "В коробку нужно положить большую книгу. Опишите книгу: `El libro es grande` — «Книга большая». Соберите `el libro` + `es` + `grande`. Libro мужского рода, но grande остаётся таким же, как с caja. Одно слово grande подходит и к мужскому, и к женскому роду.",
+        "uk": "У коробку потрібно покласти велику книгу. Опишіть книгу: `El libro es grande` — «Книга велика». Складіть `el libro` + `es` + `grande`. Libro чоловічого роду, але grande залишається таким самим, як із caja. Одне слово grande підходить і до чоловічого, і до жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что книга большая.",
+          "uk": "Скажіть, що книга велика."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-01:intro2:r1",
+              "text": "El libro es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro2:r2",
+              "text": "El libro es grando."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro2:r3",
+              "text": "La libro es grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-01:intro2:r1",
+              "text": "El libro es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro2:r2",
+              "text": "El libro es grando."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro2:r3",
+              "text": "La libro es grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что книга большая.",
+          "uk": "Скажіть, що книга велика."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другая коробка",
+        "uk": "Інша коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает другую коробку, но она небольшая. Скажите `La caja no es grande` — «Коробка не большая». Соберите `la caja` + `no es` + `grande`. Знакомое no поставьте перед es; grande не меняется. Вы отрицаете большой размер, не называя точные размеры.",
+        "uk": "Друг пропонує іншу коробку, але вона невелика. Скажіть `La caja no es grande` — «Коробка не велика». Складіть `la caja` + `no es` + `grande`. Знайоме no поставте перед es; grande не змінюється. Ви заперечуєте великий розмір, не називаючи точних розмірів."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что коробка не большая.",
+          "uk": "Скажіть, що коробка не велика."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-01:intro3:r1",
+              "text": "La caja no es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro3:r2",
+              "text": "La caja es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro3:r3",
+              "text": "La caja no son grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-01:intro3:r1",
+              "text": "La caja no es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro3:r2",
+              "text": "La caja es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-01:intro3:r3",
+              "text": "La caja no son grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что коробка не большая.",
+          "uk": "Скажіть, що коробка не велика."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "932b3b7c80093790650a5f6f0800d74d4bd3b42a06db3bda73304446f0694bcd"
+}

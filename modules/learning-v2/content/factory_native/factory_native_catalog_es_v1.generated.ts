@@ -791,4 +791,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно назвать находку, спросить владельца и ответить о принадлежности.","uk":"самостійно назвати знахідку, запитати власника й відповісти про належність."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 1,
+    sourceFingerprint: "29d07fd93b71ca2e2b6b6f72bf372708638cc4dd9c50bd242bc6f253902d82e6",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать размер словом grande, не меняя его по роду.","uk":"описати розмір словом grande, не змінюючи його за родом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

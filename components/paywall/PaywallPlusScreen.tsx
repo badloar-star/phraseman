@@ -293,7 +293,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
               purchasing={p.purchasing} ctaBusy={ctaBusy} restoring={p.restoring} onPurchase={() => { void p.handlePurchase(); }} onRestore={() => { void p.handleRestore(); }}
               promoVisible={controlVisibility.promoVisible}
-              onPromo={() => { if (ctaBusy) return; openPromoCodeFromPaywall(router); }}
+              onPromo={() => { if (ctaBusy) return; openPromoCodeFromPaywall(router, { context: ctx, source }); }}
               tapNotice={p.tapNotice ? pick(lang, COPY.tryInMinute) : null}
             />
           ) : (
@@ -343,7 +343,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               onPromo={() => {
                 if (ctaBusy) return;
                 // зачем (26.10, «нет окна внутри окна»): промокод заменяет пейвол, а не открывается поверх него — см. openPromoCodeFromPaywall
-                openPromoCodeFromPaywall(router);
+                openPromoCodeFromPaywall(router, { context: ctx, source });
               }} />
           </PaywallSwipeSheet>
           )}

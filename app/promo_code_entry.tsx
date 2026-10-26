@@ -3,6 +3,7 @@ import { getDevPromoResult } from './dev_social_state';
 import { setDevVipOverride } from './dev_vip_override';
 import {
   ActivityIndicator,
+  BackHandler,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -12,7 +13,7 @@ import {
 } from 'react-native';
 import KitTouchable from '../components/KitTouchable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -22,7 +23,9 @@ import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { redeemPromoCode, normalizePromoCodeInput, type PromoRedeemStatus } from './promo_code_client';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { openPremiumPaywall } from './paywall_navigation';
+import { promoCloseTarget } from './paywall_promo_navigation';
 import { forcePremiumAccessCloudRestore, getVerifiedVipStatus, invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
@@ -251,8 +254,25 @@ export default function PromoCodeEntryScreen() {
   const L = makeL(lang as Lang);
   // Диплинк со страницы «спасибо» после веб-оплаты: phraseman://promo_code_entry?code=WEB-…
   // → код подставляется и активируется сам, без клавиатуры (страница /start/thanks/).
-  const { code: deepLinkCode, source } = useLocalSearchParams<{ code?: string; source?: string }>();
+  const { code: deepLinkCode, source, paywall_context: paywallContext, paywall_source: paywallSource } = useLocalSearchParams<{ code?: string; source?: string; paywall_context?: string; paywall_source?: string }>();
   const closeFallback = source === 'settings' ? '/(tabs)/settings' : '/(tabs)/home';
+  // зачем (правило владельца «назад ведёт туда, откуда пришёл», 26.10): промокод, открытый из пейвола, по «закрыть» возвращает в пейвол (replace, тот же context/source); иначе — как раньше
+  const closeTarget = promoCloseTarget({ source, paywallContext, paywallSource });
+  const closePromo = useCallback(() => {
+    if (closeTarget.kind === 'paywall') {
+      console.log('[PAYWALL-OPEN] промокод закрыт → обратно в пейвол', JSON.stringify(closeTarget.params)); // guard-ok: одна строка на закрытие
+      markNextNavigationAsReplace();
+      openPremiumPaywall(router, closeTarget.params, 'replace');
+      return;
+    }
+    safeRouterBack(router, closeFallback as any);
+  }, [closeFallback, closeTarget, router]);
+  // Android «назад» = «закрыть»: без этого системная кнопка вела бы на экран-источник мимо пейвола (только когда пришли из пейвола)
+  useFocusEffect(useCallback(() => {
+    if (closeTarget.kind !== 'paywall' || typeof BackHandler?.addEventListener !== 'function') return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => { closePromo(); return true; });
+    return () => sub.remove();
+  }, [closePromo, closeTarget.kind]));
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
@@ -388,7 +408,7 @@ export default function PromoCodeEntryScreen() {
             фиксированная над скроллом, закрытие крестиком вниз, не «назад». */}
         <SectionSheetHeader
           title={L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')}
-          onClose={() => safeRouterBack(router, closeFallback as any)}
+          onClose={closePromo}
         />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <ScrollView decelerationRate="fast"

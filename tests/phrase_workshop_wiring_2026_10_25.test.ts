@@ -109,7 +109,10 @@ describe('мастерская фраз: Plus-гейт и список урок�
     expect(list).toContain('contentStyle={withWorkshop ? styles.rowContentColumn : styles.rowContent}');
     expect(list).toContain('<PhraseWorkshopRowButton ordinal={row.ordinal}');
     expect(list).toContain('lineIcon: "time-outline"');
-    expect(list).toContain('openPremiumPaywall(router, { context: "phrase_workshop", source: "phrase_workshop" });');
+    // зачем (cfbef82ca, окна М): к тому же входу добавлены workshop_lesson и workshop_phrases — панель М показывает номер урока и число фраз. Смысл прежний: замок Plus открывает пейвол
+    // с контекстом и источником «phrase_workshop» из белого списка контракта входов.
+    expect(list).toMatch(/openPremiumPaywall\(router, \{ context: "phrase_workshop", source: "phrase_workshop"(?:, workshop_lesson: ordinal, workshop_phrases: [^}]*)? \}\);/);
+    expect(read('app/paywall_entry_contract.ts')).toMatch(/'phrase_workshop'/);
     expect(list).toContain('params: { id: String(ordinal), workshop: "1", from: "workshop" }');
     const button = read('components/learning-v2/workshop/PhraseWorkshopRowButton.tsx');
     expect(button).toContain("open: 'build-outline'");

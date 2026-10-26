@@ -1425,4 +1425,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l02/s45/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l02/s45/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 46,
+    sourceFingerprint: "d4aafb233eba864e198979ed7c4e591c0acadf65eaf404119951d660e2523857",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Назовите книги Луиса.","Назовите книги Аны.","Назовите шарфы Аны."],"uk":["Назвіть книжки Луїса.","Назвіть книжки Ани.","Назвіть шарфи Ани."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед Luis нужно de.","Книг несколько: son."],["Род артикля выбираем по libros, не по владельцу.","Связь с владельцем выражает de."],["Для bufandas нужно las.","Шарфов несколько: son."]],"uk":[["Перед Luis потрібне de.","Книжок кілька: son."],["Рід артикля вибираємо за libros, не за власником.","Зв'язок із власником виражає de."],["Для bufandas потрібне las.","Шарфів кілька: son."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько вещей и их владельца, меняя только нужные части фразы.","uk":"назвати кілька речей та їхнього власника, змінюючи лише потрібні частини фрази."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Соберите фразу — книги Луиса"},{"ordinal":2,"title":"Вставьте слово — книги Луиса"},{"ordinal":3,"title":"Соберите фразу — книги Аны"},{"ordinal":4,"title":"Вставьте слово — книги Аны"},{"ordinal":5,"title":"Соберите фразу — шарфы Аны"},{"ordinal":6,"title":"Вставьте слово — несколько шарфов"},{"ordinal":7,"title":"Послушайте и соберите фразу"},{"ordinal":8,"title":"Скажите вслух — шарфы Аны"},{"ordinal":9,"title":"Вставьте слово — шарфы принадлежат Луису"},{"ordinal":10,"title":"Соберите фразу — шарфы Луиса"},{"ordinal":11,"title":"Скажите вслух — книги Аны"},{"ordinal":12,"title":"Скажите вслух — шарфы Луиса"}],"uk":[{"ordinal":1,"title":"Зберіть фразу — книжки Луїса"},{"ordinal":2,"title":"Вставте слово — книжки Луїса"},{"ordinal":3,"title":"Зберіть фразу — книжки Ани"},{"ordinal":4,"title":"Вставте слово — книжки Ани"},{"ordinal":5,"title":"Зберіть фразу — шарфи Ани"},{"ordinal":6,"title":"Вставте слово — кілька шарфів"},{"ordinal":7,"title":"Послухайте й зберіть фразу"},{"ordinal":8,"title":"Скажіть уголос — шарфи Ани"},{"ordinal":9,"title":"Вставте слово — шарфи належать Луїсу"},{"ordinal":10,"title":"Зберіть фразу — шарфи Луїса"},{"ordinal":11,"title":"Скажіть уголос — книжки Ани"},{"ordinal":12,"title":"Скажіть уголос — шарфи Луїса"}]}),
+    loadIntro: () => require("./generated_release/es/l02/s46/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l02/s46/learner.uk.json") as unknown : require("./generated_release/es/l02/s46/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l02/s46/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l02/s46/auxiliary.json") as unknown,
+  }),
 ]);

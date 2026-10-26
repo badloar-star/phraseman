@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "назвать несколько вещей и их владельца, меняя только нужные части фразы.",
+    "uk": "назвати кілька речей та їхнього власника, змінюючи лише потрібні частини фрази."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книги Луиса",
+        "uk": "Книжки Луїса"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знаете, что оставшиеся на пледе книги принадлежат Луису. Скажите `Son los libros de Luis` — «Это книги Луиса». Соберите `son` + `los libros` + `de Luis`. Сначала назовите несколько вещей, затем владельца. De остаётся отдельным словом перед именем.",
+        "uk": "Ви знаєте, що книжки, які залишилися на пледі, належать Луїсу. Скажіть `Son los libros de Luis` — «Це книжки Луїса». Зберіть `son` + `los libros` + `de Luis`. Спочатку назвіть кілька речей, потім власника. De залишається окремим словом перед ім'ям."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите книги Луиса.",
+          "uk": "Назвіть книжки Луїса."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-46:intro1:r1",
+              "text": "Son los libros de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro1:r2",
+              "text": "Son los libros Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro1:r3",
+              "text": "Es los libros de Luis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-46:intro1:r1",
+              "text": "Son los libros de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro1:r2",
+              "text": "Son los libros Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro1:r3",
+              "text": "Es los libros de Luis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите книги Луиса.",
+          "uk": "Назвіть книжки Луїса."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книги Аны",
+        "uk": "Книжки Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Другую стопку принесла Ана. Скажите `Son los libros de Ana` — «Это книги Аны». Соберите те же `son` + `los libros`, затем `de Ana`. Меняется только имя владельца. Los не превращается в las из-за имени Ana: артикль согласуется с libros.",
+        "uk": "Інший стос принесла Ана. Скажіть `Son los libros de Ana` — «Це книжки Ани». Зберіть ті самі `son` + `los libros`, потім `de Ana`. Змінюється лише ім'я власника. Los не перетворюється на las через ім'я Ana: артикль узгоджується з libros."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите книги Аны.",
+          "uk": "Назвіть книжки Ани."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-46:intro2:r1",
+              "text": "Son los libros de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro2:r2",
+              "text": "Son las libros de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro2:r3",
+              "text": "Son los libros Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-46:intro2:r1",
+              "text": "Son los libros de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro2:r2",
+              "text": "Son las libros de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro2:r3",
+              "text": "Son los libros Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите книги Аны.",
+          "uk": "Назвіть книжки Ани."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шарфы Аны",
+        "uk": "Шарфи Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежат шарфы той же гостьи. Скажите `Son las bufandas de Ana` — «Это шарфы Аны». Соберите `son` + `las bufandas` + `de Ana`. Теперь меняются вещи: libros → bufandas и los → las. Имя владельца остаётся тем же, поэтому de Ana сохраняется.",
+        "uk": "Поруч лежать шарфи тієї самої гості. Скажіть `Son las bufandas de Ana` — «Це шарфи Ани». Зберіть `son` + `las bufandas` + `de Ana`. Тепер змінюються речі: libros → bufandas і los → las. Ім'я власника залишається тим самим, тому de Ana зберігається."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите шарфы Аны.",
+          "uk": "Назвіть шарфи Ани."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-46:intro3:r1",
+              "text": "Son las bufandas de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro3:r2",
+              "text": "Son los bufandas de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro3:r3",
+              "text": "Es las bufandas de Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-46:intro3:r1",
+              "text": "Son las bufandas de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro3:r2",
+              "text": "Son los bufandas de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-46:intro3:r3",
+              "text": "Es las bufandas de Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите шарфы Аны.",
+          "uk": "Назвіть шарфи Ани."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6021c993c80e73a35f9e7d7e7d319ad2c35a2ab0ec73603a2a796b3d43ddfb54"
+}

@@ -714,4 +714,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различить один целый предмет и несколько отдельных вещей при выборе es/son.","uk":"розрізнити один цілий предмет і кілька окремих речей під час вибору es/son."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 46,
+    sourceFingerprint: "d4aafb233eba864e198979ed7c4e591c0acadf65eaf404119951d660e2523857",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько вещей и их владельца, меняя только нужные части фразы.","uk":"назвати кілька речей та їхнього власника, змінюючи лише потрібні частини фрази."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-46",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-46:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-46:intro1:r2": {
+          "ru": "Перед Luis нужно de.",
+          "uk": "Перед Luis потрібне de."
+        },
+        "es:lesson-02:session-46:intro1:r3": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-46:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-46:intro2:r2": {
+          "ru": "Род артикля выбираем по libros, не по владельцу.",
+          "uk": "Рід артикля вибираємо за libros, не за власником."
+        },
+        "es:lesson-02:session-46:intro2:r3": {
+          "ru": "Связь с владельцем выражает de.",
+          "uk": "Зв'язок із власником виражає de."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-46:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-46:intro3:r2": {
+          "ru": "Для bufandas нужно las.",
+          "uk": "Для bufandas потрібне las."
+        },
+        "es:lesson-02:session-46:intro3:r3": {
+          "ru": "Шарфов несколько: son.",
+          "uk": "Шарфів кілька: son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "21f89b33862a24bcd412ad2254ad99a255c174a5d67110d2add73772dd55058a"
+}

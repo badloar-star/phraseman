@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useMemo, useState, useCallback, useRef } from 'react';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import {
   ActivityIndicator,
   Modal,
@@ -83,6 +84,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
+  // зачем (Темы, гейт safe-area 26.10): прозрачная модалка с statusBarTranslucent рисует затемнение и под строкой состояния
+  // (без светлой полосы на Android), а окно держится в безопасной зоне — отступы от устойчивых insets.
+  const insets = useStableSafeAreaInsets();
   // зачем (релизный пол 10.10, security-ревью M-1): восстановить в 14 дней можно только тем же
   // входом Google/Apple. Гостю (анонимный вход) после стирания вернуться нечем — ему без обещания.
   // зачем (EN-проход 13.10, auth-gap-009): dev `account=linked` (только память, в сторе всегда false; действия аккаунта при нём
@@ -682,7 +686,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     <Reanimated.View style={[styles.hybridPanelViewport, shakeStyle]}>{dialogBody}</Reanimated.View>
   ) : (
     <KeyboardAvoidingView
-      style={styles.classicModalViewport}
+      style={[styles.classicModalViewport, { paddingTop: insets.top, paddingBottom: insets.bottom }]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       {dialogBody}
@@ -705,7 +709,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   }
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleSystemBack}>
+    <Modal visible={visible} transparent statusBarTranslucent animationType="fade" onRequestClose={handleSystemBack}>
       {panel}
     </Modal>
   );

@@ -357,7 +357,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Промокоды: дефолт FALSE = скрыто в настройках и заблокировано на callable.
   promo_codes_enabled: false,
   paywall_promo_code_visible: true,
-  paywall_m_enabled: false,
+  // зачем: владелец 26.10 — новые пейволы в 2.0.3 (146). «Вариант М» включён по умолчанию; «Пульт» может выключить (false) — тогда прежнее окно Plus.
+  paywall_m_enabled: true,
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,

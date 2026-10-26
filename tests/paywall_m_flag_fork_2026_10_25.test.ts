@@ -1,5 +1,5 @@
-// зачем (координатор 25.10, пейвол «Вариант М»): М живёт за флагом «Пульта» paywall_m_enabled — по умолчанию выключен, включается только значением true;
-// в экране это одна развилка (вход «Не видим твой Plus» на неё не попадает), в «Пульте → Монетизация» — отдельный переключатель с дефолтом «выключено».
+// зачем (координатор 25.10, пейвол «Вариант М»; владелец 26.10 — включён по умолчанию в 2.0.3 (146)): М живёт за флагом «Пульта» paywall_m_enabled — по умолчанию ВКЛЮЧЁН, выключается только значением false;
+// в экране это одна развилка (вход «Не видим твой Plus» на неё не попадает), в «Пульте → Монетизация» — переключатель с дефолтом «включено», как в приложении.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -10,8 +10,10 @@ const read = (relativePath: string): string => fs.readFileSync(path.join(path.re
 describe('пейвол «Вариант М»: флаг и развилка', () => {
   afterEach(() => { applyRemoteConfigSnapshot({}); });
 
-  it('по умолчанию выключен; включается только значением true из Пульта', () => {
+  it('по умолчанию включён; выключается только значением false из Пульта', () => {
     applyRemoteConfigSnapshot({});
+    expect(getRemoteBool('paywall_m_enabled')).toBe(true);
+    applyRemoteConfigSnapshot({ bools: { paywall_m_enabled: false } });
     expect(getRemoteBool('paywall_m_enabled')).toBe(false);
     applyRemoteConfigSnapshot({ bools: { paywall_m_enabled: true } });
     expect(getRemoteBool('paywall_m_enabled')).toBe(true);
@@ -26,9 +28,10 @@ describe('пейвол «Вариант М»: флаг и развилка', () 
     expect(screen).toContain('setMFlag(isPaywallMEnabled());');
   });
 
-  it('Пульт: переключатель М есть, пустой конфиг его не включает (у остальных дефолт «видно»)', () => {
+  it('Пульт: переключатель М есть, пустой конфиг показывает его включённым — как приложение (как и у остальных)', () => {
     const admin = read('admin/v2/legacy.html');
     expect(admin).toContain('id="cp-paywall-control-paywall_m_enabled"');
-    expect(admin).toContain("input.checked = key === 'paywall_m_enabled' ? bools[key] === true : bools[key] !== false;");
+    expect(admin).toContain('input.checked = bools[key] !== false;');
+    expect(admin).not.toContain("key === 'paywall_m_enabled' ? bools[key] === true");
   });
 });

@@ -86,8 +86,11 @@ describe('paywall admin control visibility', () => {
     const dock = read('components/paywall/PaywallPlus.tsx');
 
     expect(screen).toContain('onRestore={() => { void p.handleRestore(); }}');
-    expect(screen).toContain("pathname: '/promo_code_entry'");
-    expect(screen).toContain("params: { source: 'paywall' }");
+    // зачем (26.10, «нет окна внутри окна»): промокод заменяет пейвол через openPromoCodeFromPaywall; сам маршрут и source — в app/paywall_promo_navigation.ts
+    expect(screen).toContain('openPromoCodeFromPaywall(router, { context: ctx, source })');
+    const promoNavigation = read('app/paywall_promo_navigation.ts');
+    expect(promoNavigation).toContain("pathname: '/promo_code_entry'");
+    expect(promoNavigation).toContain("source: 'paywall'");
     expect(screen).not.toContain("as any");
     expect(screen).toContain('restoreDisabled={ctaBusy}');
     expect(screen).toContain('promoDisabled={ctaBusy}');

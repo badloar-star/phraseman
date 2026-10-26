@@ -1,6 +1,7 @@
 # Ядро · пуш «серия ждёт» без обещания урока (Переводчик 7398140e4, координатор 26.10)
 
 Governance-ID: TG-7CB1C129810F
+Governance-ID: TG-084C490427E0
 Status: In progress
 Owner: 1 · ЯДРО
 

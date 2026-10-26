@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать окончания -os, -as и -es в описании своей группы.",
+    "uk": "обрати закінчення -os, -as та -es в описі своєї групи."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Серьёзные участники",
+        "uk": "Серйозні учасники"
+      },
+      "bodyByLocale": {
+        "ru": "В вашей группе есть мужчины и женщины. О том, как вы относитесь к репетициям, скажите: `Somos serios` — «Мы серьёзные». `Serio` — «серьёзный». Для мужской или смешанной группы берём `serio` и добавляем s: `serios`. Соберите `somos` + `serios`. Окончание os показывает, что описываем нескольких людей такой группы.",
+        "uk": "У вашому гурті є чоловіки й жінки. Про те, як ви ставитеся до репетицій, скажіть: `Somos serios` — «Ми серйозні». `Serio` — «серйозний». Для чоловічої або змішаної групи беремо `serio` й додаємо s: `serios`. Складіть `somos` + `serios`. Закінчення os показує, що описуємо кількох людей такої групи."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите смешанную группу: «Мы серьёзные».",
+          "uk": "Опишіть змішану групу: «Ми серйозні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-26:intro1:r1",
+              "text": "Somos serios."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro1:r2",
+              "text": "Somos serio."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro1:r3",
+              "text": "Soy serio."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-26:intro1:r1",
+              "text": "Somos serios."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro1:r2",
+              "text": "Somos serio."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro1:r3",
+              "text": "Soy serio."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите смешанную группу: «Мы серьёзные».",
+          "uk": "Опишіть змішану групу: «Ми серйозні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Если выступают только женщины",
+        "uk": "Якщо виступають лише жінки"
+      },
+      "bodyByLocale": {
+        "ru": "На следующий концерт готовится только женская часть группы. Вы женщина и говорите от всех участниц: `Somos serias` — «Мы серьёзные». Сначала выбираем женскую форму `seria`, затем добавляем s: `serias`. `Somos` не меняется. Для группы только из женщин получается `somos` + качество с окончанием as.",
+        "uk": "До наступного концерту готується лише жіноча частина гурту. Ви жінка й говорите від усіх учасниць: `Somos serias` — «Ми серйозні». Спочатку обираємо жіночу форму `seria`, потім додаємо s: `serias`. `Somos` не змінюється. Для групи лише з жінок виходить `somos` + риса із закінченням as."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы женщина в женской группе. Скажите: «Мы серьёзные».",
+          "uk": "Ви жінка в жіночій групі. Скажіть: «Ми серйозні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-26:intro2:r1",
+              "text": "Somos serias."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro2:r2",
+              "text": "Somos serios."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro2:r3",
+              "text": "Somos seria."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-26:intro2:r1",
+              "text": "Somos serias."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro2:r2",
+              "text": "Somos serios."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro2:r3",
+              "text": "Somos seria."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина в женской группе. Скажите: «Мы серьёзные».",
+          "uk": "Ви жінка в жіночій групі. Скажіть: «Ми серйозні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Весёлые — независимо от состава",
+        "uk": "Веселі — незалежно від складу"
+      },
+      "bodyByLocale": {
+        "ru": "Серьёзное отношение к музыке не мешает вам шутить вместе. Скажите: `Somos alegres` — «Мы весёлые». `Alegre` — «весёлый, жизнерадостный». Оно заканчивается на e: добавьте s и получите `alegres`. Форма одинакова для мужской, смешанной и женской группы. Здесь не заменяем e на a или o.",
+        "uk": "Серйозне ставлення до музики не заважає вам жартувати разом. Скажіть: `Somos alegres` — «Ми веселі». `Alegre` — «веселий, життєрадісний». Воно закінчується на e: додайте s й отримайте `alegres`. Форма однакова для чоловічої, змішаної та жіночої групи. Тут не замінюємо e на a чи o."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о своей группе: «Мы весёлые».",
+          "uk": "Скажіть про свою групу: «Ми веселі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-26:intro3:r1",
+              "text": "Somos alegres."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro3:r2",
+              "text": "Somos alegre."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro3:r3",
+              "text": "Somos diferentes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-26:intro3:r1",
+              "text": "Somos alegres."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro3:r2",
+              "text": "Somos alegre."
+            },
+            {
+              "responseId": "es:lesson-01:session-26:intro3:r3",
+              "text": "Somos diferentes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о своей группе: «Мы весёлые».",
+          "uk": "Скажіть про свою групу: «Ми веселі»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d4d2c3b1b6649833ea6ae791862206a21618e8f838711bcd3a85c6a10d6b5681"
+}

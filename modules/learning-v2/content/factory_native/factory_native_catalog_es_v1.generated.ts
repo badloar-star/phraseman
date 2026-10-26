@@ -182,4 +182,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать группу, в которую входите сами, с somos и формой качества для нескольких людей.","uk":"описати групу, до якої входите самі, із somos і формою риси для кількох людей."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 26,
+    sourceFingerprint: "38a148ea292c2ea05415966e734cee806c43145baf3a07ba7f4ac38c45ec544b",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать окончания -os, -as и -es в описании своей группы.","uk":"обрати закінчення -os, -as та -es в описі своєї групи."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

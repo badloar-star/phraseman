@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-26:intro1:r2": {
+          "ru": "Без s форма описывает одного человека.",
+          "uk": "Без s форма описує одну людину."
+        },
+        "es:lesson-01:session-26:intro1:r3": {
+          "ru": "Soy говорит только о вас, не о группе.",
+          "uk": "Soy говорить лише про вас, не про групу."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-26:intro2:r2": {
+          "ru": "В условии только женщины, поэтому serias.",
+          "uk": "В умові лише жінки, тому serias."
+        },
+        "es:lesson-01:session-26:intro2:r3": {
+          "ru": "Нужно множественное число с s.",
+          "uk": "Потрібна множина із s."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-26:intro3:r2": {
+          "ru": "Не хватает s для нескольких людей.",
+          "uk": "Бракує s для кількох людей."
+        },
+        "es:lesson-01:session-26:intro3:r3": {
+          "ru": "Это «Мы разные», другая характеристика.",
+          "uk": "Це «Ми різні», інша характеристика."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a8a3569feb428d10a2fcf73c38832cda73b2ee0adfe879a3efcdb85861e03c41"
+}

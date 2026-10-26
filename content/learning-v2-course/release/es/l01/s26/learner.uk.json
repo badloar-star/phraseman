@@ -1,0 +1,662 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-26",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — serio",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — serio",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i01:audio",
+          "transcript": "serio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-26:i01:r1",
+            "targetText": "serio",
+            "meaningByLocale": {
+              "ru": "серьёзный. Мужская или смешанная группа — serios; только женщины — serias. 🔊 *serio*",
+              "uk": "серйозний. Чоловіча або змішана група — serios; лише жінки — serias. 🔊 *serio*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "serio",
+          "definitionByLocale": {
+            "ru": "серьёзный. Мужская или смешанная группа — serios; только женщины — serias. 🔊 *serio*",
+            "uk": "серйозний. Чоловіча або змішана група — serios; лише жінки — serias. 🔊 *serio*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i02:r1",
+          "text": "serias"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i02:r2",
+          "text": "serios"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i02:audio",
+          "transcript": "serias"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-26:i02:r1",
+            "targetText": "serias",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i02:r2",
+            "targetText": "serios",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит as, форма для женской группы.",
+              "uk": "Звучить as, форма для жіночої групи."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть від змішаної групи «Ми серйозні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i03:r1",
+          "text": "Плитки: serios"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i03:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i03:r3",
+          "text": "serio."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть від змішаної групи «Ми серйозні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos serios.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите от смешанной группы «Мы серьёзные»",
+          "uk": "Складіть фразу — скажіть від змішаної групи «Ми серйозні»"
+        },
+        "orderedTokens": [
+          "Somos",
+          "serios"
+        ],
+        "authoredDistractorTokens": [
+          "serio"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть від змішаної групи «Ми серйозні»",
+            "feedbackByLocale": {
+              "ru": "говорите о нескольких людях.",
+              "uk": "говорите про кількох людей."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви жінка; скажіть від жіночої групи «Ми серйозні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i04:r1",
+          "text": "serias"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i04:r2",
+          "text": "serios"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i04:r3",
+          "text": "seria"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви жінка; скажіть від жіночої групи «Ми серйозні»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы женщина; скажите от женской группы «Мы серьёзные»",
+          "uk": "Вставте слово — ви жінка; скажіть від жіночої групи «Ми серйозні»"
+        },
+        "gappedTargetPhrase": "Somos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-26:i04:r1",
+            "text": "serias"
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i04:r2",
+            "text": "serios"
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i04:r3",
+            "text": "seria"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви жінка; скажіть від жіночої групи «Ми серйозні»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви жінка; скажіть від жіночої групи «Ми серйозні»",
+            "feedbackByLocale": {
+              "ru": "В условии группа только из женщин.",
+              "uk": "В умові група лише з жінок."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви жінка; скажіть від жіночої групи «Ми серйозні»",
+            "feedbackByLocale": {
+              "ru": "Это форма для одной женщины, нужна serias.",
+              "uk": "Це форма для однієї жінки, потрібне serias."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — alegre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — alegre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i05:audio",
+          "transcript": "alegre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-26:i05:r1",
+            "targetText": "alegre",
+            "meaningByLocale": {
+              "ru": "весёлый, жизнерадостный. Для нескольких людей — alegres, независимо от состава группы. 🔊 *alegre*",
+              "uk": "веселий, життєрадісний. Для кількох людей — alegres, незалежно від складу групи. 🔊 *alegre*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alegre",
+          "definitionByLocale": {
+            "ru": "весёлый, жизнерадостный. Для нескольких людей — alegres, независимо от состава группы. 🔊 *alegre*",
+            "uk": "веселий, життєрадісний. Для кількох людей — alegres, незалежно від складу групи. 🔊 *alegre*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i06:r1",
+          "text": "веселий"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i06:r2",
+          "text": "серйозний"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i06:audio",
+          "transcript": "alegre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-26:i06:r1",
+            "targetText": "веселий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i06:r2",
+            "targetText": "серйозний",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это serio; alegre описывает жизнерадостность.",
+              "uk": "Це serio; alegre описує життєрадісність."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — опишіть веселий характер вашої групи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — опишіть веселий характер вашої групи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i07:audio",
+          "transcript": "Somos alegres."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos alegres.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i08:r1",
+          "text": "Плитки: serias"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i08:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i08:r3",
+          "text": "nosotras"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i08:r4",
+          "text": "serios."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i08:audio",
+          "transcript": "Nosotras somos serias."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Nosotras somos serias.",
+        "orderedTokens": [
+          "Nosotras",
+          "somos",
+          "serias"
+        ],
+        "authoredDistractorTokens": [
+          "serios"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит serias, женская группа.",
+              "uk": "звучить serias, жіноча група."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — говоріть від жіночої групи «Ми веселі»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i09:r1",
+          "text": "alegres"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i09:r2",
+          "text": "alegre"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i09:r3",
+          "text": "serias"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — говоріть від жіночої групи «Ми веселі»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — говорите от женской группы «Мы весёлые»",
+          "uk": "Вставте слово — говоріть від жіночої групи «Ми веселі»"
+        },
+        "gappedTargetPhrase": "Nosotras somos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-26:i09:r1",
+            "text": "alegres"
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i09:r2",
+            "text": "alegre"
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i09:r3",
+            "text": "serias"
+          }
+        ],
+        "testedDimension": "Вставте слово — говоріть від жіночої групи «Ми веселі»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — говоріть від жіночої групи «Ми веселі»",
+            "feedbackByLocale": {
+              "ru": "Для нескольких людей добавляем s.",
+              "uk": "Для кількох людей додаємо s."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — говоріть від жіночої групи «Ми веселі»",
+            "feedbackByLocale": {
+              "ru": "Это «серьёзные», а нужно сказать «весёлые».",
+              "uk": "Це «серйозні», а потрібно сказати «веселі»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви жінка; опишіть вашу серйозну жіночу групу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви жінка; опишіть вашу серйозну жіночу групу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-26:i10:audio",
+          "transcript": "Somos serias."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos serias.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — підтвердьте від змішаної групи «Так, ми серйозні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i11:r1",
+          "text": "Плитки: serios"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i11:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i11:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i11:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — підтвердьте від змішаної групи «Так, ми серйозні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, somos serios.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите от смешанной группы «Да, мы серьёзные»",
+          "uk": "Складіть фразу — підтвердьте від змішаної групи «Так, ми серйозні»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "somos",
+          "serios"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — підтвердьте від змішаної групи «Так, ми серйозні»",
+            "feedbackByLocale": {
+              "ru": "вы отвечаете от всей группы.",
+              "uk": "ви відповідаєте від усієї групи."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-26:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — після репетиції представте ваш веселий змішаний колектив, починаючи з nosotros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-26:i12:r1",
+          "text": "Плитки: alegres"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i12:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i12:r3",
+          "text": "nosotros"
+        },
+        {
+          "responseId": "es:lesson-01:session-26:i12:r4",
+          "text": "alegre."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — після репетиції представте ваш веселий змішаний колектив, починаючи з nosotros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nosotros somos alegres.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — после репетиции представьте ваш весёлый смешанный коллектив, начиная с nosotros",
+          "uk": "Складіть фразу — після репетиції представте ваш веселий змішаний колектив, починаючи з nosotros"
+        },
+        "orderedTokens": [
+          "Nosotros",
+          "somos",
+          "alegres"
+        ],
+        "authoredDistractorTokens": [
+          "alegre"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-26:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — після репетиції представте ваш веселий змішаний колектив, починаючи з nosotros",
+            "feedbackByLocale": {
+              "ru": "для коллектива нужна форма с s.",
+              "uk": "для колективу потрібна форма із s."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ec94640ef266d03d55eb239c5ff9ecda9c07f3bf5d1887062646b503c35a72d7"
+}

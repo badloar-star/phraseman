@@ -37,7 +37,7 @@ import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
-import { safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -420,7 +420,7 @@ export default function ExamScreen() {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       const p = phaseBackRef.current;
       if (p !== 'quiz' && p !== 'review' && p !== 'countdown') {
-        safeRouterBack(router, '/lessons_list' as any);
+        safeRouterBack(router, '/(tabs)/lessons' as any);
         return true;
       }
       // L10: вместо нативного Alert — стеклянное подтверждение (ThemedConfirmModal), тексты те же
@@ -1038,7 +1038,7 @@ export default function ExamScreen() {
           glass={glass}
           label={stripArrow(t3('Перейти к урокам →', 'Перейти до уроків →', 'Go to lessons →', 'Ir a las lecciones →', 'Ir para as lições →', 'Đi tới bài học →', 'Ke pelajaran →', 'Derslere git →', 'Przejdź do lekcji →'))}
           trailingArrow
-          onPress={()=>router.replace('/lessons_list' as any)}
+          onPress={()=>dismissToTabRoute(router, '/(tabs)/lessons')}
         />
       </ExamFooter>
     </SafeAreaView>

@@ -31,7 +31,7 @@ export const PaywallMHeaderCard = memo(function PaywallMHeaderCard({ g, kicker, 
               {s.value}
               {s.total ? <Text style={[S.total, { color: g.secondary }]}>{` ${s.total}`}</Text> : null}
             </Text>
-            <Text style={[S.label, { color: g.secondary }]} numberOfLines={2}>{s.label}</Text>
+            <Text style={[S.label, { color: g.secondary }]}>{s.label}</Text>
           </View>
         ))}
       </View>

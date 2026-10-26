@@ -11,13 +11,13 @@ export const PaywallMWorkshopPreviewBlock = memo(function PaywallMWorkshopPrevie
   const plate = paywallPlateBg(g);
   return (
     <View testID="paywall-m-workshop-preview" style={[S.card, { backgroundColor: g.opaqueCard }]}>
-      <Text style={[S.meaning, { color: g.secondary }]} numberOfLines={2}>{preview.meaning}</Text>
+      <Text style={[S.meaning, { color: g.secondary }]}>{preview.meaning}</Text>
       <View style={S.tiles}>
         {preview.tokens.map((token, i) => {
           const picked = i < preview.selected;
           return (
             <View key={`${token}-${i}`} style={[S.tile, { backgroundColor: picked ? g.ctaFill : g.opaqueControl }]}>
-              <Text style={[S.tileText, { color: picked ? g.ctaFillInk : g.text }]} numberOfLines={1}>{token}</Text>
+              <Text style={[S.tileText, { color: picked ? g.ctaFillInk : g.text }]}>{token}</Text>
             </View>
           );
         })}

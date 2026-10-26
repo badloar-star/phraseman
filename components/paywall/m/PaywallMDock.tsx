@@ -63,7 +63,8 @@ export const PaywallMDock = memo(function PaywallMDock({ g, texts, purchasing, d
 
 const S = StyleSheet.create({
   dock: { paddingHorizontal: 16, paddingTop: 10 },
-  cta: { height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  // зачем (крайние случаи 26.10): минимум 56 — длинная подпись при шрифте ×1,3 переносится, кнопка растёт, текст не режется
+  cta: { minHeight: 56, borderRadius: 28, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '800', letterSpacing: -0.2 },
   fine: { marginTop: 8, minHeight: 34, fontSize: 13, lineHeight: 17, textAlign: 'center' },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' },

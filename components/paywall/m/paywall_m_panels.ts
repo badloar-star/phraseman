@@ -80,3 +80,17 @@ export function paywallMCorrectionParts(was: string | null | undefined, now: str
   }
   return parts;
 }
+
+/** Ниже этой ширины окна (dp) раскладка «тесная»: плитки и тарифы друг под другом, колонки сравнения уже. */
+export const PAYWALL_M_COMPACT_WIDTH = 380;
+/** Системный «крупный шрифт» с этого множителя — тоже тесная раскладка. */
+export const PAYWALL_M_COMPACT_FONT_SCALE = 1.15;
+
+/**
+ * Тесная ли раскладка окон М: узкий экран (360 dp) или крупный системный шрифт (×1,3).
+ * зачем (координатор 26.10, крайние случаи ночных экранов): две плитки/два тарифа в ряд и колонки сравнения по 92+112 dp рассчитаны на 390 dp и шрифт ×1,0;
+ * на 360 dp и при ×1,3 цены вроде «R$ 199,90» и слова вроде «Подождать» рвались посреди слова. Решение — не сжатие шрифта, а перенос: блоки встают друг под друга.
+ */
+export function paywallMCompactLayout(windowWidth: number, fontScale: number): boolean {
+  return (Number.isFinite(windowWidth) && windowWidth < PAYWALL_M_COMPACT_WIDTH) || (Number.isFinite(fontScale) && fontScale > PAYWALL_M_COMPACT_FONT_SCALE);
+}

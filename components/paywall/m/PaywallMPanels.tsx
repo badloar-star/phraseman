@@ -6,7 +6,7 @@
 // (ink выбранного плана), кружки закрытых дней — ctaFill/ctaFillInk, значок щита — accentGraphic на accentSoft. «Не сейчас» / «Позже» всегда видно (у энергии это плитка «Подождать»).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
-import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../../constants/i18n';
@@ -25,18 +25,32 @@ import { PaywallMWorkshopPreviewBlock } from './PaywallMWorkshopPreview';
 import { paywallMWorkshopPreview } from './paywall_m_workshop_preview';
 import { semanticInk } from '../../../constants/liquidGlassSemanticInk';
 import { PAYWALL_M_LIMITS, PAYWALL_M_TOTAL_LESSONS } from './paywall_m_model';
-import { paywallMCorrectionParts, paywallMIsMissedDay, paywallMLessonProgress, type PaywallMWeekDay } from './paywall_m_panels';
+import { paywallMCompactLayout, paywallMCorrectionParts, paywallMIsMissedDay, paywallMLessonProgress, type PaywallMWeekDay } from './paywall_m_panels';
 
 type ShellProps = Readonly<{
   g: GlassTokens; kicker: string | null; title: string; children?: React.ReactNode; body?: string | null;
   ctaLabel?: string | null; onCta?: () => void; fine?: string | null; laterLabel?: string | null; onLater?: () => void; laterDisabled?: boolean; bottomInset: number;
 }>;
 
+/**
+ * Каркас панели: прокручивается, когда не помещается (узкий экран, крупный шрифт, длинный перевод) — кнопки и «Не сейчас» остаются достижимыми.
+ * зачем (координатор 26.10, крайние случаи): панель лежала в шторке с maxHeight и overflow:hidden без прокрутки — на 360×640 при шрифте ×1,3 низ с кнопкой обрезался.
+ * Высоту задаёт содержимое (flexGrow:0), прокрутка включается только когда оно выше шторки.
+ */
+const PanelFrame = memo(function PanelFrame(p: Readonly<{ bottomInset: number; children: React.ReactNode }>) {
+  return (
+    <ScrollView testID="paywall-m-panel" style={S.frame} contentContainerStyle={[S.shell, { paddingBottom: Math.max(p.bottomInset, 14) }]}
+      bounces={false} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+      {p.children}
+    </ScrollView>
+  );
+});
+
 /** Общая раскладка панели: строка над заголовком → заголовок → блок места → абзац → кнопка → цена → «Не сейчас». */
 const Shell = memo(function Shell(p: ShellProps) {
   const { g } = p;
   return (
-    <View testID="paywall-m-panel" style={[S.shell, { paddingBottom: Math.max(p.bottomInset, 14) }]}>
+    <PanelFrame bottomInset={p.bottomInset}>
       {p.kicker ? <Text style={[S.kicker, { color: g.accentTextSafe }]}>{p.kicker}</Text> : null}
       <Text accessibilityRole="header" style={[S.title, { color: g.text }]}>{p.title}</Text>
       {p.children}
@@ -54,7 +68,7 @@ const Shell = memo(function Shell(p: ShellProps) {
           <Text style={[S.laterText, { color: g.secondary }]}>{p.laterLabel}</Text>
         </V2Pressable>
       ) : null}
-    </View>
+    </PanelFrame>
   );
 });
 
@@ -65,21 +79,23 @@ export const PaywallMEnergyPanel = memo(function PaywallMEnergyPanel(p: CommonPr
   const { g, lang } = p;
   const { formattedTime } = useEnergyCountdown({ visible: true });
   const plate = paywallPlateBg(g);
+  const { width: windowWidth, fontScale } = useWindowDimensions();
+  const compact = paywallMCompactLayout(windowWidth, fontScale); // зачем: две плитки в ряд на 360 dp / ×1,3 рвали слова («Подождать», «продолжить») — встают друг под друга
   const paint = useMemo(() => planRowSelectedPaint(g), [g]);
   // зачем (стиль «Тень», сторож shadow_style_no_container_borders; Ревизор 26.10): плитка Plus выделена градиентом плана, без рамки — прежнее кольцо снято
   const plusTileStyle = useMemo(() => ({ backgroundColor: plate }), [plate]);
   return (
     <Shell g={g} bottomInset={p.bottomInset} kicker={null /* зачем (Макеты 25.10): «N занятий подряд сегодня» — факт человека, а честного числа на устройстве нет; константа 5 врала бы — строку не показываем */} title={paywallMText(lang, 'mc.energy.title')}>
-      <View style={S.tiles}>
+      <View style={compact ? S.tilesStacked : S.tiles}>
         <V2Pressable testID="paywall-m-energy-wait" accessibilityRole="button" accessibilityLabel={paywallMText(lang, 'mc.energy.wait')} disabled={p.laterDisabled} onPress={p.onLater}
-          withHaptic={false} scaleTo={0.97} outerStyle={S.tileCell} style={[S.tile, { backgroundColor: plate }]}>
+          withHaptic={false} scaleTo={0.97} outerStyle={compact ? S.tileCellStacked : S.tileCell} style={[S.tile, { backgroundColor: plate }]}>
           <Ionicons name="time-outline" size={20} color={g.secondary} />
           <Text style={[S.tileLabel, { color: g.text }]}>{paywallMText(lang, 'mc.energy.wait')}</Text>
           {formattedTime ? <Text style={[S.tileBig, { color: g.text }]}>{formattedTime}</Text> : null}
           <Text style={[S.tileSub, { color: g.secondary }]}>{paywallMText(lang, 'mc.energy.waitSub')}</Text>
         </V2Pressable>
         <V2Pressable testID="paywall-m-energy-plus" accessibilityRole="button" accessibilityLabel={`Plus ${paywallMText(lang, 'mc.energy.plusBig')}`} onPress={p.onOpenFull}
-          withHaptic={false} scaleTo={0.97} outerStyle={S.tileCell} style={[S.tile, plusTileStyle]}>
+          withHaptic={false} scaleTo={0.97} outerStyle={compact ? S.tileCellStacked : S.tileCell} style={[S.tile, plusTileStyle]}>
           <LinearGradient pointerEvents="none" colors={paint.gradient} style={[StyleSheet.absoluteFill, S.tileFill]} />
           {/* зачем (карта Тем E6*): молния того же цвета, что надпись плитки — accentGraphic на градиенте не дотягивает до 3 в тёмных titanium/midnight/orchid */}
           <Ionicons name="flash" size={20} color={paint.ink} />
@@ -117,7 +133,7 @@ export const PaywallMStreakPanel = memo(function PaywallMStreakPanel(p: CommonPr
               ) : (
                 <View style={[S.dot, { backgroundColor: g.opaqueControl }]} />
               )}
-              <Text style={[S.weekLabel, d.today ? S.weekLabelToday : null, { color: d.today ? g.text : g.secondary }]} numberOfLines={1}>{missed ? paywallMText(lang, 'mc.streak.missed') : weekdayLabel(d.date)}</Text>
+              <Text style={[S.weekLabel, d.today ? S.weekLabelToday : null, { color: d.today ? g.text : g.secondary }]}>{missed ? paywallMText(lang, 'mc.streak.missed') : weekdayLabel(d.date)}</Text>
             </View>
           );
         })}
@@ -172,7 +188,7 @@ export const PaywallMRefusedPanel = memo(function PaywallMRefusedPanel(p: Readon
     : notFound ? paywallMText(lang, 'mc.refused.nf.retry') : paywallMText(lang, 'mc.refused.restore');
   const body = notFound ? paywallMText(lang, Platform.OS === 'ios' ? 'mc.refused.nf.body.ios' : 'mc.refused.nf.body.android') : paywallMText(lang, 'mc.refused.body');
   return (
-    <View testID="paywall-m-panel" style={[S.shell, { paddingBottom: Math.max(p.bottomInset, 14) }]}>
+    <PanelFrame bottomInset={p.bottomInset}>
       <View style={S.refusedHead}>
         <View style={[S.refusedTile, { backgroundColor: g.accentSoft }]}><Ionicons name="refresh-circle-outline" size={24} color={g.accentGraphic} /></View>
         <Text accessibilityRole="header" style={[S.refusedTitle, { color: g.text }]}>{notFound ? paywallMText(lang, 'mc.refused.nf.title') : paywallMText(lang, 'mc.refused.title')}</Text>
@@ -190,7 +206,7 @@ export const PaywallMRefusedPanel = memo(function PaywallMRefusedPanel(p: Readon
         style={[S.later, { opacity: p.laterDisabled ? 0.5 : 1 }]}>
         <Text style={[S.laterText, { color: g.secondary }]}>{paywallMText(lang, 'm.notNow')}</Text>
       </V2Pressable>
-    </View>
+    </PanelFrame>
   );
 });
 
@@ -242,17 +258,21 @@ const S = StyleSheet.create({
   refusedHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   refusedTile: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   refusedTitle: { flex: 1, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3 },
+  frame: { flexGrow: 0 },
   shell: { paddingHorizontal: 16, paddingTop: 6, gap: 14 },
   kicker: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, marginTop: -6 },
   body: { fontSize: 16, lineHeight: 22 },
-  cta: { height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
+  // зачем (крайние случаи 26.10): минимум 56, а не ровно 56 — длинная подпись («Продолжить разговор с Plus») при шрифте ×1,3 переносится и кнопка растёт, текст не режется
+  cta: { minHeight: 56, borderRadius: 28, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '800', letterSpacing: -0.2 },
   fine: { fontSize: 13, lineHeight: 17, textAlign: 'center', marginTop: -4 },
   later: { minHeight: 44, alignItems: 'center', justifyContent: 'center', marginTop: -8 },
   laterText: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   tiles: { flexDirection: 'row', gap: 10 },
   tileCell: { flex: 1 },
+  tilesStacked: { flexDirection: 'column', gap: 10 },
+  tileCellStacked: { alignSelf: 'stretch' },
   tile: { minHeight: 132, borderRadius: 20, padding: 14, gap: 4, overflow: 'hidden' },
   tileFill: { borderRadius: 20 },
   tileLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 4 },
@@ -260,9 +280,9 @@ const S = StyleSheet.create({
   tileSub: { fontSize: 13, lineHeight: 17 },
   saved: { fontSize: 13, lineHeight: 17, textAlign: 'center' },
   week: { flexDirection: 'row', borderRadius: 20, paddingVertical: 14, paddingHorizontal: 8 },
-  weekDay: { flex: 1, alignItems: 'center', gap: 6 },
+  weekDay: { flex: 1, minWidth: 0, alignItems: 'center', gap: 6 },
   dot: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
-  weekLabel: { fontSize: 13, lineHeight: 17 },
+  weekLabel: { fontSize: 13, lineHeight: 17, textAlign: 'center' }, // переносится по словам («sin práctica» в колонке дня), без многоточия
   weekLabelToday: { fontWeight: '700' }, // зачем (Макеты 25.10): сегодняшний день в макете выделен жирной подписью
   lockCard: { borderRadius: 20, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   lockTile: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },

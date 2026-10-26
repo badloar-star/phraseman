@@ -25,3 +25,5 @@ Governance-ID: TG-3168913C4656
 Откат коммита с журналом; остальные правки откатываются по хэшам.
 
 Governance-ID: TG-ED679A5EFC25
+
+Governance-ID: TG-18EA4505E2B9

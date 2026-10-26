@@ -18,6 +18,7 @@ import V2Pressable from '../../v2/V2Pressable';
 import SpireRankCoin from '../SpireRankCoin';
 import { useSpirePalette } from '../useSpirePalette';
 import { useSpireShadow } from '../useSpireShadow';
+import { useSpireHeaderOverlayInset } from '../scene/spire_header_overlay';
 import { positionMomentText } from './position_moment_strings';
 import { momentText } from './moments_strings';
 
@@ -50,6 +51,9 @@ function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoi
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
+  const headerInset = useSpireHeaderOverlayInset();
+  // The community tabs overlay the scene. Keep the entire toast animation below them.
+  const overlayTop = Math.max(insets.top, headerInset);
   const { height } = useWindowDimensions();
   const [mood, setMood] = useState<'idle' | 'shiver'>('idle');
   const [bang, setBang] = useState(false);
@@ -71,8 +75,8 @@ function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoi
   const toastStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, enter.value * 3), transform: [{ translateY: (1 - enter.value) * -70 }] }));
 
   return (
-    <View style={StyleSheet.absoluteFill} pointerEvents="box-none" testID={testID}>
-      <Animated.View style={[s.toast, { top: insets.top + 12, backgroundColor: p.card }, sh.plate, toastStyle]} accessibilityLiveRegion="polite">
+    <View style={[StyleSheet.absoluteFill, { top: overlayTop, overflow: 'hidden' }]} pointerEvents="box-none" testID={testID}>
+      <Animated.View testID={`${testID}-card`} style={[s.toast, { top: 12, backgroundColor: p.card }, sh.plate, toastStyle]} accessibilityLiveRegion="polite">
         <View style={s.faces} accessible={false}>
           <SpireRankCoin rank={rivalCoinRank} size={36} />
           <View style={s.faceMe}><SpireRankCoin rank={myCoinRank} size={36} /></View>
@@ -90,7 +94,7 @@ function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoi
           <Text style={[s.playText, { color: p.ctaText }]}>{momentText(lang, 'play')}</Text>
         </V2Pressable>
       </Animated.View>
-      <View style={[s.coin, { top: Math.round(height * COIN_TOP_FRACTION) }]} pointerEvents="none">
+      <View style={[s.coin, { top: Math.max(0, Math.round(height * COIN_TOP_FRACTION) - overlayTop) }]} pointerEvents="none">
         <MomentCoin rank={myCoinRank} size={96} mood={mood} emote={bang ? 'bang' : null} testID={`${testID}-coin`} />
       </View>
     </View>

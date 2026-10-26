@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
+import { setSpireHeaderOverlayInset } from '../components/spire/scene/spire_header_overlay';
 
 jest.mock('react-native', () => ({
   View: 'View',
@@ -107,6 +108,19 @@ describe('m05A · строка «Ты» едет вверх через лини�
 describe('m05B · тост «обгоняет тебя»', () => {
   beforeEach(() => { jest.useFakeTimers(); });
   afterEach(() => { jest.useRealTimers(); });
+
+  it('keeps the toast and its entrance animation below the measured community header', async () => {
+    await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} onPlay={jest.fn()} onDismiss={jest.fn()} />);
+    for (const headerHeight of [104, 140, 0]) {
+      await act(async () => { setSpireHeaderOverlayInset(headerHeight); });
+      const root = Object.assign({}, ...screen.getByTestId('overtake-toast').props.style);
+      const card = Object.assign({}, ...screen.getByTestId('overtake-toast-card').props.style);
+      expect(root.top).toBe(Math.max(24, headerHeight));
+      expect(root.overflow).toBe('hidden');
+      expect(card.top).toBe(12);
+      expect(root.top + card.top).toBeGreaterThan(headerHeight);
+    }
+  });
 
   it('текст без рода, разрыв в монетах недели, «Играть» зовёт колбэк, сам закрывается через 6 с', async () => {
     const onPlay = jest.fn();

@@ -34,11 +34,24 @@
 7. **4 флага по умолчанию true** (сервер выложен): `dialogue_freeform_translate_enabled`, `account_delete_variant_b_ui_enabled`, `dialogue_coin_intent_host_enabled`, `spire_gold`. В боевом Пульте `spire_gold` уже true с 25.10. → core.md.
 8. **«Вместе» для друзей** — `app/friends_together/together_config.ts:73 FRIENDS_TOGETHER_UI_ENABLED = false` → true, если серверные функции «Вместе» выложены (пакет Ревизора 3fa4965ac от 22.10). Если не выложены — точечная выкладка только по «да» владельца. → vhod.md.
 
-### Статус на 07:45
+### Статус на 07:55 (финальный от координатора)
 
-- ✅ 7 «Нет сети» — `b07d0ca24`; 8 «Вместе» — `e64d29561`; банки 8–11 — `8a04d1092`; ленивая загрузка банков — `006024b34`; эталон флагов 146 — `250176395`; скрипт `scripts/release_146_check.sh` — `3b7be0240`.
-- ⏳ 1–3 (Дизайн: пейвол М, settings_plus, низ пейвола), 4–5 (Learning V2: окна эпизода/интро, l29 c3), 6 (Моменты: Пик из кэша), 4 флага Ядра — на момент записи в рабочем дереве или не закоммичены. Сверь `git log` и `docs/work/handover/{design,learning-v2,moments,core}.md`; если файла хендовера нет — сессия не успела, смотри `git status` и доделай по описанию в разделе 2.
-- Хендоверы в репозитории: core, revizor (+ known red tests), themes, translator, vhod.
+| # | Пункт | Статус |
+|---|---|---|
+| 1 | Окна Plus М `paywall_m_enabled = true` | ⏳ в рабочем дереве `app/remote_flags.ts:361` = true, НЕ закоммичено на 07:55 (Дизайн коммитит). Проверь `git log -- app/remote_flags.ts`; если не закоммичено — закоммить после тестов пейвола (~135 тестов paywall*/premium*/promo_code*) |
+| 2 | settings_plus | ✅ `880312a38` — НЕ баг приложения: кнопка Plus в Настройках шлёт `settings_premium`; `settings_plus` пришёл из dev/съёмочной ссылки. Добавлен журнал `[PAYWALL-ENTRY]` неизвестного входа. В белый список не добавлять |
+| 3 | Низ пейвола (ссылки под плашками) | ✅ `880312a38` (flex на внешнем слое `V2Pressable`, `PaywallPlusDock`), сторож `tests/paywall_dock_links_and_unknown_entry_2026_10_26.test.ts`. Кадр на узком экране и шрифте ×1,3 не снимался |
+| 4 | Без окна эпизода и окна «Чему научишься» | ✅ `6bc3978a2` (флаги `SEASON_EPISODE_WINDOW_ENABLED`, `LEARNING_V2_START_SHEET_ENABLED` в season_flags.ts = false, замок в OWNER_LOCKS, лог `[EPISODE-OPEN]`). Долг: кнопка новичка «Не с начала» (входной тест) жила только в окне эпизода — теперь её нет на карте |
+| 5 | l29 c3 | ✅ зелёный на HEAD после `0ff4b5a25` |
+| 6 | Пик из кэша | ✅ `cb6cece7e` (лог `[SPIRE-LOAD]`, reads=0); на устройстве не проверено |
+| 7 | 4 серверных флага ON | ✅ `a8d043624`; «Нет сети» — `b07d0ca24` + помощник `5e1300cd4` |
+| 8 | «Вместе» для друзей | ✅ `e64d29561` |
+| — | Банки экзамена 210/210, вопросы «?», варианты ответов | ✅ (последние: `8a04d1092`, `920b43d56`, `087c8b77d`, `2d3eab011`, `2a7e8b1ab`, `30c54abe1`); ленивая загрузка `006024b34` |
+| — | Эталон флагов 146 | ✅ `250176395`; чек-лист `scripts/release_146_check.sh` (`3b7be0240`) |
+
+Хендоверы сессий: `docs/work/handover/` — core (с полным runbook сборки 146), learning-v2, moments, revizor (+ known red tests), themes, translator, vhod; design — если появился. Макеты (уроки 20–23) закрыты, без отдельного файла: `920b43d56`, `087c8b77d`.
+
+Известные красные: только старые (см. `revizor_known_red_tests.txt`). Спорные фразы в банках для вычитки владельцем: l22 c1 «I can not unscrew it.», l21 c3 «I deny taking your keys.».
 
 ## 3. Сборка и отправка 146 (порядок)
 

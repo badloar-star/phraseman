@@ -4,6 +4,7 @@ import { DebugLogger } from '../app/debug-logger';
 import { speakingNoSpeechKindOf, speakingNoSpeechText, type SpeakingNoSpeechKind } from './speaking_no_speech_copy';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import {
   ActivityIndicator,
@@ -376,6 +377,7 @@ export function SpeakingPanel({
   onStatusChange,
 }: SpeakingPanelProps) {
   const { liquidGlassThemeId } = useTheme();
+  const safeInsets = useStableSafeAreaInsets();
   const inlineMetrics = useSpeakingInlineMetrics();
   const speech = useMemo(() => loadSpeechModule(), []);
   // зачем: панель живёт внутри упражнения и при сворачивании приложения НЕ размонтируется —
@@ -2558,8 +2560,10 @@ export function SpeakingPanel({
   const stopInk = legibleOn(mTheme.card, '#FFFFFF', [mTheme.wrong], 4.5); // theme-exempt: белый — предел доводки значка на заливке wrong
 
   return (
-    <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
-      <Pressable style={styles.backdrop} onPress={handleClose}>
+    // зачем (гейт safe-area Тем 26.10): без statusBarTranslucent на Android над затемнением оставалась светлая полоса строки состояния;
+    // затемнение теперь от верха экрана, а карточку держат безопасные отступы + прежние 20 — под часы и нижнюю полосу она не заезжает
+    <Modal transparent statusBarTranslucent animationType="fade" onRequestClose={handleClose} visible>
+      <Pressable style={[styles.backdrop, { paddingTop: safeInsets.top + 20, paddingBottom: safeInsets.bottom + 20 }]} onPress={handleClose}>
         <Pressable
           style={[styles.card, { backgroundColor: mTheme.card }]}
           onPress={(e) => e.stopPropagation()}

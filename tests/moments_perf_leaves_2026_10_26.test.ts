@@ -33,7 +33,7 @@ describe('Моменты: перерисовка только там, где м�
   it('повышение: нет пустого setPhase({...v}); замер первой строки — useCallback', () => {
     const promo = read('components/spire/moments/MomentPromotion.tsx');
     expect(promo).not.toMatch(/setPhase\(\(v\) => \(\{ \.\.\.v \}\)\)/);
-    expect(promo).toContain('const onFirstRowLayout = useCallback((e: LayoutChangeEvent) => setRowH(Math.round(e.nativeEvent.layout.height)), []);');
+    expect(promo).toContain('const onFirstRowLayout = useCallback((e: LayoutChangeEvent) => zone.measured(e.nativeEvent.layout.height), [zone]);');
     expect(promo).toContain('onFirstLayout={i === 0 ? onFirstRowLayout : undefined}');
   });
 });

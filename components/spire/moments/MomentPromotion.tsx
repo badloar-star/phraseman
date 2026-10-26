@@ -41,6 +41,7 @@ import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
 import { momentNumber, momentText } from './moments_strings';
+import { createPromoZoneTracker, PROMO_ROW_GAP } from './promo_zone';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import { colorWithAlpha } from '../../v2/plateAlpha';
@@ -104,9 +105,6 @@ export const MOMENT_PROMO_TIMELINE = { flicker: 300, zone: 1600, topLine: 3000, 
 const ZONE_SWEEP_MS = 1400;
 /** Длительность «стоп-кадра» эталона (`emFreeze 420ms steps(1)`), мс. */
 export const FREEZE_MS = 420;
-const ROW_GAP = 6;
-const FALLBACK_ROW_H = 48;
-const TOP5 = 5;
 /** Эталон нарисован на экране 390 × 844: координаты фейерверка масштабируются по ширине. */
 const DESIGN_W = 390;
 
@@ -166,13 +164,17 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const skin = useMemo(() => spireSkinForTier(toTier), [toTier]);
   const hasLadder = (rows?.length ?? 0) > 0;
   const [phase, setPhase] = useState<Phase>(reduceMotion ? PHASE_END : hasLadder ? PHASE_START : { ...PHASE_START, act: 2 });
-  const [rowH, setRowH] = useState(FALLBACK_ROW_H);
+  const zoneTop = useSharedValue(0);
+  // зачем (координатор 26.10): высота строки — в трекере, не в замыкании сценария; поздний замер доводит полосу «топ-5» до настоящей границы
+  const [zone] = useState(() => createPromoZoneTracker((top, why) => {
+    if (__DEV__) console.log(`[MOMENT-PROMO] зона топ-5: верх=${top} причина=${why}`); // guard-ok: журнал сценария
+    zoneTop.value = withTiming(top, { duration: why === 'zone_start' ? ZONE_SWEEP_MS : 220, easing: Easing.out(Easing.cubic) });
+  }));
   // зачем (№12): один стабильный обработчик замера первой строки — новая стрелка на каждом рендере ломала memo у LadderRow #0
-  const onFirstRowLayout = useCallback((e: LayoutChangeEvent) => setRowH(Math.round(e.nativeEvent.layout.height)), []);
+  const onFirstRowLayout = useCallback((e: LayoutChangeEvent) => zone.measured(e.nativeEvent.layout.height), [zone]);
   const [fire, setFire] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const rumble = useMomentRumble();
-  const zoneTop = useSharedValue(0);
   const towerIn = useSharedValue(reduceMotion ? 1 : 0);
   // зачем (координатор 26.10, аудит скорости Моментов №1б): башня-SVG акта 3 строилась на 6,2 с — посреди появления акта (FadeIn 420 + towerIn 900),
   // пик работы JS падал в анимацию. Теперь акт 3 монтируется заранее невидимым (prep3, после того как акт 2 встал), а на 6,2 с только проявляется.
@@ -215,7 +217,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
     };
     // зачем (координатор 26.10, аудит скорости Моментов №12): метка T.flicker больше не перерисовывает окно — мерцание строк включено
     // с первого кадра (`flicker` у LadderRow всегда true), а пустой setPhase({...v}) лишь пересобирал весь момент на 300 мс.
-    if (hasLadder) at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zoneTop.value = withTiming((rowH + ROW_GAP) * TOP5 - 3, { duration: ZONE_SWEEP_MS, easing: Easing.out(Easing.cubic) }); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
+    if (hasLadder) at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zone.start(); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
     if (hasLadder) at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });
     at(T.act2, () => { setPhase((v) => ({ ...v, act: 2, cheer: true })); playMomentSound(MOMENT_SOUND_EVENTS.promoCorrect); void hapticSuccess(); });
     // акт 2 встал (его FadeIn 420 мс прошёл) — тихо собираем башню акта 3 невидимой
@@ -370,7 +372,7 @@ const s = StyleSheet.create({
   ov: { ...V2_TYPE.overline, textTransform: 'uppercase', textAlign: 'center' },
   hMd: { marginTop: 6, fontSize: 21, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center' },
   hXl: { fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'center' },
-  ladder: { alignSelf: 'stretch', marginTop: 18, gap: ROW_GAP },
+  ladder: { alignSelf: 'stretch', marginTop: 18, gap: PROMO_ROW_GAP },
   // `.lrow`: 10/12 отступы, зазор 12, радиус 16, 16/600
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingHorizontal: 12, borderRadius: 16 },
   pos: { width: 26, textAlign: 'center', fontSize: 16, fontWeight: '800' },

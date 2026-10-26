@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-45",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-45:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-45:intro1:r2": {
+          "ru": "Paquete мужского рода: un.",
+          "uk": "Paquete чоловічого роду: un."
+        },
+        "es:lesson-02:session-45:intro1:r3": {
+          "ru": "Посылка одна: es.",
+          "uk": "Посилка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-45:intro2:r2": {
+          "ru": "Карандашей несколько: son.",
+          "uk": "Олівців кілька: son."
+        },
+        "es:lesson-02:session-45:intro2:r3": {
+          "ru": "Lápices мужского рода: unos.",
+          "uk": "Lápices чоловічого роду: unos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-45:intro3:r2": {
+          "ru": "Один карандаш требует es.",
+          "uk": "Один олівець потребує es."
+        },
+        "es:lesson-02:session-45:intro3:r3": {
+          "ru": "Для одного карандаша нужны un и lápiz.",
+          "uk": "Для одного олівця потрібні un і lápiz."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "82877a1579b69eef9cf9f50adedebd009cbe418ce1cf2062e802a950cde1a6c1"
+}

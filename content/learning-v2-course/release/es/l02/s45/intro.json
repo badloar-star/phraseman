@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "различить один целый предмет и несколько отдельных вещей при выборе es/son.",
+    "uk": "розрізнити один цілий предмет і кілька окремих речей під час вибору es/son."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Закрытая посылка",
+        "uk": "Закрита посилка"
+      },
+      "bodyByLocale": {
+        "ru": "Курьер оставил одну посылку. `Paquete` — «посылка, пакет», слово мужского рода: el paquete. Скажите `Es un paquete` — «Это посылка». Соберите `es` + `un` + `paquete`. Вы называете один закрытый предмет целиком, поэтому es и un.",
+        "uk": "Кур'єр залишив одну посилку. `Paquete` — «посилка, пакет», слово чоловічого роду: el paquete. Скажіть `Es un paquete` — «Це посилка». Зберіть `es` + `un` + `paquete`. Ви називаєте один закритий предмет цілком, тому es та un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну посылку.",
+          "uk": "Назвіть одну посилку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-45:intro1:r1",
+              "text": "Es un paquete."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro1:r2",
+              "text": "Es una paquete."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro1:r3",
+              "text": "Son un paquete."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-45:intro1:r1",
+              "text": "Es un paquete."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro1:r2",
+              "text": "Es una paquete."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro1:r3",
+              "text": "Son un paquete."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну посылку.",
+          "uk": "Назвіть одну посилку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько карандашей внутри",
+        "uk": "Кілька олівців усередині"
+      },
+      "bodyByLocale": {
+        "ru": "Вы открыли посылку и достали несколько карандашей. Назовите их с unos: `Son unos lápices` — «Это карандаши». Соберите `son` + `unos` + `lápices`. Теперь речь об отдельных карандашах, а не о посылке целиком, поэтому son. Знакомое lápiz во множественном числе становится lápices.",
+        "uk": "Ви відкрили посилку й дістали кілька олівців. Назвіть їх з unos: `Son unos lápices` — «Це олівці». Зберіть `son` + `unos` + `lápices`. Тепер йдеться про окремі олівці, а не про посилку цілком, тому son. Знайоме lápiz у множині стає lápices."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите карандаши с unos.",
+          "uk": "Назвіть олівці з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-45:intro2:r1",
+              "text": "Son unos lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro2:r2",
+              "text": "Es unos lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro2:r3",
+              "text": "Son unas lápices."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-45:intro2:r1",
+              "text": "Son unos lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro2:r2",
+              "text": "Es unos lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro2:r3",
+              "text": "Son unas lápices."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите карандаши с unos.",
+          "uk": "Назвіть олівці з unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Один карандаш в руке",
+        "uk": "Один олівець у руці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы берёте один карандаш и показываете другу. Скажите `Es un lápiz` — «Это карандаш». Соберите `es` + `un` + `lápiz`. Хотя на столе осталось много карандашей, вы сейчас называете только один в руке. Выбирайте es или son по предметам, о которых говорите в этой фразе.",
+        "uk": "Ви берете один олівець і показуєте другу. Скажіть `Es un lápiz` — «Це олівець». Зберіть `es` + `un` + `lápiz`. Хоча на столі залишилося багато олівців, ви зараз називаєте лише один у руці. Вибирайте es або son за предметами, про які говорите в цій фразі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите один карандаш в руке.",
+          "uk": "Назвіть один олівець у руці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-45:intro3:r1",
+              "text": "Es un lápiz."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro3:r2",
+              "text": "Son un lápiz."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro3:r3",
+              "text": "Es unos lápices."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-45:intro3:r1",
+              "text": "Es un lápiz."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro3:r2",
+              "text": "Son un lápiz."
+            },
+            {
+              "responseId": "es:lesson-02:session-45:intro3:r3",
+              "text": "Es unos lápices."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один карандаш в руке.",
+          "uk": "Назвіть один олівець у руці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9fbb34f1df0cd5880b62bdd9faf6baeabf0b5267da8878b5cc2033cde8c2e30e"
+}

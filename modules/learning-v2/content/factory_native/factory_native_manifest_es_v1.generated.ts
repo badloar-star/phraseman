@@ -1411,4 +1411,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l02/s44/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l02/s44/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 45,
+    sourceFingerprint: "d8842060bf7fcfbbf346521233f2942ba4eec654e4e4edd1864dc389ca6c92b4",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Назовите одну посылку.","Назовите карандаши с unos.","Назовите один карандаш в руке."],"uk":["Назвіть одну посилку.","Назвіть олівці з unos.","Назвіть один олівець у руці."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Paquete мужского рода: un.","Посылка одна: es."],["Карандашей несколько: son.","Lápices мужского рода: unos."],["Один карандаш требует es.","Для одного карандаша нужны un и lápiz."]],"uk":[["Paquete чоловічого роду: un.","Посилка одна: es."],["Олівців кілька: son.","Lápices чоловічого роду: unos."],["Один олівець потребує es.","Для одного олівця потрібні un і lápiz."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различить один целый предмет и несколько отдельных вещей при выборе es/son.","uk":"розрізнити один цілий предмет і кілька окремих речей під час вибору es/son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — paquete"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Соберите фразу — это одна посылка"},{"ordinal":4,"title":"Вставьте слово — одна закрытая посылка"},{"ordinal":5,"title":"Соберите фразу — это карандаши, с unos"},{"ordinal":6,"title":"Вставьте слово — несколько отдельных карандашей"},{"ordinal":7,"title":"Соберите фразу — один карандаш в руке"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — одна посылка"},{"ordinal":10,"title":"Вставьте слово — снова несколько карандашей, с unos"},{"ordinal":11,"title":"Соберите фразу — карандаши, с unos"},{"ordinal":12,"title":"Скажите вслух — один карандаш"}],"uk":[{"ordinal":1,"title":"Картка слова — paquete"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Зберіть фразу — це одна посилка"},{"ordinal":4,"title":"Вставте слово — одна закрита посилка"},{"ordinal":5,"title":"Зберіть фразу — це олівці, з unos"},{"ordinal":6,"title":"Вставте слово — кілька окремих олівців"},{"ordinal":7,"title":"Зберіть фразу — один олівець у руці"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — одна посилка"},{"ordinal":10,"title":"Вставте слово — знову кілька олівців, з unos"},{"ordinal":11,"title":"Зберіть фразу — олівці, з unos"},{"ordinal":12,"title":"Скажіть уголос — один олівець"}]}),
+    loadIntro: () => require("./generated_release/es/l02/s45/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l02/s45/learner.uk.json") as unknown : require("./generated_release/es/l02/s45/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l02/s45/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l02/s45/auxiliary.json") as unknown,
+  }),
 ]);

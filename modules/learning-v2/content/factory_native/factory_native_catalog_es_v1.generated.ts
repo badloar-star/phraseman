@@ -707,4 +707,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различить название предмета с una и узнавание конкретного предмета с la.","uk":"розрізнити назву предмета з una та впізнавання конкретного предмета з la."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 45,
+    sourceFingerprint: "d8842060bf7fcfbbf346521233f2942ba4eec654e4e4edd1864dc389ca6c92b4",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различить один целый предмет и несколько отдельных вещей при выборе es/son.","uk":"розрізнити один цілий предмет і кілька окремих речей під час вибору es/son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

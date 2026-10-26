@@ -1,0 +1,696 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-45",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paquete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paquete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-45:i01:audio",
+          "transcript": "paquete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-45:i01:r1",
+            "targetText": "paquete",
+            "meaningByLocale": {
+              "ru": "посылка, пакет. Мужской род: el paquete. 🔊 *paquete*",
+              "uk": "посилка, пакет. Чоловічий рід: el paquete. 🔊 *paquete*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paquete",
+          "definitionByLocale": {
+            "ru": "посылка, пакет. Мужской род: el paquete. 🔊 *paquete*",
+            "uk": "посилка, пакет. Чоловічий рід: el paquete. 🔊 *paquete*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i02:r1",
+          "text": "paquete"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i02:r2",
+          "text": "juguete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-45:i02:audio",
+          "transcript": "paquete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-45:i02:r1",
+            "targetText": "paquete",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i02:r2",
+            "targetText": "juguete",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит paquete — посылка.",
+              "uk": "Звучить paquete — посилка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це одна посилка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i03:r1",
+          "text": "Плитки: paquete"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це одна посилка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un paquete.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это одна посылка",
+          "uk": "Зберіть фразу — це одна посилка"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "paquete"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це одна посилка",
+            "feedbackByLocale": {
+              "ru": "paquete мужского рода.",
+              "uk": "paquete чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна закрита посилка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i04:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна закрита посилка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна закрытая посылка",
+          "uk": "Вставте слово — одна закрита посилка"
+        },
+        "gappedTargetPhrase": "___ un paquete.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-45:i04:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i04:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна закрита посилка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна закрита посилка",
+            "feedbackByLocale": {
+              "ru": "Называете одну посылку целиком: es.",
+              "uk": "Називаєте одну посилку цілком: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна закрита посилка",
+            "feedbackByLocale": {
+              "ru": "Речь о посылке, не о говорящем: es.",
+              "uk": "Йдеться про посилку, не про мовця: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це олівці, з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i05:r1",
+          "text": "Плитки: lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i05:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i05:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це олівці, з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos lápices.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это карандаши, с unos",
+          "uk": "Зберіть фразу — це олівці, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це олівці, з unos",
+            "feedbackByLocale": {
+              "ru": "называете несколько карандашей.",
+              "uk": "називаєте кілька олівців."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька окремих олівців",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i06:r1",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i06:r2",
+          "text": "lápiz"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i06:r3",
+          "text": "lápizs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька окремих олівців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько отдельных карандашей",
+          "uk": "Вставте слово — кілька окремих олівців"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-45:i06:r1",
+            "text": "lápices"
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i06:r2",
+            "text": "lápiz"
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i06:r3",
+            "text": "lápizs"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька окремих олівців",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька окремих олівців",
+            "feedbackByLocale": {
+              "ru": "Нужно множественное число: lápices.",
+              "uk": "Потрібна множина: lápices."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька окремих олівців",
+            "feedbackByLocale": {
+              "ru": "Z заменяется на ces: lápices.",
+              "uk": "Z замінюється на ces: lápices."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — один олівець у руці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i07:r1",
+          "text": "Плитки: lápiz"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i07:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — один олівець у руці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un lápiz.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — один карандаш в руке",
+          "uk": "Зберіть фразу — один олівець у руці"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "lápiz"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — один олівець у руці",
+            "feedbackByLocale": {
+              "ru": "сейчас называете один карандаш.",
+              "uk": "зараз називаєте один олівець."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i08:r1",
+          "text": "Плитки: paquete"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-45:i08:audio",
+          "transcript": "Es un paquete."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es un paquete.",
+        "orderedTokens": [
+          "Es",
+          "un",
+          "paquete"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un paquete.",
+              "uk": "звучить un paquete."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — одна посилка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-45:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — одна посилка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-45:i09:audio",
+          "transcript": "Es un paquete."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un paquete.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — знову кілька олівців, з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i10:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i10:r3",
+          "text": "somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — знову кілька олівців, з unos",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — снова несколько карандашей, с unos",
+          "uk": "Вставте слово — знову кілька олівців, з unos"
+        },
+        "gappedTargetPhrase": "___ unos lápices.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-45:i10:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i10:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i10:r3",
+            "text": "somos"
+          }
+        ],
+        "testedDimension": "Вставте слово — знову кілька олівців, з unos",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — знову кілька олівців, з unos",
+            "feedbackByLocale": {
+              "ru": "Карандашей несколько: son.",
+              "uk": "Олівців кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-45:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — знову кілька олівців, з unos",
+            "feedbackByLocale": {
+              "ru": "Somos означает «мы», а речь о карандашах.",
+              "uk": "Somos означає «ми», а йдеться про олівці."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — олівці, з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-45:i11:r1",
+          "text": "Плитки: lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i11:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-45:i11:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — олівці, з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos lápices.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — карандаши, с unos",
+          "uk": "Зберіть фразу — олівці, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-45:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — олівці, з unos",
+            "feedbackByLocale": {
+              "ru": "lápices мужского рода.",
+              "uk": "lápices чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-45:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — один олівець",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-45:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — один олівець",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-45:i12:audio",
+          "transcript": "Es un lápiz."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un lápiz.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b0c5a28aec40713c6cb929c0a3f15e12d0a3296a500ec616c9966998fb4fc4f2"
+}

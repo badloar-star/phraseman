@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keys",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keys",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i01:audio",
+          "transcript": "keys"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-02:i01:r1",
+            "targetText": "keys",
+            "meaningByLocale": {
+              "ru": "Ключи. Повторение формы key.",
+              "uk": "Ключі. Повторення форми key."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keys",
+          "definitionByLocale": {
+            "ru": "Ключи. Повторение формы key.",
+            "uk": "Ключі. Повторення форми key."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i02:r1",
+          "text": "The keys must be here."
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i02:r2",
+          "text": "The keys must be there."
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i02:r3",
+          "text": "The keys must be upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i02:audio",
+          "transcript": "The keys must be here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-02:i02:r1",
+            "targetText": "The keys must be here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i02:r2",
+            "targetText": "The keys must be there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i02:r3",
+            "targetText": "The keys must be upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The keys must be here.",
+              "uk": "У записі звучить The keys must be here."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The keys must be here.",
+              "uk": "У записі звучить The keys must be here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
+          "uk": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must."
+        },
+        "gappedTargetPhrase": "The keys must ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-02:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+            "feedbackByLocale": {
+              "ru": "После must нужна начальная форма be.",
+              "uk": "Після must потрібна початкова форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+            "feedbackByLocale": {
+              "ru": "Must сочетается с be, не is.",
+              "uk": "Must поєднується з be, не is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i04:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-02:i04:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви пам’ятаєте, що поклали ключі до сумки. Висловіть упевнений висновок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви пам’ятаєте, що поклали ключі до сумки. Висловіть упевнений висновок.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The keys must be in the bag.",
+        "localizedMeaning": {
+          "ru": "Вы помните, что положили ключи в сумку. Выразите уверенный вывод.",
+          "uk": "Ви пам’ятаєте, що поклали ключі до сумки. Висловіть упевнений висновок."
+        },
+        "orderedTokens": [
+          "The",
+          "keys",
+          "must",
+          "be",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i06:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-02:i06:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пальто, яке ви носили, залишилося в машині. Скажіть це без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i07:audio"
+      ],
+      "accessibilityLabel": "Пальто, яке ви носили, залишилося в машині. Скажіть це без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i07:audio",
+          "transcript": "The coat I wore is in the car."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat I wore is in the car.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i08:r1",
+          "text": "wore"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i08:r2",
+          "text": "wore it"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i08:r3",
+          "text": "worn"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните пальто через I wore, не повторяя предмет местоимением.",
+          "uk": "Уточніть пальто через I wore, не повторюючи предмет займенником."
+        },
+        "gappedTargetPhrase": "The coat I ___ is in the car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-02:i08:r1",
+            "text": "wore"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i08:r2",
+            "text": "wore it"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i08:r3",
+            "text": "worn"
+          }
+        ],
+        "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+            "feedbackByLocale": {
+              "ru": "Coat уже названо: it после wore не нужно.",
+              "uk": "Coat уже названо: it після wore не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма wore.",
+              "uk": "Потрібна минула форма wore."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумка була важка, тому ви її поставили. Почніть з The bag was heavy.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка була важка, тому ви її поставили. Почніть з The bag was heavy.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag was heavy, so I put it down.",
+        "localizedMeaning": {
+          "ru": "Сумка была тяжёлой, поэтому вы её поставили. Начните с The bag was heavy.",
+          "uk": "Сумка була важка, тому ви її поставили. Почніть з The bag was heavy."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "was",
+          "heavy,",
+          "so",
+          "I",
+          "put",
+          "it",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви впізнаєте сумку за подарованою вами нашивкою. Упевнено припускаєте: це сумка Бена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i10:audio"
+      ],
+      "accessibilityLabel": "Ви впізнаєте сумку за подарованою вами нашивкою. Упевнено припускаєте: це сумка Бена.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i10:audio",
+          "transcript": "This must be Ben’s bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This must be Ben’s bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви пам’ятаєте, де залишили пальто, й робите висновок із must. Виберіть форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви пам’ятаєте, де залишили пальто, й робите висновок із must. Виберіть форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы помните, где оставили пальто, и делаете вывод с must. Выберите форму.",
+          "uk": "Ви пам’ятаєте, де залишили пальто, й робите висновок із must. Виберіть форму."
+        },
+        "gappedTargetPhrase": "My coat must ___ in the car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-02:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Ви пам’ятаєте, де залишили пальто, й робите висновок із must. Виберіть форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви пам’ятаєте, де залишили пальто, й робите висновок із must. Виберіть форму.",
+            "feedbackByLocale": {
+              "ru": "После must нужна форма be.",
+              "uk": "Після must потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви пам’ятаєте, де залишили пальто, й робите висновок із must. Виберіть форму.",
+            "feedbackByLocale": {
+              "ru": "Используем начальную форму be.",
+              "uk": "Використовуємо початкову форму be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pocket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pocket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i12:audio",
+          "transcript": "pocket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-02:i12:r1",
+            "targetText": "pocket",
+            "meaningByLocale": {
+              "ru": "Карман. Повторение знакомого слова.",
+              "uk": "Кишеня. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pocket",
+          "definitionByLocale": {
+            "ru": "Карман. Повторение знакомого слова.",
+            "uk": "Кишеня. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i13:r1",
+          "text": "The pocket I checked was empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i13:r2",
+          "text": "The bag I checked was empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i13:r3",
+          "text": "The box I checked was empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i13:audio",
+          "transcript": "The pocket I checked was empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-02:i13:r1",
+            "targetText": "The pocket I checked was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i13:r2",
+            "targetText": "The bag I checked was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i13:r3",
+            "targetText": "The box I checked was empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pocket I checked was empty.",
+              "uk": "У записі звучить The pocket I checked was empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pocket I checked was empty.",
+              "uk": "У записі звучить The pocket I checked was empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви перевірили кишеню й описуєте саме її: «Кишеня, яку я перевірив, була порожня».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Ви перевірили кишеню й описуєте саме її: «Кишеня, яку я перевірив, була порожня».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i14:audio",
+          "transcript": "The pocket I checked was empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pocket I checked was empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви уточнюєте сумку: ту, яку купили вчора. Скажіть без that, що вона тут. Почніть з The bag I bought yesterday.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви уточнюєте сумку: ту, яку купили вчора. Скажіть без that, що вона тут. Почніть з The bag I bought yesterday.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag I bought yesterday is here.",
+        "localizedMeaning": {
+          "ru": "Вы уточняете сумку: ту, которую купили вчера. Скажите без that, что она здесь. Начните с The bag I bought yesterday.",
+          "uk": "Ви уточнюєте сумку: ту, яку купили вчора. Скажіть без that, що вона тут. Почніть з The bag I bought yesterday."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "I",
+          "bought",
+          "yesterday",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Важка сумка стала причиною того, що ви її поставили. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Важка сумка стала причиною того, що ви її поставили. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тяжёлая сумка стала причиной того, что вы её поставили. Вставьте «поэтому».",
+          "uk": "Важка сумка стала причиною того, що ви її поставили. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The bag was heavy, ___ I put it down.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-02:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Важка сумка стала причиною того, що ви її поставили. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i16:r2",
+            "correct": false,
+            "testedDimension": "Важка сумка стала причиною того, що ви її поставили. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i16:r3",
+            "correct": false,
+            "testedDimension": "Важка сумка стала причиною того, що ви її поставили. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен одразу повернув до потрібного будинку. Ви робите висновок: він знає це місце.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Бен одразу повернув до потрібного будинку. Ви робите висновок: він знає це місце.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i17:audio",
+          "transcript": "He must know this place."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He must know this place.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: ключі мають бути в сумці чи кишені? Тут це висновок про місце.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i18:r1",
+          "text": "The keys must be in the bag."
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i18:r2",
+          "text": "The keys must be in the pocket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i18:audioA",
+        "en:lesson-32:session-02:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: ключі мають бути в сумці чи кишені? Тут це висновок про місце.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The keys must be in the bag.",
+        "contrastB": "The keys must be in the pocket.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-02:i18:audioA",
+          "transcript": "The keys must be in the bag."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-02:i18:audioB",
+          "transcript": "The keys must be in the pocket."
+        },
+        "testedPhoneticContrast": "Послухайте: ключі мають бути в сумці чи кишені? Тут це висновок про місце.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: ключі мають бути в сумці чи кишені? Тут це висновок про місце.",
+            "feedbackByLocale": {
+              "ru": "Звучит in the bag — в сумке.",
+              "uk": "Звучить in the bag — у сумці."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте впевнений висновок про ключі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте впевнений висновок про ключі.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i19:audio",
+          "transcript": "The keys must be in the bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The keys must be in the bag.",
+        "orderedTokens": [
+          "The",
+          "keys",
+          "must",
+          "be",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен упевнено знайшов потрібний будинок. Ви робите висновок, що він знає це місце.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-02:i20:r1",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i20:r2",
+          "text": "knows"
+        },
+        {
+          "responseId": "en:lesson-32:session-02:i20:r3",
+          "text": "to know"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен упевнено знайшов потрібний будинок. Ви робите висновок, що він знає це місце.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен уверенно нашёл нужный дом. Вы делаете вывод, что он знает это место.",
+          "uk": "Бен упевнено знайшов потрібний будинок. Ви робите висновок, що він знає це місце."
+        },
+        "gappedTargetPhrase": "He must ___ this place.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-02:i20:r1",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i20:r2",
+            "text": "knows"
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i20:r3",
+            "text": "to know"
+          }
+        ],
+        "testedDimension": "Бен упевнено знайшов потрібний будинок. Ви робите висновок, що він знає це місце.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-02:i20:r2",
+            "correct": false,
+            "testedDimension": "Бен упевнено знайшов потрібний будинок. Ви робите висновок, що він знає це місце.",
+            "feedbackByLocale": {
+              "ru": "После must не добавляем s.",
+              "uk": "Після must не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-02:i20:r3",
+            "correct": false,
+            "testedDimension": "Бен упевнено знайшов потрібний будинок. Ви робите висновок, що він знає це місце.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-02:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після пошуків ви знайшли ключі й увійшли. Скажіть про причину й результат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-02:i21:audio"
+      ],
+      "accessibilityLabel": "Після пошуків ви знайшли ключі й увійшли. Скажіть про причину й результат.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-02:i21:audio",
+          "transcript": "I found my keys, so I went in."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I found my keys, so I went in.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7d5101858f43549f476c9d7c2371a72031e38bfad75a50b53c0a23e2f2cfd095"
+}

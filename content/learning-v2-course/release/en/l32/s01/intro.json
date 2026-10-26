@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "выражать уверенный вывод о настоящем через must и начальную форму глагола.",
+    "uk": "виражати впевнений висновок про теперішнє через must і початкову форму дієслова."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наверняка устал",
+        "uk": "Напевно, втомився"
+      },
+      "bodyByLocale": {
+        "ru": "Бен весь день ходил пешком. Вы делаете уверенный вывод: He must be tired — он, должно быть, устал. Соберите He + must + be + tired. Здесь must выражает вывод по признакам, а не обязанность. Перед tired после must нужно be; must не меняется из-за he.",
+        "uk": "Бен увесь день ходив пішки. Ви робите впевнений висновок: He must be tired — він, напевно, втомився. Складіть He + must + be + tired. Тут must виражає висновок за ознаками, а не обов’язок. Перед tired після must потрібне be; must не змінюється через he."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-01:intro1:r1",
+              "text": "He must be tired."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro1:r2",
+              "text": "He must tired."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro1:r3",
+              "text": "He must is tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-01:intro1:r1",
+              "text": "He must be tired."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro1:r2",
+              "text": "He must tired."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro1:r3",
+              "text": "He must is tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Судя по свету, они дома",
+        "uk": "Судячи зі світла, вони вдома"
+      },
+      "bodyByLocale": {
+        "ru": "В окнах горит свет, вы слышите знакомые голоса и уверенно предполагаете: They must be at home — они, должно быть, дома. Соберите They + must + be + at home. После must используем be, затем место at home. Это вывод по тому, что вы заметили, а не проверенный факт.",
+        "uk": "У вікнах горить світло, ви чуєте знайомі голоси й упевнено припускаєте: They must be at home — вони, напевно, вдома. Складіть They + must + be + at home. Після must використовуємо be, потім місце at home. Це висновок із того, що ви помітили, а не перевірений факт."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-01:intro2:r1",
+              "text": "They must be at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro2:r2",
+              "text": "They must are at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro2:r3",
+              "text": "They must at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-01:intro2:r1",
+              "text": "They must be at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro2:r2",
+              "text": "They must are at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro2:r3",
+              "text": "They must at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Наверняка знает дорогу",
+        "uk": "Напевно, знає дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Бен без карты быстро ведёт вас к дому Анны. Вы делаете вывод: He must know the way — он, должно быть, знает дорогу. Соберите He + must + know + the way. После must сразу ставим начальную форму know: здесь это глагол, поэтому be не добавляем.",
+        "uk": "Бен без карти швидко веде вас до будинку Анни. Ви робите висновок: He must know the way — він, напевно, знає дорогу. Складіть He + must + know + the way. Після must одразу ставимо початкову форму know: тут це дієслово, тому be не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-01:intro3:r1",
+              "text": "He must know the way."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro3:r2",
+              "text": "He must knows the way."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro3:r3",
+              "text": "He must be know the way."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-01:intro3:r1",
+              "text": "He must know the way."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro3:r2",
+              "text": "He must knows the way."
+            },
+            {
+              "responseId": "en:lesson-32:session-01:intro3:r3",
+              "text": "He must be know the way."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5145f61dc62de2eee67c6d107a31d8cb110815432c4e7b8b2b249cb46cd57f54"
+}

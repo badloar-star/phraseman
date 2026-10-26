@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-02:i01",
+    "correctText": "keys",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i02",
+    "correctText": "The keys must be here.",
+    "correctResponseId": "en:lesson-32:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i04",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i05",
+    "correctText": "The keys must be in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i06",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i07",
+    "correctText": "The coat I wore is in the car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i08",
+    "correctText": "wore",
+    "correctResponseId": "en:lesson-32:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i09",
+    "correctText": "The bag was heavy, so I put it down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i10",
+    "correctText": "This must be Ben’s bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i12",
+    "correctText": "pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i13",
+    "correctText": "The pocket I checked was empty.",
+    "correctResponseId": "en:lesson-32:session-02:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i14",
+    "correctText": "The pocket I checked was empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i15",
+    "correctText": "The bag I bought yesterday is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-02:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i17",
+    "correctText": "He must know this place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i18",
+    "correctText": "The keys must be in the bag.",
+    "correctResponseId": "en:lesson-32:session-02:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i19",
+    "correctText": "The keys must be in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i20",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-02:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-02:i21",
+    "correctText": "I found my keys, so I went in.",
+    "correctResponseId": null
+  }
+]

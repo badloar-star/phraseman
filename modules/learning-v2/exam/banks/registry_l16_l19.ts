@@ -25,6 +25,13 @@ import { CHAPTER_EXAM_V2_BANK_L18_C4 } from './chapter_exam_v2_l18_c4';
 import { CHAPTER_EXAM_V2_BANK_L18_C5 } from './chapter_exam_v2_l18_c5';
 import { CHAPTER_EXAM_V2_BANK_L18_C6 } from './chapter_exam_v2_l18_c6';
 import { CHAPTER_EXAM_V2_BANK_L18_C7 } from './chapter_exam_v2_l18_c7';
+import { CHAPTER_EXAM_V2_BANK_L19_C1 } from './chapter_exam_v2_l19_c1';
+import { CHAPTER_EXAM_V2_BANK_L19_C2 } from './chapter_exam_v2_l19_c2';
+import { CHAPTER_EXAM_V2_BANK_L19_C3 } from './chapter_exam_v2_l19_c3';
+import { CHAPTER_EXAM_V2_BANK_L19_C4 } from './chapter_exam_v2_l19_c4';
+import { CHAPTER_EXAM_V2_BANK_L19_C5 } from './chapter_exam_v2_l19_c5';
+import { CHAPTER_EXAM_V2_BANK_L19_C6 } from './chapter_exam_v2_l19_c6';
+import { CHAPTER_EXAM_V2_BANK_L19_C7 } from './chapter_exam_v2_l19_c7';
 
 export const BANKS_L16_L19: readonly ChapterExamV2Bank[] = [
   CHAPTER_EXAM_V2_BANK_L16_C1,
@@ -48,4 +55,11 @@ export const BANKS_L16_L19: readonly ChapterExamV2Bank[] = [
   CHAPTER_EXAM_V2_BANK_L18_C5,
   CHAPTER_EXAM_V2_BANK_L18_C6,
   CHAPTER_EXAM_V2_BANK_L18_C7,
+  CHAPTER_EXAM_V2_BANK_L19_C1,
+  CHAPTER_EXAM_V2_BANK_L19_C2,
+  CHAPTER_EXAM_V2_BANK_L19_C3,
+  CHAPTER_EXAM_V2_BANK_L19_C4,
+  CHAPTER_EXAM_V2_BANK_L19_C5,
+  CHAPTER_EXAM_V2_BANK_L19_C6,
+  CHAPTER_EXAM_V2_BANK_L19_C7,
 ];

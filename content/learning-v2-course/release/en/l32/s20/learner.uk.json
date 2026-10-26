@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i01:audio",
+          "transcript": "plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-20:i01:r1",
+            "targetText": "plant",
+            "meaningByLocale": {
+              "ru": "Растение. Повторение знакомого слова.",
+              "uk": "Рослина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plant",
+          "definitionByLocale": {
+            "ru": "Растение. Повторение знакомого слова.",
+            "uk": "Рослина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i02:r1",
+          "text": "The plant could be dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i02:r2",
+          "text": "The plant could be healthy."
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i02:r3",
+          "text": "The plant could be small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i02:audio",
+          "transcript": "The plant could be dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-20:i02:r1",
+            "targetText": "The plant could be dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i02:r2",
+            "targetText": "The plant could be healthy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i02:r3",
+            "targetText": "The plant could be small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plant could be dry.",
+              "uk": "У записі звучить The plant could be dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plant could be dry.",
+              "uk": "У записі звучить The plant could be dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Листья выглядят вялыми. Вы пока не знаете, когда растение поливали. Возможно, растение пересохло.",
+          "uk": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла."
+        },
+        "gappedTargetPhrase": "The plant could ___ dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-20:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+            "feedbackByLocale": {
+              "ru": "После could здесь нужна форма be.",
+              "uk": "Після could тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i04:audio",
+          "transcript": "soil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-20:i04:r1",
+            "targetText": "soil",
+            "meaningByLocale": {
+              "ru": "Почва. Повторение знакомого слова.",
+              "uk": "Ґрунт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soil",
+          "definitionByLocale": {
+            "ru": "Почва. Повторение знакомого слова.",
+            "uk": "Ґрунт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Ґрунт, напевно, сухий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Ґрунт, напевно, сухий.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soil must be dry.",
+        "localizedMeaning": {
+          "ru": "Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Почва, должно быть, сухая.",
+          "uk": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Ґрунт, напевно, сухий."
+        },
+        "orderedTokens": [
+          "The",
+          "soil",
+          "must",
+          "be",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i06:audio",
+          "transcript": "pot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-20:i06:r1",
+            "targetText": "pot",
+            "meaningByLocale": {
+              "ru": "Горшок. Повторение знакомого слова.",
+              "uk": "Горщик. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pot",
+          "definitionByLocale": {
+            "ru": "Горшок. Повторение знакомого слова.",
+            "uk": "Горщик. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Горщик, який я купив, маленький. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Горщик, який я купив, маленький. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i07:audio",
+          "transcript": "The pot I bought is small."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The pot I bought is small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
+          "uk": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The pot I ___ is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-20:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The plant could be dry.",
+        "localizedMeaning": {
+          "ru": "Листья выглядят вялыми. Вы пока не знаете, когда растение поливали. Возможно, растение пересохло.",
+          "uk": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла."
+        },
+        "orderedTokens": [
+          "The",
+          "plant",
+          "could",
+          "be",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Скажіть висновок іще раз, замінивши The soil займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Скажіть висновок іще раз, замінивши The soil займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i10:audio",
+          "transcript": "It must be dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ґрунт, напевно, сухий. Виберіть форму після must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ґрунт, напевно, сухий. Виберіть форму після must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Почва, должно быть, сухая. Выберите форму после must.",
+          "uk": "Ґрунт, напевно, сухий. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The soil must ___ dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-20:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Ґрунт, напевно, сухий. Виберіть форму після must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Ґрунт, напевно, сухий. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Ґрунт, напевно, сухий. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i12:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-20:i12:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода. Повторение знакомого слова.",
+              "uk": "Вода. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода. Повторение знакомого слова.",
+            "uk": "Вода. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i13:r1",
+          "text": "The water may be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i13:r2",
+          "text": "The water may be warm."
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i13:r3",
+          "text": "The water may be dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i13:audio",
+          "transcript": "The water may be cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-20:i13:r1",
+            "targetText": "The water may be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i13:r2",
+            "targetText": "The water may be warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i13:r3",
+            "targetText": "The water may be dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The water may be cold.",
+              "uk": "У записі звучить The water may be cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The water may be cold.",
+              "uk": "У записі звучить The water may be cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i14:audio",
+          "transcript": "The water may be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The water may be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви порівнюєте куплений горщик із рослиною й показуєте його Анні. Покажіть предмет: почніть із This is, потім назвіть the pot й уточнення I bought. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви порівнюєте куплений горщик із рослиною й показуєте його Анні. Покажіть предмет: почніть із This is, потім назвіть the pot й уточнення I bought. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the pot I bought.",
+        "localizedMeaning": {
+          "ru": "Вы сравниваете купленный горшок с растением и показываете его Анне. Покажите предмет: начните с This is, затем назовите the pot и уточнение I bought. Не добавляйте that.",
+          "uk": "Ви порівнюєте куплений горщик із рослиною й показуєте його Анні. Покажіть предмет: почніть із This is, потім назвіть the pot й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "pot",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вода была холодная, поэтому вы подождали, пока она согреется, прежде чем полить растение. Вставьте «поэтому».",
+          "uk": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The water was cold, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-20:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i16:r2",
+            "correct": false,
+            "testedDimension": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i16:r3",
+            "correct": false,
+            "testedDimension": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Почніть із причини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Вода була холодна, тому ви зачекали, поки вона зігріється, перш ніж полити рослину. Почніть із причини.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i17:audio",
+          "transcript": "The water was cold, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The water was cold, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який стан названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i18:r1",
+          "text": "The plant could be dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i18:r2",
+          "text": "The plant could be healthy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i18:audioA",
+        "en:lesson-32:session-20:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте, який стан названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The plant could be dry.",
+        "contrastB": "The plant could be healthy.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-20:i18:audioA",
+          "transcript": "The plant could be dry."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-20:i18:audioB",
+          "transcript": "The plant could be healthy."
+        },
+        "testedPhoneticContrast": "Послухайте, який стан названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який стан названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит dry.",
+              "uk": "Звучить dry."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте висновок за ознаками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте висновок за ознаками.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i19:audio",
+          "transcript": "The soil must be dry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The soil must be dry.",
+        "orderedTokens": [
+          "The",
+          "soil",
+          "must",
+          "be",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-20:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-20:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна принесла воду. Вы ещё не проверяли её температуру; возможно, она холодная.",
+          "uk": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна."
+        },
+        "gappedTargetPhrase": "The water may ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-20:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-20:i20:r2",
+            "correct": false,
+            "testedDimension": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+            "feedbackByLocale": {
+              "ru": "После may здесь используем be.",
+              "uk": "Після may тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-20:i20:r3",
+            "correct": false,
+            "testedDimension": "Анна принесла воду. Ви ще не перевіряли її температуру; можливо, вона холодна.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-20:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла. Тепер назвіть цю можливість із may.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-20:i21:audio"
+      ],
+      "accessibilityLabel": "Листя має зів’ялий вигляд. Ви поки не знаєте, коли рослину поливали. Можливо, рослина пересохла. Тепер назвіть цю можливість із may.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-20:i21:audio",
+          "transcript": "The plant may be dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The plant may be dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c5623ad8ca8a3248cc19f30e7aa642f9b14d5edd874b00e3bdfd06e65d9ea870"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-20:i01",
+    "correctText": "plant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i02",
+    "correctText": "The plant could be dry.",
+    "correctResponseId": "en:lesson-32:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i04",
+    "correctText": "soil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i05",
+    "correctText": "The soil must be dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i06",
+    "correctText": "pot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i07",
+    "correctText": "The pot I bought is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i09",
+    "correctText": "The plant could be dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i10",
+    "correctText": "It must be dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i12",
+    "correctText": "water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i13",
+    "correctText": "The water may be cold.",
+    "correctResponseId": "en:lesson-32:session-20:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i14",
+    "correctText": "The water may be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i15",
+    "correctText": "This is the pot I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-20:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i17",
+    "correctText": "The water was cold, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i18",
+    "correctText": "The plant could be dry.",
+    "correctResponseId": "en:lesson-32:session-20:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i19",
+    "correctText": "The soil must be dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-20:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-20:i21",
+    "correctText": "The plant may be dry.",
+    "correctResponseId": null
+  }
+]

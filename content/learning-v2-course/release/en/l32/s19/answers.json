@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-19:i01",
+    "correctText": "cat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i02",
+    "correctText": "The cat could be outside.",
+    "correctResponseId": "en:lesson-32:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i04",
+    "correctText": "bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i05",
+    "correctText": "The bowl must be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i06",
+    "correctText": "toy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i07",
+    "correctText": "The toy I bought is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i09",
+    "correctText": "The cat could be outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i10",
+    "correctText": "It must be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i12",
+    "correctText": "basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i13",
+    "correctText": "The basket may be empty.",
+    "correctResponseId": "en:lesson-32:session-19:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i14",
+    "correctText": "The basket may be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i15",
+    "correctText": "This is the toy I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-19:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i17",
+    "correctText": "The gate was locked, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i18",
+    "correctText": "The cat could be outside.",
+    "correctResponseId": "en:lesson-32:session-19:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i19",
+    "correctText": "The bowl must be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-19:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-19:i21",
+    "correctText": "The cat may be outside.",
+    "correctResponseId": null
+  }
+]

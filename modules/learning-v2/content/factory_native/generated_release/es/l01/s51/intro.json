@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно выбрать короткую оценку с es.",
+    "uk": "самостійно вибрати коротку оцінку з es."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это странно",
+        "uk": "Це дивно"
+      },
+      "bodyByLocale": {
+        "ru": "На вывеске среди обычных букв одна перевёрнута. Вы оцениваете увиденное: `Es extraño` — «Это странно». `Extraño` означает «странный, необычный». Соберите `es` + `extraño`. Здесь оценивается увиденное целиком, поэтому используйте мужскую форму extraño; женская форма — extraña.",
+        "uk": "На вивісці серед звичайних літер одна перевернута. Ви оцінюєте побачене: `Es extraño` — «Це дивно». `Extraño` означає «дивний, незвичайний». Складіть `es` + `extraño`. Тут оцінюється побачене загалом, тому використовуйте чоловічу форму extraño; жіноча форма — extraña."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что увиденное странно.",
+          "uk": "Скажіть, що побачене дивне."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-51:intro1:r1",
+              "text": "Es extraño."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro1:r2",
+              "text": "Eres extraño."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro1:r3",
+              "text": "No es extraño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-51:intro1:r1",
+              "text": "Es extraño."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro1:r2",
+              "text": "Eres extraño."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro1:r3",
+              "text": "No es extraño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что увиденное странно.",
+          "uk": "Скажіть, що побачене дивне."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это очевидно",
+        "uk": "Це очевидно"
+      },
+      "bodyByLocale": {
+        "ru": "Друг сомневается, действительно ли буква перевёрнута. Вы показываете на неё: `Es evidente` — «Это очевидно». `Evidente` означает «очевидный». Соберите `es` + `evidente`. Слово evidente одинаково для мужского и женского рода. Вы подтверждаете видимый факт, а не утверждаете, что знаете намерение автора вывески.",
+        "uk": "Друг сумнівається, чи справді літера перевернута. Ви показуєте на неї: `Es evidente` — «Це очевидно». `Evidente` означає «очевидний». Складіть `es` + `evidente`. Слово evidente однакове для чоловічого та жіночого роду. Ви підтверджуєте видимий факт, а не стверджуєте, що знаєте намір автора вивіски."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите очевидным то, что буква перевёрнута.",
+          "uk": "Назвіть очевидним те, що літера перевернута."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-51:intro2:r1",
+              "text": "Es evidente."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro2:r2",
+              "text": "Es imposible."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro2:r3",
+              "text": "No es evidente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-51:intro2:r1",
+              "text": "Es evidente."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro2:r2",
+              "text": "Es imposible."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro2:r3",
+              "text": "No es evidente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите очевидным то, что буква перевёрнута.",
+          "uk": "Назвіть очевидним те, що літера перевернута."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Может быть задумкой",
+        "uk": "Може бути задумом"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предполагает, что букву перевернули специально. Допустите такую возможность: `Es posible` — «Это возможно». Соберите знакомые `es` + `posible`. Выбор последнего слова меняет смысл: extraño оценивает необычность, evidente — очевидность, posible — возможность. Здесь вам нужна только оценка возможности.",
+        "uk": "Друг припускає, що літеру перевернули навмисне. Допустіть таку можливість: `Es posible` — «Це можливо». Складіть знайомі `es` + `posible`. Вибір останнього слова змінює зміст: extraño оцінює незвичність, evidente — очевидність, posible — можливість. Тут вам потрібна лише оцінка можливості."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Допустите, что букву перевернули специально.",
+          "uk": "Допустіть, що літеру перевернули навмисне."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-51:intro3:r1",
+              "text": "Es posible."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro3:r2",
+              "text": "Es evidente."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro3:r3",
+              "text": "No es posible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-51:intro3:r1",
+              "text": "Es posible."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro3:r2",
+              "text": "Es evidente."
+            },
+            {
+              "responseId": "es:lesson-01:session-51:intro3:r3",
+              "text": "No es posible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Допустите, что букву перевернули специально.",
+          "uk": "Допустіть, що літеру перевернули навмисне."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fb35c3c53f8706b214c284ef0c1f0464bd2c91b269ea2e33cd0f8829ba10e130"
+}

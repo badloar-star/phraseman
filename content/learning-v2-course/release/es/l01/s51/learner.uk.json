@@ -1,0 +1,652 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-51",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — extraño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — extraño",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i01:audio",
+          "transcript": "extraño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-51:i01:r1",
+            "targetText": "extraño",
+            "meaningByLocale": {
+              "ru": "странный. Женская форма — extraña. 🔊 *extraño*",
+              "uk": "дивний. Жіноча форма — extraña. 🔊 *extraño*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "extraño",
+          "definitionByLocale": {
+            "ru": "странный. Женская форма — extraña. 🔊 *extraño*",
+            "uk": "дивний. Жіноча форма — extraña. 🔊 *extraño*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i02:r1",
+          "text": "extraño"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i02:r2",
+          "text": "exagerado"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i02:audio",
+          "transcript": "extraño"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-51:i02:r1",
+            "targetText": "extraño",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i02:r2",
+            "targetText": "exagerado",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит extraño, с ñ.",
+              "uk": "Звучить extraño, з ñ."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — назвіть побачене дивним",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i03:r1",
+          "text": "extraño"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i03:r2",
+          "text": "evidente"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i03:r3",
+          "text": "posible"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — назвіть побачене дивним",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите увиденное странным",
+          "uk": "Вставте слово — назвіть побачене дивним"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-51:i03:r1",
+            "text": "extraño"
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i03:r2",
+            "text": "evidente"
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i03:r3",
+            "text": "posible"
+          }
+        ],
+        "testedDimension": "Вставте слово — назвіть побачене дивним",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть побачене дивним",
+            "feedbackByLocale": {
+              "ru": "Это «очевидно», а нужно «странно».",
+              "uk": "Це «очевидно», а потрібно «дивно»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть побачене дивним",
+            "feedbackByLocale": {
+              "ru": "Это «возможно», а нужно «странно».",
+              "uk": "Це «можливо», а потрібно «дивно»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть, що це дуже дивно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i04:r1",
+          "text": "Плитки: extraño"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i04:r3",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i04:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть, що це дуже дивно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy extraño.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите, что это очень странно",
+          "uk": "Зберіть фразу — скажіть, що це дуже дивно"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "extraño"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть, що це дуже дивно",
+            "feedbackByLocale": {
+              "ru": "усиливаете оценку странности.",
+              "uk": "посилюєте оцінку дивності."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — evidente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — evidente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i05:audio",
+          "transcript": "evidente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-51:i05:r1",
+            "targetText": "evidente",
+            "meaningByLocale": {
+              "ru": "очевидный. Форма одинакова для мужского и женского рода. 🔊 *evidente*",
+              "uk": "очевидний. Форма однакова для чоловічого та жіночого роду. 🔊 *evidente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "evidente",
+          "definitionByLocale": {
+            "ru": "очевидный. Форма одинакова для мужского и женского рода. 🔊 *evidente*",
+            "uk": "очевидний. Форма однакова для чоловічого та жіночого роду. 🔊 *evidente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i06:r1",
+          "text": "evidente"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i06:r2",
+          "text": "eficiente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i06:audio",
+          "transcript": "evidente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-51:i06:r1",
+            "targetText": "evidente",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i06:r2",
+            "targetText": "eficiente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит evidente — «очевидный», а не eficiente — «эффективный по затратам».",
+              "uk": "Звучить evidente — «очевидний», а не eficiente — «ефективний за витратами»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть видимий факт очевидним",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i07:r1",
+          "text": "Плитки: evidente"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i07:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть видимий факт очевидним",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es evidente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите видимый факт очевидным",
+          "uk": "Зберіть фразу — назвіть видимий факт очевидним"
+        },
+        "orderedTokens": [
+          "Es",
+          "evidente"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть видимий факт очевидним",
+            "feedbackByLocale": {
+              "ru": "речь о факте, не о собеседнике.",
+              "uk": "йдеться про факт, не про співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть перевернуту літеру дивиною",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть перевернуту літеру дивиною",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i08:audio",
+          "transcript": "Es extraño."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es extraño.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — допустіть, що це задум автора",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i09:r1",
+          "text": "posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i09:r2",
+          "text": "imposible"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i09:r3",
+          "text": "evidente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — допустіть, що це задум автора",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — допустите, что это задумка автора",
+          "uk": "Вставте слово — допустіть, що це задум автора"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-51:i09:r1",
+            "text": "posible"
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i09:r2",
+            "text": "imposible"
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i09:r3",
+            "text": "evidente"
+          }
+        ],
+        "testedDimension": "Вставте слово — допустіть, що це задум автора",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — допустіть, що це задум автора",
+            "feedbackByLocale": {
+              "ru": "Это исключает возможность, а вы её допускаете.",
+              "uk": "Це виключає можливість, а ви її допускаєте."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — допустіть, що це задум автора",
+            "feedbackByLocale": {
+              "ru": "Это утверждает очевидность, а вы только допускаете.",
+              "uk": "Це стверджує очевидність, а ви лише допускаєте."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть, що це можливо",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i10:r1",
+          "text": "Плитки: posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i10:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть, що це можливо",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es posible.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите, что это возможно",
+          "uk": "Зберіть фразу — скажіть, що це можливо"
+        },
+        "orderedTokens": [
+          "Es",
+          "posible"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть, що це можливо",
+            "feedbackByLocale": {
+              "ru": "не отрицаете возможность.",
+              "uk": "не заперечуєте можливість."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-51:i11:r1",
+          "text": "Плитки: evidente"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-51:i11:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i11:audio",
+          "transcript": "Es evidente."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es evidente.",
+        "orderedTokens": [
+          "Es",
+          "evidente"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-51:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит положительная оценка.",
+              "uk": "звучить позитивна оцінка."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — допустіть можливість того, що літеру перевернули навмисно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — допустіть можливість того, що літеру перевернули навмисно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-51:i12:audio",
+          "transcript": "Es posible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es posible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b13a0fc41659a1259b28f328f11c45e9254855d99a20082df57fb466bcd70da7"
+}

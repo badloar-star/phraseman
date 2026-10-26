@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-52",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-52:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-52:intro1:r2": {
+          "ru": "Для la luz нужна женская форма adecuada.",
+          "uk": "Для la luz потрібна жіноча форма adecuada."
+        },
+        "es:lesson-01:session-52:intro1:r3": {
+          "ru": "Eres обращено к человеку, а вопрос о свете.",
+          "uk": "Eres звернено до людини, а питання про світло."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-52:intro2:r2": {
+          "ru": "Extraño означает «странный», а нужно спросить о количестве света.",
+          "uk": "Extraño означає «дивний», а потрібно запитати про кількість світла."
+        },
+        "es:lesson-01:session-52:intro2:r3": {
+          "ru": "Вы пока говорите о свете в единственном числе la luz.",
+          "uk": "Ви поки говорите про світло в однині la luz."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-52:intro3:r2": {
+          "ru": "Это вопрос о свете как едином целом, а здесь спрашиваем о нескольких источниках.",
+          "uk": "Це питання про світло як єдине ціле, а тут запитуємо про кілька джерел."
+        },
+        "es:lesson-01:session-52:intro3:r3": {
+          "ru": "Это утверждение, а нужно спросить мнение.",
+          "uk": "Це твердження, а потрібно запитати думку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "51d2af2579c8c3793db98ee9807680d4ca7fdddd7b81fa253343d766133ae8a7"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-51:i01",
+    "correctText": "extraño",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i02",
+    "correctText": "extraño",
+    "correctResponseId": "es:lesson-01:session-51:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i03",
+    "correctText": "extraño",
+    "correctResponseId": "es:lesson-01:session-51:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i04",
+    "correctText": "Es muy extraño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i05",
+    "correctText": "evidente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i06",
+    "correctText": "evidente",
+    "correctResponseId": "es:lesson-01:session-51:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i07",
+    "correctText": "Es evidente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i08",
+    "correctText": "Es extraño.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i09",
+    "correctText": "posible",
+    "correctResponseId": "es:lesson-01:session-51:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i10",
+    "correctText": "Es posible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i11",
+    "correctText": "Es evidente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-51:i12",
+    "correctText": "Es posible.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-51",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-51:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-51:intro1:r2": {
+          "ru": "Eres описывает собеседника, а речь о вывеске.",
+          "uk": "Eres описує співрозмовника, а йдеться про вивіску."
+        },
+        "es:lesson-01:session-51:intro1:r3": {
+          "ru": "Это отрицание странности, а вы её отмечаете.",
+          "uk": "Це заперечення дивності, а ви її відзначаєте."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-51:intro2:r2": {
+          "ru": "Это невозможность, а факт виден на вывеске.",
+          "uk": "Це неможливість, а факт видно на вивісці."
+        },
+        "es:lesson-01:session-51:intro2:r3": {
+          "ru": "Это отрицание очевидности, а вы уверенно показываете на букву.",
+          "uk": "Це заперечення очевидності, а ви впевнено показуєте на літеру."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-51:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-51:intro3:r2": {
+          "ru": "Это утверждение очевидности, а намерение автора вам неизвестно.",
+          "uk": "Це твердження очевидності, а намір автора вам невідомий."
+        },
+        "es:lesson-01:session-51:intro3:r3": {
+          "ru": "Это отрицание возможности, а вы её допускаете.",
+          "uk": "Це заперечення можливості, а ви її допускаєте."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ac1f17eea899a0ad07d1b6f3c18e589e7aa135b58f113b2cae546f20544f9aab"
+}

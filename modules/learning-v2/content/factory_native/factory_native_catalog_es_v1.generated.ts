@@ -357,4 +357,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"возразить с no es и no son.","uk":"заперечувати з no es і no son."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 51,
+    sourceFingerprint: "a24c1de34007c5b585ebe0ec6ae7e099e5505703667b8c9f79a590923c4853bf",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно выбрать короткую оценку с es.","uk":"самостійно вибрати коротку оцінку з es."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 52,
+    sourceFingerprint: "dd4721fbc1977b08a38ec643e2e8afe20cfd0dc67e3abc9fa5cbd5ec12f2cf36",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить мнение с ¿Es…? и ¿Son…?.","uk":"запитати думку з ¿Es…? та ¿Son…?."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

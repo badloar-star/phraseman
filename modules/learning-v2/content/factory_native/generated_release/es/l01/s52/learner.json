@@ -1,0 +1,631 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-52",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — luz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — luz",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i01:audio",
+          "transcript": "la luz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-52:i01:r1",
+            "targetText": "la luz",
+            "meaningByLocale": {
+              "ru": "свет. Женский род; множественное — las luces. 🔊 *la luz*",
+              "uk": "світло. Жіночий рід; множина — las luces. 🔊 *la luz*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "la luz",
+          "definitionByLocale": {
+            "ru": "свет. Женский род; множественное — las luces. 🔊 *la luz*",
+            "uk": "світло. Жіночий рід; множина — las luces. 🔊 *la luz*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i02:r1",
+          "text": "luz"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i02:r2",
+          "text": "luces"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i02:audio",
+          "transcript": "luz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-52:i02:r1",
+            "targetText": "luz",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i02:r2",
+            "targetText": "luces",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит единственное число luz.",
+              "uk": "Звучить однина luz."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — adecuado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — adecuado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i03:audio",
+          "transcript": "adecuado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-52:i03:r1",
+            "targetText": "adecuado",
+            "meaningByLocale": {
+              "ru": "подходящий. Для la luz: adecuada. 🔊 *adecuado*",
+              "uk": "відповідний, підхожий. Для la luz: adecuada. 🔊 *adecuado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "adecuado",
+          "definitionByLocale": {
+            "ru": "подходящий. Для la luz: adecuada. 🔊 *adecuado*",
+            "uk": "відповідний, підхожий. Для la luz: adecuada. 🔊 *adecuado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите о подходящем свете la luz",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i04:r1",
+          "text": "adecuada"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i04:r2",
+          "text": "adecuado"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i04:r3",
+          "text": "adecuados"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите о подходящем свете la luz",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите о подходящем свете la luz",
+          "uk": "Вставте слово — запитайте про відповідне світло la luz"
+        },
+        "gappedTargetPhrase": "¿Es ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-52:i04:r1",
+            "text": "adecuada"
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i04:r2",
+            "text": "adecuado"
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i04:r3",
+            "text": "adecuados"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите о подходящем свете la luz",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите о подходящем свете la luz",
+            "feedbackByLocale": {
+              "ru": "La luz женского рода: adecuada.",
+              "uk": "La luz жіночого роду: adecuada."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите о подходящем свете la luz",
+            "feedbackByLocale": {
+              "ru": "Нужна женская форма единственного числа.",
+              "uk": "Потрібна жіноча форма однини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, подходит ли свет la luz",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i05:r1",
+          "text": "Плитки: adecuada"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i05:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i05:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, подходит ли свет la luz",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es adecuada?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, подходит ли свет la luz",
+          "uk": "Зберіть фразу — запитайте, чи підходить світло la luz"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "adecuada"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, подходит ли свет la luz",
+            "feedbackByLocale": {
+              "ru": "вопрос о свете, не о человеке.",
+              "uk": "питання про світло, не про людину."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — suficiente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — suficiente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i06:audio",
+          "transcript": "suficiente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-52:i06:r1",
+            "targetText": "suficiente",
+            "meaningByLocale": {
+              "ru": "достаточный; множественное число — suficientes. 🔊 *suficiente*",
+              "uk": "достатній; множина — suficientes. 🔊 *suficiente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suficiente",
+          "definitionByLocale": {
+            "ru": "достаточный; множественное число — suficientes. 🔊 *suficiente*",
+            "uk": "достатній; множина — suficientes. 🔊 *suficiente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i07:r1",
+          "text": "suficiente"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i07:r2",
+          "text": "eficiente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i07:audio",
+          "transcript": "suficiente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-52:i07:r1",
+            "targetText": "suficiente",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i07:r2",
+            "targetText": "eficiente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит suficiente — «достаточный».",
+              "uk": "Звучить suficiente — «достатній»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, достаточно ли света la luz",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i08:r1",
+          "text": "Плитки: suficiente"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i08:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i08:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, достаточно ли света la luz",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es suficiente?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, достаточно ли света la luz",
+          "uk": "Зберіть фразу — запитайте, чи достатньо світла la luz"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "suficiente"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, достаточно ли света la luz",
+            "feedbackByLocale": {
+              "ru": "la luz в единственном числе.",
+              "uk": "la luz в однині."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спросите, достаточно ли источников las luces",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i09:r1",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i09:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i09:r3",
+          "text": "Eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спросите, достаточно ли источников las luces",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите, достаточно ли источников las luces",
+          "uk": "Вставте слово — запитайте, чи достатньо джерел las luces"
+        },
+        "gappedTargetPhrase": "¿___ suficientes?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-52:i09:r1",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i09:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i09:r3",
+            "text": "Eres"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спросите, достаточно ли источников las luces",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите, достаточно ли источников las luces",
+            "feedbackByLocale": {
+              "ru": "Las luces во множественном числе: son.",
+              "uk": "Las luces у множині: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спросите, достаточно ли источников las luces",
+            "feedbackByLocale": {
+              "ru": "Eres обращено к одному человеку.",
+              "uk": "Eres звернено до однієї людини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, достаточно ли двух источников света",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-52:i10:r1",
+          "text": "Плитки: suficientes"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i10:r2",
+          "text": "¿son"
+        },
+        {
+          "responseId": "es:lesson-01:session-52:i10:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, достаточно ли двух источников света",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Son suficientes?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, достаточно ли двух источников света",
+          "uk": "Зберіть фразу — запитайте, чи достатньо двох джерел світла"
+        },
+        "orderedTokens": [
+          "¿Son",
+          "suficientes"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-52:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, достаточно ли двух источников света",
+            "feedbackByLocale": {
+              "ru": "речь о нескольких источниках.",
+              "uk": "йдеться про кілька джерел."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите, достаточно ли света la luz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите, достаточно ли света la luz",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i11:audio",
+          "transcript": "¿Es suficiente?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es suficiente?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите, достаточно ли источников las luces",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите, достаточно ли источников las luces",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-52:i12:audio",
+          "transcript": "¿Son suficientes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Son suficientes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "465a214383e0e3e173f1ab173233786f7417a07e08f6ab3f75fb2fc900179fa6"
+}

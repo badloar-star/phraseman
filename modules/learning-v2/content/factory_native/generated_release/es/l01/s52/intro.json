@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "спросить мнение с ¿Es…? и ¿Son…?.",
+    "uk": "запитати думку з ¿Es…? та ¿Son…?."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подходит ли свет",
+        "uk": "Чи підходить світло"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает свет для вашего уголка. `La luz` — «свет», слово женского рода. `Adecuado` означает «подходящий», женская форма — adecuada. Спросите о предложенном свете: `¿Es adecuada?` — «Он подходит?» Соберите `es` + `adecuada` и поставьте вопросительные знаки ¿…?. Форма adecuada согласуется с испанским la luz, хотя русское «свет» мужского рода.",
+        "uk": "Друг пропонує світло для вашого куточка. `La luz` — «світло», слово жіночого роду. `Adecuado` означає «відповідний, підхожий», жіноча форма — adecuada. Запитайте про запропоноване світло: `¿Es adecuada?` — «Воно підходить?» Складіть `es` + `adecuada` і поставте знаки питання ¿…?. Форма adecuada узгоджується з іспанським la luz, хоча українське «світло» середнього роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, подходит ли предложенный свет.",
+          "uk": "Запитайте, чи підходить запропоноване світло."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-52:intro1:r1",
+              "text": "¿Es adecuada?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro1:r2",
+              "text": "¿Es adecuado?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro1:r3",
+              "text": "¿Eres adecuada?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-52:intro1:r1",
+              "text": "¿Es adecuada?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro1:r2",
+              "text": "¿Es adecuado?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro1:r3",
+              "text": "¿Eres adecuada?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, подходит ли предложенный свет.",
+          "uk": "Запитайте, чи підходить запропоноване світло."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Достаточно ли его",
+        "uk": "Чи достатньо його"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь хотите узнать, хватит ли света для чтения. `Suficiente` означает «достаточный» и не меняется по роду. Спросите: `¿Es suficiente?` — «Его достаточно?» Соберите `es` + `suficiente` внутри ¿…?. Es относится к тому же la luz. Вы выясняете достаточность света, а не оцениваете человека.",
+        "uk": "Тепер хочете дізнатися, чи вистачить світла для читання. `Suficiente` означає «достатній» і не змінюється за родом. Запитайте: `¿Es suficiente?` — «Його достатньо?» Складіть `es` + `suficiente` всередині ¿…?. Es стосується того самого la luz. Ви з'ясовуєте достатність світла, а не оцінюєте людину."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, достаточно ли света.",
+          "uk": "Запитайте, чи достатньо світла."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-52:intro2:r1",
+              "text": "¿Es suficiente?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro2:r2",
+              "text": "¿Es extraño?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro2:r3",
+              "text": "¿Son suficientes?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-52:intro2:r1",
+              "text": "¿Es suficiente?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro2:r2",
+              "text": "¿Es extraño?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro2:r3",
+              "text": "¿Son suficientes?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, достаточно ли света.",
+          "uk": "Запитайте, чи достатньо світла."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько источников",
+        "uk": "Кілька джерел"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает два источника света. По-испански в этом случае можно сказать `las luces` — «огни, источники света»: во множественном числе у luz буква z заменяется на c и добавляется -es. Спросите о них: `¿Son suficientes?` — «Их достаточно?» Соберите `son` + `suficientes` внутри ¿…?. Для нескольких источников нужны son и множественное suficientes вместо es suficiente.",
+        "uk": "Друг показує два джерела світла. Іспанською в цьому випадку можна сказати `las luces` — «вогні, джерела світла»: у множині в luz літера z замінюється на c і додається -es. Запитайте про них: `¿Son suficientes?` — «Їх достатньо?» Складіть `son` + `suficientes` всередині ¿…?. Для кількох джерел потрібні son і множина suficientes замість es suficiente."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, достаточно ли двух предложенных источников света.",
+          "uk": "Запитайте, чи достатньо двох запропонованих джерел світла."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-52:intro3:r1",
+              "text": "¿Son suficientes?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro3:r2",
+              "text": "¿Es suficiente?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro3:r3",
+              "text": "Son suficientes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-52:intro3:r1",
+              "text": "¿Son suficientes?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro3:r2",
+              "text": "¿Es suficiente?"
+            },
+            {
+              "responseId": "es:lesson-01:session-52:intro3:r3",
+              "text": "Son suficientes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, достаточно ли двух предложенных источников света.",
+          "uk": "Запитайте, чи достатньо двох запропонованих джерел світла."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6d538e8f7fc13022df6d3ce74c3d7493fbf18773d9a4a0a29689d582bb5754c6"
+}

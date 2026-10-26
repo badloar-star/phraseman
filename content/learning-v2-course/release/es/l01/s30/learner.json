@@ -1,0 +1,698 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-30",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tolerante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tolerante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-30:i01:audio",
+          "transcript": "tolerante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-30:i01:r1",
+            "targetText": "tolerante",
+            "meaningByLocale": {
+              "ru": "терпимый к чужому мнению. Для нескольких людей — tolerantes. 🔊 *tolerante*",
+              "uk": "терпимий до чужої думки. Для кількох людей — tolerantes. 🔊 *tolerante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tolerante",
+          "definitionByLocale": {
+            "ru": "терпимый к чужому мнению. Для нескольких людей — tolerantes. 🔊 *tolerante*",
+            "uk": "терпимий до чужої думки. Для кількох людей — tolerantes. 🔊 *tolerante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i02:r1",
+          "text": "tolerante"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i02:r2",
+          "text": "paciente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-30:i02:audio",
+          "transcript": "tolerante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-30:i02:r1",
+            "targetText": "tolerante",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i02:r2",
+            "targetText": "paciente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tolerante, а не paciente.",
+              "uk": "Звучить tolerante, а не paciente."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — опишите себя: «Я терпимо отношусь к чужому мнению»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i03:r1",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i03:r2",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i03:r3",
+          "text": "Somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — опишите себя: «Я терпимо отношусь к чужому мнению»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — опишите себя: «Я терпимо отношусь к чужому мнению»",
+          "uk": "Вставте слово — опишіть себе: «Я терпимо ставлюся до чужої думки»"
+        },
+        "gappedTargetPhrase": "___ tolerante.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-30:i03:r1",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i03:r2",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i03:r3",
+            "text": "Somos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — опишите себя: «Я терпимо отношусь к чужому мнению»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — опишите себя: «Я терпимо отношусь к чужому мнению»",
+            "feedbackByLocale": {
+              "ru": "Это о собеседнике, не о себе.",
+              "uk": "Це про співрозмовника, не про себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — опишите себя: «Я терпимо отношусь к чужому мнению»",
+            "feedbackByLocale": {
+              "ru": "Это о своей группе, а вы описываете только себя.",
+              "uk": "Це про свою групу, а ви описуєте лише себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите другу «Ты терпимый», используя tolerante",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i04:r1",
+          "text": "Плитки: tolerante"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i04:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i04:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите другу «Ты терпимый», используя tolerante",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres tolerante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите другу «Ты терпимый», используя tolerante",
+          "uk": "Складіть фразу — скажіть другові «Ти терпимий», використовуючи tolerante"
+        },
+        "orderedTokens": [
+          "Eres",
+          "tolerante"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите другу «Ты терпимый», используя tolerante",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу.",
+              "uk": "звертаєтеся до друга."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — impuntual",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — impuntual",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-30:i05:audio",
+          "transcript": "impuntual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-30:i05:r1",
+            "targetText": "impuntual",
+            "meaningByLocale": {
+              "ru": "непунктуальный, часто опаздывающий. Для нескольких людей — impuntuales. 🔊 *impuntual*",
+              "uk": "непунктуальний, такий, що часто запізнюється. Для кількох людей — impuntuales. 🔊 *impuntual*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "impuntual",
+          "definitionByLocale": {
+            "ru": "непунктуальный, часто опаздывающий. Для нескольких людей — impuntuales. 🔊 *impuntual*",
+            "uk": "непунктуальний, такий, що часто запізнюється. Для кількох людей — impuntuales. 🔊 *impuntual*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i06:r1",
+          "text": "impuntuales"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i06:r2",
+          "text": "impuntual"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-30:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-30:i06:audio",
+          "transcript": "impuntuales"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-30:i06:r1",
+            "targetText": "impuntuales",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i06:r2",
+            "targetText": "impuntual",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит es: impuntuales.",
+              "uk": "Наприкінці звучить es: impuntuales."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите о знакомой «Она непунктуальная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i07:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i07:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i07:r3",
+          "text": "son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите о знакомой «Она непунктуальная»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о знакомой «Она непунктуальная»",
+          "uk": "Вставте слово — скажіть про знайому «Вона непунктуальна»"
+        },
+        "gappedTargetPhrase": "Ella ___ impuntual.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-30:i07:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i07:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i07:r3",
+            "text": "son"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите о знакомой «Она непунктуальная»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о знакомой «Она непунктуальная»",
+            "feedbackByLocale": {
+              "ru": "Это «ты», а здесь ella — «она».",
+              "uk": "Це «ти», а тут ella — «вона»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о знакомой «Она непунктуальная»",
+            "feedbackByLocale": {
+              "ru": "Это для нескольких людей, а здесь одна знакомая.",
+              "uk": "Це для кількох людей, а тут одна знайома."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите от своей группы «Мы терпимые», начиная с nosotros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i08:r1",
+          "text": "Плитки: tolerantes"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i08:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i08:r3",
+          "text": "nosotros"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i08:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите от своей группы «Мы терпимые», начиная с nosotros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nosotros somos tolerantes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите от своей группы «Мы терпимые», начиная с nosotros",
+          "uk": "Складіть фразу — скажіть від своєї групи «Ми терпимі», починаючи з nosotros"
+        },
+        "orderedTokens": [
+          "Nosotros",
+          "somos",
+          "tolerantes"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите от своей группы «Мы терпимые», начиная с nosotros",
+            "feedbackByLocale": {
+              "ru": "говорите от своей группы.",
+              "uk": "говорите від своєї групи."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — опишите других участников «Они непунктуальные»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i09:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i09:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i09:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — опишите других участников «Они непунктуальные»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — опишите других участников «Они непунктуальные»",
+          "uk": "Вставте слово — опишіть інших учасників «Вони непунктуальні»"
+        },
+        "gappedTargetPhrase": "Ellos ___ impuntuales.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-30:i09:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i09:r2",
+            "text": "somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i09:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — опишите других участников «Они непунктуальные»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — опишите других участников «Они непунктуальные»",
+            "feedbackByLocale": {
+              "ru": "Это «мы», а вы описываете их.",
+              "uk": "Це «ми», а ви описуєте їх."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — опишите других участников «Они непунктуальные»",
+            "feedbackByLocale": {
+              "ru": "Для нескольких участников нужна форма son.",
+              "uk": "Для кількох учасників потрібна форма son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — расскажите о своём отношении к чужому мнению",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — расскажите о своём отношении к чужому мнению",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-30:i10:audio",
+          "transcript": "Soy tolerante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Soy tolerante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i11:r1",
+          "text": "Плитки: impuntual"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i11:r3",
+          "text": "ella"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i11:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-30:i11:audio",
+          "transcript": "Ella es impuntual."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ella es impuntual.",
+        "orderedTokens": [
+          "Ella",
+          "es",
+          "impuntual"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ваш клуб назвали непунктуальным; отрицайте это от своей группы со словом impuntuales",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-30:i12:r1",
+          "text": "Плитки: impuntuales"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i12:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-30:i12:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ваш клуб назвали непунктуальным; отрицайте это от своей группы со словом impuntuales",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No somos impuntuales.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ваш клуб назвали непунктуальным; отрицайте это от своей группы со словом impuntuales",
+          "uk": "Складіть фразу — ваш клуб назвали непунктуальним; заперечте це від своєї групи зі словом impuntuales"
+        },
+        "orderedTokens": [
+          "No",
+          "somos",
+          "impuntuales"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-30:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ваш клуб назвали непунктуальным; отрицайте это от своей группы со словом impuntuales",
+            "feedbackByLocale": {
+              "ru": "вы описываете группу, в которую входите.",
+              "uk": "ви описуєте групу, до якої входите."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "181cfa4f4328af2212ed2b23040b153518c164f3a86985365d8df850807dc9fe"
+}

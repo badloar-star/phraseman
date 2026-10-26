@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-30:i01",
+    "correctText": "tolerante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i02",
+    "correctText": "tolerante",
+    "correctResponseId": "es:lesson-01:session-30:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i03",
+    "correctText": "Soy",
+    "correctResponseId": "es:lesson-01:session-30:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i04",
+    "correctText": "Eres tolerante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i05",
+    "correctText": "impuntual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i06",
+    "correctText": "impuntuales",
+    "correctResponseId": "es:lesson-01:session-30:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i07",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-30:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i08",
+    "correctText": "Nosotros somos tolerantes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i09",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-30:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i10",
+    "correctText": "Soy tolerante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i11",
+    "correctText": "Ella es impuntual.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-30:i12",
+    "correctText": "No somos impuntuales.",
+    "correctResponseId": null
+  }
+]

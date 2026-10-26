@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-29:i01",
+    "correctText": "perfecto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i02",
+    "correctText": "perfectas",
+    "correctResponseId": "es:lesson-01:session-29:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i03",
+    "correctText": "No somos perfectos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i04",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-29:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i05",
+    "correctText": "No somos perfectos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i06",
+    "correctText": "Они не идеальны",
+    "correctResponseId": "es:lesson-01:session-29:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i07",
+    "correctText": "Nosotras no somos perfectas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i08",
+    "correctText": "perfectas",
+    "correctResponseId": "es:lesson-01:session-29:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i09",
+    "correctText": "No somos perfectos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i10",
+    "correctText": "Nosotras no somos perfectas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i11",
+    "correctText": "serios",
+    "correctResponseId": "es:lesson-01:session-29:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-29:i12",
+    "correctText": "Ellos no son perfectos.",
+    "correctResponseId": null
+  }
+]

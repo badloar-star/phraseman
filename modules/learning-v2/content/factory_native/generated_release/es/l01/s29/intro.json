@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать качество своей и другой группы с no somos и no son.",
+    "uk": "заперечити рису своєї та іншої групи з no somos і no son."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мы не идеальны",
+        "uk": "Ми не ідеальні"
+      },
+      "bodyByLocale": {
+        "ru": "В команде есть мужчины и женщины. Вы забыли согласовать время выступления и признаёте, что можете ошибаться: `No somos perfectos` — «Мы не идеальны». `Perfecto` — «идеальный, без недостатков». Для группы берём `perfectos`. Соберите `no` + `somos` + `perfectos`. Это признание несовершенства, а не отказ исправлять ошибку.",
+        "uk": "У команді є чоловіки й жінки. Ви забули узгодити час виступу й визнаєте, що можете помилятися: `No somos perfectos` — «Ми не ідеальні». `Perfecto` — «ідеальний, без недоліків». Для групи беремо `perfectos`. Складіть `no` + `somos` + `perfectos`. Це визнання недосконалості, а не відмова виправляти помилку."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите от смешанной команды: «Мы не идеальны».",
+          "uk": "Скажіть від змішаної команди: «Ми не ідеальні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-29:intro1:r1",
+              "text": "No somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro1:r2",
+              "text": "Somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro1:r3",
+              "text": "No son perfectos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-29:intro1:r1",
+              "text": "No somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro1:r2",
+              "text": "Somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro1:r3",
+              "text": "No son perfectos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите от смешанной команды: «Мы не идеальны».",
+          "uk": "Скажіть від змішаної команди: «Ми не ідеальні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другие тоже не идеальны",
+        "uk": "Інші теж не ідеальні"
+      },
+      "bodyByLocale": {
+        "ru": "Друг сравнивает вас с другой командой, в которой тоже есть мужчины и женщины. Напомните: `Ellos no son perfectos` — «Они не идеальны». Сначала называем группу `ellos`, затем `no` + `son` + `perfectos`. Отрицание остаётся прямо перед формой глагола. `Son` выбираем потому, что говорим о других людях.",
+        "uk": "Друг порівнює вас з іншою командою, у якій теж є чоловіки й жінки. Нагадайте: `Ellos no son perfectos` — «Вони не ідеальні». Спочатку називаємо групу `ellos`, потім `no` + `son` + `perfectos`. Заперечення залишається прямо перед формою дієслова. `Son` обираємо тому, що говоримо про інших людей."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о другой смешанной команде, начиная с ellos: «Они не идеальны».",
+          "uk": "Скажіть про іншу змішану команду, починаючи з ellos: «Вони не ідеальні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-29:intro2:r1",
+              "text": "Ellos no son perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro2:r2",
+              "text": "Ellos no somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro2:r3",
+              "text": "Ellos son perfectos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-29:intro2:r1",
+              "text": "Ellos no son perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro2:r2",
+              "text": "Ellos no somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro2:r3",
+              "text": "Ellos son perfectos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о другой смешанной команде, начиная с ellos: «Они не идеальны».",
+          "uk": "Скажіть про іншу змішану команду, починаючи з ellos: «Вони не ідеальні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Слова от женской группы",
+        "uk": "Слова від жіночої групи"
+      },
+      "bodyByLocale": {
+        "ru": "Две участницы отвечают за украшения. Одна говорит от обеих: `Nosotras no somos perfectas` — «Мы не идеальны». Для группы только из женщин выбираем `nosotras` и `perfectas`. Отрицание не меняет правила согласования. Соберите `nosotras` + `no` + `somos` + `perfectas`.",
+        "uk": "Дві учасниці відповідають за прикраси. Одна говорить від обох: `Nosotras no somos perfectas` — «Ми не ідеальні». Для групи лише з жінок обираємо `nosotras` і `perfectas`. Заперечення не змінює правила узгодження. Складіть `nosotras` + `no` + `somos` + `perfectas`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы женщина, говорите от двух участниц. Начните с nosotras: «Мы не идеальны».",
+          "uk": "Ви жінка, говорите від двох учасниць. Почніть із nosotras: «Ми не ідеальні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-29:intro3:r1",
+              "text": "Nosotras no somos perfectas."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro3:r2",
+              "text": "Nosotras no somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro3:r3",
+              "text": "Nosotras no son perfectas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-29:intro3:r1",
+              "text": "Nosotras no somos perfectas."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro3:r2",
+              "text": "Nosotras no somos perfectos."
+            },
+            {
+              "responseId": "es:lesson-01:session-29:intro3:r3",
+              "text": "Nosotras no son perfectas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина, говорите от двух участниц. Начните с nosotras: «Мы не идеальны».",
+          "uk": "Ви жінка, говорите від двох учасниць. Почніть із nosotras: «Ми не ідеальні»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "766d6763781c639e208838aa181c3a6c81e91cec72db1a3ea08066526c1ca2ef"
+}

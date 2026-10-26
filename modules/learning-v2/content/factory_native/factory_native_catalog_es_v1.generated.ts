@@ -203,4 +203,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать размер своей группы с somos + число, без отдельного слова «человек».","uk":"назвати розмір своєї групи із somos + число, без окремого слова «людей»."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 29,
+    sourceFingerprint: "92c0e5d0453fe63610efec79568855783cf2bb08857b5c1bf0b3d7387a91c1d6",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать качество своей и другой группы с no somos и no son.","uk":"заперечити рису своєї та іншої групи з no somos і no son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 30,
+    sourceFingerprint: "efb2558dbc8bb5dfad3c837ebfff05d7577355950a934a20e8c1e3d0e5390683",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать форму ser по тому, кого описываете, в одной отдельной реплике.","uk":"обрати форму ser за тим, кого описуєте, в одній окремій репліці."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

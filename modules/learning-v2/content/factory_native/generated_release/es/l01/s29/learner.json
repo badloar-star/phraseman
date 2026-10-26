@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-29",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — perfecto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — perfecto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-29:i01:audio",
+          "transcript": "perfecto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-29:i01:r1",
+            "targetText": "perfecto",
+            "meaningByLocale": {
+              "ru": "идеальный, без недостатков. Для группы — perfectos; только для женщин — perfectas. 🔊 *perfecto*",
+              "uk": "ідеальний, без недоліків. Для групи — perfectos; лише для жінок — perfectas. 🔊 *perfecto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perfecto",
+          "definitionByLocale": {
+            "ru": "идеальный, без недостатков. Для группы — perfectos; только для женщин — perfectas. 🔊 *perfecto*",
+            "uk": "ідеальний, без недоліків. Для групи — perfectos; лише для жінок — perfectas. 🔊 *perfecto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i02:r1",
+          "text": "perfectas"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i02:r2",
+          "text": "perfectos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-29:i02:audio",
+          "transcript": "perfectas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-29:i02:r1",
+            "targetText": "perfectas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i02:r2",
+            "targetText": "perfectos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание as, форма для женской группы.",
+              "uk": "Звучить закінчення as, форма для жіночої групи."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите от своей смешанной команды «Мы не идеальны»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i03:r1",
+          "text": "Плитки: perfectos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i03:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i03:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i03:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите от своей смешанной команды «Мы не идеальны»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No somos perfectos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите от своей смешанной команды «Мы не идеальны»",
+          "uk": "Складіть фразу — скажіть від своєї змішаної команди «Ми не ідеальні»"
+        },
+        "orderedTokens": [
+          "No",
+          "somos",
+          "perfectos"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите от своей смешанной команды «Мы не идеальны»",
+            "feedbackByLocale": {
+              "ru": "вы входите в команду, поэтому somos.",
+              "uk": "ви входите до команди, тому somos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите о другой команде «Они не идеальны»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i04:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i04:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите о другой команде «Они не идеальны»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о другой команде «Они не идеальны»",
+          "uk": "Вставте слово — скажіть про іншу команду «Вони не ідеальні»"
+        },
+        "gappedTargetPhrase": "Ellos no ___ perfectos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-29:i04:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i04:r2",
+            "text": "somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите о другой команде «Они не идеальны»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о другой команде «Они не идеальны»",
+            "feedbackByLocale": {
+              "ru": "Это «мы», а вы описываете их.",
+              "uk": "Це «ми», а ви описуєте їх."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о другой команде «Они не идеальны»",
+            "feedbackByLocale": {
+              "ru": "Это форма для одного говорящего, не для ellos.",
+              "uk": "Це форма для одного мовця, не для ellos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — признайте несовершенство своей смешанной команды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — признайте несовершенство своей смешанной команды",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-29:i05:audio",
+          "transcript": "No somos perfectos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No somos perfectos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i06:r1",
+          "text": "Они не идеальны"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i06:r2",
+          "text": "Мы не идеальны"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i06:r3",
+          "text": "Они идеальны"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-29:i06:audio",
+          "transcript": "Ellos no son perfectos."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-29:i06:r1",
+            "targetText": "Они не идеальны",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i06:r2",
+            "targetText": "Мы не идеальны",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i06:r3",
+            "targetText": "Они идеальны",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит ellos son, а не nosotros somos.",
+              "uk": "Звучить ellos son, а не nosotros somos."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Пропущено отрицание no.",
+              "uk": "Пропущено заперечення no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы женщина; скажите от участниц «Мы не идеальны», начиная с nosotras",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i07:r1",
+          "text": "Плитки: perfectas"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i07:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i07:r4",
+          "text": "nosotras"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i07:r5",
+          "text": "perfectos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы женщина; скажите от участниц «Мы не идеальны», начиная с nosotras",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nosotras no somos perfectas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина; скажите от участниц «Мы не идеальны», начиная с nosotras",
+          "uk": "Складіть фразу — ви жінка; скажіть від учасниць «Ми не ідеальні», починаючи з nosotras"
+        },
+        "orderedTokens": [
+          "Nosotras",
+          "no",
+          "somos",
+          "perfectas"
+        ],
+        "authoredDistractorTokens": [
+          "perfectos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы женщина; скажите от участниц «Мы не идеальны», начиная с nosotras",
+            "feedbackByLocale": {
+              "ru": "говорите только о женщинах.",
+              "uk": "говорите лише про жінок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите о двух других участницах «Они не идеальны»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i08:r1",
+          "text": "perfectas"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i08:r2",
+          "text": "perfectos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i08:r3",
+          "text": "perfecta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите о двух других участницах «Они не идеальны»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о двух других участницах «Они не идеальны»",
+          "uk": "Вставте слово — скажіть про двох інших учасниць «Вони не ідеальні»"
+        },
+        "gappedTargetPhrase": "Ellas no son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-29:i08:r1",
+            "text": "perfectas"
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i08:r2",
+            "text": "perfectos"
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i08:r3",
+            "text": "perfecta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите о двух других участницах «Они не идеальны»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о двух других участницах «Они не идеальны»",
+            "feedbackByLocale": {
+              "ru": "Для женской группы нужна форма perfectas.",
+              "uk": "Для жіночої групи потрібна форма perfectas."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о двух других участницах «Они не идеальны»",
+            "feedbackByLocale": {
+              "ru": "Это одна женщина, а здесь две.",
+              "uk": "Це одна жінка, а тут дві."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i09:r1",
+          "text": "Плитки: somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i09:r2",
+          "text": "perfectos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i09:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i09:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-29:i09:audio",
+          "transcript": "No somos perfectos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No somos perfectos.",
+        "orderedTokens": [
+          "No",
+          "somos",
+          "perfectos"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos.",
+              "uk": "звучить somos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы женщина; ответьте от участниц",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-29:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы женщина; ответьте от участниц",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-29:i10:audio",
+          "transcript": "Nosotras no somos perfectas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nosotras no somos perfectas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несмотря на ошибку, скажите от смешанной команды «Мы серьёзные»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i11:r1",
+          "text": "serios"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i11:r2",
+          "text": "serias"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i11:r3",
+          "text": "serio"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несмотря на ошибку, скажите от смешанной команды «Мы серьёзные»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несмотря на ошибку, скажите от смешанной команды «Мы серьёзные»",
+          "uk": "Вставте слово — попри помилку, скажіть від змішаної команди «Ми серйозні»"
+        },
+        "gappedTargetPhrase": "Somos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-29:i11:r1",
+            "text": "serios"
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i11:r2",
+            "text": "serias"
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i11:r3",
+            "text": "serio"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несмотря на ошибку, скажите от смешанной команды «Мы серьёзные»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несмотря на ошибку, скажите от смешанной команды «Мы серьёзные»",
+            "feedbackByLocale": {
+              "ru": "В условии смешанная команда, а не только женщины.",
+              "uk": "В умові змішана команда, а не лише жінки."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несмотря на ошибку, скажите от смешанной команды «Мы серьёзные»",
+            "feedbackByLocale": {
+              "ru": "Нужна форма для нескольких людей с s.",
+              "uk": "Потрібна форма для кількох людей із s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — напомните об ограничениях другой смешанной команды: «Они не идеальны», начиная с ellos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-29:i12:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i12:r3",
+          "text": "perfectos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i12:r4",
+          "text": "ellos"
+        },
+        {
+          "responseId": "es:lesson-01:session-29:i12:r5",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — напомните об ограничениях другой смешанной команды: «Они не идеальны», начиная с ellos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellos no son perfectos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — напомните об ограничениях другой смешанной команды: «Они не идеальны», начиная с ellos",
+          "uk": "Складіть фразу — нагадайте про обмеження іншої змішаної команди: «Вони не ідеальні», починаючи з ellos"
+        },
+        "orderedTokens": [
+          "Ellos",
+          "no",
+          "son",
+          "perfectos"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-29:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — напомните об ограничениях другой смешанной команды: «Они не идеальны», начиная с ellos",
+            "feedbackByLocale": {
+              "ru": "вы говорите о другой команде.",
+              "uk": "ви говорите про іншу команду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0755bf6c0d59deca12ae9ed2c3a721a9c7c493de17bd770835718d3f8814d647"
+}

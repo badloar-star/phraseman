@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-29",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-29:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-29:intro1:r2": {
+          "ru": "Без no вы утверждаете, что идеальны.",
+          "uk": "Без no ви стверджуєте, що ідеальні."
+        },
+        "es:lesson-01:session-29:intro1:r3": {
+          "ru": "Это о другой группе, а вы говорите о своей.",
+          "uk": "Це про іншу групу, а ви говорите про свою."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-29:intro2:r2": {
+          "ru": "Somos — «мы», а здесь ellos — «они».",
+          "uk": "Somos — «ми», а тут ellos — «вони»."
+        },
+        "es:lesson-01:session-29:intro2:r3": {
+          "ru": "Пропущено отрицание no.",
+          "uk": "Пропущено заперечення no."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-29:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-29:intro3:r2": {
+          "ru": "Нужна форма perfectas для женщин.",
+          "uk": "Потрібна форма perfectas для жінок."
+        },
+        "es:lesson-01:session-29:intro3:r3": {
+          "ru": "Для «мы» нужна форма somos.",
+          "uk": "Для «ми» потрібна форма somos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c8e51f9fd7c08b3d52b7d7265bcd6b27ee3ebeb2424aea24ecd592bb863313d"
+}

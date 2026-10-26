@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать форму ser по тому, кого описываете, в одной отдельной реплике.",
+    "uk": "обрати форму ser за тим, кого описуєте, в одній окремій репліці."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Моё отношение к чужому мнению",
+        "uk": "Моє ставлення до чужої думки"
+      },
+      "bodyByLocale": {
+        "ru": "В клубе люди по-разному оценивают книги. Вы спокойно принимаете несогласие: `Soy tolerante` — «Я терпимо отношусь к чужому мнению». `Tolerante` — «терпимый». Говорите о себе, поэтому сначала `soy`, затем `tolerante`. Не выбирайте форму по соседнему слову: сначала определите, о ком реплика.",
+        "uk": "У клубі люди по-різному оцінюють книжки. Ви спокійно приймаєте незгоду: `Soy tolerante` — «Я терпимо ставлюся до чужої думки». `Tolerante` — «терпимий». Говорите про себе, тому спочатку `soy`, потім `tolerante`. Не обирайте форму за сусіднім словом: спочатку визначте, про кого репліка."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите себя, используя tolerante.",
+          "uk": "Опишіть себе, використовуючи tolerante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-30:intro1:r1",
+              "text": "Soy tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro1:r2",
+              "text": "Eres tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro1:r3",
+              "text": "Somos tolerantes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-30:intro1:r1",
+              "text": "Soy tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro1:r2",
+              "text": "Eres tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro1:r3",
+              "text": "Somos tolerantes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите себя, используя tolerante.",
+          "uk": "Опишіть себе, використовуючи tolerante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А теперь — о тебе",
+        "uk": "А тепер — про тебе"
+      },
+      "bodyByLocale": {
+        "ru": "Друг терпеливо выслушал противоположное мнение. Скажите ему: `Eres tolerante` — «Ты терпимо относишься к чужому мнению». Качество осталось тем же, но адресат изменился. Соберите `eres` + `tolerante`. Форма tolerante одинакова для мужчины и женщины.",
+        "uk": "Друг терпляче вислухав протилежну думку. Скажіть йому: `Eres tolerante` — «Ти терпимо ставишся до чужої думки». Риса залишилася тією самою, але адресат змінився. Складіть `eres` + `tolerante`. Форма tolerante однакова для чоловіка й жінки."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите собеседника, используя tolerante.",
+          "uk": "Опишіть співрозмовника, використовуючи tolerante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-30:intro2:r1",
+              "text": "Eres tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro2:r2",
+              "text": "Soy tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro2:r3",
+              "text": "Es tolerante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-30:intro2:r1",
+              "text": "Eres tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro2:r2",
+              "text": "Soy tolerante."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro2:r3",
+              "text": "Es tolerante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите собеседника, используя tolerante.",
+          "uk": "Опишіть співрозмовника, використовуючи tolerante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Он обычно опаздывает",
+        "uk": "Він зазвичай запізнюється"
+      },
+      "bodyByLocale": {
+        "ru": "Новый участник спрашивает о знакомом, который ещё не пришёл. Вы описываете его обычную привычку: `Él es impuntual` — «Он непунктуальный». `Impuntual` — тот, кто не соблюдает время и часто опаздывает. Соберите `él` + `es` + `impuntual`. Это характеристика привычки, а не сообщение об одном сегодняшнем опоздании. Для нескольких таких людей форма будет `impuntuales` — добавляем es после l.",
+        "uk": "Новий учасник запитує про знайомого, який іще не прийшов. Ви описуєте його звичну поведінку: `Él es impuntual` — «Він непунктуальний». `Impuntual` — той, хто не дотримується часу й часто запізнюється. Складіть `él` + `es` + `impuntual`. Це характеристика звички, а не повідомлення про одне сьогоднішнє запізнення. Для кількох таких людей форма буде `impuntuales` — додаємо es після l."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о знакомом: «Он непунктуальный», начиная с él.",
+          "uk": "Скажіть про знайомого: «Він непунктуальний», починаючи з él."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-30:intro3:r1",
+              "text": "Él es impuntual."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro3:r2",
+              "text": "Él eres impuntual."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro3:r3",
+              "text": "Él son impuntuales."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-30:intro3:r1",
+              "text": "Él es impuntual."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro3:r2",
+              "text": "Él eres impuntual."
+            },
+            {
+              "responseId": "es:lesson-01:session-30:intro3:r3",
+              "text": "Él son impuntuales."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о знакомом: «Он непунктуальный», начиная с él.",
+          "uk": "Скажіть про знайомого: «Він непунктуальний», починаючи з él."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a10916f2ed43caf51b382e1a509ec6fefbddc08b05d0a0c3c42522c4c749c646"
+}

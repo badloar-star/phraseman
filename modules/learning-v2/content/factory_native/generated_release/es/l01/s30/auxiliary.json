@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-30",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-30:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-30:intro1:r2": {
+          "ru": "Это о собеседнике, а нужно о себе.",
+          "uk": "Це про співрозмовника, а потрібно про себе."
+        },
+        "es:lesson-01:session-30:intro1:r3": {
+          "ru": "Это о всей своей группе, а не об одном говорящем.",
+          "uk": "Це про всю свою групу, а не про одного мовця."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-30:intro2:r2": {
+          "ru": "Это описание себя.",
+          "uk": "Це опис себе."
+        },
+        "es:lesson-01:session-30:intro2:r3": {
+          "ru": "Это рассказ о другом человеке, не обращение к нему на «ты».",
+          "uk": "Це розповідь про іншу людину, не звернення до неї на «ти»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-30:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-30:intro3:r2": {
+          "ru": "Eres относится к «ты», не к él.",
+          "uk": "Eres стосується «ти», не él."
+        },
+        "es:lesson-01:session-30:intro3:r3": {
+          "ru": "Son impuntuales описывает нескольких людей, а здесь один.",
+          "uk": "Son impuntuales описує кількох людей, а тут один."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "866a5791192e6214e5928d044ddcd3fc9958c3ea359b65b4b3c355aace52925b"
+}

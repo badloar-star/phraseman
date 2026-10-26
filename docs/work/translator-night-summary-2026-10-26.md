@@ -19,3 +19,17 @@
 Всё подробнее: `docs/voice/night-summary-2026-10-26.md`.
 
 **Утром 26.10:** красный тест английских пушей перезакреплён на новый тёплый текст (195d4e0f9, 8/8) — тест проверяет наличие английского, замком владельца не был.
+
+## Пуши у не-en курсов (проверка, только чтение, 26.10)
+
+- **Шлются ли:** да. Эти три пуша шлёт сервер (`functions/src/re_engage_push.ts`). Получатели выбираются по наличию push-токена (`orderBy('expoPushToken')`, стр. ~653), язык текста — язык интерфейса (`pushTokenLang`, стр. 387). Фильтра по языку изучения нет: человек, который учит es/fr/de/it, получает их так же, как изучающий en.
+- **Зовёт ли на урок:**
+  - `streak_at_risk` — да. «One **lesson** today and your streak grows» на en, es, pt, id, tr, pl («lección / lição / pelajaran / ders / lekcja»). В ru/uk стоит «занятие / заняття», vi — «bài»: это читается шире, но всё равно похоже на урок.
+  - `inactive_return` («Пять минут практики…») и `inactive_long` («пара фраз…») — нет, урок не обещают.
+- **Предложение для `streak_at_risk` (не внесено, без коммита кода):** нейтрально и правдиво для любого курса. Серию двигает любое занятие дня, не только урок.
+
+  | ru | uk | en | es | pt-BR | vi | id | tr | pl |
+  |---|---|---|---|---|---|---|---|---|
+  | Пара минут сегодня — и серия растёт. | Кілька хвилин сьогодні — і серія росте. | A couple of minutes today and your streak grows. | Un par de minutos hoy y tu racha crece. | Alguns minutos hoje e sua sequência cresce. | Vài phút hôm nay là chuỗi dài thêm. | Beberapa menit hari ini, rangkaianmu bertambah. | Bugün birkaç dakika, serin uzar. | Kilka minut dziś i seria rośnie. |
+
+- **Вносит:** Ядро (серверный файл, нужна выкладка функций). Заголовок «🔥 Серия N дней ждёт тебя» менять не нужно.

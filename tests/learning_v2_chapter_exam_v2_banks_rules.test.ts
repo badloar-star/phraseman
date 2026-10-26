@@ -64,6 +64,38 @@ describe('банки экзамена v2: правила', () => {
     }
   });
 
+  // зачем (Ревизор 26.10, координатор): до 92b29de96 сторож запрещал «?» во ВСЕХ банках — уроки 4, 5, 7 писали вопросы без знака,
+  // и человеку после ошибки показывался эталон без «?» (учит неверной пунктуации). С урока 2 вопрос обязан кончаться «?».
+  // Вопрос — строка с вопросительного слова; have/has/had — только перед подлежащим («Have you…», но не «Have a good trip.»).
+  // Не вопросы: повелительное «Do not / Don't …», восклицание на «!». Поле wrong не проверяем — там «?» может стоять нарочно.
+  it('с урока 2 вопрос в эталоне, запасном ответе и реплике кончается «?»', () => {
+    const QUESTION_START = /^(do|does|did|is|are|am|was|were|can|could|may|might|shall|should|will|would|what|where|when|who|whom|whose|why|how|which)\b/i;
+    const HAVE_QUESTION = /^(have|has|had)\s+(you|i|we|they|he|she|it|the|your|my|his|her|our|their|this|that|these|those|anyone|someone|everyone|anybody)\b/i;
+    const NOT_QUESTION = /^(do not|don['’]t)\b/i;
+    // явный список исключений с причиной: «файл: текст» → причина (пусто — исключений нет)
+    const EXCEPTIONS: Readonly<Record<string, string>> = {};
+    const isUnmarkedQuestion = (text: string): boolean => {
+      const t = text.trim();
+      if (NOT_QUESTION.test(t) || /[?!]$/.test(t)) return false;
+      return QUESTION_START.test(t) || HAVE_QUESTION.test(t);
+    };
+    // самопроверка правила на живых примерах ночи
+    expect(['Do you drive a forklift', 'Is there a dentist here', 'Have you got a pen', 'Shall we go']
+      .every(isUnmarkedQuestion)).toBe(true);
+    expect(['Do not peek!', "Don't open it.", 'Have a good trip.', 'Have some soup.', 'How nice!', 'Is it possible?', 'Please sit down.', 'Let us go.']
+      .some(isUnmarkedQuestion)).toBe(false);
+    const unmarked: string[] = [];
+    for (const [file, bank] of banks) {
+      if (bank.lessonOrdinal < 2) continue;
+      for (const item of bank.items) {
+        for (const text of [...(item.partnerLine ? [item.partnerLine] : []), ...item.accepted]) {
+          if (isUnmarkedQuestion(text) && !EXCEPTIONS[`${file}: ${text.trim()}`]) unmarked.push(`${file} ${item.id}: ${text}`);
+        }
+      }
+    }
+    expect(unmarked).toEqual([]);
+  });
+
   it('индекс собирает все реестры папки, приложение берёт банки из индекса', () => {
     const registries = fs.readdirSync(BANKS_DIR).filter((f) => /^registry_l\d\d_l\d\d\.ts$/.test(f)).map((f) => f.slice('registry_'.length, -3)).sort();
     expect(Object.keys(CHAPTER_EXAM_V2_BANK_REGISTRIES).sort()).toEqual(registries);

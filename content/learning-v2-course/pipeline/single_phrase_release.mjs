@@ -50,11 +50,15 @@ function hasCommaSeparatedIndependentClauses(value) {
   // A complete copular condition is dependent, not a second assessed sentence.
   // Match the whole segment: a prefix-only exception would hide an appended
   // main clause (e.g. "If you are tired James can drive, I will rest").
-  const copularCondition = /^(?:if|unless)\s+(?:(?:i|you|we|they|he|she|it|this|that)|(?:the|a|an|my|your|his|her|our|their)\s+[a-z]+)\s+(?:am|are|is|was|were|_{2,})\s+(?:not\s+)?[a-z]+$/iu;
+  const copularCondition = /^(?:if|unless|although)\s+(?:(?:i|you|we|they|he|she|it|this|that)|(?:the|a|an|my|your|his|her|our|their)\s+[a-z]+)\s+(?:am|are|is|was|were|_{2,})\s+(?:not\s+)?[a-z]+$/iu;
   // "If you need help" is also a complete dependent condition. Keep this
   // whole-segment match bounded so an appended main clause stays detectable.
   const helpCondition = /^(?:if|unless)\s+(?:(?:i|you|we|they)\s+need|(?:he|she|it)\s+needs)\s+help$/iu;
-  const independentClause = (part) => !copularCondition.test(part) && !helpCondition.test(part) && ((
+  // Complete concessive and coordinated clauses form one assessed sentence.
+  // Keep whole-segment matches: a conjunction prefix must not hide extra clauses.
+  const weatherConcession = /^although it (?:rained|snowed)$/iu;
+  const coordinatedContrast = /^but (?:i|you|we|they|he|she) (?:bought it|went out|cooked dinner|kept walking|called [a-z]+|can carry it)[.!?]$/iu;
+  const independentClause = (part) => !copularCondition.test(part) && !helpCondition.test(part) && !weatherConcession.test(part) && !coordinatedContrast.test(part) && ((
     (pronounSubject.test(part) || nounSubject.test(part)) && finiteVerb.test(part)
   ) || imperative.test(part));
   return parts.filter((part) => !tagQuestion.test(part)).filter(independentClause).length >= 2;

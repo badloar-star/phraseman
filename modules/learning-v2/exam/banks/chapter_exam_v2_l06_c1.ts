@@ -16,7 +16,7 @@ export const CHAPTER_EXAM_V2_BANK_L06_C1: ChapterExamV2Bank = {
   ],
   items: [
     { id: "l06c1-01", type: "situation", grammarPoint: "l06c1_i_you", situation: { ru: "Новый знакомый спрашивает, где ты работаешь. Скажи, что в аптеке.", uk: "Новий знайомий питає, де ти працюєш. Скажи, що в аптеці." }, accepted: ["I work in a pharmacy."] },
-    { id: "l06c1-02", type: "situation", grammarPoint: "l06c1_i_you", situation: { ru: "Сосед спрашивает, как ты добираешься по парку. Скажи, что ездишь на велосипеде.", uk: "Сусід питає, як ти добираєшся парком. Скажи, що їздиш на велосипеді." }, accepted: ["I ride a bicycle in the park."] },
+    { id: "l06c1-02", type: "situation", grammarPoint: "l06c1_i_you", situation: { ru: "Сосед спрашивает, как ты добираешься по парку. Скажи, что ездишь на велосипеде.", uk: "Сусід питає, як ти добираєшся парком. Скажи, що їздиш на велосипеді." }, accepted: ["I ride a bicycle in the park.", "I ride a bicycle."] },
     { id: "l06c1-03", type: "situation", grammarPoint: "l06c1_we_they", situation: { ru: "Тётя спрашивает, что вы делаете в саду. Скажи, что вы стрижёте газон.", uk: "Тітка питає, що ви робите в саду. Скажи, що ви косите газон." }, accepted: ["We mow the lawn.", "We mow the lawn in the garden."] },
     { id: "l06c1-04", type: "situation", grammarPoint: "l06c1_we_they", situation: { ru: "Друг смотрит на стройку. Скажи, что они строят стену.", uk: "Друг дивиться на будову. Скажи, що вони будують стіну." }, accepted: ["They build a wall."] },
     { id: "l06c1-05", type: "situation", grammarPoint: "l06c1_two", situation: { ru: "Ты готовишь ужин. Скажи, что режешь лук и мешаешь суп.", uk: "Ти готуєш вечерю. Скажи, що ріжеш цибулю й мішаєш суп." }, accepted: ["I chop onions and I stir the soup."] },

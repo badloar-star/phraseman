@@ -1,0 +1,791 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-04",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vaso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vaso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i01:audio",
+          "transcript": "vaso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-04:i01:r1",
+            "targetText": "vaso",
+            "meaningByLocale": {
+              "ru": "стакан. Мужской род: el vaso, un vaso. 🔊 *vaso*",
+              "uk": "склянка. Чоловічий рід: el vaso, un vaso. 🔊 *vaso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vaso",
+          "definitionByLocale": {
+            "ru": "стакан. Мужской род: el vaso, un vaso. 🔊 *vaso*",
+            "uk": "склянка. Чоловічий рід: el vaso, un vaso. 🔊 *vaso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i02:r1",
+          "text": "vaso"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i02:r2",
+          "text": "taza"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i02:audio",
+          "transcript": "vaso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-04:i02:r1",
+            "targetText": "vaso",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i02:r2",
+            "targetText": "taza",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит vaso — стакан.",
+              "uk": "Звучить vaso — склянка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — taza",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — taza",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i03:audio",
+          "transcript": "taza"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-04:i03:r1",
+            "targetText": "taza",
+            "meaningByLocale": {
+              "ru": "чашка. Женский род: la taza, una taza. 🔊 *taza*",
+              "uk": "чашка. Жіночий рід: la taza, una taza. 🔊 *taza*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "taza",
+          "definitionByLocale": {
+            "ru": "чашка. Женский род: la taza, una taza. 🔊 *taza*",
+            "uk": "чашка. Жіночий рід: la taza, una taza. 🔊 *taza*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i04:r1",
+          "text": "taza"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i04:r2",
+          "text": "vaso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i04:audio",
+          "transcript": "taza"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-04:i04:r1",
+            "targetText": "taza",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i04:r2",
+            "targetText": "vaso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит taza — чашка.",
+              "uk": "Звучить taza — чашка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите стакан",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i05:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите стакан",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите стакан",
+          "uk": "Вставте слово — назвіть склянку"
+        },
+        "gappedTargetPhrase": "Es ___ vaso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-04:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i05:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите стакан",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите стакан",
+            "feedbackByLocale": {
+              "ru": "Vaso мужского рода: un.",
+              "uk": "Vaso чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите стакан",
+            "feedbackByLocale": {
+              "ru": "No отрицает и ставится перед es; здесь нужен un.",
+              "uk": "No заперечує і ставиться перед es; тут потрібне un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите стакан",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i06:r1",
+          "text": "Плитки: vaso"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите стакан",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un vaso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите стакан",
+          "uk": "Зберіть фразу — назвіть склянку"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "vaso"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите стакан",
+            "feedbackByLocale": {
+              "ru": "vaso мужского рода.",
+              "uk": "vaso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите чашку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i07:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i07:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите чашку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите чашку",
+          "uk": "Вставте слово — назвіть чашку"
+        },
+        "gappedTargetPhrase": "Es ___ taza.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-04:i07:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i07:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i07:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите чашку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите чашку",
+            "feedbackByLocale": {
+              "ru": "Taza женского рода: una.",
+              "uk": "Taza жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите чашку",
+            "feedbackByLocale": {
+              "ru": "Es уже стоит в начале, перед taza нужна una.",
+              "uk": "Es уже стоїть на початку, перед taza потрібна una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите чашку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i08:r1",
+          "text": "Плитки: taza"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i08:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите чашку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una taza.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите чашку",
+          "uk": "Зберіть фразу — назвіть чашку"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "taza"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите чашку",
+            "feedbackByLocale": {
+              "ru": "taza женского рода.",
+              "uk": "taza жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите стакан",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите стакан",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i09:audio",
+          "transcript": "Es un vaso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un vaso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — возразите, что найденное не стакан",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i10:r1",
+          "text": "Плитки: vaso"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i10:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i10:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i10:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — возразите, что найденное не стакан",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es un vaso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — возразите, что найденное не стакан",
+          "uk": "Зберіть фразу — заперечте, що знайдене є склянкою"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "vaso"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — возразите, что найденное не стакан",
+            "feedbackByLocale": {
+              "ru": "артикль выбирается по слову vaso.",
+              "uk": "артикль вибирається за словом vaso."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i11:r1",
+          "text": "Плитки: taza"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i11:audio",
+          "transcript": "Es una taza."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una taza.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "taza"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит утверждение.",
+              "uk": "звучить твердження."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — отвергните название «стакан»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — отвергните название «стакан»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i12:audio",
+          "transcript": "No es un vaso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es un vaso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i13:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i13:r2",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-04:i13:audio",
+          "transcript": "un"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-04:i13:r1",
+            "targetText": "un",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-04:i13:r2",
+            "targetText": "una",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит короткое un, без конечного a.",
+              "uk": "Звучить коротке un, без кінцевого a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — теперь правильно назовите найденную чашку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-04:i14:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i14:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i14:r3",
+          "text": "taza"
+        },
+        {
+          "responseId": "es:lesson-02:session-04:i14:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — теперь правильно назовите найденную чашку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una taza.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — теперь правильно назовите найденную чашку",
+          "uk": "Зберіть фразу — тепер правильно назвіть знайдену чашку"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "taza"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-04:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — теперь правильно назовите найденную чашку",
+            "feedbackByLocale": {
+              "ru": "taza женского рода.",
+              "uk": "taza жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "943ebe15b79d225d730eb0de18733391f684d67bee81221c879867bab38d7ede"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "назвать один предмет женского рода с una.",
+    "uk": "назвати один предмет жіночого роду з una."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назовите сумку",
+        "uk": "Назвіть сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о предмете, в который вы складываете вещи. `Bolsa` — «сумка», слово женского рода: la bolsa. Назовите его: `Es una bolsa` — «Это сумка». Соберите `es` + `una` + `bolsa`. Для названия одного предмета женского рода вместо un используем una.",
+        "uk": "Друг запитує про предмет, у який ви складаєте речі. `Bolsa` — «сумка», слово жіночого роду: la bolsa. Назвіть його: `Es una bolsa` — «Це сумка». Складіть `es` + `una` + `bolsa`. Для назви одного предмета жіночого роду замість un використовуємо una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет сумкой.",
+          "uk": "Назвіть предмет сумкою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-02:intro1:r1",
+              "text": "Es una bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro1:r2",
+              "text": "Es un bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro1:r3",
+              "text": "Es bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-02:intro1:r1",
+              "text": "Es una bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro1:r2",
+              "text": "Es un bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro1:r3",
+              "text": "Es bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет сумкой.",
+          "uk": "Назвіть предмет сумкою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записная книжка",
+        "uk": "Записник"
+      },
+      "bodyByLocale": {
+        "ru": "Вы кладёте в сумку маленькую книжку для заметок. `Libreta` — «записная книжка, блокнот», слово женского рода: la libreta. Скажите: `Es una libreta` — «Это записная книжка». Соберите `es` + `una` + `libreta`. У libreta артикль una, а у знакомого cuaderno — un: род запоминаем вместе с испанским словом.",
+        "uk": "Ви кладете в сумку маленьку книжку для нотаток. `Libreta` — «записник, блокнот», слово жіночого роду: la libreta. Скажіть: `Es una libreta` — «Це записник». Складіть `es` + `una` + `libreta`. У libreta артикль una, а у знайомого cuaderno — un: рід запам'ятовуємо разом з іспанським словом."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет словом libreta.",
+          "uk": "Назвіть предмет словом libreta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-02:intro2:r1",
+              "text": "Es una libreta."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro2:r2",
+              "text": "Es un libreta."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro2:r3",
+              "text": "Es una cuaderno."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-02:intro2:r1",
+              "text": "Es una libreta."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro2:r2",
+              "text": "Es un libreta."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro2:r3",
+              "text": "Es una cuaderno."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет словом libreta.",
+          "uk": "Назвіть предмет словом libreta."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это не сумка",
+        "uk": "Це не сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг не видит предмет у вас в руках и спрашивает, сумка ли это. У вас записная книжка. Возразите: `No es una bolsa` — «Это не сумка». Соберите `no` + `es` + `una` + `bolsa`. No стоит перед es, а una сохраняется перед bolsa. Отрицание не меняет род названия.",
+        "uk": "Друг не бачить предмет у вас у руках і запитує, чи це сумка. У вас записник. Заперечте: `No es una bolsa` — «Це не сумка». Складіть `no` + `es` + `una` + `bolsa`. No стоїть перед es, а una зберігається перед bolsa. Заперечення не змінює рід назви."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Отвергните название «сумка».",
+          "uk": "Відкиньте назву «сумка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-02:intro3:r1",
+              "text": "No es una bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro3:r2",
+              "text": "No es un bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro3:r3",
+              "text": "Es una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-02:intro3:r1",
+              "text": "No es una bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro3:r2",
+              "text": "No es un bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-02:intro3:r3",
+              "text": "Es una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отвергните название «сумка».",
+          "uk": "Відкиньте назву «сумка»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "70d5140687b409c3d5f3eaa1fcd17321bce7ae6efc7044308f090de6f03a91a2"
+}

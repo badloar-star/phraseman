@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать un или una по испанскому названию предмета.",
+    "uk": "вибрати un або una за іспанською назвою предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стакан",
+        "uk": "Склянка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг передаёт вам стакан. `Vaso` — «стакан», слово мужского рода: el vaso. Назовите его: `Es un vaso` — «Это стакан». Соберите `es` + `un` + `vaso`. Окончание -o здесь помогает запомнить мужской род; вместе со словом запоминайте el vaso и un vaso.",
+        "uk": "Друг передає вам склянку. `Vaso` — «склянка», слово чоловічого роду: el vaso. Назвіть її: `Es un vaso` — «Це склянка». Складіть `es` + `un` + `vaso`. Закінчення -o тут допомагає запам'ятати чоловічий рід; разом зі словом запам'ятовуйте el vaso та un vaso."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет стаканом.",
+          "uk": "Назвіть предмет склянкою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-04:intro1:r1",
+              "text": "Es un vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro1:r2",
+              "text": "Es una vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro1:r3",
+              "text": "Es vaso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-04:intro1:r1",
+              "text": "Es un vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro1:r2",
+              "text": "Es una vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro1:r3",
+              "text": "Es vaso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет стаканом.",
+          "uk": "Назвіть предмет склянкою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чашка",
+        "uk": "Чашка"
+      },
+      "bodyByLocale": {
+        "ru": "Следующий предмет — чашка. `Taza` — «чашка», слово женского рода: la taza. Скажите: `Es una taza` — «Это чашка». Соберите `es` + `una` + `taza`. В этой паре vaso требует un, а taza — una. Окончание -a здесь соответствует женскому роду; это подсказка для данного слова, а не правило без исключений.",
+        "uk": "Наступний предмет — чашка. `Taza` — «чашка», слово жіночого роду: la taza. Скажіть: `Es una taza` — «Це чашка». Складіть `es` + `una` + `taza`. У цій парі vaso потребує un, а taza — una. Закінчення -a тут відповідає жіночому роду; це підказка для цього слова, а не правило без винятків."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет чашкой.",
+          "uk": "Назвіть предмет чашкою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-04:intro2:r1",
+              "text": "Es una taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro2:r2",
+              "text": "Es un taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro2:r3",
+              "text": "Es una vaso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-04:intro2:r1",
+              "text": "Es una taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro2:r2",
+              "text": "Es un taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro2:r3",
+              "text": "Es una vaso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет чашкой.",
+          "uk": "Назвіть предмет чашкою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Исправьте на слух",
+        "uk": "Виправте на слух"
+      },
+      "bodyByLocale": {
+        "ru": "Друг из соседней комнаты спрашивает, стакан ли вы нашли. У вас чашка. Возразите: `No es un vaso` — «Это не стакан». Соберите `no` + `es` + `un` + `vaso`. Выбирайте un по отрицаемому слову vaso, даже если настоящий предмет — чашка. Название чашки Es una taza можно дать следующей отдельной репликой.",
+        "uk": "Друг із сусідньої кімнати запитує, чи знайшли ви склянку. У вас чашка. Заперечте: `No es un vaso` — «Це не склянка». Складіть `no` + `es` + `un` + `vaso`. Вибирайте un за заперечуваним словом vaso, навіть якщо справжній предмет — чашка. Назву чашки Es una taza можна дати наступною окремою реплікою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Отвергните название «стакан».",
+          "uk": "Відкиньте назву «склянка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-04:intro3:r1",
+              "text": "No es un vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro3:r2",
+              "text": "No es una vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro3:r3",
+              "text": "Es un vaso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-04:intro3:r1",
+              "text": "No es un vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro3:r2",
+              "text": "No es una vaso."
+            },
+            {
+              "responseId": "es:lesson-02:session-04:intro3:r3",
+              "text": "Es un vaso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отвергните название «стакан».",
+          "uk": "Відкиньте назву «склянка»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a15fedbba8d37d0e446ca638c11096aad6870dcb9b5627159f51cad75083c0e6"
+}

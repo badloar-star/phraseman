@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "спросить «Что это?» и ответить отдельной фразой.",
+    "uk": "запитати «Що це?» та відповісти окремою фразою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросите о предмете",
+        "uk": "Запитайте про предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите упаковку, но пока не знаете, что внутри. Спросите: `¿Qué es esto?` — «Что это?» Соберите `qué` + `es` + `esto`. Qué со знаком ударения означает «что» в вопросе, esto — «это», когда указываете на пока не названную вещь. Вся фраза помещается между ¿ и ?. Esto не нужно менять по предполагаемому роду предмета.",
+        "uk": "Ви бачите упаковку, але поки не знаєте, що всередині. Запитайте: `¿Qué es esto?` — «Що це?» Складіть `qué` + `es` + `esto`. Qué зі знаком наголосу означає «що» в питанні, esto — «це», коли вказуєте на ще не названу річ. Уся фраза розміщується між ¿ і ?. Esto не потрібно змінювати за припустимим родом предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, что это.",
+          "uk": "Запитайте, що це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-03:intro1:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro1:r2",
+              "text": "¿Qué eres esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro1:r3",
+              "text": "¿Qué son esto?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-03:intro1:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro1:r2",
+              "text": "¿Qué eres esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro1:r3",
+              "text": "¿Qué son esto?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, что это.",
+          "uk": "Запитайте, що це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назовите увиденное",
+        "uk": "Назвіть побачене"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сняли часть упаковки, увидели обложку и решили, что это книга. Ответьте на вопрос: `Es un libro` — «Это книга». Соберите знакомые `es` + `un` + `libro`. В ответе вопросительное qué больше не нужно: вместо вопроса вы даёте название. Esto можно не повторять, потому что обоим понятно, о каком предмете речь.",
+        "uk": "Ви зняли частину упаковки, побачили обкладинку й вирішили, що це книга. Дайте відповідь на питання: `Es un libro` — «Це книга». Складіть знайомі `es` + `un` + `libro`. У відповіді питальне qué більше не потрібне: замість питання ви даєте назву. Esto можна не повторювати, бо обом зрозуміло, про який предмет ідеться."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите увиденный предмет книгой.",
+          "uk": "Назвіть побачений предмет книгою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-03:intro2:r1",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro2:r2",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro2:r3",
+              "text": "Es libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-03:intro2:r1",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro2:r2",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro2:r3",
+              "text": "Es libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите увиденный предмет книгой.",
+          "uk": "Назвіть побачений предмет книгою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточните после открытия",
+        "uk": "Уточніть після відкриття"
+      },
+      "bodyByLocale": {
+        "ru": "Открыли обложку: внутри страницы для записей. Это тетрадь, а не книга для чтения. Исправьте первое предположение: `No es un libro` — «Это не книга». Соберите `no` + `es` + `un` + `libro`. No ставится перед es. Правильное название Es un cuaderno произнесите следующей отдельной репликой.",
+        "uk": "Відкрили обкладинку: всередині сторінки для записів. Це зошит, а не книга для читання. Виправте перше припущення: `No es un libro` — «Це не книга». Складіть `no` + `es` + `un` + `libro`. No ставиться перед es. Правильну назву Es un cuaderno вимовте наступною окремою реплікою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Отвергните первое название «книга».",
+          "uk": "Відкиньте першу назву «книга»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-03:intro3:r1",
+              "text": "No es un libro."
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro3:r2",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro3:r3",
+              "text": "No es libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-03:intro3:r1",
+              "text": "No es un libro."
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro3:r2",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-02:session-03:intro3:r3",
+              "text": "No es libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отвергните первое название «книга».",
+          "uk": "Відкиньте першу назву «книга»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "983147024ed36acf926821f9f889bb924576f8318dd1a5c3609c51bdd058c1e9"
+}

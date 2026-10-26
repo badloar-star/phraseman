@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-02:intro1:r2": {
+          "ru": "Un подходит к мужскому роду; здесь нужна una.",
+          "uk": "Un підходить до чоловічого роду; тут потрібна una."
+        },
+        "es:lesson-02:session-02:intro1:r3": {
+          "ru": "При таком назывании одного предмета перед bolsa нужно una.",
+          "uk": "За такого називання одного предмета перед bolsa потрібна una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-02:intro2:r2": {
+          "ru": "Перед libreta нужна женская форма una.",
+          "uk": "Перед libreta потрібна жіноча форма una."
+        },
+        "es:lesson-02:session-02:intro2:r3": {
+          "ru": "Cuaderno мужского рода, а здесь нужно назвать предмет словом libreta.",
+          "uk": "Cuaderno чоловічого роду, а тут потрібно назвати предмет словом libreta."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-02:intro3:r2": {
+          "ru": "После отрицания bolsa всё равно женского рода.",
+          "uk": "Після заперечення bolsa все одно жіночого роду."
+        },
+        "es:lesson-02:session-02:intro3:r3": {
+          "ru": "Это подтверждение названия, а вы его отвергаете.",
+          "uk": "Це підтвердження назви, а ви її відкидаєте."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ae0f4a68119a2d2a733dc4227d1ddae1876825b135fde33e77f0c1367a92cf4b"
+}

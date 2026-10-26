@@ -406,4 +406,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать один предмет мужского рода с un.","uk":"назвати один предмет чоловічого роду з un."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 2,
+    sourceFingerprint: "2c4a39cb0838fc3a299f2a5ca7f9acd8854ab18fb4b9a4f5416e3b7fc51fdde0",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать один предмет женского рода с una.","uk":"назвати один предмет жіночого роду з una."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 3,
+    sourceFingerprint: "a2e4065d460681a95ccc54ca3ebb9ea86d3ffcef83c1d95098f4b61108e9e31f",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить «Что это?» и ответить отдельной фразой.","uk":"запитати «Що це?» та відповісти окремою фразою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 4,
+    sourceFingerprint: "cbe41062bb581c7a35cd9d15e57be6792a9dc262be9d90afb406a794e005f9e8",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать un или una по испанскому названию предмета.","uk":"вибрати un або una за іспанською назвою предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

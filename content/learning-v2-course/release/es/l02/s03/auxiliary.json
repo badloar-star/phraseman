@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-03:intro1:r2": {
+          "ru": "Eres обращено к человеку, а здесь нужен вопрос о предмете с es.",
+          "uk": "Eres звернено до людини, а тут потрібне питання про предмет з es."
+        },
+        "es:lesson-02:session-03:intro1:r3": {
+          "ru": "Вы спрашиваете об одной вещи: qué + es + esto.",
+          "uk": "Ви запитуєте про одну річ: qué + es + esto."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-03:intro2:r2": {
+          "ru": "Это снова вопрос, а нужно дать ответ.",
+          "uk": "Це знову питання, а потрібно дати відповідь."
+        },
+        "es:lesson-02:session-03:intro2:r3": {
+          "ru": "При назывании одного такого предмета перед libro нужно un.",
+          "uk": "За називання одного такого предмета перед libro потрібне un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-03:intro3:r2": {
+          "ru": "Это подтверждение прежнего названия, а вы его исправляете.",
+          "uk": "Це підтвердження попередньої назви, а ви її виправляєте."
+        },
+        "es:lesson-02:session-03:intro3:r3": {
+          "ru": "Перед названием одного предмета здесь сохраняется un.",
+          "uk": "Перед назвою одного предмета тут зберігається un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "932b614827e770fb6e9f994ddac33efb8bdd1268b39d0bdc413c934c3bc0afa2"
+}

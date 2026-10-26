@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-04:intro1:r2": {
+          "ru": "Una не согласуется с мужским vaso.",
+          "uk": "Una не узгоджується з чоловічим vaso."
+        },
+        "es:lesson-02:session-04:intro1:r3": {
+          "ru": "При названии одного предмета здесь нужен un.",
+          "uk": "За називання одного предмета тут потрібне un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-04:intro2:r2": {
+          "ru": "Перед taza нужна una.",
+          "uk": "Перед taza потрібна una."
+        },
+        "es:lesson-02:session-04:intro2:r3": {
+          "ru": "Vaso — стакан мужского рода, а здесь нужна чашка.",
+          "uk": "Vaso — склянка чоловічого роду, а тут потрібна чашка."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-04:intro3:r2": {
+          "ru": "Нельзя выбирать una по настоящей чашке: в этой фразе стоит мужское vaso.",
+          "uk": "Не можна вибирати una за справжньою чашкою: у цій фразі стоїть чоловіче vaso."
+        },
+        "es:lesson-02:session-04:intro3:r3": {
+          "ru": "Это подтверждение, а вы возражаете.",
+          "uk": "Це підтвердження, а ви заперечуєте."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e1e6eb0bf92394a48963ad4d0a8a3998c6e60b38eae9c7055d5feb2a01c028f"
+}

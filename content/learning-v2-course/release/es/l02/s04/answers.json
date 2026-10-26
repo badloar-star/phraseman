@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-04:i01",
+    "correctText": "vaso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i02",
+    "correctText": "vaso",
+    "correctResponseId": "es:lesson-02:session-04:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i03",
+    "correctText": "taza",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i04",
+    "correctText": "taza",
+    "correctResponseId": "es:lesson-02:session-04:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-04:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i06",
+    "correctText": "Es un vaso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i07",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-04:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i08",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i09",
+    "correctText": "Es un vaso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i10",
+    "correctText": "No es un vaso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i11",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i12",
+    "correctText": "No es un vaso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i13",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-04:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-04:i14",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  }
+]

@@ -11,6 +11,20 @@ import { CHAPTER_EXAM_V2_BANK_L20_C4 } from './chapter_exam_v2_l20_c4';
 import { CHAPTER_EXAM_V2_BANK_L20_C5 } from './chapter_exam_v2_l20_c5';
 import { CHAPTER_EXAM_V2_BANK_L20_C6 } from './chapter_exam_v2_l20_c6';
 import { CHAPTER_EXAM_V2_BANK_L20_C7 } from './chapter_exam_v2_l20_c7';
+import { CHAPTER_EXAM_V2_BANK_L21_C1 } from './chapter_exam_v2_l21_c1';
+import { CHAPTER_EXAM_V2_BANK_L21_C2 } from './chapter_exam_v2_l21_c2';
+import { CHAPTER_EXAM_V2_BANK_L21_C3 } from './chapter_exam_v2_l21_c3';
+import { CHAPTER_EXAM_V2_BANK_L21_C4 } from './chapter_exam_v2_l21_c4';
+import { CHAPTER_EXAM_V2_BANK_L21_C5 } from './chapter_exam_v2_l21_c5';
+import { CHAPTER_EXAM_V2_BANK_L21_C6 } from './chapter_exam_v2_l21_c6';
+import { CHAPTER_EXAM_V2_BANK_L21_C7 } from './chapter_exam_v2_l21_c7';
+import { CHAPTER_EXAM_V2_BANK_L22_C1 } from './chapter_exam_v2_l22_c1';
+import { CHAPTER_EXAM_V2_BANK_L22_C2 } from './chapter_exam_v2_l22_c2';
+import { CHAPTER_EXAM_V2_BANK_L22_C3 } from './chapter_exam_v2_l22_c3';
+import { CHAPTER_EXAM_V2_BANK_L22_C4 } from './chapter_exam_v2_l22_c4';
+import { CHAPTER_EXAM_V2_BANK_L22_C5 } from './chapter_exam_v2_l22_c5';
+import { CHAPTER_EXAM_V2_BANK_L22_C6 } from './chapter_exam_v2_l22_c6';
+import { CHAPTER_EXAM_V2_BANK_L22_C7 } from './chapter_exam_v2_l22_c7';
 
 export const BANKS_L20_L23: readonly ChapterExamV2Bank[] = [
   CHAPTER_EXAM_V2_BANK_L20_C1,
@@ -20,4 +34,18 @@ export const BANKS_L20_L23: readonly ChapterExamV2Bank[] = [
   CHAPTER_EXAM_V2_BANK_L20_C5,
   CHAPTER_EXAM_V2_BANK_L20_C6,
   CHAPTER_EXAM_V2_BANK_L20_C7,
+  CHAPTER_EXAM_V2_BANK_L21_C1,
+  CHAPTER_EXAM_V2_BANK_L21_C2,
+  CHAPTER_EXAM_V2_BANK_L21_C3,
+  CHAPTER_EXAM_V2_BANK_L21_C4,
+  CHAPTER_EXAM_V2_BANK_L21_C5,
+  CHAPTER_EXAM_V2_BANK_L21_C6,
+  CHAPTER_EXAM_V2_BANK_L21_C7,
+  CHAPTER_EXAM_V2_BANK_L22_C1,
+  CHAPTER_EXAM_V2_BANK_L22_C2,
+  CHAPTER_EXAM_V2_BANK_L22_C3,
+  CHAPTER_EXAM_V2_BANK_L22_C4,
+  CHAPTER_EXAM_V2_BANK_L22_C5,
+  CHAPTER_EXAM_V2_BANK_L22_C6,
+  CHAPTER_EXAM_V2_BANK_L22_C7,
 ];

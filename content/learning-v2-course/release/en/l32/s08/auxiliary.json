@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-08:intro1:r2": {
+          "ru": "Перед thirsty здесь нужна связка be.",
+          "uk": "Перед thirsty тут потрібна зв’язка be."
+        },
+        "en:lesson-32:session-08:intro1:r3": {
+          "ru": "После must используем be, не is.",
+          "uk": "Після must використовуємо be, не is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-08:intro2:r2": {
+          "ru": "Не повторяем bowl местоимением it.",
+          "uk": "Не повторюємо bowl займенником it."
+        },
+        "en:lesson-32:session-08:intro2:r3": {
+          "ru": "Для завершённого действия нужна форма washed.",
+          "uk": "Для завершеної дії потрібна форма washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-08:intro3:r2": {
+          "ru": "Нужна прошедшая форма filled.",
+          "uk": "Потрібна минула форма filled."
+        },
+        "en:lesson-32:session-08:intro3:r3": {
+          "ru": "Для прошлого действия используем filled.",
+          "uk": "Для минулої дії використовуємо filled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1eda56eab5902f513d3c027a670222486bb2cc1317fe776804511ce26d6edb25"
+}

@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — map",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — map",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i01:audio",
+          "transcript": "map"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-07:i01:r1",
+            "targetText": "map",
+            "meaningByLocale": {
+              "ru": "Карта, план. Повторение знакомого слова.",
+              "uk": "Карта, план. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "map",
+          "definitionByLocale": {
+            "ru": "Карта, план. Повторение знакомого слова.",
+            "uk": "Карта, план. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i02:r1",
+          "text": "The map I found is useful."
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i02:r2",
+          "text": "The map Ben found is useful."
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i02:r3",
+          "text": "The map Anna found is useful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i02:audio",
+          "transcript": "The map I found is useful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-07:i02:r1",
+            "targetText": "The map I found is useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i02:r2",
+            "targetText": "The map Ben found is useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i02:r3",
+            "targetText": "The map Anna found is useful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The map I found is useful.",
+              "uk": "У записі звучить The map I found is useful."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The map I found is useful.",
+              "uk": "У записі звучить The map I found is useful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен довго шукає дорогу. Ви припускаєте, що йому потрібна допомога. Виберіть форму після must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i03:r1",
+          "text": "need"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i03:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i03:r3",
+          "text": "be need"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен довго шукає дорогу. Ви припускаєте, що йому потрібна допомога. Виберіть форму після must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен долго ищет дорогу. Вы предполагаете, что ему нужна помощь. Выберите форму после must.",
+          "uk": "Бен довго шукає дорогу. Ви припускаєте, що йому потрібна допомога. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "He must ___ help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-07:i03:r1",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i03:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i03:r3",
+            "text": "be need"
+          }
+        ],
+        "testedDimension": "Бен довго шукає дорогу. Ви припускаєте, що йому потрібна допомога. Виберіть форму після must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Бен довго шукає дорогу. Ви припускаєте, що йому потрібна допомога. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "После must используем need без s.",
+              "uk": "Після must використовуємо need без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Бен довго шукає дорогу. Ви припускаєте, що йому потрібна допомога. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом need связка be не нужна.",
+              "uk": "Перед дієсловом need зв’язка be не потрібна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — exit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — exit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i04:audio",
+          "transcript": "exit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-07:i04:r1",
+            "targetText": "exit",
+            "meaningByLocale": {
+              "ru": "Выход. Повторение знакомого слова.",
+              "uk": "Вихід. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exit",
+          "definitionByLocale": {
+            "ru": "Выход. Повторение знакомого слова.",
+            "uk": "Вихід. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вихід був зачинений, тому ви з Беном повернулися. Почніть з The exit was closed.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вихід був зачинений, тому ви з Беном повернулися. Почніть з The exit was closed.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The exit was closed, so we went back.",
+        "localizedMeaning": {
+          "ru": "Выход был закрыт, поэтому вы с Беном вернулись. Начните с The exit was closed.",
+          "uk": "Вихід був зачинений, тому ви з Беном повернулися. Почніть з The exit was closed."
+        },
+        "orderedTokens": [
+          "The",
+          "exit",
+          "was",
+          "closed,",
+          "so",
+          "we",
+          "went",
+          "back"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stairs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stairs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i06:audio",
+          "transcript": "stairs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-07:i06:r1",
+            "targetText": "stairs",
+            "meaningByLocale": {
+              "ru": "Лестница, ступени. Повторение знакомого слова.",
+              "uk": "Сходи. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stairs",
+          "definitionByLocale": {
+            "ru": "Лестница, ступени. Повторение знакомого слова.",
+            "uk": "Сходи. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На плані за цими дверима сходи. Ви впевнено припускаєте: сходи тут.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "На плані за цими дверима сходи. Ви впевнено припускаєте: сходи тут.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i07:audio",
+          "transcript": "The stairs must be here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The stairs must be here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i08:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i08:r2",
+          "text": "found it"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i08:r3",
+          "text": "finding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните план, который вы нашли, не повторяя map местоимением.",
+          "uk": "Уточніть план, який ви знайшли, не повторюючи map займенником."
+        },
+        "gappedTargetPhrase": "The map I ___ is useful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-07:i08:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i08:r2",
+            "text": "found it"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i08:r3",
+            "text": "finding"
+          }
+        ],
+        "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+            "feedbackByLocale": {
+              "ru": "Map уже названо: it после found не нужно.",
+              "uk": "Map уже названо: it після found не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма found.",
+              "uk": "Потрібна минула форма found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бен повертається до тих самих дверей. Ви припускаєте, що йому потрібна допомога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен повертається до тих самих дверей. Ви припускаєте, що йому потрібна допомога.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He must need help.",
+        "localizedMeaning": {
+          "ru": "Бен возвращается к одной и той же двери. Вы предполагаете, что ему нужна помощь.",
+          "uk": "Бен повертається до тих самих дверей. Ви припускаєте, що йому потрібна допомога."
+        },
+        "orderedTokens": [
+          "He",
+          "must",
+          "need",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть двері, які відчинили: вони ведуть до сходів. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i10:audio"
+      ],
+      "accessibilityLabel": "Уточніть двері, які відчинили: вони ведуть до сходів. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i10:audio",
+          "transcript": "The door I opened leads to the stairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door I opened leads to the stairs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "За планом за цими дверима сходи. Завершіть висновок із must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i11:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i11:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "За планом за цими дверима сходи. Завершіть висновок із must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "По плану за этой дверью лестница. Завершите вывод с must.",
+          "uk": "За планом за цими дверима сходи. Завершіть висновок із must."
+        },
+        "gappedTargetPhrase": "The stairs must ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-07:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i11:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i11:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "За планом за цими дверима сходи. Завершіть висновок із must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "За планом за цими дверима сходи. Завершіть висновок із must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "За планом за цими дверима сходи. Завершіть висновок із must.",
+            "feedbackByLocale": {
+              "ru": "Используем be, не is.",
+              "uk": "Використовуємо be, не is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i12:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-07:i12:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Этаж; пол. Повторение знакомого слова.",
+              "uk": "Поверх; підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Этаж; пол. Повторение знакомого слова.",
+            "uk": "Поверх; підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i13:r1",
+          "text": "This must be the right floor."
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i13:r2",
+          "text": "This must be the wrong floor."
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i13:r3",
+          "text": "This must be the top floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i13:audio",
+          "transcript": "This must be the right floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-07:i13:r1",
+            "targetText": "This must be the right floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i13:r2",
+            "targetText": "This must be the wrong floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i13:r3",
+            "targetText": "This must be the top floor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This must be the right floor.",
+              "uk": "У записі звучить This must be the right floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This must be the right floor.",
+              "uk": "У записі звучить This must be the right floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Номер поверху збігся з планом. Ви впевнено припускаєте: це потрібний поверх.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Номер поверху збігся з планом. Ви впевнено припускаєте: це потрібний поверх.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i14:audio",
+          "transcript": "This must be the right floor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This must be the right floor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть знайдений вами план: він корисний. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть знайдений вами план: він корисний. Скажіть без that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The map I found is useful.",
+        "localizedMeaning": {
+          "ru": "Уточните найденный вами план: он полезный. Скажите без that.",
+          "uk": "Уточніть знайдений вами план: він корисний. Скажіть без that."
+        },
+        "orderedTokens": [
+          "The",
+          "map",
+          "I",
+          "found",
+          "is",
+          "useful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зачинений вихід став причиною повернення. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зачинений вихід став причиною повернення. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Закрытый выход стал причиной возвращения. Вставьте «поэтому».",
+          "uk": "Зачинений вихід став причиною повернення. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The exit was closed, ___ we went back.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-07:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Зачинений вихід став причиною повернення. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i16:r2",
+            "correct": false,
+            "testedDimension": "Зачинений вихід став причиною повернення. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i16:r3",
+            "correct": false,
+            "testedDimension": "Зачинений вихід став причиною повернення. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна швидко показала вихід на плані. Ви припускаєте, що вона знає будівлю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Анна швидко показала вихід на плані. Ви припускаєте, що вона знає будівлю.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i17:audio",
+          "transcript": "She must know this building."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She must know this building.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: Бену, напевно, потрібна допомога чи відпочинок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i18:r1",
+          "text": "He must need help."
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i18:r2",
+          "text": "He must need a rest."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i18:audioA",
+        "en:lesson-32:session-07:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: Бену, напевно, потрібна допомога чи відпочинок?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "He must need help.",
+        "contrastB": "He must need a rest.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-07:i18:audioA",
+          "transcript": "He must need help."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-07:i18:audioB",
+          "transcript": "He must need a rest."
+        },
+        "testedPhoneticContrast": "Послухайте: Бену, напевно, потрібна допомога чи відпочинок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: Бену, напевно, потрібна допомога чи відпочинок?",
+            "feedbackByLocale": {
+              "ru": "Звучит help — помощь.",
+              "uk": "Звучить help — допомога."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте висновок про Бена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте висновок про Бена.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i19:audio",
+          "transcript": "He must need help."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He must need help.",
+        "orderedTokens": [
+          "He",
+          "must",
+          "need",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна швидко знайшла вихід на плані. Ви робите висновок, що вона знає будівлю.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-07:i20:r1",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i20:r2",
+          "text": "knows"
+        },
+        {
+          "responseId": "en:lesson-32:session-07:i20:r3",
+          "text": "to know"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна швидко знайшла вихід на плані. Ви робите висновок, що вона знає будівлю.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна быстро нашла выход на плане. Вы делаете вывод, что она знает здание.",
+          "uk": "Анна швидко знайшла вихід на плані. Ви робите висновок, що вона знає будівлю."
+        },
+        "gappedTargetPhrase": "She must ___ this building.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-07:i20:r1",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i20:r2",
+            "text": "knows"
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i20:r3",
+            "text": "to know"
+          }
+        ],
+        "testedDimension": "Анна швидко знайшла вихід на плані. Ви робите висновок, що вона знає будівлю.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-07:i20:r2",
+            "correct": false,
+            "testedDimension": "Анна швидко знайшла вихід на плані. Ви робите висновок, що вона знає будівлю.",
+            "feedbackByLocale": {
+              "ru": "После must не добавляем s.",
+              "uk": "Після must не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-07:i20:r3",
+            "correct": false,
+            "testedDimension": "Анна швидко знайшла вихід на плані. Ви робите висновок, що вона знає будівлю.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-07:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви з Беном знайшли вихід і вийшли. Скажіть про причину й результат.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-07:i21:audio"
+      ],
+      "accessibilityLabel": "Ви з Беном знайшли вихід і вийшли. Скажіть про причину й результат.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-07:i21:audio",
+          "transcript": "We found the exit, so we went out."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We found the exit, so we went out.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b4bd37735a54408d0a9aaa20ace69fab98c86cc4736b0c43501075cfe3325481"
+}

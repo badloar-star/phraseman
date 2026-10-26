@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "делать вывод по признакам, уточнять предмет и называть результат действия.",
+    "uk": "робити висновок за ознаками, уточнювати предмет і називати результат дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наверное, хочет пить",
+        "uk": "Напевно, хоче пити"
+      },
+      "bodyByLocale": {
+        "ru": "После прогулки собака долго стоит возле пустой миски. Вы делаете вывод: The dog must be thirsty — собака, должно быть, хочет пить. Соберите The dog + must + be + thirsty. Thirsty описывает состояние, поэтому здесь после must нужна связка be.",
+        "uk": "Після прогулянки собака довго стоїть біля порожньої миски. Ви робите висновок: The dog must be thirsty — собака, напевно, хоче пити. Складіть The dog + must + be + thirsty. Thirsty описує стан, тому тут після must потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-08:intro1:r1",
+              "text": "The dog must be thirsty."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro1:r2",
+              "text": "The dog must thirsty."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro1:r3",
+              "text": "The dog must is thirsty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-08:intro1:r1",
+              "text": "The dog must be thirsty."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro1:r2",
+              "text": "The dog must thirsty."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro1:r3",
+              "text": "The dog must is thirsty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Миска, которую я помыл",
+        "uk": "Миска, яку я помив"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помыли миску и ставите её на пол: The bowl I washed is clean — миска, которую я помыл, чистая. Соберите The bowl + I washed + is clean. I washed уточняет bowl. That можно опустить: внутри уточнения I называет того, кто помыл миску.",
+        "uk": "Ви помили миску й ставите її на підлогу: The bowl I washed is clean — миска, яку я помив, чиста. Складіть The bowl + I washed + is clean. I washed уточнює bowl. That можна опустити: усередині уточнення I називає того, хто помив миску."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-08:intro2:r1",
+              "text": "The bowl I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro2:r2",
+              "text": "The bowl I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro2:r3",
+              "text": "The bowl I washing is clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-08:intro2:r1",
+              "text": "The bowl I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro2:r2",
+              "text": "The bowl I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro2:r3",
+              "text": "The bowl I washing is clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пустая миска — налили воды",
+        "uk": "Порожня миска — налили води"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заметили, что миска пустая, и наполнили её: The bowl was empty, so I filled it — миска была пустая, поэтому я её наполнил. Соберите The bowl was empty + so + I filled it. So связывает причину с результатом: пустая миска стала причиной вашего действия.",
+        "uk": "Ви помітили, що миска порожня, і наповнили її: The bowl was empty, so I filled it — миска була порожня, тому я її наповнив. Складіть The bowl was empty + so + I filled it. So пов’язує причину з результатом: порожня миска стала причиною вашої дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-08:intro3:r1",
+              "text": "The bowl was empty, so I filled it."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro3:r2",
+              "text": "The bowl was empty, so I filling it."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro3:r3",
+              "text": "The bowl was empty, so I fill it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-08:intro3:r1",
+              "text": "The bowl was empty, so I filled it."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro3:r2",
+              "text": "The bowl was empty, so I filling it."
+            },
+            {
+              "responseId": "en:lesson-32:session-08:intro3:r3",
+              "text": "The bowl was empty, so I fill it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "11f5a9a94ba8fbff8a5e9499c63e9b38513ae8a73d48779790c1ea2382d8fae9"
+}

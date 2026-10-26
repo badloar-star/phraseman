@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "делать вывод по поведению человека и уточнять найденные подсказки.",
+    "uk": "робити висновок із поведінки людини й уточнювати знайдені підказки."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Должно быть, нужна помощь",
+        "uk": "Напевно, потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Бен несколько раз смотрит на план здания и возвращается к той же двери. Вы предполагаете: He must need help — ему, должно быть, нужна помощь. Соберите He + must + need + help. После must сразу ставим начальную форму need без s. Must здесь выражает вывод по поведению Бена.",
+        "uk": "Бен кілька разів дивиться на план будівлі й повертається до тих самих дверей. Ви припускаєте: He must need help — йому, напевно, потрібна допомога. Складіть He + must + need + help. Після must одразу ставимо початкову форму need без s. Must тут виражає висновок із поведінки Бена."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-07:intro1:r1",
+              "text": "He must need help."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro1:r2",
+              "text": "He must needs help."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro1:r3",
+              "text": "He must be need help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-07:intro1:r1",
+              "text": "He must need help."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro1:r2",
+              "text": "He must needs help."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro1:r3",
+              "text": "He must be need help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "План, который я нашёл",
+        "uk": "План, який я знайшов"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли план здания возле входа и показываете его Бену: The map I found is useful — план, который я нашёл, полезный. Соберите The map + I found + is useful. Часть I found уточняет map. That можно опустить: внутри уточнения уже есть I, тот, кто нашёл план.",
+        "uk": "Ви знайшли план будівлі біля входу й показуєте його Бену: The map I found is useful — план, який я знайшов, корисний. Складіть The map + I found + is useful. Частина I found уточнює map. That можна опустити: усередині уточнення вже є I, той, хто знайшов план."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-07:intro2:r1",
+              "text": "The map I found is useful."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro2:r2",
+              "text": "The map I found it is useful."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro2:r3",
+              "text": "The map I find yesterday is useful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-07:intro2:r1",
+              "text": "The map I found is useful."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro2:r2",
+              "text": "The map I found it is useful."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro2:r3",
+              "text": "The map I find yesterday is useful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выход закрыт — вернулись",
+        "uk": "Вихід зачинений — повернулися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с Беном дошли до закрытого выхода: The exit was closed, so we went back — выход был закрыт, поэтому мы вернулись. Соберите The exit was closed + so + we went back. После so называем результат. Went back значит «вернулись».",
+        "uk": "Ви з Беном дійшли до зачиненого виходу: The exit was closed, so we went back — вихід був зачинений, тому ми повернулися. Складіть The exit was closed + so + we went back. Після so називаємо результат. Went back означає «повернулися»."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-07:intro3:r1",
+              "text": "The exit was closed, so we went back."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro3:r2",
+              "text": "The exit was closed, so we gone back."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro3:r3",
+              "text": "The exit was closed, so we going back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-07:intro3:r1",
+              "text": "The exit was closed, so we went back."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro3:r2",
+              "text": "The exit was closed, so we gone back."
+            },
+            {
+              "responseId": "en:lesson-32:session-07:intro3:r3",
+              "text": "The exit was closed, so we going back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0beb3f290c75d150b0ac1406c36a3e069548499e8be20d67edede5b13cb4fcb4"
+}

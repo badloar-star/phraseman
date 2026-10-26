@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i01:audio",
+          "transcript": "dog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-08:i01:r1",
+            "targetText": "dog",
+            "meaningByLocale": {
+              "ru": "Собака. Повторение знакомого слова.",
+              "uk": "Собака. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dog",
+          "definitionByLocale": {
+            "ru": "Собака. Повторение знакомого слова.",
+            "uk": "Собака. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i02:r1",
+          "text": "The dog must be thirsty."
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i02:r2",
+          "text": "The dog must be hungry."
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i02:r3",
+          "text": "The dog must be tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i02:audio",
+          "transcript": "The dog must be thirsty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-08:i02:r1",
+            "targetText": "The dog must be thirsty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i02:r2",
+            "targetText": "The dog must be hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i02:r3",
+            "targetText": "The dog must be tired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog must be thirsty.",
+              "uk": "У записі звучить The dog must be thirsty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog must be thirsty.",
+              "uk": "У записі звучить The dog must be thirsty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Собака чекає біля порожньої миски. Завершіть висновок про спрагу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Собака чекає біля порожньої миски. Завершіть висновок про спрагу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Собака ждёт у пустой миски. Завершите вывод о жажде.",
+          "uk": "Собака чекає біля порожньої миски. Завершіть висновок про спрагу."
+        },
+        "gappedTargetPhrase": "The dog must ___ thirsty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-08:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Собака чекає біля порожньої миски. Завершіть висновок про спрагу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Собака чекає біля порожньої миски. Завершіть висновок про спрагу.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Собака чекає біля порожньої миски. Завершіть висновок про спрагу.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i04:audio",
+          "transcript": "bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-08:i04:r1",
+            "targetText": "bowl",
+            "meaningByLocale": {
+              "ru": "Миска. Повторение знакомого слова.",
+              "uk": "Миска. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bowl",
+          "definitionByLocale": {
+            "ru": "Миска. Повторение знакомого слова.",
+            "uk": "Миска. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Миска, яку ви помили, чиста. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Миска, яку ви помили, чиста. Скажіть без that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bowl I washed is clean.",
+        "localizedMeaning": {
+          "ru": "Миска, которую вы помыли, чистая. Скажите без that.",
+          "uk": "Миска, яку ви помили, чиста. Скажіть без that."
+        },
+        "orderedTokens": [
+          "The",
+          "bowl",
+          "I",
+          "washed",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i06:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-08:i06:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода. Повторение знакомого слова.",
+              "uk": "Вода. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода. Повторение знакомого слова.",
+            "uk": "Вода. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Собака дивиться на порожню миску. Ви припускаєте, що їй потрібна вода.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Собака дивиться на порожню миску. Ви припускаєте, що їй потрібна вода.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i07:audio",
+          "transcript": "The dog must need water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog must need water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть помиту вами миску, не повторюючи її займенником.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i08:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i08:r2",
+          "text": "washed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i08:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть помиту вами миску, не повторюючи її займенником.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните помытую вами миску, не повторяя её местоимением.",
+          "uk": "Уточніть помиту вами миску, не повторюючи її займенником."
+        },
+        "gappedTargetPhrase": "The bowl I ___ is clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-08:i08:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i08:r2",
+            "text": "washed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i08:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Уточніть помиту вами миску, не повторюючи її займенником.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточніть помиту вами миску, не повторюючи її займенником.",
+            "feedbackByLocale": {
+              "ru": "Bowl уже названо, it не нужно.",
+              "uk": "Bowl уже названо, it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточніть помиту вами миску, не повторюючи її займенником.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма washed.",
+              "uk": "Потрібна минула форма washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Собака довго стоїть біля порожньої миски. Ви припускаєте, що вона хоче пити.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Собака довго стоїть біля порожньої миски. Ви припускаєте, що вона хоче пити.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dog must be thirsty.",
+        "localizedMeaning": {
+          "ru": "Собака долго стоит у пустой миски. Вы предполагаете, что она хочет пить.",
+          "uk": "Собака довго стоїть біля порожньої миски. Ви припускаєте, що вона хоче пити."
+        },
+        "orderedTokens": [
+          "The",
+          "dog",
+          "must",
+          "be",
+          "thirsty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Миска була порожня, тому ви її наповнили. Почніть з The bowl was empty.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Миска була порожня, тому ви її наповнили. Почніть з The bowl was empty.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i10:audio",
+          "transcript": "The bowl was empty, so I filled it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bowl was empty, so I filled it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "За поведінкою собаки ви припускаєте, що їй потрібна вода.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i11:r1",
+          "text": "need"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i11:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i11:r3",
+          "text": "be need"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "За поведінкою собаки ви припускаєте, що їй потрібна вода.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "По поведению собаки вы предполагаете, что ей нужна вода.",
+          "uk": "За поведінкою собаки ви припускаєте, що їй потрібна вода."
+        },
+        "gappedTargetPhrase": "The dog must ___ water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-08:i11:r1",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i11:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i11:r3",
+            "text": "be need"
+          }
+        ],
+        "testedDimension": "За поведінкою собаки ви припускаєте, що їй потрібна вода.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "За поведінкою собаки ви припускаєте, що їй потрібна вода.",
+            "feedbackByLocale": {
+              "ru": "После must не добавляем s.",
+              "uk": "Після must не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "За поведінкою собаки ви припускаєте, що їй потрібна вода.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом need связка be не нужна.",
+              "uk": "Перед дієсловом need зв’язка be не потрібна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i12:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-08:i12:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "Полотенце. Повторение знакомого слова.",
+              "uk": "Рушник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "Полотенце. Повторение знакомого слова.",
+            "uk": "Рушник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i13:r1",
+          "text": "The towel I used is wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i13:r2",
+          "text": "The towel I used is dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i13:r3",
+          "text": "The towel I used is clean."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i13:audio",
+          "transcript": "The towel I used is wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-08:i13:r1",
+            "targetText": "The towel I used is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i13:r2",
+            "targetText": "The towel I used is dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i13:r3",
+            "targetText": "The towel I used is clean.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The towel I used is wet.",
+              "uk": "У записі звучить The towel I used is wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The towel I used is wet.",
+              "uk": "У записі звучить The towel I used is wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви витерли собаку рушником. Уточніть: рушник, яким ви скористалися, мокрий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Ви витерли собаку рушником. Уточніть: рушник, яким ви скористалися, мокрий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i14:audio",
+          "transcript": "The towel I used is wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The towel I used is wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Собаці потрібна вода. За її поведінкою ви робите впевнений висновок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Собаці потрібна вода. За її поведінкою ви робите впевнений висновок.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dog must need water.",
+        "localizedMeaning": {
+          "ru": "Собаке нужна вода. По её поведению вы делаете уверенный вывод.",
+          "uk": "Собаці потрібна вода. За її поведінкою ви робите впевнений висновок."
+        },
+        "orderedTokens": [
+          "The",
+          "dog",
+          "must",
+          "need",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Порожня миска стала причиною вашої дії. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Порожня миска стала причиною вашої дії. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пустая миска стала причиной вашего действия. Вставьте «поэтому».",
+          "uk": "Порожня миска стала причиною вашої дії. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The bowl was empty, ___ I filled it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-08:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Порожня миска стала причиною вашої дії. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i16:r2",
+            "correct": false,
+            "testedDimension": "Порожня миска стала причиною вашої дії. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Здесь после связки идёт результат, нужен so.",
+              "uk": "Тут після сполучника йде результат, потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i16:r3",
+            "correct": false,
+            "testedDimension": "Порожня миска стала причиною вашої дії. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Although выражает уступку, а здесь результат.",
+              "uk": "Although виражає допустове значення, а тут результат."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після довгої прогулянки собака засинає на підлозі. Ви припускаєте, що вона втомилася.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Після довгої прогулянки собака засинає на підлозі. Ви припускаєте, що вона втомилася.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i17:audio",
+          "transcript": "The dog must be tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog must be tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: рушник мокрий чи сухий?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i18:r1",
+          "text": "The towel I used is wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i18:r2",
+          "text": "The towel I used is dry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i18:audioA",
+        "en:lesson-32:session-08:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: рушник мокрий чи сухий?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The towel I used is wet.",
+        "contrastB": "The towel I used is dry.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-08:i18:audioA",
+          "transcript": "The towel I used is wet."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-08:i18:audioB",
+          "transcript": "The towel I used is dry."
+        },
+        "testedPhoneticContrast": "Послухайте: рушник мокрий чи сухий?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: рушник мокрий чи сухий?",
+            "feedbackByLocale": {
+              "ru": "Звучит wet — мокрое.",
+              "uk": "Звучить wet — мокрий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте фразу про миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про миску.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i19:audio",
+          "transcript": "The bowl I washed is clean."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bowl I washed is clean.",
+        "orderedTokens": [
+          "The",
+          "bowl",
+          "I",
+          "washed",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть рушник, яким скористалися.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-08:i20:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i20:r2",
+          "text": "used it"
+        },
+        {
+          "responseId": "en:lesson-32:session-08:i20:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть рушник, яким скористалися.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните полотенце, которым воспользовались.",
+          "uk": "Уточніть рушник, яким скористалися."
+        },
+        "gappedTargetPhrase": "The towel I ___ is wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-08:i20:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i20:r2",
+            "text": "used it"
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i20:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Уточніть рушник, яким скористалися.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-08:i20:r2",
+            "correct": false,
+            "testedDimension": "Уточніть рушник, яким скористалися.",
+            "feedbackByLocale": {
+              "ru": "Не повторяем towel местоимением it.",
+              "uk": "Не повторюємо towel займенником it."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-08:i20:r3",
+            "correct": false,
+            "testedDimension": "Уточніть рушник, яким скористалися.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма used.",
+              "uk": "Потрібна минула форма used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-08:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Собака випила воду й заснула. Ви робите висновок: тепер їй спокійно та зручно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-08:i21:audio"
+      ],
+      "accessibilityLabel": "Собака випила воду й заснула. Ви робите висновок: тепер їй спокійно та зручно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-08:i21:audio",
+          "transcript": "The dog must be comfortable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog must be comfortable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7e6ee9b8d329388959a98c5f1e57fb44ada3f2eae10c25c16fe57d3d6dd7e4fa"
+}

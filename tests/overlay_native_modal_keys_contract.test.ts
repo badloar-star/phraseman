@@ -13,7 +13,8 @@ const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 // Окна, у которых слот занимает хук, а рисует другой файл: ключ → [файл, где рисуется, фрагмент рядом с <Modal>].
 const HOOK_DRIVEN_MODAL_HOSTS: { key: OverlayKey; host: string; anchor: RegExp }[] = [
   { key: 'spireWeekMoment', host: 'components/spire/moments/SpireWeekMomentHost.tsx', anchor: /<Modal\b/ },
-  { key: 'welcomeBack', host: 'app/(tabs)/home.tsx', anchor: /<Modal\b[^>]*onRequestClose=\{welcomeBack\.close\}/ },
+  // перепин 26.10 (Моменты №4): «С возвращением» рисует свой хост рядом с Главной, не сама Главная
+  { key: 'welcomeBack', host: 'components/home/home_moment_slots.tsx', anchor: /<Modal\b[^>]*onRequestClose=\{welcomeBack\.close\}/ },
   { key: 'coinRankEnough', host: 'app/(tabs)/home.tsx', anchor: /<Modal\b[^>]*onRequestClose=\{rankEnough\.close\}/ },
 ];
 

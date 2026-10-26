@@ -71,10 +71,10 @@ import { glassTone } from '../../components/dialogs/glass/glassTone';
 import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
-import { useSpireWeekMoment } from '../spire/use_spire_week_moment';
 import { spirePendingCoinsTotal } from '../spire/spire_pending_coins';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
-import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
+// зачем (Моменты №4, координатор 26.10): окна «итог недели» и «С возвращением» держат своё состояние в своих хостах — Главная от них не перерисовывается
+import { HomeWeekMomentSlot, HomeWelcomeBackSlot } from '../../components/home/home_moment_slots';
 import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
 import { peekEnergy } from '../energy_peek_cache';
 import { SheetSwipeRoot } from '../../components/modal_fx/SheetSwipeClose';
@@ -172,10 +172,6 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 // Окна — ленивые компоненты с прежними именами, монтируются только после первого открытия (и остаются, чтобы
 // проиграть закрытие); их модули прогреваются после первого кадра (prewarmHomeDeferredModules), поэтому первое
 // открытие не ждёт загрузки. Вид первого кадра не меняется: эти окна на нём закрыты.
-// зачем (D191, владелец 14.10): окно итога недели (m01–m03) тяжёлое (башня, SVG, фейерверк) и нужно раз в неделю — грузится лениво и только когда хук Ядра дал слот
-const SpireWeekMomentHost = lazy(() => import('../../components/spire/moments/SpireWeekMomentHost'));
-// зачем (D193, владелец 14.10): «С возвращением» (m21) — раз после долгой отлучки; грузится лениво, когда хук Авторизации дал слот
-const WelcomeBackMoment = lazy(() => import('../../components/moments/WelcomeBackMoment'));
 // зачем (Ядро 15.10, D195, окно «Встречайте PhraseMan 2.0»): хост — крошечная обёртка (ждёт первый кадр Главной); клиент начисления и шторка с анимациями грузятся лениво внутри него
 import LegacyBonusWelcomeHost from '../../components/legacy_bonus/LegacyBonusWelcomeHost';
 // зачем ([HOME-CHILD-COST] 18.10, журнал Сверки: рендер детей Главной 76–142 мс на возврате): dev-измерение каждого крупного ребёнка React Profiler; в релизе withHomeChildCost возвращает тот же компонент
@@ -779,18 +775,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
       console.log('[SURVEY-ROW]', JSON.stringify({ source: homeTodayRowSource, surveyOffered: homeSurvey.row !== null, pollPhase: homePollV2.phase, reason: homeTodayRowSource === 'survey' ? 'active_survey_campaign' : homeTodayRowSource === 'poll_v2' ? 'no_survey_poll_active' : 'nothing_active' })); // guard-ok: одна строка на смену выбора
     }, [homeTodayRowSource, homeSurvey.row, homePollV2.phase]);
-    const weekMoment = useSpireWeekMoment({ uiLang: lang, studyTarget: String(studyTarget), tabEnabled: spireTabEnabled, active: homeRuntimeActive });
     // зачем (координатор 14.10; эталон v3-all: Играть ведёт в игру): после синхронного закрытия окна — в раздел Пика; Пик недоступен этому языку / вкладка выключена → кнопка только закрывает окно
     const weekMomentPlay = useMemo(() => (spireTabEnabled && isLearningSurfaceReady(studyTarget, 'spire') ? () => { nav.push('/(tabs)/community?section=spire' as never); } : undefined), [nav, spireTabEnabled, studyTarget]);
     // зачем (координатор 14.10): авто-пейвол «серия» шёл мимо очереди окон и мог въехать поверх окна недели / «С возвращением» — перед push ждём свободный слот, показываем один раз после ([PAYWALL-AUTO])
     // зачем (D193, Авторизация 14.10): «С возвращением» стоит в той же очереди окон сразу после итога недели; энергия — из памяти (peek), без чтений
     const energyPeekNow = peekEnergy();
-    const welcomeBack = useWelcomeBackMoment({
-        studyTarget: String(studyTarget),
-        coinRank: isValidCoinRank(myCoinRank) ? myCoinRank : null,
-        energy: energyPeekNow ? { current: energyPeekNow.energy, max: energyPeekNow.maxEnergy } : null,
-        active: homeRuntimeActive,
-    });
+    // «К карточкам» из «С возвращением» — тот же путь, что у плитки «Сохранённые» на Главной; стабильный колбэк, чтобы хост окна не перерисовывался зря
+    const homeOpenSavedCards = useCallback(() => { nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never); }, [nav]);
     const rankEnough = useCoinRankEnoughMoment({ active: homeRuntimeActive });
     const overlayActiveKey = useOverlayActiveKey();
     const overlayActiveKeyRef = useRef(overlayActiveKey);
@@ -3015,7 +3006,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
         celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance: homeShownCoins, runesKnown, belowFoldReady,
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
-        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
+        goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,
         // зачем ([HOME-SETSTATE] 18.10): значения, которых не было в снимке — «parent_or_unlisted» на возврате (~0,3 с и ~1,2 с) не имел названной причины; onOpenDevHub — признак «перерисовал родитель»
         continueMarks, continueV2Progress, continueV2Launching, devMistakesCardOverride, devMistakesCount, homeMotionReduceMotion, homePriorityCardReduceMotion, homeFeatureTipReduceMotion, onOpenDevHub,
@@ -3172,22 +3163,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 });
             });
         }}/></Suspense>) : null}
-      {weekMoment.visible && weekMoment.decision ? (<Suspense fallback={null}><SpireWeekMomentHost lang={lang} decision={weekMoment.decision} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} onClose={weekMoment.close} onPlay={weekMomentPlay} onRemind={weekMoment.remind.available ? weekMoment.remind.schedule : undefined} /></Suspense>) : null}
-      {welcomeBack.visible && welcomeBack.decision ? (
-        <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={welcomeBack.close}>
-          <SheetSwipeRoot>
-            <Suspense fallback={null}>
-              <WelcomeBackMoment
-                lang={lang}
-                coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null}
-                decision={welcomeBack.decision}
-                onCards={() => { welcomeBack.close(); nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never); }} /* зачем: тот же путь, что у плитки «Сохранённые» на Главной */
-                onHome={welcomeBack.close}
-              />
-            </Suspense>
-          </SheetSwipeRoot>
-        </Modal>
-      ) : null}
+      <HomeWeekMomentSlot lang={lang} studyTarget={String(studyTarget)} spireTabEnabled={spireTabEnabled} active={homeRuntimeActive} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} onPlay={weekMomentPlay} />
+      <HomeWelcomeBackSlot lang={lang} studyTarget={String(studyTarget)} active={homeRuntimeActive} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} energyCurrent={energyPeekNow ? energyPeekNow.energy : null} energyMax={energyPeekNow ? energyPeekNow.maxEnergy : null} onOpenSavedCards={homeOpenSavedCards} />
       <LegacyBonusWelcomeHost lang={lang} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} active={homeRuntimeActive} />
       {rankEnough.visible && rankEnough.offer ? (
         <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={rankEnough.close}>

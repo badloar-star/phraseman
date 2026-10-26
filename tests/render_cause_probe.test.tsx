@@ -86,6 +86,8 @@ describe('по замеру coldstart_1315_r2: результат хука «Д�
     // перепин 18.10 ([HOME-SETSTATE], Дизайн): опрос, окно недели и «С возвращением» отдают новый объект на каждый рендер — в снимке их значимые поля, иначе в журнале они «менялись» всегда
     // перепин 22.10: опрос переехал в строку «Сегодня» (4ee8c2585) — в снимке его фаза и открытие
     // перепин 22.10: опросы-кампании вернулись в строку «Сегодня» (2a8478e1b) — в снимке, предложена ли строка и запуск шторки (оба решают отрисовку)
-    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot');
+    // перепин 26.10 (Моменты №4, Ядро): окно недели и «С возвращением» переехали в свои хосты (components/home/home_moment_slots.tsx) — Главная на их состояние больше не подписана, в её снимке их нет
+    expect(home).toContain('goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, appSnapshot');
+    expect(home).not.toMatch(/weekMoment\.|welcomeBack\./);
   });
 });

@@ -1,0 +1,805 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-16",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — competitivo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — competitivo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i01:audio",
+          "transcript": "competitivo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-16:i01:r1",
+            "targetText": "competitivo",
+            "meaningByLocale": {
+              "ru": "любящий соревноваться, стремящийся победить. Женская форма — competitiva. Здесь описываем отношение человека к соперничеству. 🔊 *competitivo*",
+              "uk": "той, хто любить змагатися, прагне перемогти. Жіноча форма — competitiva. Тут описуємо ставлення людини до суперництва. 🔊 *competitivo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "competitivo",
+          "definitionByLocale": {
+            "ru": "любящий соревноваться, стремящийся победить. Женская форма — competitiva. Здесь описываем отношение человека к соперничеству. 🔊 *competitivo*",
+            "uk": "той, хто любить змагатися, прагне перемогти. Жіноча форма — competitiva. Тут описуємо ставлення людини до суперництва. 🔊 *competitivo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tranquilo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tranquilo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i02:audio",
+          "transcript": "tranquilo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-16:i02:r1",
+            "targetText": "tranquilo",
+            "meaningByLocale": {
+              "ru": "спокойный. Женская форма — tranquila. С soy говорим о спокойном характере. 🔊 *tranquilo*",
+              "uk": "спокійний. Жіноча форма — tranquila. Із soy говоримо про спокійний характер. 🔊 *tranquilo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tranquilo",
+          "definitionByLocale": {
+            "ru": "спокойный. Женская форма — tranquila. С soy говорим о спокойном характере. 🔊 *tranquilo*",
+            "uk": "спокійний. Жіноча форма — tranquila. Із soy говоримо про спокійний характер. 🔊 *tranquilo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i03:r1",
+          "text": "Ти любиш змагатися?"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i03:r2",
+          "text": "Я люблю змагатися"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i03:r3",
+          "text": "Ти спокійна?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i03:audio",
+          "transcript": "¿Eres competitiva?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-16:i03:r1",
+            "targetText": "Ти любиш змагатися?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i03:r2",
+            "targetText": "Я люблю змагатися",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i03:r3",
+            "targetText": "Ти спокійна?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Звучит вопрос с eres, обращённый к собеседнице.",
+              "uk": "Звучить запитання з eres, звернене до співрозмовниці."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Competitiva говорит о любви к соперничеству, не о спокойствии.",
+              "uk": "Competitiva говорить про любов до суперництва, не про спокій."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитайте друга «Ти спокійний?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i04:r1",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i04:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i04:r3",
+          "text": "No"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитайте друга «Ти спокійний?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите друга «Ты спокойный?»",
+          "uk": "Вставте слово — запитайте друга «Ти спокійний?»"
+        },
+        "gappedTargetPhrase": "¿___ tranquilo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-16:i04:r1",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i04:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i04:r3",
+            "text": "No"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитайте друга «Ти спокійний?»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте друга «Ти спокійний?»",
+            "feedbackByLocale": {
+              "ru": "Soy означает «я», а вопрос обращён к другу.",
+              "uk": "Soy означає «я», а запитання звернене до друга."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте друга «Ти спокійний?»",
+            "feedbackByLocale": {
+              "ru": "No отрицает; здесь нужна форма для «ты»: eres.",
+              "uk": "No заперечує; тут потрібна форма для «ти»: eres."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви жінка; скажіть «Я люблю змагатися»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i05:r1",
+          "text": "Плитки: competitiva"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i05:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i05:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви жінка; скажіть «Я люблю змагатися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy competitiva.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина; скажите «Я люблю соревноваться»",
+          "uk": "Складіть фразу — ви жінка; скажіть «Я люблю змагатися»"
+        },
+        "orderedTokens": [
+          "Soy",
+          "competitiva"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви жінка; скажіть «Я люблю змагатися»",
+            "feedbackByLocale": {
+              "ru": "говорите о себе.",
+              "uk": "говорите про себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви жінка; опишіть свій спокійний характер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви жінка; опишіть свій спокійний характер",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i06:audio",
+          "transcript": "Soy tranquila."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Soy tranquila.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви чоловік; на запитання «¿Eres competitivo?» дайте відповідь «Ні, я не люблю змагатися»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i07:r1",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i07:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i07:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви чоловік; на запитання «¿Eres competitivo?» дайте відповідь «Ні, я не люблю змагатися»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы мужчина; на вопрос «¿Eres competitivo?» ответьте «Нет, я не люблю соревноваться»",
+          "uk": "Вставте слово — ви чоловік; на запитання «¿Eres competitivo?» дайте відповідь «Ні, я не люблю змагатися»"
+        },
+        "gappedTargetPhrase": "No, no ___ competitivo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-16:i07:r1",
+            "text": "soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i07:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i07:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви чоловік; на запитання «¿Eres competitivo?» дайте відповідь «Ні, я не люблю змагатися»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви чоловік; на запитання «¿Eres competitivo?» дайте відповідь «Ні, я не люблю змагатися»",
+            "feedbackByLocale": {
+              "ru": "После ответа «нет» нужно описать себя с soy, а не собеседника с eres.",
+              "uk": "Після відповіді «ні» потрібно описати себе із soy, а не співрозмовника з eres."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви чоловік; на запитання «¿Eres competitivo?» дайте відповідь «Ні, я не люблю змагатися»",
+            "feedbackByLocale": {
+              "ru": "Здесь вы говорите о себе, поэтому soy.",
+              "uk": "Тут ви говорите про себе, тому soy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i08:r1",
+          "text": "Так, я спокійний"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i08:r2",
+          "text": "Так, ти спокійний"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i08:r3",
+          "text": "Ні, я не спокійний"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i08:audio",
+          "transcript": "Sí, soy tranquilo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-16:i08:r1",
+            "targetText": "Так, я спокійний",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i08:r2",
+            "targetText": "Так, ти спокійний",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i08:r3",
+            "targetText": "Ні, я не спокійний",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Звучит soy — о себе.",
+              "uk": "Звучить soy — про себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Звучит sí, а отрицания нет.",
+              "uk": "Звучить sí, а заперечення немає."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть подрузі «Ти не вперта»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i09:r1",
+          "text": "Плитки: terca"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i09:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i09:r3",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i09:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть подрузі «Ти не вперта»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No eres terca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите подруге «Ты не упрямая»",
+          "uk": "Складіть фразу — скажіть подрузі «Ти не вперта»"
+        },
+        "orderedTokens": [
+          "No",
+          "eres",
+          "terca"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть подрузі «Ти не вперта»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к подруге, поэтому eres.",
+              "uk": "звертаєтеся до подруги, тому eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви чоловік; скажіть «Я рішучий»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i10:r1",
+          "text": "decidido"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i10:r2",
+          "text": "decidida"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i10:r3",
+          "text": "indeciso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви чоловік; скажіть «Я рішучий»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы мужчина; скажите «Я решительный»",
+          "uk": "Вставте слово — ви чоловік; скажіть «Я рішучий»"
+        },
+        "gappedTargetPhrase": "Soy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-16:i10:r1",
+            "text": "decidido"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i10:r2",
+            "text": "decidida"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i10:r3",
+            "text": "indeciso"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви чоловік; скажіть «Я рішучий»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви чоловік; скажіть «Я рішучий»",
+            "feedbackByLocale": {
+              "ru": "Это женская форма; говорит мужчина.",
+              "uk": "Це жіноча форма; говорить чоловік."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви чоловік; скажіть «Я рішучий»",
+            "feedbackByLocale": {
+              "ru": "Это «нерешительный», противоположное качество.",
+              "uk": "Це «нерішучий», протилежна риса."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — дізнайтеся в подруги, чи легко вона змінює плани",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — дізнайтеся в подруги, чи легко вона змінює плани",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i11:audio",
+          "transcript": "¿Eres flexible?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Eres flexible?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви жінка; скажіть про свій характер «Я не спокійна»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i12:r1",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i12:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i12:r3",
+          "text": "sí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви жінка; скажіть про свій характер «Я не спокійна»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы женщина; скажите о своём характере «Я не спокойная»",
+          "uk": "Вставте слово — ви жінка; скажіть про свій характер «Я не спокійна»"
+        },
+        "gappedTargetPhrase": "No ___ tranquila.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-16:i12:r1",
+            "text": "soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i12:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i12:r3",
+            "text": "sí"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви жінка; скажіть про свій характер «Я не спокійна»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви жінка; скажіть про свій характер «Я не спокійна»",
+            "feedbackByLocale": {
+              "ru": "Это о собеседнице, а вы описываете себя.",
+              "uk": "Це про співрозмовницю, а ви описуєте себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви жінка; скажіть про свій характер «Я не спокійна»",
+            "feedbackByLocale": {
+              "ru": "Sí означает «да»; здесь нужна форма soy для описания себя.",
+              "uk": "Sí означає «так»; тут потрібна форма soy для опису себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — підтвердьте подрузі «Так, ти любиш змагатися»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-16:i13:r1",
+          "text": "Плитки: competitiva"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i13:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i13:r3",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-16:i13:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — підтвердьте подрузі «Так, ти любиш змагатися»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, eres competitiva.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите подруге «Да, ты любишь соревноваться»",
+          "uk": "Складіть фразу — підтвердьте подрузі «Так, ти любиш змагатися»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "eres",
+          "competitiva"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-16:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — підтвердьте подрузі «Так, ти любиш змагатися»",
+            "feedbackByLocale": {
+              "ru": "подтверждаете качество подруги, а не своё.",
+              "uk": "підтверджуєте рису подруги, а не свою."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви чоловік; поясніть новому напарникові, що не любите змагатися",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви чоловік; поясніть новому напарникові, що не любите змагатися",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-16:i14:audio",
+          "transcript": "No soy competitivo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No soy competitivo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "618a62c7b3cb7ec541f4f1febb9ce20c33385a403cf6262a61e0065e51863c05"
+}

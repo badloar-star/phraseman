@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-16:intro1:r2": {
+          "ru": "Так вы спрашиваете о себе.",
+          "uk": "Так ви запитуєте про себе."
+        },
+        "es:lesson-01:session-16:intro1:r3": {
+          "ru": "Это вопрос о гибкости, а не о любви к соревнованию.",
+          "uk": "Це запитання про гнучкість, а не про любов до змагання."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-16:intro2:r2": {
+          "ru": "Это оценка собеседницы, а не себя.",
+          "uk": "Це оцінка співрозмовниці, а не себе."
+        },
+        "es:lesson-01:session-16:intro2:r3": {
+          "ru": "Так сказал бы о себе мужчина.",
+          "uk": "Так сказав би про себе чоловік."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-16:intro3:r2": {
+          "ru": "Без no вы называете себя любителем соперничества.",
+          "uk": "Без no ви називаєте себе любителем суперництва."
+        },
+        "es:lesson-01:session-16:intro3:r3": {
+          "ru": "Это о собеседнике, а не о вас.",
+          "uk": "Це про співрозмовника, а не про вас."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cffd51144f9175a5d0ceb7a08069806d281c48f4416ba955abd75b51b4642929"
+}

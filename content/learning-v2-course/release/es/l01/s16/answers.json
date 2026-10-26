@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-16:i01",
+    "correctText": "competitivo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i02",
+    "correctText": "tranquilo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i03",
+    "correctText": "Ты любишь соревноваться?",
+    "correctResponseId": "es:lesson-01:session-16:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i04",
+    "correctText": "Eres",
+    "correctResponseId": "es:lesson-01:session-16:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i05",
+    "correctText": "Soy competitiva.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i06",
+    "correctText": "Soy tranquila.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i07",
+    "correctText": "soy",
+    "correctResponseId": "es:lesson-01:session-16:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i08",
+    "correctText": "Да, я спокойный",
+    "correctResponseId": "es:lesson-01:session-16:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i09",
+    "correctText": "No eres terca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i10",
+    "correctText": "decidido",
+    "correctResponseId": "es:lesson-01:session-16:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i11",
+    "correctText": "¿Eres flexible?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i12",
+    "correctText": "soy",
+    "correctResponseId": "es:lesson-01:session-16:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i13",
+    "correctText": "Sí, eres competitiva.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-16:i14",
+    "correctText": "No soy competitivo.",
+    "correctResponseId": null
+  }
+]

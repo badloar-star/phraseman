@@ -15,7 +15,7 @@ export const CHAPTER_EXAM_V2_BANK_L12_C4: ChapterExamV2Bank = {
   ],
   items: [
     // ── Ситуация → сам говоришь или пишешь ──────────────────────────────────────────────────────────────────────
-    { id: 'l12c4-01', type: 'situation', grammarPoint: 'l12c4_wanted', situation: { ru: 'Мама спрашивает, зачем ты вчера ходил в магазин. Скажи, что тебе была нужна новая точилка.', uk: 'Мама питає, навіщо ти вчора ходив до магазину. Скажи, що тобі була потрібна нова стругачка.' }, accepted: ['I needed a new pencil sharpener.'] },
+    { id: 'l12c4-01', type: 'situation', grammarPoint: 'l12c4_wanted', situation: { ru: 'Мама спрашивает, зачем ты вчера ходил в магазин. Скажи, что тебе была нужна новая точилка.', uk: 'Мама питає, навіщо ти вчора ходив до магазину. Скажи, що тобі була потрібна нова стругачка.' }, accepted: ['I needed a new pencil sharpener.', 'I needed a pencil sharpener.'] },
     { id: 'l12c4-02', type: 'situation', grammarPoint: 'l12c4_home', situation: { ru: 'Мама спрашивает, кто помыл миску для смешивания. Скажи, что ты, после обеда.', uk: 'Мама питає, хто помив миску для змішування. Скажи, що ти, після обіду.' }, accepted: ['I washed the mixing bowl after lunch.', 'I washed the mixing bowl.'] },
     { id: 'l12c4-03', type: 'situation', grammarPoint: 'l12c4_loved', situation: { ru: 'В кафе тебе очень понравилось песочное печенье. Расскажи другу.', uk: 'У кафе тобі дуже сподобалося пісочне печиво. Розкажи другові.' }, accepted: ['I loved the shortbread.', 'I loved the shortbread in the cafe.'] },
     { id: 'l12c4-04', type: 'situation', grammarPoint: 'l12c4_loved', situation: { ru: 'Напиши бабушке, что вчера вы посадили цветы.', uk: 'Напиши бабусі, що вчора ви посадили квіти.' }, accepted: ['We planted flowers yesterday.'] },

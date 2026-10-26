@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-53:i01",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i02",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i03",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-53:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i05",
+    "correctText": "Son unos guantes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i06",
+    "correctText": "unas",
+    "correctResponseId": "es:lesson-02:session-53:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i07",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i08",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-53:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i09",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-02:session-53:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i10",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-53:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i11",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-02:session-53:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-53:i12",
+    "correctText": "Son unos guantes.",
+    "correctResponseId": null
+  }
+]

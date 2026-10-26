@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "спросить название вещи и назвать её отдельной репликой.",
+    "uk": "запитати назву речі та назвати її окремою реплікою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неизвестная вещь",
+        "uk": "Невідома річ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали из коробки завёрнутый предмет и не понимаете, что это. Спросите `¿Qué es esto?` — «Что это?» Соберите `qué` + `es` + `esto`. Это один вопрос о названии вещи. Ответ сейчас добавлять не нужно.",
+        "uk": "Ви дістали з коробки загорнутий предмет і не розумієте, що це. Запитайте `¿Qué es esto?` — «Що це?» Складіть `qué` + `es` + `esto`. Це одне запитання про назву речі. Відповідь зараз додавати не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, что это.",
+          "uk": "Запитайте, що це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-53:intro1:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro1:r2",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro1:r3",
+              "text": "¿Qué son esto?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-53:intro1:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro1:r2",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro1:r3",
+              "text": "¿Qué son esto?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, что это.",
+          "uk": "Запитайте, що це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Под бумагой чашка",
+        "uk": "Під папером чашка"
+      },
+      "bodyByLocale": {
+        "ru": "Ана разворачивает бумагу: внутри чашка. Назовите её: `Es una taza` — «Это чашка». Соберите `es` + `una` + `taza`. Taza женского рода, поэтому una. Предмет называете впервые. Если после этого говорите уже об этой чашке, используйте la taza.",
+        "uk": "Ана розгортає папір: усередині чашка. Назвіть її: `Es una taza` — «Це чашка». Складіть `es` + `una` + `taza`. Taza жіночого роду, тому una. Предмет називаєте вперше. Якщо після цього говорите вже про цю чашку, використовуйте la taza."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Впервые назовите чашку.",
+          "uk": "Уперше назвіть чашку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-53:intro2:r1",
+              "text": "Es una taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro2:r2",
+              "text": "Es un taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro2:r3",
+              "text": "Son unas tazas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-53:intro2:r1",
+              "text": "Es una taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro2:r2",
+              "text": "Es un taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro2:r3",
+              "text": "Son unas tazas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Впервые назовите чашку.",
+          "uk": "Уперше назвіть чашку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один подарок",
+        "uk": "Ще один подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "В следующем свёртке несколько перчаток. Назовите их: `Son unos guantes` — «Это перчатки». Соберите `son` + `unos` + `guantes`. Guantes мужского рода во множественном числе: unos. Когда эти перчатки уже известны собеседнику, говорите los guantes. Вопрос и ответ произносите по очереди, отдельными репликами.",
+        "uk": "У наступному згортку кілька рукавичок. Назвіть їх: `Son unos guantes` — «Це рукавички». Складіть `son` + `unos` + `guantes`. Іспанське guantes чоловічого роду в множині: unos. Коли ці рукавички вже відомі співрозмовнику, кажіть los guantes. Запитання та відповідь вимовляйте по черзі, окремими репліками."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Впервые назовите несколько перчаток.",
+          "uk": "Уперше назвіть кілька рукавичок."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-53:intro3:r1",
+              "text": "Son unos guantes."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro3:r2",
+              "text": "Es un guante."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro3:r3",
+              "text": "Son unas guantes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-53:intro3:r1",
+              "text": "Son unos guantes."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro3:r2",
+              "text": "Es un guante."
+            },
+            {
+              "responseId": "es:lesson-02:session-53:intro3:r3",
+              "text": "Son unas guantes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Впервые назовите несколько перчаток.",
+          "uk": "Уперше назвіть кілька рукавичок."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4f225dcc4a21a5a8bd97150e8bd602629234e5a7bd6f144afe6f4af0a752884f"
+}

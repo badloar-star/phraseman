@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "назвать предмет, затем описать его отдельной фразой.",
+    "uk": "назвати предмет, потім описати його окремою фразою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что на фотографии",
+        "uk": "Що на фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "Друг прислал фотографию полки. `Estante` — «полка», слово мужского рода: el estante. Назовите предмет: `Es un estante` — «Это полка». Соберите `es` + `un` + `estante`. Конечная -e не определяет род; запомните el estante, хотя по-русски «полка» женского рода.",
+        "uk": "Друг надіслав фотографію полиці. `Estante` — «полиця», слово чоловічого роду: el estante. Назвіть предмет: `Es un estante` — «Це полиця». Зберіть `es` + `un` + `estante`. Кінцева -e не визначає рід; запам'ятайте el estante, хоча українське «полиця» жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите полку.",
+          "uk": "Назвіть полицю."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-52:intro1:r1",
+              "text": "Es un estante."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro1:r2",
+              "text": "Es una estante."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro1:r3",
+              "text": "Son un estante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-52:intro1:r1",
+              "text": "Es un estante."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro1:r2",
+              "text": "Es una estante."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro1:r3",
+              "text": "Son un estante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите полку.",
+          "uk": "Назвіть полицю."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полка новая",
+        "uk": "Полиця нова"
+      },
+      "bodyByLocale": {
+        "ru": "Друг недавно купил эту полку. Скажите `El estante es nuevo` — «Полка новая». Соберите `el estante` + `es` + `nuevo`. Теперь предмет уже известен, поэтому el. Знакомое nuevo согласуется с мужским estante, а не с русским переводом.",
+        "uk": "Друг нещодавно купив цю полицю. Скажіть `El estante es nuevo` — «Полиця нова». Зберіть `el estante` + `es` + `nuevo`. Тепер предмет уже відомий, тому el. Знайоме nuevo узгоджується з чоловічим estante, а не з українським перекладом."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что полка новая.",
+          "uk": "Скажіть, що полиця нова."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-52:intro2:r1",
+              "text": "El estante es nuevo."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro2:r2",
+              "text": "El estante es nueva."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro2:r3",
+              "text": "La estante es nueva."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-52:intro2:r1",
+              "text": "El estante es nuevo."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro2:r2",
+              "text": "El estante es nueva."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro2:r3",
+              "text": "La estante es nueva."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что полка новая.",
+          "uk": "Скажіть, що полиця нова."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полезная вещь",
+        "uk": "Корисна річ"
+      },
+      "bodyByLocale": {
+        "ru": "На полке удобно разместились книги. Оцените её отдельной фразой: `El estante es útil` — «Полка полезная». Соберите `el estante` + `es` + `útil`. Замените только описание nuevo на знакомое útil. Не соединяйте две оценки: сейчас говорите только о пользе полки.",
+        "uk": "На полиці зручно розмістилися книжки. Оцініть її окремою фразою: `El estante es útil` — «Полиця корисна». Зберіть `el estante` + `es` + `útil`. Замініть лише опис nuevo на знайоме útil. Не поєднуйте дві оцінки: зараз говоріть лише про користь полиці."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что полка полезная.",
+          "uk": "Скажіть, що полиця корисна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-52:intro3:r1",
+              "text": "El estante es útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro3:r2",
+              "text": "El estante son útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro3:r3",
+              "text": "La estante es útil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-52:intro3:r1",
+              "text": "El estante es útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro3:r2",
+              "text": "El estante son útil."
+            },
+            {
+              "responseId": "es:lesson-02:session-52:intro3:r3",
+              "text": "La estante es útil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что полка полезная.",
+          "uk": "Скажіть, що полиця корисна."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a62d78a4259f7518926aa1af64b534f00e13198e55c4b34668f6530177bea5e6"
+}

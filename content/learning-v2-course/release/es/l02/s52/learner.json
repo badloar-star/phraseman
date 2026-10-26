@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-52",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — estante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — estante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-52:i01:audio",
+          "transcript": "estante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-52:i01:r1",
+            "targetText": "estante",
+            "meaningByLocale": {
+              "ru": "полка. Мужской род: el estante. 🔊 *estante*",
+              "uk": "полиця. Чоловічий рід: el estante. 🔊 *estante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "estante",
+          "definitionByLocale": {
+            "ru": "полка. Мужской род: el estante. 🔊 *estante*",
+            "uk": "полиця. Чоловічий рід: el estante. 🔊 *estante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i02:r1",
+          "text": "estante"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i02:r2",
+          "text": "guante"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-52:i02:audio",
+          "transcript": "estante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-52:i02:r1",
+            "targetText": "estante",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i02:r2",
+            "targetText": "guante",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит estante — полка.",
+              "uk": "Звучить estante — полиця."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это полка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i03:r1",
+          "text": "Плитки: estante"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это полка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un estante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это полка",
+          "uk": "Зберіть фразу — це полиця"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "estante"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это полка",
+            "feedbackByLocale": {
+              "ru": "estante мужского рода.",
+              "uk": "estante чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — полка новая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i04:r1",
+          "text": "nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i04:r2",
+          "text": "nueva"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i04:r3",
+          "text": "nuevos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — полка новая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — полка новая",
+          "uk": "Вставте слово — полиця нова"
+        },
+        "gappedTargetPhrase": "El estante es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-52:i04:r1",
+            "text": "nuevo"
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i04:r2",
+            "text": "nueva"
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i04:r3",
+            "text": "nuevos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — полка новая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — полка новая",
+            "feedbackByLocale": {
+              "ru": "Estante мужского рода: nuevo.",
+              "uk": "Estante чоловічого роду: nuevo."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — полка новая",
+            "feedbackByLocale": {
+              "ru": "Полка одна: nuevo.",
+              "uk": "Полиця одна: nuevo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — полка новая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i05:r1",
+          "text": "Плитки: nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i05:r3",
+          "text": "estante"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i05:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — полка новая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El estante es nuevo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — полка новая",
+          "uk": "Зберіть фразу — полиця нова"
+        },
+        "orderedTokens": [
+          "El",
+          "estante",
+          "es",
+          "nuevo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — полка новая",
+            "feedbackByLocale": {
+              "ru": "estante мужского рода.",
+              "uk": "estante чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — полка полезная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i06:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i06:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i06:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — полка полезная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — полка полезная",
+          "uk": "Вставте слово — полиця корисна"
+        },
+        "gappedTargetPhrase": "___ estante es útil.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-52:i06:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i06:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i06:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — полка полезная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — полка полезная",
+            "feedbackByLocale": {
+              "ru": "Запомните el estante.",
+              "uk": "Запам'ятайте el estante."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — полка полезная",
+            "feedbackByLocale": {
+              "ru": "Полка одна: el.",
+              "uk": "Полиця одна: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — полка полезная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i07:r1",
+          "text": "Плитки: útil"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i07:r3",
+          "text": "estante"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i07:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — полка полезная",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El estante es útil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — полка полезная",
+          "uk": "Зберіть фразу — полиця корисна"
+        },
+        "orderedTokens": [
+          "El",
+          "estante",
+          "es",
+          "útil"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — полка полезная",
+            "feedbackByLocale": {
+              "ru": "полка одна.",
+              "uk": "полиця одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i08:r1",
+          "text": "Плитки: nuevo"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i08:r3",
+          "text": "estante"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i08:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i08:r5",
+          "text": "nueva."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-52:i08:audio",
+          "transcript": "El estante es nuevo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El estante es nuevo.",
+        "orderedTokens": [
+          "El",
+          "estante",
+          "es",
+          "nuevo"
+        ],
+        "authoredDistractorTokens": [
+          "nueva"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит nuevo.",
+              "uk": "звучить nuevo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите полку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите полку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-52:i09:audio",
+          "transcript": "Es un estante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un estante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна полка полезная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-52:i10:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i10:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-52:i10:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна полка полезная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна полка полезная",
+          "uk": "Вставте слово — одна полиця корисна"
+        },
+        "gappedTargetPhrase": "El estante ___ útil.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-52:i10:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i10:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i10:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна полка полезная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-52:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна полка полезная",
+            "feedbackByLocale": {
+              "ru": "Полка одна: es.",
+              "uk": "Полиця одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-52:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна полка полезная",
+            "feedbackByLocale": {
+              "ru": "Речь о полке, не о говорящем: es.",
+              "uk": "Йдеться про полицю, не про мовця: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — полка новая",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — полка новая",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-52:i11:audio",
+          "transcript": "El estante es nuevo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El estante es nuevo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — полка полезная",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — полка полезная",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-52:i12:audio",
+          "transcript": "El estante es útil."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El estante es útil.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aa1c2db36cce4cb90163be5068b15000f55d8d44079489ec657074ca28fa3a68"
+}

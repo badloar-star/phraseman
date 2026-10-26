@@ -756,4 +756,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать артикль по запомненному роду слова, а не только по окончанию.","uk":"вибрати артикль за запам'ятованим родом слова, а не лише за закінченням."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 52,
+    sourceFingerprint: "6a89932fe7c745853426818f4c33a69aaf10dc8e501d5ca211b59fc1ba5bb0c0",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать предмет, затем описать его отдельной фразой.","uk":"назвати предмет, потім описати його окремою фразою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 53,
+    sourceFingerprint: "e7f63c32a8b7a4f5047556a93002f637cb86d0175fe0157ca41bdd0f8d00b334",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить название вещи и назвать её отдельной репликой.","uk":"запитати назву речі та назвати її окремою реплікою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

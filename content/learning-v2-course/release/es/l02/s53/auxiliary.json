@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-53",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-53:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-53:intro1:r2": {
+          "ru": "Это вопрос о владельце, а не о названии.",
+          "uk": "Це запитання про власника, а не про назву."
+        },
+        "es:lesson-02:session-53:intro1:r3": {
+          "ru": "С esto используйте es.",
+          "uk": "З esto використовуйте es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-53:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-53:intro2:r2": {
+          "ru": "Taza женского рода: una.",
+          "uk": "Taza жіночого роду: una."
+        },
+        "es:lesson-02:session-53:intro2:r3": {
+          "ru": "Это несколько чашек; сейчас чашка одна.",
+          "uk": "Це кілька чашок; зараз чашка одна."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-53:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-53:intro3:r2": {
+          "ru": "Так называют одну перчатку.",
+          "uk": "Так називають одну рукавичку."
+        },
+        "es:lesson-02:session-53:intro3:r3": {
+          "ru": "Guantes мужского рода: unos.",
+          "uk": "Guantes чоловічого роду: unos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d83047469782183d423fc7f87a80630a5a3ba370c3c2486b7505b3a57a22ca0b"
+}

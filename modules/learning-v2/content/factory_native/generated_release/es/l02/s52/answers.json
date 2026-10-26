@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-52:i01",
+    "correctText": "estante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i02",
+    "correctText": "estante",
+    "correctResponseId": "es:lesson-02:session-52:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i03",
+    "correctText": "Es un estante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i04",
+    "correctText": "nuevo",
+    "correctResponseId": "es:lesson-02:session-52:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i05",
+    "correctText": "El estante es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i06",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-02:session-52:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i07",
+    "correctText": "El estante es útil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i08",
+    "correctText": "El estante es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i09",
+    "correctText": "Es un estante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i10",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-02:session-52:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i11",
+    "correctText": "El estante es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-52:i12",
+    "correctText": "El estante es útil.",
+    "correctResponseId": null
+  }
+]

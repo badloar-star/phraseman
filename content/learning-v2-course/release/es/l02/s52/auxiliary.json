@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-52",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-52:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-52:intro1:r2": {
+          "ru": "Для estante нужен un.",
+          "uk": "Для estante потрібен un."
+        },
+        "es:lesson-02:session-52:intro1:r3": {
+          "ru": "Полка одна: es.",
+          "uk": "Полиця одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-52:intro2:r2": {
+          "ru": "Для estante нужна форма nuevo.",
+          "uk": "Для estante потрібна форма nuevo."
+        },
+        "es:lesson-02:session-52:intro2:r3": {
+          "ru": "Испанское estante мужского рода: el и nuevo.",
+          "uk": "Іспанське estante чоловічого роду: el та nuevo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-52:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-52:intro3:r2": {
+          "ru": "Полка одна: es.",
+          "uk": "Полиця одна: es."
+        },
+        "es:lesson-02:session-52:intro3:r3": {
+          "ru": "Для estante нужен el.",
+          "uk": "Для estante потрібен el."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39660972ea3b69ac2661507116cf58c9c1feed178f46b17a8dd7b4c45c2ffdd0"
+}

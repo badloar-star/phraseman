@@ -1,0 +1,790 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-27",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — son",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i01:audio",
+          "transcript": "son"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i01:r1",
+            "targetText": "son",
+            "meaningByLocale": {
+              "ru": "форма ser для «они». Для своей группы говорим somos, для другой — son. 🔊 *son*",
+              "uk": "форма ser для «вони». Для своєї групи говоримо somos, для іншої — son. 🔊 *son*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "son",
+          "definitionByLocale": {
+            "ru": "форма ser для «они». Для своей группы говорим somos, для другой — son. 🔊 *son*",
+            "uk": "форма ser для «вони». Для своєї групи говоримо somos, для іншої — son. 🔊 *son*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i02:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i02:r2",
+          "text": "somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i02:audio",
+          "transcript": "son"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i02:r1",
+            "targetText": "son",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i02:r2",
+            "targetText": "somos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит короткое son, не somos.",
+              "uk": "Звучить коротке son, не somos."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ellos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ellos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i03:audio",
+          "transcript": "ellos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i03:r1",
+            "targetText": "ellos",
+            "meaningByLocale": {
+              "ru": "они, мужчины или смешанная группа. Для группы только из женщин — ellas. 🔊 *ellos*",
+              "uk": "вони, чоловіки або змішана група. Для групи лише з жінок — ellas. 🔊 *ellos*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ellos",
+          "definitionByLocale": {
+            "ru": "они, мужчины или смешанная группа. Для группы только из женщин — ellas. 🔊 *ellos*",
+            "uk": "вони, чоловіки або змішана група. Для групи лише з жінок — ellas. 🔊 *ellos*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i04:r1",
+          "text": "ellas"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i04:r2",
+          "text": "ellos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i04:audio",
+          "transcript": "ellas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i04:r1",
+            "targetText": "ellas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i04:r2",
+            "targetText": "ellos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание as: ellas.",
+              "uk": "Звучить закінчення as: ellas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — respetuoso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — respetuoso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i05:audio",
+          "transcript": "respetuoso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i05:r1",
+            "targetText": "respetuoso",
+            "meaningByLocale": {
+              "ru": "уважительный, считающийся с другими. Для мужской или смешанной группы — respetuosos. 🔊 *respetuoso*",
+              "uk": "шанобливий, такий, що зважає на інших. Для чоловічої або змішаної групи — respetuosos. 🔊 *respetuoso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "respetuoso",
+          "definitionByLocale": {
+            "ru": "уважительный, считающийся с другими. Для мужской или смешанной группы — respetuosos. 🔊 *respetuoso*",
+            "uk": "шанобливий, такий, що зважає на інших. Для чоловічої або змішаної групи — respetuosos. 🔊 *respetuoso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i06:r1",
+          "text": "respetuosos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i06:r2",
+          "text": "respetuoso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i06:audio",
+          "transcript": "respetuosos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i06:r1",
+            "targetText": "respetuosos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i06:r2",
+            "targetText": "respetuoso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно s: людей несколько.",
+              "uk": "Наприкінці чутно s: людей кілька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть про сусідів «Вони шанобливо ставляться до інших»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i07:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i07:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i07:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть про сусідів «Вони шанобливо ставляться до інших»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о соседях «Они уважительно относятся к другим»",
+          "uk": "Вставте слово — скажіть про сусідів «Вони шанобливо ставляться до інших»"
+        },
+        "gappedTargetPhrase": "Ellos ___ respetuosos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-27:i07:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i07:r2",
+            "text": "somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i07:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть про сусідів «Вони шанобливо ставляться до інших»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про сусідів «Вони шанобливо ставляться до інших»",
+            "feedbackByLocale": {
+              "ru": "Это «мы», а здесь ellos — «они».",
+              "uk": "Це «ми», а тут ellos — «вони»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про сусідів «Вони шанобливо ставляться до інших»",
+            "feedbackByLocale": {
+              "ru": "Это форма для одного говорящего: «я».",
+              "uk": "Це форма для одного мовця: «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ruidoso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ruidoso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i08:audio",
+          "transcript": "ruidoso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i08:r1",
+            "targetText": "ruidoso",
+            "meaningByLocale": {
+              "ru": "шумный. Для нескольких женщин — ruidosas; для мужчин или смешанной группы — ruidosos. 🔊 *ruidoso*",
+              "uk": "галасливий. Для кількох жінок — ruidosas; для чоловіків або змішаної групи — ruidosos. 🔊 *ruidoso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ruidoso",
+          "definitionByLocale": {
+            "ru": "шумный. Для нескольких женщин — ruidosas; для мужчин или смешанной группы — ruidosos. 🔊 *ruidoso*",
+            "uk": "галасливий. Для кількох жінок — ruidosas; для чоловіків або змішаної групи — ruidosos. 🔊 *ruidoso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i09:r1",
+          "text": "галасливий"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i09:r2",
+          "text": "спокійний"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i09:audio",
+          "transcript": "ruidoso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-27:i09:r1",
+            "targetText": "галасливий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i09:r2",
+            "targetText": "спокійний",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это tranquilo; ruidoso описывает шумного человека.",
+              "uk": "Це tranquilo; ruidoso описує галасливу людину."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про сусідок «Вони не галасливі», починаючи з ellas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i10:r1",
+          "text": "Плитки: ruidosas"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i10:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i10:r4",
+          "text": "ellas"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i10:r5",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про сусідок «Вони не галасливі», починаючи з ellas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellas no son ruidosas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о соседках «Они не шумные», начиная с ellas",
+          "uk": "Складіть фразу — скажіть про сусідок «Вони не галасливі», починаючи з ellas"
+        },
+        "orderedTokens": [
+          "Ellas",
+          "no",
+          "son",
+          "ruidosas"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про сусідок «Вони не галасливі», починаючи з ellas",
+            "feedbackByLocale": {
+              "ru": "речь о них, не о нас.",
+              "uk": "йдеться про них, не про нас."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — опишіть сусідок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — опишіть сусідок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i11:audio",
+          "transcript": "Ellas no son ruidosas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellas no son ruidosas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i12:r1",
+          "text": "Плитки: ruidosos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i12:r2",
+          "text": "nosotros"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i12:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i12:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i12:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-27:i12:audio",
+          "transcript": "Nosotros no somos ruidosos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Nosotros no somos ruidosos.",
+        "orderedTokens": [
+          "Nosotros",
+          "no",
+          "somos",
+          "ruidosos"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos, говорящий описывает свою группу.",
+              "uk": "звучить somos, мовець описує свою групу."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — опишіть двох сусідок як шанобливих",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i13:r1",
+          "text": "respetuosas"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i13:r2",
+          "text": "respetuosos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i13:r3",
+          "text": "respetuoso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — опишіть двох сусідок як шанобливих",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — опишите двух соседок как уважительных",
+          "uk": "Вставте слово — опишіть двох сусідок як шанобливих"
+        },
+        "gappedTargetPhrase": "Ellas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-27:i13:r1",
+            "text": "respetuosas"
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i13:r2",
+            "text": "respetuosos"
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i13:r3",
+            "text": "respetuoso"
+          }
+        ],
+        "testedDimension": "Вставте слово — опишіть двох сусідок як шанобливих",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть двох сусідок як шанобливих",
+            "feedbackByLocale": {
+              "ru": "Для женской группы выбираем окончание as.",
+              "uk": "Для жіночої групи обираємо закінчення as."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-27:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть двох сусідок як шанобливих",
+            "feedbackByLocale": {
+              "ru": "Это форма для одного мужчины, не для двух женщин.",
+              "uk": "Це форма для одного чоловіка, не для двох жінок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — новий мешканець запитує про вашу родину; скажіть від змішаної групи «Ми не галасливі», починаючи з nosotros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-27:i14:r1",
+          "text": "Плитки: no"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i14:r2",
+          "text": "ruidosos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i14:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i14:r4",
+          "text": "nosotros"
+        },
+        {
+          "responseId": "es:lesson-01:session-27:i14:r5",
+          "text": "ellos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — новий мешканець запитує про вашу родину; скажіть від змішаної групи «Ми не галасливі», починаючи з nosotros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nosotros no somos ruidosos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — новый жилец спрашивает о вашей семье; скажите от смешанной группы «Мы не шумные», начиная с nosotros",
+          "uk": "Складіть фразу — новий мешканець запитує про вашу родину; скажіть від змішаної групи «Ми не галасливі», починаючи з nosotros"
+        },
+        "orderedTokens": [
+          "Nosotros",
+          "no",
+          "somos",
+          "ruidosos"
+        ],
+        "authoredDistractorTokens": [
+          "ellos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-27:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — новий мешканець запитує про вашу родину; скажіть від змішаної групи «Ми не галасливі», починаючи з nosotros",
+            "feedbackByLocale": {
+              "ru": "описываете свою группу, в которую входите сами.",
+              "uk": "описуєте свою групу, до якої входите самі."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "74fc99b72985cde9258c0e581546b0fbee31fbb1a1c397ed80ff7be88f5adb4a"
+}

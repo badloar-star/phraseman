@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-27:i01",
+    "correctText": "son",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i02",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-27:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i03",
+    "correctText": "ellos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i04",
+    "correctText": "ellas",
+    "correctResponseId": "es:lesson-01:session-27:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i05",
+    "correctText": "respetuoso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i06",
+    "correctText": "respetuosos",
+    "correctResponseId": "es:lesson-01:session-27:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i07",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-27:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i08",
+    "correctText": "ruidoso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i09",
+    "correctText": "шумный",
+    "correctResponseId": "es:lesson-01:session-27:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i10",
+    "correctText": "Ellas no son ruidosas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i11",
+    "correctText": "Ellas no son ruidosas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i12",
+    "correctText": "Nosotros no somos ruidosos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i13",
+    "correctText": "respetuosas",
+    "correctResponseId": "es:lesson-01:session-27:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-27:i14",
+    "correctText": "Nosotros no somos ruidosos.",
+    "correctResponseId": null
+  }
+]

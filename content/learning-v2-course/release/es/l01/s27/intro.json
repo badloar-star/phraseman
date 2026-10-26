@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "описать другую группу с son и не спутать её со своей группой с somos.",
+    "uk": "описати іншу групу із son і не сплутати її зі своєю групою із somos."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Они относятся к другим с уважением",
+        "uk": "Вони ставляться до інших із повагою"
+      },
+      "bodyByLocale": {
+        "ru": "Соседи по площадке считаются с окружающими. Скажите: `Ellos son respetuosos` — «Они уважительно относятся к другим». `Ellos` — «они» для мужчин или смешанной группы; `son` — форма для «они». `Respetuoso` — «уважительный», для группы — `respetuosos`. Соберите `ellos` + `son` + `respetuosos`. Вы описываете соседей, не включая себя в эту группу.",
+        "uk": "Сусіди на вашому поверсі зважають на інших. Скажіть: `Ellos son respetuosos` — «Вони шанобливо ставляться до інших». `Ellos` — «вони» для чоловіків або змішаної групи; `son` — форма для «вони». `Respetuoso` — «шанобливий», для групи — `respetuosos`. Складіть `ellos` + `son` + `respetuosos`. Ви описуєте сусідів, не включаючи себе до цієї групи."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите смешанную группу соседей, начиная с ellos.",
+          "uk": "Опишіть змішану групу сусідів, починаючи з ellos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-27:intro1:r1",
+              "text": "Ellos son respetuosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro1:r2",
+              "text": "Ellos somos respetuosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro1:r3",
+              "text": "Ellos son respetuoso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-27:intro1:r1",
+              "text": "Ellos son respetuosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro1:r2",
+              "text": "Ellos somos respetuosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro1:r3",
+              "text": "Ellos son respetuoso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите смешанную группу соседей, начиная с ellos.",
+          "uk": "Опишіть змішану групу сусідів, починаючи з ellos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Соседки не шумные",
+        "uk": "Сусідки не галасливі"
+      },
+      "bodyByLocale": {
+        "ru": "В соседней квартире живут две женщины, которые обычно ведут себя тихо. Скажите: `Ellas no son ruidosas` — «Они не шумные». `Ellas` — «они» для группы только из женщин. `Ruidoso` — «шумный», для женщин во множественном числе — `ruidosas`. Соберите `ellas` + `no` + `son` + `ruidosas`. Отрицание ставим перед son, как раньше перед es или soy.",
+        "uk": "У сусідній квартирі живуть дві жінки, які зазвичай поводяться тихо. Скажіть: `Ellas no son ruidosas` — «Вони не галасливі». `Ellas` — «вони» для групи лише з жінок. `Ruidoso` — «галасливий», для жінок у множині — `ruidosas`. Складіть `ellas` + `no` + `son` + `ruidosas`. Заперечення ставимо перед son, як раніше перед es або soy."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о двух соседках, начиная с ellas: «Они не шумные».",
+          "uk": "Скажіть про двох сусідок, починаючи з ellas: «Вони не галасливі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-27:intro2:r1",
+              "text": "Ellas no son ruidosas."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro2:r2",
+              "text": "Ellas no son ruidosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro2:r3",
+              "text": "Ellas son ruidosas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-27:intro2:r1",
+              "text": "Ellas no son ruidosas."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro2:r2",
+              "text": "Ellas no son ruidosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro2:r3",
+              "text": "Ellas son ruidosas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о двух соседках, начиная с ellas: «Они не шумные».",
+          "uk": "Скажіть про двох сусідок, починаючи з ellas: «Вони не галасливі»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Теперь — о нас самих",
+        "uk": "Тепер — про нас самих"
+      },
+      "bodyByLocale": {
+        "ru": "Новый жилец спрашивает, как ведёт себя ваша семья. В ней есть мужчины и женщины. Ответьте: `Nosotros no somos ruidosos` — «Мы не шумные». Здесь вы входите в группу, поэтому заменяем `ellos son` на `nosotros somos`. Сборка: `nosotros` + `no` + `somos` + `ruidosos`. Выбор son или somos зависит от того, говорите ли вы о них или о нас.",
+        "uk": "Новий мешканець запитує, як поводиться ваша родина. У ній є чоловіки й жінки. Дайте відповідь: `Nosotros no somos ruidosos` — «Ми не галасливі». Тут ви входите до групи, тому замінюємо `ellos son` на `nosotros somos`. Побудова: `nosotros` + `no` + `somos` + `ruidosos`. Вибір son чи somos залежить від того, говорите ви про них чи про нас."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о своей смешанной группе, начиная с nosotros: «Мы не шумные».",
+          "uk": "Скажіть про свою змішану групу, починаючи з nosotros: «Ми не галасливі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-27:intro3:r1",
+              "text": "Nosotros no somos ruidosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro3:r2",
+              "text": "Nosotros no son ruidosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro3:r3",
+              "text": "Ellos no son ruidosos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-27:intro3:r1",
+              "text": "Nosotros no somos ruidosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro3:r2",
+              "text": "Nosotros no son ruidosos."
+            },
+            {
+              "responseId": "es:lesson-01:session-27:intro3:r3",
+              "text": "Ellos no son ruidosos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о своей смешанной группе, начиная с nosotros: «Мы не шумные».",
+          "uk": "Скажіть про свою змішану групу, починаючи з nosotros: «Ми не галасливі»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "96f022d3b4c723e333431ed2821a8b2dd3e53171a9d274f68210f723f45c5571"
+}

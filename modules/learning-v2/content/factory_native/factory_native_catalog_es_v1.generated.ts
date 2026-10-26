@@ -189,4 +189,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать окончания -os, -as и -es в описании своей группы.","uk":"обрати закінчення -os, -as та -es в описі своєї групи."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 27,
+    sourceFingerprint: "681361e8a7c355257ed939e1d947d206acaa9ef7fc7bbb50fd65f824893813f4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать другую группу с son и не спутать её со своей группой с somos.","uk":"описати іншу групу із son і не сплутати її зі своєю групою із somos."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-27",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-27:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-27:intro1:r2": {
+          "ru": "Somos означает «мы», а здесь ellos — «они».",
+          "uk": "Somos означає «ми», а тут ellos — «вони»."
+        },
+        "es:lesson-01:session-27:intro1:r3": {
+          "ru": "Для нескольких людей нужна форма respetuosos.",
+          "uk": "Для кількох людей потрібна форма respetuosos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-27:intro2:r2": {
+          "ru": "Для женщин нужна форма ruidosas.",
+          "uk": "Для жінок потрібна форма ruidosas."
+        },
+        "es:lesson-01:session-27:intro2:r3": {
+          "ru": "Без no вы называете соседок шумными.",
+          "uk": "Без no ви називаєте сусідок галасливими."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-27:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-27:intro3:r2": {
+          "ru": "Son относится к «они», а здесь «мы».",
+          "uk": "Son стосується «вони», а тут «ми»."
+        },
+        "es:lesson-01:session-27:intro3:r3": {
+          "ru": "Это о другой группе, а нужно о своей.",
+          "uk": "Це про іншу групу, а потрібно про свою."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bad8dd1d69341831b805fd397c3ef8b7b101ed3c7290309475f866ed6cef8820"
+}

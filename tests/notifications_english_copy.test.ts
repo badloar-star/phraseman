@@ -42,7 +42,8 @@ describe('push language normalisation', () => {
     const en = reminderMessages('en');
     expect(en).toHaveLength(5);
     expect(en[0]!.title).toBe('🔥 Your streak is waiting!');
-    expect(reminderMessages('en', 'fr')[0]!.body).toContain('Don’t break the streak');
+    // зачем (голос PhraseMan e7571a7a3): «Don’t break the streak» заменено на тёплое «keeps your streak growing» — тест держит английский текст, а не старую формулировку
+    expect(reminderMessages('en', 'fr')[0]!.body).toContain('keeps your streak growing');
     mockEnglishEnabled = false;
     expect(reminderMessages('en')).toEqual(reminderMessages('ru'));
     expect(reminderMessages('en', 'fr')).toEqual(reminderMessages('ru', 'fr'));

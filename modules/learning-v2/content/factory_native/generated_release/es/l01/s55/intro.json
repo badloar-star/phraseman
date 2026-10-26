@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "произнести оценку самостоятельно, опираясь на ситуацию.",
+    "uk": "вимовити оцінку самостійно, спираючись на ситуацію."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Приятное впечатление",
+        "uk": "Приємне враження"
+      },
+      "bodyByLocale": {
+        "ru": "Внутри тихо, есть удобные кресла; обстановка вам нравится. Скажите: `Es agradable` — «Это приятно». `Agradable` означает «приятный». Соберите `es` + `agradable`. Вы оцениваете обстановку целиком. Agradable не меняется по роду.",
+        "uk": "Усередині тихо, є зручні крісла; обстановка вам подобається. Скажіть: `Es agradable` — «Це приємно». `Agradable` означає «приємний». Складіть `es` + `agradable`. Ви оцінюєте обстановку загалом. Agradable не змінюється за родом."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Дайте обстановке положительную оценку словом agradable.",
+          "uk": "Дайте обстановці позитивну оцінку словом agradable."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-55:intro1:r1",
+              "text": "Es agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro1:r2",
+              "text": "Eres agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro1:r3",
+              "text": "No es agradable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-55:intro1:r1",
+              "text": "Es agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro1:r2",
+              "text": "Eres agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro1:r3",
+              "text": "No es agradable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дайте обстановке положительную оценку словом agradable.",
+          "uk": "Дайте обстановці позитивну оцінку словом agradable."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Неприятное впечатление",
+        "uk": "Неприємне враження"
+      },
+      "bodyByLocale": {
+        "ru": "В соседней части того же места тесно, громко спорят. Вы оцениваете эту обстановку: `Es desagradable` — «Это неприятно». `Desagradable` означает «неприятный». Соберите `es` + `desagradable`. Негативный смысл уже есть в слове desagradable; no для этой оценки не нужно. Форма одинакова для мужского и женского рода.",
+        "uk": "У сусідній частині того самого місця тісно, голосно сперечаються. Ви оцінюєте цю обстановку: `Es desagradable` — «Це неприємно». `Desagradable` означає «неприємний». Складіть `es` + `desagradable`. Негативний зміст уже є в слові desagradable; no для цієї оцінки не потрібне. Форма однакова для чоловічого та жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите обстановку неприятной.",
+          "uk": "Назвіть обстановку неприємною."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-55:intro2:r1",
+              "text": "Es desagradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro2:r2",
+              "text": "Es agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro2:r3",
+              "text": "No es desagradable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-55:intro2:r1",
+              "text": "Es desagradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro2:r2",
+              "text": "Es agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro2:r3",
+              "text": "No es desagradable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите обстановку неприятной.",
+          "uk": "Назвіть обстановку неприємною."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очень приятно",
+        "uk": "Дуже приємно"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаетесь к тихому уголку с креслами. Чтобы подчеркнуть впечатление, скажите: `Es muy agradable` — «Это очень приятно». Соберите `es` + `muy` + `agradable`. Muy ставится перед agradable и усиливает только оценку. В голосовом задании такую фразу можно собрать в уме по ситуации: es, затем muy, затем нужное качество.",
+        "uk": "Ви повертаєтеся до тихого куточка з кріслами. Щоб підкреслити враження, скажіть: `Es muy agradable` — «Це дуже приємно». Складіть `es` + `muy` + `agradable`. Muy ставиться перед agradable й посилює лише оцінку. У голосовому завданні таку фразу можна скласти подумки за ситуацією: es, потім muy, потім потрібна якість."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Усильте положительную оценку словом «очень».",
+          "uk": "Посильте позитивну оцінку словом «дуже»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-55:intro3:r1",
+              "text": "Es muy agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro3:r2",
+              "text": "Es agradable muy."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro3:r3",
+              "text": "Es muy desagradable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-55:intro3:r1",
+              "text": "Es muy agradable."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro3:r2",
+              "text": "Es agradable muy."
+            },
+            {
+              "responseId": "es:lesson-01:session-55:intro3:r3",
+              "text": "Es muy desagradable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Усильте положительную оценку словом «очень».",
+          "uk": "Посильте позитивну оцінку словом «дуже»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "79d0beb4349cc5691b98fd9b411e4f92dd84cdf48bf700518839e4d2e7e41594"
+}

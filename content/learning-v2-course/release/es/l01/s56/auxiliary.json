@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-56",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-56:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-56:intro1:r2": {
+          "ru": "Это обращение к человеку, а вы оцениваете предложение.",
+          "uk": "Це звернення до людини, а ви оцінюєте пропозицію."
+        },
+        "es:lesson-01:session-56:intro1:r3": {
+          "ru": "Это отрицание подходящего варианта, а условия вас устраивают.",
+          "uk": "Це заперечення підхожого варіанта, а умови вас влаштовують."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-56:intro2:r2": {
+          "ru": "Это вопрос о себе, а не о друге.",
+          "uk": "Це питання про себе, а не про друга."
+        },
+        "es:lesson-01:session-56:intro2:r3": {
+          "ru": "Это вопрос о третьем лице, а вы обращаетесь к другу на tú.",
+          "uk": "Це питання про третю особу, а ви звертаєтеся до друга на tú."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-56:intro3:r2": {
+          "ru": "Так называют количество другой компании.",
+          "uk": "Так називають кількість іншої компанії."
+        },
+        "es:lesson-01:session-56:intro3:r3": {
+          "ru": "Soy описывает одного говорящего, а не количество компании.",
+          "uk": "Soy описує одного мовця, а не кількість компанії."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0d2548f37a947ddfbb5794515358513801d1a13df19682f23e260fa522a9f66c"
+}

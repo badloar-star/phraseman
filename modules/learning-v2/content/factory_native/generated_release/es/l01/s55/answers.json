@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-55:i01",
+    "correctText": "agradable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i02",
+    "correctText": "agradable",
+    "correctResponseId": "es:lesson-01:session-55:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i03",
+    "correctText": "Es agradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i04",
+    "correctText": "Es agradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i05",
+    "correctText": "desagradable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i06",
+    "correctText": "desagradable",
+    "correctResponseId": "es:lesson-01:session-55:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i07",
+    "correctText": "Es desagradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i08",
+    "correctText": "Es desagradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i09",
+    "correctText": "muy",
+    "correctResponseId": "es:lesson-01:session-55:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i10",
+    "correctText": "Es muy agradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i11",
+    "correctText": "No es agradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-55:i12",
+    "correctText": "Es muy agradable.",
+    "correctResponseId": null
+  }
+]

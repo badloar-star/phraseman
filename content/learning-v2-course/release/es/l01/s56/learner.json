@@ -1,0 +1,808 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-56",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — conveniente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — conveniente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i01:audio",
+          "transcript": "conveniente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-56:i01:r1",
+            "targetText": "conveniente",
+            "meaningByLocale": {
+              "ru": "подходящий по условиям, целесообразный. Не меняется по роду. 🔊 *conveniente*",
+              "uk": "відповідний за умовами, доцільний. Не змінюється за родом. 🔊 *conveniente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "conveniente",
+          "definitionByLocale": {
+            "ru": "подходящий по условиям, целесообразный. Не меняется по роду. 🔊 *conveniente*",
+            "uk": "відповідний за умовами, доцільний. Не змінюється за родом. 🔊 *conveniente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i02:r1",
+          "text": "conveniente"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i02:r2",
+          "text": "suficiente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i02:audio",
+          "transcript": "conveniente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-56:i02:r1",
+            "targetText": "conveniente",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i02:r2",
+            "targetText": "suficiente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит conveniente, а не suficiente.",
+              "uk": "Звучить conveniente, а не suficiente."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы мужчина; скажите о себе «Я спокойный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i03:r1",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i03:r2",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i03:r3",
+          "text": "Son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы мужчина; скажите о себе «Я спокойный»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы мужчина; скажите о себе «Я спокойный»",
+          "uk": "Вставте слово — ви чоловік; скажіть про себе «Я спокійний»"
+        },
+        "gappedTargetPhrase": "___ tranquilo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-56:i03:r1",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i03:r2",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i03:r3",
+            "text": "Son"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы мужчина; скажите о себе «Я спокойный»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы мужчина; скажите о себе «Я спокойный»",
+            "feedbackByLocale": {
+              "ru": "Это обращение к собеседнику, а нужно о себе.",
+              "uk": "Це звернення до співрозмовника, а потрібно про себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы мужчина; скажите о себе «Я спокойный»",
+            "feedbackByLocale": {
+              "ru": "Это о нескольких других людях.",
+              "uk": "Це про кількох інших людей."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите друга-мужчину о любви к приключениям",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i04:r1",
+          "text": "Плитки: aventurero"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i04:r2",
+          "text": "¿eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i04:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите друга-мужчину о любви к приключениям",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Eres aventurero?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите друга-мужчину о любви к приключениям",
+          "uk": "Зберіть фразу — запитайте друга-чоловіка про любов до пригод"
+        },
+        "orderedTokens": [
+          "¿Eres",
+          "aventurero"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите друга-мужчину о любви к приключениям",
+            "feedbackByLocale": {
+              "ru": "вопрос к другу.",
+              "uk": "питання до друга."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — предложенное занятие подходит по условиям; оцените его",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — предложенное занятие подходит по условиям; оцените его",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i05:audio",
+          "transcript": "Es conveniente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es conveniente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас десять человек, включая вас",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i06:r1",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i06:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i06:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас десять человек, включая вас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас десять человек, включая вас",
+          "uk": "Вставте слово — вас десятеро людей, включно з вами"
+        },
+        "gappedTargetPhrase": "___ diez.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-56:i06:r1",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i06:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i06:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас десять человек, включая вас",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас десять человек, включая вас",
+            "feedbackByLocale": {
+              "ru": "Son не включает говорящего в группу.",
+              "uk": "Son не включає мовця до групи."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас десять человек, включая вас",
+            "feedbackByLocale": {
+              "ru": "Речь о количестве людей, включая вас: somos.",
+              "uk": "Йдеться про кількість людей, включно з вами: somos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в другой компании девять человек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i07:r1",
+          "text": "Плитки: nueve"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i07:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в другой компании девять человек",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son nueve.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в другой компании девять человек",
+          "uk": "Зберіть фразу — в іншій компанії дев'ятеро людей"
+        },
+        "orderedTokens": [
+          "Son",
+          "nueve"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в другой компании девять человек",
+            "feedbackByLocale": {
+              "ru": "вы не входите в другую компанию.",
+              "uk": "ви не входите до іншої компанії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — другой вариант не подходит по условиям",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — другой вариант не подходит по условиям",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i08:audio",
+          "transcript": "No es conveniente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es conveniente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, безопасен ли вариант в целом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i09:r1",
+          "text": "Плитки: seguro"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i09:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i09:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, безопасен ли вариант в целом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es seguro?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, безопасен ли вариант в целом",
+          "uk": "Зберіть фразу — запитайте, чи безпечний варіант загалом"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "seguro"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, безопасен ли вариант в целом",
+            "feedbackByLocale": {
+              "ru": "вопрос о варианте, не о человеке.",
+              "uk": "питання про варіант, не про людину."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — оцените равное распределение расходов: это справедливо",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i10:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i10:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i10:r3",
+          "text": "Somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — оцените равное распределение расходов: это справедливо",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — оцените равное распределение расходов: это справедливо",
+          "uk": "Вставте слово — оцініть рівний розподіл витрат: це справедливо"
+        },
+        "gappedTargetPhrase": "___ justo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-56:i10:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i10:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i10:r3",
+            "text": "Somos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — оцените равное распределение расходов: это справедливо",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — оцените равное распределение расходов: это справедливо",
+            "feedbackByLocale": {
+              "ru": "Это описание себя, а нужно оценить решение.",
+              "uk": "Це опис себе, а потрібно оцінити рішення."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — оцените равное распределение расходов: это справедливо",
+            "feedbackByLocale": {
+              "ru": "Это описание своей группы, а не решения.",
+              "uk": "Це опис своєї групи, а не рішення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы мужчина; назовите себя спокойным",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы мужчина; назовите себя спокойным",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i11:audio",
+          "transcript": "Soy tranquilo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Soy tranquilo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i12:r1",
+          "text": "Плитки: diez"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i12:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i12:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i12:audio",
+          "transcript": "Somos diez."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Somos diez.",
+        "orderedTokens": [
+          "Somos",
+          "diez"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos.",
+              "uk": "звучить somos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подтвердите, что выбранная обстановка приятна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-56:i13:r1",
+          "text": "Плитки: agradable"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i13:r3",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-56:i13:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подтвердите, что выбранная обстановка приятна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, es agradable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите, что выбранная обстановка приятна",
+          "uk": "Зберіть фразу — підтвердьте, що вибрана обстановка приємна"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "es",
+          "agradable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-56:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подтвердите, что выбранная обстановка приятна",
+            "feedbackByLocale": {
+              "ru": "вы подтверждаете положительную оценку.",
+              "uk": "ви підтверджуєте позитивну оцінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите девять участников другой компании",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите девять участников другой компании",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i14:audio",
+          "transcript": "Son nueve."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son nueve.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите друга-мужчину о любви к приключениям",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите друга-мужчину о любви к приключениям",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i15:audio",
+          "transcript": "¿Eres aventurero?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Eres aventurero?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-56:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — оцените выбранное занятие как подходящее по условиям",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — оцените выбранное занятие как подходящее по условиям",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-56:i16:audio",
+          "transcript": "Es conveniente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es conveniente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6638ce46b3de65b5473be980ee87d7a8bb0b4c2520fecbdb8dcc895a18af3ae0"
+}

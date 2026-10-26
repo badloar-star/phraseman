@@ -385,4 +385,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать somos, son или es по тому, о ком говорите.","uk":"вибрати somos, son або es залежно від того, про кого говорите."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 55,
+    sourceFingerprint: "0e403bd6dfb1a1b095322cc4033087eda6246d21540acdf93ff2423cc3b8322c",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"произнести оценку самостоятельно, опираясь на ситуацию.","uk":"вимовити оцінку самостійно, спираючись на ситуацію."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 56,
+    sourceFingerprint: "5095ed4995cd633961dbd7a3879d7bdf1c5285bd841e19c0d25c4a2e06b5c045",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно использовать soy, eres, es, somos и son в отдельных репликах.","uk":"самостійно використовувати soy, eres, es, somos та son в окремих репліках."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

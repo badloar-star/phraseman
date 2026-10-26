@@ -1,0 +1,590 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-55",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — agradable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — agradable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i01:audio",
+          "transcript": "agradable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-55:i01:r1",
+            "targetText": "agradable",
+            "meaningByLocale": {
+              "ru": "приятный. Не меняется по роду. 🔊 *agradable*",
+              "uk": "приємний. Не змінюється за родом. 🔊 *agradable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "agradable",
+          "definitionByLocale": {
+            "ru": "приятный. Не меняется по роду. 🔊 *agradable*",
+            "uk": "приємний. Не змінюється за родом. 🔊 *agradable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-55:i02:r1",
+          "text": "agradable"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i02:r2",
+          "text": "desagradable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i02:audio",
+          "transcript": "agradable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-55:i02:r1",
+            "targetText": "agradable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-55:i02:r2",
+            "targetText": "desagradable",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи нет начального des-.",
+              "uk": "У записі немає початкового des-."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — обстановка приємна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-55:i03:r1",
+          "text": "Плитки: agradable"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i03:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — обстановка приємна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es agradable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — обстановка приятная",
+          "uk": "Зберіть фразу — обстановка приємна"
+        },
+        "orderedTokens": [
+          "Es",
+          "agradable"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-55:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — обстановка приємна",
+            "feedbackByLocale": {
+              "ru": "речь об обстановке.",
+              "uk": "йдеться про обстановку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тихий куточок вам подобається; назвіть обстановку приємною",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тихий куточок вам подобається; назвіть обстановку приємною",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i04:audio",
+          "transcript": "Es agradable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es agradable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — desagradable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — desagradable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i05:audio",
+          "transcript": "desagradable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-55:i05:r1",
+            "targetText": "desagradable",
+            "meaningByLocale": {
+              "ru": "неприятный. Не меняется по роду. 🔊 *desagradable*",
+              "uk": "неприємний. Не змінюється за родом. 🔊 *desagradable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "desagradable",
+          "definitionByLocale": {
+            "ru": "неприятный. Не меняется по роду. 🔊 *desagradable*",
+            "uk": "неприємний. Не змінюється за родом. 🔊 *desagradable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-55:i06:r1",
+          "text": "desagradable"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i06:r2",
+          "text": "agradable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i06:audio",
+          "transcript": "desagradable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-55:i06:r1",
+            "targetText": "desagradable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-55:i06:r2",
+            "targetText": "agradable",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит начало des-: desagradable.",
+              "uk": "Звучить початок des-: desagradable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — гучна обстановка неприємна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-55:i07:r1",
+          "text": "Плитки: desagradable"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i07:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — гучна обстановка неприємна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es desagradable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — шумная обстановка неприятна",
+          "uk": "Зберіть фразу — гучна обстановка неприємна"
+        },
+        "orderedTokens": [
+          "Es",
+          "desagradable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-55:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — гучна обстановка неприємна",
+            "feedbackByLocale": {
+              "ru": "отрицательный смысл уже в desagradable.",
+              "uk": "негативний зміст уже в desagradable."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тіснота й гучна суперечка вам неприємні; оцініть обстановку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тіснота й гучна суперечка вам неприємні; оцініть обстановку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i08:audio",
+          "transcript": "Es desagradable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es desagradable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — «Це дуже приємно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-55:i09:r1",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i09:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i09:r3",
+          "text": "son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — «Це дуже приємно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — «Это очень приятно»",
+          "uk": "Вставте слово — «Це дуже приємно»"
+        },
+        "gappedTargetPhrase": "Es ___ agradable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-55:i09:r1",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-01:session-55:i09:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-01:session-55:i09:r3",
+            "text": "son"
+          }
+        ],
+        "testedDimension": "Вставте слово — «Це дуже приємно»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — «Це дуже приємно»",
+            "feedbackByLocale": {
+              "ru": "Для усиления нужно muy, а no отрицает.",
+              "uk": "Для посилення потрібне muy, а no заперечує."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — «Це дуже приємно»",
+            "feedbackByLocale": {
+              "ru": "Son — форма ser, а нужна степень качества.",
+              "uk": "Son — форма ser, а потрібен ступінь якості."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — підкресліть приємність обстановки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-55:i10:r1",
+          "text": "Плитки: agradable"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i10:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-55:i10:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — підкресліть приємність обстановки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy agradable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подчеркните приятность обстановки",
+          "uk": "Зберіть фразу — підкресліть приємність обстановки"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "agradable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-55:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — підкресліть приємність обстановки",
+            "feedbackByLocale": {
+              "ru": "оценка положительная.",
+              "uk": "оцінка позитивна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — відкиньте позитивну оцінку гучної частини: це не приємно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — відкиньте позитивну оцінку гучної частини: це не приємно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i11:audio",
+          "transcript": "No es agradable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es agradable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви вибрали тихий куточок; назвіть обстановку дуже приємною",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви вибрали тихий куточок; назвіть обстановку дуже приємною",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-55:i12:audio",
+          "transcript": "Es muy agradable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es muy agradable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b0bc1da6e48eafa0bccc8944bbd544cc9d0769946613e4a599122cdcc2f61891"
+}

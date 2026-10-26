@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-56:i01",
+    "correctText": "conveniente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i02",
+    "correctText": "conveniente",
+    "correctResponseId": "es:lesson-01:session-56:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i03",
+    "correctText": "Soy",
+    "correctResponseId": "es:lesson-01:session-56:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i04",
+    "correctText": "¿Eres aventurero?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i05",
+    "correctText": "Es conveniente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i06",
+    "correctText": "Somos",
+    "correctResponseId": "es:lesson-01:session-56:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i07",
+    "correctText": "Son nueve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i08",
+    "correctText": "No es conveniente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i09",
+    "correctText": "¿Es seguro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i10",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-01:session-56:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i11",
+    "correctText": "Soy tranquilo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i12",
+    "correctText": "Somos diez.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i13",
+    "correctText": "Sí, es agradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i14",
+    "correctText": "Son nueve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i15",
+    "correctText": "¿Eres aventurero?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-56:i16",
+    "correctText": "Es conveniente.",
+    "correctResponseId": null
+  }
+]

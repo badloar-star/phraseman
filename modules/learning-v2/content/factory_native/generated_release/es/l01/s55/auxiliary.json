@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-55",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-55:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-55:intro1:r2": {
+          "ru": "Это обращение к человеку, а речь об обстановке.",
+          "uk": "Це звернення до людини, а йдеться про обстановку."
+        },
+        "es:lesson-01:session-55:intro1:r3": {
+          "ru": "Это отрицательная оценка, а вам нравится.",
+          "uk": "Це негативна оцінка, а вам подобається."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-55:intro2:r2": {
+          "ru": "Это противоположная оценка.",
+          "uk": "Це протилежна оцінка."
+        },
+        "es:lesson-01:session-55:intro2:r3": {
+          "ru": "Это отрицание неприятности, а вы хотите её отметить.",
+          "uk": "Це заперечення неприємності, а ви хочете її відзначити."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-55:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-55:intro3:r2": {
+          "ru": "Muy нужно поставить перед качеством.",
+          "uk": "Muy потрібно поставити перед якістю."
+        },
+        "es:lesson-01:session-55:intro3:r3": {
+          "ru": "Это усиление отрицательной оценки, а уголок вам нравится.",
+          "uk": "Це посилення негативної оцінки, а куточок вам подобається."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f7e2d8964220a678356a9aeb969587f8e3b7fccef5e895f5df515ca781a2a692"
+}

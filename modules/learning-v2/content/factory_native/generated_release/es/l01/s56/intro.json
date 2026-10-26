@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно использовать soy, eres, es, somos и son в отдельных репликах.",
+    "uk": "самостійно використовувати soy, eres, es, somos та son в окремих репліках."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подходит по условиям",
+        "uk": "Підходить за умовами"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли занятие, которое укладывается в общий бюджет и не требует долгой дороги. Оцените предложение: `Es conveniente` — «Это подходящий вариант». `Conveniente` здесь означает «подходящий по условиям, разумный». Соберите `es` + `conveniente`. Это оценка целесообразности, а не удобства кресла: для физического удобства вы уже знаете cómodo.",
+        "uk": "Ви знайшли заняття, яке вкладається в спільний бюджет і не потребує довгої дороги. Оцініть пропозицію: `Es conveniente` — «Це підхожий варіант». `Conveniente` тут означає «відповідний за умовами, доцільний». Складіть `es` + `conveniente`. Це оцінка доцільності, а не зручності крісла: для фізичної зручності ви вже знаєте cómodo."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что предложение подходит по условиям.",
+          "uk": "Скажіть, що пропозиція підходить за умовами."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-56:intro1:r1",
+              "text": "Es conveniente."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro1:r2",
+              "text": "Eres conveniente."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro1:r3",
+              "text": "No es conveniente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-56:intro1:r1",
+              "text": "Es conveniente."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro1:r2",
+              "text": "Eres conveniente."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro1:r3",
+              "text": "No es conveniente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что предложение подходит по условиям.",
+          "uk": "Скажіть, що пропозиція підходить за умовами."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Предпочтение друга",
+        "uk": "Уподобання друга"
+      },
+      "bodyByLocale": {
+        "ru": "Один вариант требует готовности к приключениям. Обратитесь к другу-мужчине: `¿Eres aventurero?` — «Ты любишь приключения?» Соберите `eres` + `aventurero` внутри ¿…?. Eres выбираем для собеседника. Мужская форма aventurero относится к другу; женщине задали бы вопрос с aventurera.",
+        "uk": "Один варіант потребує готовності до пригод. Зверніться до друга-чоловіка: `¿Eres aventurero?` — «Ти любиш пригоди?» Складіть `eres` + `aventurero` всередині ¿…?. Eres вибираємо для співрозмовника. Чоловіча форма aventurero стосується друга; жінці поставили б питання з aventurera."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите друга-мужчину о любви к приключениям.",
+          "uk": "Запитайте друга-чоловіка про любов до пригод."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-56:intro2:r1",
+              "text": "¿Eres aventurero?"
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro2:r2",
+              "text": "¿Soy aventurero?"
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro2:r3",
+              "text": "¿Es aventurero?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-56:intro2:r1",
+              "text": "¿Eres aventurero?"
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro2:r2",
+              "text": "¿Soy aventurero?"
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro2:r3",
+              "text": "¿Es aventurero?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга-мужчину о любви к приключениям.",
+          "uk": "Запитайте друга-чоловіка про любов до пригод."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Состав компании",
+        "uk": "Склад компанії"
+      },
+      "bodyByLocale": {
+        "ru": "Для выбора занятия уточните, сколько вас вместе с вами: десять человек. Скажите `Somos diez` — «Нас десять». Соберите `somos` + `diez`. Для другой компании, в которую вы не входите, нужна форма son. В следующих заданиях сначала определите, о ком речь, и только затем выбирайте форму ser.",
+        "uk": "Для вибору заняття уточніть, скільки вас разом із вами: десятеро людей. Скажіть `Somos diez` — «Нас десятеро». Складіть `somos` + `diez`. Для іншої компанії, до якої ви не входите, потрібна форма son. У наступних завданнях спершу визначте, про кого йдеться, і лише тоді вибирайте форму ser."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите десять участников своей компании, включая себя.",
+          "uk": "Назвіть десятьох учасників своєї компанії, включно із собою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-56:intro3:r1",
+              "text": "Somos diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro3:r2",
+              "text": "Son diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro3:r3",
+              "text": "Soy diez."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-56:intro3:r1",
+              "text": "Somos diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro3:r2",
+              "text": "Son diez."
+            },
+            {
+              "responseId": "es:lesson-01:session-56:intro3:r3",
+              "text": "Soy diez."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите десять участников своей компании, включая себя.",
+          "uk": "Назвіть десятьох учасників своєї компанії, включно із собою."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2ddf9602417c0c329c9c7ffe51cca144a893d4cc7d7e213bd20bfd4b9dcfcd41"
+}

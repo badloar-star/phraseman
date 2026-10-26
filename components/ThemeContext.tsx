@@ -32,10 +32,12 @@ import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
 import { FOLLOW_SYSTEM_MARKER_KEY, decideFirstRunTheme, pickSystemDefaultTheme } from '../app/theme_first_run_default';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { isPremiumThemeId } from '../app/premium_theme_catalog';
+import { themeBootEntitlementWait } from './theme_boot_entitlement_policy';
 import {
   claimPremiumThemeCondition,
   peekPremiumThemeEntitlements,
   primePremiumThemeEntitlements,
+  primePremiumThemeEntitlementsFromCache,
   usePremiumThemeEntitlements,
 } from '../app/premium_theme_entitlements';
 import {
@@ -618,7 +620,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const newUserApply = firstRun.kind === 'new_user' && firstRun.apply ? firstRun : null;
       // Право на премиальную тему читает сервер. Пока ответ не пришёл, сплеш
       // остаётся закрытым; так заблокированная тема не мелькает первым кадром.
-      await primePremiumThemeEntitlements();
+      // зачем (скорость тем 26.10): ждём права только для ПРЕМИАЛЬНОЙ сохранённой темы и только из кэша телефона — сеть при
+      // устаревшем кэше держала тему дольше потолка заставки, и Главная перекрашивалась после её снятия (см. theme_boot_entitlement_policy)
+      const bootWait = themeBootEntitlementWait(resolveLiquidGlassTheme(storedId));
+      const entitlementWaitStartedAt = Date.now();
+      // кэш — без общей очереди загрузки (фоновый prime уже стоит в ней с сетью); кэша нет — ждём сеть, как прежде
+      if (bootWait.wait === 'cache_first' && !(await primePremiumThemeEntitlementsFromCache())) await primePremiumThemeEntitlements();
+      console.log(`[THEME-BOOT] entitlements ${JSON.stringify({ wait: bootWait.wait, waitedMs: Date.now() - entitlementWaitStartedAt, msSinceBoot: Date.now() - THEME_BOOT_T0 })}`); // guard-ok: причина ожидания заставки
       if (cancelled) return;
       const storedCandidate = resolveLiquidGlassTheme(storedId);
       const entitlementSnapshot = peekPremiumThemeEntitlements();

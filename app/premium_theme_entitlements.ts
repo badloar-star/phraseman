@@ -156,6 +156,28 @@ async function writeCache(stableId: string, unlocked: ReadonlySet<PremiumThemeId
   }
 }
 
+/**
+ * Права только из кэша телефона, без сети и без общей очереди загрузки.
+ * зачем (скорость тем 26.10, Темы): заставка холодного старта ждёт права для премиальной сохранённой темы; общий prime при
+ * устаревшем кэше ждёт сеть (а фоновый prime уже стоит в очереди) — тема держалась дольше потолка заставки, Главная потом
+ * перекрашивалась. Здесь — только кэш любого возраста (заработанная тема не откатывается); свежесть догоняет фоновый prime.
+ * Возвращает, нашёлся ли кэш: нет — вызывающий ждёт обычный prime (сеть), как прежде.
+ */
+export async function primePremiumThemeEntitlementsFromCache(): Promise<boolean> {
+  ensureGenerationSubscription();
+  const stableId = owner();
+  if (!stableId) { console.log(`${LOG} boot cache: no owner`); return false; } // guard-ok: ранний выход пишет причину
+  if (snapshot.ready && snapshot.ownerStableId === stableId) return true;
+  const token = captureAccountGeneration();
+  const cached = await readCache(stableId);
+  if (!cached || !isCurrentAccountGeneration(token, stableId)) { console.log(`${LOG} boot cache: ${cached ? 'account changed' : 'miss'}`); return false; } // guard-ok
+  if (snapshot.ready && snapshot.ownerStableId === stableId) return true; // фоновый prime успел раньше — его ответ свежее
+  cachedAtMs = cached.atMs;
+  publish(stableId, parseServerEntitlements(Object.fromEntries(cached.unlocked.map((id) => [id, 1]))), parseProgressByCondition(cached.progressByCondition));
+  console.log(`${LOG} boot cache used`, JSON.stringify({ ageMin: Math.round((Date.now() - cached.atMs) / 60000), unlocked: cached.unlocked.length })); // guard-ok: откуда права на старте
+  return true;
+}
+
 export async function primePremiumThemeEntitlements(options: Readonly<{ maxAgeMs?: number; nowMs?: number }> = {}): Promise<void> {
   ensureGenerationSubscription();
   const maxAgeMs = options.maxAgeMs ?? PREMIUM_THEME_ENTITLEMENTS_MAX_AGE_MS;

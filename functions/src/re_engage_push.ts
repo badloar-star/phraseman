@@ -425,16 +425,19 @@ function normLang(lang: string): CopyLang {
 // Gain-framing (Phraseman Bible: loss-framing only for streak 7+; the at-risk trigger fires from
 // streak 3, so we keep the copy positive — the series "is waiting", grows with one session — for
 // every streak length, no «под угрозой»/«не теряй». One emoji, no extra «!».
+// зачем (Переводчик 7398140e4, координатор 26.10): пуш уходит и курсам es/fr/de/it, где «Уроков» нет (D129/D130) — тело не обещает
+// урок. Правда по коду: день засчитывает любое учебное действие (урок, карточки, «Мои ошибки», диалог, ступени Пика —
+// app/streak_day_signal.ts STREAK_DAY_ACTIVITY_KINDS; сервер — любое событие прогресса, progress_events.ts applyDailyStreak).
 const STREAK_AT_RISK_COPY: Record<CopyLang, (streak: number) => Copy> = {
-  ru: (s) => ({ title: `🔥 Серия ${s} дней ждёт тебя`, body: 'Одно занятие сегодня — и серия растёт.' }),
-  uk: (s) => ({ title: `🔥 Серія ${s} днів чекає на тебе`, body: 'Одне заняття сьогодні — і серія росте.' }),
-  en: (s) => ({ title: `🔥 Your ${s}-day streak is waiting`, body: 'One lesson today and your streak grows.' }),
-  es: (s) => ({ title: `🔥 Tu racha de ${s} días te espera`, body: 'Una lección hoy y tu racha crece.' }),
-  'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias te espera`, body: 'Uma lição hoje e sua sequência cresce.' }),
-  vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày đang chờ bạn`, body: 'Một bài hôm nay là chuỗi dài thêm.' }),
-  id: (s) => ({ title: `🔥 Rangkaian ${s} hari menantimu`, body: 'Satu pelajaran hari ini, rangkaianmu bertambah.' }),
-  tr: (s) => ({ title: `🔥 ${s} günlük serin seni bekliyor`, body: 'Bugün bir ders, serin uzar.' }),
-  pl: (s) => ({ title: `🔥 Twoja seria ${s} dni czeka`, body: 'Jedna lekcja dziś i seria rośnie.' }),
+  ru: (s) => ({ title: `🔥 Серия ${s} дней ждёт тебя`, body: 'Пара минут сегодня — и серия растёт.' }),
+  uk: (s) => ({ title: `🔥 Серія ${s} днів чекає на тебе`, body: 'Кілька хвилин сьогодні — і серія росте.' }),
+  en: (s) => ({ title: `🔥 Your ${s}-day streak is waiting`, body: 'A couple of minutes today and your streak grows.' }),
+  es: (s) => ({ title: `🔥 Tu racha de ${s} días te espera`, body: 'Un par de minutos hoy y tu racha crece.' }),
+  'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias te espera`, body: 'Alguns minutos hoje e sua sequência cresce.' }),
+  vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày đang chờ bạn`, body: 'Vài phút hôm nay là chuỗi dài thêm.' }),
+  id: (s) => ({ title: `🔥 Rangkaian ${s} hari menantimu`, body: 'Beberapa menit hari ini, rangkaianmu bertambah.' }),
+  tr: (s) => ({ title: `🔥 ${s} günlük serin seni bekliyor`, body: 'Bugün birkaç dakika, serin uzar.' }),
+  pl: (s) => ({ title: `🔥 Twoja seria ${s} dni czeka`, body: 'Kilka minut dziś i seria rośnie.' }),
 };
 
 const INACTIVE_RETURN_COPY: Record<CopyLang, Copy> = {

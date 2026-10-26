@@ -238,6 +238,14 @@ describe('buildExpoPushMessage', () => {
     expect(streak.title).toContain('5');
   });
 
+  // зачем (Переводчик 7398140e4, координатор 26.10): пуш уходит и курсам без «Уроков» (es/fr/de/it, D129/D130) — тело не обещает урок
+  it.each(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'])('streak_at_risk (%s): тело без обещания урока', (lang) => {
+    const streak = buildExpoPushMessage({ ...base, lang, reason: 'streak_at_risk', streakCount: 5 });
+    // vi: \b в JS понимает только латиницу — «bài» ловим по пробелам
+    expect(streak.body).not.toMatch(/урок|занят|lesson|lecci|liç|pelajaran|\bders\b|lekcj|(^|\s)bài(\s|$)/i);
+    expect(streak.title).toContain('5');
+  });
+
   // зачем (EN_READINESS_R1): английский интерфейс не должен получать русский пуш (запасной язык — ru).
   it('en: английский текст, без кириллицы', () => {
     const inactive = buildExpoPushMessage({ ...base, lang: 'en' });

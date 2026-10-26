@@ -1,0 +1,667 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-34",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-34:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tarjeta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tarjeta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i01:audio",
+          "transcript": "tarjeta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-34:i01:r1",
+            "targetText": "tarjeta",
+            "meaningByLocale": {
+              "ru": "открытка, карточка. Здесь — открытка к подарку. Женский род; несколько — tarjetas. 🔊 *tarjeta*",
+              "uk": "листівка, картка. Тут — листівка до подарунка. Жіночий рід; кілька — tarjetas. 🔊 *tarjeta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tarjeta",
+          "definitionByLocale": {
+            "ru": "открытка, карточка. Здесь — открытка к подарку. Женский род; несколько — tarjetas. 🔊 *tarjeta*",
+            "uk": "листівка, картка. Тут — листівка до подарунка. Жіночий рід; кілька — tarjetas. 🔊 *tarjeta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i02:r1",
+          "text": "tarjetas"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i02:r2",
+          "text": "tarjeta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i02:audio",
+          "transcript": "tarjetas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-34:i02:r1",
+            "targetText": "tarjetas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i02:r2",
+            "targetText": "tarjeta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит s: tarjetas.",
+              "uk": "Наприкінці звучить s: tarjetas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — igual",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — igual",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i03:audio",
+          "transcript": "igual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-34:i03:r1",
+            "targetText": "igual",
+            "meaningByLocale": {
+              "ru": "одинаковый. Для нескольких предметов — iguales, независимо от рода. 🔊 *igual*",
+              "uk": "однаковий. Для кількох предметів — iguales, незалежно від роду. 🔊 *igual*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "igual",
+          "definitionByLocale": {
+            "ru": "одинаковый. Для нескольких предметов — iguales, независимо от рода. 🔊 *igual*",
+            "uk": "однаковий. Для кількох предметів — iguales, незалежно від роду. 🔊 *igual*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — дві листівки однакові",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i04:r1",
+          "text": "iguales"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i04:r2",
+          "text": "igual"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i04:r3",
+          "text": "diferentes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — дві листівки однакові",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — две открытки одинаковые",
+          "uk": "Вставте слово — дві листівки однакові"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-34:i04:r1",
+            "text": "iguales"
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i04:r2",
+            "text": "igual"
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i04:r3",
+            "text": "diferentes"
+          }
+        ],
+        "testedDimension": "Вставте слово — дві листівки однакові",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — дві листівки однакові",
+            "feedbackByLocale": {
+              "ru": "Предметов несколько, поэтому iguales.",
+              "uk": "Предметів кілька, тому iguales."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — дві листівки однакові",
+            "feedbackByLocale": {
+              "ru": "Это «разные», а открытки одинаковые.",
+              "uk": "Це «різні», а листівки однакові."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть про дві однакові листівки «Вони однакові»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i05:r1",
+          "text": "Плитки: iguales"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i05:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть про дві однакові листівки «Вони однакові»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son iguales.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о двух одинаковых открытках «Они одинаковые»",
+          "uk": "Зберіть фразу — скажіть про дві однакові листівки «Вони однакові»"
+        },
+        "orderedTokens": [
+          "Son",
+          "iguales"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть про дві однакові листівки «Вони однакові»",
+            "feedbackByLocale": {
+              "ru": "описываете два предмета.",
+              "uk": "описуєте два предмети."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — parecido",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — parecido",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i06:audio",
+          "transcript": "parecido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-34:i06:r1",
+            "targetText": "parecido",
+            "meaningByLocale": {
+              "ru": "похожий; женская форма — parecida. Несколько предметов — parecidos или parecidas. 🔊 *parecido*",
+              "uk": "схожий; жіноча форма — parecida. Кілька предметів — parecidos або parecidas. 🔊 *parecido*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parecido",
+          "definitionByLocale": {
+            "ru": "похожий; женская форма — parecida. Несколько предметов — parecidos или parecidas. 🔊 *parecido*",
+            "uk": "схожий; жіноча форма — parecida. Кілька предметів — parecidos або parecidas. 🔊 *parecido*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i07:r1",
+          "text": "parecidas"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i07:r2",
+          "text": "parecidos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i07:audio",
+          "transcript": "parecidas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-34:i07:r1",
+            "targetText": "parecidas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i07:r2",
+            "targetText": "parecidos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит женское окончание as: parecidas.",
+              "uk": "Звучить жіноче закінчення as: parecidas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — дві листівки схожі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i08:r1",
+          "text": "parecidas"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i08:r2",
+          "text": "parecida"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i08:r3",
+          "text": "parecidos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — дві листівки схожі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — две открытки похожие",
+          "uk": "Вставте слово — дві листівки схожі"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-34:i08:r1",
+            "text": "parecidas"
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i08:r2",
+            "text": "parecida"
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i08:r3",
+            "text": "parecidos"
+          }
+        ],
+        "testedDimension": "Вставте слово — дві листівки схожі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — дві листівки схожі",
+            "feedbackByLocale": {
+              "ru": "Это форма для одной открытки.",
+              "uk": "Це форма для однієї листівки."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-34:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — дві листівки схожі",
+            "feedbackByLocale": {
+              "ru": "Tarjetas женского рода, поэтому parecidas.",
+              "uk": "Tarjetas жіночого роду, тому parecidas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — порівняйте дві схожі листівки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — порівняйте дві схожі листівки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i09:audio",
+          "transcript": "Son parecidas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son parecidas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — уточніть: дві листівки не однакові",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i10:r1",
+          "text": "Плитки: iguales"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i10:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i10:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — уточніть: дві листівки не однакові",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son iguales.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — уточните: две открытки не одинаковые",
+          "uk": "Зберіть фразу — уточніть: дві листівки не однакові"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "iguales"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — уточніть: дві листівки не однакові",
+            "feedbackByLocale": {
+              "ru": "сравниваете два предмета.",
+              "uk": "порівнюєте два предмети."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i11:r1",
+          "text": "Плитки: parecidas"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i11:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i11:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-34:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-34:i11:audio",
+          "transcript": "Son parecidas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son parecidas.",
+        "orderedTokens": [
+          "Son",
+          "parecidas"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у нової пари зовсім різні малюнки; скажіть «Вони не схожі»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-34:i12:r1",
+          "text": "Плитки: parecidas"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i12:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-34:i12:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у нової пари зовсім різні малюнки; скажіть «Вони не схожі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son parecidas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у новой пары совсем разные рисунки; скажите «Они не похожие»",
+          "uk": "Зберіть фразу — у нової пари зовсім різні малюнки; скажіть «Вони не схожі»"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "parecidas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-34:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у нової пари зовсім різні малюнки; скажіть «Вони не схожі»",
+            "feedbackByLocale": {
+              "ru": "описываете две открытки.",
+              "uk": "описуєте дві листівки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "33bf3c9ca607e14481cc023a27fbb7602003d875777981666a8a99b8361ec810"
+}

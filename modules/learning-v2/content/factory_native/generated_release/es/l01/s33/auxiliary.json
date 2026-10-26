@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-33",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-33:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-33:intro1:r2": {
+          "ru": "Son buenos нужно для нескольких предметов.",
+          "uk": "Son buenos потрібне для кількох предметів."
+        },
+        "es:lesson-01:session-33:intro1:r3": {
+          "ru": "Auricular мужского рода, поэтому bueno.",
+          "uk": "Auricular чоловічого роду, тому bueno."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-33:intro2:r2": {
+          "ru": "Это оценка одного предмета.",
+          "uk": "Це оцінка одного предмета."
+        },
+        "es:lesson-01:session-33:intro2:r3": {
+          "ru": "После son описание нескольких наушников получает s: buenos.",
+          "uk": "Після son опис кількох навушників отримує s: buenos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-33:intro3:r2": {
+          "ru": "Это про один предмет, а нужно про пару.",
+          "uk": "Це про один предмет, а потрібно про пару."
+        },
+        "es:lesson-01:session-33:intro3:r3": {
+          "ru": "Для нескольких предметов нужно malos.",
+          "uk": "Для кількох предметів потрібно malos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bb72a07c72ee944bc13b750a5202542d52a9d17147fdf7a73025e0564c2d3696"
+}

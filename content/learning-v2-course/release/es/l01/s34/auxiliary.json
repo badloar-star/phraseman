@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-34",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-34:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-34:intro1:r2": {
+          "ru": "Для нескольких предметов нужна форма iguales.",
+          "uk": "Для кількох предметів потрібна форма iguales."
+        },
+        "es:lesson-01:session-34:intro1:r3": {
+          "ru": "Es относится к одному предмету, а вы описываете оба.",
+          "uk": "Es стосується одного предмета, а ви описуєте обидва."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-34:intro2:r2": {
+          "ru": "Parecida относится к одной открытке.",
+          "uk": "Parecida стосується однієї листівки."
+        },
+        "es:lesson-01:session-34:intro2:r3": {
+          "ru": "Для tarjetas нужно женское окончание: parecidas.",
+          "uk": "Для tarjetas потрібне жіноче закінчення: parecidas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-34:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-34:intro3:r2": {
+          "ru": "Это про один предмет, а вы описываете оба.",
+          "uk": "Це про один предмет, а ви описуєте обидва."
+        },
+        "es:lesson-01:session-34:intro3:r3": {
+          "ru": "Для двух открыток нужно iguales.",
+          "uk": "Для двох листівок потрібно iguales."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9a6502d240426fbe89938229fca600327cb74ec08c7696d815038a8da75209dc"
+}

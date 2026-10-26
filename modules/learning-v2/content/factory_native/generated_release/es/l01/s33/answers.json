@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-33:i01",
+    "correctText": "auricular",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i02",
+    "correctText": "auriculares",
+    "correctResponseId": "es:lesson-01:session-33:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i03",
+    "correctText": "bueno",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i04",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-33:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i05",
+    "correctText": "Son buenos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i06",
+    "correctText": "Son buenos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i07",
+    "correctText": "malo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i08",
+    "correctText": "malos",
+    "correctResponseId": "es:lesson-01:session-33:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i09",
+    "correctText": "malo",
+    "correctResponseId": "es:lesson-01:session-33:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i10",
+    "correctText": "No son malos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i11",
+    "correctText": "El auricular es bueno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-33:i12",
+    "correctText": "El auricular no es malo.",
+    "correctResponseId": null
+  }
+]

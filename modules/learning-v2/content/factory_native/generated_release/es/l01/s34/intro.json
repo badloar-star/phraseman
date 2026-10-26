@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "описать несколько предметов словами iguales и parecidas.",
+    "uk": "описати кілька предметів словами iguales та parecidas."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одинаковый рисунок",
+        "uk": "Однаковий малюнок"
+      },
+      "bodyByLocale": {
+        "ru": "Перед вами две открытки с одним и тем же рисунком. `Tarjeta` — «открытка, карточка», здесь поздравительная открытка; слово женского рода. Несколько — tarjetas. Скажите о двух открытках: `Son iguales` — «Они одинаковые». Соберите `son` + `iguales`. `Igual` означает «одинаковый»; для нескольких предметов добавляем es после l. Форма iguales подходит и к женскому, и к мужскому роду.",
+        "uk": "Перед вами дві листівки з тим самим малюнком. `Tarjeta` — «листівка, картка», тут вітальна листівка; слово жіночого роду. Кілька — tarjetas. Скажіть про дві листівки: `Son iguales` — «Вони однакові». Зберіть `son` + `iguales`. `Igual` означає «однаковий»; для кількох предметів додаємо es після l. Форма iguales підходить і до жіночого, і до чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о двух открытках с одним рисунком: «Они одинаковые».",
+          "uk": "Скажіть про дві листівки з одним малюнком: «Вони однакові»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-34:intro1:r1",
+              "text": "Son iguales."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro1:r2",
+              "text": "Son igual."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro1:r3",
+              "text": "Es igual."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-34:intro1:r1",
+              "text": "Son iguales."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro1:r2",
+              "text": "Son igual."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro1:r3",
+              "text": "Es igual."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о двух открытках с одним рисунком: «Они одинаковые».",
+          "uk": "Скажіть про дві листівки з одним малюнком: «Вони однакові»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Похожие, но с отличиями",
+        "uk": "Схожі, але з відмінностями"
+      },
+      "bodyByLocale": {
+        "ru": "У другой пары открыток почти один рисунок, но различаются детали. `Son parecidas` — «Они похожие». `Parecido` означает «похожий». Tarjeta женского рода, поэтому описание двух открыток — parecidas. Соберите `son` + `parecidas`. Похожие предметы могут различаться; слово iguales в этой ситуации было бы слишком сильным.",
+        "uk": "В іншої пари листівок майже однаковий малюнок, але відрізняються деталі. `Son parecidas` — «Вони схожі». `Parecido` означає «схожий». Tarjeta жіночого роду, тому опис двох листівок — parecidas. Зберіть `son` + `parecidas`. Схожі предмети можуть відрізнятися; слово iguales у цій ситуації було б надто сильним."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о двух похожих открытках: «Они похожие».",
+          "uk": "Скажіть про дві схожі листівки: «Вони схожі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-34:intro2:r1",
+              "text": "Son parecidas."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro2:r2",
+              "text": "Son parecida."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro2:r3",
+              "text": "Son parecidos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-34:intro2:r1",
+              "text": "Son parecidas."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro2:r2",
+              "text": "Son parecida."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro2:r3",
+              "text": "Son parecidos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о двух похожих открытках: «Они похожие».",
+          "uk": "Скажіть про дві схожі листівки: «Вони схожі»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем сравнение",
+        "uk": "Уточнюємо порівняння"
+      },
+      "bodyByLocale": {
+        "ru": "Друг не заметил разницы между открытками. Вы обращаете внимание на разные детали: `No son iguales` — «Они не одинаковые». Соберите `no` + `son` + `iguales`. Отрицание ставится перед son, а iguales сохраняет форму для нескольких предметов. Такой ответ не исключает сходства: открытки всё ещё могут быть похожими.",
+        "uk": "Друг не помітив різниці між листівками. Ви звертаєте увагу на різні деталі: `No son iguales` — «Вони не однакові». Зберіть `no` + `son` + `iguales`. Заперечення ставиться перед son, а iguales зберігає форму для кількох предметів. Така відповідь не виключає схожості: листівки все ще можуть бути схожими."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Уточните про две открытки: «Они не одинаковые».",
+          "uk": "Уточніть про дві листівки: «Вони не однакові»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-34:intro3:r1",
+              "text": "No son iguales."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro3:r2",
+              "text": "No es igual."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro3:r3",
+              "text": "No son igual."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-34:intro3:r1",
+              "text": "No son iguales."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro3:r2",
+              "text": "No es igual."
+            },
+            {
+              "responseId": "es:lesson-01:session-34:intro3:r3",
+              "text": "No son igual."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните про две открытки: «Они не одинаковые».",
+          "uk": "Уточніть про дві листівки: «Вони не однакові»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1af12aee4c2576e22762ec09e32ad559c7685c33ecd3a2e0fa52cfe56cb7f8cc"
+}

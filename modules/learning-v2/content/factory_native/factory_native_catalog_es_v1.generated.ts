@@ -231,4 +231,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать одну из пяти знакомых форм ser, согласовать описание с человеком или группой и добавить отрицание.","uk":"обрати одну з п'яти знайомих форм ser, узгодити опис із людиною або групою та додати заперечення."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 33,
+    sourceFingerprint: "601b5418731514e430c12abb6f6bbd294f18a696fc6bd9e8eba8327fbdb2f79f",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить качество одного предмета с es и нескольких с son.","uk":"оцінити якість одного предмета з es і кількох із son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 34,
+    sourceFingerprint: "29fa9e5676eae0c5b05b5238dfa57ff325bc4fba1352977fea0268134727673b",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать несколько предметов словами iguales и parecidas.","uk":"описати кілька предметів словами iguales та parecidas."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

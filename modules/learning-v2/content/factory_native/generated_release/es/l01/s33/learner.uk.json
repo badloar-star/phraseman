@@ -1,0 +1,687 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-33",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — auricular",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — auricular",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i01:audio",
+          "transcript": "auricular"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-33:i01:r1",
+            "targetText": "auricular",
+            "meaningByLocale": {
+              "ru": "наушник; мужской род: el auricular. Несколько — auriculares. 🔊 *auricular*",
+              "uk": "навушник; чоловічий рід: el auricular. Кілька — auriculares. 🔊 *auricular*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "auricular",
+          "definitionByLocale": {
+            "ru": "наушник; мужской род: el auricular. Несколько — auriculares. 🔊 *auricular*",
+            "uk": "навушник; чоловічий рід: el auricular. Кілька — auriculares. 🔊 *auricular*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i02:r1",
+          "text": "auriculares"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i02:r2",
+          "text": "auricular"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i02:audio",
+          "transcript": "auriculares"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-33:i02:r1",
+            "targetText": "auriculares",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i02:r2",
+            "targetText": "auricular",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит форма для нескольких наушников: auriculares.",
+              "uk": "Звучить форма для кількох навушників: auriculares."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bueno",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bueno",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i03:audio",
+          "transcript": "bueno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-33:i03:r1",
+            "targetText": "bueno",
+            "meaningByLocale": {
+              "ru": "хороший; женская форма — buena. Несколько предметов — buenos или buenas. 🔊 *bueno*",
+              "uk": "хороший; жіноча форма — buena. Кілька предметів — buenos або buenas. 🔊 *bueno*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bueno",
+          "definitionByLocale": {
+            "ru": "хороший; женская форма — buena. Несколько предметов — buenos или buenas. 🔊 *bueno*",
+            "uk": "хороший; жіноча форма — buena. Кілька предметів — buenos або buenas. 🔊 *bueno*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — оцініть один навушник: «Навушник хороший»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i04:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i04:r3",
+          "text": "somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — оцініть один навушник: «Навушник хороший»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — оцените один наушник: «Наушник хороший»",
+          "uk": "Вставте слово — оцініть один навушник: «Навушник хороший»"
+        },
+        "gappedTargetPhrase": "El auricular ___ bueno.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-33:i04:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i04:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i04:r3",
+            "text": "somos"
+          }
+        ],
+        "testedDimension": "Вставте слово — оцініть один навушник: «Навушник хороший»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — оцініть один навушник: «Навушник хороший»",
+            "feedbackByLocale": {
+              "ru": "Здесь один наушник, поэтому es.",
+              "uk": "Тут один навушник, тому es."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — оцініть один навушник: «Навушник хороший»",
+            "feedbackByLocale": {
+              "ru": "Somos описывает нас, а не наушник.",
+              "uk": "Somos описує нас, а не навушник."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — оцініть пару навушників: «Вони хороші»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i05:r1",
+          "text": "Плитки: buenos"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i05:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — оцініть пару навушників: «Вони хороші»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son buenos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — оцените пару наушников: «Они хорошие»",
+          "uk": "Зберіть фразу — оцініть пару навушників: «Вони хороші»"
+        },
+        "orderedTokens": [
+          "Son",
+          "buenos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — оцініть пару навушників: «Вони хороші»",
+            "feedbackByLocale": {
+              "ru": "оцениваете несколько предметов.",
+              "uk": "оцінюєте кілька предметів."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вам подобається якість пари навушників; скажіть «Вони хороші»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вам подобається якість пари навушників; скажіть «Вони хороші»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i06:audio",
+          "transcript": "Son buenos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son buenos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — malo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — malo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i07:audio",
+          "transcript": "malo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-33:i07:r1",
+            "targetText": "malo",
+            "meaningByLocale": {
+              "ru": "плохой; женская форма — mala. Несколько предметов — malos или malas. 🔊 *malo*",
+              "uk": "поганий; жіноча форма — mala. Кілька предметів — malos або malas. 🔊 *malo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "malo",
+          "definitionByLocale": {
+            "ru": "плохой; женская форма — mala. Несколько предметов — malos или malas. 🔊 *malo*",
+            "uk": "поганий; жіноча форма — mala. Кілька предметів — malos або malas. 🔊 *malo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i08:r1",
+          "text": "malos"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i08:r2",
+          "text": "buenos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i08:audio",
+          "transcript": "malos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-33:i08:r1",
+            "targetText": "malos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i08:r2",
+            "targetText": "buenos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит malos — «плохие», а не buenos.",
+              "uk": "Звучить malos — «погані», а не buenos."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — якість одного навушника погана",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i09:r1",
+          "text": "malo"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i09:r2",
+          "text": "malos"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i09:r3",
+          "text": "mala"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — якість одного навушника погана",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — качество одного наушника плохое",
+          "uk": "Вставте слово — якість одного навушника погана"
+        },
+        "gappedTargetPhrase": "El auricular es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-33:i09:r1",
+            "text": "malo"
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i09:r2",
+            "text": "malos"
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i09:r3",
+            "text": "mala"
+          }
+        ],
+        "testedDimension": "Вставте слово — якість одного навушника погана",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — якість одного навушника погана",
+            "feedbackByLocale": {
+              "ru": "Это несколько предметов, а здесь один.",
+              "uk": "Це кілька предметів, а тут один."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — якість одного навушника погана",
+            "feedbackByLocale": {
+              "ru": "Auricular мужского рода, поэтому malo.",
+              "uk": "Auricular чоловічого роду, тому malo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — заперечуєте погану якість пари: «Вони не погані»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i10:r1",
+          "text": "Плитки: malos"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i10:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — заперечуєте погану якість пари: «Вони не погані»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son malos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — отрицаете плохое качество пары: «Они не плохие»",
+          "uk": "Зберіть фразу — заперечуєте погану якість пари: «Вони не погані»"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "malos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — заперечуєте погану якість пари: «Вони не погані»",
+            "feedbackByLocale": {
+              "ru": "речь о нескольких наушниках.",
+              "uk": "йдеться про кілька навушників."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i11:r1",
+          "text": "Плитки: bueno"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i11:r2",
+          "text": "auricular"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i11:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i11:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-33:i11:audio",
+          "transcript": "El auricular es bueno."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El auricular es bueno.",
+        "orderedTokens": [
+          "El",
+          "auricular",
+          "es",
+          "bueno"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-33:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — один навушник не поганий; назвіть його на початку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-33:i12:r1",
+          "text": "Плитки: malo"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i12:r2",
+          "text": "auricular"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i12:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i12:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-33:i12:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — один навушник не поганий; назвіть його на початку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El auricular no es malo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — один наушник не плохой; назовите его в начале",
+          "uk": "Зберіть фразу — один навушник не поганий; назвіть його на початку"
+        },
+        "orderedTokens": [
+          "El",
+          "auricular",
+          "no",
+          "es",
+          "malo"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-33:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — один навушник не поганий; назвіть його на початку",
+            "feedbackByLocale": {
+              "ru": "описываете один наушник.",
+              "uk": "описуєте один навушник."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7110cfc7af53c821769dc65caadb4834ac74d7b8648108a7e7465c7061b6f806"
+}

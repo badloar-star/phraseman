@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-34:i01",
+    "correctText": "tarjeta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i02",
+    "correctText": "tarjetas",
+    "correctResponseId": "es:lesson-01:session-34:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i03",
+    "correctText": "igual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i04",
+    "correctText": "iguales",
+    "correctResponseId": "es:lesson-01:session-34:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i05",
+    "correctText": "Son iguales.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i06",
+    "correctText": "parecido",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i07",
+    "correctText": "parecidas",
+    "correctResponseId": "es:lesson-01:session-34:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i08",
+    "correctText": "parecidas",
+    "correctResponseId": "es:lesson-01:session-34:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i09",
+    "correctText": "Son parecidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i10",
+    "correctText": "No son iguales.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i11",
+    "correctText": "Son parecidas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-34:i12",
+    "correctText": "No son parecidas.",
+    "correctResponseId": null
+  }
+]

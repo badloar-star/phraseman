@@ -1,7 +1,7 @@
 // chapter_exam_v2_l23_c1.ts — банк экзамена v2: урок 23, глава 1 (эпизоды 1–8).
 // зачем (владелец через координатора 26.10: экзамены глав v2 для всех уроков, войдут в полную 2.0.3): правила
 // docs/work/factory-exam-banks-task-for-codex-2026-10-25.md — только слова и формы эпизодов 1–8 урока 23, ситуация и ответ
-// сходятся по смыслу, верных вариантов несколько, эталон (первый в accepted) — полной формой. Вопросов нет: «?» запрещён общим сторожем.
+// сходятся по смыслу, верных вариантов несколько, эталон (первый в accepted) — полной формой. Вопросы — там, где они есть в эпизодах урока.
 // Глава 1 — have / has + третья форма о том, что уже сделано (эпизоды 1–8). «Not», «already», «yet» и вопросы ещё не проходили.
 import type { ChapterExamV2Bank } from '../chapter_exam_v2';
 
@@ -25,7 +25,7 @@ export const CHAPTER_EXAM_V2_BANK_L23_C1: ChapterExamV2Bank = {
     { id: 'l23c1-07', type: 'dialogue', grammarPoint: 'l23c1_i_we_have', partnerLine: 'We need products.', situation: { ru: 'Мама говорит, что дома нечего есть. Скажи, что ты уже заполнил холодильник.', uk: 'Мама каже, що вдома нічого їсти. Скажи, що ти вже заповнив холодильник.' }, accepted: ['I have restocked the fridge.', 'We have restocked the fridge.'] },
     { id: 'l23c1-08', type: 'dialogue', grammarPoint: 'l23c1_i_we_have', partnerLine: 'You are tired.', situation: { ru: 'Ты весь день работал без перерыва. Объясни, что перетрудился.', uk: 'Ти весь день працював без перерви. Поясни, що перепрацював.' }, accepted: ['I have overworked.'] },
     { id: 'l23c1-09', type: 'dialogue', grammarPoint: 'l23c1_she_he_has', partnerLine: 'The flowers are outside.', situation: { ru: 'Соседка удивляется, где цветы. Объясни, что их пересадила твоя сестра.', uk: 'Сусідка дивується, де квіти. Поясни, що їх пересадила твоя сестра.' }, accepted: ['She has replanted the flowers.'] },
-    { id: 'l23c1-10', type: 'dialogue', grammarPoint: 'l23c1_she_he_has', partnerLine: 'The cost is a problem.', situation: { ru: 'Коллега пересказывает слова начальника о цене. Скажи, что начальник преувеличил проблему.', uk: 'Колега переказує слова начальника про ціну. Скажи, що начальник перебільшив проблему.' }, accepted: ['He has exaggerated the problem.', 'He has exaggerated it.'] },
+    { id: 'l23c1-10', type: 'dialogue', grammarPoint: 'l23c1_she_he_has', partnerLine: 'The cost is a problem.', situation: { ru: 'Коллега повторяет слова начальника: цена — проблема. Скажи, что начальник её преувеличил.', uk: 'Колега повторює слова начальника: ціна — проблема. Скажи, що начальник її перебільшив.' }, accepted: ['He has exaggerated the problem.', 'He has exaggerated it.'] },
     { id: 'l23c1-11', type: 'dialogue', grammarPoint: 'l23c1_things_have', partnerLine: 'The weather is perfect.', situation: { ru: 'Друг зовёт на пляж, а ты смотришь в окно и видишь тучи. Возрази ему.', uk: 'Друг кличе на пляж, а ти дивишся у вікно і бачиш хмари. Заперечи йому.' }, accepted: ['Clouds have appeared.', 'The weather has worsened.'] },
     { id: 'l23c1-12', type: 'dialogue', grammarPoint: 'l23c1_things_have', partnerLine: 'I need to check your cut.', situation: { ru: 'Врач хочет осмотреть старый порез. Скажи, что он уже зажил.', uk: 'Лікар хоче оглянути старий поріз. Скажи, що він уже загоївся.' }, accepted: ['The cut has healed.', 'It has healed.', 'The wound has healed.'] },
     // ── Найди и исправь ошибку ────────────────────────────────────────────────────────────────────────────────────

@@ -265,7 +265,9 @@ function ThemedConfirmModal({
   }
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
+    // зачем (правило владельца «фон под статус-баром, без полосы», safe-area гейт 25.10): без statusBarTranslucent затемнение на Android
+    // не заходит под статус-бар; отступ insets.top у подложки уже есть — содержимое не съезжает
+    <Modal visible={visible} transparent statusBarTranslucent animationType="fade" onRequestClose={onCancel}>
       <Pressable
         accessible={false}
         onPress={() => {

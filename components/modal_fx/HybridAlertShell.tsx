@@ -177,7 +177,10 @@ function HybridAlertShell({
   const dismissHandler = dismissible ? runExit : ignoreDismiss;
 
   return (
-    <Modal visible={visible} transparent animationType="none" onRequestClose={dismissHandler}>
+    // зачем (правило владельца «фон под статус-баром, без цветной полосы», safe-area гейт OTA 25.10): без statusBarTranslucent на Android
+    // затемнение всех окон-предупреждений не заходило под статус-бар — сверху оставалась светлая полоса. Отступ insets.top у панели уже есть;
+    // navigationBarTranslucent не ставим — нижние шторки не отступают на панель навигации.
+    <Modal visible={visible} transparent statusBarTranslucent animationType="none" onRequestClose={dismissHandler}>
       {/* зачем (координатор 14.10, «ручка ⇒ свайп»): корень жестов внутри Modal — нужен шторкам-наследникам со свайпом (ThemedChoiceModal); раскладка прежняя: Pressable ниже заполняет экран как и раньше */}
       <SheetSwipeRoot>
       {/* guard-ok: скрим-фон закрывает модалку по тапу вовне, у него нет своего

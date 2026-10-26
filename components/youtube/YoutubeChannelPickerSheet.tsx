@@ -75,7 +75,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
   }
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal visible={visible} transparent statusBarTranslucent animationType="slide" onRequestClose={onClose}>
       <SheetSwipeRoot>
       <Pressable style={[styles.scrim, { backgroundColor: glass.scrim }]} onPress={onClose} accessibilityRole="button" accessibilityLabel={closeLabel} />
       {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает выбор канала тем же onClose, что тап по фону. Лист position:absolute — пока без следования за пальцем (PM-302) */}

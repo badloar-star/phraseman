@@ -227,7 +227,8 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
   const buttonRadius = 14;
 
   return (
-    <Modal transparent animationType="none" visible={visible} onRequestClose={handleNo}>
+    <Modal transparent statusBarTranslucent navigationBarTranslucent animationType="none" visible={visible} onRequestClose={handleNo}>
+      {/* зачем (правило владельца «фон под статус-баром, без цветной полосы», safe-area гейт OTA 25.10): без statusBarTranslucent на Android затемнение не заходит под статус-бар — сверху светлая полоса */}
       <Animated.View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_1, justifyContent: 'flex-end', opacity: fadeAnim }}>
         <Pressable style={{ flex: 1 }} onPress={handleNo} />
         <View style={{

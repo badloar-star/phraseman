@@ -400,7 +400,7 @@ export default function CollectionHeader({
       </View>
 
       {savedSurface ? (
-        <Modal visible={actionsOpen} transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onToggleActions}>
+        <Modal visible={actionsOpen} transparent statusBarTranslucent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onToggleActions}>
           <View style={{ flex: 1 }}>
             <Pressable accessibilityRole="button" accessibilityLabel={cancelSelectionLabel} onPress={onToggleActions} style={{ flex: 1 }} />
             <View

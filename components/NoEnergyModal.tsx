@@ -701,9 +701,13 @@ function NoEnergyModal({
   }
 
   return (
+    // зачем (правило владельца «фон под статус-баром, без цветной полосы», safe-area гейт OTA 25.10): без statusBarTranslucent на Android
+    // затемнение не заходит под статус-бар — сверху светлая полоса; отступы insets.top/bottom у окна уже есть
     <Modal
       visible={modalVisible}
       transparent
+      statusBarTranslucent
+      navigationBarTranslucent
       animationType="fade"
       onDismiss={handleModalDismissIos}
       onRequestClose={onClose}

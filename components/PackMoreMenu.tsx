@@ -45,7 +45,7 @@ function PackMoreMenu({ visible, lang, onClose, onReport, onHide }: Props) {
     </TouchableOpacity>
   );
   return (
-    <Modal visible={visible} transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onClose}>
+    <Modal visible={visible} transparent statusBarTranslucent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onClose}>
       <View style={{ flex: 1 }}>
         <Pressable testID="pack-more-menu-backdrop" accessibilityRole="button" accessibilityLabel={closeLabel} onPress={onClose} style={{ flex: 1 }} />
         <View

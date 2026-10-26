@@ -1603,6 +1603,7 @@ export default function SettingsMain() {
       <Modal
         visible={switchAccountStage === 'confirm' || switchAccountStage === 'wiping'}
         transparent
+        statusBarTranslucent
         animationType="fade"
         onRequestClose={() => { if (switchAccountStage === 'confirm') setSwitchAccountStage('idle'); }}
       >

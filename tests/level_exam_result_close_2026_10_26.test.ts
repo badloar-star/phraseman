@@ -13,6 +13,6 @@ describe('итог экзамена уровня: ✕ слева по этало
   });
 
   it('экзамен передаёт выход к урокам', () => {
-    expect(read('components/level-exam/LevelExamV2.tsx')).toContain("onClose={() => safeRouterBack(router, '/lessons_list' as never)}");
+    expect(read('components/level-exam/LevelExamV2.tsx')).toContain("onClose={() => safeRouterBack(router, '/(tabs)/lessons' as never)}");
   });
 });

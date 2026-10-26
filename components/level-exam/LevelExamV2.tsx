@@ -35,7 +35,7 @@ import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
 import { getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
 import { markPremiumCourseLevelReached, unlockLesson } from '../../app/lesson_lock_system';
-import { safeRouterBack } from '../../app/navigation_back';
+import { dismissToTabRoute, safeRouterBack } from '../../app/navigation_back';
 import { useEnergy, useEnergySessionIntent } from '../EnergyContext';
 import { useFirstQuestionEnergyGate } from '../../hooks/useFirstQuestionEnergyGate';
 import { usePremium } from '../PremiumContext';
@@ -446,20 +446,20 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
       void persistActiveLevelExamAttempt(paused);
     }
     setExitConfirm(false);
-    safeRouterBack(router, '/lessons_list' as never);
+    safeRouterBack(router, '/(tabs)/lessons' as never);
   }, [router]);
 
   // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): экзамен не открылся (нет личности, нет материала языка,
   // доступ не проверился) — тихо назад к урокам вместо «Зачёт пока недоступен». Замок Plus/уровня — не ошибка, остаётся.
   const silentLeave = identityUnavailable || contentUnavailable || (accessState === 'blocked' && accessBlockKind === 'error');
   const silentLeaveReason = identityUnavailable ? 'identity_unavailable' : contentUnavailable ? 'content_unavailable' : 'access_check_failed';
-  useSilentLeave(silentLeave, 'level_exam_v2', silentLeaveReason, () => safeRouterBack(router, '/lessons_list' as never));
+  useSilentLeave(silentLeave, 'level_exam_v2', silentLeaveReason, () => safeRouterBack(router, '/(tabs)/lessons' as never));
   if (silentLeave) return <ScreenGradient artBackdrop="exam"><View style={styles.safeArea} /></ScreenGradient>;
   if (accessState === 'blocked') {
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={styles.safeArea}>
-          <ExamHeader glass={glass} title={examTitle} onBack={() => safeRouterBack(router, '/lessons_list' as never)} />
+          <ExamHeader glass={glass} title={examTitle} onBack={() => safeRouterBack(router, '/(tabs)/lessons' as never)} />
           <View style={styles.stateWrap}>
             <ExamHero
               glass={glass}
@@ -469,7 +469,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
             />
           </View>
           <ExamFooter bottomInset={0}>
-            <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
+            <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/(tabs)/lessons' as never)} accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
           </ExamFooter>
         </SafeAreaView>
       </ScreenGradient>
@@ -491,7 +491,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
           unlimitedEnergy={unlimitedEnergy}
           bestScore={bestScore === null ? null : Math.round(bestScore * 0.3)}
           starting={starting || (!hasPremiumAccess && !energyReady) || accessState === 'checking' || phase === 'loading'}
-          onBack={() => safeRouterBack(router, '/lessons_list' as never)}
+          onBack={() => safeRouterBack(router, '/(tabs)/lessons' as never)}
           onStart={startExam}
         />
         <NoEnergyModal variant="learn" visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
@@ -514,8 +514,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         unlimitedEnergy={unlimitedEnergy}
         // зачем (PM-046, владелец): /level_reward_spin удалён — успешный
         // экзамен больше никуда не ведёт кроме уроков, спин-ветка снята.
-        onPrimary={() => result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}
-        onClose={() => safeRouterBack(router, '/lessons_list' as never)}
+        onPrimary={() => result.passed ? dismissToTabRoute(router, '/(tabs)/lessons') : setPhase('intro')}
+        onClose={() => safeRouterBack(router, '/(tabs)/lessons' as never)}
       />
     );
   }

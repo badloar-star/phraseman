@@ -48,3 +48,11 @@ Outcome: список храповика tests/modal_status_bar_translucent_ratc
 содержимое не съезжает под статус-бар. Scope: только флаг у <Modal> + строка в ALLOWED; занятые файлы — списком координатору.
 Architecture: без изменений. Security: не касается данных. Technical debt: Pay now по каждому файлу, остаток — в храповике.
 Verification: храповик и тесты затронутых окон. Rollback: git revert.
+
+## Продолжение: проверка ночных хэшей соседей на цвета темы (координатор 26.10)
+
+Governance-ID: TG-020BC4646F5D
+
+Outcome: c54dd5242, 9a0c461e1, 1970b5e12, 590f6937d, 466dcc8bc просмотрены на литералы цвета и пары контраста; итог — строка
+в docs/work/themes-night-summary-2026-10-26.md, раздел «Нашёл у соседей». Scope: только чтение чужих коммитов + одна строка
+сводки. Architecture/Security: без изменений. Technical debt: нет. Verification: git show по добавленным строкам. Rollback: git revert.

@@ -87,6 +87,8 @@ describe('рубильник «Learning V2 скрыт»', () => {
       'app/session_attempts/session_attempts_registry.ts',
       'components/appArtBackdropRegistry.ts',
       'constants/devRoutes.ts',
+      // экзамен главы v2: рисуется только маршрутом app/learning-v2/chapter-exam.tsx (он сам под рубильником); «/learning-v2/course» — его запасной выход
+      'components/learning-v2/exam_v2/ChapterExamV2Run.tsx',
     ]);
     const routeRe = /["'`]\/learning(?:-v2\/|_v2_)/;
     const offenders: string[] = [];

@@ -1,0 +1,750 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-07",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ventana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ventana",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i01:audio",
+          "transcript": "ventana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-07:i01:r1",
+            "targetText": "ventana",
+            "meaningByLocale": {
+              "ru": "окно. Женский род: la ventana, una ventana. 🔊 *ventana*",
+              "uk": "вікно. Жіночий рід: la ventana, una ventana. 🔊 *ventana*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ventana",
+          "definitionByLocale": {
+            "ru": "окно. Женский род: la ventana, una ventana. 🔊 *ventana*",
+            "uk": "вікно. Жіночий рід: la ventana, una ventana. 🔊 *ventana*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i02:r1",
+          "text": "ventana"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i02:r2",
+          "text": "puerta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i02:audio",
+          "transcript": "ventana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-07:i02:r1",
+            "targetText": "ventana",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-07:i02:r2",
+            "targetText": "puerta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит ventana — окно.",
+              "uk": "Звучить ventana — вікно."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pared",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i03:audio",
+          "transcript": "pared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-07:i03:r1",
+            "targetText": "pared",
+            "meaningByLocale": {
+              "ru": "стена. Женский род: la pared, una pared. 🔊 *pared*",
+              "uk": "стіна. Жіночий рід: la pared, una pared. 🔊 *pared*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pared",
+          "definitionByLocale": {
+            "ru": "стена. Женский род: la pared, una pared. 🔊 *pared*",
+            "uk": "стіна. Жіночий рід: la pared, una pared. 🔊 *pared*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i04:r1",
+          "text": "pared"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i04:r2",
+          "text": "puerta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i04:audio",
+          "transcript": "pared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-07:i04:r1",
+            "targetText": "pared",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-07:i04:r2",
+            "targetText": "puerta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит pared — стена.",
+              "uk": "Звучить pared — стіна."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите окно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i05:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите окно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите окно",
+          "uk": "Вставте слово — назвіть вікно"
+        },
+        "gappedTargetPhrase": "Es ___ ventana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-07:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-07:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-07:i05:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите окно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите окно",
+            "feedbackByLocale": {
+              "ru": "Ventana женского рода: una.",
+              "uk": "Ventana жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите окно",
+            "feedbackByLocale": {
+              "ru": "No отрицает перед es, а здесь нужен артикль.",
+              "uk": "No заперечує перед es, а тут потрібен артикль."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите деталь окном",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i06:r1",
+          "text": "Плитки: ventana"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите деталь окном",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una ventana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите деталь окном",
+          "uk": "Зберіть фразу — назвіть деталь вікном"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "ventana"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите деталь окном",
+            "feedbackByLocale": {
+              "ru": "ventana женского рода.",
+              "uk": "ventana жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите деталь стеной",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i07:r1",
+          "text": "Плитки: pared"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i07:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите деталь стеной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una pared.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите деталь стеной",
+          "uk": "Зберіть фразу — назвіть деталь стіною"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "pared"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите деталь стеной",
+            "feedbackByLocale": {
+              "ru": "pared женского рода.",
+              "uk": "pared жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — на фотографии окно; назовите его",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — на фотографии окно; назовите его",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i08:audio",
+          "transcript": "Es una ventana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una ventana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — следующий фрагмент показывает стену; назовите её",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — следующий фрагмент показывает стену; назовите её",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i09:audio",
+          "transcript": "Es una pared."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una pared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите «Что это?» о неузнанной детали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i10:r1",
+          "text": "Плитки: esto"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i10:r3",
+          "text": "¿qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i10:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите «Что это?» о неузнанной детали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué es esto?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите «Что это?» о неузнанной детали",
+          "uk": "Зберіть фразу — запитайте «Що це?» про невпізнану деталь"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "es",
+          "esto"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите «Что это?» о неузнанной детали",
+            "feedbackByLocale": {
+              "ru": "вопрос о детали, не о человеке.",
+              "uk": "питання про деталь, не про людину."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i11:r1",
+          "text": "Плитки: pared"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i11:audio",
+          "transcript": "Es una pared."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una pared.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "pared"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи нет отрицания.",
+              "uk": "у записі немає заперечення."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — не можете узнать деталь; спросите, что это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — не можете узнать деталь; спросите, что это",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i12:audio",
+          "transcript": "¿Qué es esto?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Qué es esto?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i13:r1",
+          "text": "ventana"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i13:r2",
+          "text": "pared"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-07:i13:audio",
+          "transcript": "ventana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-07:i13:r1",
+            "targetText": "ventana",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-07:i13:r2",
+            "targetText": "pared",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит ventana, а не pared.",
+              "uk": "Звучить ventana, а не pared."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы рассмотрели фрагмент и узнали окно; назовите деталь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-07:i14:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i14:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i14:r3",
+          "text": "ventana"
+        },
+        {
+          "responseId": "es:lesson-02:session-07:i14:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы рассмотрели фрагмент и узнали окно; назовите деталь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una ventana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы рассмотрели фрагмент и узнали окно; назовите деталь",
+          "uk": "Зберіть фразу — ви роздивилися фрагмент і впізнали вікно; назвіть деталь"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "ventana"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-07:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы рассмотрели фрагмент и узнали окно; назовите деталь",
+            "feedbackByLocale": {
+              "ru": "ventana женского рода.",
+              "uk": "ventana жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5cade9d0d3ad86a750293d0bff9400b244facfeb337aa03b6e131fadf12989c5"
+}

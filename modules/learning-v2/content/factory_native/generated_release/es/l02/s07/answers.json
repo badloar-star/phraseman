@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-07:i01",
+    "correctText": "ventana",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i02",
+    "correctText": "ventana",
+    "correctResponseId": "es:lesson-02:session-07:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i03",
+    "correctText": "pared",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i04",
+    "correctText": "pared",
+    "correctResponseId": "es:lesson-02:session-07:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-07:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i06",
+    "correctText": "Es una ventana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i07",
+    "correctText": "Es una pared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i08",
+    "correctText": "Es una ventana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i09",
+    "correctText": "Es una pared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i10",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i11",
+    "correctText": "Es una pared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i12",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i13",
+    "correctText": "ventana",
+    "correctResponseId": "es:lesson-02:session-07:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-07:i14",
+    "correctText": "Es una ventana.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-07:intro1:r2": {
+          "ru": "Для ventana нужна una.",
+          "uk": "Для ventana потрібна una."
+        },
+        "es:lesson-02:session-07:intro1:r3": {
+          "ru": "Eres обращено к человеку, а здесь называем деталь комнаты.",
+          "uk": "Eres звернено до людини, а тут називаємо деталь кімнати."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-07:intro2:r2": {
+          "ru": "Окончание на согласную не делает pared мужским: нужна una.",
+          "uk": "Закінчення на приголосну не робить pared чоловічим: потрібна una."
+        },
+        "es:lesson-02:session-07:intro2:r3": {
+          "ru": "В таком названии одного предмета нужен артикль.",
+          "uk": "У такій назві одного предмета потрібен артикль."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-07:intro3:r2": {
+          "ru": "Это готовое название, а вы пока спрашиваете.",
+          "uk": "Це готова назва, а ви поки запитуєте."
+        },
+        "es:lesson-02:session-07:intro3:r3": {
+          "ru": "Eres обращено к человеку, а для предмета нужна es.",
+          "uk": "Eres звернено до людини, а для предмета потрібне es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e31185020e64d05d667a9aeb2251a1733e91443ef6a7bf65b55395b4b4170409"
+}

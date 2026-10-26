@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-08:i01",
+    "correctText": "zapato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i02",
+    "correctText": "zapato",
+    "correctResponseId": "es:lesson-02:session-08:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i03",
+    "correctText": "camisa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i04",
+    "correctText": "camisa",
+    "correctResponseId": "es:lesson-02:session-08:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-08:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i06",
+    "correctText": "Es un zapato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i07",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-08:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i08",
+    "correctText": "Es una camisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i09",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-08:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i10",
+    "correctText": "Es el zapato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i11",
+    "correctText": "Es la camisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i12",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i13",
+    "correctText": "No es un zapato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i14",
+    "correctText": "Es una camisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i15",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-02:session-08:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-08:i16",
+    "correctText": "Es la camisa.",
+    "correctResponseId": null
+  }
+]

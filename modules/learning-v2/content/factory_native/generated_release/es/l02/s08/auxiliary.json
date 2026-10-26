@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-08:intro1:r2": {
+          "ru": "Una не согласуется с мужским zapato.",
+          "uk": "Una не узгоджується з чоловічим zapato."
+        },
+        "es:lesson-02:session-08:intro1:r3": {
+          "ru": "Когда называете один предмет таким способом, нужен un.",
+          "uk": "Коли називаєте один предмет таким способом, потрібне un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-08:intro2:r2": {
+          "ru": "Для camisa нужна una независимо от владельца.",
+          "uk": "Для camisa потрібна una незалежно від власника."
+        },
+        "es:lesson-02:session-08:intro2:r3": {
+          "ru": "Zapato — обувь мужского рода, а здесь нужна рубашка.",
+          "uk": "Zapato — взуття чоловічого роду, а тут потрібна сорочка."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-08:intro3:r2": {
+          "ru": "Это просто название вида вещи, а здесь нужно узнать ту самую рубашку.",
+          "uk": "Це просто назва виду речі, а тут потрібно впізнати саме ту сорочку."
+        },
+        "es:lesson-02:session-08:intro3:r3": {
+          "ru": "Camisa женского рода: la.",
+          "uk": "Camisa жіночого роду: la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aae4888f7b3988036eacd6fe3cc5eb6a125a4c8e3ff22807b97214a90e6767b3"
+}

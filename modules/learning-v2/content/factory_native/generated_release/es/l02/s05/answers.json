@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-05:i01",
+    "correctText": "llave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i02",
+    "correctText": "llave",
+    "correctResponseId": "es:lesson-02:session-05:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i03",
+    "correctText": "puerta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i04",
+    "correctText": "puerta",
+    "correctResponseId": "es:lesson-02:session-05:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-05:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i06",
+    "correctText": "Es una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i07",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-05:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i08",
+    "correctText": "Es la llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i09",
+    "correctText": "Es la llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i10",
+    "correctText": "Es la puerta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i11",
+    "correctText": "Es una puerta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i12",
+    "correctText": "Es una puerta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i13",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-05:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-05:i14",
+    "correctText": "Es la puerta.",
+    "correctResponseId": null
+  }
+]

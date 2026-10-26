@@ -1,0 +1,921 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-08",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — zapato",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — zapato",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i01:audio",
+          "transcript": "zapato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-08:i01:r1",
+            "targetText": "zapato",
+            "meaningByLocale": {
+              "ru": "туфля, ботинок. Мужской род: el zapato, un zapato. 🔊 *zapato*",
+              "uk": "туфля, черевик. Чоловічий рід: el zapato, un zapato. 🔊 *zapato*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "zapato",
+          "definitionByLocale": {
+            "ru": "туфля, ботинок. Мужской род: el zapato, un zapato. 🔊 *zapato*",
+            "uk": "туфля, черевик. Чоловічий рід: el zapato, un zapato. 🔊 *zapato*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i02:r1",
+          "text": "zapato"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i02:r2",
+          "text": "vaso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i02:audio",
+          "transcript": "zapato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-08:i02:r1",
+            "targetText": "zapato",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i02:r2",
+            "targetText": "vaso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит zapato, с тремя слогами.",
+              "uk": "Звучить zapato, із трьома складами."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — camisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — camisa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i03:audio",
+          "transcript": "camisa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-08:i03:r1",
+            "targetText": "camisa",
+            "meaningByLocale": {
+              "ru": "рубашка. Женский род: la camisa, una camisa. 🔊 *camisa*",
+              "uk": "сорочка. Жіночий рід: la camisa, una camisa. 🔊 *camisa*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "camisa",
+          "definitionByLocale": {
+            "ru": "рубашка. Женский род: la camisa, una camisa. 🔊 *camisa*",
+            "uk": "сорочка. Жіночий рід: la camisa, una camisa. 🔊 *camisa*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i04:r1",
+          "text": "camisa"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i04:r2",
+          "text": "cama"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i04:audio",
+          "transcript": "camisa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-08:i04:r1",
+            "targetText": "camisa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i04:r2",
+            "targetText": "cama",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит camisa, а не cama.",
+              "uk": "Звучить camisa, а не cama."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — просто назвіть предмет взуття",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — просто назвіть предмет взуття",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — просто назовите предмет обуви",
+          "uk": "Вставте слово — просто назвіть предмет взуття"
+        },
+        "gappedTargetPhrase": "Es ___ zapato.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-08:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — просто назвіть предмет взуття",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть предмет взуття",
+            "feedbackByLocale": {
+              "ru": "Zapato мужского рода: un.",
+              "uk": "Zapato чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть предмет взуття",
+            "feedbackByLocale": {
+              "ru": "Es уже стоит в начале; нужен артикль un.",
+              "uk": "Es уже стоїть на початку; потрібен артикль un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть один предмет взуття словом zapato",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i06:r1",
+          "text": "Плитки: zapato"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть один предмет взуття словом zapato",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un zapato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите один предмет обуви словом zapato",
+          "uk": "Зберіть фразу — назвіть один предмет взуття словом zapato"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "zapato"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть один предмет взуття словом zapato",
+            "feedbackByLocale": {
+              "ru": "zapato мужского рода.",
+              "uk": "zapato чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — просто назвіть річ сорочкою",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i07:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i07:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — просто назвіть річ сорочкою",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — просто назовите вещь рубашкой",
+          "uk": "Вставте слово — просто назвіть річ сорочкою"
+        },
+        "gappedTargetPhrase": "Es ___ camisa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-08:i07:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i07:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i07:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставте слово — просто назвіть річ сорочкою",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть річ сорочкою",
+            "feedbackByLocale": {
+              "ru": "Camisa женского рода: una.",
+              "uk": "Camisa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть річ сорочкою",
+            "feedbackByLocale": {
+              "ru": "Здесь нужен артикль, а не отрицание.",
+              "uk": "Тут потрібен артикль, а не заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть річ сорочкою",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i08:r1",
+          "text": "Плитки: camisa"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i08:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть річ сорочкою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una camisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите вещь рубашкой",
+          "uk": "Зберіть фразу — назвіть річ сорочкою"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "camisa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть річ сорочкою",
+            "feedbackByLocale": {
+              "ru": "camisa женского рода.",
+              "uk": "camisa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — упізнайте саме ту сорочку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i09:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i09:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i09:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — упізнайте саме ту сорочку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — узнайте ту самую рубашку",
+          "uk": "Вставте слово — упізнайте саме ту сорочку"
+        },
+        "gappedTargetPhrase": "Es ___ camisa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-08:i09:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i09:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i09:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставте слово — упізнайте саме ту сорочку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — упізнайте саме ту сорочку",
+            "feedbackByLocale": {
+              "ru": "Для женского camisa нужна la.",
+              "uk": "Для жіночого camisa потрібна la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — упізнайте саме ту сорочку",
+            "feedbackByLocale": {
+              "ru": "Вы узнаёте предмет, а не отрицаете.",
+              "uk": "Ви впізнаєте предмет, а не заперечуєте."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — упізнайте саме той черевик, який шукали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i10:r1",
+          "text": "Плитки: zapato"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i10:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i10:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — упізнайте саме той черевик, який шукали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el zapato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — узнайте тот самый ботинок, который искали",
+          "uk": "Зберіть фразу — упізнайте саме той черевик, який шукали"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "zapato"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — упізнайте саме той черевик, який шукали",
+            "feedbackByLocale": {
+              "ru": "zapato мужского рода.",
+              "uk": "zapato чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i11:r1",
+          "text": "Плитки: camisa"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i11:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i11:audio",
+          "transcript": "Es la camisa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la camisa.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "camisa"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит утверждение.",
+              "uk": "звучить твердження."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у пакеті невпізнана річ; запитайте, що це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у пакеті невпізнана річ; запитайте, що це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i12:audio",
+          "transcript": "¿Qué es esto?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Qué es esto?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — відкиньте назву «черевик»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i13:r1",
+          "text": "Плитки: zapato"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i13:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i13:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i13:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — відкиньте назву «черевик»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es un zapato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — отвергните название «ботинок»",
+          "uk": "Зберіть фразу — відкиньте назву «черевик»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "zapato"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — відкиньте назву «черевик»",
+            "feedbackByLocale": {
+              "ru": "артикль согласуется с мужским zapato.",
+              "uk": "артикль узгоджується з чоловічим zapato."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — просто назвіть знайдену річ сорочкою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — просто назвіть знайдену річ сорочкою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i14:audio",
+          "transcript": "Es una camisa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una camisa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i15:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i15:r2",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-08:i15:audio",
+          "transcript": "el"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-08:i15:r1",
+            "targetText": "el",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-08:i15:r2",
+            "targetText": "la",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит el, а не la.",
+              "uk": "Звучить el, а не la."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-08:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — підтвердьте, що знайшли саме ту сорочку, яку шукали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-08:i16:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i16:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i16:r3",
+          "text": "camisa"
+        },
+        {
+          "responseId": "es:lesson-02:session-08:i16:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — підтвердьте, що знайшли саме ту сорочку, яку шукали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la camisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите, что нашли именно ту рубашку, которую искали",
+          "uk": "Зберіть фразу — підтвердьте, що знайшли саме ту сорочку, яку шукали"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "camisa"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-08:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — підтвердьте, що знайшли саме ту сорочку, яку шукали",
+            "feedbackByLocale": {
+              "ru": "конкретная рубашка — la camisa.",
+              "uk": "конкретна сорочка — la camisa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "688c6142f4a701ec32674ce6c6399707036939354eda76efeff4ed9bb2673ea7"
+}

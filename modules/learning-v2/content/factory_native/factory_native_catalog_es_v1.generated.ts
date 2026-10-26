@@ -427,4 +427,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать un или una по испанскому названию предмета.","uk":"вибрати un або una за іспанською назвою предмета."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 5,
+    sourceFingerprint: "6ce9fa571ec6789d794677f19a52bd23401d3d1027bb53018a43c2bf52c1cb3d",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отличить название предмета с una от узнавания конкретного предмета с la.","uk":"відрізнити називання предмета з una від упізнавання конкретного предмета з la."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 6,
+    sourceFingerprint: "f8f67d718170d883c3afae719c8a11282d88af4cb6fc508ff8ebbeefe603ebe4",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать вид предмета с una и узнать конкретный предмет с la.","uk":"назвати вид предмета з una та впізнати конкретний предмет з la."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 7,
+    sourceFingerprint: "2b62aa42bfd13f5b40ee5e699aa17914edec914b49a97d8f25d4b362f4ad46d3",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить название детали и самостоятельно произнести ответ.","uk":"запитати назву деталі та самостійно вимовити відповідь."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 8,
+    sourceFingerprint: "4678c8494d282b724357b46fcf6425506a41657752ca7dc85f38d8ec5a8714e8",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать un, una, el или la для одного предмета.","uk":"вибрати un, una, el або la для одного предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

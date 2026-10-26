@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "назвать вид предмета с una и узнать конкретный предмет с la.",
+    "uk": "назвати вид предмета з una та впізнати конкретний предмет з la."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что за мебель",
+        "uk": "Що за меблі"
+      },
+      "bodyByLocale": {
+        "ru": "На фотографии виден предмет с ровной поверхностью для вещей. `Mesa` — «стол», слово женского рода: la mesa. Назовите его: `Es una mesa` — «Это стол». Соберите `es` + `una` + `mesa`. Вы называете, что это за предмет, поэтому una. Род берётся у испанского mesa, а не у русского «стол».",
+        "uk": "На фотографії видно предмет із рівною поверхнею для речей. `Mesa` — «стіл», слово жіночого роду: la mesa. Назвіть його: `Es una mesa` — «Це стіл». Складіть `es` + `una` + `mesa`. Ви називаєте, що це за предмет, тому una. Рід береться в іспанського mesa, а не в українського «стіл»."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите вид предмета: стол.",
+          "uk": "Назвіть вид предмета: стіл."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-06:intro1:r1",
+              "text": "Es una mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro1:r2",
+              "text": "Es un mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro1:r3",
+              "text": "Es mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-06:intro1:r1",
+              "text": "Es una mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro1:r2",
+              "text": "Es un mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro1:r3",
+              "text": "Es mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите вид предмета: стол.",
+          "uk": "Назвіть вид предмета: стіл."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Узнайте знакомый стол",
+        "uk": "Упізнайте знайомий стіл"
+      },
+      "bodyByLocale": {
+        "ru": "На другом снимке вы заметили стол, который выбирали вместе с другом. Узнайте его: `Es la mesa` — «Это тот самый стол». Соберите `es` + `la` + `mesa`. La говорит, что предмет определён для вас обоих. Es una mesa тоже грамматически возможно, но лишь называет вид мебели; здесь ваша задача — узнать знакомый стол.",
+        "uk": "На іншому знімку ви помітили стіл, який вибирали разом із другом. Упізнайте його: `Es la mesa` — «Це саме той стіл». Складіть `es` + `la` + `mesa`. La говорить, що предмет визначений для вас обох. Es una mesa теж граматично можливе, але лише називає вид меблів; тут ваше завдання — впізнати знайомий стіл."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Узнайте стол, который вы вместе выбирали.",
+          "uk": "Упізнайте стіл, який ви разом вибирали."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-06:intro2:r1",
+              "text": "Es la mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro2:r2",
+              "text": "Es una mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro2:r3",
+              "text": "Es el mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-06:intro2:r1",
+              "text": "Es la mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro2:r2",
+              "text": "Es una mesa."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro2:r3",
+              "text": "Es el mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте стол, который вы вместе выбирали.",
+          "uk": "Упізнайте стіл, який ви разом вибирали."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнайте кровать",
+        "uk": "Упізнайте ліжко"
+      },
+      "bodyByLocale": {
+        "ru": "На снимке спальни видна кровать, которую вы уже обсуждали. `Cama` — «кровать», слово женского рода: la cama. Скажите: `Es la cama` — «Это та самая кровать». Соберите `es` + `la` + `cama`. Вы узнаёте конкретную кровать. Если бы нужно было лишь назвать вид мебели, вы сказали бы Es una cama.",
+        "uk": "На знімку спальні видно ліжко, яке ви вже обговорювали. `Cama` — «ліжко», слово жіночого роду: la cama. Скажіть: `Es la cama` — «Це саме те ліжко». Складіть `es` + `la` + `cama`. Ви впізнаєте конкретне ліжко. Якби потрібно було лише назвати вид меблів, ви сказали б Es una cama."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Узнайте ранее обсуждённую кровать.",
+          "uk": "Упізнайте раніше обговорене ліжко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-06:intro3:r1",
+              "text": "Es la cama."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro3:r2",
+              "text": "Es una cama."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro3:r3",
+              "text": "Es el cama."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-06:intro3:r1",
+              "text": "Es la cama."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro3:r2",
+              "text": "Es una cama."
+            },
+            {
+              "responseId": "es:lesson-02:session-06:intro3:r3",
+              "text": "Es el cama."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте ранее обсуждённую кровать.",
+          "uk": "Упізнайте раніше обговорене ліжко."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c737937d41091416045fdfa10054ca8dd7dda023aec2f4a7eb6840d641b7e5f7"
+}

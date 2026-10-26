@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-06:intro1:r2": {
+          "ru": "Перед женским mesa нужна una.",
+          "uk": "Перед жіночим mesa потрібна una."
+        },
+        "es:lesson-02:session-06:intro1:r3": {
+          "ru": "В таком названии одного предмета нужна una.",
+          "uk": "У такій назві одного предмета потрібна una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-06:intro2:r2": {
+          "ru": "Так называют вид предмета, а здесь нужно узнать знакомый стол.",
+          "uk": "Так називають вид предмета, а тут потрібно впізнати знайомий стіл."
+        },
+        "es:lesson-02:session-06:intro2:r3": {
+          "ru": "Mesa женского рода: la, а не el.",
+          "uk": "Mesa жіночого роду: la, а не el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-06:intro3:r2": {
+          "ru": "Это лишь название вида мебели, а нужно узнать обсуждённую кровать.",
+          "uk": "Це лише назва виду меблів, а потрібно впізнати обговорене ліжко."
+        },
+        "es:lesson-02:session-06:intro3:r3": {
+          "ru": "Cama женского рода: la cama.",
+          "uk": "Cama жіночого роду: la cama."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8a2addd82c5377c9eabd2d74ac2a296442bef7468e784f200d877ff4ae38958d"
+}

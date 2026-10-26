@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-06:i01",
+    "correctText": "mesa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i02",
+    "correctText": "mesa",
+    "correctResponseId": "es:lesson-02:session-06:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i03",
+    "correctText": "cama",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i04",
+    "correctText": "cama",
+    "correctResponseId": "es:lesson-02:session-06:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-06:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i06",
+    "correctText": "Es una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i07",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-06:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i08",
+    "correctText": "Es la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i09",
+    "correctText": "Es la cama.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i10",
+    "correctText": "Es una cama.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i11",
+    "correctText": "Es la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i12",
+    "correctText": "Es una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i13",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-06:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-06:i14",
+    "correctText": "Es la cama.",
+    "correctResponseId": null
+  }
+]

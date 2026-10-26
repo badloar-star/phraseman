@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "отличить название предмета с una от узнавания конкретного предмета с la.",
+    "uk": "відрізнити називання предмета з una від упізнавання конкретного предмета з la."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что за предмет",
+        "uk": "Що за предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали небольшой предмет из кармана. `Llave` — «ключ», слово женского рода: la llave. Чтобы просто назвать его, скажите `Es una llave` — «Это ключ». Соберите `es` + `una` + `llave`. Una выбирается по женскому роду испанского llave, хотя русское «ключ» мужского рода.",
+        "uk": "Ви дістали невеликий предмет із кишені. `Llave` — «ключ», слово жіночого роду: la llave. Щоб просто назвати його, скажіть `Es una llave` — «Це ключ». Складіть `es` + `una` + `llave`. Una вибирається за жіночим родом іспанського llave, хоча українське «ключ» чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Просто назовите найденный предмет ключом.",
+          "uk": "Просто назвіть знайдений предмет ключем."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-05:intro1:r1",
+              "text": "Es una llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro1:r2",
+              "text": "Es un llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro1:r3",
+              "text": "Es llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-05:intro1:r1",
+              "text": "Es una llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro1:r2",
+              "text": "Es un llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro1:r3",
+              "text": "Es llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Просто назовите найденный предмет ключом.",
+          "uk": "Просто назвіть знайдений предмет ключем."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Именно тот ключ",
+        "uk": "Саме той ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнали ключ, который искали вместе с другом. Теперь скажите: `Es la llave` — «Это тот самый ключ». Соберите `es` + `la` + `llave`. La показывает, что речь о конкретном ключе, понятном вам обоим. Es una llave лишь называет тип предмета; Es la llave узнаёт нужный ключ в вашей ситуации.",
+        "uk": "Ви впізнали ключ, який шукали разом із другом. Тепер скажіть: `Es la llave` — «Це саме той ключ». Складіть `es` + `la` + `llave`. La показує, що йдеться про конкретний ключ, зрозумілий вам обом. Es una llave лише називає тип предмета; Es la llave впізнає потрібний ключ у вашій ситуації."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите, что нашли именно тот ключ, который искали.",
+          "uk": "Повідомте, що знайшли саме той ключ, який шукали."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-05:intro2:r1",
+              "text": "Es la llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro2:r2",
+              "text": "Es una llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro2:r3",
+              "text": "Es el llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-05:intro2:r1",
+              "text": "Es la llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro2:r2",
+              "text": "Es una llave."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro2:r3",
+              "text": "Es el llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите, что нашли именно тот ключ, который искали.",
+          "uk": "Повідомте, що знайшли саме той ключ, який шукали."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Та самая дверь",
+        "uk": "Саме ті двері"
+      },
+      "bodyByLocale": {
+        "ru": "В коридоре несколько дверей. Друг показывает на одну, и вы узнаёте ту, которую искали. `Puerta` — «дверь», слово женского рода: la puerta. Скажите `Es la puerta` — «Это та самая дверь». Соберите `es` + `la` + `puerta`. La выбираем, потому что узнаём конкретную дверь; для простого названия предмета было бы Es una puerta.",
+        "uk": "У коридорі кілька дверей. Друг показує на одні, і ви впізнаєте ті, які шукали. `Puerta` — «двері», іспанське слово жіночого роду в однині: la puerta. Скажіть `Es la puerta` — «Це саме ті двері». Складіть `es` + `la` + `puerta`. La вибираємо, бо впізнаємо конкретні двері; для простого називання предмета було б Es una puerta."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Узнайте дверь, которую искали.",
+          "uk": "Упізнайте двері, які шукали."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-05:intro3:r1",
+              "text": "Es la puerta."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro3:r2",
+              "text": "Es una puerta."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro3:r3",
+              "text": "Es el puerta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-05:intro3:r1",
+              "text": "Es la puerta."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro3:r2",
+              "text": "Es una puerta."
+            },
+            {
+              "responseId": "es:lesson-02:session-05:intro3:r3",
+              "text": "Es el puerta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте дверь, которую искали.",
+          "uk": "Упізнайте двері, які шукали."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f5fb832415c22c9f70d94cd69a47f2070c1b5db2fe21b49ea3dedc45b84fc84b"
+}

@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-06",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mesa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mesa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i01:audio",
+          "transcript": "mesa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-06:i01:r1",
+            "targetText": "mesa",
+            "meaningByLocale": {
+              "ru": "стол. Женский род: la mesa, una mesa. 🔊 *mesa*",
+              "uk": "стіл. Жіночий рід: la mesa, una mesa. 🔊 *mesa*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mesa",
+          "definitionByLocale": {
+            "ru": "стол. Женский род: la mesa, una mesa. 🔊 *mesa*",
+            "uk": "стіл. Жіночий рід: la mesa, una mesa. 🔊 *mesa*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i02:r1",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i02:r2",
+          "text": "cama"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i02:audio",
+          "transcript": "mesa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-06:i02:r1",
+            "targetText": "mesa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i02:r2",
+            "targetText": "cama",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mesa — стол.",
+              "uk": "Звучить mesa — стіл."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cama",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cama",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i03:audio",
+          "transcript": "cama"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-06:i03:r1",
+            "targetText": "cama",
+            "meaningByLocale": {
+              "ru": "кровать. Женский род: la cama, una cama. 🔊 *cama*",
+              "uk": "ліжко. Жіночий рід: la cama, una cama. 🔊 *cama*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cama",
+          "definitionByLocale": {
+            "ru": "кровать. Женский род: la cama, una cama. 🔊 *cama*",
+            "uk": "ліжко. Жіночий рід: la cama, una cama. 🔊 *cama*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i04:r1",
+          "text": "cama"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i04:r2",
+          "text": "mesa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i04:audio",
+          "transcript": "cama"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-06:i04:r1",
+            "targetText": "cama",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i04:r2",
+            "targetText": "mesa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cama — кровать.",
+              "uk": "Звучить cama — ліжко."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — просто назвіть вид меблів: стіл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — просто назвіть вид меблів: стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — просто назовите вид мебели: стол",
+          "uk": "Вставте слово — просто назвіть вид меблів: стіл"
+        },
+        "gappedTargetPhrase": "Es ___ mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-06:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — просто назвіть вид меблів: стіл",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть вид меблів: стіл",
+            "feedbackByLocale": {
+              "ru": "Mesa женского рода: una.",
+              "uk": "Mesa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть вид меблів: стіл",
+            "feedbackByLocale": {
+              "ru": "Es уже стоит в начале; перед mesa нужна una.",
+              "uk": "Es уже стоїть на початку; перед mesa потрібна una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть предмет столом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i06:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть предмет столом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите предмет столом",
+          "uk": "Зберіть фразу — назвіть предмет столом"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть предмет столом",
+            "feedbackByLocale": {
+              "ru": "mesa женского рода.",
+              "uk": "mesa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — упізнайте конкретний знайомий стіл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i07:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i07:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i07:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — упізнайте конкретний знайомий стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — узнайте конкретный знакомый стол",
+          "uk": "Вставте слово — упізнайте конкретний знайомий стіл"
+        },
+        "gappedTargetPhrase": "Es ___ mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-06:i07:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i07:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i07:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставте слово — упізнайте конкретний знайомий стіл",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — упізнайте конкретний знайомий стіл",
+            "feedbackByLocale": {
+              "ru": "Для женского mesa нужна la.",
+              "uk": "Для жіночого mesa потрібна la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — упізнайте конкретний знайомий стіл",
+            "feedbackByLocale": {
+              "ru": "No ставится перед es и отрицает, а здесь вы узнаёте предмет.",
+              "uk": "No ставиться перед es і заперечує, а тут ви впізнаєте предмет."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — упізнайте саме той стіл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i08:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i08:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i08:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — упізнайте саме той стіл",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — узнайте тот самый стол",
+          "uk": "Зберіть фразу — упізнайте саме той стіл"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — упізнайте саме той стіл",
+            "feedbackByLocale": {
+              "ru": "mesa женского рода.",
+              "uk": "mesa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — упізнайте раніше обговорене ліжко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — упізнайте раніше обговорене ліжко",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i09:audio",
+          "transcript": "Es la cama."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la cama.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — просто назвіть вид меблів: ліжко",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i10:r1",
+          "text": "Плитки: cama"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i10:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — просто назвіть вид меблів: ліжко",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una cama.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — просто назовите вид мебели: кровать",
+          "uk": "Зберіть фразу — просто назвіть вид меблів: ліжко"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "cama"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — просто назвіть вид меблів: ліжко",
+            "feedbackByLocale": {
+              "ru": "cama женского рода.",
+              "uk": "cama жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i11:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i11:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i11:audio",
+          "transcript": "Es la mesa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la mesa.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит утверждение.",
+              "uk": "звучить твердження."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть предмет столом, не виділяючи конкретний знайомий стіл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть предмет столом, не виділяючи конкретний знайомий стіл",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i12:audio",
+          "transcript": "Es una mesa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una mesa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i13:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i13:r2",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-06:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-06:i13:audio",
+          "transcript": "una"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-06:i13:r1",
+            "targetText": "una",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-06:i13:r2",
+            "targetText": "la",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит una, а не la.",
+              "uk": "Звучить una, а не la."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-06:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — упізнайте те ліжко, яке обговорювали з другом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-06:i14:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i14:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i14:r3",
+          "text": "cama"
+        },
+        {
+          "responseId": "es:lesson-02:session-06:i14:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — упізнайте те ліжко, яке обговорювали з другом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la cama.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — узнайте ту кровать, которую обсуждали с другом",
+          "uk": "Зберіть фразу — упізнайте те ліжко, яке обговорювали з другом"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "cama"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-06:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — упізнайте те ліжко, яке обговорювали з другом",
+            "feedbackByLocale": {
+              "ru": "cama женского рода.",
+              "uk": "cama жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bdc90211a299991bb3a280db8d624a823fb38a1b9a207d211c09cae141e22c82"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-05:intro1:r2": {
+          "ru": "Llave женского рода, нужна una.",
+          "uk": "Llave жіночого роду, потрібна una."
+        },
+        "es:lesson-02:session-05:intro1:r3": {
+          "ru": "При таком названии одного предмета здесь нужен артикль.",
+          "uk": "За такого називання одного предмета тут потрібен артикль."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-05:intro2:r2": {
+          "ru": "Это только название предмета ключом; в этой задаче нужно узнать тот самый ключ.",
+          "uk": "Це лише називання предмета ключем; у цьому завданні потрібно впізнати саме той ключ."
+        },
+        "es:lesson-02:session-05:intro2:r3": {
+          "ru": "Llave женского рода, поэтому la, а не el.",
+          "uk": "Llave жіночого роду, тому la, а не el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-05:intro3:r2": {
+          "ru": "Так просто называют предмет дверью, а здесь нужно узнать нужную дверь.",
+          "uk": "Так просто називають предмет дверима, а тут потрібно впізнати потрібні двері."
+        },
+        "es:lesson-02:session-05:intro3:r3": {
+          "ru": "Puerta женского рода: la puerta.",
+          "uk": "Puerta жіночого роду: la puerta."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "90fb26fa2791a68e95be4c620cbcd39c3f82eeadd195edb01c58458a28238801"
+}

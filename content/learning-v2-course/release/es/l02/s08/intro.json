@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать un, una, el или la для одного предмета.",
+    "uk": "вибрати un, una, el або la для одного предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна туфля",
+        "uk": "Один черевик"
+      },
+      "bodyByLocale": {
+        "ru": "Из пакета достали один предмет обуви. `Zapato` — «туфля, ботинок», слово мужского рода: el zapato. Назовите его: `Es un zapato` — «Это туфля». Соберите `es` + `un` + `zapato`. Un выбирается по мужскому роду испанского zapato; речь об одном предмете, не о паре.",
+        "uk": "Із пакета дістали один предмет взуття. `Zapato` — «туфля, черевик», слово чоловічого роду: el zapato. Назвіть його: `Es un zapato` — «Це черевик». Складіть `es` + `un` + `zapato`. Un вибирається за чоловічим родом іспанського zapato; йдеться про один предмет, не про пару."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один предмет обуви словом zapato.",
+          "uk": "Назвіть один предмет взуття словом zapato."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-08:intro1:r1",
+              "text": "Es un zapato."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro1:r2",
+              "text": "Es una zapato."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro1:r3",
+              "text": "Es zapato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-08:intro1:r1",
+              "text": "Es un zapato."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro1:r2",
+              "text": "Es una zapato."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro1:r3",
+              "text": "Es zapato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один предмет обуви словом zapato.",
+          "uk": "Назвіть один предмет взуття словом zapato."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рубашка",
+        "uk": "Сорочка"
+      },
+      "bodyByLocale": {
+        "ru": "Следующей достали рубашку. `Camisa` — «рубашка», слово женского рода: la camisa. Скажите: `Es una camisa` — «Это рубашка». Соберите `es` + `una` + `camisa`. Вы называете вид вещи, поэтому una. Здесь род выбирается по camisa, а не по тому, кто носит рубашку.",
+        "uk": "Наступною дістали сорочку. `Camisa` — «сорочка», слово жіночого роду: la camisa. Скажіть: `Es una camisa` — «Це сорочка». Складіть `es` + `una` + `camisa`. Ви називаєте вид речі, тому una. Тут рід вибирається за camisa, а не за тим, хто носить сорочку."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите вещь рубашкой.",
+          "uk": "Назвіть річ сорочкою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-08:intro2:r1",
+              "text": "Es una camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro2:r2",
+              "text": "Es un camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro2:r3",
+              "text": "Es una zapato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-08:intro2:r1",
+              "text": "Es una camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro2:r2",
+              "text": "Es un camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro2:r3",
+              "text": "Es una zapato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите вещь рубашкой.",
+          "uk": "Назвіть річ сорочкою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Именно искомая вещь",
+        "uk": "Саме шукана річ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы искали конкретную рубашку и теперь узнали её. Скажите `Es la camisa` — «Это та самая рубашка». Соберите `es` + `la` + `camisa`. Для узнавания конкретного предмета выбираем la при женском слове и el при мужском: тот самый предмет обуви — Es el zapato. Сначала решите, называете вы вид вещи или узнаёте нужную; затем выберите род артикля по её испанскому названию.",
+        "uk": "Ви шукали конкретну сорочку й тепер упізнали її. Скажіть `Es la camisa` — «Це саме та сорочка». Складіть `es` + `la` + `camisa`. Для впізнавання конкретного предмета вибираємо la при жіночому слові та el при чоловічому: той самий предмет взуття — Es el zapato. Спершу вирішіть, називаєте ви вид речі чи впізнаєте потрібну; потім виберіть рід артикля за її іспанською назвою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Узнайте конкретную рубашку, которую искали.",
+          "uk": "Упізнайте конкретну сорочку, яку шукали."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-08:intro3:r1",
+              "text": "Es la camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro3:r2",
+              "text": "Es una camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro3:r3",
+              "text": "Es el camisa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-08:intro3:r1",
+              "text": "Es la camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro3:r2",
+              "text": "Es una camisa."
+            },
+            {
+              "responseId": "es:lesson-02:session-08:intro3:r3",
+              "text": "Es el camisa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Узнайте конкретную рубашку, которую искали.",
+          "uk": "Упізнайте конкретну сорочку, яку шукали."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e231df545d936a93db97e5bb57d3107721d02e005fc4bdbdada9e5a410fd9849"
+}

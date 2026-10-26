@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-05",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — llave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — llave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i01:audio",
+          "transcript": "llave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-05:i01:r1",
+            "targetText": "llave",
+            "meaningByLocale": {
+              "ru": "ключ. Женский род: la llave, una llave. 🔊 *llave*",
+              "uk": "ключ. Жіночий рід: la llave, una llave. 🔊 *llave*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "llave",
+          "definitionByLocale": {
+            "ru": "ключ. Женский род: la llave, una llave. 🔊 *llave*",
+            "uk": "ключ. Жіночий рід: la llave, una llave. 🔊 *llave*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i02:r1",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i02:r2",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i02:audio",
+          "transcript": "llave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-05:i02:r1",
+            "targetText": "llave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i02:r2",
+            "targetText": "libro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит llave — ключ.",
+              "uk": "Звучить llave — ключ."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — puerta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — puerta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i03:audio",
+          "transcript": "puerta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-05:i03:r1",
+            "targetText": "puerta",
+            "meaningByLocale": {
+              "ru": "дверь. Женский род: la puerta, una puerta. 🔊 *puerta*",
+              "uk": "двері. В іспанській жіночий рід, однина: la puerta, una puerta. 🔊 *puerta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "puerta",
+          "definitionByLocale": {
+            "ru": "дверь. Женский род: la puerta, una puerta. 🔊 *puerta*",
+            "uk": "двері. В іспанській жіночий рід, однина: la puerta, una puerta. 🔊 *puerta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i04:r1",
+          "text": "puerta"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i04:r2",
+          "text": "llave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i04:audio",
+          "transcript": "puerta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-05:i04:r1",
+            "targetText": "puerta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i04:r2",
+            "targetText": "llave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит puerta — дверь.",
+              "uk": "Звучить puerta — двері."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — просто назовите найденный предмет ключом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — просто назовите найденный предмет ключом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — просто назовите найденный предмет ключом",
+          "uk": "Вставте слово — просто назвіть знайдений предмет ключем"
+        },
+        "gappedTargetPhrase": "Es ___ llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-05:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — просто назовите найденный предмет ключом",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — просто назовите найденный предмет ключом",
+            "feedbackByLocale": {
+              "ru": "Llave женского рода: una.",
+              "uk": "Llave жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — просто назовите найденный предмет ключом",
+            "feedbackByLocale": {
+              "ru": "Перед названием предмета нужен артикль una, а es уже есть.",
+              "uk": "Перед назвою предмета потрібен артикль una, а es уже є."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — просто назовите предмет ключом",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i06:r1",
+          "text": "Плитки: llave"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — просто назовите предмет ключом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — просто назовите предмет ключом",
+          "uk": "Зберіть фразу — просто назвіть предмет ключем"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — просто назовите предмет ключом",
+            "feedbackByLocale": {
+              "ru": "llave женского рода.",
+              "uk": "llave жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — узнайте тот самый ключ, который вы оба искали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i07:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i07:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i07:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — узнайте тот самый ключ, который вы оба искали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — узнайте тот самый ключ, который вы оба искали",
+          "uk": "Вставте слово — впізнайте саме той ключ, який ви обоє шукали"
+        },
+        "gappedTargetPhrase": "Es ___ llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-05:i07:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i07:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i07:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — узнайте тот самый ключ, который вы оба искали",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — узнайте тот самый ключ, который вы оба искали",
+            "feedbackByLocale": {
+              "ru": "Для женского llave нужна la.",
+              "uk": "Для жіночого llave потрібна la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — узнайте тот самый ключ, который вы оба искали",
+            "feedbackByLocale": {
+              "ru": "Es уже есть; перед конкретным llave нужна la.",
+              "uk": "Es уже є; перед конкретним llave потрібна la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сообщите, что нашли именно нужный ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i08:r1",
+          "text": "Плитки: llave"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i08:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i08:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сообщите, что нашли именно нужный ключ",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сообщите, что нашли именно нужный ключ",
+          "uk": "Зберіть фразу — повідомте, що знайшли саме потрібний ключ"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сообщите, что нашли именно нужный ключ",
+            "feedbackByLocale": {
+              "ru": "llave женского рода.",
+              "uk": "llave жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — узнайте тот самый ключ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — узнайте тот самый ключ",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i09:audio",
+          "transcript": "Es la llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — узнайте дверь, которую искали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i10:r1",
+          "text": "Плитки: puerta"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i10:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i10:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — узнайте дверь, которую искали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la puerta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — узнайте дверь, которую искали",
+          "uk": "Зберіть фразу — упізнайте двері, які шукали"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "puerta"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — узнайте дверь, которую искали",
+            "feedbackByLocale": {
+              "ru": "puerta женского рода.",
+              "uk": "puerta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i11:r1",
+          "text": "Плитки: puerta"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i11:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i11:audio",
+          "transcript": "Es una puerta."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una puerta.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "puerta"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una.",
+              "uk": "звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — просто назовите предмет дверью",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — просто назовите предмет дверью",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i12:audio",
+          "transcript": "Es una puerta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una puerta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i13:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i13:r2",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-05:i13:audio",
+          "transcript": "la"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-05:i13:r1",
+            "targetText": "la",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-05:i13:r2",
+            "targetText": "una",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит la, а не una.",
+              "uk": "Звучить la, а не una."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-05:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг указал на нужную дверь; подтвердите, что это та дверь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-05:i14:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i14:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i14:r3",
+          "text": "puerta"
+        },
+        {
+          "responseId": "es:lesson-02:session-05:i14:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг указал на нужную дверь; подтвердите, что это та дверь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la puerta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг указал на нужную дверь; подтвердите, что это та дверь",
+          "uk": "Зберіть фразу — друг указав на потрібні двері; підтвердьте, що це ті двері"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "puerta"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-05:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг указал на нужную дверь; подтвердите, что это та дверь",
+            "feedbackByLocale": {
+              "ru": "нужная дверь — la puerta.",
+              "uk": "потрібні двері — la puerta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c2d316aed99befc5dff8ef7da3c9d26bf06df7c5d306ebe05ac252590d195874"
+}

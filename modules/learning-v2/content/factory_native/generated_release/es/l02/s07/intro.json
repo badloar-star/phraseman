@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "спросить название детали и самостоятельно произнести ответ.",
+    "uk": "запитати назву деталі та самостійно вимовити відповідь."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Окно",
+        "uk": "Вікно"
+      },
+      "bodyByLocale": {
+        "ru": "На фрагменте фотографии видно окно. `Ventana` — «окно», слово женского рода: la ventana. Назовите его: `Es una ventana` — «Это окно». Соберите `es` + `una` + `ventana`. Una согласуется с испанским ventana; русское «окно» другого рода не меняет испанскую фразу.",
+        "uk": "На фрагменті фотографії видно вікно. `Ventana` — «вікно», слово жіночого роду: la ventana. Назвіть його: `Es una ventana` — «Це вікно». Складіть `es` + `una` + `ventana`. Una узгоджується з іспанським ventana; українське «вікно» іншого роду не змінює іспанську фразу."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите деталь окном.",
+          "uk": "Назвіть деталь вікном."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-07:intro1:r1",
+              "text": "Es una ventana."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro1:r2",
+              "text": "Es un ventana."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro1:r3",
+              "text": "Eres una ventana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-07:intro1:r1",
+              "text": "Es una ventana."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro1:r2",
+              "text": "Es un ventana."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro1:r3",
+              "text": "Eres una ventana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите деталь окном.",
+          "uk": "Назвіть деталь вікном."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стена",
+        "uk": "Стіна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает следующий фрагмент — стену. `Pared` — «стена», слово женского рода: la pared. Скажите: `Es una pared` — «Это стена». Соберите `es` + `una` + `pared`. Женские слова не обязаны заканчиваться на -a: у pared другой конец, но артикль всё равно una.",
+        "uk": "Друг показує наступний фрагмент — стіну. `Pared` — «стіна», слово жіночого роду: la pared. Скажіть: `Es una pared` — «Це стіна». Складіть `es` + `una` + `pared`. Жіночі слова не зобов'язані закінчуватися на -a: у pared інший кінець, але артикль усе одно una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите деталь стеной.",
+          "uk": "Назвіть деталь стіною."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-07:intro2:r1",
+              "text": "Es una pared."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro2:r2",
+              "text": "Es un pared."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro2:r3",
+              "text": "Es pared."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-07:intro2:r1",
+              "text": "Es una pared."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro2:r2",
+              "text": "Es un pared."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro2:r3",
+              "text": "Es pared."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите деталь стеной.",
+          "uk": "Назвіть деталь стіною."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сначала вопрос",
+        "uk": "Спочатку питання"
+      },
+      "bodyByLocale": {
+        "ru": "На очень маленьком фрагменте трудно узнать деталь. Спросите: `¿Qué es esto?` — «Что это?» Соберите `qué` + `es` + `esto` внутри ¿…?. Вы ещё не называете предмет и не выбираете для него un или una. Это один вопрос; ответ Es una ventana или Es una pared будет отдельной репликой после узнавания детали.",
+        "uk": "На дуже маленькому фрагменті важко впізнати деталь. Запитайте: `¿Qué es esto?` — «Що це?» Складіть `qué` + `es` + `esto` всередині ¿…?. Ви ще не називаєте предмет і не вибираєте для нього un або una. Це одне питання; відповідь Es una ventana або Es una pared буде окремою реплікою після впізнавання деталі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите название неузнанной детали.",
+          "uk": "Запитайте назву невпізнаної деталі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-07:intro3:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro3:r2",
+              "text": "Es una pared."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro3:r3",
+              "text": "¿Qué eres esto?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-07:intro3:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro3:r2",
+              "text": "Es una pared."
+            },
+            {
+              "responseId": "es:lesson-02:session-07:intro3:r3",
+              "text": "¿Qué eres esto?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите название неузнанной детали.",
+          "uk": "Запитайте назву невпізнаної деталі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "25f96a23b029cc7eb55442677d92c11df84d23d8e451435639be0426cb6df39c"
+}

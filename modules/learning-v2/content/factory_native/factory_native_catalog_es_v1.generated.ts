@@ -196,4 +196,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать другую группу с son и не спутать её со своей группой с somos.","uk":"описати іншу групу із son і не сплутати її зі своєю групою із somos."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 28,
+    sourceFingerprint: "8f7784e2271179232810701ded73d24187d4599f517a46a15d6774b9a17e5ae0",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать размер своей группы с somos + число, без отдельного слова «человек».","uk":"назвати розмір своєї групи із somos + число, без окремого слова «людей»."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

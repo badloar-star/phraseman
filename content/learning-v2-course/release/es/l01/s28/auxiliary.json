@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-28",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-28:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-28:intro1:r2": {
+          "ru": "Это о двух других людях, а вы говорите о своей компании.",
+          "uk": "Це про двох інших людей, а ви говорите про свою компанію."
+        },
+        "es:lesson-01:session-28:intro1:r3": {
+          "ru": "Soy относится к одному говорящему и здесь не подходит.",
+          "uk": "Soy стосується одного мовця й тут не підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-28:intro2:r2": {
+          "ru": "Двух мест уже недостаточно для вашей компании.",
+          "uk": "Двох місць уже недостатньо для вашої компанії."
+        },
+        "es:lesson-01:session-28:intro2:r3": {
+          "ru": "Son описывает другую группу, а здесь ваша компания.",
+          "uk": "Son описує іншу групу, а тут ваша компанія."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-28:intro3:r2": {
+          "ru": "Это трое, прежнее число.",
+          "uk": "Це троє, попереднє число."
+        },
+        "es:lesson-01:session-28:intro3:r3": {
+          "ru": "No отрицает правильное количество.",
+          "uk": "No заперечує правильну кількість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "491d7f806e94d1e656bcad0b3a0ccce3efb1c9b854d621f4189f7ff9ef253369"
+}

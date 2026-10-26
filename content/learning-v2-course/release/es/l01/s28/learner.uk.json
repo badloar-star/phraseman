@@ -1,0 +1,628 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-28",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i01:audio",
+          "transcript": "dos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-28:i01:r1",
+            "targetText": "dos",
+            "meaningByLocale": {
+              "ru": "два. Somos dos — «Нас двое», включая говорящего. 🔊 *dos*",
+              "uk": "два. Somos dos — «Нас двоє», включно з мовцем. 🔊 *dos*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dos",
+          "definitionByLocale": {
+            "ru": "два. Somos dos — «Нас двое», включая говорящего. 🔊 *dos*",
+            "uk": "два. Somos dos — «Нас двоє», включно з мовцем. 🔊 *dos*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i02:r1",
+          "text": "2"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i02:r2",
+          "text": "3"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i02:audio",
+          "transcript": "dos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-28:i02:r1",
+            "targetText": "2",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-28:i02:r2",
+            "targetText": "3",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть число",
+            "feedbackByLocale": {
+              "ru": "Звучит dos — два.",
+              "uk": "Звучить dos — два."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви прийшли з другом; скажіть «Нас двоє»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i03:r1",
+          "text": "Плитки: dos"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i03:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i03:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви прийшли з другом; скажіть «Нас двоє»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos dos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы пришли с другом; скажите «Нас двое»",
+          "uk": "Складіть фразу — ви прийшли з другом; скажіть «Нас двоє»"
+        },
+        "orderedTokens": [
+          "Somos",
+          "dos"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви прийшли з другом; скажіть «Нас двоє»",
+            "feedbackByLocale": {
+              "ru": "вы входите в компанию.",
+              "uk": "ви входите до компанії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tres",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tres",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i04:audio",
+          "transcript": "tres"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-28:i04:r1",
+            "targetText": "tres",
+            "meaningByLocale": {
+              "ru": "три. Somos tres — «Нас трое». 🔊 *tres*",
+              "uk": "три. Somos tres — «Нас троє». 🔊 *tres*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tres",
+          "definitionByLocale": {
+            "ru": "три. Somos tres — «Нас трое». 🔊 *tres*",
+            "uk": "три. Somos tres — «Нас троє». 🔊 *tres*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i05:r1",
+          "text": "3"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i05:r2",
+          "text": "2"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i05:audio",
+          "transcript": "tres"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-28:i05:r1",
+            "targetText": "3",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-28:i05:r2",
+            "targetText": "2",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть число",
+            "feedbackByLocale": {
+              "ru": "Звучит tres — три.",
+              "uk": "Звучить tres — три."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — вас і двох друзів потрібно посадити разом: «Нас троє»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i06:r1",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i06:r2",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i06:r3",
+          "text": "diferentes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — вас і двох друзів потрібно посадити разом: «Нас троє»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас и двух друзей нужно посадить вместе: «Нас трое»",
+          "uk": "Вставте слово — вас і двох друзів потрібно посадити разом: «Нас троє»"
+        },
+        "gappedTargetPhrase": "Somos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-28:i06:r1",
+            "text": "tres"
+          },
+          {
+            "responseId": "es:lesson-01:session-28:i06:r2",
+            "text": "dos"
+          },
+          {
+            "responseId": "es:lesson-01:session-28:i06:r3",
+            "text": "diferentes"
+          }
+        ],
+        "testedDimension": "Вставте слово — вас і двох друзів потрібно посадити разом: «Нас троє»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — вас і двох друзів потрібно посадити разом: «Нас троє»",
+            "feedbackByLocale": {
+              "ru": "Считайте себя и двух друзей: всего трое.",
+              "uk": "Рахуйте себе й двох друзів: усього троє."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — вас і двох друзів потрібно посадити разом: «Нас троє»",
+            "feedbackByLocale": {
+              "ru": "Это «разные», не число людей.",
+              "uk": "Це «різні», не число людей."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cuatro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cuatro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i07:audio",
+          "transcript": "cuatro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-28:i07:r1",
+            "targetText": "cuatro",
+            "meaningByLocale": {
+              "ru": "четыре. Somos cuatro — «Нас четверо». 🔊 *cuatro*",
+              "uk": "чотири. Somos cuatro — «Нас четверо». 🔊 *cuatro*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuatro",
+          "definitionByLocale": {
+            "ru": "четыре. Somos cuatro — «Нас четверо». 🔊 *cuatro*",
+            "uk": "чотири. Somos cuatro — «Нас четверо». 🔊 *cuatro*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i08:r1",
+          "text": "4"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i08:r2",
+          "text": "3"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i08:audio",
+          "transcript": "cuatro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-28:i08:r1",
+            "targetText": "4",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-28:i08:r2",
+            "targetText": "3",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть число",
+            "feedbackByLocale": {
+              "ru": "Звучит cuatro — четыре.",
+              "uk": "Звучить cuatro — чотири."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — попросіть урахувати компанію із чотирьох людей, включно з вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — попросіть урахувати компанію із чотирьох людей, включно з вами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i09:audio",
+          "transcript": "Somos cuatro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos cuatro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i10:r1",
+          "text": "Плитки: tres"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i10:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i10:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i10:audio",
+          "transcript": "No somos tres."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No somos tres.",
+        "orderedTokens": [
+          "No",
+          "somos",
+          "tres"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos, речь о своей компании.",
+              "uk": "звучить somos, ідеться про свою компанію."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — підтвердьте, що вас четверо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — підтвердьте, що вас четверо",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-28:i11:audio",
+          "transcript": "Sí, somos cuatro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, somos cuatro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-28:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — іншого дня ви прийшли лише з подругою; назвіть розмір вашої компанії",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-28:i12:r1",
+          "text": "Плитки: somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i12:r2",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-01:session-28:i12:r3",
+          "text": "cuatro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — іншого дня ви прийшли лише з подругою; назвіть розмір вашої компанії",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos dos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в другой день вы пришли только с подругой; назовите размер вашей компании",
+          "uk": "Складіть фразу — іншого дня ви прийшли лише з подругою; назвіть розмір вашої компанії"
+        },
+        "orderedTokens": [
+          "Somos",
+          "dos"
+        ],
+        "authoredDistractorTokens": [
+          "cuatro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-28:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — іншого дня ви прийшли лише з подругою; назвіть розмір вашої компанії",
+            "feedbackByLocale": {
+              "ru": "сейчас вы и подруга, всего двое.",
+              "uk": "зараз ви й подруга, усього двоє."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "665b40087650670add9fee8b0ddc03792e6ff9c2dcf7f57c9bb19bd84bf5166f"
+}

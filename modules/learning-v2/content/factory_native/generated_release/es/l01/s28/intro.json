@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "назвать размер своей группы с somos + число, без отдельного слова «человек».",
+    "uk": "назвати розмір своєї групи із somos + число, без окремого слова «людей»."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нас двое",
+        "uk": "Нас двоє"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли вдвоём с другом. Скажите: `Somos dos` — «Нас двое». `Dos` — «два». Знакомое `somos` здесь сочетается с числом: `somos` + `dos`. Считайте и себя. Отдельное слово «человек» не нужно: в кафе и так понятно, что вы называете размер компании.",
+        "uk": "Ви прийшли вдвох із другом. Скажіть: `Somos dos` — «Нас двоє». `Dos` — «два». Знайоме `somos` тут поєднується з числом: `somos` + `dos`. Рахуйте і себе. Окреме слово «людей» не потрібне: у кафе й так зрозуміло, що ви називаєте розмір компанії."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о себе и друге: «Нас двое».",
+          "uk": "Скажіть про себе й друга: «Нас двоє»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-28:intro1:r1",
+              "text": "Somos dos."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro1:r2",
+              "text": "Son dos."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro1:r3",
+              "text": "Soy dos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-28:intro1:r1",
+              "text": "Somos dos."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro1:r2",
+              "text": "Son dos."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro1:r3",
+              "text": "Soy dos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о себе и друге: «Нас двое».",
+          "uk": "Скажіть про себе й друга: «Нас двоє»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "С нами будет ещё подруга",
+        "uk": "З нами буде ще подруга"
+      },
+      "bodyByLocale": {
+        "ru": "К вам присоединится подруга. Сотрудник должен подготовить три места. Скажите о всей компании: `Somos tres` — «Нас трое». `Tres` — «три». Сборка остаётся `somos` + число. Когда называете размер компании для столика, учитывайте всех, кто будет сидеть с вами, даже если кто-то ещё подходит.",
+        "uk": "До вас приєднається подруга. Працівник має підготувати три місця. Скажіть про всю компанію: `Somos tres` — «Нас троє». `Tres` — «три». Побудова залишається `somos` + число. Коли називаєте розмір компанії для столика, враховуйте всіх, хто сидітиме з вами, навіть якщо хтось іще підходить."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Уточните число мест для вашей компании: «Нас трое».",
+          "uk": "Уточніть кількість місць для вашої компанії: «Нас троє»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-28:intro2:r1",
+              "text": "Somos tres."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro2:r2",
+              "text": "Somos dos."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro2:r3",
+              "text": "Son tres."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-28:intro2:r1",
+              "text": "Somos tres."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro2:r2",
+              "text": "Somos dos."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro2:r3",
+              "text": "Son tres."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните число мест для вашей компании: «Нас трое».",
+          "uk": "Уточніть кількість місць для вашої компанії: «Нас троє»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не трое, а четверо",
+        "uk": "Не троє, а четверо"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга придёт с братом. Теперь вас четверо. Скажите: `Somos cuatro` — «Нас четверо». `Cuatro` — «четыре». Меняется только число после somos. Если сначала нужно отвергнуть прежний подсчёт, можно сказать отдельную короткую реплику `No somos tres` — «Нас не трое». В каждом задании произносите только запрошенную реплику.",
+        "uk": "Подруга прийде з братом. Тепер вас четверо. Скажіть: `Somos cuatro` — «Нас четверо». `Cuatro` — «чотири». Змінюється лише число після somos. Якщо спочатку потрібно відкинути попередній підрахунок, можна сказати окрему коротку репліку `No somos tres` — «Нас не троє». У кожному завданні вимовляйте лише потрібну репліку."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите окончательный размер компании: «Нас четверо».",
+          "uk": "Назвіть остаточний розмір компанії: «Нас четверо»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-28:intro3:r1",
+              "text": "Somos cuatro."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro3:r2",
+              "text": "Somos tres."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro3:r3",
+              "text": "No somos cuatro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-28:intro3:r1",
+              "text": "Somos cuatro."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro3:r2",
+              "text": "Somos tres."
+            },
+            {
+              "responseId": "es:lesson-01:session-28:intro3:r3",
+              "text": "No somos cuatro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите окончательный размер компании: «Нас четверо».",
+          "uk": "Назвіть остаточний розмір компанії: «Нас четверо»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6ed2e2a8d5ec431c65b03d2a8eff961200d414d7d59450edde608dfde577fb32"
+}

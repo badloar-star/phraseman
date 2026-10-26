@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-28:i01",
+    "correctText": "dos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i02",
+    "correctText": "2",
+    "correctResponseId": "es:lesson-01:session-28:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i03",
+    "correctText": "Somos dos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i04",
+    "correctText": "tres",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i05",
+    "correctText": "3",
+    "correctResponseId": "es:lesson-01:session-28:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i06",
+    "correctText": "tres",
+    "correctResponseId": "es:lesson-01:session-28:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i07",
+    "correctText": "cuatro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i08",
+    "correctText": "4",
+    "correctResponseId": "es:lesson-01:session-28:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i09",
+    "correctText": "Somos cuatro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i10",
+    "correctText": "No somos tres.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i11",
+    "correctText": "Sí, somos cuatro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-28:i12",
+    "correctText": "Somos dos.",
+    "correctResponseId": null
+  }
+]

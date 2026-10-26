@@ -5,7 +5,8 @@ import path from 'node:path';
 
 import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { HOME_SCENE_MIN_WHITE_CONTRAST } from '../components/home/v2/scene/home_scene_tokens';
-import { PACKS_CATALOG_V3_PREVIEW_ME, packsCatalogV3Fixtures } from '../components/packs/catalog_v3/packs_catalog_v3_fixtures';
+import { PACKS_CATALOG_V3_PREVIEW_ME, PACKS_SCREEN_STATES, PACK_SCREEN_FIXTURE, PACK_SUBMIT_FIXTURE, isPacksScreenState, packsCatalogV3Fixtures } from '../components/packs/catalog_v3/packs_catalog_v3_fixtures';
+import { packScreensText, type PackScreensTextKey } from '../components/packs/catalog_v3/packs_catalog_v3_screens_copy';
 import { packsCatalogV3Text, type PacksCatalogV3TextKey } from '../components/packs/catalog_v3/packs_catalog_v3_copy';
 import { PACK_COVER_GLYPHS, packCoverPaint, packHash, packsCatalogColors, pickByHash } from '../components/packs/catalog_v3/packs_catalog_v3_tokens';
 import { catalogOrder, contestDaysLeft, contestMonthKey, contestStanding, packPublishedAtMs } from '../components/packs/catalog_v3/packs_contest_model';
@@ -19,6 +20,11 @@ const COMPONENT_FILES = [
   'components/packs/catalog_v3/PackFilterRailV3.tsx',
   'components/packs/catalog_v3/PackMonthContest.tsx',
   'components/packs/catalog_v3/PacksCatalogV3.tsx',
+  'components/packs/catalog_v3/PackSceneFrameV3.tsx',
+  'components/packs/catalog_v3/PackScreenV3.tsx',
+  'components/packs/catalog_v3/PackSubmitV3.tsx',
+  'components/packs/catalog_v3/PackContestRulesV3.tsx',
+  'components/packs/catalog_v3/PackWinnerV3.tsx',
 ] as const;
 /** Код без строк-комментариев, чтобы пояснения «зачем» не ловились сторожем литералов. */
 const codeOnly = (source: string): string => source.split('\n').filter((line) => !line.trim().startsWith('//') && !line.trim().startsWith('{/*')).join('\n');
@@ -181,6 +187,57 @@ describe('каталог на сцене: тексты и цвета', () => {
   });
 });
 
+describe('экраны макета: экран набора, подача, условия, окно победителя', () => {
+  const SCREEN_KEYS: readonly PackScreensTextKey[] = ['back', 'addToMine', 'added', 'cards', 'submitTitle', 'nameField', 'publish', 'aiChecking', 'aiApply', 'rulesTitle', 'rule1', 'rule2', 'rule3', 'prizes', 'prizeFirst', 'prizeOther', 'gotIt', 'win1', 'win2', 'win3', 'winMonth', 'claim', 'claimCoins'];
+
+  it('тексты экранов: ru, uk, en, es есть, не пустые и различаются; остальные языки берут запасной путь без пустоты', () => {
+    for (const key of SCREEN_KEYS) {
+      const four = (['ru', 'uk', 'en', 'es'] as const).map((lang) => packScreensText(lang, key));
+      for (const text of four) expect(text.trim().length).toBeGreaterThan(0);
+      expect(new Set(four).size).toBeGreaterThan(1);
+      for (const lang of LANGS) expect(packScreensText(lang, key).trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it('призы без выдуманных чисел: первое место — «Plus и монеты», остальные — «Монеты»', () => {
+    expect(packScreensText('ru', 'prizeFirst')).toBe('Plus и монеты');
+    expect(packScreensText('ru', 'prizeOther')).toBe('Монеты');
+    expect(packScreensText('ru', 'prizeFirst')).not.toMatch(/\d/);
+  });
+
+  it('состояния студии: девять экранов, моки согласованы (8 карточек набора, 2 замечания ИИ в подаче)', () => {
+    expect([...PACKS_SCREEN_STATES]).toEqual(['pack', 'pack-added', 'submit', 'submit-clean', 'submit-checking', 'rules', 'win1', 'win2', 'win3']);
+    expect(isPacksScreenState('win2')).toBe(true);
+    expect(isPacksScreenState('full')).toBe(false);
+    expect(PACK_SCREEN_FIXTURE.cards).toHaveLength(8);
+    expect(PACK_SUBMIT_FIXTURE.cards.filter((card) => 'fix' in card && !!card.fix)).toHaveLength(2);
+  });
+
+  it('экран набора: «Добавить себе» и лайк — отдельный блок, список карточек — ниже и отдельно; закреплённой кнопки нет', () => {
+    const screen = read('components/packs/catalog_v3/PackScreenV3.tsx');
+    const actions = screen.indexOf('testID="packs-v3-pack-actions"');
+    const list = screen.indexOf('s.listHead');
+    expect(actions).toBeGreaterThan(0);
+    expect(list).toBeGreaterThan(actions);
+    expect(screen).toContain('cta={null}');
+  });
+
+  it('подача набора: «что поправить» на самой карточке, одна закреплённая кнопка «Опубликовать и участвовать»', () => {
+    const submit = read('components/packs/catalog_v3/PackSubmitV3.tsx');
+    expect(submit).toContain("packScreensText(lang, 'publish')");
+    expect(submit).toContain('testID={`packs-v3-submit-fix-${i}`}');
+    expect(submit.indexOf('testID={`packs-v3-submit-card-${i}`}')).toBeLessThan(submit.indexOf('testID={`packs-v3-submit-fix-${i}`}'));
+  });
+
+  it('окно победителя: одно окно на три места, без кнопки «назад», праздник не хранится в очереди (нет хранилища и сети)', () => {
+    const winner = read('components/packs/catalog_v3/PackWinnerV3.tsx');
+    expect(winner).toContain('onBack={null}');
+    for (const file of ['PackWinnerV3.tsx', 'PackScreenV3.tsx', 'PackSubmitV3.tsx', 'PackContestRulesV3.tsx', 'PackSceneFrameV3.tsx']) {
+      expect(read(`components/packs/catalog_v3/${file}`)).not.toMatch(/AsyncStorage|fetch\(|httpsCallable|getDoc|firestore|router\./i);
+    }
+  });
+});
+
 describe('каталог на сцене: исходный вид (правила владельца)', () => {
   it('нет обводок контейнеров, ужатия шрифта и своих цветов; кегли только 13 / 16 / 26', () => {
     for (const file of COMPONENT_FILES) {
@@ -191,7 +248,7 @@ describe('каталог на сцене: исходный вид (правил�
       expect(code).not.toMatch(/#[0-9a-fA-F]{3,8}\b/);
       expect(code).not.toMatch(/rgba?\(\s*\d/);
       const sizes = [...code.matchAll(/fontSize:\s*(\d+(?:\.\d+)?)/g)].map((m) => Number(m[1]));
-      for (const size of sizes) expect([13, 16, 26]).toContain(size);
+      for (const size of sizes) expect([13, 16, 26, 40]).toContain(size); // 40 — только цифра места в окне победителя (эталонный заголовок сцены)
     }
   });
 

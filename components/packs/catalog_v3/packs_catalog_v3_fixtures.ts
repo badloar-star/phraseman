@@ -61,3 +61,44 @@ export function packsCatalogV3Fixtures(state: PacksCatalogV3PreviewState, nowMs:
   }
   return { packs, loaded: true, myStableId: state === 'me' ? PACKS_CATALOG_V3_PREVIEW_ME : null };
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Экраны макета (экран набора, подача набора, «Условия участия», окно победителя): состояния dev-фотостудии.
+//   /dev_packs_catalog_v3?state=pack|pack-added|submit|submit-clean|submit-checking|rules|win1|win2|win3 &theme=… &appearance=…
+// Тексты карточек — данные набора (английская фраза и перевод), а не подписи интерфейса.
+// ═══════════════════════════════════════════════════════════════════════════
+export const PACKS_SCREEN_STATES = ['pack', 'pack-added', 'submit', 'submit-clean', 'submit-checking', 'rules', 'win1', 'win2', 'win3'] as const;
+export type PacksScreenState = (typeof PACKS_SCREEN_STATES)[number];
+
+export function isPacksScreenState(value: unknown): value is PacksScreenState {
+  return typeof value === 'string' && (PACKS_SCREEN_STATES as readonly string[]).includes(value);
+}
+
+export const PACK_SCREEN_FIXTURE = Object.freeze({
+  pack: Object.freeze({ id: 'preview-1', title: 'Английский в дороге', authorName: 'Марина К.', likes: 132 }),
+  cards: Object.freeze([
+    { front: 'Where is the nearest station?', back: 'Где ближайшая станция?' },
+    { front: 'I would like a window seat.', back: 'Я бы хотел место у окна.' },
+    { front: 'How much is a ticket to the airport?', back: 'Сколько стоит билет до аэропорта?' },
+    { front: 'My luggage is missing.', back: 'Мой багаж пропал.' },
+    { front: 'Could you call a taxi, please?', back: 'Вызовите такси, пожалуйста.' },
+    { front: 'What time does the train leave?', back: 'Во сколько отправляется поезд?' },
+    { front: 'I have a reservation.', back: 'У меня есть бронь.' },
+    { front: 'Is breakfast included?', back: 'Завтрак включён?' },
+  ]),
+});
+
+export const PACK_SUBMIT_FIXTURE = Object.freeze({
+  languageName: 'Английский',
+  name: 'Английский в дороге',
+  cards: Object.freeze([
+    { front: 'Where is the nearest station?', back: 'Где ближайшая станция?' },
+    { front: 'I would like a window sit.', back: 'Я бы хотел место у окна.', fix: 'I would like a window seat.' },
+    { front: 'How much is a ticket to the airport?', back: 'Сколько стоит билет до аэропорта?' },
+    { front: 'My luggage are missing.', back: 'Мой багаж пропал.', fix: 'My luggage is missing.' },
+    { front: 'Could you call a taxi, please?', back: 'Вызовите такси, пожалуйста.' },
+    { front: 'I have a reservation.', back: 'У меня есть бронь.' },
+  ] as const),
+});
+
+export const PACK_WINNER_FIXTURE = Object.freeze({ id: 'preview-1', title: 'Английский в дороге', likes: 132 });

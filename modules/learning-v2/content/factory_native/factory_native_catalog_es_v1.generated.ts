@@ -308,4 +308,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сравнить собеседника с собой с помощью igual que yo.","uk":"порівняти співрозмовника із собою за допомогою igual que yo."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 44,
+    sourceFingerprint: "fb7c408f68f7764371109240a93bb416d557a8e7330a37f52017070f71c7bf9f",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить безопасность пути словами seguro и peligroso.","uk":"оцінити безпеку шляху словами seguro та peligroso."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 45,
+    sourceFingerprint: "8d068279c8076429ba80be15e09978a7c1c82fd7903c960090ab410dc2b30074",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить полезность предмета с útil и inútil.","uk":"оцінити користь предмета з útil та inútil."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

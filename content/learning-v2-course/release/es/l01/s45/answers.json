@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-45:i01",
+    "correctText": "útil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i02",
+    "correctText": "útil",
+    "correctResponseId": "es:lesson-01:session-45:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i03",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-45:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i04",
+    "correctText": "Es muy útil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i05",
+    "correctText": "inútil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i06",
+    "correctText": "inútil",
+    "correctResponseId": "es:lesson-01:session-45:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i07",
+    "correctText": "inútil",
+    "correctResponseId": "es:lesson-01:session-45:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i08",
+    "correctText": "El manual es inútil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i09",
+    "correctText": "No es útil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i10",
+    "correctText": "útiles",
+    "correctResponseId": "es:lesson-01:session-45:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i11",
+    "correctText": "El libro es útil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-45:i12",
+    "correctText": "Es muy útil.",
+    "correctResponseId": null
+  }
+]

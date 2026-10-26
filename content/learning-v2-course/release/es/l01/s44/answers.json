@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-44:i01",
+    "correctText": "camino",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i02",
+    "correctText": "camino",
+    "correctResponseId": "es:lesson-01:session-44:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i03",
+    "correctText": "seguro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i04",
+    "correctText": "seguro",
+    "correctResponseId": "es:lesson-01:session-44:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i05",
+    "correctText": "El camino es seguro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i06",
+    "correctText": "peligroso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i07",
+    "correctText": "peligroso",
+    "correctResponseId": "es:lesson-01:session-44:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i08",
+    "correctText": "Es muy peligroso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i09",
+    "correctText": "Es muy peligroso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i10",
+    "correctText": "¿Es seguro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i11",
+    "correctText": "El camino no es seguro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-44:i12",
+    "correctText": "El camino es peligroso.",
+    "correctResponseId": null
+  }
+]

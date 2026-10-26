@@ -1,0 +1,684 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-44",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — camino",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — camino",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i01:audio",
+          "transcript": "camino"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-44:i01:r1",
+            "targetText": "camino",
+            "meaningByLocale": {
+              "ru": "путь, дорожка. Мужской род: el camino. 🔊 *camino*",
+              "uk": "шлях, доріжка. Чоловічий рід: el camino. 🔊 *camino*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "camino",
+          "definitionByLocale": {
+            "ru": "путь, дорожка. Мужской род: el camino. 🔊 *camino*",
+            "uk": "шлях, доріжка. Чоловічий рід: el camino. 🔊 *camino*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i02:r1",
+          "text": "camino"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i02:r2",
+          "text": "manual"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i02:audio",
+          "transcript": "camino"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-44:i02:r1",
+            "targetText": "camino",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-44:i02:r2",
+            "targetText": "manual",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит camino — путь, а не manual — руководство.",
+              "uk": "Звучить camino — шлях, а не manual — посібник."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seguro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seguro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i03:audio",
+          "transcript": "seguro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-44:i03:r1",
+            "targetText": "seguro",
+            "meaningByLocale": {
+              "ru": "безопасный. Женская форма — segura. Здесь речь о безопасности пути. 🔊 *seguro*",
+              "uk": "безпечний. Жіноча форма — segura. Тут ідеться про безпеку шляху. 🔊 *seguro*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seguro",
+          "definitionByLocale": {
+            "ru": "безопасный. Женская форма — segura. Здесь речь о безопасности пути. 🔊 *seguro*",
+            "uk": "безпечний. Жіноча форма — segura. Тут ідеться про безпеку шляху. 🔊 *seguro*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — путь безопасный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i04:r1",
+          "text": "seguro"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i04:r2",
+          "text": "segura"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i04:r3",
+          "text": "seguros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — путь безопасный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — путь безопасный",
+          "uk": "Вставте слово — шлях безпечний"
+        },
+        "gappedTargetPhrase": "El camino es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-44:i04:r1",
+            "text": "seguro"
+          },
+          {
+            "responseId": "es:lesson-01:session-44:i04:r2",
+            "text": "segura"
+          },
+          {
+            "responseId": "es:lesson-01:session-44:i04:r3",
+            "text": "seguros"
+          }
+        ],
+        "testedDimension": "Вставьте слово — путь безопасный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — путь безопасный",
+            "feedbackByLocale": {
+              "ru": "Camino мужского рода, поэтому seguro.",
+              "uk": "Camino чоловічого роду, тому seguro."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-44:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — путь безопасный",
+            "feedbackByLocale": {
+              "ru": "Это для нескольких путей, а здесь один.",
+              "uk": "Це для кількох шляхів, а тут один."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Путь безопасный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i05:r1",
+          "text": "Плитки: seguro"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i05:r2",
+          "text": "camino"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i05:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Путь безопасный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El camino es seguro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Путь безопасный»",
+          "uk": "Зберіть фразу — скажіть «Шлях безпечний»"
+        },
+        "orderedTokens": [
+          "El",
+          "camino",
+          "es",
+          "seguro"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Путь безопасный»",
+            "feedbackByLocale": {
+              "ru": "путь один.",
+              "uk": "шлях один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — peligroso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — peligroso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i06:audio",
+          "transcript": "peligroso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-44:i06:r1",
+            "targetText": "peligroso",
+            "meaningByLocale": {
+              "ru": "опасный. Женская форма — peligrosa. 🔊 *peligroso*",
+              "uk": "небезпечний. Жіноча форма — peligrosa. 🔊 *peligroso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "peligroso",
+          "definitionByLocale": {
+            "ru": "опасный. Женская форма — peligrosa. 🔊 *peligroso*",
+            "uk": "небезпечний. Жіноча форма — peligrosa. 🔊 *peligroso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i07:r1",
+          "text": "peligroso"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i07:r2",
+          "text": "seguro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i07:audio",
+          "transcript": "peligroso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-44:i07:r1",
+            "targetText": "peligroso",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-44:i07:r2",
+            "targetText": "seguro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит peligroso — «опасный», а не seguro.",
+              "uk": "Звучить peligroso — «небезпечний», а не seguro."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — оцените тропинку у обрыва: «Это очень опасно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i08:r1",
+          "text": "Плитки: peligroso"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i08:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i08:r4",
+          "text": "seguro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — оцените тропинку у обрыва: «Это очень опасно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy peligroso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — оцените тропинку у обрыва: «Это очень опасно»",
+          "uk": "Зберіть фразу — оцініть стежку біля урвища: «Це дуже небезпечно»"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "peligroso"
+        ],
+        "authoredDistractorTokens": [
+          "seguro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — оцените тропинку у обрыва: «Это очень опасно»",
+            "feedbackByLocale": {
+              "ru": "нужна оценка опасности.",
+              "uk": "потрібна оцінка небезпеки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите обсуждаемый путь очень опасным",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите обсуждаемый путь очень опасным",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i09:audio",
+          "transcript": "Es muy peligroso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es muy peligroso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите о пути: «Это безопасно?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i10:r1",
+          "text": "Плитки: seguro"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i10:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i10:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите о пути: «Это безопасно?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es seguro?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите о пути: «Это безопасно?»",
+          "uk": "Зберіть фразу — запитайте про шлях: «Це безпечно?»"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "seguro"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите о пути: «Это безопасно?»",
+            "feedbackByLocale": {
+              "ru": "вопрос о пути, не о собеседнике.",
+              "uk": "запитання про шлях, не про співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i11:r1",
+          "text": "Плитки: seguro"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i11:r2",
+          "text": "camino"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i11:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i11:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i11:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-44:i11:audio",
+          "transcript": "El camino no es seguro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El camino no es seguro.",
+        "orderedTokens": [
+          "El",
+          "camino",
+          "no",
+          "es",
+          "seguro"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — укажите на опасный путь и назовите его: «Путь опасный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-44:i12:r1",
+          "text": "Плитки: peligroso"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i12:r2",
+          "text": "camino"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i12:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-44:i12:r5",
+          "text": "peligrosa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — укажите на опасный путь и назовите его: «Путь опасный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El camino es peligroso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — укажите на опасный путь и назовите его: «Путь опасный»",
+          "uk": "Зберіть фразу — вкажіть на небезпечний шлях і назвіть його: «Шлях небезпечний»"
+        },
+        "orderedTokens": [
+          "El",
+          "camino",
+          "es",
+          "peligroso"
+        ],
+        "authoredDistractorTokens": [
+          "peligrosa"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-44:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — укажите на опасный путь и назовите его: «Путь опасный»",
+            "feedbackByLocale": {
+              "ru": "camino мужского рода.",
+              "uk": "camino чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "66f259f3b6bda4e7c4771729366ad97ffb9ed3239cb7becb65498b6fa849cd98"
+}

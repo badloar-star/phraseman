@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-45",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-45:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-45:intro1:r2": {
+          "ru": "Книга одна, поэтому es útil.",
+          "uk": "Книжка одна, тому es útil."
+        },
+        "es:lesson-01:session-45:intro1:r3": {
+          "ru": "Это оценка цены, а нужно оценить пользу.",
+          "uk": "Це оцінка ціни, а потрібно оцінити користь."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-45:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-45:intro2:r2": {
+          "ru": "Это противоположное: «полезное».",
+          "uk": "Це протилежне: «корисний»."
+        },
+        "es:lesson-01:session-45:intro2:r3": {
+          "ru": "Руководство одно, поэтому es inútil.",
+          "uk": "Посібник один, тому es inútil."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-45:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-45:intro3:r2": {
+          "ru": "Без no фраза утверждает пользу.",
+          "uk": "Без no фраза стверджує користь."
+        },
+        "es:lesson-01:session-45:intro3:r3": {
+          "ru": "Это о нескольких предметах, а книга одна.",
+          "uk": "Це про кілька предметів, а книжка одна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8ad0994b3967b699bb69233afb2ccce665fc37d34d7888cb8b8ebd76a0a98eb9"
+}

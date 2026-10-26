@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-44",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-44:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-44:intro1:r2": {
+          "ru": "Camino мужского рода, поэтому seguro.",
+          "uk": "Camino чоловічого роду, тому seguro."
+        },
+        "es:lesson-01:session-44:intro1:r3": {
+          "ru": "Путь один, поэтому es seguro.",
+          "uk": "Шлях один, тому es seguro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-44:intro2:r2": {
+          "ru": "Это «очень безопасно», противоположная оценка.",
+          "uk": "Це «дуже безпечно», протилежна оцінка."
+        },
+        "es:lesson-01:session-44:intro2:r3": {
+          "ru": "Muy нужно поставить перед peligroso.",
+          "uk": "Muy потрібно поставити перед peligroso."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-44:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-44:intro3:r2": {
+          "ru": "Eres относится к собеседнику, а вопрос о пути.",
+          "uk": "Eres стосується співрозмовника, а запитання про шлях."
+        },
+        "es:lesson-01:session-44:intro3:r3": {
+          "ru": "Это другая оценка и женская форма; здесь нужен seguro.",
+          "uk": "Це інша оцінка й жіноча форма; тут потрібне seguro."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1222450701b52d359cb8b0ca005cc13622045016472f6471d3eabc89c0c85280"
+}

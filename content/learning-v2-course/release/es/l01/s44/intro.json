@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "оценить безопасность пути словами seguro и peligroso.",
+    "uk": "оцінити безпеку шляху словами seguro та peligroso."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Безопасная дорожка",
+        "uk": "Безпечна доріжка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает широкую дорожку вдали от обрыва. `Camino` — «путь, дорожка», слово мужского рода: el camino. Вы оцениваете этот вариант: `El camino es seguro` — «Путь безопасный». Соберите `el camino` + `es` + `seguro`. `Seguro` здесь означает «безопасный». Фраза описывает путь, а не вашу уверенность в ответе.",
+        "uk": "Друг показує широку доріжку далеко від урвища. `Camino` — «шлях, доріжка», слово чоловічого роду: el camino. Ви оцінюєте цей варіант: `El camino es seguro` — «Шлях безпечний». Зберіть `el camino` + `es` + `seguro`. `Seguro` тут означає «безпечний». Фраза описує шлях, а не вашу впевненість у відповіді."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о безопасном пути: «Путь безопасный».",
+          "uk": "Скажіть про безпечний шлях: «Шлях безпечний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-44:intro1:r1",
+              "text": "El camino es seguro."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro1:r2",
+              "text": "El camino es segura."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro1:r3",
+              "text": "El camino son seguros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-44:intro1:r1",
+              "text": "El camino es seguro."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro1:r2",
+              "text": "El camino es segura."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro1:r3",
+              "text": "El camino son seguros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о безопасном пути: «Путь безопасный».",
+          "uk": "Скажіть про безпечний шлях: «Шлях безпечний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Опасная тропинка",
+        "uk": "Небезпечна стежка"
+      },
+      "bodyByLocale": {
+        "ru": "Другой вариант проходит у крутого обрыва без ограждения. Вы говорите о нём: `Es muy peligroso` — «Это очень опасно». `Peligroso` означает «опасный». Соберите `es` + `muy` + `peligroso`. Muy стоит перед peligroso и усиливает оценку. Мужская форма относится к обсуждаемому camino.",
+        "uk": "Інший варіант проходить біля крутого урвища без огорожі. Ви говорите про нього: `Es muy peligroso` — «Це дуже небезпечно». `Peligroso` означає «небезпечний». Зберіть `es` + `muy` + `peligroso`. Muy стоїть перед peligroso й підсилює оцінку. Чоловіча форма стосується обговорюваного camino."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Оцените второй путь словами «Это очень опасно», не повторяя название.",
+          "uk": "Оцініть другий шлях словами «Це дуже небезпечно», не повторюючи назву."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-44:intro2:r1",
+              "text": "Es muy peligroso."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro2:r2",
+              "text": "Es muy seguro."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro2:r3",
+              "text": "Es peligroso muy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-44:intro2:r1",
+              "text": "Es muy peligroso."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro2:r2",
+              "text": "Es muy seguro."
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro2:r3",
+              "text": "Es peligroso muy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените второй путь словами «Это очень опасно», не повторяя название.",
+          "uk": "Оцініть другий шлях словами «Це дуже небезпечно», не повторюючи назву."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем безопасность",
+        "uk": "Уточнюємо безпеку"
+      },
+      "bodyByLocale": {
+        "ru": "Прежде чем идти по ещё одной дорожке, вы хотите узнать, безопасна ли она. Спросите: `¿Es seguro?` — «Это безопасно?» Соберите `es` + `seguro` и произнесите вопрос. Вы всё ещё обсуждаете camino, поэтому seguro. Это вопрос о пути, а не «Ты уверен?».",
+        "uk": "Перш ніж іти ще однією доріжкою, ви хочете дізнатися, чи безпечна вона. Запитайте: `¿Es seguro?` — «Це безпечно?» Зберіть `es` + `seguro` і вимовте запитання. Ви й далі обговорюєте camino, тому seguro. Це запитання про шлях, а не «Ти впевнений?»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о новом пути: «Это безопасно?»",
+          "uk": "Запитайте про новий шлях: «Це безпечно?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-44:intro3:r1",
+              "text": "¿Es seguro?"
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro3:r2",
+              "text": "¿Eres seguro?"
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro3:r3",
+              "text": "¿Es peligrosa?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-44:intro3:r1",
+              "text": "¿Es seguro?"
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro3:r2",
+              "text": "¿Eres seguro?"
+            },
+            {
+              "responseId": "es:lesson-01:session-44:intro3:r3",
+              "text": "¿Es peligrosa?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о новом пути: «Это безопасно?»",
+          "uk": "Запитайте про новий шлях: «Це безпечно?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "50075ba0653eb8cabbdde3b16879b43b45cb8b02c98090d05e891d6f4e16c2a6"
+}

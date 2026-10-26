@@ -59,7 +59,9 @@ _spire = _entry('spire-gap-022')
 if 'state=room' in _spire['link']:
     _spire['link'] = _spire['link'].replace('state=room', 'state=lobby', 1)
 set_param('spire-gap-022', 'studyTarget', 'es')
-set_steps('spire-gap-022', ['wait:2500', 'see:#spire-beta-pill'])
+# 26.10 (Ядро): пилюлю «бета» сняли (4c58c3b1a, no_dev_jargon сторожит её отсутствие) — строка смотрит заголовок сцены Пика
+# для es; эталон spire-gaps-states.html#22 устарел (Макеты)
+set_steps('spire-gap-022', ['wait:2500', 'see:#spire-scene-title'])
 
 # mistakes-panel-021: ссылка обязана включать mistakes=demo (засев журнала); шаги прежние — хаб → «Начать» → шторка → практика → меню.
 if 'mistakes=demo' not in _entry('mistakes-panel-021')['link']:

@@ -338,6 +338,15 @@
       "sensitivity": "low"
     },
     {
+      "key": "liquid_glass_appearance",
+      "domain": "preferences",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
       "key": "app_version",
       "domain": "app",
       "scope": "device_only",

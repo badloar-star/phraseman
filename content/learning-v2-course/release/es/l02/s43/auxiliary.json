@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-43",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-43:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-43:intro1:r2": {
+          "ru": "Для испанского nuez нужна una.",
+          "uk": "Для іспанського nuez потрібна una."
+        },
+        "es:lesson-02:session-43:intro1:r3": {
+          "ru": "Орех один: es.",
+          "uk": "Горіх один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-43:intro2:r2": {
+          "ru": "Конечная z меняется на ces: nueces.",
+          "uk": "Кінцева z змінюється на ces: nueces."
+        },
+        "es:lesson-02:session-43:intro2:r3": {
+          "ru": "Nueces женского рода: unas.",
+          "uk": "Nueces жіночого роду: unas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-43:intro3:r2": {
+          "ru": "Nueces женского рода: las.",
+          "uk": "Nueces жіночого роду: las."
+        },
+        "es:lesson-02:session-43:intro3:r3": {
+          "ru": "Орехов несколько: son.",
+          "uk": "Горіхів кілька: son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c332a5a4daacc0b06970afe1a318a6a888c879164a50e90b00d2c61a4e3bb9a3"
+}

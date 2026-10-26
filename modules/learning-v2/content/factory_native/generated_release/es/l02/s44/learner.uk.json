@@ -1,0 +1,797 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-44",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cámara",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cámara",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i01:audio",
+          "transcript": "cámara"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-44:i01:r1",
+            "targetText": "cámara",
+            "meaningByLocale": {
+              "ru": "камера, фотоаппарат. Женский род: la cámara. 🔊 *cámara*",
+              "uk": "камера, фотоапарат. Жіночий рід: la cámara. 🔊 *cámara*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cámara",
+          "definitionByLocale": {
+            "ru": "камера, фотоаппарат. Женский род: la cámara. 🔊 *cámara*",
+            "uk": "камера, фотоапарат. Жіночий рід: la cámara. 🔊 *cámara*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i02:r1",
+          "text": "cámara"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i02:r2",
+          "text": "cartera"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i02:audio",
+          "transcript": "cámara"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-44:i02:r1",
+            "targetText": "cámara",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i02:r2",
+            "targetText": "cartera",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cámara — камера.",
+              "uk": "Звучить cámara — камера."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — teléfono",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — teléfono",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i03:audio",
+          "transcript": "teléfono"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-44:i03:r1",
+            "targetText": "teléfono",
+            "meaningByLocale": {
+              "ru": "телефон. Мужской род: el teléfono. 🔊 *teléfono*",
+              "uk": "телефон. Чоловічий рід: el teléfono. 🔊 *teléfono*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "teléfono",
+          "definitionByLocale": {
+            "ru": "телефон. Мужской род: el teléfono. 🔊 *teléfono*",
+            "uk": "телефон. Чоловічий рід: el teléfono. 🔊 *teléfono*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i04:r1",
+          "text": "teléfono"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i04:r2",
+          "text": "tenedor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i04:audio",
+          "transcript": "teléfono"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-44:i04:r1",
+            "targetText": "teléfono",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i04:r2",
+            "targetText": "tenedor",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит teléfono — телефон.",
+              "uk": "Звучить teléfono — телефон."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це камера, назвіть вид з una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i05:r1",
+          "text": "Плитки: cámara"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це камера, назвіть вид з una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una cámara.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это камера, назовите вид с una",
+          "uk": "Зберіть фразу — це камера, назвіть вид з una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "cámara"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це камера, назвіть вид з una",
+            "feedbackByLocale": {
+              "ru": "cámara женского рода.",
+              "uk": "cámara жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви впізнали заздалегідь обговорену камеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i06:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i06:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви впізнали заздалегідь обговорену камеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы узнали заранее обсуждённую камеру",
+          "uk": "Вставте слово — ви впізнали заздалегідь обговорену камеру"
+        },
+        "gappedTargetPhrase": "Es ___ cámara.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-44:i06:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i06:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i06:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви впізнали заздалегідь обговорену камеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви впізнали заздалегідь обговорену камеру",
+            "feedbackByLocale": {
+              "ru": "Чтобы указать на ту самую камеру, выберите la.",
+              "uk": "Щоб указати на ту саму камеру, виберіть la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви впізнали заздалегідь обговорену камеру",
+            "feedbackByLocale": {
+              "ru": "Cámara женского рода: la.",
+              "uk": "Cámara жіночого роду: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це та сама камера, з la",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i07:r1",
+          "text": "Плитки: cámara"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i07:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i07:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це та сама камера, з la",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la cámara.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это та самая камера, с la",
+          "uk": "Зберіть фразу — це та сама камера, з la"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "cámara"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це та сама камера, з la",
+            "feedbackByLocale": {
+              "ru": "cámara женского рода.",
+              "uk": "cámara жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — просто назвіть телефон із неозначеним артиклем",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i08:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i08:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — просто назвіть телефон із неозначеним артиклем",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — просто назовите телефон с неопределённым артиклем",
+          "uk": "Вставте слово — просто назвіть телефон із неозначеним артиклем"
+        },
+        "gappedTargetPhrase": "Es ___ teléfono.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-44:i08:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i08:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i08:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — просто назвіть телефон із неозначеним артиклем",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть телефон із неозначеним артиклем",
+            "feedbackByLocale": {
+              "ru": "Teléfono мужского рода: un.",
+              "uk": "Teléfono чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — просто назвіть телефон із неозначеним артиклем",
+            "feedbackByLocale": {
+              "ru": "Телефон один: un.",
+              "uk": "Телефон один: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це телефон, з un",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i09:r1",
+          "text": "Плитки: teléfono"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i09:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це телефон, з un",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un teléfono.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это телефон, с un",
+          "uk": "Зберіть фразу — це телефон, з un"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "teléfono"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це телефон, з un",
+            "feedbackByLocale": {
+              "ru": "teléfono мужского рода.",
+              "uk": "teléfono чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — одна камера",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i10:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i10:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i10:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — одна камера",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна камера",
+          "uk": "Вставте слово — одна камера"
+        },
+        "gappedTargetPhrase": "___ una cámara.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-44:i10:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i10:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i10:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — одна камера",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна камера",
+            "feedbackByLocale": {
+              "ru": "Камера одна: es.",
+              "uk": "Камера одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-44:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — одна камера",
+            "feedbackByLocale": {
+              "ru": "Речь о камере, не о говорящем: es.",
+              "uk": "Йдеться про камеру, не про мовця: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i11:r1",
+          "text": "Плитки: cámara"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i11:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i11:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i11:audio",
+          "transcript": "Es la cámara."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la cámara.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "cámara"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la cámara.",
+              "uk": "звучить la cámara."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це та сама камера, з la",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це та сама камера, з la",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i12:audio",
+          "transcript": "Es la cámara."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la cámara.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — просто назвіть камеру з una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-44:i13:r1",
+          "text": "Плитки: cámara"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i13:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-44:i13:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — просто назвіть камеру з una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una cámara.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — просто назовите камеру с una",
+          "uk": "Зберіть фразу — просто назвіть камеру з una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "cámara"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-44:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — просто назвіть камеру з una",
+            "feedbackByLocale": {
+              "ru": "cámara женского рода.",
+              "uk": "cámara жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це телефон, з un",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це телефон, з un",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-44:i14:audio",
+          "transcript": "Es un teléfono."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un teléfono.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a02432465b145945de4e64791f6438a83d770d0cc7b69ca9dd25e75175ea8167"
+}

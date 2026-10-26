@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-42",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-42:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-42:intro1:r2": {
+          "ru": "Род испанского botón мужской.",
+          "uk": "Рід іспанського botón чоловічий."
+        },
+        "es:lesson-02:session-42:intro1:r3": {
+          "ru": "Пуговица одна: es.",
+          "uk": "Ґудзик один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-42:intro2:r2": {
+          "ru": "К botón добавляется -es: botones.",
+          "uk": "До botón додається -es: botones."
+        },
+        "es:lesson-02:session-42:intro2:r3": {
+          "ru": "Пуговиц несколько: son.",
+          "uk": "Ґудзиків кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-42:intro3:r2": {
+          "ru": "С единственным un pantalón нужно es.",
+          "uk": "З одниною un pantalón потрібне es."
+        },
+        "es:lesson-02:session-42:intro3:r3": {
+          "ru": "Pantalón мужского рода: un.",
+          "uk": "Pantalón чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2d32dc49e50f308c56caf19fb354c23be6e2ae4b85c65736a76b47e06eb7446"
+}

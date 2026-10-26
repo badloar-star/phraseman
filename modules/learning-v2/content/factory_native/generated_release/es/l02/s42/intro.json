@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "образовать множественное число знакомым способом -es у слов на согласную.",
+    "uk": "утворити множину знайомим способом -es у слів на приголосну."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна пуговица",
+        "uk": "Один ґудзик"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежит пуговица. `Botón` — «пуговица», слово мужского рода: el botón. Назовите её: `Es un botón` — «Это пуговица». Соберите `es` + `un` + `botón`. Выбирайте un по испанскому мужскому роду, хотя русское «пуговица» женского рода.",
+        "uk": "На столі лежить ґудзик. `Botón` — «ґудзик», слово чоловічого роду: el botón. Назвіть його: `Es un botón` — «Це ґудзик». Зберіть `es` + `un` + `botón`. Вибирайте un за іспанським чоловічим родом; тут рід збігається з українським словом."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну пуговицу.",
+          "uk": "Назвіть один ґудзик."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-42:intro1:r1",
+              "text": "Es un botón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro1:r2",
+              "text": "Es una botón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro1:r3",
+              "text": "Son un botón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-42:intro1:r1",
+              "text": "Es un botón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro1:r2",
+              "text": "Es una botón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro1:r3",
+              "text": "Son un botón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну пуговицу.",
+          "uk": "Назвіть один ґудзик."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько пуговиц",
+        "uk": "Кілька ґудзиків"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали ещё несколько пуговиц из коробочки. Скажите с unos: `Son unos botones` — «Это пуговицы». Соберите `son` + `unos` + `botones`. Как в calcetín → calcetines, к botón добавьте -es и уберите знак ударения: botones. Для нескольких предметов мужского рода нужны son и unos.",
+        "uk": "Ви дістали ще кілька ґудзиків із коробочки. Скажіть з unos: `Son unos botones` — «Це ґудзики». Зберіть `son` + `unos` + `botones`. Як у calcetín → calcetines, до botón додайте -es і приберіть знак наголосу: botones. Для кількох предметів чоловічого роду потрібні son і unos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите пуговицы с unos.",
+          "uk": "Назвіть ґудзики з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-42:intro2:r1",
+              "text": "Son unos botones."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro2:r2",
+              "text": "Son unos botóns."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro2:r3",
+              "text": "Es unos botones."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-42:intro2:r1",
+              "text": "Son unos botones."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro2:r2",
+              "text": "Son unos botóns."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro2:r3",
+              "text": "Es unos botones."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите пуговицы с unos.",
+          "uk": "Назвіть ґудзики з unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Брюки для ремонта",
+        "uk": "Штани для ремонту"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежат брюки, которые вы собираетесь чинить. `Pantalón` — «брюки», слово мужского рода. В испанском одну пару можно назвать в единственном числе: `Es un pantalón` — «Это брюки». Соберите `es` + `un` + `pantalón`. Русское множественное «брюки» не требует испанского son: здесь речь об одном предмете одежды, un pantalón. Несколько пар — pantalones.",
+        "uk": "Поруч лежать штани, які ви збираєтеся полагодити. `Pantalón` — «штани», слово чоловічого роду. Іспанською одну пару можна назвати в однині: `Es un pantalón` — «Це штани». Зберіть `es` + `un` + `pantalón`. Українська множина «штани» не потребує іспанського son: тут йдеться про один предмет одягу, un pantalón. Кілька пар — pantalones."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите одну пару брюк с pantalón.",
+          "uk": "Назвіть одну пару штанів із pantalón."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-42:intro3:r1",
+              "text": "Es un pantalón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro3:r2",
+              "text": "Son un pantalón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro3:r3",
+              "text": "Es una pantalón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-42:intro3:r1",
+              "text": "Es un pantalón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro3:r2",
+              "text": "Son un pantalón."
+            },
+            {
+              "responseId": "es:lesson-02:session-42:intro3:r3",
+              "text": "Es una pantalón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну пару брюк с pantalón.",
+          "uk": "Назвіть одну пару штанів із pantalón."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "596bf2e84fbf45c87ecdc0c36395413342a0493120486187e35a8733f1bcced3"
+}

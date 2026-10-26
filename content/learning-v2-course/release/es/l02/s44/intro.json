@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "различить название предмета с una и узнавание конкретного предмета с la.",
+    "uk": "розрізнити назву предмета з una та впізнавання конкретного предмета з la."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назовите предмет",
+        "uk": "Назвіть предмет"
+      },
+      "bodyByLocale": {
+        "ru": "На столе стоит фотоаппарат. `Cámara` — «камера, фотоаппарат», слово женского рода: la cámara. Пока вы просто называете, что это за предмет: `Es una cámara` — «Это камера». Соберите `es` + `una` + `cámara`. Una помогает назвать вид предмета, ещё не выделяя нужную вам камеру.",
+        "uk": "На столі стоїть фотоапарат. `Cámara` — «камера, фотоапарат», слово жіночого роду: la cámara. Поки ви просто називаєте, що це за предмет: `Es una cámara` — «Це камера». Зберіть `es` + `una` + `cámara`. Una допомагає назвати вид предмета, ще не виділяючи потрібну вам камеру."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Просто назовите вид предмета с una.",
+          "uk": "Просто назвіть вид предмета з una."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-44:intro1:r1",
+              "text": "Es una cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro1:r2",
+              "text": "Es un cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro1:r3",
+              "text": "Son una cámara."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-44:intro1:r1",
+              "text": "Es una cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro1:r2",
+              "text": "Es un cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro1:r3",
+              "text": "Son una cámara."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Просто назовите вид предмета с una.",
+          "uk": "Просто назвіть вид предмета з una."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нашлась та самая камера",
+        "uk": "Знайшлася та сама камера"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте камеру, которую друг обещал взять на прогулку. Скажите `Es la cámara` — «Это та самая камера». Соберите `es` + `la` + `cámara`. Название предмета не изменилось; la вместо una показывает, что речь об уже известной вам обоим камере.",
+        "uk": "Ви впізнаєте камеру, яку друг обіцяв узяти на прогулянку. Скажіть `Es la cámara` — «Це та сама камера». Зберіть `es` + `la` + `cámara`. Назва предмета не змінилася; la замість una показує, що йдеться про вже відому вам обом камеру."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Укажите на ту самую камеру с la.",
+          "uk": "Укажіть на ту саму камеру з la."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-44:intro2:r1",
+              "text": "Es la cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro2:r2",
+              "text": "Es el cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro2:r3",
+              "text": "Son la cámara."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-44:intro2:r1",
+              "text": "Es la cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro2:r2",
+              "text": "Es el cámara."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro2:r3",
+              "text": "Son la cámara."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Укажите на ту самую камеру с la.",
+          "uk": "Укажіть на ту саму камеру з la."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Телефон рядом",
+        "uk": "Телефон поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом с камерой лежит телефон. `Teléfono` — «телефон», слово мужского рода: el teléfono. Назовите этот предмет: `Es un teléfono` — «Это телефон». Соберите `es` + `un` + `teléfono`. Здесь снова называем вид предмета, но теперь мужского рода: un вместо una.",
+        "uk": "Поруч із камерою лежить телефон. `Teléfono` — «телефон», слово чоловічого роду: el teléfono. Назвіть цей предмет: `Es un teléfono` — «Це телефон». Зберіть `es` + `un` + `teléfono`. Тут знову називаємо вид предмета, але тепер чоловічого роду: un замість una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите телефон с un.",
+          "uk": "Назвіть телефон з un."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-44:intro3:r1",
+              "text": "Es un teléfono."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro3:r2",
+              "text": "Es una teléfono."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro3:r3",
+              "text": "Son un teléfono."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-44:intro3:r1",
+              "text": "Es un teléfono."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro3:r2",
+              "text": "Es una teléfono."
+            },
+            {
+              "responseId": "es:lesson-02:session-44:intro3:r3",
+              "text": "Son un teléfono."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите телефон с un.",
+          "uk": "Назвіть телефон з un."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "961895000a2c68431702e86bd2a1b3ff1f1e4b0355a23bfaf6270e3d8c65299c"
+}

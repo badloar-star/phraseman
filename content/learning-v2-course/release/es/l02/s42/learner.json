@@ -1,0 +1,797 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-42",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — botón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — botón",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i01:audio",
+          "transcript": "botón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-42:i01:r1",
+            "targetText": "botón",
+            "meaningByLocale": {
+              "ru": "пуговица. Мужской род; несколько — botones. 🔊 *botón*",
+              "uk": "ґудзик. Чоловічий рід; кілька — botones. 🔊 *botón*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "botón",
+          "definitionByLocale": {
+            "ru": "пуговица. Мужской род; несколько — botones. 🔊 *botón*",
+            "uk": "ґудзик. Чоловічий рід; кілька — botones. 🔊 *botón*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i02:r1",
+          "text": "botón"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i02:r2",
+          "text": "cinturón"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i02:audio",
+          "transcript": "botón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-42:i02:r1",
+            "targetText": "botón",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i02:r2",
+            "targetText": "cinturón",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит botón — пуговица.",
+              "uk": "Звучить botón — ґудзик."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pantalón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pantalón",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i03:audio",
+          "transcript": "pantalón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-42:i03:r1",
+            "targetText": "pantalón",
+            "meaningByLocale": {
+              "ru": "брюки, одна пара. Мужской род; несколько пар — pantalones. 🔊 *pantalón*",
+              "uk": "штани, одна пара. Чоловічий рід; кілька пар — pantalones. 🔊 *pantalón*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pantalón",
+          "definitionByLocale": {
+            "ru": "брюки, одна пара. Мужской род; несколько пар — pantalones. 🔊 *pantalón*",
+            "uk": "штани, одна пара. Чоловічий рід; кілька пар — pantalones. 🔊 *pantalón*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i04:r1",
+          "text": "pantalón"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i04:r2",
+          "text": "calcetín"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i04:audio",
+          "transcript": "pantalón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-42:i04:r1",
+            "targetText": "pantalón",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i04:r2",
+            "targetText": "calcetín",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит pantalón — брюки.",
+              "uk": "Звучить pantalón — штани."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это пуговица",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i05:r1",
+          "text": "Плитки: botón"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это пуговица",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un botón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это пуговица",
+          "uk": "Зберіть фразу — це ґудзик"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "botón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это пуговица",
+            "feedbackByLocale": {
+              "ru": "botón мужского рода.",
+              "uk": "botón чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это пуговицы, с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i06:r1",
+          "text": "botones"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i06:r2",
+          "text": "botón"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i06:r3",
+          "text": "botóns"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это пуговицы, с unos",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это пуговицы, с unos",
+          "uk": "Вставте слово — це ґудзики, з unos"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-42:i06:r1",
+            "text": "botones"
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i06:r2",
+            "text": "botón"
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i06:r3",
+            "text": "botóns"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это пуговицы, с unos",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это пуговицы, с unos",
+            "feedbackByLocale": {
+              "ru": "Пуговиц несколько: botones.",
+              "uk": "Ґудзиків кілька: botones."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это пуговицы, с unos",
+            "feedbackByLocale": {
+              "ru": "К botón добавляется -es: botones.",
+              "uk": "До botón додається -es: botones."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это пуговицы, с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i07:r1",
+          "text": "Плитки: botones"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i07:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i07:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это пуговицы, с unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos botones.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это пуговицы, с unos",
+          "uk": "Зберіть фразу — це ґудзики, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "botones"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это пуговицы, с unos",
+            "feedbackByLocale": {
+              "ru": "botones мужского рода.",
+              "uk": "botones чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько пуговиц",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i08:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько пуговиц",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько пуговиц",
+          "uk": "Вставте слово — кілька ґудзиків"
+        },
+        "gappedTargetPhrase": "___ unos botones.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-42:i08:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i08:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько пуговиц",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько пуговиц",
+            "feedbackByLocale": {
+              "ru": "Пуговиц несколько: son.",
+              "uk": "Ґудзиків кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько пуговиц",
+            "feedbackByLocale": {
+              "ru": "Речь о пуговицах, не о говорящем: son.",
+              "uk": "Йдеться про ґудзики, не про мовця: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это одна пара брюк, с pantalón",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i09:r1",
+          "text": "Плитки: pantalón"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i09:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это одна пара брюк, с pantalón",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un pantalón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это одна пара брюк, с pantalón",
+          "uk": "Зберіть фразу — це одна пара штанів, із pantalón"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "pantalón"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это одна пара брюк, с pantalón",
+            "feedbackByLocale": {
+              "ru": "un pantalón — один предмет одежды.",
+              "uk": "un pantalón — один предмет одягу."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна пара брюк",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i10:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i10:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна пара брюк",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна пара брюк",
+          "uk": "Вставте слово — одна пара штанів"
+        },
+        "gappedTargetPhrase": "Es ___ pantalón.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-42:i10:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i10:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i10:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна пара брюк",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна пара брюк",
+            "feedbackByLocale": {
+              "ru": "Pantalón мужского рода: un.",
+              "uk": "Pantalón чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-42:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна пара брюк",
+            "feedbackByLocale": {
+              "ru": "Здесь единственное pantalón: un.",
+              "uk": "Тут однина pantalón: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i11:r1",
+          "text": "Плитки: botones"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i11:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i11:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i11:audio",
+          "transcript": "Son unos botones."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unos botones.",
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "botones"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это пуговицы, с unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это пуговицы, с unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i12:audio",
+          "transcript": "Son unos botones."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos botones.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — снова одна пуговица",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-42:i13:r1",
+          "text": "Плитки: botón"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i13:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-42:i13:r4",
+          "text": "botones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — снова одна пуговица",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un botón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — снова одна пуговица",
+          "uk": "Зберіть фразу — знову один ґудзик"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "botón"
+        ],
+        "authoredDistractorTokens": [
+          "botones"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-42:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — снова одна пуговица",
+            "feedbackByLocale": {
+              "ru": "пуговица одна.",
+              "uk": "ґудзик один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-42:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это одна пара брюк, с pantalón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это одна пара брюк, с pantalón",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-42:i14:audio",
+          "transcript": "Es un pantalón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un pantalón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c14f4ab56bb1a108875ae1213335055eb23a389787ebca8400eb6b6595807cf7"
+}

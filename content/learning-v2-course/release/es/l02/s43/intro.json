@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "применить знакомую замену -z → -ces во множественном числе.",
+    "uk": "застосувати знайому заміну -z → -ces у множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один орех",
+        "uk": "Один горіх"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали из пакета один грецкий орех. `Nuez` — «грецкий орех», слово женского рода: la nuez. Назовите его: `Es una nuez` — «Это грецкий орех». Соберите `es` + `una` + `nuez`. Хотя русское «орех» мужского рода, испанское nuez требует una.",
+        "uk": "Ви дістали з пакета один волоський горіх. `Nuez` — «волоський горіх», слово жіночого роду: la nuez. Назвіть його: `Es una nuez` — «Це волоський горіх». Зберіть `es` + `una` + `nuez`. Хоча українське «горіх» чоловічого роду, іспанське nuez потребує una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один грецкий орех.",
+          "uk": "Назвіть один волоський горіх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-43:intro1:r1",
+              "text": "Es una nuez."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro1:r2",
+              "text": "Es un nuez."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro1:r3",
+              "text": "Son una nuez."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-43:intro1:r1",
+              "text": "Es una nuez."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro1:r2",
+              "text": "Es un nuez."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro1:r3",
+              "text": "Son una nuez."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один грецкий орех.",
+          "uk": "Назвіть один волоський горіх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько орехов",
+        "uk": "Кілька горіхів"
+      },
+      "bodyByLocale": {
+        "ru": "В пакете ещё несколько грецких орехов. Скажите с unas: `Son unas nueces` — «Это грецкие орехи». Соберите `son` + `unas` + `nueces`. Здесь работает знакомый переход z → ces: nuez → nueces, как lápiz → lápices. Не добавляйте -s прямо к nuez.",
+        "uk": "У пакеті ще кілька волоських горіхів. Скажіть з unas: `Son unas nueces` — «Це волоські горіхи». Зберіть `son` + `unas` + `nueces`. Тут працює знайомий перехід z → ces: nuez → nueces, як lápiz → lápices. Не додавайте -s прямо до nuez."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите грецкие орехи с unas.",
+          "uk": "Назвіть волоські горіхи з unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-43:intro2:r1",
+              "text": "Son unas nueces."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro2:r2",
+              "text": "Son unas nuezs."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro2:r3",
+              "text": "Son unos nueces."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-43:intro2:r1",
+              "text": "Son unas nueces."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro2:r2",
+              "text": "Son unas nuezs."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro2:r3",
+              "text": "Son unos nueces."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите грецкие орехи с unas.",
+          "uk": "Назвіть волоські горіхи з unas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Те самые орехи для перекуса",
+        "uk": "Ті самі горіхи для перекусу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает пакет и спрашивает, те ли это орехи, которые вы приготовили для перекуса. Вы показываете на пакет и уточняете: `Son las nueces` — «Это те самые грецкие орехи». Соберите `son` + `las` + `nueces`. Las выбирает уже известные вам обоим орехи; форма nueces от этой замены не меняется.",
+        "uk": "Друг помічає пакет і питає, чи це ті горіхи, які ви приготували для перекусу. Ви показуєте на пакет і уточнюєте: `Son las nueces` — «Це ті самі волоські горіхи». Зберіть `son` + `las` + `nueces`. Las вибирає вже відомі вам обом горіхи; форма nueces від цієї заміни не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Укажите на уже обсуждённые орехи с las.",
+          "uk": "Укажіть на вже обговорені горіхи з las."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-43:intro3:r1",
+              "text": "Son las nueces."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro3:r2",
+              "text": "Son los nueces."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro3:r3",
+              "text": "Es las nueces."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-43:intro3:r1",
+              "text": "Son las nueces."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro3:r2",
+              "text": "Son los nueces."
+            },
+            {
+              "responseId": "es:lesson-02:session-43:intro3:r3",
+              "text": "Es las nueces."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Укажите на уже обсуждённые орехи с las.",
+          "uk": "Укажіть на вже обговорені горіхи з las."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9b0bef2e9febcac6745861e9bea072da2b60eaf8e0b5f0595234f92656d23a25"
+}

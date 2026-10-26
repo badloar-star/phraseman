@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-44",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-44:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-44:intro1:r2": {
+          "ru": "Cámara здесь женского рода: una.",
+          "uk": "Cámara тут жіночого роду: una."
+        },
+        "es:lesson-02:session-44:intro1:r3": {
+          "ru": "Камера одна: es.",
+          "uk": "Камера одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-44:intro2:r2": {
+          "ru": "Название камеры женского рода: la.",
+          "uk": "Назва камери жіночого роду: la."
+        },
+        "es:lesson-02:session-44:intro2:r3": {
+          "ru": "Предмет один: es.",
+          "uk": "Предмет один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-44:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-44:intro3:r2": {
+          "ru": "Для teléfono нужен un.",
+          "uk": "Для teléfono потрібен un."
+        },
+        "es:lesson-02:session-44:intro3:r3": {
+          "ru": "Телефон один: es.",
+          "uk": "Телефон один: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "51ef1a19908281c36981511f44c33dd002aab45ae598f0b4cbeb0c1b1de3bc3e"
+}

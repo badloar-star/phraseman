@@ -1,0 +1,696 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-43",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nuez",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nuez",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-43:i01:audio",
+          "transcript": "nuez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-43:i01:r1",
+            "targetText": "nuez",
+            "meaningByLocale": {
+              "ru": "грецкий орех. Женский род; несколько — nueces. 🔊 *nuez*",
+              "uk": "волоський горіх. Жіночий рід; кілька — nueces. 🔊 *nuez*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nuez",
+          "definitionByLocale": {
+            "ru": "грецкий орех. Женский род; несколько — nueces. 🔊 *nuez*",
+            "uk": "волоський горіх. Жіночий рід; кілька — nueces. 🔊 *nuez*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i02:r1",
+          "text": "nuez"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i02:r2",
+          "text": "noche"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-43:i02:audio",
+          "transcript": "nuez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-43:i02:r1",
+            "targetText": "nuez",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i02:r2",
+            "targetText": "noche",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит nuez — грецкий орех.",
+              "uk": "Звучить nuez — волоський горіх."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це один волоський горіх",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i03:r1",
+          "text": "Плитки: nuez"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i03:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це один волоський горіх",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una nuez.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это один грецкий орех",
+          "uk": "Зберіть фразу — це один волоський горіх"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "nuez"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це один волоський горіх",
+            "feedbackByLocale": {
+              "ru": "nuez женского рода.",
+              "uk": "nuez жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька волоських горіхів",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i04:r1",
+          "text": "nueces"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i04:r2",
+          "text": "nuez"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i04:r3",
+          "text": "nuezs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька волоських горіхів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько грецких орехов",
+          "uk": "Вставте слово — кілька волоських горіхів"
+        },
+        "gappedTargetPhrase": "Son unas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-43:i04:r1",
+            "text": "nueces"
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i04:r2",
+            "text": "nuez"
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i04:r3",
+            "text": "nuezs"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька волоських горіхів",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька волоських горіхів",
+            "feedbackByLocale": {
+              "ru": "Нужно множественное число: nueces.",
+              "uk": "Потрібна множина: nueces."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька волоських горіхів",
+            "feedbackByLocale": {
+              "ru": "Z заменяется на ces: nueces.",
+              "uk": "Z замінюється на ces: nueces."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це волоські горіхи, з unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i05:r1",
+          "text": "Плитки: nueces"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i05:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i05:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це волоські горіхи, з unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas nueces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это грецкие орехи, с unas",
+          "uk": "Зберіть фразу — це волоські горіхи, з unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "nueces"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це волоські горіхи, з unas",
+            "feedbackByLocale": {
+              "ru": "nueces женского рода.",
+              "uk": "nueces жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це ті самі горіхи, з означеним артиклем",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i06:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i06:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i06:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це ті самі горіхи, з означеним артиклем",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это те самые орехи, с определённым артиклем",
+          "uk": "Вставте слово — це ті самі горіхи, з означеним артиклем"
+        },
+        "gappedTargetPhrase": "Son ___ nueces.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-43:i06:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i06:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i06:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставте слово — це ті самі горіхи, з означеним артиклем",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це ті самі горіхи, з означеним артиклем",
+            "feedbackByLocale": {
+              "ru": "Nueces женского рода: las.",
+              "uk": "Nueces жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це ті самі горіхи, з означеним артиклем",
+            "feedbackByLocale": {
+              "ru": "Орехов несколько: las.",
+              "uk": "Горіхів кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це ті самі волоські горіхи, з las",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i07:r1",
+          "text": "Плитки: nueces"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i07:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i07:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це ті самі волоські горіхи, з las",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las nueces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те самые грецкие орехи, с las",
+          "uk": "Зберіть фразу — це ті самі волоські горіхи, з las"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "nueces"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це ті самі волоські горіхи, з las",
+            "feedbackByLocale": {
+              "ru": "nueces женского рода.",
+              "uk": "nueces жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i08:r1",
+          "text": "Плитки: nueces"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i08:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i08:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-43:i08:audio",
+          "transcript": "Son unas nueces."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unas nueces.",
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "nueces"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це волоські горіхи, з unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це волоські горіхи, з unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-43:i09:audio",
+          "transcript": "Son unas nueces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas nueces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — знову один волоський горіх",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i10:r1",
+          "text": "Плитки: nuez"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i10:r4",
+          "text": "nueces."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — знову один волоський горіх",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una nuez.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — снова один грецкий орех",
+          "uk": "Зберіть фразу — знову один волоський горіх"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "nuez"
+        ],
+        "authoredDistractorTokens": [
+          "nueces"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — знову один волоський горіх",
+            "feedbackByLocale": {
+              "ru": "орех один.",
+              "uk": "горіх один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька горіхів, з unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-43:i11:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-43:i11:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька горіхів, з unas",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько орехов, с unas",
+          "uk": "Вставте слово — кілька горіхів, з unas"
+        },
+        "gappedTargetPhrase": "___ unas nueces.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-43:i11:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i11:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i11:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька горіхів, з unas",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька горіхів, з unas",
+            "feedbackByLocale": {
+              "ru": "Орехов несколько: son.",
+              "uk": "Горіхів кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька горіхів, з unas",
+            "feedbackByLocale": {
+              "ru": "Soy относится к говорящему, не к орехам.",
+              "uk": "Soy стосується мовця, не горіхів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-43:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це ті самі волоські горіхи, з las",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-43:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це ті самі волоські горіхи, з las",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-43:i12:audio",
+          "transcript": "Son las nueces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las nueces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c2d6263288be1674308fce9abad4e61d138de2b6c1aa62d8bc79890456440b3a"
+}

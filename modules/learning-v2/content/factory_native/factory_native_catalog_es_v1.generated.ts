@@ -686,4 +686,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать es un или son unas по одному предмету и нескольким.","uk":"вибрати es un або son unas для одного предмета й кількох."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 42,
+    sourceFingerprint: "0e322c78e38239c7c5435348bbdb8ae52e3262efd73bccacd35e2f3f0570ec47",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"образовать множественное число знакомым способом -es у слов на согласную.","uk":"утворити множину знайомим способом -es у слів на приголосну."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 43,
+    sourceFingerprint: "3d6ae6b6464d41c6a2834d7602dc25a8b72adf67f244ba6d2f88a27d04cb57ab",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"применить знакомую замену -z → -ces во множественном числе.","uk":"застосувати знайому заміну -z → -ces у множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 44,
+    sourceFingerprint: "2ebb7aacebce1ccd29b6d7fd69421fc9d4d0b892611bcc108fc4bafe837d1a9d",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различить название предмета с una и узнавание конкретного предмета с la.","uk":"розрізнити назву предмета з una та впізнавання конкретного предмета з la."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

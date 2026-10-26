@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "назвать своё или чужое место в очереди с el primero и la última.",
+    "uk": "назвати своє або чуже місце в черзі з el primero та la última."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я выступаю первым",
+        "uk": "Я виступаю першим"
+      },
+      "bodyByLocale": {
+        "ru": "Вы мужчина и открываете выступления. `Soy el primero` — «Я первый». `Primero` означает «первый». Соберите `soy` + `el` + `primero`. В этой реплике el выделяет человека, занимающего первое место в очереди. Не опускайте его в изучаемой конструкции. Женщина сказала бы `Soy la primera`: la и primera согласуются с говорящей.",
+        "uk": "Ви чоловік і починаєте виступи. `Soy el primero` — «Я перший». `Primero` означає «перший». Зберіть `soy` + `el` + `primero`. У цій репліці el виділяє людину, яка займає перше місце в черзі. Не опускайте його у конструкції, яку вивчаєте. Жінка сказала б `Soy la primera`: la та primera узгоджуються з мовицею."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы мужчина. Скажите, что выступаете первым.",
+          "uk": "Ви чоловік. Скажіть, що виступаєте першим."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-42:intro1:r1",
+              "text": "Soy el primero."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro1:r2",
+              "text": "Eres el primero."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro1:r3",
+              "text": "Soy la primera."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-42:intro1:r1",
+              "text": "Soy el primero."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro1:r2",
+              "text": "Eres el primero."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro1:r3",
+              "text": "Soy la primera."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы мужчина. Скажите, что выступаете первым.",
+          "uk": "Ви чоловік. Скажіть, що виступаєте першим."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я последняя",
+        "uk": "Я остання"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы женщина и проверяете своё место в конце очереди. `Soy la última` — «Я последняя». `Último` означает «последний»; женская форма — última. Соберите `soy` + `la` + `última`. La показывает, что речь о женщине, которая занимает последнее место. Мужчина сказал бы `Soy el último`.",
+        "uk": "Тепер ви жінка й перевіряєте своє місце наприкінці черги. `Soy la última` — «Я остання». `Último` означає «останній»; жіноча форма — última. Зберіть `soy` + `la` + `última`. La показує, що йдеться про жінку, яка займає останнє місце. Чоловік сказав би `Soy el último`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы женщина. Скажите: «Я последняя».",
+          "uk": "Ви жінка. Скажіть: «Я остання»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-42:intro2:r1",
+              "text": "Soy la última."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro2:r2",
+              "text": "Soy el último."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro2:r3",
+              "text": "Es la última."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-42:intro2:r1",
+              "text": "Soy la última."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro2:r2",
+              "text": "Soy el último."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro2:r3",
+              "text": "Es la última."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина. Скажите: «Я последняя».",
+          "uk": "Ви жінка. Скажіть: «Я остання»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ты не последний",
+        "uk": "Ти не останній"
+      },
+      "bodyByLocale": {
+        "ru": "Друг думает, что выступит в самом конце, но после него есть ещё участник. Скажите ему: `No eres el último` — «Ты не последний». Соберите `no` + `eres` + `el` + `último`. No стоит перед eres, а el остаётся перед último. Вы обращаетесь к мужчине на «ты».",
+        "uk": "Друг думає, що виступить наприкінці, але після нього є ще учасник. Скажіть йому: `No eres el último` — «Ти не останній». Зберіть `no` + `eres` + `el` + `último`. No стоїть перед eres, а el залишається перед último. Ви звертаєтеся до чоловіка на «ти»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Поправьте друга-мужчину: «Ты не последний».",
+          "uk": "Виправте друга-чоловіка: «Ти не останній»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-42:intro3:r1",
+              "text": "No eres el último."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro3:r2",
+              "text": "No soy el último."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro3:r3",
+              "text": "No eres la última."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-42:intro3:r1",
+              "text": "No eres el último."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro3:r2",
+              "text": "No soy el último."
+            },
+            {
+              "responseId": "es:lesson-01:session-42:intro3:r3",
+              "text": "No eres la última."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Поправьте друга-мужчину: «Ты не последний».",
+          "uk": "Виправте друга-чоловіка: «Ти не останній»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "22ae0b0e094852f0ba914a4b1718476a947a5eabeeb6e47248795de2f57f7f9c"
+}

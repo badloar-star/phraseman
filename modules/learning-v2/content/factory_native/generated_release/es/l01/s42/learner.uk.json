@@ -1,0 +1,700 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-42",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — primero",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — primero",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-42:i01:audio",
+          "transcript": "primero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-42:i01:r1",
+            "targetText": "primero",
+            "meaningByLocale": {
+              "ru": "первый; женская форма — primera. В изучаемой реплике: el primero или la primera. 🔊 *primero*",
+              "uk": "перший; жіноча форма — primera. У репліці, яку вивчаємо: el primero або la primera. 🔊 *primero*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "primero",
+          "definitionByLocale": {
+            "ru": "первый; женская форма — primera. В изучаемой реплике: el primero или la primera. 🔊 *primero*",
+            "uk": "перший; жіноча форма — primera. У репліці, яку вивчаємо: el primero або la primera. 🔊 *primero*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i02:r1",
+          "text": "primera"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i02:r2",
+          "text": "primero"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-42:i02:audio",
+          "transcript": "primera"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-42:i02:r1",
+            "targetText": "primera",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i02:r2",
+            "targetText": "primero",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание a: primera.",
+              "uk": "Звучить закінчення a: primera."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви чоловік; скажіть «Я перший»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i03:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i03:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i03:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви чоловік; скажіть «Я перший»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы мужчина; скажите «Я первый»",
+          "uk": "Вставте слово — ви чоловік; скажіть «Я перший»"
+        },
+        "gappedTargetPhrase": "Soy ___ primero.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-42:i03:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i03:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i03:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви чоловік; скажіть «Я перший»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви чоловік; скажіть «Я перший»",
+            "feedbackByLocale": {
+              "ru": "Для мужчины в этой конструкции нужен el.",
+              "uk": "Для чоловіка в цій конструкції потрібен el."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви чоловік; скажіть «Я перший»",
+            "feedbackByLocale": {
+              "ru": "No отрицает и ставится перед soy; здесь нужен el.",
+              "uk": "No заперечує і ставиться перед soy; тут потрібен el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ви жінка; скажіть «Я перша»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i04:r1",
+          "text": "Плитки: primera"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i04:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i04:r3",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i04:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ви жінка; скажіть «Я перша»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy la primera.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина; скажите «Я первая»",
+          "uk": "Зберіть фразу — ви жінка; скажіть «Я перша»"
+        },
+        "orderedTokens": [
+          "Soy",
+          "la",
+          "primera"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ви жінка; скажіть «Я перша»",
+            "feedbackByLocale": {
+              "ru": "говорит женщина, поэтому la primera.",
+              "uk": "говорить жінка, тому la primera."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — último",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — último",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-42:i05:audio",
+          "transcript": "último"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-42:i05:r1",
+            "targetText": "último",
+            "meaningByLocale": {
+              "ru": "последний; женская форма — última. В изучаемой реплике: el último или la última. 🔊 *último*",
+              "uk": "останній; жіноча форма — última. У репліці, яку вивчаємо: el último або la última. 🔊 *último*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "último",
+          "definitionByLocale": {
+            "ru": "последний; женская форма — última. В изучаемой реплике: el último или la última. 🔊 *último*",
+            "uk": "останній; жіноча форма — última. У репліці, яку вивчаємо: el último або la última. 🔊 *último*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i06:r1",
+          "text": "última"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i06:r2",
+          "text": "primera"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-42:i06:audio",
+          "transcript": "última"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-42:i06:r1",
+            "targetText": "última",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i06:r2",
+            "targetText": "primera",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит última — «последняя», а не primera.",
+              "uk": "Звучить última — «остання», а не primera."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви жінка; скажіть «Я остання»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i07:r1",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i07:r2",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i07:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви жінка; скажіть «Я остання»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы женщина; скажите «Я последняя»",
+          "uk": "Вставте слово — ви жінка; скажіть «Я остання»"
+        },
+        "gappedTargetPhrase": "___ la última.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-42:i07:r1",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i07:r2",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i07:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви жінка; скажіть «Я остання»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви жінка; скажіть «Я остання»",
+            "feedbackByLocale": {
+              "ru": "Это о собеседнице, а нужно о себе.",
+              "uk": "Це про співрозмовницю, а потрібно про себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-42:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви жінка; скажіть «Я остання»",
+            "feedbackByLocale": {
+              "ru": "Это о другой женщине, а нужно о себе.",
+              "uk": "Це про іншу жінку, а потрібно про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви жінка й виступаєте останньою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви жінка й виступаєте останньою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-42:i08:audio",
+          "transcript": "Soy la última."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Soy la última.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть другу-чоловікові «Ти перший»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i09:r1",
+          "text": "Плитки: primero"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i09:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i09:r3",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i09:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть другу-чоловікові «Ти перший»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres el primero.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите другу-мужчине «Ты первый»",
+          "uk": "Зберіть фразу — скажіть другу-чоловікові «Ти перший»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "el",
+          "primero"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть другу-чоловікові «Ти перший»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу.",
+              "uk": "звертаєтеся до друга."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — виправте друга-чоловіка «Ти не останній»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i10:r1",
+          "text": "Плитки: último"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i10:r3",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i10:r5",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — виправте друга-чоловіка «Ти не останній»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No eres el último.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — поправьте друга-мужчину «Ты не последний»",
+          "uk": "Зберіть фразу — виправте друга-чоловіка «Ти не останній»"
+        },
+        "orderedTokens": [
+          "No",
+          "eres",
+          "el",
+          "último"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — виправте друга-чоловіка «Ти не останній»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу, не описываете себя.",
+              "uk": "звертаєтеся до друга, не описуєте себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i11:r1",
+          "text": "Плитки: primera"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i11:r3",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i11:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-42:i11:audio",
+          "transcript": "Es la primera."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la primera.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "primera"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la primera.",
+              "uk": "звучить la primera."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ви чоловік; скажіть «Я останній»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-42:i12:r1",
+          "text": "Плитки: último"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i12:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i12:r3",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-42:i12:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ви чоловік; скажіть «Я останній»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy el último.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы мужчина; скажите «Я последний»",
+          "uk": "Зберіть фразу — ви чоловік; скажіть «Я останній»"
+        },
+        "orderedTokens": [
+          "Soy",
+          "el",
+          "último"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-42:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ви чоловік; скажіть «Я останній»",
+            "feedbackByLocale": {
+              "ru": "говорит мужчина, поэтому el último.",
+              "uk": "говорить чоловік, тому el último."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "745dafd6efe8cc09c90eb0bf22a742e2d843d80635026cbe5b81a3a94c3689fe"
+}

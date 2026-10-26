@@ -294,4 +294,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать количество людей с somos и son, используя пять, шесть и семь.","uk":"назвати кількість людей із somos та son, використовуючи п'ять, шість і сім."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 42,
+    sourceFingerprint: "90ff0cf345f9130ae125fdb66414d210716b01c279c0ff0e3832523cb8405523",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать своё или чужое место в очереди с el primero и la última.","uk":"назвати своє або чуже місце в черзі з el primero та la última."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 43,
+    sourceFingerprint: "ca629e6632fa5f08e914bb0da95e49cdf1821be35d2b7501c30c64aa7e20d99a",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сравнить собеседника с собой с помощью igual que yo.","uk":"порівняти співрозмовника із собою за допомогою igual que yo."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-43",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-43:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-43:intro1:r2": {
+          "ru": "Это описание себя, а нужно обратиться к другу.",
+          "uk": "Це опис себе, а потрібно звернутися до друга."
+        },
+        "es:lesson-01:session-43:intro1:r3": {
+          "ru": "Это рассказ о другом человеке или предмете, а не обращение на «ты».",
+          "uk": "Це розповідь про іншу людину або предмет, а не звернення на «ти»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-43:intro2:r2": {
+          "ru": "Между igual и yo нужно que.",
+          "uk": "Між igual та yo потрібне que."
+        },
+        "es:lesson-01:session-43:intro2:r3": {
+          "ru": "Это сравнение себя с собой, а нужно обратиться к другу.",
+          "uk": "Це порівняння себе із собою, а потрібно звернутися до друга."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-43:intro3:r2": {
+          "ru": "Без no фраза утверждает сходство.",
+          "uk": "Без no фраза стверджує схожість."
+        },
+        "es:lesson-01:session-43:intro3:r3": {
+          "ru": "Это отрицание сходства с самим собой, а обращаетесь к другу.",
+          "uk": "Це заперечення схожості із самим собою, а звертаєтеся до друга."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "983536bd7431baec0e7b03314242a97c219780bc8e4b63988851d295e296a0d1"
+}

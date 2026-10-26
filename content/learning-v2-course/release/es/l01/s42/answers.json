@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-42:i01",
+    "correctText": "primero",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i02",
+    "correctText": "primera",
+    "correctResponseId": "es:lesson-01:session-42:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i03",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-01:session-42:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i04",
+    "correctText": "Soy la primera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i05",
+    "correctText": "último",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i06",
+    "correctText": "última",
+    "correctResponseId": "es:lesson-01:session-42:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i07",
+    "correctText": "Soy",
+    "correctResponseId": "es:lesson-01:session-42:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i08",
+    "correctText": "Soy la última.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i09",
+    "correctText": "Eres el primero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i10",
+    "correctText": "No eres el último.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i11",
+    "correctText": "Es la primera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-42:i12",
+    "correctText": "Soy el último.",
+    "correctResponseId": null
+  }
+]

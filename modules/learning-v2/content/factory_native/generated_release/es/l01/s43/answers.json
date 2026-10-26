@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-43:i01",
+    "correctText": "original",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i02",
+    "correctText": "original",
+    "correctResponseId": "es:lesson-01:session-43:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i03",
+    "correctText": "Eres",
+    "correctResponseId": "es:lesson-01:session-43:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i04",
+    "correctText": "Eres original.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i05",
+    "correctText": "que",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i06",
+    "correctText": "que",
+    "correctResponseId": "es:lesson-01:session-43:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i07",
+    "correctText": "que",
+    "correctResponseId": "es:lesson-01:session-43:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i08",
+    "correctText": "Eres igual que yo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i09",
+    "correctText": "Eres igual que yo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i10",
+    "correctText": "No eres igual que yo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i11",
+    "correctText": "Eres igual que yo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-43:i12",
+    "correctText": "Soy original.",
+    "correctResponseId": null
+  }
+]

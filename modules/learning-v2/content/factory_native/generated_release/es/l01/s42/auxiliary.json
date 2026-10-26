@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-42",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-42:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-42:intro1:r2": {
+          "ru": "Это о собеседнике, а нужно о себе.",
+          "uk": "Це про співрозмовника, а потрібно про себе."
+        },
+        "es:lesson-01:session-42:intro1:r3": {
+          "ru": "Это женская форма, а в условии говорит мужчина.",
+          "uk": "Це жіноча форма, а в умові говорить чоловік."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-42:intro2:r2": {
+          "ru": "Это мужская форма, а в условии говорит женщина.",
+          "uk": "Це чоловіча форма, а в умові говорить жінка."
+        },
+        "es:lesson-01:session-42:intro2:r3": {
+          "ru": "Это о другой женщине, а нужно о себе.",
+          "uk": "Це про іншу жінку, а потрібно про себе."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-42:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-42:intro3:r2": {
+          "ru": "Это о себе, а вы обращаетесь к другу.",
+          "uk": "Це про себе, а ви звертаєтеся до друга."
+        },
+        "es:lesson-01:session-42:intro3:r3": {
+          "ru": "Это обращение к женщине, а здесь друг-мужчина.",
+          "uk": "Це звернення до жінки, а тут друг-чоловік."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f2b21a24494f33db0886a114f1e297460d01eb6f607feda4b22c4a9b8e507ccd"
+}

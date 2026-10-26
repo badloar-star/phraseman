@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "сравнить собеседника с собой с помощью igual que yo.",
+    "uk": "порівняти співрозмовника із собою за допомогою igual que yo."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Необычная идея",
+        "uk": "Незвична ідея"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает нарисовать луну в чашке. Вы отмечаете его нестандартный подход: `Eres original` — «Ты оригинальный». `Original` здесь означает «оригинальный, с необычными идеями». Соберите `eres` + `original`. Форма original одинакова для мужчины и женщины; речь о подходе человека, а не о подлинности вещи.",
+        "uk": "Друг пропонує намалювати місяць у чашці. Ви відзначаєте його нестандартний підхід: `Eres original` — «Ти оригінальний». `Original` тут означає «оригінальний, із незвичними ідеями». Зберіть `eres` + `original`. Форма original однакова для чоловіка й жінки; ідеться про підхід людини, а не про справжність речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Отметьте необычные идеи друга словами «Ты оригинальный».",
+          "uk": "Відзначте незвичні ідеї друга словами «Ти оригінальний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-43:intro1:r1",
+              "text": "Eres original."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro1:r2",
+              "text": "Soy original."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro1:r3",
+              "text": "Es original."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-43:intro1:r1",
+              "text": "Eres original."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro1:r2",
+              "text": "Soy original."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro1:r3",
+              "text": "Es original."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отметьте необычные идеи друга словами «Ты оригинальный».",
+          "uk": "Відзначте незвичні ідеї друга словами «Ти оригінальний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ты такой же, как я",
+        "uk": "Ти такий самий, як я"
+      },
+      "bodyByLocale": {
+        "ru": "Вы тоже любите придумывать необычные рисунки. Скажите другу: `Eres igual que yo` — «Ты такой же, как я». Соберите `eres` + `igual` + `que` + `yo`. В сравнении igual que слово que связывает «такой же» с тем, с кем сравнивают. После que здесь стоит yo — «я». Вы говорите о сходстве в обсуждаемом подходе, а не о полном совпадении людей во всём.",
+        "uk": "Ви теж любите придумувати незвичні малюнки. Скажіть другу: `Eres igual que yo` — «Ти такий самий, як я». Зберіть `eres` + `igual` + `que` + `yo`. У порівнянні igual que слово que пов'язує «такий самий» із тим, із ким порівнюють. Після que тут стоїть yo — «я». Ви говорите про схожість в обговорюваному підході, а не про повний збіг людей у всьому."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Сравните друга с собой: «Ты такой же, как я».",
+          "uk": "Порівняйте друга із собою: «Ти такий самий, як я»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-43:intro2:r1",
+              "text": "Eres igual que yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro2:r2",
+              "text": "Eres igual yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro2:r3",
+              "text": "Soy igual que yo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-43:intro2:r1",
+              "text": "Eres igual que yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro2:r2",
+              "text": "Eres igual yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro2:r3",
+              "text": "Soy igual que yo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сравните друга с собой: «Ты такой же, как я».",
+          "uk": "Порівняйте друга із собою: «Ти такий самий, як я»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Здесь мы различаемся",
+        "uk": "Тут ми відрізняємося"
+      },
+      "bodyByLocale": {
+        "ru": "При обсуждении другой открытки друг выбирает совсем иной подход. Вы подчёркиваете различие: `No eres igual que yo` — «Ты не такой, как я». Соберите `no` + `eres` + `igual` + `que` + `yo`. No ставится перед eres; сочетание igual que yo остаётся целым. В этой сцене это спокойное замечание о разных идеях.",
+        "uk": "Під час обговорення іншої листівки друг обирає зовсім інший підхід. Ви підкреслюєте відмінність: `No eres igual que yo` — «Ти не такий, як я». Зберіть `no` + `eres` + `igual` + `que` + `yo`. No ставиться перед eres; сполучення igual que yo залишається цілим. У цій сцені це спокійне зауваження про різні ідеї."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Ты не такой, как я», используя igual que yo.",
+          "uk": "Скажіть другу: «Ти не такий, як я», використовуючи igual que yo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-43:intro3:r1",
+              "text": "No eres igual que yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro3:r2",
+              "text": "Eres igual que yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro3:r3",
+              "text": "No soy igual que yo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-43:intro3:r1",
+              "text": "No eres igual que yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro3:r2",
+              "text": "Eres igual que yo."
+            },
+            {
+              "responseId": "es:lesson-01:session-43:intro3:r3",
+              "text": "No soy igual que yo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Ты не такой, как я», используя igual que yo.",
+          "uk": "Скажіть другу: «Ти не такий, як я», використовуючи igual que yo."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a9b069c214122fb47c8d8ec69db6f88e048c38c5cab936d1dfa1b3208316455d"
+}

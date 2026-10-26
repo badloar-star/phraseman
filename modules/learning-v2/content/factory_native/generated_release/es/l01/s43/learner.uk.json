@@ -1,0 +1,682 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-43",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — original",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — original",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i01:audio",
+          "transcript": "original"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-43:i01:r1",
+            "targetText": "original",
+            "meaningByLocale": {
+              "ru": "оригинальный, с необычными идеями. Форма одинакова для мужчины и женщины. 🔊 *original*",
+              "uk": "оригінальний, із незвичними ідеями. Форма однакова для чоловіка й жінки. 🔊 *original*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "original",
+          "definitionByLocale": {
+            "ru": "оригинальный, с необычными идеями. Форма одинакова для мужчины и женщины. 🔊 *original*",
+            "uk": "оригінальний, із незвичними ідеями. Форма однакова для чоловіка й жінки. 🔊 *original*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i02:r1",
+          "text": "original"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i02:r2",
+          "text": "igual"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i02:audio",
+          "transcript": "original"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-43:i02:r1",
+            "targetText": "original",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i02:r2",
+            "targetText": "igual",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит original, а не igual.",
+              "uk": "Звучить original, а не igual."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть другу «Ти оригінальний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i03:r1",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i03:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i03:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть другу «Ти оригінальний»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите другу «Ты оригинальный»",
+          "uk": "Вставте слово — скажіть другу «Ти оригінальний»"
+        },
+        "gappedTargetPhrase": "___ original.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-43:i03:r1",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i03:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i03:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть другу «Ти оригінальний»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть другу «Ти оригінальний»",
+            "feedbackByLocale": {
+              "ru": "Это о себе, а вы обращаетесь к другу.",
+              "uk": "Це про себе, а ви звертаєтеся до друга."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть другу «Ти оригінальний»",
+            "feedbackByLocale": {
+              "ru": "Это рассказ о другом, а не обращение на «ты».",
+              "uk": "Це розповідь про іншого, а не звернення на «ти»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — відзначте оригінальність ідей співрозмовника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — відзначте оригінальність ідей співрозмовника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i04:audio",
+          "transcript": "Eres original."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eres original.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — que",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — que",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i05:audio",
+          "transcript": "que"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-43:i05:r1",
+            "targetText": "que",
+            "meaningByLocale": {
+              "ru": "как в сравнении igual que yo: такой же, как я. Здесь пишется без знака ударения. 🔊 *que*",
+              "uk": "як у порівнянні igual que yo: такий самий, як я. Тут пишеться без знака наголосу. 🔊 *que*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "que",
+          "definitionByLocale": {
+            "ru": "как в сравнении igual que yo: такой же, как я. Здесь пишется без знака ударения. 🔊 *que*",
+            "uk": "як у порівнянні igual que yo: такий самий, як я. Тут пишеться без знака наголосу. 🔊 *que*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i06:r1",
+          "text": "que"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i06:r2",
+          "text": "yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i06:audio",
+          "transcript": "que"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-43:i06:r1",
+            "targetText": "que",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i06:r2",
+            "targetText": "yo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит que, а не yo.",
+              "uk": "Звучить que, а не yo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть «Ти такий самий, як я»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i07:r1",
+          "text": "que"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i07:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i07:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть «Ти такий самий, як я»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите «Ты такой же, как я»",
+          "uk": "Вставте слово — скажіть «Ти такий самий, як я»"
+        },
+        "gappedTargetPhrase": "Eres igual ___ yo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-43:i07:r1",
+            "text": "que"
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i07:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i07:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть «Ти такий самий, як я»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Ти такий самий, як я»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связка сравнения que, а не отрицание.",
+              "uk": "Тут потрібна зв'язка порівняння que, а не заперечення."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-43:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Ти такий самий, як я»",
+            "feedbackByLocale": {
+              "ru": "Soy означает «я есть»; для сравнения здесь нужно que.",
+              "uk": "Soy означає «я є»; для порівняння тут потрібне que."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — порівняйте друга із собою: «Ти такий самий, як я»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i08:r1",
+          "text": "Плитки: yo"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i08:r2",
+          "text": "igual"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i08:r3",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i08:r4",
+          "text": "que"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i08:r5",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — порівняйте друга із собою: «Ти такий самий, як я»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres igual que yo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сравните друга с собой: «Ты такой же, как я»",
+          "uk": "Зберіть фразу — порівняйте друга із собою: «Ти такий самий, як я»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "igual",
+          "que",
+          "yo"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — порівняйте друга із собою: «Ти такий самий, як я»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу.",
+              "uk": "звертаєтеся до друга."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — скажіть другу, що він такий самий, як ви",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — скажіть другу, що він такий самий, як ви",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i09:audio",
+          "transcript": "Eres igual que yo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eres igual que yo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — підкресліть відмінність: «Ти не такий, як я»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i10:r1",
+          "text": "Плитки: que"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i10:r2",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i10:r4",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i10:r5",
+          "text": "igual"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i10:r6",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — підкресліть відмінність: «Ти не такий, як я»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No eres igual que yo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подчеркните различие: «Ты не такой, как я»",
+          "uk": "Зберіть фразу — підкресліть відмінність: «Ти не такий, як я»"
+        },
+        "orderedTokens": [
+          "No",
+          "eres",
+          "igual",
+          "que",
+          "yo"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — підкресліть відмінність: «Ти не такий, як я»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу.",
+              "uk": "звертаєтеся до друга."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i11:r1",
+          "text": "Плитки: igual"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i11:r2",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i11:r3",
+          "text": "que"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i11:r4",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i11:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-43:i11:audio",
+          "transcript": "Eres igual que yo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Eres igual que yo.",
+        "orderedTokens": [
+          "Eres",
+          "igual",
+          "que",
+          "yo"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит eres.",
+              "uk": "звучить eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-43:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — розкажіть про себе: «Я оригінальний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-43:i12:r1",
+          "text": "Плитки: original"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i12:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-43:i12:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — розкажіть про себе: «Я оригінальний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy original.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — расскажите о себе: «Я оригинальный»",
+          "uk": "Зберіть фразу — розкажіть про себе: «Я оригінальний»"
+        },
+        "orderedTokens": [
+          "Soy",
+          "original"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-43:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — розкажіть про себе: «Я оригінальний»",
+            "feedbackByLocale": {
+              "ru": "теперь описываете себя.",
+              "uk": "тепер описуєте себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "25b4e61dbdd857afa1dc088c4d7b4552edfc1b668ad1e59827ca454642c7887b"
+}

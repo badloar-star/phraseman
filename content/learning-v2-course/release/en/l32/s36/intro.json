@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы замечаете тепло возле духовки, но не видите переключатель. Она могла остаться включённой или ещё не остыть. The oven is warm, so it might be on. — Духовка тёплая, поэтому она, возможно, включена. Соберите The oven is warm + so + it might be on. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием on нужна связка be.",
+        "uk": "Ви помічаєте тепло біля духовки, але не бачите перемикач. Вона могла залишитися ввімкненою або ще не охолонути. The oven is warm, so it might be on. — Духовка тепла, тому вона, можливо, увімкнена. Складіть The oven is warm + so + it might be on. До so назвіть спостереження, після so — можливий висновок із might. Перед станом on потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-36:intro1:r1",
+              "text": "The oven is warm, so it might be on."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro1:r2",
+              "text": "The oven is warm, so it might is on."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro1:r3",
+              "text": "The oven is warm, so it might to be on."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-36:intro1:r1",
+              "text": "The oven is warm, so it might be on."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro1:r2",
+              "text": "The oven is warm, so it might is on."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro1:r3",
+              "text": "The oven is warm, so it might to be on."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Пирог только что вынули из горячей духовки, и от него идёт пар. The cake can't be cold. — Пирог не может быть холодным. Соберите The cake + can’t + be + cold. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед cold здесь нужна связка be.",
+        "uk": "Пиріг щойно вийняли з гарячої духовки, і від нього йде пара. The cake can't be cold. — Пиріг не може бути холодним. Складіть The cake + can’t + be + cold. Спостереження виключає названий стан. Can’t виражає цей висновок; перед cold тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-36:intro2:r1",
+              "text": "The cake can't be cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro2:r2",
+              "text": "The cake can't is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro2:r3",
+              "text": "The cake can't to be cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-36:intro2:r1",
+              "text": "The cake can't be cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro2:r2",
+              "text": "The cake can't is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro2:r3",
+              "text": "The cake can't to be cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The bowl I washed is clean. — Миска, которую я помыл, чистая. Соберите The bowl + I washed + is clean. Часть I washed уточняет bowl. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The bowl I washed is clean. — Миска, яку я помив, чиста. Складіть The bowl + I washed + is clean. Частина I washed уточнює bowl. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-36:intro3:r1",
+              "text": "The bowl I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro3:r2",
+              "text": "The bowl I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro3:r3",
+              "text": "The bowl I washing is clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-36:intro3:r1",
+              "text": "The bowl I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro3:r2",
+              "text": "The bowl I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-36:intro3:r3",
+              "text": "The bowl I washing is clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "300dc089b1b18c2eb6ec6cf336b01b840da4e2eb9e3e50f876a9bcf410604ffa"
+}

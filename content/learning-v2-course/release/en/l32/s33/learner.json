@@ -1,0 +1,1058 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i01:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-33:i01:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i02:r1",
+          "text": "His coat is here, so he must be nearby."
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i02:r2",
+          "text": "His bag is here, so he must be nearby."
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i02:r3",
+          "text": "His hat is here, so he must be nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i02:audio",
+          "transcript": "His coat is here, so he must be nearby."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-33:i02:r1",
+            "targetText": "His coat is here, so he must be nearby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i02:r2",
+            "targetText": "His bag is here, so he must be nearby.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i02:r3",
+            "targetText": "His hat is here, so he must be nearby.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит His coat is here, so he must be nearby.",
+              "uk": "У записі звучить His coat is here, so he must be nearby."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит His coat is here, so he must be nearby.",
+              "uk": "У записі звучить His coat is here, so he must be nearby."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пальто Бена здесь. Вы делаете уверенный вывод, что он поблизости. Выберите форму после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто Бена здесь. Вы делаете уверенный вывод, что он поблизости. Выберите форму после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пальто Бена здесь. Вы делаете уверенный вывод, что он поблизости. Выберите форму после must.",
+          "uk": "Пальто Бена тут. Ви робите впевнений висновок, що він поблизу. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "His coat is here, so he must ___ nearby.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-33:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Пальто Бена здесь. Вы делаете уверенный вывод, что он поблизости. Выберите форму после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Пальто Бена здесь. Вы делаете уверенный вывод, что он поблизости. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Пальто Бена здесь. Вы делаете уверенный вывод, что он поблизости. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i04:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-33:i04:r1",
+            "targetText": "window",
+            "meaningByLocale": {
+              "ru": "Окно. Повторение знакомого слова.",
+              "uk": "Вікно. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "window",
+          "definitionByLocale": {
+            "ru": "Окно. Повторение знакомого слова.",
+            "uk": "Вікно. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Окно открыто, поэтому в комнате, возможно, холодно. Начните с The window is open.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Окно открыто, поэтому в комнате, возможно, холодно. Начните с The window is open.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The window is open, so the room might be cold.",
+        "localizedMeaning": {
+          "ru": "Окно открыто, поэтому в комнате, возможно, холодно. Начните с The window is open.",
+          "uk": "Вікно відчинене, тому в кімнаті, можливо, холодно. Почніть з The window is open."
+        },
+        "orderedTokens": [
+          "The",
+          "window",
+          "is",
+          "open,",
+          "so",
+          "the",
+          "room",
+          "might",
+          "be",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i06:audio",
+          "transcript": "shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-33:i06:r1",
+            "targetText": "shoes",
+            "meaningByLocale": {
+              "ru": "Обувь, туфли. Повторение знакомого слова.",
+              "uk": "Взуття, туфлі. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoes",
+          "definitionByLocale": {
+            "ru": "Обувь, туфли. Повторение знакомого слова.",
+            "uk": "Взуття, туфлі. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен только что вошёл с улицы в мокрой обуви. Возможно, снаружи идёт дождь. Начните с His shoes are wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Бен только что вошёл с улицы в мокрой обуви. Возможно, снаружи идёт дождь. Начните с His shoes are wet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i07:audio",
+          "transcript": "His shoes are wet, so it could be raining."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "His shoes are wet, so it could be raining.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Открытое окно позволяет предположить холод в комнате. Завершите фразу с might.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i08:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Открытое окно позволяет предположить холод в комнате. Завершите фразу с might.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Открытое окно позволяет предположить холод в комнате. Завершите фразу с might.",
+          "uk": "Відчинене вікно дозволяє припустити холод у кімнаті. Завершіть фразу з might."
+        },
+        "gappedTargetPhrase": "The window is open, so the room might ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-33:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i08:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Открытое окно позволяет предположить холод в комнате. Завершите фразу с might.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Открытое окно позволяет предположить холод в комнате. Завершите фразу с might.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Открытое окно позволяет предположить холод в комнате. Завершите фразу с might.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы видите Бена во дворе. Значит, он не может сейчас быть наверху. Начните с I can see him outside.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы видите Бена во дворе. Значит, он не может сейчас быть наверху. Начните с I can see him outside.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can see him outside, so he can't be upstairs.",
+        "localizedMeaning": {
+          "ru": "Вы видите Бена во дворе. Значит, он не может сейчас быть наверху. Начните с I can see him outside.",
+          "uk": "Ви бачите Бена у дворі. Отже, він не може зараз бути нагорі. Почніть з I can see him outside."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "see",
+          "him",
+          "outside,",
+          "so",
+          "he",
+          "can't",
+          "be",
+          "upstairs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, почему вы считаете, что Бен поблизости. Укажите на оставленное пальто. Начните с His coat is here.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, почему вы считаете, что Бен поблизости. Укажите на оставленное пальто. Начните с His coat is here.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i10:audio",
+          "transcript": "His coat is here, so he must be nearby."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "His coat is here, so he must be nearby.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен сейчас виден вам во дворе. Завершите вывод, что он не наверху.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен сейчас виден вам во дворе. Завершите вывод, что он не наверху.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен сейчас виден вам во дворе. Завершите вывод, что он не наверху.",
+          "uk": "Бена зараз видно вам у дворі. Завершіть висновок, що він не нагорі."
+        },
+        "gappedTargetPhrase": "I can see him outside, so he can't ___ upstairs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-33:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Бен сейчас виден вам во дворе. Завершите вывод, что он не наверху.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен сейчас виден вам во дворе. Завершите вывод, что он не наверху.",
+            "feedbackByLocale": {
+              "ru": "После can’t здесь используем be.",
+              "uk": "Після can’t тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен сейчас виден вам во дворе. Завершите вывод, что он не наверху.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i12:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-33:i12:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i13:r1",
+          "text": "The door is open, so someone could be inside."
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i13:r2",
+          "text": "The door is open, so someone could be outside."
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i13:r3",
+          "text": "The door is open, so someone could be upstairs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i13:audio",
+          "transcript": "The door is open, so someone could be inside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-33:i13:r1",
+            "targetText": "The door is open, so someone could be inside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i13:r2",
+            "targetText": "The door is open, so someone could be outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i13:r3",
+            "targetText": "The door is open, so someone could be upstairs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The door is open, so someone could be inside.",
+              "uk": "У записі звучить The door is open, so someone could be inside."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The door is open, so someone could be inside.",
+              "uk": "У записі звучить The door is open, so someone could be inside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дверь в дом открыта. Вы допускаете, что кто-то внутри. Начните с The door is open.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Дверь в дом открыта. Вы допускаете, что кто-то внутри. Начните с The door is open.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i14:audio",
+          "transcript": "The door is open, so someone could be inside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door is open, so someone could be inside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пальто Бена здесь, поэтому он, должно быть, поблизости. Начните с His coat is here.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто Бена здесь, поэтому он, должно быть, поблизости. Начните с His coat is here.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "His coat is here, so he must be nearby.",
+        "localizedMeaning": {
+          "ru": "Пальто Бена здесь, поэтому он, должно быть, поблизости. Начните с His coat is here.",
+          "uk": "Пальто Бена тут, тому він, напевно, поблизу. Почніть з His coat is here."
+        },
+        "orderedTokens": [
+          "His",
+          "coat",
+          "is",
+          "here,",
+          "so",
+          "he",
+          "must",
+          "be",
+          "nearby"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Соедините наблюдение о пальто и следующий из него вывод. Вставьте «значит».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините наблюдение о пальто и следующий из него вывод. Вставьте «значит».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соедините наблюдение о пальто и следующий из него вывод. Вставьте «значит».",
+          "uk": "Поєднайте спостереження про пальто й висновок із нього. Вставте «отже»."
+        },
+        "gappedTargetPhrase": "His coat is here, ___ he must be nearby.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-33:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Соедините наблюдение о пальто и следующий из него вывод. Вставьте «значит».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i16:r2",
+            "correct": false,
+            "testedDimension": "Соедините наблюдение о пальто и следующий из него вывод. Вставьте «значит».",
+            "feedbackByLocale": {
+              "ru": "После связки следует вывод, нужен so.",
+              "uk": "Після сполучника йде висновок, потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i16:r3",
+            "correct": false,
+            "testedDimension": "Соедините наблюдение о пальто и следующий из него вывод. Вставьте «значит».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужен вывод из признака: so.",
+              "uk": "Тут потрібен висновок з ознаки: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна думает, что Бен наверху. Объясните, почему это невозможно: вы сейчас видите его во дворе. Начните с I can see him outside.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Анна думает, что Бен наверху. Объясните, почему это невозможно: вы сейчас видите его во дворе. Начните с I can see him outside.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i17:audio",
+          "transcript": "I can see him outside, so he can’t be upstairs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can see him outside, so he can’t be upstairs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вывод основан на пальто или сумке?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i18:r1",
+          "text": "His coat is here, so he must be nearby."
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i18:r2",
+          "text": "His bag is here, so he must be nearby."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i18:audioA",
+        "en:lesson-32:session-33:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вывод основан на пальто или сумке?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "His coat is here, so he must be nearby.",
+        "contrastB": "His bag is here, so he must be nearby.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-33:i18:audioA",
+          "transcript": "His coat is here, so he must be nearby."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-33:i18:audioB",
+          "transcript": "His bag is here, so he must be nearby."
+        },
+        "testedPhoneticContrast": "Послушайте: вывод основан на пальто или сумке?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вывод основан на пальто или сумке?",
+            "feedbackByLocale": {
+              "ru": "Звучит coat — пальто.",
+              "uk": "Звучить coat — пальто."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте предположение о комнате. Начните с The window is open.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте предположение о комнате. Начните с The window is open.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i19:audio",
+          "transcript": "The window is open, so the room might be cold."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The window is open, so the room might be cold.",
+        "orderedTokens": [
+          "The",
+          "window",
+          "is",
+          "open,",
+          "so",
+          "the",
+          "room",
+          "might",
+          "be",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мокрая обувь Бена позволяет предположить дождь. Завершите часть с could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-33:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-33:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мокрая обувь Бена позволяет предположить дождь. Завершите часть с could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мокрая обувь Бена позволяет предположить дождь. Завершите часть с could.",
+          "uk": "Мокре взуття Бена дозволяє припустити дощ. Завершіть частину з could."
+        },
+        "gappedTargetPhrase": "His shoes are wet, so it could ___ raining.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-33:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Мокрая обувь Бена позволяет предположить дождь. Завершите часть с could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-33:i20:r2",
+            "correct": false,
+            "testedDimension": "Мокрая обувь Бена позволяет предположить дождь. Завершите часть с could.",
+            "feedbackByLocale": {
+              "ru": "После could здесь нужна форма be.",
+              "uk": "Після could тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-33:i20:r3",
+            "correct": false,
+            "testedDimension": "Мокрая обувь Бена позволяет предположить дождь. Завершите часть с could.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-33:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Окно открыто. Вы ещё не вошли в комнату и лишь допускаете, что там холодно. Начните с The window is open.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-33:i21:audio"
+      ],
+      "accessibilityLabel": "Окно открыто. Вы ещё не вошли в комнату и лишь допускаете, что там холодно. Начните с The window is open.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-33:i21:audio",
+          "transcript": "The window is open, so the room might be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The window is open, so the room might be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "722f42f7312bf204ca489ddf932f0b1f98008b1fac100cfa22153dd2b4783ab9"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "соединять наблюдение и вывод с so, выбирая must, might или can’t по смыслу.",
+    "uk": "поєднувати спостереження й висновок із so, обираючи must, might або can’t за змістом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак и уверенный вывод",
+        "uk": "Ознака й упевнений висновок"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете Бена в доме и видите его пальто, без которого он обычно далеко не уходит: His coat is here, so he must be nearby — его пальто здесь, значит, он, должно быть, поблизости. Соберите His coat is here + so + he must be nearby. До so назовите наблюдение, после so — свой уверенный вывод с must.",
+        "uk": "Ви шукаєте Бена в будинку й бачите його пальто, без якого він зазвичай далеко не йде: His coat is here, so he must be nearby — його пальто тут, отже, він, напевно, поблизу. Складіть His coat is here + so + he must be nearby. До so назвіть спостереження, після so — свій упевнений висновок із must."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-33:intro1:r1",
+              "text": "His coat is here, so he must be nearby."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro1:r2",
+              "text": "His coat is here, so he must is nearby."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro1:r3",
+              "text": "His coat is here, so he must to be nearby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-33:intro1:r1",
+              "text": "His coat is here, so he must be nearby."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro1:r2",
+              "text": "His coat is here, so he must is nearby."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro1:r3",
+              "text": "His coat is here, so he must to be nearby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Признак и возможное объяснение",
+        "uk": "Ознака й можливе пояснення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы замечаете открытое окно в комнате, где ещё не были: The window is open, so the room might be cold — окно открыто, поэтому в комнате может быть холодно. Соберите The window is open + so + the room might be cold. Вы видите окно, но температуру ещё не проверили. Поэтому после so называете только возможность с might.",
+        "uk": "Ви помічаєте відчинене вікно в кімнаті, де ще не були: The window is open, so the room might be cold — вікно відчинене, тому в кімнаті може бути холодно. Складіть The window is open + so + the room might be cold. Ви бачите вікно, але температуру ще не перевірили. Тому після so називаєте лише можливість із might."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-33:intro2:r1",
+              "text": "The window is open, so the room might be cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro2:r2",
+              "text": "The window is open, so the room might is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro2:r3",
+              "text": "The window is open, so the room might to be cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-33:intro2:r1",
+              "text": "The window is open, so the room might be cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro2:r2",
+              "text": "The window is open, so the room might is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro2:r3",
+              "text": "The window is open, so the room might to be cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Признак исключает вариант",
+        "uk": "Ознака виключає варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Анна предполагает, что Бен наверху, но вы сейчас видите его во дворе: I can see him outside, so he can’t be upstairs — я вижу его снаружи, значит, он не может быть наверху. Соберите I can see him outside + so + he can’t be upstairs. Наблюдение исключает второй вариант, поэтому после so используем can’t.",
+        "uk": "Анна припускає, що Бен нагорі, але ви зараз бачите його у дворі: I can see him outside, so he can’t be upstairs — я бачу його надворі, отже, він не може бути нагорі. Складіть I can see him outside + so + he can’t be upstairs. Спостереження виключає другий варіант, тому після so використовуємо can’t."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-33:intro3:r1",
+              "text": "I can see him outside, so he can't be upstairs."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro3:r2",
+              "text": "I can see him outside, so he can't is upstairs."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro3:r3",
+              "text": "I can see him outside, so he can't to be upstairs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-33:intro3:r1",
+              "text": "I can see him outside, so he can't be upstairs."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro3:r2",
+              "text": "I can see him outside, so he can't is upstairs."
+            },
+            {
+              "responseId": "en:lesson-32:session-33:intro3:r3",
+              "text": "I can see him outside, so he can't to be upstairs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6c67fbe96e08704340444a45d753f7a991f0c7d740a076983b6adfe3522a456e"
+}

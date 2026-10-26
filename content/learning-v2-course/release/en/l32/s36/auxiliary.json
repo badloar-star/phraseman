@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-36:intro1:r2": {
+          "ru": "После might используем be.",
+          "uk": "Після might використовуємо be."
+        },
+        "en:lesson-32:session-36:intro1:r3": {
+          "ru": "После might не ставим to.",
+          "uk": "Після might не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-36:intro2:r2": {
+          "ru": "После can’t используем be.",
+          "uk": "Після can’t використовуємо be."
+        },
+        "en:lesson-32:session-36:intro2:r3": {
+          "ru": "После can’t не ставим to.",
+          "uk": "Після can’t не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-36:intro3:r2": {
+          "ru": "Не повторяем названный предмет местоимением it.",
+          "uk": "Не повторюємо названий предмет займенником it."
+        },
+        "en:lesson-32:session-36:intro3:r3": {
+          "ru": "Нужна прошедшая форма washed.",
+          "uk": "Потрібна минула форма washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "edd2f57c426d876f5723c4b3c6778136640c8fcc9cf5e4f0e66615fb1469359c"
+}

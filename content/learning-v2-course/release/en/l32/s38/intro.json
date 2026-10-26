@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Когда Анна катит велосипед, слышен необычный стук. Вы ещё не нашли его причину. The bike is noisy, so it might be broken. — Велосипед шумит, поэтому он, возможно, сломан. Соберите The bike is noisy + so + it might be broken. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием broken нужна связка be.",
+        "uk": "Коли Анна котить велосипед, чути незвичний стукіт. Ви ще не знайшли його причини. The bike is noisy, so it might be broken. — Велосипед шумить, тому він, можливо, зламаний. Складіть The bike is noisy + so + it might be broken. До so назвіть спостереження, після so — можливий висновок із might. Перед станом broken потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-38:intro1:r1",
+              "text": "The bike is noisy, so it might be broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro1:r2",
+              "text": "The bike is noisy, so it might is broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro1:r3",
+              "text": "The bike is noisy, so it might to be broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-38:intro1:r1",
+              "text": "The bike is noisy, so it might be broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro1:r2",
+              "text": "The bike is noisy, so it might is broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro1:r3",
+              "text": "The bike is noisy, so it might to be broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. The lock can't be open. — Замок не может быть открытым. Соберите The lock + can’t + be + open. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед open здесь нужна связка be.",
+        "uk": "Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. The lock can't be open. — Замок не може бути відчиненим. Складіть The lock + can’t + be + open. Спостереження виключає названий стан. Can’t виражає цей висновок; перед open тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-38:intro2:r1",
+              "text": "The lock can't be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro2:r2",
+              "text": "The lock can't is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro2:r3",
+              "text": "The lock can't to be open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-38:intro2:r1",
+              "text": "The lock can't be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro2:r2",
+              "text": "The lock can't is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro2:r3",
+              "text": "The lock can't to be open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The helmet I bought is new. — Шлем, который я купил, новый. Соберите The helmet + I bought + is new. Часть I bought уточняет helmet. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The helmet I bought is new. — Шолом, який я купив, новий. Складіть The helmet + I bought + is new. Частина I bought уточнює helmet. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-38:intro3:r1",
+              "text": "The helmet I bought is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro3:r2",
+              "text": "The helmet I bought it is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro3:r3",
+              "text": "The helmet I buying is new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-38:intro3:r1",
+              "text": "The helmet I bought is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro3:r2",
+              "text": "The helmet I bought it is new."
+            },
+            {
+              "responseId": "en:lesson-32:session-38:intro3:r3",
+              "text": "The helmet I buying is new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf926a89b952b5b0e95cef0f2c5a093a59b2ac1ccbb9bdf09ba39968f07219b7"
+}

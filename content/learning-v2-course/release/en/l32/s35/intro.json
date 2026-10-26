@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите, что в соседней комнате не горит свет, но ещё не входили туда. The room is dark, so it might be empty. — Комната тёмная, поэтому она может быть пустой. Соберите The room is dark + so + it might be empty. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием empty нужна связка be.",
+        "uk": "Ви бачите, що в сусідній кімнаті не горить світло, але ще не заходили туди. The room is dark, so it might be empty. — Кімната темна, тому вона може бути порожньою. Складіть The room is dark + so + it might be empty. До so назвіть спостереження, після so — можливий висновок із might. Перед станом empty потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-35:intro1:r1",
+              "text": "The room is dark, so it might be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro1:r2",
+              "text": "The room is dark, so it might is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro1:r3",
+              "text": "The room is dark, so it might to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-35:intro1:r1",
+              "text": "The room is dark, so it might be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro1:r2",
+              "text": "The room is dark, so it might is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro1:r3",
+              "text": "The room is dark, so it might to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна думает, что лампа совсем не работает, но вы включаете её, и она нормально светит. The lamp can't be broken. — Лампа не может быть сломанной. Соберите The lamp + can’t + be + broken. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед broken здесь нужна связка be.",
+        "uk": "Анна думає, що лампа зовсім не працює, але ви вмикаєте її, і вона нормально світить. The lamp can't be broken. — Лампа не може бути зламаною. Складіть The lamp + can’t + be + broken. Спостереження виключає названий стан. Can’t виражає цей висновок; перед broken тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-35:intro2:r1",
+              "text": "The lamp can't be broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro2:r2",
+              "text": "The lamp can't is broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro2:r3",
+              "text": "The lamp can't to be broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-35:intro2:r1",
+              "text": "The lamp can't be broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro2:r2",
+              "text": "The lamp can't is broken."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro2:r3",
+              "text": "The lamp can't to be broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The book I borrowed is short. — Книга, которую я взял почитать, короткая. Соберите The book + I borrowed + is short. Часть I borrowed уточняет book. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The book I borrowed is short. — Книжка, яку я позичив, коротка. Складіть The book + I borrowed + is short. Частина I borrowed уточнює book. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-35:intro3:r1",
+              "text": "The book I borrowed is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro3:r2",
+              "text": "The book I borrowed it is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro3:r3",
+              "text": "The book I borrowing is short."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-35:intro3:r1",
+              "text": "The book I borrowed is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro3:r2",
+              "text": "The book I borrowed it is short."
+            },
+            {
+              "responseId": "en:lesson-32:session-35:intro3:r3",
+              "text": "The book I borrowing is short."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa66dd1b06ec0e723e479e70609938d80d84e2b05b86f5c5d9799ead71ffebf9"
+}

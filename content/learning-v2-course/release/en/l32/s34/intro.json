@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите мокрую дорогу, но ещё не проверили, скользко ли на ней. The road is wet, so it might be slippery. — Дорога мокрая, поэтому она может быть скользкой. Соберите The road is wet + so + it might be slippery. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием slippery нужна связка be.",
+        "uk": "Ви бачите мокру дорогу, але ще не перевірили, чи слизько на ній. The road is wet, so it might be slippery. — Дорога мокра, тому вона може бути слизькою. Складіть The road is wet + so + it might be slippery. До so назвіть спостереження, після so — можливий висновок із might. Перед станом slippery потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-34:intro1:r1",
+              "text": "The road is wet, so it might be slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro1:r2",
+              "text": "The road is wet, so it might is slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro1:r3",
+              "text": "The road is wet, so it might to be slippery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-34:intro1:r1",
+              "text": "The road is wet, so it might be slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro1:r2",
+              "text": "The road is wet, so it might is slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro1:r3",
+              "text": "The road is wet, so it might to be slippery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "С рукавов пальто Анны капает вода. The coat can't be dry. — Пальто не может быть сухим. Соберите The coat + can’t + be + dry. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед dry здесь нужна связка be.",
+        "uk": "Із рукавів пальта Анни крапає вода. The coat can't be dry. — Пальто не може бути сухим. Складіть The coat + can’t + be + dry. Спостереження виключає названий стан. Can’t виражає цей висновок; перед dry тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-34:intro2:r1",
+              "text": "The coat can't be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro2:r2",
+              "text": "The coat can't is dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro2:r3",
+              "text": "The coat can't to be dry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-34:intro2:r1",
+              "text": "The coat can't be dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro2:r2",
+              "text": "The coat can't is dry."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro2:r3",
+              "text": "The coat can't to be dry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The bag I packed is heavy. — Сумка, которую я собрал, тяжёлая. Соберите The bag + I packed + is heavy. Часть I packed уточняет bag. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The bag I packed is heavy. — Сумка, яку я зібрав, важка. Складіть The bag + I packed + is heavy. Частина I packed уточнює bag. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-34:intro3:r1",
+              "text": "The bag I packed is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro3:r2",
+              "text": "The bag I packed it is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro3:r3",
+              "text": "The bag I packing is heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-34:intro3:r1",
+              "text": "The bag I packed is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro3:r2",
+              "text": "The bag I packed it is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-34:intro3:r3",
+              "text": "The bag I packing is heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8f9d9bc37968649e4b4f7da0482dc978e17b97b812b345c657646b2c04a9733a"
+}

@@ -35,6 +35,7 @@ import CommunityPackPreview from './flashcards/CommunityPackPreview';
 import PackOpenFailedView from './flashcards/PackOpenFailedView';
 import { setPendingTrainIntent } from './flashcards/train_intent';
 import { useTheme } from '../components/ThemeContext';
+import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../constants/i18n';
@@ -227,8 +228,9 @@ const TRAIN_THIS_PACK_LATCH_MS = 1500;
 export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
-  const { theme: t, f, themeMode, statusBarLight, uiScale, liquidGlassThemeId } = useTheme();
+  const { theme: t, f, themeMode, statusBarLight, uiScale, liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  const communitySceneTop = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance).sceneTop;
   const isLightTheme = isLightThemeMode(themeMode);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -2053,7 +2055,7 @@ export default function FlashcardsScreen() {
 
     </View>
     {/* зачем (закон владельца 22.10 «назад везде в одном месте»): одна кнопка на все шапки коллекции; в режиме выбора слева «Отмена» — без «назад» */}
-    {selectionMode ? null : <ScreenBackButton sceneTop={(communitySceneSurface || previewMode) && !currentMarketPack?.videoId ? "#163C65" : undefined} screen="flashcards_collection" testID="fc-collection-back" onPress={deeplinkCardsState === 'failed' ? leaveCollection : handleCollectionBack} />}
+    {selectionMode ? null : <ScreenBackButton sceneTop={(communitySceneSurface || previewMode) && !currentMarketPack?.videoId ? communitySceneTop : undefined} screen="flashcards_collection" testID="fc-collection-back" onPress={deeplinkCardsState === 'failed' ? leaveCollection : handleCollectionBack} />}
     {expandedData ? (
       <ExpandedCardV2
         card={expandedData}

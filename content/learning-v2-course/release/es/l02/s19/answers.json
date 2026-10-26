@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-19:i01",
+    "correctText": "habitación",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i02",
+    "correctText": "habitación",
+    "correctResponseId": "es:lesson-02:session-19:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i03",
+    "correctText": "canción",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i04",
+    "correctText": "canción",
+    "correctResponseId": "es:lesson-02:session-19:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-19:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i06",
+    "correctText": "Es una habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i07",
+    "correctText": "cómoda",
+    "correctResponseId": "es:lesson-02:session-19:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i08",
+    "correctText": "La habitación es cómoda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i09",
+    "correctText": "La",
+    "correctResponseId": "es:lesson-02:session-19:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i10",
+    "correctText": "La canción es agradable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i11",
+    "correctText": "Es una habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i12",
+    "correctText": "La habitación es cómoda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i13",
+    "correctText": "Es una canción.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-19:i14",
+    "correctText": "La canción es agradable.",
+    "correctResponseId": null
+  }
+]

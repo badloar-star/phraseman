@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-20",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-20:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-20:intro1:r2": {
+          "ru": "По-испански ciudad женского рода: una.",
+          "uk": "Іспанською ciudad жіночого роду: una."
+        },
+        "es:lesson-02:session-20:intro1:r3": {
+          "ru": "Один город требует es.",
+          "uk": "Одне місто потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-20:intro2:r2": {
+          "ru": "Universidad требует una.",
+          "uk": "Universidad потребує una."
+        },
+        "es:lesson-02:session-20:intro2:r3": {
+          "ru": "Один университет требует es.",
+          "uk": "Один університет потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-20:intro3:r2": {
+          "ru": "Испанское ciudad женского рода.",
+          "uk": "Іспанське ciudad жіночого роду."
+        },
+        "es:lesson-02:session-20:intro3:r3": {
+          "ru": "Для ciudad нужна bonita.",
+          "uk": "Для ciudad потрібна bonita."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "95acab50a738ff5b6c07fbb1bb223f99b410b47e73331a292d0d003cc35e2e88"
+}

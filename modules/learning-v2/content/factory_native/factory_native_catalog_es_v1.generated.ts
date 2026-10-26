@@ -511,4 +511,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать число и артикль, когда называете упаковку или узнаёте нужную.","uk":"вибрати число й артикль, коли називаєте упаковку або впізнаєте потрібну."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 17,
+    sourceFingerprint: "46ce3befec58cd73da970792daa4a3d1520a9ecca583008b7b577e29161f7bf6",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать мужской артикль у слов día и problema, хотя они заканчиваются на -a.","uk":"вибирати чоловічий артикль у слів día і problema, хоча вони закінчуються на -a."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 18,
+    sourceFingerprint: "b9e3faedaa36d48d047d5c8b833692681f8c1122f9a1bb085f0498c915f78852",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать женский артикль у слов foto и mano, несмотря на конечную -o.","uk":"вибирати жіночий артикль у слів foto і mano, попри кінцеву -o."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 19,
+    sourceFingerprint: "93450df7d1ef746eec0b6db29e83aa25d2fd6d8772707c62333927c7729619f7",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать женский артикль для habitación и canción.","uk":"вибрати жіночий артикль для habitación і canción."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 20,
+    sourceFingerprint: "0ea269821fcf9952a4db5650854ab520df49d118c6142a1ecb54607b08fc1a72",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать женские артикли у ciudad и universidad.","uk":"вибирати жіночі артиклі у ciudad і universidad."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

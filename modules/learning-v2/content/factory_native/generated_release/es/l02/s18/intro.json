@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать женский артикль у слов foto и mano, несмотря на конечную -o.",
+    "uk": "вибирати жіночий артикль у слів foto і mano, попри кінцеву -o."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это фотография",
+        "uk": "Це фотографія"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает изображение на бумаге: сначала непонятно, рисунок это или фотография. `Foto` — «фотография», слово женского рода: la foto. Скажите `Es una foto` — «Это фотография». Соберите `es` + `una` + `foto`. Хотя в конце -o, здесь нужна una: запоминайте la foto целиком.",
+        "uk": "Друг показує зображення на папері: спочатку незрозуміло, малюнок це чи фотографія. `Foto` — «фотографія», слово жіночого роду: la foto. Скажіть `Es una foto` — «Це фотографія». Зберіть `es` + `una` + `foto`. Хоча в кінці -o, тут потрібна una: запам'ятовуйте la foto цілком."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите изображение фотографией.",
+          "uk": "Назвіть зображення фотографією."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-18:intro1:r1",
+              "text": "Es una foto."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro1:r2",
+              "text": "Es un foto."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro1:r3",
+              "text": "Son una foto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-18:intro1:r1",
+              "text": "Es una foto."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro1:r2",
+              "text": "Es un foto."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro1:r3",
+              "text": "Son una foto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите изображение фотографией.",
+          "uk": "Назвіть зображення фотографією."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В кадре рука",
+        "uk": "У кадрі рука"
+      },
+      "bodyByLocale": {
+        "ru": "Вы всматриваетесь в обрезанный край и узнаёте руку. `Mano` — «рука», именно кисть, слово женского рода: la mano. Ответьте на знакомый вопрос ¿Qué es esto?: `Es una mano` — «Это рука». Соберите `es` + `una` + `mano`. Как у foto, конечная -o не меняет женский род этого слова.",
+        "uk": "Ви вдивляєтеся в обрізаний край і впізнаєте руку. `Mano` — «рука», саме кисть, слово жіночого роду: la mano. Дайте відповідь на знайоме запитання ¿Qué es esto?: `Es una mano` — «Це рука». Зберіть `es` + `una` + `mano`. Як у foto, кінцева -o не змінює жіночий рід цього слова."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите видимую в кадре кисть руки.",
+          "uk": "Назвіть видиму в кадрі кисть руки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-18:intro2:r1",
+              "text": "Es una mano."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro2:r2",
+              "text": "Es un mano."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro2:r3",
+              "text": "Son una mano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-18:intro2:r1",
+              "text": "Es una mano."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro2:r2",
+              "text": "Es un mano."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro2:r3",
+              "text": "Son una mano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите видимую в кадре кисть руки.",
+          "uk": "Назвіть видиму в кадрі кисть руки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Красивая фотография",
+        "uk": "Гарна фотографія"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы рассмотрели изображение и хотите похвалить снимок. Скажите `La foto es bonita` — «Фотография красивая». Соберите `la foto` + `es` + `bonita`. Для женского foto выбирайте la и знакомое женское bonita. Не определяйте род только по последней букве: foto и mano женского рода, а знакомый plato — мужского.",
+        "uk": "Тепер ви роздивилися зображення й хочете похвалити знімок. Скажіть `La foto es bonita` — «Фотографія гарна». Зберіть `la foto` + `es` + `bonita`. Для жіночого foto вибирайте la і знайоме жіноче bonita. Не визначайте рід лише за останньою літерою: foto й mano жіночого роду, а знайомий plato — чоловічого."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что фотография красивая.",
+          "uk": "Скажіть, що фотографія гарна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-18:intro3:r1",
+              "text": "La foto es bonita."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro3:r2",
+              "text": "El foto es bonito."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro3:r3",
+              "text": "La foto es bonito."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-18:intro3:r1",
+              "text": "La foto es bonita."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro3:r2",
+              "text": "El foto es bonito."
+            },
+            {
+              "responseId": "es:lesson-02:session-18:intro3:r3",
+              "text": "La foto es bonito."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что фотография красивая.",
+          "uk": "Скажіть, що фотографія гарна."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f77fce569b58692e958e7dcbf05a948204b811a81ad8411318b393d0301c61b"
+}

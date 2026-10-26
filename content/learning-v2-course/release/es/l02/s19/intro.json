@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать женский артикль для habitación и canción.",
+    "uk": "вибрати жіночий артикль для habitación і canción."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Комната в кадре",
+        "uk": "Кімната в кадрі"
+      },
+      "bodyByLocale": {
+        "ru": "В видео видна комната. `Habitación` — «комната», слово женского рода: la habitación. Назовите её: `Es una habitación` — «Это комната». Соберите `es` + `una` + `habitación`. В словах с окончанием -ción обычно женский род; запомните здесь una habitación. Буква h не произносится, ударение падает на последний слог.",
+        "uk": "У відео видно кімнату. `Habitación` — «кімната», слово жіночого роду: la habitación. Назвіть її: `Es una habitación` — «Це кімната». Зберіть `es` + `una` + `habitación`. У слів із закінченням -ción зазвичай жіночий рід; запам'ятайте тут una habitación. Літера h не вимовляється, наголос падає на останній склад."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите помещение комнатой.",
+          "uk": "Назвіть приміщення кімнатою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-19:intro1:r1",
+              "text": "Es una habitación."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro1:r2",
+              "text": "Es un habitación."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro1:r3",
+              "text": "Son una habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-19:intro1:r1",
+              "text": "Es una habitación."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro1:r2",
+              "text": "Es un habitación."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro1:r3",
+              "text": "Son una habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите помещение комнатой.",
+          "uk": "Назвіть приміщення кімнатою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Удобная комната",
+        "uk": "Зручна кімната"
+      },
+      "bodyByLocale": {
+        "ru": "На видео хорошо видны кровать и стол: комната выглядит удобной. Скажите `La habitación es cómoda` — «Комната удобная». Соберите `la habitación` + `es` + `cómoda`. Для женского habitación выбирайте la и женское cómoda. Начните с того, что описываете, затем добавьте es и описание.",
+        "uk": "На відео добре видно ліжко й стіл: кімната виглядає зручною. Скажіть `La habitación es cómoda` — «Кімната зручна». Зберіть `la habitación` + `es` + `cómoda`. Для жіночого habitación вибирайте la і жіноче cómoda. Почніть із того, що описуєте, потім додайте es і опис."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что комната удобная.",
+          "uk": "Скажіть, що кімната зручна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-19:intro2:r1",
+              "text": "La habitación es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro2:r2",
+              "text": "El habitación es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro2:r3",
+              "text": "La habitación es cómodo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-19:intro2:r1",
+              "text": "La habitación es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro2:r2",
+              "text": "El habitación es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro2:r3",
+              "text": "La habitación es cómodo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что комната удобная.",
+          "uk": "Скажіть, що кімната зручна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Песня в видео",
+        "uk": "Пісня у відео"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы обращаете внимание на музыку. `Canción` — «песня», тоже слово женского рода: la canción. Скажите `La canción es agradable` — «Песня приятная». Соберите `la canción` + `es` + `agradable`. Canción, как habitación, заканчивается на -ción и здесь требует la. Знакомое agradable не меняется по роду: его окончание остаётся -e.",
+        "uk": "Тепер ви звертаєте увагу на музику. `Canción` — «пісня», теж слово жіночого роду: la canción. Скажіть `La canción es agradable` — «Пісня приємна». Зберіть `la canción` + `es` + `agradable`. Canción, як habitación, закінчується на -ción і тут потребує la. Знайоме agradable не змінюється за родом: його закінчення залишається -e."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что песня приятная.",
+          "uk": "Скажіть, що пісня приємна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-19:intro3:r1",
+              "text": "La canción es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro3:r2",
+              "text": "El canción es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro3:r3",
+              "text": "La canción son agradable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-19:intro3:r1",
+              "text": "La canción es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro3:r2",
+              "text": "El canción es agradable."
+            },
+            {
+              "responseId": "es:lesson-02:session-19:intro3:r3",
+              "text": "La canción son agradable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что песня приятная.",
+          "uk": "Скажіть, що пісня приємна."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "52f9b7a31a1c2a8d7c4303e09136dacd05e5ba2370022defeb77864b032a3332"
+}

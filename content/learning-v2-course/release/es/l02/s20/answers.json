@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-20:i01",
+    "correctText": "ciudad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i02",
+    "correctText": "ciudad",
+    "correctResponseId": "es:lesson-02:session-20:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i03",
+    "correctText": "universidad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i04",
+    "correctText": "universidad",
+    "correctResponseId": "es:lesson-02:session-20:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-20:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i06",
+    "correctText": "Es una ciudad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i07",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-20:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i08",
+    "correctText": "Es una universidad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i09",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-02:session-20:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i10",
+    "correctText": "La ciudad es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i11",
+    "correctText": "Es una universidad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i12",
+    "correctText": "La ciudad es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i13",
+    "correctText": "La ciudad es interesante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-20:i14",
+    "correctText": "Es una universidad.",
+    "correctResponseId": null
+  }
+]

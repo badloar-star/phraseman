@@ -1,0 +1,807 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-19",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — habitación",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — habitación",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i01:audio",
+          "transcript": "habitación"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-19:i01:r1",
+            "targetText": "habitación",
+            "meaningByLocale": {
+              "ru": "комната. Женский род: la habitación. 🔊 *habitación*",
+              "uk": "кімната. Жіночий рід: la habitación. 🔊 *habitación*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "habitación",
+          "definitionByLocale": {
+            "ru": "комната. Женский род: la habitación. 🔊 *habitación*",
+            "uk": "кімната. Жіночий рід: la habitación. 🔊 *habitación*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i02:r1",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i02:r2",
+          "text": "botella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i02:audio",
+          "transcript": "habitación"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-19:i02:r1",
+            "targetText": "habitación",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i02:r2",
+            "targetText": "botella",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит habitación — комната.",
+              "uk": "Звучить habitación — кімната."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — canción",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — canción",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i03:audio",
+          "transcript": "canción"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-19:i03:r1",
+            "targetText": "canción",
+            "meaningByLocale": {
+              "ru": "песня. Женский род: la canción. 🔊 *canción*",
+              "uk": "пісня. Жіночий рід: la canción. 🔊 *canción*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "canción",
+          "definitionByLocale": {
+            "ru": "песня. Женский род: la canción. 🔊 *canción*",
+            "uk": "пісня. Жіночий рід: la canción. 🔊 *canción*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i04:r1",
+          "text": "canción"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i04:r2",
+          "text": "habitación"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i04:audio",
+          "transcript": "canción"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-19:i04:r1",
+            "targetText": "canción",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i04:r2",
+            "targetText": "habitación",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит canción — песня.",
+              "uk": "Звучить canción — пісня."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це кімната",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i05:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це кімната",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это комната",
+          "uk": "Вставте слово — це кімната"
+        },
+        "gappedTargetPhrase": "Es ___ habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-19:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i05:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це кімната",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це кімната",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: una.",
+              "uk": "Habitación жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це кімната",
+            "feedbackByLocale": {
+              "ru": "Комната одна: una.",
+              "uk": "Кімната одна: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кімнату",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i06:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кімнату",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите комнату",
+          "uk": "Зберіть фразу — назвіть кімнату"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кімнату",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кімната зручна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i07:r1",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i07:r2",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i07:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кімната зручна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — комната удобная",
+          "uk": "Вставте слово — кімната зручна"
+        },
+        "gappedTargetPhrase": "La habitación es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-19:i07:r1",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i07:r2",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i07:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставте слово — кімната зручна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кімната зручна",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: cómoda.",
+              "uk": "Habitación жіночого роду: cómoda."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кімната зручна",
+            "feedbackByLocale": {
+              "ru": "Комната одна: cómoda.",
+              "uk": "Кімната одна: cómoda."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — опишіть зручну кімнату",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i08:r1",
+          "text": "Плитки: cómoda"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i08:r3",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i08:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — опишіть зручну кімнату",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La habitación es cómoda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — опишите удобную комнату",
+          "uk": "Зберіть фразу — опишіть зручну кімнату"
+        },
+        "orderedTokens": [
+          "La",
+          "habitación",
+          "es",
+          "cómoda"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — опишіть зручну кімнату",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — пісня приємна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i09:r1",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i09:r2",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i09:r3",
+          "text": "Las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — пісня приємна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — песня приятная",
+          "uk": "Вставте слово — пісня приємна"
+        },
+        "gappedTargetPhrase": "___ canción es agradable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-19:i09:r1",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i09:r2",
+            "text": "El"
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i09:r3",
+            "text": "Las"
+          }
+        ],
+        "testedDimension": "Вставте слово — пісня приємна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — пісня приємна",
+            "feedbackByLocale": {
+              "ru": "Canción женского рода: la.",
+              "uk": "Canción жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — пісня приємна",
+            "feedbackByLocale": {
+              "ru": "Песня одна: la.",
+              "uk": "Пісня одна: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — похваліть приємну пісню",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i10:r1",
+          "text": "Плитки: agradable"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i10:r3",
+          "text": "canción"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i10:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i10:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — похваліть приємну пісню",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La canción es agradable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — похвалите приятную песню",
+          "uk": "Зберіть фразу — похваліть приємну пісню"
+        },
+        "orderedTokens": [
+          "La",
+          "canción",
+          "es",
+          "agradable"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — похваліть приємну пісню",
+            "feedbackByLocale": {
+              "ru": "canción женского рода.",
+              "uk": "canción жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i11:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i11:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i11:audio",
+          "transcript": "Es una habitación."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una habitación.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит una.",
+              "uk": "у записі звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кімната зручна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кімната зручна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i12:audio",
+          "transcript": "La habitación es cómoda."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La habitación es cómoda.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть почуте піснею",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-19:i13:r1",
+          "text": "Плитки: canción"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i13:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-19:i13:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть почуте піснею",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una canción.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите услышанное песней",
+          "uk": "Зберіть фразу — назвіть почуте піснею"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "canción"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-19:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть почуте піснею",
+            "feedbackByLocale": {
+              "ru": "canción женского рода.",
+              "uk": "canción жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — пісня приємна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — пісня приємна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-19:i14:audio",
+          "transcript": "La canción es agradable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La canción es agradable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d1762fc111c4cf8efd9043f62e7d162487653910f81e059e495c64cbfff75244"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать женские артикли у ciudad и universidad.",
+    "uk": "вибирати жіночі артиклі у ciudad і universidad."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Город на фотографии",
+        "uk": "Місто на фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "На первой фотографии — город. `Ciudad` — «город», по-испански женского рода: la ciudad. Назовите его: `Es una ciudad` — «Это город». Соберите `es` + `una` + `ciudad`. У существительных на -dad обычно женский род; здесь запомните una ciudad, хотя русское «город» мужского рода.",
+        "uk": "На першій фотографії — місто. `Ciudad` — «місто», іспанською жіночого роду: la ciudad. Назвіть його: `Es una ciudad` — «Це місто». Зберіть `es` + `una` + `ciudad`. В іменників на -dad зазвичай жіночий рід; тут запам'ятайте una ciudad, хоча українське «місто» середнього роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите место городом.",
+          "uk": "Назвіть місце містом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-20:intro1:r1",
+              "text": "Es una ciudad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro1:r2",
+              "text": "Es un ciudad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro1:r3",
+              "text": "Son una ciudad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-20:intro1:r1",
+              "text": "Es una ciudad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro1:r2",
+              "text": "Es un ciudad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro1:r3",
+              "text": "Son una ciudad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите место городом.",
+          "uk": "Назвіть місце містом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Университет на следующем снимке",
+        "uk": "Університет на наступному знімку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает университет. `Universidad` — «университет», тоже слово женского рода: la universidad. Назовите его: `Es una universidad` — «Это университет». Соберите `es` + `una` + `universidad`. Как у ciudad, конечное -dad здесь сочетается с женским родом. Выбирайте артикль по испанскому слову.",
+        "uk": "Друг показує університет. `Universidad` — «університет», теж слово жіночого роду: la universidad. Назвіть його: `Es una universidad` — «Це університет». Зберіть `es` + `una` + `universidad`. Як у ciudad, кінцеве -dad тут поєднується з жіночим родом. Вибирайте артикль за іспанським словом."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите место университетом.",
+          "uk": "Назвіть місце університетом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-20:intro2:r1",
+              "text": "Es una universidad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro2:r2",
+              "text": "Es un universidad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro2:r3",
+              "text": "Son una universidad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-20:intro2:r1",
+              "text": "Es una universidad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro2:r2",
+              "text": "Es un universidad."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro2:r3",
+              "text": "Son una universidad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите место университетом.",
+          "uk": "Назвіть місце університетом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Красивый город",
+        "uk": "Гарне місто"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаетесь к общей фотографии и хотите похвалить город. Скажите `La ciudad es bonita` — «Город красивый». Соберите `la ciudad` + `es` + `bonita`. Испанское ciudad женского рода, поэтому la и bonita, хотя в русском переводе получается «красивый». Род проверяйте по испанскому существительному.",
+        "uk": "Ви повертаєтеся до загальної фотографії й хочете похвалити місто. Скажіть `La ciudad es bonita` — «Місто гарне». Зберіть `la ciudad` + `es` + `bonita`. Іспанське ciudad жіночого роду, тому la і bonita, хоча в українському перекладі виходить «гарне». Рід перевіряйте за іспанським іменником."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что город красивый.",
+          "uk": "Скажіть, що місто гарне."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-20:intro3:r1",
+              "text": "La ciudad es bonita."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro3:r2",
+              "text": "El ciudad es bonito."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro3:r3",
+              "text": "La ciudad es bonito."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-20:intro3:r1",
+              "text": "La ciudad es bonita."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro3:r2",
+              "text": "El ciudad es bonito."
+            },
+            {
+              "responseId": "es:lesson-02:session-20:intro3:r3",
+              "text": "La ciudad es bonito."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что город красивый.",
+          "uk": "Скажіть, що місто гарне."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a138bb5463c1d4625539ae1b45133550766784da7bb1437e1102bc928aaa4a4b"
+}

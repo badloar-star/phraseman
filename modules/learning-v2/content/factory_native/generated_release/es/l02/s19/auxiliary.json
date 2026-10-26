@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-19:intro1:r2": {
+          "ru": "Для habitación нужна una.",
+          "uk": "Для habitación потрібна una."
+        },
+        "es:lesson-02:session-19:intro1:r3": {
+          "ru": "Одна комната требует es.",
+          "uk": "Одна кімната потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-19:intro2:r2": {
+          "ru": "Habitación женского рода.",
+          "uk": "Habitación жіночого роду."
+        },
+        "es:lesson-02:session-19:intro2:r3": {
+          "ru": "Нужно женское cómoda.",
+          "uk": "Потрібне жіноче cómoda."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-19:intro3:r2": {
+          "ru": "Для canción нужна la.",
+          "uk": "Для canción потрібна la."
+        },
+        "es:lesson-02:session-19:intro3:r3": {
+          "ru": "Одна песня требует es.",
+          "uk": "Одна пісня потребує es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "20d4bf0a29a84f87403e1e102bb3b7e98528fa502782e3cc33aabbda4fc3dadb"
+}

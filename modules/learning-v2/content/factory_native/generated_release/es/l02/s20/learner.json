@@ -1,0 +1,807 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-20",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ciudad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ciudad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i01:audio",
+          "transcript": "ciudad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-20:i01:r1",
+            "targetText": "ciudad",
+            "meaningByLocale": {
+              "ru": "город. Женский род: la ciudad. 🔊 *ciudad*",
+              "uk": "місто. Жіночий рід: la ciudad. 🔊 *ciudad*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ciudad",
+          "definitionByLocale": {
+            "ru": "город. Женский род: la ciudad. 🔊 *ciudad*",
+            "uk": "місто. Жіночий рід: la ciudad. 🔊 *ciudad*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i02:r1",
+          "text": "ciudad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i02:r2",
+          "text": "canción"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i02:audio",
+          "transcript": "ciudad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-20:i02:r1",
+            "targetText": "ciudad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i02:r2",
+            "targetText": "canción",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит ciudad — город.",
+              "uk": "Звучить ciudad — місто."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — universidad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — universidad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i03:audio",
+          "transcript": "universidad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-20:i03:r1",
+            "targetText": "universidad",
+            "meaningByLocale": {
+              "ru": "университет. Женский род: la universidad. 🔊 *universidad*",
+              "uk": "університет. Жіночий рід: la universidad. 🔊 *universidad*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "universidad",
+          "definitionByLocale": {
+            "ru": "университет. Женский род: la universidad. 🔊 *universidad*",
+            "uk": "університет. Жіночий рід: la universidad. 🔊 *universidad*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i04:r1",
+          "text": "universidad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i04:r2",
+          "text": "habitación"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i04:audio",
+          "transcript": "universidad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-20:i04:r1",
+            "targetText": "universidad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i04:r2",
+            "targetText": "habitación",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит universidad — университет.",
+              "uk": "Звучить universidad — університет."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это город",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i05:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это город",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это город",
+          "uk": "Вставте слово — це місто"
+        },
+        "gappedTargetPhrase": "Es ___ ciudad.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-20:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i05:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это город",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это город",
+            "feedbackByLocale": {
+              "ru": "Ciudad женского рода: una.",
+              "uk": "Ciudad жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это город",
+            "feedbackByLocale": {
+              "ru": "Город один: una.",
+              "uk": "Місто одне: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите город",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i06:r1",
+          "text": "Плитки: ciudad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите город",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una ciudad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите город",
+          "uk": "Зберіть фразу — назвіть місто"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "ciudad"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите город",
+            "feedbackByLocale": {
+              "ru": "ciudad женского рода.",
+              "uk": "ciudad жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это университет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i07:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i07:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это университет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это университет",
+          "uk": "Вставте слово — це університет"
+        },
+        "gappedTargetPhrase": "Es ___ universidad.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-20:i07:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i07:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i07:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это университет",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это университет",
+            "feedbackByLocale": {
+              "ru": "Universidad женского рода: una.",
+              "uk": "Universidad жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это университет",
+            "feedbackByLocale": {
+              "ru": "Здесь один университет женского рода: una.",
+              "uk": "Тут один університет жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите университет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i08:r1",
+          "text": "Плитки: universidad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i08:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите университет",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una universidad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите университет",
+          "uk": "Зберіть фразу — назвіть університет"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "universidad"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите университет",
+            "feedbackByLocale": {
+              "ru": "universidad женского рода.",
+              "uk": "universidad жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — город красивый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i09:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i09:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i09:r3",
+          "text": "bonitas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — город красивый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — город красивый",
+          "uk": "Вставте слово — місто гарне"
+        },
+        "gappedTargetPhrase": "La ciudad es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-20:i09:r1",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i09:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i09:r3",
+            "text": "bonitas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — город красивый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — город красивый",
+            "feedbackByLocale": {
+              "ru": "Ciudad женского рода: bonita.",
+              "uk": "Ciudad жіночого роду: bonita."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — город красивый",
+            "feedbackByLocale": {
+              "ru": "Город один: bonita.",
+              "uk": "Місто одне: bonita."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — похвалите город",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i10:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i10:r3",
+          "text": "ciudad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i10:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i10:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — похвалите город",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La ciudad es bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — похвалите город",
+          "uk": "Зберіть фразу — похваліть місто"
+        },
+        "orderedTokens": [
+          "La",
+          "ciudad",
+          "es",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — похвалите город",
+            "feedbackByLocale": {
+              "ru": "ciudad женского рода.",
+              "uk": "ciudad жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i11:r1",
+          "text": "Плитки: universidad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i11:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i11:audio",
+          "transcript": "Es una universidad."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una universidad.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "universidad"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит una.",
+              "uk": "у записі звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — город красивый",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — город красивый",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i12:audio",
+          "transcript": "La ciudad es bonita."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La ciudad es bonita.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите город интересным",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-20:i13:r1",
+          "text": "Плитки: interesante"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i13:r3",
+          "text": "ciudad"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i13:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-20:i13:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите город интересным",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La ciudad es interesante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите город интересным",
+          "uk": "Зберіть фразу — назвіть місто цікавим"
+        },
+        "orderedTokens": [
+          "La",
+          "ciudad",
+          "es",
+          "interesante"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-20:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите город интересным",
+            "feedbackByLocale": {
+              "ru": "ciudad женского рода; знакомое interesante не меняется по роду.",
+              "uk": "ciudad жіночого роду; знайоме interesante не змінюється за родом."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-20:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите университет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите университет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-20:i14:audio",
+          "transcript": "Es una universidad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una universidad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "10e7ad44a40c067ccdb901c2c7d6ab275162e092e31eaf145f4fd0b01444b9c9"
+}

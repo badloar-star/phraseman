@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать мужской артикль у слов día и problema, хотя они заканчиваются на -a.",
+    "uk": "вибирати чоловічий артикль у слів día і problema, хоча вони закінчуються на -a."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Трудный день",
+        "uk": "Важкий день"
+      },
+      "bodyByLocale": {
+        "ru": "На один день пришлось много дел. `Día` — «день», слово мужского рода: el día. Конечная -a здесь не означает женский род. Скажите `El día es difícil` — «День трудный». Соберите `el día` + `es` + `difícil`: сначала о чём говорите, затем es и описание. Запоминайте día вместе с el.",
+        "uk": "На один день припало багато справ. `Día` — «день», слово чоловічого роду: el día. Кінцева -a тут не означає жіночий рід. Скажіть `El día es difícil` — «День важкий». Зберіть `el día` + `es` + `difícil`: спочатку про що говорите, потім es і опис. Запам'ятовуйте día разом з el."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что день трудный.",
+          "uk": "Скажіть, що день важкий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-17:intro1:r1",
+              "text": "El día es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro1:r2",
+              "text": "La día es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro1:r3",
+              "text": "El día son difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-17:intro1:r1",
+              "text": "El día es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro1:r2",
+              "text": "La día es difícil."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro1:r3",
+              "text": "El día son difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что день трудный.",
+          "uk": "Скажіть, що день важкий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проблема в плане",
+        "uk": "Проблема в плані"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает, что два важных дела назначены на одно время. `Problema` — «проблема», по-испански тоже мужского рода: el problema. Признайте затруднение: `Es un problema` — «Это проблема». Соберите `es` + `un` + `problema`. Выберите un по испанскому роду, а не по русскому слову «проблема».",
+        "uk": "Друг помічає, що дві важливі справи призначено на один час. `Problema` — «проблема», іспанською теж чоловічого роду: el problema. Визнайте труднощі: `Es un problema` — «Це проблема». Зберіть `es` + `un` + `problema`. Виберіть un за іспанським родом, а не за українським словом «проблема»."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите это проблемой.",
+          "uk": "Назвіть це проблемою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-17:intro2:r1",
+              "text": "Es un problema."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro2:r2",
+              "text": "Es una problema."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro2:r3",
+              "text": "Son un problema."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-17:intro2:r1",
+              "text": "Es un problema."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro2:r2",
+              "text": "Es una problema."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro2:r3",
+              "text": "Son un problema."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите это проблемой.",
+          "uk": "Назвіть це проблемою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проблема несложная",
+        "uk": "Проблема нескладна"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите, что одно дело можно перенести. Успокойте друга: `El problema es sencillo` — «Проблема несложная». Соберите `el problema` + `es` + `sencillo`. Выберите мужские el и sencillo: испанское problema мужского рода. Это свойство слова, а не правило для всех слов на -a: знакомая caja остаётся женской.",
+        "uk": "Ви бачите, що одну справу можна перенести. Заспокойте друга: `El problema es sencillo` — «Проблема нескладна». Зберіть `el problema` + `es` + `sencillo`. Виберіть чоловічі el і sencillo: іспанське problema чоловічого роду. Це властивість слова, а не правило для всіх слів на -a: знайома caja залишається жіночою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что проблема несложная.",
+          "uk": "Скажіть, що проблема нескладна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-17:intro3:r1",
+              "text": "El problema es sencillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro3:r2",
+              "text": "La problema es sencilla."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro3:r3",
+              "text": "El problema es sencilla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-17:intro3:r1",
+              "text": "El problema es sencillo."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro3:r2",
+              "text": "La problema es sencilla."
+            },
+            {
+              "responseId": "es:lesson-02:session-17:intro3:r3",
+              "text": "El problema es sencilla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что проблема несложная.",
+          "uk": "Скажіть, що проблема нескладна."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2097a783fb477c5932d76e812bd4a06ea27424fcfd30d6cd5f0df6a063c71570"
+}

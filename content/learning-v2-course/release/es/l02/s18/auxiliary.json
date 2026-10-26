@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-18:intro1:r2": {
+          "ru": "У слова foto женский род, нужен una.",
+          "uk": "У слова foto жіночий рід, потрібна una."
+        },
+        "es:lesson-02:session-18:intro1:r3": {
+          "ru": "Одна фотография требует es.",
+          "uk": "Одна фотографія потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-18:intro2:r2": {
+          "ru": "Для mano нужна una.",
+          "uk": "Для mano потрібна una."
+        },
+        "es:lesson-02:session-18:intro2:r3": {
+          "ru": "Видна одна рука: es.",
+          "uk": "Видно одну руку: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-18:intro3:r2": {
+          "ru": "Foto женского рода: la foto es bonita.",
+          "uk": "Foto жіночого роду: la foto es bonita."
+        },
+        "es:lesson-02:session-18:intro3:r3": {
+          "ru": "К женскому foto подходит bonita.",
+          "uk": "До жіночого foto підходить bonita."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0254feaf33a059a2f4eb69a30b44b5994d61a618ab22cfc2376d9c9944ca1237"
+}

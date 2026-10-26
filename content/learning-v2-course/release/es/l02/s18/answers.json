@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-18:i01",
+    "correctText": "foto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i02",
+    "correctText": "foto",
+    "correctResponseId": "es:lesson-02:session-18:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i03",
+    "correctText": "mano",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i04",
+    "correctText": "mano",
+    "correctResponseId": "es:lesson-02:session-18:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-18:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i06",
+    "correctText": "Es una foto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i07",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-18:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i08",
+    "correctText": "Es una mano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i09",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-02:session-18:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i10",
+    "correctText": "La foto es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i11",
+    "correctText": "Es una mano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i12",
+    "correctText": "Es una foto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i13",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-18:i14",
+    "correctText": "La foto es bonita.",
+    "correctResponseId": null
+  }
+]

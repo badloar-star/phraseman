@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-17",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-17:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-17:intro1:r2": {
+          "ru": "Для día нужен el, несмотря на конечную -a.",
+          "uk": "Для día потрібен el, попри кінцеву -a."
+        },
+        "es:lesson-02:session-17:intro1:r3": {
+          "ru": "Один день требует es.",
+          "uk": "Один день потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-17:intro2:r2": {
+          "ru": "Для problema нужен un.",
+          "uk": "Для problema потрібен un."
+        },
+        "es:lesson-02:session-17:intro2:r3": {
+          "ru": "Здесь одна проблема: es.",
+          "uk": "Тут одна проблема: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-17:intro3:r2": {
+          "ru": "Испанское problema мужского рода.",
+          "uk": "Іспанське problema чоловічого роду."
+        },
+        "es:lesson-02:session-17:intro3:r3": {
+          "ru": "К мужскому problema подходит sencillo.",
+          "uk": "До чоловічого problema підходить sencillo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ff977f817096da6f50d894e3e68b1848396071bd7357a04d6ff3eb177b886ec6"
+}

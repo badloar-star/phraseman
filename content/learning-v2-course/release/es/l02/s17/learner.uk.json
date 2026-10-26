@@ -1,0 +1,812 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-17",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — día",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — día",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i01:audio",
+          "transcript": "día"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-17:i01:r1",
+            "targetText": "día",
+            "meaningByLocale": {
+              "ru": "день. Мужской род: el día. 🔊 *día*",
+              "uk": "день. Чоловічий рід: el día. 🔊 *día*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "día",
+          "definitionByLocale": {
+            "ru": "день. Мужской род: el día. 🔊 *día*",
+            "uk": "день. Чоловічий рід: el día. 🔊 *día*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i02:r1",
+          "text": "día"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i02:r2",
+          "text": "silla"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i02:audio",
+          "transcript": "día"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-17:i02:r1",
+            "targetText": "día",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i02:r2",
+            "targetText": "silla",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит día — день.",
+              "uk": "Звучить día — день."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — problema",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — problema",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i03:audio",
+          "transcript": "problema"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-17:i03:r1",
+            "targetText": "problema",
+            "meaningByLocale": {
+              "ru": "проблема. В испанском мужской род: el problema. 🔊 *problema*",
+              "uk": "проблема. В іспанській чоловічий рід: el problema. 🔊 *problema*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "problema",
+          "definitionByLocale": {
+            "ru": "проблема. В испанском мужской род: el problema. 🔊 *problema*",
+            "uk": "проблема. В іспанській чоловічий рід: el problema. 🔊 *problema*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i04:r1",
+          "text": "problema"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i04:r2",
+          "text": "plato"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i04:audio",
+          "transcript": "problema"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-17:i04:r1",
+            "targetText": "problema",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i04:r2",
+            "targetText": "plato",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит problema — проблема.",
+              "uk": "Звучить problema — проблема."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — день важкий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i05:r1",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i05:r2",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i05:r3",
+          "text": "Las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — день важкий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — день трудный",
+          "uk": "Вставте слово — день важкий"
+        },
+        "gappedTargetPhrase": "___ día es difícil.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-17:i05:r1",
+            "text": "El"
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i05:r2",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i05:r3",
+            "text": "Las"
+          }
+        ],
+        "testedDimension": "Вставте слово — день важкий",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — день важкий",
+            "feedbackByLocale": {
+              "ru": "Día мужского рода: el.",
+              "uk": "Día чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — день важкий",
+            "feedbackByLocale": {
+              "ru": "Здесь один день мужского рода: el.",
+              "uk": "Тут один день чоловічого роду: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — день важкий",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i06:r1",
+          "text": "Плитки: difícil"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i06:r3",
+          "text": "día"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i06:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i06:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — день важкий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El día es difícil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — день трудный",
+          "uk": "Зберіть фразу — день важкий"
+        },
+        "orderedTokens": [
+          "El",
+          "día",
+          "es",
+          "difícil"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — день важкий",
+            "feedbackByLocale": {
+              "ru": "día мужского рода.",
+              "uk": "día чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це проблема",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i07:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i07:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це проблема",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это проблема",
+          "uk": "Вставте слово — це проблема"
+        },
+        "gappedTargetPhrase": "Es ___ problema.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-17:i07:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i07:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i07:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це проблема",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це проблема",
+            "feedbackByLocale": {
+              "ru": "Problema мужского рода: un.",
+              "uk": "Problema чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це проблема",
+            "feedbackByLocale": {
+              "ru": "Здесь одна проблема мужского рода: un.",
+              "uk": "Тут одна проблема чоловічого роду: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це проблема",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i08:r1",
+          "text": "Плитки: problema"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це проблема",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un problema.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это проблема",
+          "uk": "Зберіть фразу — це проблема"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "problema"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це проблема",
+            "feedbackByLocale": {
+              "ru": "problema мужского рода.",
+              "uk": "problema чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — проблема нескладна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i09:r1",
+          "text": "sencillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i09:r2",
+          "text": "sencilla"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i09:r3",
+          "text": "sencillas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — проблема нескладна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — проблема несложная",
+          "uk": "Вставте слово — проблема нескладна"
+        },
+        "gappedTargetPhrase": "El problema es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-17:i09:r1",
+            "text": "sencillo"
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i09:r2",
+            "text": "sencilla"
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i09:r3",
+            "text": "sencillas"
+          }
+        ],
+        "testedDimension": "Вставте слово — проблема нескладна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — проблема нескладна",
+            "feedbackByLocale": {
+              "ru": "К мужскому problema подходит sencillo.",
+              "uk": "До чоловічого problema підходить sencillo."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — проблема нескладна",
+            "feedbackByLocale": {
+              "ru": "Здесь одна проблема мужского рода: sencillo.",
+              "uk": "Тут одна проблема чоловічого роду: sencillo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — заспокойте друга: проблема нескладна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i10:r1",
+          "text": "Плитки: sencillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i10:r3",
+          "text": "problema"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i10:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — заспокойте друга: проблема нескладна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El problema es sencillo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — успокойте друга: проблема несложная",
+          "uk": "Зберіть фразу — заспокойте друга: проблема нескладна"
+        },
+        "orderedTokens": [
+          "El",
+          "problema",
+          "es",
+          "sencillo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — заспокойте друга: проблема нескладна",
+            "feedbackByLocale": {
+              "ru": "problema мужского рода.",
+              "uk": "problema чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i11:r1",
+          "text": "Плитки: problema"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i11:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i11:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i11:audio",
+          "transcript": "Es un problema."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es un problema.",
+        "orderedTokens": [
+          "Es",
+          "un",
+          "problema"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит un.",
+              "uk": "у записі звучить un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — день важкий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — день важкий",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i12:audio",
+          "transcript": "El día es difícil."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El día es difícil.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — після уточнення: це не проблема",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-17:i13:r1",
+          "text": "Плитки: problema"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i13:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i13:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-17:i13:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — після уточнення: це не проблема",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es un problema.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — после уточнения: это не проблема",
+          "uk": "Зберіть фразу — після уточнення: це не проблема"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "problema"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-17:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — після уточнення: це не проблема",
+            "feedbackByLocale": {
+              "ru": "problema мужского рода.",
+              "uk": "problema чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-17:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — проблема нескладна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — проблема нескладна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-17:i14:audio",
+          "transcript": "El problema es sencillo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El problema es sencillo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "11aee5e0f08de1a5f1d6972b444a78b1ce3be03a2603bd4f53bbac5c83202a24"
+}

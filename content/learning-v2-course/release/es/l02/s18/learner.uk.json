@@ -1,0 +1,802 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-18",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — foto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — foto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i01:audio",
+          "transcript": "foto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-18:i01:r1",
+            "targetText": "foto",
+            "meaningByLocale": {
+              "ru": "фотография. Женский род: la foto. 🔊 *foto*",
+              "uk": "фотографія. Жіночий рід: la foto. 🔊 *foto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foto",
+          "definitionByLocale": {
+            "ru": "фотография. Женский род: la foto. 🔊 *foto*",
+            "uk": "фотографія. Жіночий рід: la foto. 🔊 *foto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i02:r1",
+          "text": "foto"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i02:r2",
+          "text": "gato"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i02:audio",
+          "transcript": "foto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-18:i02:r1",
+            "targetText": "foto",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i02:r2",
+            "targetText": "gato",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит foto — фотография.",
+              "uk": "Звучить foto — фотографія."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mano",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mano",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i03:audio",
+          "transcript": "mano"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-18:i03:r1",
+            "targetText": "mano",
+            "meaningByLocale": {
+              "ru": "рука, кисть руки. Женский род: la mano. 🔊 *mano*",
+              "uk": "рука, кисть руки. Жіночий рід: la mano. 🔊 *mano*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mano",
+          "definitionByLocale": {
+            "ru": "рука, кисть руки. Женский род: la mano. 🔊 *mano*",
+            "uk": "рука, кисть руки. Жіночий рід: la mano. 🔊 *mano*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i04:r1",
+          "text": "mano"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i04:r2",
+          "text": "malo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i04:audio",
+          "transcript": "mano"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-18:i04:r1",
+            "targetText": "mano",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i04:r2",
+            "targetText": "malo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mano с n.",
+              "uk": "Звучить mano з n."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це фотографія",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це фотографія",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это фотография",
+          "uk": "Вставте слово — це фотографія"
+        },
+        "gappedTargetPhrase": "Es ___ foto.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-18:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це фотографія",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це фотографія",
+            "feedbackByLocale": {
+              "ru": "Foto женского рода: una.",
+              "uk": "Foto жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це фотографія",
+            "feedbackByLocale": {
+              "ru": "Здесь одна фотография женского рода: una.",
+              "uk": "Тут одна фотографія жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть зображення фотографією",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i06:r1",
+          "text": "Плитки: foto"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть зображення фотографією",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una foto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите изображение фотографией",
+          "uk": "Зберіть фразу — назвіть зображення фотографією"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "foto"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть зображення фотографією",
+            "feedbackByLocale": {
+              "ru": "foto женского рода.",
+              "uk": "foto жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це кисть руки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i07:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i07:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це кисть руки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это кисть руки",
+          "uk": "Вставте слово — це кисть руки"
+        },
+        "gappedTargetPhrase": "Es ___ mano.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-18:i07:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i07:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i07:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це кисть руки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це кисть руки",
+            "feedbackByLocale": {
+              "ru": "Mano женского рода: una.",
+              "uk": "Mano жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це кисть руки",
+            "feedbackByLocale": {
+              "ru": "Рука одна: una.",
+              "uk": "Рука одна: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кисть руки в кадрі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i08:r1",
+          "text": "Плитки: mano"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i08:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кисть руки в кадрі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una mano.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите кисть руки в кадре",
+          "uk": "Зберіть фразу — назвіть кисть руки в кадрі"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "mano"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кисть руки в кадрі",
+            "feedbackByLocale": {
+              "ru": "mano женского рода.",
+              "uk": "mano жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — фотографія гарна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i09:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i09:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i09:r3",
+          "text": "bonitas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — фотографія гарна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — фотография красивая",
+          "uk": "Вставте слово — фотографія гарна"
+        },
+        "gappedTargetPhrase": "La foto es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-18:i09:r1",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i09:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i09:r3",
+            "text": "bonitas"
+          }
+        ],
+        "testedDimension": "Вставте слово — фотографія гарна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — фотографія гарна",
+            "feedbackByLocale": {
+              "ru": "Foto женского рода: bonita.",
+              "uk": "Foto жіночого роду: bonita."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — фотографія гарна",
+            "feedbackByLocale": {
+              "ru": "Фотография одна: bonita.",
+              "uk": "Фотографія одна: bonita."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — похваліть фотографію",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i10:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i10:r3",
+          "text": "foto"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i10:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i10:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — похваліть фотографію",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La foto es bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — похвалите фотографию",
+          "uk": "Зберіть фразу — похваліть фотографію"
+        },
+        "orderedTokens": [
+          "La",
+          "foto",
+          "es",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — похваліть фотографію",
+            "feedbackByLocale": {
+              "ru": "foto женского рода.",
+              "uk": "foto жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i11:r1",
+          "text": "Плитки: mano"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i11:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i11:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i11:audio",
+          "transcript": "Es una mano."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una mano.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "mano"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит una.",
+              "uk": "у записі звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть зображення фотографією",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть зображення фотографією",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i12:audio",
+          "transcript": "Es una foto."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una foto.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запитайте, що це",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-18:i13:r1",
+          "text": "Плитки: esto?"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i13:r3",
+          "text": "¿qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-18:i13:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запитайте, що це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué es esto?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, что это",
+          "uk": "Зберіть фразу — запитайте, що це"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "es",
+          "esto"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-18:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запитайте, що це",
+            "feedbackByLocale": {
+              "ru": "со знакомым esto используйте es.",
+              "uk": "зі знайомим esto використовуйте es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-18:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — фотографія гарна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — фотографія гарна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-18:i14:audio",
+          "transcript": "La foto es bonita."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La foto es bonita.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b7576299b39c0ba6e051d38c1d3548c0e8f17971a8bc3b2c8da9c796460b3810"
+}

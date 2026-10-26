@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-17:i01",
+    "correctText": "día",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i02",
+    "correctText": "día",
+    "correctResponseId": "es:lesson-02:session-17:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i03",
+    "correctText": "problema",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i04",
+    "correctText": "problema",
+    "correctResponseId": "es:lesson-02:session-17:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i05",
+    "correctText": "El",
+    "correctResponseId": "es:lesson-02:session-17:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i06",
+    "correctText": "El día es difícil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i07",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-17:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i08",
+    "correctText": "Es un problema.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i09",
+    "correctText": "sencillo",
+    "correctResponseId": "es:lesson-02:session-17:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i10",
+    "correctText": "El problema es sencillo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i11",
+    "correctText": "Es un problema.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i12",
+    "correctText": "El día es difícil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i13",
+    "correctText": "No es un problema.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-17:i14",
+    "correctText": "El problema es sencillo.",
+    "correctResponseId": null
+  }
+]

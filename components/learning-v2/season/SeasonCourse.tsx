@@ -21,7 +21,7 @@ import { useLv2Glass } from '../LearningV2Glass';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
-import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
+import { SEASON_CHAPTER_EXAM_ENABLED, SEASON_EPISODE_WINDOW_ENABLED } from './season_flags';
 import type { SeasonCard, SeasonEpisodeCard } from './season_course_model';
 import { seasonEpisodeCtaV1 } from './season_episode_cta';
 import { seasonExamCaption, type SeasonExamStatus } from './season_exam_caption';
@@ -178,8 +178,14 @@ function SeasonCourse(props: SeasonCourseProps) {
     episodeModalLog('info', 'tap_on_card', JSON.stringify({ index, card: card ? card.id : null, kind: card ? card.kind : null, state: card ? card.state : null, selected, alreadyOpen: expanded, sinceSettleMs: lastSettleAt.current === 0 ? null : now - lastSettleAt.current, sinceLastOpenMs: lastOpenAt.current === 0 ? null : now - lastOpenAt.current, branch: card && card.state === 'locked' ? 'locked_card_shake_no_window' : expanded === index ? 'repeat_tap_window_already_open' : 'open_window' }), true); // guard-ok: ветка и значения, которые её решили
     lastOpenAt.current = now;
     if (card && card.state === 'locked') { shakeLocked(index, 'carousel'); return; }
+    // зачем (СЛОВО ВЛАДЕЛЬЦА 26.10: окно эпизода «ВООБЩЕ НЕ ДОЛЖНО СУЩЕСТВОВАТЬ»): тап по эпизоду сразу запускает занятие; окно — только у экзамена
+    if (card && card.kind !== 'exam' && !SEASON_EPISODE_WINDOW_ENABLED) {
+      console.log('[EPISODE-OPEN]', JSON.stringify({ from: 'season_carousel', lesson: card.lessonOrdinal, session: card.sessionOrdinal, state: card.state, to: 'onPrimary → запуск занятия, без окна' })); // guard-ok: откуда тап, какой эпизод, куда ведём
+      props.onPrimary(card);
+      return;
+    }
     setExpanded(index);
-  }, [deck.cards, expanded, selected, shakeLocked]);
+  }, [deck.cards, expanded, props, selected, shakeLocked]);
 
   // зачем (Сверка, Android: «Назад» при открытом окне эпизода уводило в classic lessons_list; координатор 25.10): открыто окно — «Назад» закрывает окно и больше ничего.
   // Подписка живёт только пока окно открыто (после подписки Сезона на «Назад» — вызывается первой) и возвращает true.

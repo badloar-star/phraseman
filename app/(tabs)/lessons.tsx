@@ -3,7 +3,7 @@ import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/lea
 import LearningV2ChaptersCourse from "../../components/learning-v2/LearningV2ChaptersCourse";
 import { useTabTopBleedInset } from "../../components/tab_top_bleed";
 import SeasonCourseConnected from "../../components/learning-v2/season/SeasonCourseConnected";
-import { SEASON_SCENE_V2_ENABLED } from "../../components/learning-v2/season/season_flags";
+import { LEARNING_V2_START_SHEET_ENABLED, SEASON_SCENE_V2_ENABLED } from "../../components/learning-v2/season/season_flags";
 // зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»): под флагом вместо старой карты глав — «Обучение, способ 2» (Сезон + карусель) на тех же данных и пропсах; выпуск — старая карта
 const LessonsCourseSurface: typeof LearningV2ChaptersCourse = SEASON_SCENE_V2_ENABLED ? (SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse) : LearningV2ChaptersCourse;
 import React, {
@@ -3446,7 +3446,7 @@ export default function LessonsTab({
     const { sessionId, prepared } = launchStart;
     // зачем (макет «Готовим занятие…»): шторка не закрывается на тапе — на кнопке виден ход, если занятие собирается дольше 0,35 с; выход (180 мс) стартует,
     // когда всё готово. Обычно заготовка уже есть и закрытие начинается сразу, как раньше.
-    const exitSheet = () => new Promise<void>((resolve) => {
+    const exitSheet = () => !LEARNING_V2_START_SHEET_ENABLED ? Promise.resolve() : new Promise<void>((resolve) => {
       setLearningV2SheetExit((n) => n + 1);
       setTimeout(
         resolve,
@@ -3585,6 +3585,16 @@ export default function LessonsTab({
     showLearningV2DenialHint,
     studyTarget,
   ]);
+  // зачем (СЛОВО ВЛАДЕЛЬЦА 26.10: окно «Чему научишься» — «убрать ЦЕЛИКОМ»; тап по плитке эпизода → сразу занятие): шторка не рисуется,
+  // выбранное тапом занятие запускается само обычным стартом — та же подготовка и тот же переход, что у кнопки «Начать». Один запуск на тап (traceId).
+  const learningV2AutoLaunchedTraceRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (LEARNING_V2_START_SHEET_ENABLED || !selectedLearningV2Session) return;
+    if (learningV2AutoLaunchedTraceRef.current === selectedLearningV2Session.traceId) return;
+    learningV2AutoLaunchedTraceRef.current = selectedLearningV2Session.traceId;
+    console.log("[EPISODE-OPEN]", JSON.stringify({ from: "lessons_tab", lesson: selectedLearningV2Session.lessonOrdinal, session: selectedLearningV2Session.sessionOrdinal, state: selectedLearningV2Session.state, to: "запуск занятия без шторки" })); // guard-ok: какой эпизод и куда ведём
+    launchSelectedLearningV2Session(false);
+  }, [launchSelectedLearningV2Session, selectedLearningV2Session]);
   // Витрина звёзд 0–3 за пройденные сессии: подписка на локальное хранилище,
   // без авторитета над прогрессом и без сети.
   const [learningV2StarResults, setLearningV2StarResults] =
@@ -5932,7 +5942,8 @@ export default function LessonsTab({
       <LearningV2SessionOutcomeSheet
         lessonOrdinal={selectedLearningV2Session?.lessonOrdinal ?? 1}
         sessionOrdinal={selectedLearningV2Session?.sessionOrdinal ?? 1}
-        visible={selectedLearningV2Session !== null}
+        // зачем (СЛОВО ВЛАДЕЛЬЦА 26.10): окно «Чему научишься» не показывается — тап сразу запускает занятие (автозапуск выше)
+        visible={LEARNING_V2_START_SHEET_ENABLED && selectedLearningV2Session !== null}
         onMounted={handleLearningV2SessionModalMounted}
         stayOpenWhilePreparing
         exitSignal={learningV2SheetExit}

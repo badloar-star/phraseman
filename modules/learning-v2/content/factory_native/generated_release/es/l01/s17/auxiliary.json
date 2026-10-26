@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-17",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-17:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-17:intro1:r2": {
+          "ru": "Soy относится к «я», а здесь «он».",
+          "uk": "Soy стосується «я», а тут «він»."
+        },
+        "es:lesson-01:session-17:intro1:r3": {
+          "ru": "Eres относится к «ты», а здесь «он».",
+          "uk": "Eres стосується «ти», а тут «він»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-17:intro2:r2": {
+          "ru": "Él означает «он», а речь о ведущей.",
+          "uk": "Él означає «він», а йдеться про ведучу."
+        },
+        "es:lesson-01:session-17:intro2:r3": {
+          "ru": "После ella нужна форма es, не soy.",
+          "uk": "Після ella потрібна форма es, не soy."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-17:intro3:r2": {
+          "ru": "Это характеристика ведущего, а не оценка правила.",
+          "uk": "Це характеристика ведучого, а не оцінка правила."
+        },
+        "es:lesson-01:session-17:intro3:r3": {
+          "ru": "Это означает «Это трудно», противоположную оценку.",
+          "uk": "Це означає «Це важко», протилежну оцінку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ebd80b88624450e288054d2f25d8e6572af533cb33c0e0f6cc673de9bc8f09f0"
+}

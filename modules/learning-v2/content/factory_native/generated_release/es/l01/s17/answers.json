@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-17:i01",
+    "correctText": "él",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i02",
+    "correctText": "он",
+    "correctResponseId": "es:lesson-01:session-17:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i03",
+    "correctText": "paciente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i04",
+    "correctText": "терпеливый",
+    "correctResponseId": "es:lesson-01:session-17:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i05",
+    "correctText": "Él es paciente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i06",
+    "correctText": "ella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i07",
+    "correctText": "она",
+    "correctResponseId": "es:lesson-01:session-17:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i08",
+    "correctText": "amable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i09",
+    "correctText": "доброжелательный",
+    "correctResponseId": "es:lesson-01:session-17:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i10",
+    "correctText": "Ella es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i11",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-17:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i12",
+    "correctText": "Él es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i13",
+    "correctText": "Es difícil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i14",
+    "correctText": "Es fácil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i15",
+    "correctText": "Она терпеливая",
+    "correctResponseId": "es:lesson-01:session-17:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-17:i16",
+    "correctText": "Ella es tranquila.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "назвать другого человека с él или ella и описать его с es.",
+    "uk": "назвати іншу людину з él або ella й описати її з es."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Он терпеливый",
+        "uk": "Він терплячий"
+      },
+      "bodyByLocale": {
+        "ru": "Ведущий спокойно объясняет правило уже третий раз. Скажите другу: `Él es paciente` — «Он терпеливый». `Él` означает «он», `paciente` — «терпеливый». Чтобы описать другого мужчину, соберите `él` + `es` + качество. Знакомое `es` подходит не только для оценки «это легко», но и для рассказа о другом человеке. В слове `él` пишем знак над é.",
+        "uk": "Ведучий спокійно пояснює правило вже втретє. Скажіть другові: `Él es paciente` — «Він терплячий». `Él` означає «він», `paciente` — «терплячий». Щоб описати іншого чоловіка, складіть `él` + `es` + риса. Знайоме `es` підходить не лише для оцінки «це легко», а й для розповіді про іншу людину. У слові `él` пишемо знак над é."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о ведущем: «Он терпеливый».",
+          "uk": "Скажіть про ведучого: «Він терплячий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-17:intro1:r1",
+              "text": "Él es paciente."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro1:r2",
+              "text": "Él soy paciente."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro1:r3",
+              "text": "Él eres paciente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-17:intro1:r1",
+              "text": "Él es paciente."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro1:r2",
+              "text": "Él soy paciente."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro1:r3",
+              "text": "Él eres paciente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о ведущем: «Он терпеливый».",
+          "uk": "Скажіть про ведучого: «Він терплячий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Она доброжелательная",
+        "uk": "Вона доброзичлива"
+      },
+      "bodyByLocale": {
+        "ru": "Ведущая приветливо помогает вашему другу. Скажите: `Ella es amable` — «Она доброжелательная». `Ella` — «она», `amable` — «доброжелательный, любезный». Сборка та же: `ella` + `es` + качество. У `amable` окончание не меняется по роду: о мужчине — `Él es amable`. Так же ведёт себя `paciente`: `Ella es paciente` — «Она терпеливая».",
+        "uk": "Ведуча привітно допомагає вашому другові. Скажіть: `Ella es amable` — «Вона доброзичлива». `Ella` — «вона», `amable` — «доброзичливий, люб'язний». Побудова та сама: `ella` + `es` + риса. У `amable` закінчення не змінюється за родом: про чоловіка — `Él es amable`. Так само поводиться `paciente`: `Ella es paciente` — «Вона терпляча»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о ведущей: «Она доброжелательная».",
+          "uk": "Скажіть про ведучу: «Вона доброзичлива»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-17:intro2:r1",
+              "text": "Ella es amable."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro2:r2",
+              "text": "Él es amable."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro2:r3",
+              "text": "Ella soy amable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-17:intro2:r1",
+              "text": "Ella es amable."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro2:r2",
+              "text": "Él es amable."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro2:r3",
+              "text": "Ella soy amable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о ведущей: «Она доброжелательная».",
+          "uk": "Скажіть про ведучу: «Вона доброзичлива»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "А сама игра — лёгкая",
+        "uk": "А сама гра — легка"
+      },
+      "bodyByLocale": {
+        "ru": "Ведущие показали первый ход, и правило оказалось простым. Теперь оцениваете не человека, а то, что только что объяснили: `Es fácil` — «Это легко». Не добавляйте `él` или `ella`: в этой реплике никто из людей не описывается. Для этой оценки достаточно знакомой сборки `es` + `fácil`; `él` или `ella` здесь добавлять не нужно. Если правило сложное, скажите `Es difícil`.",
+        "uk": "Ведучі показали перший хід, і правило виявилося простим. Тепер оцінюєте не людину, а те, що щойно пояснили: `Es fácil` — «Це легко». Не додавайте `él` або `ella`: у цій репліці нікого з людей не описуємо. Для цієї оцінки достатньо знайомої побудови `es` + `fácil`; `él` або `ella` тут додавати не потрібно. Якщо правило складне, скажіть `Es difícil`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Оцените объяснённое правило: «Это легко».",
+          "uk": "Оцініть пояснене правило: «Це легко»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-17:intro3:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro3:r2",
+              "text": "Él es paciente."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro3:r3",
+              "text": "Es difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-17:intro3:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro3:r2",
+              "text": "Él es paciente."
+            },
+            {
+              "responseId": "es:lesson-01:session-17:intro3:r3",
+              "text": "Es difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените объяснённое правило: «Это легко».",
+          "uk": "Оцініть пояснене правило: «Це легко»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "550c36010305d51dfa39e73d810625168fbbfc8b9837f7e0141e308e5bd222d2"
+}

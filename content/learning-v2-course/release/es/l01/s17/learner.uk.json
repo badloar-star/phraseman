@@ -1,0 +1,871 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-17",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — él",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — él",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i01:audio",
+          "transcript": "él"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i01:r1",
+            "targetText": "él",
+            "meaningByLocale": {
+              "ru": "он. Называет мужчину, о котором вы говорите. Знак над é обязателен. 🔊 *él*",
+              "uk": "він. Називає чоловіка, про якого ви говорите. Знак над é обов'язковий. 🔊 *él*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "él",
+          "definitionByLocale": {
+            "ru": "он. Называет мужчину, о котором вы говорите. Знак над é обязателен. 🔊 *él*",
+            "uk": "він. Називає чоловіка, про якого ви говорите. Знак над é обов'язковий. 🔊 *él*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i02:r1",
+          "text": "він"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i02:r2",
+          "text": "ти"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i02:audio",
+          "transcript": "él"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i02:r1",
+            "targetText": "він",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i02:r2",
+            "targetText": "ти",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "«Ты» — tú, здесь звучит él.",
+              "uk": "«Ти» — tú, тут звучить él."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paciente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paciente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i03:audio",
+          "transcript": "paciente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i03:r1",
+            "targetText": "paciente",
+            "meaningByLocale": {
+              "ru": "терпеливый, терпеливая. Может спокойно ждать или объяснять без раздражения. 🔊 *paciente*",
+              "uk": "терплячий, терпляча. Може спокійно чекати або пояснювати без роздратування. 🔊 *paciente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paciente",
+          "definitionByLocale": {
+            "ru": "терпеливый, терпеливая. Может спокойно ждать или объяснять без раздражения. 🔊 *paciente*",
+            "uk": "терплячий, терпляча. Може спокійно чекати або пояснювати без роздратування. 🔊 *paciente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i04:r1",
+          "text": "терплячий"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i04:r2",
+          "text": "рішучий"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i04:audio",
+          "transcript": "paciente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i04:r1",
+            "targetText": "терплячий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i04:r2",
+            "targetText": "рішучий",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это decidido, а paciente описывает терпение.",
+              "uk": "Це decidido, а paciente описує терпіння."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про ведучого «Він терплячий»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i05:r1",
+          "text": "Плитки: paciente"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i05:r2",
+          "text": "él"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i05:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про ведучого «Він терплячий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Él es paciente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о ведущем «Он терпеливый»",
+          "uk": "Складіть фразу — скажіть про ведучого «Він терплячий»"
+        },
+        "orderedTokens": [
+          "Él",
+          "es",
+          "paciente"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про ведучого «Він терплячий»",
+            "feedbackByLocale": {
+              "ru": "описываете не себя, а другого мужчину.",
+              "uk": "описуєте не себе, а іншого чоловіка."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ella",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ella",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i06:audio",
+          "transcript": "ella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i06:r1",
+            "targetText": "ella",
+            "meaningByLocale": {
+              "ru": "она. Называет женщину, о которой вы говорите. 🔊 *ella*",
+              "uk": "вона. Називає жінку, про яку ви говорите. 🔊 *ella*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ella",
+          "definitionByLocale": {
+            "ru": "она. Называет женщину, о которой вы говорите. 🔊 *ella*",
+            "uk": "вона. Називає жінку, про яку ви говорите. 🔊 *ella*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i07:r1",
+          "text": "вона"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i07:r2",
+          "text": "він"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i07:audio",
+          "transcript": "ella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i07:r1",
+            "targetText": "вона",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i07:r2",
+            "targetText": "він",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "«Он» — él, здесь звучит ella.",
+              "uk": "«Він» — él, тут звучить ella."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — amable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — amable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i08:audio",
+          "transcript": "amable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i08:r1",
+            "targetText": "amable",
+            "meaningByLocale": {
+              "ru": "доброжелательный, любезный. Для женщины та же форма: amable. 🔊 *amable*",
+              "uk": "доброзичливий, люб'язний. Для жінки та сама форма: amable. 🔊 *amable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "amable",
+          "definitionByLocale": {
+            "ru": "доброжелательный, любезный. Для женщины та же форма: amable. 🔊 *amable*",
+            "uk": "доброзичливий, люб'язний. Для жінки та сама форма: amable. 🔊 *amable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i09:r1",
+          "text": "доброзичливий"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i09:r2",
+          "text": "впертий"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i09:audio",
+          "transcript": "amable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i09:r1",
+            "targetText": "доброзичливий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i09:r2",
+            "targetText": "впертий",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это terco, а amable описывает приветливое отношение.",
+              "uk": "Це terco, а amable описує привітне ставлення."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про ведучу «Вона доброзичлива»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i10:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i10:r2",
+          "text": "amable"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i10:r3",
+          "text": "ella"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i10:r4",
+          "text": "él."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про ведучу «Вона доброзичлива»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ella es amable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о ведущей «Она доброжелательная»",
+          "uk": "Складіть фразу — скажіть про ведучу «Вона доброзичлива»"
+        },
+        "orderedTokens": [
+          "Ella",
+          "es",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "él"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про ведучу «Вона доброзичлива»",
+            "feedbackByLocale": {
+              "ru": "говорите о женщине.",
+              "uk": "говорите про жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть про ведучу «Вона терпляча»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i11:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i11:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i11:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть про ведучу «Вона терпляча»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о ведущей «Она терпеливая»",
+          "uk": "Вставте слово — скажіть про ведучу «Вона терпляча»"
+        },
+        "gappedTargetPhrase": "Ella ___ paciente.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-17:i11:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i11:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i11:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть про ведучу «Вона терпляча»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про ведучу «Вона терпляча»",
+            "feedbackByLocale": {
+              "ru": "Так обращаются к собеседнику, а вы рассказываете о ведущей.",
+              "uk": "Так звертаються до співрозмовника, а ви розповідаєте про ведучу."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про ведучу «Вона терпляча»",
+            "feedbackByLocale": {
+              "ru": "Это форма для «я», а здесь ella.",
+              "uk": "Це форма для «я», а тут ella."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — розкажіть другові про ведучого",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — розкажіть другові про ведучого",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i12:audio",
+          "transcript": "Él es amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Él es amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i13:r1",
+          "text": "Плитки: difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i13:r3",
+          "text": "fácil."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i13:audio",
+          "transcript": "Es difícil."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es difícil.",
+        "orderedTokens": [
+          "Es",
+          "difícil"
+        ],
+        "authoredDistractorTokens": [
+          "fácil"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит difícil — «трудно».",
+              "uk": "звучить difícil — «важко»."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — оцініть зрозуміле правило",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — оцініть зрозуміле правило",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i14:audio",
+          "transcript": "Es fácil."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es fácil.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i15:r1",
+          "text": "Вона терпляча"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i15:r2",
+          "text": "Він терплячий"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i15:r3",
+          "text": "Ти терпляча"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-17:i15:audio",
+          "transcript": "Ella es paciente."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-17:i15:r1",
+            "targetText": "Вона терпляча",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i15:r2",
+            "targetText": "Він терплячий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i15:r3",
+            "targetText": "Ти терпляча",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Звучит ella — «она», не él.",
+              "uk": "Звучить ella — «вона», не él."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-17:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "О собеседнице сказали бы eres; здесь рассказ о другой женщине.",
+              "uk": "До співрозмовниці сказали б eres; тут розповідь про іншу жінку."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-17:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — друг запитує про характер ведучої; скажіть «Вона спокійна»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-17:i16:r1",
+          "text": "Плитки: tranquila"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i16:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i16:r3",
+          "text": "ella"
+        },
+        {
+          "responseId": "es:lesson-01:session-17:i16:r4",
+          "text": "tranquilo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — друг запитує про характер ведучої; скажіть «Вона спокійна»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ella es tranquila.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг спрашивает о характере ведущей; скажите «Она спокойная»",
+          "uk": "Складіть фразу — друг запитує про характер ведучої; скажіть «Вона спокійна»"
+        },
+        "orderedTokens": [
+          "Ella",
+          "es",
+          "tranquila"
+        ],
+        "authoredDistractorTokens": [
+          "tranquilo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-17:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — друг запитує про характер ведучої; скажіть «Вона спокійна»",
+            "feedbackByLocale": {
+              "ru": "о женщине нужна форма tranquila.",
+              "uk": "про жінку потрібна форма tranquila."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "760f6ef4a0c56eae3913e1724e48c2dcd62715dc9af2d0db99cb18ae454e79b6"
+}

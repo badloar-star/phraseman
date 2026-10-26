@@ -119,4 +119,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать soy или eres, задать вопрос и отрицать качество без готового образца целой реплики.","uk":"обрати soy або eres, поставити запитання й заперечити рису без готового зразка цілої репліки."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 17,
+    sourceFingerprint: "4282f2e7100511f2a92518b4fef2b3446d2a2e849426e39f5d539f16b3c229c2",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать другого человека с él или ella и описать его с es.","uk":"назвати іншу людину з él або ella й описати її з es."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

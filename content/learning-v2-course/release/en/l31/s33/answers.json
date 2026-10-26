@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-33:i01",
+    "correctText": "jacket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i02",
+    "correctText": "The jacket was expensive, but I bought it.",
+    "correctResponseId": "en:lesson-31:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i03",
+    "correctText": "but",
+    "correctResponseId": "en:lesson-31:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i04",
+    "correctText": "It was expensive, but I bought it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i05",
+    "correctText": "rained",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i06",
+    "correctText": "It rained, but we went out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i07",
+    "correctText": "Although",
+    "correctResponseId": "en:lesson-31:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i08",
+    "correctText": "tired",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i09",
+    "correctText": "I was tired, but I kept walking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i10",
+    "correctText": "dinner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i11",
+    "correctText": "Although she was tired, she cooked dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i12",
+    "correctText": "she cooked dinner",
+    "correctResponseId": "en:lesson-31:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i13",
+    "correctText": "Although it rained, we went out.",
+    "correctResponseId": "en:lesson-31:session-33:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i14",
+    "correctText": "She was tired, but she cooked dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i15",
+    "correctText": "Although it was cold, we went out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i16",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-33:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i17",
+    "correctText": "The bag is heavy, but I can carry it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i18",
+    "correctText": "Although it rained, we went out.",
+    "correctResponseId": "en:lesson-31:session-33:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i19",
+    "correctText": "Although she was tired, she cooked dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i20",
+    "correctText": "but",
+    "correctResponseId": "en:lesson-31:session-33:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-33:i21",
+    "correctText": "Although I was busy, I called Anna.",
+    "correctResponseId": null
+  }
+]

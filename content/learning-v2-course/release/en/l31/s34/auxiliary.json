@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-34:intro1:r2": {
+          "ru": "Перед I was hungry ставим although без of.",
+          "uk": "Перед I was hungry ставимо although без of."
+        },
+        "en:lesson-31:session-34:intro1:r3": {
+          "ru": "Для состояния в прошлом нужно was hungry.",
+          "uk": "Для стану в минулому потрібне was hungry."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-34:intro2:r2": {
+          "ru": "После where порядок the knife is.",
+          "uk": "Після where порядок the knife is."
+        },
+        "en:lesson-31:session-34:intro2:r3": {
+          "ru": "Один knife требует is.",
+          "uk": "Один knife потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-34:intro3:r2": {
+          "ru": "С is здесь нужно isn’t.",
+          "uk": "З is тут потрібне isn’t."
+        },
+        "en:lesson-31:session-34:intro3:r3": {
+          "ru": "Soup заменяем на it.",
+          "uk": "Soup замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e3b23babb6cefa7efb43b1e168cbb087a14ec37277c4d7474397267da0b2f2e8"
+}

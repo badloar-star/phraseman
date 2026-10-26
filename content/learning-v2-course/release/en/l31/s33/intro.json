@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "соединять противопоставленные факты с but и начинать фразу с although.",
+    "uk": "поєднувати протиставлені факти з but і починати фразу з although."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дорого, но купил",
+        "uk": "Дорого, але купив"
+      },
+      "bodyByLocale": {
+        "ru": "Куртка вам очень понравилась, хотя стоила дорого. Скажите: It was expensive, but I bought it — она была дорогой, но я её купил. Соберите It was expensive + but + I bought it. But соединяет два факта с неожиданным продолжением: высокая цена не помешала покупке.",
+        "uk": "Куртка вам дуже сподобалася, хоча коштувала дорого. Скажіть: It was expensive, but I bought it — вона була дорогою, але я її купив. Складіть It was expensive + but + I bought it. But поєднує два факти з несподіваним продовженням: висока ціна не завадила покупці."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-33:intro1:r1",
+              "text": "It was expensive, but I bought it."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro1:r2",
+              "text": "It was expensive, because I bought it."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro1:r3",
+              "text": "It was expensive, but I buyed it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-33:intro1:r1",
+              "text": "It was expensive, but I bought it."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro1:r2",
+              "text": "It was expensive, because I bought it."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro1:r3",
+              "text": "It was expensive, but I buyed it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Хотя шёл дождь, мы вышли",
+        "uk": "Хоча йшов дощ, ми вийшли"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом решили прогуляться даже в дождь: Although it rained, we went out — хотя шёл дождь, мы вышли. Соберите Although + it rained + we went out. Although вводит обстоятельство, которое могло помешать; после запятой говорим, что всё же произошло. But во второй части не добавляем.",
+        "uk": "Ви з другом вирішили прогулятися навіть у дощ: Although it rained, we went out — хоча йшов дощ, ми вийшли. Складіть Although + it rained + we went out. Although вводить обставину, яка могла завадити; після коми кажемо, що все ж сталося. But у другій частині не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-33:intro2:r1",
+              "text": "Although it rained, we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro2:r2",
+              "text": "Although it rained, but we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro2:r3",
+              "text": "Although it rain, we went out."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-33:intro2:r1",
+              "text": "Although it rained, we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro2:r2",
+              "text": "Although it rained, but we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro2:r3",
+              "text": "Although it rain, we went out."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотя устала, приготовила ужин",
+        "uk": "Хоча втомилася, приготувала вечерю"
+      },
+      "bodyByLocale": {
+        "ru": "Анна вернулась уставшей, но всё же приготовила ужин. Начните с «хотя»: Although she was tired, she cooked dinner — хотя она устала, она приготовила ужин. Соберите Although + she was tired + she cooked dinner. После although нужна целая часть she was tired; затем называем действие, которому усталость не помешала.",
+        "uk": "Анна повернулася втомленою, але все ж приготувала вечерю. Почніть із «хоча»: Although she was tired, she cooked dinner — хоча вона втомилася, вона приготувала вечерю. Складіть Although + she was tired + she cooked dinner. Після although потрібна ціла частина she was tired; потім називаємо дію, якій втома не завадила."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-33:intro3:r1",
+              "text": "Although she was tired, she cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro3:r2",
+              "text": "Although she was tired, but she cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro3:r3",
+              "text": "Although she tired, she cooked dinner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-33:intro3:r1",
+              "text": "Although she was tired, she cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro3:r2",
+              "text": "Although she was tired, but she cooked dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-33:intro3:r3",
+              "text": "Although she tired, she cooked dinner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "caca2dbc226d16d82cd6335ca4984f06384d3ddb8b51698c283fea5d809c0fc0"
+}

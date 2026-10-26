@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i01:audio",
+          "transcript": "room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-30:i01:r1",
+            "targetText": "room",
+            "meaningByLocale": {
+              "ru": "Комната. Повторение знакомого слова.",
+              "uk": "Кімната. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room",
+          "definitionByLocale": {
+            "ru": "Комната. Повторение знакомого слова.",
+            "uk": "Кімната. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i02:r1",
+          "text": "I know why the room is dark."
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i02:r2",
+          "text": "I know why the room is cold."
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i02:r3",
+          "text": "I know why the room is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i02:audio",
+          "transcript": "I know why the room is dark."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-30:i02:r1",
+            "targetText": "I know why the room is dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i02:r2",
+            "targetText": "I know why the room is cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i02:r3",
+            "targetText": "I know why the room is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the room is dark.",
+              "uk": "У записі звучить I know why the room is dark."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the room is dark.",
+              "uk": "У записі звучить I know why the room is dark."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lamp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lamp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i03:audio",
+          "transcript": "lamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-30:i03:r1",
+            "targetText": "lamp",
+            "meaningByLocale": {
+              "ru": "Лампа. Повторение знакомого слова.",
+              "uk": "Лампа. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lamp",
+          "definitionByLocale": {
+            "ru": "Лампа. Повторение знакомого слова.",
+            "uk": "Лампа. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i04:r1",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i04:r2",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i04:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+          "uk": "У кімнаті було темно, бо лампа була зламана. Виберіть сполучник."
+        },
+        "gappedTargetPhrase": "The room was dark ___ the lamp was broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-30:i04:r1",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i04:r2",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i04:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i04:r2",
+            "correct": false,
+            "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью the lamp was broken нужен because.",
+              "uk": "Перед цілою частиною the lamp was broken потрібне because."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i04:r3",
+            "correct": false,
+            "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+            "feedbackByLocale": {
+              "ru": "Of не связывает эти части.",
+              "uk": "Of не пов’язує ці частини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, почему в комнате было темно. Начните с The room was dark.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, почему в комнате было темно. Начните с The room was dark.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The room was dark because the lamp was broken.",
+        "localizedMeaning": {
+          "ru": "Скажите, почему в комнате было темно. Начните с The room was dark.",
+          "uk": "Скажіть, чому в кімнаті було темно. Почніть з The room was dark."
+        },
+        "orderedTokens": [
+          "The",
+          "room",
+          "was",
+          "dark",
+          "because",
+          "the",
+          "lamp",
+          "was",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен починил лампу. Начните с лампы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i06:audio"
+      ],
+      "accessibilityLabel": "Бен починил лампу. Начните с лампы.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i06:audio",
+          "transcript": "The lamp was fixed by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lamp was fixed by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Бен сказал: «Лампа сломана». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Бен сказал: «Лампа сломана». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Лампа сломана». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Лампа зламана». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "He said the lamp ___ broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-30:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Бен сказал: «Лампа сломана». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i07:r2",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Лампа сломана». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i07:r3",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Лампа сломана». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — light",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — light",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i08:audio",
+          "transcript": "light"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-30:i08:r1",
+            "targetText": "light",
+            "meaningByLocale": {
+              "ru": "Свет. Повторение знакомого слова.",
+              "uk": "Світло. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "light",
+          "definitionByLocale": {
+            "ru": "Свет. Повторение знакомого слова.",
+            "uk": "Світло. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что понимаете, почему свет выключен.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что понимаете, почему свет выключен.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand why the light is off.",
+        "localizedMeaning": {
+          "ru": "Скажите, что понимаете, почему свет выключен.",
+          "uk": "Скажіть, що розумієте, чому світло вимкнене."
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "the",
+          "light",
+          "is",
+          "off"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что лампа сломана. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что лампа сломана. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i10:audio",
+          "transcript": "I know that the lamp is broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the lamp is broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен починил лампу. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен починил лампу. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен починил лампу. Выберите предлог перед его именем.",
+          "uk": "Бен полагодив лампу. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The lamp was fixed ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-30:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен починил лампу. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен починил лампу. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен починил лампу. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i12:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-30:i12:r1",
+            "targetText": "window",
+            "meaningByLocale": {
+              "ru": "Окно. Повторение знакомого слова.",
+              "uk": "Вікно. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "window",
+          "definitionByLocale": {
+            "ru": "Окно. Повторение знакомого слова.",
+            "uk": "Вікно. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i13:r1",
+          "text": "I know why the window is closed."
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i13:r2",
+          "text": "I know why the door is closed."
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i13:r3",
+          "text": "I know why the window is open."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i13:audio",
+          "transcript": "I know why the window is closed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-30:i13:r1",
+            "targetText": "I know why the window is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i13:r2",
+            "targetText": "I know why the door is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i13:r3",
+            "targetText": "I know why the window is open.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the window is closed.",
+              "uk": "У записі звучить I know why the window is closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the window is closed.",
+              "uk": "У записі звучить I know why the window is closed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Окна открыты». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Окна открыты». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i14:audio",
+          "transcript": "He said the windows were open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the windows were open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Свет выключен. Добавьте отрицательное уточнение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Свет выключен. Добавьте отрицательное уточнение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The light is off, isn't it?",
+        "localizedMeaning": {
+          "ru": "Свет выключен. Добавьте отрицательное уточнение.",
+          "uk": "Світло вимкнене. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "light",
+          "is",
+          "off,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите друга, знает ли он, сломана ли лампа.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i16:r1",
+          "text": "the lamp is"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i16:r2",
+          "text": "is the lamp"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i16:r3",
+          "text": "the lamp are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите друга, знает ли он, сломана ли лампа.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, сломана ли лампа.",
+          "uk": "Запитайте друга, чи знає він, чи зламана лампа."
+        },
+        "gappedTargetPhrase": "Do you know if ___ broken?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-30:i16:r1",
+            "text": "the lamp is"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i16:r2",
+            "text": "is the lamp"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i16:r3",
+            "text": "the lamp are"
+          }
+        ],
+        "testedDimension": "Спросите друга, знает ли он, сломана ли лампа.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i16:r2",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, сломана ли лампа.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the lamp is.",
+              "uk": "Після if порядок the lamp is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i16:r3",
+            "correct": false,
+            "testedDimension": "Спросите друга, знает ли он, сломана ли лампа.",
+            "feedbackByLocale": {
+              "ru": "Одна lamp требует is.",
+              "uk": "Одна lamp потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "С улицы доносился шум. Скажите, что закрыли окно из-за шума.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "С улицы доносился шум. Скажите, что закрыли окно из-за шума.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i17:audio",
+          "transcript": "I closed the window because of the noise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I closed the window because of the noise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: говорящий понимает, почему свет выключен или включён?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i18:r1",
+          "text": "I understand why the light is off."
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i18:r2",
+          "text": "I understand why the light is on."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i18:audioA",
+        "en:lesson-31:session-30:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: говорящий понимает, почему свет выключен или включён?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I understand why the light is off.",
+        "contrastB": "I understand why the light is on.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-30:i18:audioA",
+          "transcript": "I understand why the light is off."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-30:i18:audioB",
+          "transcript": "I understand why the light is on."
+        },
+        "testedPhoneticContrast": "Послушайте: говорящий понимает, почему свет выключен или включён?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: говорящий понимает, почему свет выключен или включён?",
+            "feedbackByLocale": {
+              "ru": "Звучит off — выключен.",
+              "uk": "Звучить off — вимкнене."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте сообщение о выключенном свете.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте сообщение о выключенном свете.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i19:audio",
+          "transcript": "I understand why the light is off."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I understand why the light is off.",
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "the",
+          "light",
+          "is",
+          "off"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лампа не работает. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-30:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-30:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампа не работает. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Лампа не работает. Добавьте утвердительное уточнение.",
+          "uk": "Лампа не працює. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The lamp isn't working, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-30:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Лампа не работает. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-30:i20:r2",
+            "correct": false,
+            "testedDimension": "Лампа не работает. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Одна lamp требует is.",
+              "uk": "Одна lamp потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-30:i20:r3",
+            "correct": false,
+            "testedDimension": "Лампа не работает. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен закрыл окно. Начните с окна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-30:i21:audio"
+      ],
+      "accessibilityLabel": "Бен закрыл окно. Начните с окна.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-30:i21:audio",
+          "transcript": "The window was closed by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The window was closed by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "976feef267cf123598a7d897bd7d13a0ee0b12b40044ae43beea8604b9dbe20e"
+}

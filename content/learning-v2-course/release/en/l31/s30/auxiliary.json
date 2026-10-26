@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-30:intro1:r2": {
+          "ru": "Перед целой частью the lamp was broken нужен because без of.",
+          "uk": "Перед цілою частиною the lamp was broken потрібне because без of."
+        },
+        "en:lesson-31:session-30:intro1:r3": {
+          "ru": "Одна lamp требует was.",
+          "uk": "Одна lamp потребує was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-30:intro2:r2": {
+          "ru": "После why порядок the light is off.",
+          "uk": "Після why порядок the light is off."
+        },
+        "en:lesson-31:session-30:intro2:r3": {
+          "ru": "Light здесь требует is.",
+          "uk": "Light тут потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-30:intro3:r2": {
+          "ru": "Одна lamp требует was.",
+          "uk": "Одна lamp потребує was."
+        },
+        "en:lesson-31:session-30:intro3:r3": {
+          "ru": "Здесь нужна форма fixed.",
+          "uk": "Тут потрібна форма fixed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7f9c3e66fdf2cf40c76341cdbd27ceeb60e5e1eb7c5cb32fbb6bc0082a50679f"
+}

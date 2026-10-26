@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-30:i01",
+    "correctText": "room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i02",
+    "correctText": "I know why the room is dark.",
+    "correctResponseId": "en:lesson-31:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i03",
+    "correctText": "lamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i04",
+    "correctText": "because",
+    "correctResponseId": "en:lesson-31:session-30:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i05",
+    "correctText": "The room was dark because the lamp was broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i06",
+    "correctText": "The lamp was fixed by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-30:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i08",
+    "correctText": "light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i09",
+    "correctText": "I understand why the light is off.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i10",
+    "correctText": "I know that the lamp is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i12",
+    "correctText": "window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i13",
+    "correctText": "I know why the window is closed.",
+    "correctResponseId": "en:lesson-31:session-30:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i14",
+    "correctText": "He said the windows were open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i15",
+    "correctText": "The light is off, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i16",
+    "correctText": "the lamp is",
+    "correctResponseId": "en:lesson-31:session-30:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i17",
+    "correctText": "I closed the window because of the noise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i18",
+    "correctText": "I understand why the light is off.",
+    "correctResponseId": "en:lesson-31:session-30:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i19",
+    "correctText": "I understand why the light is off.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-30:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-30:i21",
+    "correctText": "The window was closed by Ben.",
+    "correctResponseId": null
+  }
+]

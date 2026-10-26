@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-29:intro1:r2": {
+          "ru": "Перед the snow нужно because of.",
+          "uk": "Перед the snow потрібне because of."
+        },
+        "en:lesson-31:session-29:intro1:r3": {
+          "ru": "После because of здесь называем причину: the snow.",
+          "uk": "Після because of тут називаємо причину: the snow."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-29:intro2:r2": {
+          "ru": "Внутри сообщения не ставим вопрос с does.",
+          "uk": "Усередині повідомлення не ставимо запитання з does."
+        },
+        "en:lesson-31:session-29:intro2:r3": {
+          "ru": "С одним train нужна форма leaves.",
+          "uk": "З одним train потрібна форма leaves."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-29:intro3:r2": {
+          "ru": "С train нужна форма is.",
+          "uk": "З train потрібна форма is."
+        },
+        "en:lesson-31:session-29:intro3:r3": {
+          "ru": "Один train заменяем на it.",
+          "uk": "Один train замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "54cc65256f0bd437ee81f57a9879be35b05382990b4b6c2e4ddf25ffd7404d83"
+}

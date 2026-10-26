@@ -18,7 +18,7 @@ import {
   type ChapterExamV2Result,
   type ChapterExamV2WeakPoint,
 } from '../modules/learning-v2/exam/chapter_exam_v2';
-import { CHAPTER_EXAM_V2_BANKS } from '../modules/learning-v2/exam/banks';
+import { chapterExamV2BanksForLesson } from '../modules/learning-v2/exam/banks';
 
 const LOG = '[CHAPTER-EXAM-V2]';
 const TARGET_LANGUAGE = 'en';
@@ -26,9 +26,15 @@ const TARGET_LANGUAGE = 'en';
 // Банки глав v2. Нет банка — у главы прежний экзамен. Новые банки пишет фабрика курса (сторож слов эпизодов — owner_locks_exam_episode_words).
 // зачем (владелец 26.10 «банки для всех уроков и глав — в 2.0.3»): банки подключают 7 сессий, каждая в своём реестре banks/registry_*.ts;
 // этот файл при подключении не правится. Ключ «урок:глава» — из полей банка; дубликат — берём первый и пишем в журнал (сторож краснеет).
-function buildBanks(): ReadonlyMap<string, ChapterExamV2Bank> {
+// ⚡ Ревизор 26.10: банки урока собираются при первом обращении к уроку, а не все банки курса при загрузке модуля.
+const bankMapsByLesson = new Map<number, ReadonlyMap<string, ChapterExamV2Bank>>();
+
+function banksOfLesson(lessonOrdinal: number): ReadonlyMap<string, ChapterExamV2Bank> {
+  const cached = bankMapsByLesson.get(lessonOrdinal);
+  if (cached) return cached;
+  const startedAt = Date.now();
   const map = new Map<string, ChapterExamV2Bank>();
-  for (const bank of CHAPTER_EXAM_V2_BANKS) {
+  for (const bank of chapterExamV2BanksForLesson(lessonOrdinal)) {
     const key = `${bank.lessonOrdinal}:${bank.chapterOrdinal}`;
     if (map.has(key)) {
       console.warn(`${LOG} duplicate bank key — keeping first`, key);
@@ -36,12 +42,13 @@ function buildBanks(): ReadonlyMap<string, ChapterExamV2Bank> {
     }
     map.set(key, bank);
   }
+  bankMapsByLesson.set(lessonOrdinal, map);
+  console.log(`${LOG} banks loaded`, JSON.stringify({ lessonOrdinal, chapters: map.size, ms: Date.now() - startedAt })); // guard-ok: один раз на урок
   return map;
 }
-const BANKS = buildBanks();
 
 export function chapterExamV2BankFor(lessonOrdinal: number, chapterOrdinal: number): ChapterExamV2Bank | null {
-  return BANKS.get(`${lessonOrdinal}:${chapterOrdinal}`) ?? null;
+  return banksOfLesson(lessonOrdinal).get(`${lessonOrdinal}:${chapterOrdinal}`) ?? null;
 }
 
 let gateLogged: string | null = null;

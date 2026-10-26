@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { ChapterExamV2Bank } from '../modules/learning-v2/exam/chapter_exam_v2';
 import { CHAPTER_EXAM_V2_QUESTION_COUNT, selectChapterExamV2Items } from '../modules/learning-v2/exam/chapter_exam_v2';
-import { CHAPTER_EXAM_V2_BANKS, CHAPTER_EXAM_V2_BANK_REGISTRIES } from '../modules/learning-v2/exam/banks';
+import { allChapterExamV2Banks, chapterExamV2BanksForLesson, CHAPTER_EXAM_V2_BANK_LOADERS } from '../modules/learning-v2/exam/banks';
 
 const BANKS_DIR = path.join(__dirname, '..', 'modules/learning-v2/exam/banks');
 const banks = fs.readdirSync(BANKS_DIR).filter((f) => /^chapter_exam_v2_.*\.ts$/.test(f)).map((file) => {
@@ -53,14 +53,16 @@ describe('банки экзамена v2: правила', () => {
   // слово владельца 26.10: банки всех уроков — в 2.0.3; подключение — в реестрах сессий, общий индекс собирает их
   it('каждый подключённый банк — объект из файла банка в папке, ключи подключённых не повторяются', () => {
     const fileBanks = new Set<ChapterExamV2Bank>(banks.map(([, b]) => b));
-    for (const bank of CHAPTER_EXAM_V2_BANKS) expect(fileBanks.has(bank)).toBe(true);
-    const keys = CHAPTER_EXAM_V2_BANKS.map((b) => `${b.lessonOrdinal}:${b.chapterOrdinal}`);
+    const all = allChapterExamV2Banks();
+    for (const bank of all) expect(fileBanks.has(bank)).toBe(true);
+    const keys = all.map((b) => `${b.lessonOrdinal}:${b.chapterOrdinal}`);
     expect(keys.filter((k, i) => keys.indexOf(k) !== i)).toEqual([]);
     expect(keys).toEqual(expect.arrayContaining(['1:1', '1:2', '1:3']));
     // банк лежит в реестре своего диапазона уроков (registry_l04_l07 → уроки 4–7)
-    for (const [range, list] of Object.entries(CHAPTER_EXAM_V2_BANK_REGISTRIES)) {
-      const [from, to] = range.split('_').map((p) => Number(p.slice(1)));
-      for (const b of list) expect(b.lessonOrdinal >= from && b.lessonOrdinal <= to).toBe(true);
+    for (const loader of CHAPTER_EXAM_V2_BANK_LOADERS) {
+      const [from, to] = loader.key.split('_').map((p) => Number(p.slice(1)));
+      expect([loader.fromLesson, loader.toLesson]).toEqual([from, to]);
+      for (const b of loader.load()) expect(b.lessonOrdinal >= from && b.lessonOrdinal <= to).toBe(true);
     }
   });
 
@@ -98,9 +100,18 @@ describe('банки экзамена v2: правила', () => {
 
   it('индекс собирает все реестры папки, приложение берёт банки из индекса', () => {
     const registries = fs.readdirSync(BANKS_DIR).filter((f) => /^registry_l\d\d_l\d\d\.ts$/.test(f)).map((f) => f.slice('registry_'.length, -3)).sort();
-    expect(Object.keys(CHAPTER_EXAM_V2_BANK_REGISTRIES).sort()).toEqual(registries);
+    expect(CHAPTER_EXAM_V2_BANK_LOADERS.map((l) => l.key).sort()).toEqual(registries);
     const app = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_chapter_exam_v2.ts'), 'utf8');
-    expect(app).toContain("import { CHAPTER_EXAM_V2_BANKS } from '../modules/learning-v2/exam/banks';");
+    expect(app).toContain("import { chapterExamV2BanksForLesson } from '../modules/learning-v2/exam/banks';");
     expect(app).not.toContain("from '../modules/learning-v2/exam/banks/chapter_exam_v2_");
+  });
+
+  // ⚡ Ревизор 26.10: первое открытие экзамена не должно вычислять весь курс — реестры грузятся по уроку
+  it('индекс грузит реестры лениво: статических импортов реестров нет, банки урока — только его урока', () => {
+    const index = fs.readFileSync(path.join(BANKS_DIR, 'index.ts'), 'utf8');
+    expect(index).not.toMatch(/^import \{[^}]*\} from '\.\/registry_/m);
+    expect(chapterExamV2BanksForLesson(2).every((b) => b.lessonOrdinal === 2)).toBe(true);
+    expect(chapterExamV2BanksForLesson(1).map((b) => b.chapterOrdinal)).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6, 7]));
+    expect(chapterExamV2BanksForLesson(99)).toEqual([]);
   });
 });

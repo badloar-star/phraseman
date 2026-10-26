@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i01:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-39:i01:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i02:r1",
+          "text": "The coat was expensive, but I bought it."
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i02:r2",
+          "text": "The jacket was expensive, but I bought it."
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i02:r3",
+          "text": "The coat was cheap, but I bought it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i02:audio",
+          "transcript": "The coat was expensive, but I bought it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-39:i02:r1",
+            "targetText": "The coat was expensive, but I bought it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i02:r2",
+            "targetText": "The jacket was expensive, but I bought it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i02:r3",
+            "targetText": "The coat was cheap, but I bought it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coat was expensive, but I bought it.",
+              "uk": "У записі звучить The coat was expensive, but I bought it."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coat was expensive, but I bought it.",
+              "uk": "У записі звучить The coat was expensive, but I bought it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Було дорого, але ви купили пальто. Виберіть «але».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i03:r1",
+          "text": "but"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i03:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i03:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Було дорого, але ви купили пальто. Виберіть «але».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Было дорого, но вы купили пальто. Выберите «но».",
+          "uk": "Було дорого, але ви купили пальто. Виберіть «але»."
+        },
+        "gappedTargetPhrase": "It was expensive, ___ I bought it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-39:i03:r1",
+            "text": "but"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i03:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i03:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Було дорого, але ви купили пальто. Виберіть «але».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Було дорого, але ви купили пальто. Виберіть «але».",
+            "feedbackByLocale": {
+              "ru": "Because даёт причину, здесь задано «но».",
+              "uk": "Because дає причину, тут задано «але»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Було дорого, але ви купили пальто. Виберіть «але».",
+            "feedbackByLocale": {
+              "ru": "Задана связка «но»: but.",
+              "uk": "Задано сполучник «але»: but."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — receipt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — receipt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i04:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-39:i04:r1",
+            "targetText": "receipt",
+            "meaningByLocale": {
+              "ru": "Чек. Повторение знакомого слова.",
+              "uk": "Чек. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receipt",
+          "definitionByLocale": {
+            "ru": "Чек. Повторение знакомого слова.",
+            "uk": "Чек. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте, де чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте, де чек.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the receipt is.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, где чек.",
+          "uk": "Скажіть, що знаєте, де чек."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "receipt",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна надрукувала чек. Почніть із чека.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Анна надрукувала чек. Почніть із чека.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i06:audio",
+          "transcript": "The receipt was printed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The receipt was printed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Пальто тепле». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Пальто тепле». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Пальто тёплое». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Пальто тепле». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the coat ___ warm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-39:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Пальто тепле». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Пальто тепле». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Пальто тепле». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pocket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pocket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i08:audio",
+          "transcript": "pocket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-39:i08:r1",
+            "targetText": "pocket",
+            "meaningByLocale": {
+              "ru": "Карман. Повторение знакомого слова.",
+              "uk": "Кишеня. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pocket",
+          "definitionByLocale": {
+            "ru": "Карман. Повторение знакомого слова.",
+            "uk": "Кишеня. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте: чек у кишені.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте: чек у кишені.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know that the receipt is in the pocket.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете: чек в кармане.",
+          "uk": "Скажіть, що знаєте: чек у кишені."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "that",
+          "the",
+          "receipt",
+          "is",
+          "in",
+          "the",
+          "pocket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пальто тепле. Додайте заперечне уточнення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Пальто тепле. Додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i10:audio",
+          "transcript": "The coat is warm, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat is warm, isn't it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна распечатала чек. Выберите предлог перед её именем.",
+          "uk": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The receipt was printed ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-39:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i12:audio",
+          "transcript": "shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-39:i12:r1",
+            "targetText": "shop",
+            "meaningByLocale": {
+              "ru": "Магазин. Повторение знакомого слова.",
+              "uk": "Крамниця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shop",
+          "definitionByLocale": {
+            "ru": "Магазин. Повторение знакомого слова.",
+            "uk": "Крамниця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i13:r1",
+          "text": "I know when the shop closes."
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i13:r2",
+          "text": "I know when the shop opens."
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i13:r3",
+          "text": "I know when the bus leaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i13:audio",
+          "transcript": "I know when the shop closes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-39:i13:r1",
+            "targetText": "I know when the shop closes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i13:r2",
+            "targetText": "I know when the shop opens.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i13:r3",
+            "targetText": "I know when the bus leaves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know when the shop closes.",
+              "uk": "У записі звучить I know when the shop closes."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know when the shop closes.",
+              "uk": "У записі звучить I know when the shop closes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Кишені глибокі». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Кишені глибокі». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i14:audio",
+          "transcript": "She said the pockets were deep."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the pockets were deep.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: було дорого, але я купив це. Почніть з It was expensive.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: було дорого, але я купив це. Почніть з It was expensive.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was expensive, but I bought it.",
+        "localizedMeaning": {
+          "ru": "Скажите: было дорого, но я купил это. Начните с It was expensive.",
+          "uk": "Скажіть: було дорого, але я купив це. Почніть з It was expensive."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "expensive,",
+          "but",
+          "I",
+          "bought",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друга, чи знає він, чи зачинена крамниця.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i16:r1",
+          "text": "the shop is"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i16:r2",
+          "text": "is the shop"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i16:r3",
+          "text": "the shop are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи зачинена крамниця.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, закрыт ли магазин.",
+          "uk": "Запитайте друга, чи знає він, чи зачинена крамниця."
+        },
+        "gappedTargetPhrase": "Do you know if ___ closed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-39:i16:r1",
+            "text": "the shop is"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i16:r2",
+            "text": "is the shop"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i16:r3",
+            "text": "the shop are"
+          }
+        ],
+        "testedDimension": "Запитайте друга, чи знає він, чи зачинена крамниця.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи зачинена крамниця.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the shop is.",
+              "uk": "Після if порядок the shop is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи зачинена крамниця.",
+            "feedbackByLocale": {
+              "ru": "Один shop требует is.",
+              "uk": "Один shop потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви купили пальто, бо старе було замалим. Назвіть причину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Ви купили пальто, бо старе було замалим. Назвіть причину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i17:audio",
+          "transcript": "I bought a coat because my old coat was too small."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I bought a coat because my old coat was too small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець купив пальто чи куртку попри високу ціну?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i18:r1",
+          "text": "The coat was expensive, but I bought it."
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i18:r2",
+          "text": "The jacket was expensive, but I bought it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i18:audioA",
+        "en:lesson-31:session-39:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець купив пальто чи куртку попри високу ціну?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The coat was expensive, but I bought it.",
+        "contrastB": "The jacket was expensive, but I bought it.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-39:i18:audioA",
+          "transcript": "The coat was expensive, but I bought it."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-39:i18:audioB",
+          "transcript": "The jacket was expensive, but I bought it."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець купив пальто чи куртку попри високу ціну?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець купив пальто чи куртку попри високу ціну?",
+            "feedbackByLocale": {
+              "ru": "Звучит coat — пальто.",
+              "uk": "Звучить coat — пальто."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте розповідь про покупку. Почніть з It was expensive.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте розповідь про покупку. Почніть з It was expensive.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i19:audio",
+          "transcript": "It was expensive, but I bought it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It was expensive, but I bought it.",
+        "orderedTokens": [
+          "It",
+          "was",
+          "expensive,",
+          "but",
+          "I",
+          "bought",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пальто не мале. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-39:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-39:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто не мале. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пальто не маленькое. Добавьте утвердительное уточнение.",
+          "uk": "Пальто не мале. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The coat isn't small, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-39:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Пальто не мале. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-39:i20:r2",
+            "correct": false,
+            "testedDimension": "Пальто не мале. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Одно coat требует is.",
+              "uk": "Одне coat потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-39:i20:r3",
+            "correct": false,
+            "testedDimension": "Пальто не мале. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-39:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна купила пальто. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-39:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна купила пальто. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-39:i21:audio",
+          "transcript": "I understand why Anna bought the coat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna bought the coat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a2495609deb3235eafba41a94b9b3af719ccffb7559f70df92b47d466d56845"
+}

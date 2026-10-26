@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-41:i01",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i02",
+    "correctText": "I went to the shop to buy bread.",
+    "correctResponseId": "en:lesson-31:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i03",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-31:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i04",
+    "correctText": "I went to the shop to buy bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i05",
+    "correctText": "address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i06",
+    "correctText": "I wrote the address so that I could remember it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i07",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-41:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i08",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i09",
+    "correctText": "I opened the door so that Anna could come in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i10",
+    "correctText": "I called to ask for the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i11",
+    "correctText": "Anna",
+    "correctResponseId": "en:lesson-31:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i12",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i13",
+    "correctText": "I took a bag to carry the books.",
+    "correctResponseId": "en:lesson-31:session-41:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i14",
+    "correctText": "I took a bag to carry the books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i15",
+    "correctText": "I called to ask for the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i16",
+    "correctText": "remember",
+    "correctResponseId": "en:lesson-31:session-41:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i17",
+    "correctText": "I moved the chair so that Anna could sit down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i18",
+    "correctText": "I took a bag to carry the books.",
+    "correctResponseId": "en:lesson-31:session-41:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i19",
+    "correctText": "I wrote the address so that I could remember it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i20",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-31:session-41:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-41:i21",
+    "correctText": "I opened the door so that Anna could come in.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о визите вопреки занятости, объяснять радость и называть автора открытки.",
+    "uk": "розповідати про візит попри зайнятість, пояснювати радість і називати автора листівки."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Зашёл, хотя был занят",
+        "uk": "Зайшов, хоча був зайнятий"
+      },
+      "bodyByLocale": {
+        "ru": "У вас было много дел, но вы нашли время навестить Анну. Скажите: I visited Anna although I was busy — я навестил Анну, хотя был занят. Соберите I visited Anna + although + I was busy. Although вводит обстоятельство, которое могло помешать, но не помешало визиту.",
+        "uk": "У вас було багато справ, але ви знайшли час відвідати Анну. Скажіть: I visited Anna although I was busy — я відвідав Анну, хоча був зайнятий. Складіть I visited Anna + although + I was busy. Although вводить обставину, яка могла завадити, але не завадила візиту."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-36:intro1:r1",
+              "text": "I visited Anna although I was busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro1:r2",
+              "text": "I visited Anna although of I was busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro1:r3",
+              "text": "I visited Anna although I were busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-36:intro1:r1",
+              "text": "I visited Anna although I was busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro1:r2",
+              "text": "I visited Anna although of I was busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro1:r3",
+              "text": "I visited Anna although I were busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Почему Анна улыбается",
+        "uk": "Чому Анна усміхається"
+      },
+      "bodyByLocale": {
+        "ru": "Вы принесли Анне цветы, и она обрадовалась. Теперь вы понимаете: I understand why Anna is smiling — я понимаю, почему Анна улыбается. Соберите I understand + why + Anna + is smiling. После why сохраняем порядок Anna is smiling; is не ставим перед именем.",
+        "uk": "Ви принесли Анні квіти, і вона зраділа. Тепер ви розумієте: I understand why Anna is smiling — я розумію, чому Анна усміхається. Складіть I understand + why + Anna + is smiling. Після why зберігаємо порядок Anna is smiling; is не ставимо перед ім’ям."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-36:intro2:r1",
+              "text": "I understand why Anna is smiling."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro2:r2",
+              "text": "I understand why is Anna smiling."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro2:r3",
+              "text": "I understand why Anna are smiling."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-36:intro2:r1",
+              "text": "I understand why Anna is smiling."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro2:r2",
+              "text": "I understand why is Anna smiling."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro2:r3",
+              "text": "I understand why Anna are smiling."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто написал открытку",
+        "uk": "Хто написав листівку"
+      },
+      "bodyByLocale": {
+        "ru": "С цветами лежит открытка, которую написал Бен. Начните с открытки: The card was written by Ben — открытку написал Бен. Соберите The card + was + written + by Ben. Was written показывает, что сделали с открыткой; by Ben называет автора.",
+        "uk": "Біля квітів лежить листівка, яку написав Бен. Почніть із листівки: The card was written by Ben — листівку написав Бен. Складіть The card + was + written + by Ben. Was written показує, що зробили з листівкою; by Ben називає автора."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-36:intro3:r1",
+              "text": "The card was written by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro3:r2",
+              "text": "The card were written by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro3:r3",
+              "text": "The card was write by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-36:intro3:r1",
+              "text": "The card was written by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro3:r2",
+              "text": "The card were written by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-36:intro3:r3",
+              "text": "The card was write by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "65139110074442e1bf47d1c58d365623cf14c3faa998420825c847ddca3c28e0"
+}

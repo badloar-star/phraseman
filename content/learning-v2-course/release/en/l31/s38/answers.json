@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-38:i01",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i02",
+    "correctText": "I know where your coat is.",
+    "correctResponseId": "en:lesson-31:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i03",
+    "correctText": "Although",
+    "correctResponseId": "en:lesson-31:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i04",
+    "correctText": "park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i05",
+    "correctText": "The park is open, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i06",
+    "correctText": "The coat was bought by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-38:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i08",
+    "correctText": "umbrella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i09",
+    "correctText": "Could you tell me where the umbrella is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i10",
+    "correctText": "I know that Anna has the umbrella.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i12",
+    "correctText": "rain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i13",
+    "correctText": "I took an umbrella because of the rain.",
+    "correctResponseId": "en:lesson-31:session-38:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i14",
+    "correctText": "She said her shoes were wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i15",
+    "correctText": "Although it was cold, we went out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i16",
+    "correctText": "my coat is",
+    "correctResponseId": "en:lesson-31:session-38:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i17",
+    "correctText": "I wore a coat because it was cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i18",
+    "correctText": "Although it was cold, we went out.",
+    "correctResponseId": "en:lesson-31:session-38:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i19",
+    "correctText": "Although it was cold, we went out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-38:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-38:i21",
+    "correctText": "I understand why Anna took an umbrella.",
+    "correctResponseId": null
+  }
+]

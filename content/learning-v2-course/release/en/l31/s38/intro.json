@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "говорить о прогулке вопреки погоде, находить одежду и уточнять детали.",
+    "uk": "говорити про прогулянку попри погоду, знаходити одяг і уточнювати деталі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Гуляли, хотя было холодно",
+        "uk": "Гуляли, хоча було холодно"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом не отменили прогулку в холодный день. Скажите: Although it was cold, we went out — хотя было холодно, мы вышли. Соберите Although + it was cold + we went out. Сначала называем обстоятельство, которое могло помешать; после запятой — что вы всё же сделали. But во второй части не добавляем.",
+        "uk": "Ви з другом не скасували прогулянку холодного дня. Скажіть: Although it was cold, we went out — хоча було холодно, ми вийшли. Складіть Although + it was cold + we went out. Спочатку називаємо обставину, яка могла завадити; після коми — що ви все ж зробили. But у другій частині не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-38:intro1:r1",
+              "text": "Although it was cold, we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro1:r2",
+              "text": "Although it was cold, but we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro1:r3",
+              "text": "Although it were cold, we went out."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-38:intro1:r1",
+              "text": "Although it was cold, we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro1:r2",
+              "text": "Although it was cold, but we went out."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro1:r3",
+              "text": "Although it were cold, we went out."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю, где пальто",
+        "uk": "Я знаю, де пальто"
+      },
+      "bodyByLocale": {
+        "ru": "Перед прогулкой друг ищет своё пальто. Вы видели его у двери: I know where your coat is — я знаю, где твоё пальто. Соберите I know + where + your coat + is. После where сохраняем порядок your coat is, без перестановки is.",
+        "uk": "Перед прогулянкою друг шукає своє пальто. Ви бачили його біля дверей: I know where your coat is — я знаю, де твоє пальто. Складіть I know + where + your coat + is. Після where зберігаємо порядок your coat is, без перестановки is."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-38:intro2:r1",
+              "text": "I know where your coat is."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro2:r2",
+              "text": "I know where is your coat."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro2:r3",
+              "text": "I know where your coat are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-38:intro2:r1",
+              "text": "I know where your coat is."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro2:r2",
+              "text": "I know where is your coat."
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro2:r3",
+              "text": "I know where your coat are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Парк открыт, правда?",
+        "uk": "Парк відчинений, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы дошли до парка и хотите убедиться, что можно войти: The park is open, isn’t it? — парк открыт, правда? Соберите The park is open + isn’t + it. После утвердительного is добавляем отрицательное isn’t; park заменяем на it.",
+        "uk": "Ви дійшли до парку й хочете переконатися, що можна ввійти: The park is open, isn’t it? — парк відчинений, правда? Складіть The park is open + isn’t + it. Після стверджувального is додаємо заперечне isn’t; park замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-38:intro3:r1",
+              "text": "The park is open, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro3:r2",
+              "text": "The park is open, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro3:r3",
+              "text": "The park is open, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-38:intro3:r1",
+              "text": "The park is open, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro3:r2",
+              "text": "The park is open, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-38:intro3:r3",
+              "text": "The park is open, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d70359841b25e89e56baaab7e52813e29290021211b4e0643e1b50757c3d227a"
+}

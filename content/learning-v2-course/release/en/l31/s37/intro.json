@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "говорить о действии вопреки обстоятельству, искать вещи и рассказывать о ремонте.",
+    "uk": "говорити про дію всупереч обставині, шукати речі й розповідати про ремонт."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пользуюсь, хотя старый",
+        "uk": "Користуюся, хоча старий"
+      },
+      "bodyByLocale": {
+        "ru": "Ваш велосипед старый, но на нём по-прежнему удобно ездить. Скажите: I use the bike although it is old — я пользуюсь велосипедом, хотя он старый. Соберите I use the bike + although + it is old. Although вводит обстоятельство, которое не мешает действию; обе части здесь относятся к настоящему.",
+        "uk": "Ваш велосипед старий, але ним і далі зручно їздити. Скажіть: I use the bike although it is old — я користуюся велосипедом, хоча він старий. Складіть I use the bike + although + it is old. Although вводить обставину, яка не заважає дії; обидві частини тут стосуються теперішнього."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-37:intro1:r1",
+              "text": "I use the bike although it is old."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro1:r2",
+              "text": "I use the bike although of it is old."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro1:r3",
+              "text": "I use the bike although it are old."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-37:intro1:r1",
+              "text": "I use the bike although it is old."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro1:r2",
+              "text": "I use the bike although of it is old."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro1:r3",
+              "text": "I use the bike although it are old."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю, где насос",
+        "uk": "Я знаю, де насос"
+      },
+      "bodyByLocale": {
+        "ru": "Перед поездкой друг хочет подкачать колесо и ищет насос. Вы помните, где он: I know where the pump is — я знаю, где насос. Соберите I know + where + the pump + is. После where сохраняем порядок the pump is, как в утверждении.",
+        "uk": "Перед поїздкою друг хоче підкачати колесо й шукає насос. Ви пам’ятаєте, де він: I know where the pump is — я знаю, де насос. Складіть I know + where + the pump + is. Після where зберігаємо порядок the pump is, як у твердженні."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-37:intro2:r1",
+              "text": "I know where the pump is."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro2:r2",
+              "text": "I know where is the pump."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro2:r3",
+              "text": "I know where the pump are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-37:intro2:r1",
+              "text": "I know where the pump is."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro2:r2",
+              "text": "I know where is the pump."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro2:r3",
+              "text": "I know where the pump are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто починил велосипед",
+        "uk": "Хто полагодив велосипед"
+      },
+      "bodyByLocale": {
+        "ru": "Бен починил велосипед, и теперь он снова готов к поездке. Начните с велосипеда: The bike was fixed by Ben — велосипед починил Бен. Соберите The bike + was + fixed + by Ben. Was fixed показывает, что сделали с велосипедом; by Ben называет исполнителя.",
+        "uk": "Бен полагодив велосипед, і тепер він знову готовий до поїздки. Почніть із велосипеда: The bike was fixed by Ben — велосипед полагодив Бен. Складіть The bike + was + fixed + by Ben. Was fixed показує, що зробили з велосипедом; by Ben називає виконавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-37:intro3:r1",
+              "text": "The bike was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro3:r2",
+              "text": "The bike were fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro3:r3",
+              "text": "The bike was fix by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-37:intro3:r1",
+              "text": "The bike was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro3:r2",
+              "text": "The bike were fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-37:intro3:r3",
+              "text": "The bike was fix by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2d252e138957587c19d16f1ecd1252d30f53f3625e6c7196f7210fdc46b58468"
+}

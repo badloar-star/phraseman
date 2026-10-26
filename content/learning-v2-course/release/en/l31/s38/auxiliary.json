@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-38:intro1:r2": {
+          "ru": "Although уже связывает части, but не нужен.",
+          "uk": "Although уже пов’язує частини, but не потрібне."
+        },
+        "en:lesson-31:session-38:intro1:r3": {
+          "ru": "С it нужна форма was.",
+          "uk": "З it потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-38:intro2:r2": {
+          "ru": "После where порядок your coat is.",
+          "uk": "Після where порядок your coat is."
+        },
+        "en:lesson-31:session-38:intro2:r3": {
+          "ru": "Одно coat требует is.",
+          "uk": "Одне coat потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-38:intro3:r2": {
+          "ru": "С is нужно isn’t.",
+          "uk": "З is потрібне isn’t."
+        },
+        "en:lesson-31:session-38:intro3:r3": {
+          "ru": "Один park заменяем на it.",
+          "uk": "Один park замінюємо на it."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "09c29421de8e478d452a0823cb9bc5db46d7ecd9af6f117a58aa29fdf5664bb1"
+}

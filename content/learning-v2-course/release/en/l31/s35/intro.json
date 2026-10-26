@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о действии вопреки обстоятельству и уточнять, куда убрать еду.",
+    "uk": "розповідати про дію всупереч обставині й уточнювати, куди прибрати їжу."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поел суп, хотя он остыл",
+        "uk": "Поїв суп, хоча він охолов"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вернулись к обеду поздно. Суп остыл, но вы всё равно его поели: I ate the soup although it was cold — я поел суп, хотя он был холодным. Соберите I ate the soup + although + it was cold. Although вводит обстоятельство, которое не помешало действию. Здесь эта часть стоит после сообщения о вашем поступке.",
+        "uk": "Ви повернулися до обіду пізно. Суп охолов, але ви все одно його поїли: I ate the soup although it was cold — я поїв суп, хоча він був холодним. Складіть I ate the soup + although + it was cold. Although вводить обставину, яка не завадила дії. Тут ця частина стоїть після повідомлення про ваш вчинок."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-35:intro1:r1",
+              "text": "I ate the soup although it was cold."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro1:r2",
+              "text": "I ate the soup although of it was cold."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro1:r3",
+              "text": "I ate the soup although it were cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-35:intro1:r1",
+              "text": "I ate the soup although it was cold."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro1:r2",
+              "text": "I ate the soup although of it was cold."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro1:r3",
+              "text": "I ate the soup although it were cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю, что холодильник полон",
+        "uk": "Я знаю, що холодильник повний"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет убрать остатки обеда в холодильник. Вы уже видели, что в нём нет места: I know that the fridge is full — я знаю, что холодильник полон. Соберите I know + that + the fridge + is full. После that идёт обычное утверждение the fridge is full.",
+        "uk": "Друг хоче прибрати залишки обіду в холодильник. Ви вже бачили, що в ньому немає місця: I know that the fridge is full — я знаю, що холодильник повний. Складіть I know + that + the fridge + is full. Після that йде звичайне твердження the fridge is full."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-35:intro2:r1",
+              "text": "I know that the fridge is full."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro2:r2",
+              "text": "I know that is the fridge full."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro2:r3",
+              "text": "I know that the fridge are full."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-35:intro2:r1",
+              "text": "I know that the fridge is full."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro2:r2",
+              "text": "I know that is the fridge full."
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro2:r3",
+              "text": "I know that the fridge are full."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коробка чистая, правда?",
+        "uk": "Коробка чиста, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли коробку для оставшегося хлеба и уточняете у друга: The box is clean, isn’t it? — коробка чистая, правда? Соберите The box is clean + isn’t + it. После утвердительного is добавляем отрицательное isn’t; коробку заменяем словом it.",
+        "uk": "Ви знайшли коробку для хліба, що залишився, й уточнюєте в друга: The box is clean, isn’t it? — коробка чиста, правда? Складіть The box is clean + isn’t + it. Після стверджувального is додаємо заперечне isn’t; коробку замінюємо словом it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-35:intro3:r1",
+              "text": "The box is clean, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro3:r2",
+              "text": "The box is clean, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro3:r3",
+              "text": "The box is clean, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-35:intro3:r1",
+              "text": "The box is clean, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro3:r2",
+              "text": "The box is clean, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-35:intro3:r3",
+              "text": "The box is clean, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "48daa883c48665a2ec3a6f9f3856daca69ddcd5d8085f67b2c053f6e8339f764"
+}

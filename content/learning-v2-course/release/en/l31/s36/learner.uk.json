@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — busy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — busy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i01:audio",
+          "transcript": "busy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-36:i01:r1",
+            "targetText": "busy",
+            "meaningByLocale": {
+              "ru": "Занятый. Повторение знакомого слова.",
+              "uk": "Зайнятий. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "busy",
+          "definitionByLocale": {
+            "ru": "Занятый. Повторение знакомого слова.",
+            "uk": "Зайнятий. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i02:r1",
+          "text": "I visited Anna although I was busy."
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i02:r2",
+          "text": "I visited Anna although I was tired."
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i02:r3",
+          "text": "I visited Anna although I was ill."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i02:audio",
+          "transcript": "I visited Anna although I was busy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-36:i02:r1",
+            "targetText": "I visited Anna although I was busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i02:r2",
+            "targetText": "I visited Anna although I was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i02:r3",
+            "targetText": "I visited Anna although I was ill.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visited Anna although I was busy.",
+              "uk": "У записі звучить I visited Anna although I was busy."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visited Anna although I was busy.",
+              "uk": "У записі звучить I visited Anna although I was busy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви відвідали Анну, хоча були зайняті. Виберіть «хоча».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i03:r1",
+          "text": "although"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i03:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i03:r3",
+          "text": "because of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви відвідали Анну, хоча були зайняті. Виберіть «хоча».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы навестили Анну, хотя были заняты. Выберите «хотя».",
+          "uk": "Ви відвідали Анну, хоча були зайняті. Виберіть «хоча»."
+        },
+        "gappedTargetPhrase": "I visited Anna ___ I was busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-36:i03:r1",
+            "text": "although"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i03:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i03:r3",
+            "text": "because of"
+          }
+        ],
+        "testedDimension": "Ви відвідали Анну, хоча були зайняті. Виберіть «хоча».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви відвідали Анну, хоча були зайняті. Виберіть «хоча».",
+            "feedbackByLocale": {
+              "ru": "Нужно «хотя», не «потому что».",
+              "uk": "Потрібне «хоча», не «тому що»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви відвідали Анну, хоча були зайняті. Виберіть «хоча».",
+            "feedbackByLocale": {
+              "ru": "Здесь задана уступка although, не причина.",
+              "uk": "Тут задано поступку although, не причину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flowers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flowers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i04:audio",
+          "transcript": "flowers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-36:i04:r1",
+            "targetText": "flowers",
+            "meaningByLocale": {
+              "ru": "Цветы. Повторение знакомого слова.",
+              "uk": "Квіти. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flowers",
+          "definitionByLocale": {
+            "ru": "Цветы. Повторение знакомого слова.",
+            "uk": "Квіти. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де квіти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де квіти.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the flowers are?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где цветы.",
+          "uk": "Ввічливо запитайте, де квіти."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "flowers",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i06:audio",
+          "transcript": "card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-36:i06:r1",
+            "targetText": "card",
+            "meaningByLocale": {
+              "ru": "Открытка. Повторение знакомого слова.",
+              "uk": "Листівка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "card",
+          "definitionByLocale": {
+            "ru": "Открытка. Повторение знакомого слова.",
+            "uk": "Листівка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен написав листівку. Почніть із листівки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Бен написав листівку. Почніть із листівки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i07:audio",
+          "transcript": "The card was written by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The card was written by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Бен сказав: «Анна рада». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Бен сказав: «Анна рада». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Анна рада». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Анна рада». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "He said Anna ___ happy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-36:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Бен сказав: «Анна рада». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Анна рада». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Анна рада». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що розумієте, чому Анна усміхається.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що розумієте, чому Анна усміхається.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand why Anna is smiling.",
+        "localizedMeaning": {
+          "ru": "Скажите, что понимаете, почему Анна улыбается.",
+          "uk": "Скажіть, що розумієте, чому Анна усміхається."
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "Anna",
+          "is",
+          "smiling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, де листівка. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, де листівка. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i10:audio",
+          "transcript": "I know where the card is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know where the card is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен написав листівку. Виберіть прийменник перед його ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен написав листівку. Виберіть прийменник перед його ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен написал открытку. Выберите предлог перед его именем.",
+          "uk": "Бен написав листівку. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The card was written ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-36:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен написав листівку. Виберіть прийменник перед його ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен написав листівку. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Автора вводим через by.",
+              "uk": "Автора вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен написав листівку. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Автора вводим через by.",
+              "uk": "Автора вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i12:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-36:i12:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i13:r1",
+          "text": "I know why the door is open."
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i13:r2",
+          "text": "I know why the window is open."
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i13:r3",
+          "text": "I know why the door is closed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i13:audio",
+          "transcript": "I know why the door is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-36:i13:r1",
+            "targetText": "I know why the door is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i13:r2",
+            "targetText": "I know why the window is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i13:r3",
+            "targetText": "I know why the door is closed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the door is open.",
+              "uk": "У записі звучить I know why the door is open."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know why the door is open.",
+              "uk": "У записі звучить I know why the door is open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Бен сказав: «Квіти гарні». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Бен сказав: «Квіти гарні». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i14:audio",
+          "transcript": "He said the flowers were beautiful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the flowers were beautiful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви відвідали Анну, хоча були зайняті. Почніть з I visited Anna.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви відвідали Анну, хоча були зайняті. Почніть з I visited Anna.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I visited Anna although I was busy.",
+        "localizedMeaning": {
+          "ru": "Вы навестили Анну, хотя были заняты. Начните с I visited Anna.",
+          "uk": "Ви відвідали Анну, хоча були зайняті. Почніть з I visited Anna."
+        },
+        "orderedTokens": [
+          "I",
+          "visited",
+          "Anna",
+          "although",
+          "I",
+          "was",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друга, чи знає він, чи вдома Анна.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i16:r1",
+          "text": "Anna is"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i16:r2",
+          "text": "is Anna"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i16:r3",
+          "text": "Anna are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи вдома Анна.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, дома ли Анна.",
+          "uk": "Запитайте друга, чи знає він, чи вдома Анна."
+        },
+        "gappedTargetPhrase": "Do you know if ___ home?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-36:i16:r1",
+            "text": "Anna is"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i16:r2",
+            "text": "is Anna"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i16:r3",
+            "text": "Anna are"
+          }
+        ],
+        "testedDimension": "Запитайте друга, чи знає він, чи вдома Анна.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи вдома Анна.",
+            "feedbackByLocale": {
+              "ru": "После if порядок Anna is.",
+              "uk": "Після if порядок Anna is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи вдома Анна.",
+            "feedbackByLocale": {
+              "ru": "С Anna нужна форма is.",
+              "uk": "З Anna потрібна форма is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна усміхається, бо рада. Поясніть причину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Анна усміхається, бо рада. Поясніть причину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i17:audio",
+          "transcript": "Anna is smiling because she is happy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna is smiling because she is happy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець відвідав Анну, хоча був зайнятий чи втомлений?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i18:r1",
+          "text": "I visited Anna although I was busy."
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i18:r2",
+          "text": "I visited Anna although I was tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i18:audioA",
+        "en:lesson-31:session-36:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець відвідав Анну, хоча був зайнятий чи втомлений?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I visited Anna although I was busy.",
+        "contrastB": "I visited Anna although I was tired.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-36:i18:audioA",
+          "transcript": "I visited Anna although I was busy."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-36:i18:audioB",
+          "transcript": "I visited Anna although I was tired."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець відвідав Анну, хоча був зайнятий чи втомлений?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець відвідав Анну, хоча був зайнятий чи втомлений?",
+            "feedbackByLocale": {
+              "ru": "Звучит busy — занят.",
+              "uk": "Звучить busy — зайнятий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте розповідь про візит. Почніть з I visited Anna.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте розповідь про візит. Почніть з I visited Anna.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i19:audio",
+          "transcript": "I visited Anna although I was busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I visited Anna although I was busy.",
+        "orderedTokens": [
+          "I",
+          "visited",
+          "Anna",
+          "although",
+          "I",
+          "was",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Двері не зачинені. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-36:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-36:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двері не зачинені. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь не закрыта. Добавьте утвердительное уточнение.",
+          "uk": "Двері не зачинені. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The door isn't closed, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-36:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Двері не зачинені. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-36:i20:r2",
+            "correct": false,
+            "testedDimension": "Двері не зачинені. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "С door нужно is.",
+              "uk": "З door потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-36:i20:r3",
+            "correct": false,
+            "testedDimension": "Двері не зачинені. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-36:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен відчинив двері. Почніть із дверей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-36:i21:audio"
+      ],
+      "accessibilityLabel": "Бен відчинив двері. Почніть із дверей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-36:i21:audio",
+          "transcript": "The door was opened by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door was opened by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ddd0a4dd6e1144cc7a6863ae39ffd480788aaaf1974a3c8540ee2d5d19cc4ab0"
+}

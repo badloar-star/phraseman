@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "рассказывать о чтении, уточнять время и называть того, кто вернул книгу.",
+    "uk": "розповідати про читання, уточнювати час і називати того, хто повернув книжку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прочитал, хотя книга длинная",
+        "uk": "Прочитав, хоча книжка довга"
+      },
+      "bodyByLocale": {
+        "ru": "В книге оказалось много страниц, но вы дочитали её. Скажите: I read the book although it was long — я прочитал книгу, хотя она была длинной. Соберите I read the book + although + it was long. Although вводит обстоятельство, которое не помешало чтению; read здесь относится к прошлому.",
+        "uk": "У книжці виявилося багато сторінок, але ви дочитали її. Скажіть: I read the book although it was long — я прочитав книжку, хоча вона була довгою. Складіть I read the book + although + it was long. Although вводить обставину, яка не завадила читанню; read тут стосується минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-40:intro1:r1",
+              "text": "I read the book although it was long."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro1:r2",
+              "text": "I read the book although of it was long."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro1:r3",
+              "text": "I read the book although it were long."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-40:intro1:r1",
+              "text": "I read the book although it was long."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro1:r2",
+              "text": "I read the book although of it was long."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro1:r3",
+              "text": "I read the book although it were long."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю время закрытия библиотеки",
+        "uk": "Я знаю час закриття бібліотеки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг торопится вернуть книгу, а вы уже посмотрели часы работы: I know when the library closes — я знаю, когда закрывается библиотека. Соберите I know + when + the library + closes. После when сохраняем порядок the library closes; вопросительное does не добавляем.",
+        "uk": "Друг поспішає повернути книжку, а ви вже подивилися години роботи: I know when the library closes — я знаю, коли зачиняється бібліотека. Складіть I know + when + the library + closes. Після when зберігаємо порядок the library closes; питальне does не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-40:intro2:r1",
+              "text": "I know when the library closes."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro2:r2",
+              "text": "I know when does the library close."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro2:r3",
+              "text": "I know when the library close."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-40:intro2:r1",
+              "text": "I know when the library closes."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro2:r2",
+              "text": "I know when does the library close."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro2:r3",
+              "text": "I know when the library close."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто вернул книгу",
+        "uk": "Хто повернув книжку"
+      },
+      "bodyByLocale": {
+        "ru": "Анна уже отнесла книгу в библиотеку. Расскажите об этом, начав с книги: The book was returned by Anna — книгу вернула Анна. Соберите The book + was + returned + by Anna. Was returned показывает, что сделали с книгой; by Anna называет исполнителя.",
+        "uk": "Анна вже віднесла книжку до бібліотеки. Розкажіть про це, почавши з книжки: The book was returned by Anna — книжку повернула Анна. Складіть The book + was + returned + by Anna. Was returned показує, що зробили з книжкою; by Anna називає виконавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-40:intro3:r1",
+              "text": "The book was returned by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro3:r2",
+              "text": "The book were returned by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro3:r3",
+              "text": "The book was return by Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-40:intro3:r1",
+              "text": "The book was returned by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro3:r2",
+              "text": "The book were returned by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-40:intro3:r3",
+              "text": "The book was return by Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "04e1852084e8b64819bf37edade120e57d277fb1d1c092d60766f94c2c87a535"
+}

@@ -1,0 +1,1047 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i01:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-38:i01:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i02:r1",
+          "text": "I know where your coat is."
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i02:r2",
+          "text": "I know where your hat is."
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i02:r3",
+          "text": "I know where your scarf is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i02:audio",
+          "transcript": "I know where your coat is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-38:i02:r1",
+            "targetText": "I know where your coat is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i02:r2",
+            "targetText": "I know where your hat is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i02:r3",
+            "targetText": "I know where your scarf is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where your coat is.",
+              "uk": "У записі звучить I know where your coat is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where your coat is.",
+              "uk": "У записі звучить I know where your coat is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хоча було холодно, ви з другом вийшли. Виберіть початок «хоча».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i03:r1",
+          "text": "Although"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i03:r2",
+          "text": "Because"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i03:r3",
+          "text": "But"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хоча було холодно, ви з другом вийшли. Виберіть початок «хоча».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хотя было холодно, вы с другом вышли. Выберите начало «хотя».",
+          "uk": "Хоча було холодно, ви з другом вийшли. Виберіть початок «хоча»."
+        },
+        "gappedTargetPhrase": "___ it was cold, we went out.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-38:i03:r1",
+            "text": "Although"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i03:r2",
+            "text": "Because"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i03:r3",
+            "text": "But"
+          }
+        ],
+        "testedDimension": "Хоча було холодно, ви з другом вийшли. Виберіть початок «хоча».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Хоча було холодно, ви з другом вийшли. Виберіть початок «хоча».",
+            "feedbackByLocale": {
+              "ru": "Нужно «хотя», не «потому что».",
+              "uk": "Потрібне «хоча», не «тому що»."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Хоча було холодно, ви з другом вийшли. Виберіть початок «хоча».",
+            "feedbackByLocale": {
+              "ru": "But не вводит здесь начальную часть «хотя».",
+              "uk": "But не вводить тут початкову частину «хоча»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — park",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — park",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i04:audio",
+          "transcript": "park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-38:i04:r1",
+            "targetText": "park",
+            "meaningByLocale": {
+              "ru": "Парк. Повторение знакомого слова.",
+              "uk": "Парк. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "park",
+          "definitionByLocale": {
+            "ru": "Парк. Повторение знакомого слова.",
+            "uk": "Парк. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Парк відчинений. Додайте заперечне уточнення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Парк відчинений. Додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The park is open, isn't it?",
+        "localizedMeaning": {
+          "ru": "Парк открыт. Добавьте отрицательное уточнение.",
+          "uk": "Парк відчинений. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "park",
+          "is",
+          "open,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна купила пальто. Почніть із пальта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i06:audio"
+      ],
+      "accessibilityLabel": "Анна купила пальто. Почніть із пальта.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i06:audio",
+          "transcript": "The coat was bought by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat was bought by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Парк відчинений». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the park ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-38:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Парк відчинений». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — umbrella",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — umbrella",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i08:audio",
+          "transcript": "umbrella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-38:i08:r1",
+            "targetText": "umbrella",
+            "meaningByLocale": {
+              "ru": "Зонт. Повторение знакомого слова.",
+              "uk": "Парасоля. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "umbrella",
+          "definitionByLocale": {
+            "ru": "Зонт. Повторение знакомого слова.",
+            "uk": "Парасоля. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де парасоля.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де парасоля.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the umbrella is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где зонт.",
+          "uk": "Ввічливо запитайте, де парасоля."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "umbrella",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що парасоля в Анни. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що парасоля в Анни. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i10:audio",
+          "transcript": "I know that Anna has the umbrella."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that Anna has the umbrella.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна купила пальто. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна купила пальто. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна купила пальто. Выберите предлог перед её именем.",
+          "uk": "Анна купила пальто. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The coat was bought ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-38:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна купила пальто. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна купила пальто. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна купила пальто. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i12:audio",
+          "transcript": "rain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-38:i12:r1",
+            "targetText": "rain",
+            "meaningByLocale": {
+              "ru": "Дождь. Повторение знакомого слова.",
+              "uk": "Дощ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rain",
+          "definitionByLocale": {
+            "ru": "Дождь. Повторение знакомого слова.",
+            "uk": "Дощ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i13:r1",
+          "text": "I took an umbrella because of the rain."
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i13:r2",
+          "text": "I took an umbrella because of the sun."
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i13:r3",
+          "text": "I took a coat because of the rain."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i13:audio",
+          "transcript": "I took an umbrella because of the rain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-38:i13:r1",
+            "targetText": "I took an umbrella because of the rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i13:r2",
+            "targetText": "I took an umbrella because of the sun.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i13:r3",
+            "targetText": "I took a coat because of the rain.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took an umbrella because of the rain.",
+              "uk": "У записі звучить I took an umbrella because of the rain."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took an umbrella because of the rain.",
+              "uk": "У записі звучить I took an umbrella because of the rain."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Мої черевики мокрі». Перекажіть зі зсувом are у минуле та my у her.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Мої черевики мокрі». Перекажіть зі зсувом are у минуле та my у her.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i14:audio",
+          "transcript": "She said her shoes were wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said her shoes were wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хоча було холодно, ви з другом вийшли. Почніть з Although.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хоча було холодно, ви з другом вийшли. Почніть з Although.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Although it was cold, we went out.",
+        "localizedMeaning": {
+          "ru": "Хотя было холодно, вы с другом вышли. Начните с Although.",
+          "uk": "Хоча було холодно, ви з другом вийшли. Почніть з Although."
+        },
+        "orderedTokens": [
+          "Although",
+          "it",
+          "was",
+          "cold,",
+          "we",
+          "went",
+          "out"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друга, чи знає він, чи сухе ваше пальто.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i16:r1",
+          "text": "my coat is"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i16:r2",
+          "text": "is my coat"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i16:r3",
+          "text": "my coat are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи сухе ваше пальто.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, сухое ли ваше пальто.",
+          "uk": "Запитайте друга, чи знає він, чи сухе ваше пальто."
+        },
+        "gappedTargetPhrase": "Do you know if ___ dry?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-38:i16:r1",
+            "text": "my coat is"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i16:r2",
+            "text": "is my coat"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i16:r3",
+            "text": "my coat are"
+          }
+        ],
+        "testedDimension": "Запитайте друга, чи знає він, чи сухе ваше пальто.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи сухе ваше пальто.",
+            "feedbackByLocale": {
+              "ru": "После if порядок my coat is.",
+              "uk": "Після if порядок my coat is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи сухе ваше пальто.",
+            "feedbackByLocale": {
+              "ru": "Одно coat требует is.",
+              "uk": "Одне coat потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви вдягли пальто, бо було холодно. Назвіть причину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Ви вдягли пальто, бо було холодно. Назвіть причину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i17:audio",
+          "transcript": "I wore a coat because it was cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wore a coat because it was cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: друзі вийшли, хоча було холодно чи вітряно?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i18:r1",
+          "text": "Although it was cold, we went out."
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i18:r2",
+          "text": "Although it was windy, we went out."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i18:audioA",
+        "en:lesson-31:session-38:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: друзі вийшли, хоча було холодно чи вітряно?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Although it was cold, we went out.",
+        "contrastB": "Although it was windy, we went out.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-38:i18:audioA",
+          "transcript": "Although it was cold, we went out."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-38:i18:audioB",
+          "transcript": "Although it was windy, we went out."
+        },
+        "testedPhoneticContrast": "Послухайте: друзі вийшли, хоча було холодно чи вітряно?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: друзі вийшли, хоча було холодно чи вітряно?",
+            "feedbackByLocale": {
+              "ru": "Звучит cold — холодно.",
+              "uk": "Звучить cold — холодно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте розповідь про прогулянку. Почніть з Although.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте розповідь про прогулянку. Почніть з Although.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i19:audio",
+          "transcript": "Although it was cold, we went out."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Although it was cold, we went out.",
+        "orderedTokens": [
+          "Although",
+          "it",
+          "was",
+          "cold,",
+          "we",
+          "went",
+          "out"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пальто не мокре. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-38:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-38:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто не мокре. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пальто не мокрое. Добавьте утвердительное уточнение.",
+          "uk": "Пальто не мокре. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The coat isn't wet, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-38:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Пальто не мокре. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-38:i20:r2",
+            "correct": false,
+            "testedDimension": "Пальто не мокре. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Одно coat требует is.",
+              "uk": "Одне coat потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-38:i20:r3",
+            "correct": false,
+            "testedDimension": "Пальто не мокре. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-38:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна взяла парасолю. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-38:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна взяла парасолю. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-38:i21:audio",
+          "transcript": "I understand why Anna took an umbrella."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna took an umbrella.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4159a340567946c7f18643d0060b62f5eb7e0bbef57ec7000ce9fb4f3538e0c8"
+}

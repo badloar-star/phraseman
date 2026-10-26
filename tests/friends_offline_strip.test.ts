@@ -106,14 +106,16 @@ describe('время списка с сервера', () => {
 });
 
 describe('сеть — тот же признак, что у очереди зовов', () => {
-  it('нет связи или интернет недоступен — offline; есть — online; отписка снимает слушателя', () => {
+  // зачем (владелец 26.10, «Нет сети» при живой сети): одиночный reachable=false — ещё не офлайн (общее правило
+  // app/net_offline_step.ts: подтверждение через 5 с подряд); нет связи — сразу; null = сеть есть.
+  it('нет связи — offline сразу; одиночный reachable=false — ещё online; есть — online; отписка снимает слушателя', () => {
     const seen: boolean[] = [];
     const unsubscribe = subscribeOffline((offline) => seen.push(offline));
     mockNet.listener?.({ isConnected: false, isInternetReachable: null });
     mockNet.listener?.({ isConnected: true, isInternetReachable: false });
     mockNet.listener?.({ isConnected: true, isInternetReachable: true });
     mockNet.listener?.({ isConnected: true, isInternetReachable: null });
-    expect(seen).toEqual([true, true, false, false]);
+    expect(seen).toEqual([true, false, false, false]);
     unsubscribe();
     expect(mockNet.listener).toBeNull();
   });

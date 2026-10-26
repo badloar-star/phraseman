@@ -8,6 +8,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { maskUid } from '../diagnostic_mask';
+import { netOfflineInstant, trackNetOffline } from '../net_offline_step';
 
 export const NUDGE_QUEUE_KEY = 'friends_nudge_queue_v1';
 /** Сервер пускает не больше 5 зовов в день от одного человека — копить больше незачем. */
@@ -130,7 +131,11 @@ export async function isOfflineNow(): Promise<boolean> {
       console.warn(`[FRIENDS-1] netinfo:fetch timeout ${NET_CHECK_TIMEOUT_MS}ms → считаем, что сеть есть`);
       return false;
     }
-    return state.isConnected === false || state.isInternetReachable === false;
+    // зачем (владелец 26.10, «Нет сети» при живой сети): разовая проверка перед тапом — офлайн только при connected=false;
+    // одиночный reachable=false — ещё не «нет сети»: зов пробует уйти, сбой уйдёт в очередь / «Повторить».
+    const verdict = netOfflineInstant(state);
+    console.log(`[NET-BANNER] place=friends_nudge_send instant offline=${String(verdict.offline)} reason=${verdict.reason}`); // guard-ok: одна строка на проверку перед зовом
+    return verdict.offline;
   } catch (e) {
     console.warn(`[FRIENDS-1] netinfo:fetch failed → считаем, что сеть есть: ${errText(e)}`); // guard-ok: catch называет причину
     return false;
@@ -146,8 +151,10 @@ export function subscribeNetworkBack(listener: () => void): () => void {
     console.warn('[FRIENDS-1] netinfo: подписки нет → очередь уйдёт при следующем открытии приложения'); // guard-ok: лог очереди зовов, баланса тут нет
     return () => undefined;
   }
-  return netInfo.addEventListener((state) => {
-    if (state.isConnected === true && state.isInternetReachable !== false) listener();
+  const addEventListener = netInfo.addEventListener;
+  // зачем (владелец 26.10): «сеть вернулась» — то же общее правило; раньше reachable=false на эмуляторе держал очередь вечно.
+  return trackNetOffline('friends_network_back', (l) => addEventListener(l), (offline) => {
+    if (!offline) listener();
   });
 }
 
@@ -161,9 +168,9 @@ export function subscribeOffline(listener: (offline: boolean) => void): () => vo
     console.warn('[FRIENDS-1] netinfo: подписки нет → полосы «Нет сети» не будет'); // guard-ok: ранний выход называет причину
     return () => undefined;
   }
-  return netInfo.addEventListener((state) => {
-    listener(state.isConnected === false || state.isInternetReachable === false);
-  });
+  const addEventListener = netInfo.addEventListener;
+  // зачем (владелец 26.10, «Нет сети» при живой сети): полоса «Нет сети» — общее правило (reachable=false — 5 с подряд, null = есть).
+  return trackNetOffline('friends_offline', (l) => addEventListener(l), (offline) => { listener(offline); });
 }
 
 /** Только для тестов: сбросить память очереди между сценариями. */

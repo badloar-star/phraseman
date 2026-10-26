@@ -7,6 +7,7 @@ import NetInfo from '@react-native-community/netinfo';
 import { useEffect, useState } from 'react';
 
 import { catalogOfflineVerdict } from './useCatalogOffline';
+import { trackNetOffline } from '../net_offline_step';
 
 export function useSavedLoadOffline(loadError: boolean): boolean {
   const [offline, setOffline] = useState(false);
@@ -26,7 +27,12 @@ export function useSavedLoadOffline(loadError: boolean): boolean {
       .then((state) => apply(state, 'fetch'))
       .catch((error: unknown) => console.warn('[CARDS-LOAD] offline probe failed', error instanceof Error ? error.message : String(error))); // guard-ok: сбой чтения NetInfo — остаёмся на тихом повторе
     // сеть вернулась, пока открыт экран ошибки — «Сейчас недоступно» не залипает (автоповтор подставит список сам)
-    const unsubscribe = NetInfo.addEventListener((state) => apply(state, 'change'));
+    // зачем (владелец 26.10, «Нет сети» при живой сети): подписка — по общему правилу (reachable=false — офлайн только 5 с подряд,
+    // null = сеть есть), разовое чтение выше — мгновенное (только connected=false). Журнал [NET-BANNER] place=cards_saved_load.
+    const unsubscribe = trackNetOffline('cards_saved_load', (listener) => NetInfo.addEventListener(listener), (next, reason) => {
+      console.log('[CARDS-LOAD] offline probe', JSON.stringify({ source: 'change', offline: next, reason, cancelled })); // guard-ok: одно решение на проверку
+      if (!cancelled) setOffline(next);
+    });
     return () => {
       cancelled = true;
       unsubscribe();

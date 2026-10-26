@@ -21,9 +21,11 @@ function block(src: string, startMarker: string, length = 900): string {
 }
 
 describe('каталог без сети', () => {
-  it('вердикт: нет соединения / нет интернета → офлайн с причиной; иначе онлайн', () => {
+  // зачем (владелец 26.10, «Нет сети» при живой сети): один снимок reachable=false — ещё не офлайн; подтверждение — второе
+  // чтение через 5 с тем же правилом (app/net_offline_step.ts).
+  it('вердикт: нет соединения → офлайн с причиной; одиночный reachable=false — ещё нет; иначе онлайн', () => {
     expect(catalogOfflineVerdict({ isConnected: false, isInternetReachable: false, type: 'none' } as any)).toMatchObject({ offline: true, reason: expect.stringContaining('not_connected') });
-    expect(catalogOfflineVerdict({ isConnected: true, isInternetReachable: false, type: 'wifi' } as any)).toMatchObject({ offline: true, reason: expect.stringContaining('internet_unreachable') });
+    expect(catalogOfflineVerdict({ isConnected: true, isInternetReachable: false, type: 'wifi' } as any)).toMatchObject({ offline: false, reason: expect.stringContaining('unreachable_wait') });
     expect(catalogOfflineVerdict({ isConnected: true, isInternetReachable: true, type: 'wifi' } as any).offline).toBe(false);
     // null = система ещё не знает — не считаем офлайном, чтобы не пугать зря
     expect(catalogOfflineVerdict({ isConnected: null, isInternetReachable: null, type: 'unknown' } as any).offline).toBe(false);
@@ -39,11 +41,12 @@ describe('каталог без сети', () => {
     expect(hub).toContain("logNoErrorScreen('flashcards_category_hub', 'community_offline_empty', 'quiet_empty')");
   });
 
-  it('экран подключает хук и «Повторить»; логи [CATALOG-OFFLINE] несут причину', () => {
+  it('экран подключает хук и «Повторить»; логи [NET-BANNER] place=cards_catalog несут попытку и причину', () => {
     expect(packs).toMatch(/useCatalogOffline\(\{/);
     expect(packs).toMatch(/communityOffline=\{communityOffline\}/);
     expect(packs).toMatch(/onRetryCatalog=\{retryCatalog\}/);
-    expect(hook).toMatch(/\[CATALOG-OFFLINE\] probe offline=\$\{String\(verdict\.offline\)\} reason=\$\{verdict\.reason\}/);
-    expect(hook).toMatch(/\[CATALOG-OFFLINE\] probe failed reason=/);
+    expect(hook).toContain('[NET-BANNER] place=cards_catalog probe attempt=${attempt} offline=${String(step.offline)} recheckInMs=${String(step.recheckInMs)} reason=${step.reason}');
+    expect(hook).toContain('[NET-BANNER] place=cards_catalog probe failed attempt=${attempt} reason=');
+    expect(hook).toContain("probe(step.unreachableSinceMs, 'confirm')");
   });
 });

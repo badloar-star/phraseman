@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-25:intro1:r2": {
+          "ru": "После can’t используем be.",
+          "uk": "Після can’t використовуємо be."
+        },
+        "en:lesson-32:session-25:intro1:r3": {
+          "ru": "После can’t не ставим to.",
+          "uk": "Після can’t не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-25:intro2:r2": {
+          "ru": "После can’t используем fit без s.",
+          "uk": "Після can’t використовуємо fit без s."
+        },
+        "en:lesson-32:session-25:intro2:r3": {
+          "ru": "Перед глаголом fit связка be не нужна.",
+          "uk": "Перед дієсловом fit зв’язка be не потрібна."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-25:intro3:r2": {
+          "ru": "После can’t здесь используем be.",
+          "uk": "Після can’t тут використовуємо be."
+        },
+        "en:lesson-32:session-25:intro3:r3": {
+          "ru": "После can’t не ставим to.",
+          "uk": "Після can’t не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4b1623f3a3b74f2c8984827f091a96d2332d3ede1e39ce926d3b4d6b994f35ab"
+}

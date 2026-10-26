@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "отвергать невозможное объяснение с can’t.",
+    "uk": "відкидати неможливе пояснення з can’t."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это не может быть нужный ключ",
+        "uk": "Це не може бути потрібний ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали ключ, но его форма совсем не подходит к замку. Вы делаете вывод: This can’t be the right key — это не может быть нужный ключ. Соберите This + can’t + be + the right key. Can’t здесь отвергает вариант на основании признака. Перед названием предмета нужна связка be.",
+        "uk": "Ви дістали ключ, але його форма зовсім не підходить до замка. Ви робите висновок: This can’t be the right key — це не може бути потрібний ключ. Складіть This + can’t + be + the right key. Can’t тут відкидає варіант на підставі ознаки. Перед назвою предмета потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-25:intro1:r1",
+              "text": "This can't be the right key."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro1:r2",
+              "text": "This can't is the right key."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro1:r3",
+              "text": "This can't to be the right key."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-25:intro1:r1",
+              "text": "This can't be the right key."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro1:r2",
+              "text": "This can't is the right key."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro1:r3",
+              "text": "This can't to be the right key."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Он не может подходить к этому замку",
+        "uk": "Він не може підходити до цього замка"
+      },
+      "bodyByLocale": {
+        "ru": "Ключ заметно шире отверстия замка. Ещё до попытки вставить его вы заключаете: It can’t fit this lock — он не может подходить к этому замку. Соберите It + can’t + fit + this lock. It заменяет key. После can’t сразу идёт начальная форма fit без s и без дополнительного be.",
+        "uk": "Ключ помітно ширший за отвір замка. Ще до спроби вставити його ви робите висновок: It can’t fit this lock — він не може підходити до цього замка. Складіть It + can’t + fit + this lock. It замінює key. Після can’t одразу йде початкова форма fit без s і без додаткового be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-25:intro2:r1",
+              "text": "It can't fit this lock."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro2:r2",
+              "text": "It can't fits this lock."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro2:r3",
+              "text": "It can't be fit this lock."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-25:intro2:r1",
+              "text": "It can't fit this lock."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro2:r2",
+              "text": "It can't fits this lock."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro2:r3",
+              "text": "It can't be fit this lock."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бен не может быть дома",
+        "uk": "Бен не може бути вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите у дома Анны. Она думает, что Бен у себя дома в другом районе, но вы видите его рядом с собой у машины: Ben can’t be at home — Бен не может быть дома. Соберите Ben + can’t + be + at home. Перед местом at home здесь нужна связка be. Can’t выражает вывод, который противоречит предположению Анны.",
+        "uk": "Ви стоїте біля будинку Анни. Вона думає, що Бен у себе вдома в іншому районі, але ви бачите його поруч із собою біля машини: Ben can’t be at home — Бен не може бути вдома. Складіть Ben + can’t + be + at home. Перед місцем at home тут потрібна зв’язка be. Can’t виражає висновок, який суперечить припущенню Анни."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-25:intro3:r1",
+              "text": "Ben can't be at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro3:r2",
+              "text": "Ben can't is at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro3:r3",
+              "text": "Ben can't to be at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-25:intro3:r1",
+              "text": "Ben can't be at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro3:r2",
+              "text": "Ben can't is at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-25:intro3:r3",
+              "text": "Ben can't to be at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f1c94c34c62fbc08dc67b90a81e1c088791c3dea11503569680c725ff09dc6d"
+}

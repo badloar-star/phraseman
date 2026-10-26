@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "называть возможное состояние, делать вывод по признакам и уточнять предмет.",
+    "uk": "називати можливий стан, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможное состояние",
+        "uk": "Можливий стан"
+      },
+      "bodyByLocale": {
+        "ru": "Вы давно выключили духовку, но ещё не проверяли, остыла ли она. The oven could be cold. — Возможно, духовка холодная. Соберите The oven + could + be + cold. Здесь описываем состояние: перед cold нужна связка be. Could показывает, что это возможный вариант.",
+        "uk": "Ви давно вимкнули духовку, але ще не перевіряли, чи охолола вона. The oven could be cold. — Можливо, духовка холодна. Складіть The oven + could + be + cold. Тут описуємо стан: перед cold потрібна зв’язка be. Could показує, що це можливий варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-22:intro1:r1",
+              "text": "The oven could be cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro1:r2",
+              "text": "The oven could is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro1:r3",
+              "text": "The oven could to be cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-22:intro1:r1",
+              "text": "The oven could be cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro1:r2",
+              "text": "The oven could is cold."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro1:r3",
+              "text": "The oven could to be cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. The cake must be ready. — Пирог, должно быть, готов. Соберите The cake + must + be + ready. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Пиріг пікся потрібний час. Таймер задзвенів, а крізь скло видно золотисту скоринку. The cake must be ready. — Пиріг, напевно, готовий. Складіть The cake + must + be + ready. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-22:intro2:r1",
+              "text": "The cake must be ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro2:r2",
+              "text": "The cake must is ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro2:r3",
+              "text": "The cake must to be ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-22:intro2:r1",
+              "text": "The cake must be ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro2:r2",
+              "text": "The cake must is ready."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro2:r3",
+              "text": "The cake must to be ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне вымытое блюдо для пирога. The dish I washed is clean. — Блюдо, которое я помыл, чистое. Соберите The dish + I washed + is clean. Часть I washed уточняет dish. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви показуєте Анні вимите блюдо для пирога. The dish I washed is clean. — Блюдо, яке я помив, чисте. Складіть The dish + I washed + is clean. Частина I washed уточнює dish. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-22:intro3:r1",
+              "text": "The dish I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro3:r2",
+              "text": "The dish I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro3:r3",
+              "text": "The dish I washing is clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-22:intro3:r1",
+              "text": "The dish I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro3:r2",
+              "text": "The dish I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-22:intro3:r3",
+              "text": "The dish I washing is clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1f10aaae3a4a3b3308a7f5f8d64ba9925d1b33df1bd41dd24876166cc78659be"
+}

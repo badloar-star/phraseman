@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "называть возможное состояние, делать вывод по признакам и уточнять предмет.",
+    "uk": "називати можливий стан, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможное состояние",
+        "uk": "Можливий стан"
+      },
+      "bodyByLocale": {
+        "ru": "Поезда ещё не видно. Вы пока не прочитали информацию на табло. The train could be late. — Возможно, поезд опаздывает. Соберите The train + could + be + late. Здесь описываем состояние: перед late нужна связка be. Could показывает, что это возможный вариант.",
+        "uk": "Поїзда ще не видно. Ви поки не прочитали інформацію на табло. The train could be late. — Можливо, поїзд запізнюється. Складіть The train + could + be + late. Тут описуємо стан: перед late потрібна зв’язка be. Could показує, що це можливий варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-24:intro1:r1",
+              "text": "The train could be late."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro1:r2",
+              "text": "The train could is late."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro1:r3",
+              "text": "The train could to be late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-24:intro1:r1",
+              "text": "The train could be late."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro1:r2",
+              "text": "The train could is late."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro1:r3",
+              "text": "The train could to be late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Анна поднимает сумку двумя руками и с трудом ставит её на полку. Вы сами сумку ещё не брали. The bag must be heavy. — Сумка, должно быть, тяжёлая. Соберите The bag + must + be + heavy. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Анна піднімає сумку двома руками й насилу ставить її на полицю. Ви самі сумку ще не брали. The bag must be heavy. — Сумка, напевно, важка. Складіть The bag + must + be + heavy. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-24:intro2:r1",
+              "text": "The bag must be heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro2:r2",
+              "text": "The bag must is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro2:r3",
+              "text": "The bag must to be heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-24:intro2:r1",
+              "text": "The bag must be heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro2:r2",
+              "text": "The bag must is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro2:r3",
+              "text": "The bag must to be heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете проводнику купленный билет на эту поездку. The ticket I bought is valid. — Билет, который я купил, действителен. Соберите The ticket + I bought + is valid. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви показуєте провідникові куплений квиток на цю поїздку. The ticket I bought is valid. — Квиток, який я купив, дійсний. Складіть The ticket + I bought + is valid. Частина I bought уточнює ticket. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-24:intro3:r1",
+              "text": "The ticket I bought is valid."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro3:r2",
+              "text": "The ticket I bought it is valid."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro3:r3",
+              "text": "The ticket I buying is valid."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-24:intro3:r1",
+              "text": "The ticket I bought is valid."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro3:r2",
+              "text": "The ticket I bought it is valid."
+            },
+            {
+              "responseId": "en:lesson-32:session-24:intro3:r3",
+              "text": "The ticket I buying is valid."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "41b44bdc22dae9a9c62ee5fe121fa08dff6aa5b9b27b7c1390f3e32c2d73cd00"
+}

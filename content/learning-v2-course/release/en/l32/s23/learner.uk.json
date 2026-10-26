@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lamp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lamp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i01:audio",
+          "transcript": "lamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-23:i01:r1",
+            "targetText": "lamp",
+            "meaningByLocale": {
+              "ru": "Лампа. Повторение знакомого слова.",
+              "uk": "Лампа. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lamp",
+          "definitionByLocale": {
+            "ru": "Лампа. Повторение знакомого слова.",
+            "uk": "Лампа. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i02:r1",
+          "text": "The lamp could be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i02:r2",
+          "text": "The lamp could be new."
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i02:r3",
+          "text": "The lamp could be hot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i02:audio",
+          "transcript": "The lamp could be broken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-23:i02:r1",
+            "targetText": "The lamp could be broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i02:r2",
+            "targetText": "The lamp could be new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i02:r3",
+            "targetText": "The lamp could be hot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lamp could be broken.",
+              "uk": "У записі звучить The lamp could be broken."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lamp could be broken.",
+              "uk": "У записі звучить The lamp could be broken."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Лампа не загорается. Вы ещё не проверяли ни розетку, ни лампочку. Возможно, лампа сломана.",
+          "uk": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана."
+        },
+        "gappedTargetPhrase": "The lamp could ___ broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-23:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+            "feedbackByLocale": {
+              "ru": "После could здесь нужна форма be.",
+              "uk": "Після could тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bulb",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bulb",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i04:audio",
+          "transcript": "bulb"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-23:i04:r1",
+            "targetText": "bulb",
+            "meaningByLocale": {
+              "ru": "Лампочка. Повторение знакомого слова.",
+              "uk": "Лампочка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bulb",
+          "definitionByLocale": {
+            "ru": "Лампочка. Повторение знакомого слова.",
+            "uk": "Лампочка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Лампочка, напевно, гаряча.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Лампочка, напевно, гаряча.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bulb must be hot.",
+        "localizedMeaning": {
+          "ru": "Вы включили другую лампу со старой лампочкой, которая заметно нагревает абажур. Она горит уже час. Лампочка, должно быть, горячая.",
+          "uk": "Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Лампочка, напевно, гаряча."
+        },
+        "orderedTokens": [
+          "The",
+          "bulb",
+          "must",
+          "be",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — book",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — book",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i06:audio",
+          "transcript": "book"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-23:i06:r1",
+            "targetText": "book",
+            "meaningByLocale": {
+              "ru": "Книга. Повторение знакомого слова.",
+              "uk": "Книжка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "book",
+          "definitionByLocale": {
+            "ru": "Книга. Повторение знакомого слова.",
+            "uk": "Книжка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Книжка, яку я позичив, коротка. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Книжка, яку я позичив, коротка. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i07:audio",
+          "transcript": "The book I borrowed is short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The book I borrowed is short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i08:r1",
+          "text": "borrowed"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i08:r2",
+          "text": "borrowed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i08:r3",
+          "text": "borrowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Книга, которую я взял почитать, короткая. Уточните предмет без лишнего местоимения.",
+          "uk": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The book I ___ is short.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-23:i08:r1",
+            "text": "borrowed"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i08:r2",
+            "text": "borrowed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i08:r3",
+            "text": "borrowing"
+          }
+        ],
+        "testedDimension": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Книжка, яку я позичив, коротка. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма borrowed.",
+              "uk": "Потрібна минула форма borrowed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The lamp could be broken.",
+        "localizedMeaning": {
+          "ru": "Лампа не загорается. Вы ещё не проверяли ни розетку, ни лампочку. Возможно, лампа сломана.",
+          "uk": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана."
+        },
+        "orderedTokens": [
+          "The",
+          "lamp",
+          "could",
+          "be",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Скажіть висновок іще раз, замінивши The bulb займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Ви ввімкнули іншу лампу зі старою лампочкою, яка помітно нагріває абажур. Вона світить уже годину. Скажіть висновок іще раз, замінивши The bulb займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i10:audio",
+          "transcript": "It must be hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лампочка, напевно, гаряча. Виберіть форму після must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампочка, напевно, гаряча. Виберіть форму після must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Лампочка, должно быть, горячая. Выберите форму после must.",
+          "uk": "Лампочка, напевно, гаряча. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The bulb must ___ hot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-23:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Лампочка, напевно, гаряча. Виберіть форму після must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Лампочка, напевно, гаряча. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Лампочка, напевно, гаряча. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i12:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-23:i12:r1",
+            "targetText": "chair",
+            "meaningByLocale": {
+              "ru": "Кресло, стул. Повторение знакомого слова.",
+              "uk": "Крісло, стілець. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chair",
+          "definitionByLocale": {
+            "ru": "Кресло, стул. Повторение знакомого слова.",
+            "uk": "Крісло, стілець. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i13:r1",
+          "text": "The chair may be comfortable."
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i13:r2",
+          "text": "The chair may be hard."
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i13:r3",
+          "text": "The chair may be small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i13:audio",
+          "transcript": "The chair may be comfortable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-23:i13:r1",
+            "targetText": "The chair may be comfortable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i13:r2",
+            "targetText": "The chair may be hard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i13:r3",
+            "targetText": "The chair may be small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair may be comfortable.",
+              "uk": "У записі звучить The chair may be comfortable."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair may be comfortable.",
+              "uk": "У записі звучить The chair may be comfortable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i14:audio",
+          "transcript": "The chair may be comfortable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chair may be comfortable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви показуєте Анні невелику книжку, яку позичили в Бена. Покажіть предмет: почніть із This is, потім назвіть the book й уточнення I borrowed. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте Анні невелику книжку, яку позичили в Бена. Покажіть предмет: почніть із This is, потім назвіть the book й уточнення I borrowed. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the book I borrowed.",
+        "localizedMeaning": {
+          "ru": "Вы показываете Анне небольшую книгу, которую взяли почитать у Бена. Покажите предмет: начните с This is, затем назовите the book и уточнение I borrowed. Не добавляйте that.",
+          "uk": "Ви показуєте Анні невелику книжку, яку позичили в Бена. Покажіть предмет: почніть із This is, потім назвіть the book й уточнення I borrowed. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "book",
+          "I",
+          "borrowed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Лампа оказалась сломана, поэтому вы подождали, пока Анна принесёт другую. Вставьте «поэтому».",
+          "uk": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The lamp was broken, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-23:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i16:r3",
+            "correct": false,
+            "testedDimension": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Почніть із причини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Лампа виявилася зламаною, тому ви зачекали, поки Анна принесе іншу. Почніть із причини.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i17:audio",
+          "transcript": "The lamp was broken, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lamp was broken, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який стан названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i18:r1",
+          "text": "The lamp could be broken."
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i18:r2",
+          "text": "The lamp could be new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i18:audioA",
+        "en:lesson-32:session-23:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте, який стан названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The lamp could be broken.",
+        "contrastB": "The lamp could be new.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-23:i18:audioA",
+          "transcript": "The lamp could be broken."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-23:i18:audioB",
+          "transcript": "The lamp could be new."
+        },
+        "testedPhoneticContrast": "Послухайте, який стан названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який стан названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит broken.",
+              "uk": "Звучить broken."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте висновок за ознаками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте висновок за ознаками.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i19:audio",
+          "transcript": "The bulb must be hot."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bulb must be hot.",
+        "orderedTokens": [
+          "The",
+          "bulb",
+          "must",
+          "be",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-23:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-23:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не сидели в кресле возле лампы, но оно выглядит удобным.",
+          "uk": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд."
+        },
+        "gappedTargetPhrase": "The chair may ___ comfortable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-23:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-23:i20:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+            "feedbackByLocale": {
+              "ru": "После may здесь используем be.",
+              "uk": "Після may тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-23:i20:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не сиділи в кріслі біля лампи, але воно має зручний вигляд.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-23:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана. Тепер назвіть цю можливість із may.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-23:i21:audio"
+      ],
+      "accessibilityLabel": "Лампа не засвічується. Ви ще не перевіряли ні розетку, ні лампочку. Можливо, лампа зламана. Тепер назвіть цю можливість із may.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-23:i21:audio",
+          "transcript": "The lamp may be broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The lamp may be broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c6f7b5085cdc356df1363d40e61101ed7a707f99d08b0dfb5bcb57ffa71bb84e"
+}

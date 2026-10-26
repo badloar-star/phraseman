@@ -1,7 +1,7 @@
 // StreakConfetti.tsx — конфетти рубежей 100 / 365 / 500 (образец engagement-moments.js: confetti — частицы падают сверху, гаснут у низа).
 // зачем (гейт паритета, круг 1, 14.10; правило Макетов «конфетти никогда поверх текста и кнопок»): частицы рисуются ПОД содержимым сцены (вызывающий ставит компонент до текста), падают 2,6–4,2 с
 // и оседают ближе к низу экрана; цвета — токены темы и золото. Один общий прогресс на UI-треде, у каждой частицы своё окно времени. reduceMotion — без конфетти.
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { Easing, type SharedValue, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import { momentJitter } from '../../spire/moments/moments_effects';
@@ -10,6 +10,8 @@ import { useTheme } from '../../ThemeContext';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 
 const TOTAL_MS = 4600;
+/** Через сколько после показа момента частицы монтируются невидимыми (прогресс 0 → прозрачность 0). */
+const ARM_AFTER_MS = 250;
 
 type PieceProps = Readonly<{ progress: SharedValue<number>; x: number; fall: number; start: number; span: number; size: number; color: string; spin: number; square: boolean }>;
 const Piece = memo(function Piece({ progress, x, fall, start, span, size, color, spin, square }: PieceProps) {
@@ -30,6 +32,18 @@ function StreakConfetti({ fire, n = 60 }: StreakConfettiProps) {
   // зачем (координатор 15.10, храповик): текст/значки цвета темы — токен accentTextSafe (в светлом глубокий, в тёмном ровно accent)
   const accentTextSafe = liquidGlassTokens(liquidGlassThemeId).accentTextSafe;
   const progress = useSharedValue(0);
+  // зачем (координатор 26.10, аудит скорости Моментов №7): 60–90 частиц с useAnimatedStyle монтировались в одном кадре с залпом,
+  // хаптиком и тряской (вершина Пика — 1,7 с) — видимая запинка. Теперь частицы ставятся заранее, невидимыми, в спокойный момент
+  // вскоре после показа; на залпе только стартует прогресс. Вид и тайминг падения прежние. Если fire пришёл сразу — монтируем сразу.
+  const [armed, setArmed] = useState(fire);
+  useEffect(() => {
+    if (armed || reduceMotion) return undefined;
+    const id = setTimeout(() => {
+      if (__DEV__) console.log(`[MOMENT-CONFETTI] частицы n=${n} поставлены заранее, невидимыми`); // guard-ok: замер только в разработке
+      setArmed(true);
+    }, ARM_AFTER_MS);
+    return () => clearTimeout(id);
+  }, [armed, reduceMotion, n]);
   useEffect(() => {
     if (fire && !reduceMotion) progress.value = withTiming(1, { duration: TOTAL_MS, easing: Easing.linear });
   }, [fire, reduceMotion, progress]);
@@ -42,7 +56,7 @@ function StreakConfetti({ fire, n = 60 }: StreakConfettiProps) {
       size: 3 + momentJitter(i, 15) * 3, color: colors[i % colors.length]!, spin: (momentJitter(i, 16) - 0.5) * 900, square: momentJitter(i, 17) > 0.5,
     };
   }), [n, width, height, colors]);
-  if (!fire || reduceMotion) return null;
+  if ((!armed && !fire) || reduceMotion) return null;
   return (
     <View pointerEvents="none" accessible={false} style={StyleSheet.absoluteFill}>
       {pieces.map((q) => <Piece key={q.key} progress={progress} x={q.x} fall={q.fall} start={q.start} span={q.span} size={q.size} color={q.color} spin={q.spin} square={q.square} />)}

@@ -21,6 +21,15 @@ describe('Моменты: перерисовка только там, где м�
     expect(main).toContain('<LastChanceBody lang={lang} energyReadyAtMs={energyReadyAtMs}');
   });
 
+  it('№7 конфетти: частицы ставятся заранее невидимыми (до залпа), на залпе только стартует прогресс; reduceMotion — без частиц', () => {
+    const c = read('components/streak/moments/StreakConfetti.tsx');
+    expect(c).toContain('const [armed, setArmed] = useState(fire);');
+    expect(c).toContain('if ((!armed && !fire) || reduceMotion) return null;');
+    expect(c).toContain('if (armed || reduceMotion) return undefined;');
+    // невидимость до залпа держит сама формула: при progress=0 окно частицы t<=0 → прозрачность 0
+    expect(c).toContain('opacity: t <= 0 || t >= 1 ? 0 :');
+  });
+
   it('повышение: нет пустого setPhase({...v}); замер первой строки — useCallback', () => {
     const promo = read('components/spire/moments/MomentPromotion.tsx');
     expect(promo).not.toMatch(/setPhase\(\(v\) => \(\{ \.\.\.v \}\)\)/);

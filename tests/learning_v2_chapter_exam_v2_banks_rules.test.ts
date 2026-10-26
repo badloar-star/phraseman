@@ -1,11 +1,13 @@
 // Правила банков экзамена v2 для каждого файла в modules/learning-v2/exam/banks (координатор 25.10): больше 10 заданий (запас на
 // пересдачу), на каждую тему ≥ 3 задания и есть эпизоды для повторения, id уникальны, в уроке 1 вопросов нет (знака «?» нет ни в
 // репликах, ни в ответах), у каждого задания есть что показать (ситуация / реплика / фраза с ошибкой). Слова эпизодов проверяет
-// отдельный сторож owner_locks_exam_episode_words. Подключение банков к приложению — по слову владельца (25.10: главы 1–3 урока 1).
+// отдельный сторож owner_locks_exam_episode_words. Подключение — в реестрах banks/registry_*.ts (слово владельца 26.10: все уроки и главы
+// в 2.0.3; каждая сессия подключает в своём реестре, когда оба сторожа зелёные). Файл банка без подключения — черновик, правила к нему те же.
 import fs from 'node:fs';
 import path from 'node:path';
 import type { ChapterExamV2Bank } from '../modules/learning-v2/exam/chapter_exam_v2';
 import { CHAPTER_EXAM_V2_QUESTION_COUNT, selectChapterExamV2Items } from '../modules/learning-v2/exam/chapter_exam_v2';
+import { CHAPTER_EXAM_V2_BANKS, CHAPTER_EXAM_V2_BANK_REGISTRIES } from '../modules/learning-v2/exam/banks';
 
 const BANKS_DIR = path.join(__dirname, '..', 'modules/learning-v2/exam/banks');
 const banks = fs.readdirSync(BANKS_DIR).filter((f) => /^chapter_exam_v2_.*\.ts$/.test(f)).map((file) => {
@@ -19,8 +21,9 @@ const banks = fs.readdirSync(BANKS_DIR).filter((f) => /^chapter_exam_v2_.*\.ts$/
 beforeAll(() => { jest.spyOn(console, 'log').mockImplementation(() => undefined); jest.spyOn(console, 'warn').mockImplementation(() => undefined); });
 
 describe('банки экзамена v2: правила', () => {
-  it('банков три: урок 1, главы 1–3', () => {
-    expect(banks.map(([, b]) => `${b.lessonOrdinal}:${b.chapterOrdinal}`).sort()).toEqual(['1:1', '1:2', '1:3']);
+  it('у каждого файла банка своя глава — ключ «урок:глава» не повторяется', () => {
+    const keys = banks.map(([, b]) => `${b.lessonOrdinal}:${b.chapterOrdinal}`);
+    expect(keys.filter((k, i) => keys.indexOf(k) !== i)).toEqual([]);
   });
 
   it.each(banks)('%s: запас, темы, уникальность, без вопросов, есть что показать', (_file, bank) => {
@@ -40,16 +43,29 @@ describe('банки экзамена v2: правила', () => {
       if (item.type === 'dialogue') expect(item.partnerLine && item.situation?.ru && item.situation?.uk).toBeTruthy();
       if (item.type === 'fix') expect(item.wrong).toBeTruthy();
     }
-    const picked = selectChapterExamV2Items(bank, { examKey: `en:lesson-01:chapter-${bank.chapterOrdinal}`, attempt: 1 });
+    const picked = selectChapterExamV2Items(bank, { examKey: `en:lesson-${String(bank.lessonOrdinal).padStart(2, '0')}:chapter-${bank.chapterOrdinal}`, attempt: 1 });
     expect(new Set(picked?.map((i) => i.grammarPoint))).toEqual(new Set(bank.grammarPoints.map((p) => p.id)));
   });
 
-  // владелец 25.10 прочитал банки и ответил «Да, включать и делать дальше» — подключены главы 1–3 урока 1; новые — только по его слову
-  it('в приложении подключены главы 1–3 урока 1, и у каждой подключённой главы есть файл банка', () => {
-    const src = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_chapter_exam_v2.ts'), 'utf8');
-    const map = src.match(/const BANKS: ReadonlyMap<string, ChapterExamV2Bank> = new Map\(\[([\s\S]*?)\]\);/)?.[1] ?? '';
-    expect(map.match(/`\d+:\d+`/g)).toEqual(['`1:1`', '`1:2`', '`1:3`']);
-    const files = new Set(banks.map(([, b]) => `${b.lessonOrdinal}:${b.chapterOrdinal}`));
-    for (const key of ['1:1', '1:2', '1:3']) expect(files.has(key)).toBe(true);
+  // слово владельца 26.10: банки всех уроков — в 2.0.3; подключение — в реестрах сессий, общий индекс собирает их
+  it('каждый подключённый банк — объект из файла банка в папке, ключи подключённых не повторяются', () => {
+    const fileBanks = new Set<ChapterExamV2Bank>(banks.map(([, b]) => b));
+    for (const bank of CHAPTER_EXAM_V2_BANKS) expect(fileBanks.has(bank)).toBe(true);
+    const keys = CHAPTER_EXAM_V2_BANKS.map((b) => `${b.lessonOrdinal}:${b.chapterOrdinal}`);
+    expect(keys.filter((k, i) => keys.indexOf(k) !== i)).toEqual([]);
+    expect(keys).toEqual(expect.arrayContaining(['1:1', '1:2', '1:3']));
+    // банк лежит в реестре своего диапазона уроков (registry_l04_l07 → уроки 4–7)
+    for (const [range, list] of Object.entries(CHAPTER_EXAM_V2_BANK_REGISTRIES)) {
+      const [from, to] = range.split('_').map((p) => Number(p.slice(1)));
+      for (const b of list) expect(b.lessonOrdinal >= from && b.lessonOrdinal <= to).toBe(true);
+    }
+  });
+
+  it('индекс собирает все реестры папки, приложение берёт банки из индекса', () => {
+    const registries = fs.readdirSync(BANKS_DIR).filter((f) => /^registry_l\d\d_l\d\d\.ts$/.test(f)).map((f) => f.slice('registry_'.length, -3)).sort();
+    expect(Object.keys(CHAPTER_EXAM_V2_BANK_REGISTRIES).sort()).toEqual(registries);
+    const app = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_chapter_exam_v2.ts'), 'utf8');
+    expect(app).toContain("import { CHAPTER_EXAM_V2_BANKS } from '../modules/learning-v2/exam/banks';");
+    expect(app).not.toContain("from '../modules/learning-v2/exam/banks/chapter_exam_v2_");
   });
 });

@@ -13521,9 +13521,9 @@
         "Снято 2026-10-26: экран не показывается — Словарь курса (LearningV2LessonDictionaryOverlayV1) никем не импортируется вне dev — людям не показывается; живой словарь V2 есть только в dev (dev_learning_v2_dictionary_v2).",
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "no_release_surface",
+      "reviewed_by": "координатор 26.10 (поручение 0 · КООРДИНАТОР → 3 · МАКЕТЫ по 531596d31; вносит 3 · МАКЕТЫ)",
+      "reviewed_at": "2026-10-26",
       "prev_release_surface_proof": {
         "kind": "store_route_excluded",
         "routes": [
@@ -13543,6 +13543,14 @@
         "reason": "Словарь курса (LearningV2LessonDictionaryOverlayV1) никем не импортируется вне dev — людям не показывается; живой словарь V2 есть только в dev (dev_learning_v2_dictionary_v2).",
         "replacement": "решение координатора: где словарь в выпуске и какой у него эталон",
         "status_note": "статус не меняю: no_release_surface требует доказательства, которое гейт понимает (маршрут/флаг), и reviewed_by координатора"
+      },
+      "prev_status": "pending",
+      "release_surface_proof": {
+        "kind": "component_unreachable",
+        "components": [
+          "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx"
+        ],
+        "guard_test": "tests/component_unreachable_guard.test.mjs"
       }
     },
     {
@@ -13575,9 +13583,9 @@
         "Снято 2026-10-26: экран не показывается — То же, что 016: компонент словаря не подключён ни к одному экрану выпуска.",
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "no_release_surface",
+      "reviewed_by": "координатор 26.10 (поручение 0 · КООРДИНАТОР → 3 · МАКЕТЫ по 531596d31; вносит 3 · МАКЕТЫ)",
+      "reviewed_at": "2026-10-26",
       "prev_release_surface_proof": {
         "kind": "store_route_excluded",
         "routes": [
@@ -13597,6 +13605,14 @@
         "reason": "То же, что 016: компонент словаря не подключён ни к одному экрану выпуска.",
         "replacement": "как 016",
         "status_note": "статус не меняю: no_release_surface требует доказательства, которое гейт понимает (маршрут/флаг), и reviewed_by координатора"
+      },
+      "prev_status": "pending",
+      "release_surface_proof": {
+        "kind": "component_unreachable",
+        "components": [
+          "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx"
+        ],
+        "guard_test": "tests/component_unreachable_guard.test.mjs"
       }
     },
     {
@@ -13630,9 +13646,9 @@
         "Ячейки 016/017/019 (слова/поиск/ничего не нашлось) не сняты — у аккаунта 0 открытых слов, нужен пройденный урок",
         "Статус «diff» выставлен 11.10 (сессия «Макеты»): отличия от образца перечислены в заметках выше — «по образцу» только при полном совпадении."
       ],
-      "status": "diff",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "no_release_surface",
+      "reviewed_by": "координатор 26.10 (поручение 0 · КООРДИНАТОР → 3 · МАКЕТЫ по 531596d31; вносит 3 · МАКЕТЫ)",
+      "reviewed_at": "2026-10-26",
       "prev_release_surface_proof": {
         "kind": "store_route_excluded",
         "routes": [
@@ -13643,7 +13659,7 @@
         ]
       },
       "blocked_reason": null,
-      "prev_status": "pending",
+      "prev_status": "diff",
       "triage": {
         "bucket": "b_reshoot",
         "final_bucket": "b_reshoot",
@@ -13663,6 +13679,13 @@
         "reason": "То же, что 016: компонент словаря не подключён ни к одному экрану выпуска.",
         "replacement": "как 016",
         "status_note": "статус не меняю: no_release_surface требует доказательства, которое гейт понимает (маршрут/флаг), и reviewed_by координатора"
+      },
+      "release_surface_proof": {
+        "kind": "component_unreachable",
+        "components": [
+          "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx"
+        ],
+        "guard_test": "tests/component_unreachable_guard.test.mjs"
       }
     },
     {
@@ -13695,9 +13718,9 @@
         "Снято 2026-10-26: экран не показывается — То же, что 016: компонент словаря не подключён ни к одному экрану выпуска.",
         "Снять на телефоне: на эмуляторе экран роняет сам qemu (c0000005, координатор 05:40) — Настройки 3/3, урок 1 3/3"
       ],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "no_release_surface",
+      "reviewed_by": "координатор 26.10 (поручение 0 · КООРДИНАТОР → 3 · МАКЕТЫ по 531596d31; вносит 3 · МАКЕТЫ)",
+      "reviewed_at": "2026-10-26",
       "prev_release_surface_proof": {
         "kind": "store_route_excluded",
         "routes": [
@@ -13717,6 +13740,14 @@
         "reason": "То же, что 016: компонент словаря не подключён ни к одному экрану выпуска.",
         "replacement": "как 016",
         "status_note": "статус не меняю: no_release_surface требует доказательства, которое гейт понимает (маршрут/флаг), и reviewed_by координатора"
+      },
+      "prev_status": "pending",
+      "release_surface_proof": {
+        "kind": "component_unreachable",
+        "components": [
+          "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx"
+        ],
+        "guard_test": "tests/component_unreachable_guard.test.mjs"
       }
     },
     {

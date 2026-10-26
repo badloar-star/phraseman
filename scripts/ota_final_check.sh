@@ -1,9 +1,9 @@
 #!/bin/bash
-# ota_final_check.sh — финальная проверка Ревизора перед публикацией OTA на 2.0.2. ТОЛЬКО ЧТЕНИЕ, ничего не публикует.
+# ota_final_check.sh — финальная проверка Ревизора перед публикацией OTA (runtime — OTA_RUNTIME, по умолчанию 2.0.3). ТОЛЬКО ЧТЕНИЕ, ничего не публикует.
 #
 # зачем (координатор 25.10, правило сборки после 04ec8cd30): 🟢 Ревизора даётся только по ТОМУ ЖЕ хэшу, из которого собран dist-ota.
 # Одна команда на 95 %: полный tsc этой ревизии, флаги по умолчанию против снимка (docs/work/release/ota_flag_baseline_2026-10-25.json),
-# runtimeVersion 2.0.2, dev-строки в собранных бандлах (по карте) и тождество бандлов dist-ota с проверенными.
+# runtimeVersion = OTA_RUNTIME, натив без изменений с OTA_NATIVE_BASE, dev-строки в собранных бандлах (по карте) и тождество бандлов dist-ota с проверенными.
 #
 # Вход: снимок, собранный scripts/ota_from_head.sh (по умолчанию /c/Temp/claude/ota_head: .snapshot_head, dist-ios, dist-android, dist-ota).
 # Запуск (тяжёлое — tsc — через светофор):
@@ -16,6 +16,10 @@ SNAP=${2:-/c/Temp/claude/ota_head}
 [ -n "$REV_IN" ] || { echo "[OTA-FINAL] ✖ укажи хэш сборки"; exit 2; }
 REV=$(git -C "$REPO" rev-parse "$REV_IN" 2>/dev/null) || { echo "[OTA-FINAL] ✖ нет ревизии $REV_IN"; exit 2; }
 LOGD=/c/Temp/claude/ota_final_$(date +%m%d_%H%M); mkdir -p "$LOGD"
+# зачем (координатор 26.10: полная 2.0.3 (145) в магазинах — обновления по воздуху теперь только для неё): runtime и натив-база сборки
+# не вшиты, а заданы здесь; для 2.0.2 (сборка 144, 009c40c97) — OTA_RUNTIME=2.0.2 OTA_NATIVE_BASE=009c40c97.
+OTA_RUNTIME=${OTA_RUNTIME:-2.0.3}
+OTA_NATIVE_BASE=${OTA_NATIVE_BASE:-b60fa6ea3}
 FAIL=0
 ok()   { echo "[OTA-FINAL] ✅ $*"; }
 bad()  { echo "[OTA-FINAL] 🔴 $*"; FAIL=1; }
@@ -28,12 +32,12 @@ SNAP_REV=$(tr -d '[:space:]' < "$SNAP/.snapshot_head")
 [ "$SNAP_REV" = "$REV" ] && ok "снимок = ревизия ${REV:0:9}" || { bad "снимок ${SNAP_REV:0:9} ≠ ревизия ${REV:0:9} — проверять нечего, пересобери"; exit 1; }
 SNAPW=$(cygpath -m "$SNAP")
 
-# 1) runtimeVersion 2.0.2, app.config.js не переопределяет
+# 1) runtimeVersion = OTA_RUNTIME, app.config.js не переопределяет
 RT=$(node -e "console.log(require('$SNAPW/app.json').expo.runtimeVersion)")
-[ "$RT" = "2.0.2" ] && ok "runtimeVersion = 2.0.2" || bad "runtimeVersion = $RT"
+[ "$RT" = "$OTA_RUNTIME" ] && ok "runtimeVersion = $OTA_RUNTIME" || bad "runtimeVersion = $RT, ждали $OTA_RUNTIME"
 if [ -f "$SNAP/app.config.js" ] && grep -qE "runtimeVersion" "$SNAP/app.config.js"; then bad "app.config.js упоминает runtimeVersion — проверь, не переопределяет ли"; else ok "app.config.js не трогает runtimeVersion"; fi
-DEPS=$(git -C "$REPO" diff 009c40c97 "$REV" -- package.json package-lock.json app.json eas.json plugins patches | grep -cE '^[+-][^+-]')
-[ "$DEPS" = "0" ] && ok "натив/зависимости без изменений с 009c40c97" || bad "изменены package/app.json/eas/plugins/patches с 009c40c97 ($DEPS строк) — OTA может не подойти к сборке 144"
+DEPS=$(git -C "$REPO" diff "$OTA_NATIVE_BASE" "$REV" -- package.json package-lock.json app.json eas.json plugins patches | grep -cE '^[+-][^+-]')
+[ "$DEPS" = "0" ] && ok "натив/зависимости без изменений с $OTA_NATIVE_BASE (сборка runtime $OTA_RUNTIME)" || bad "изменены package/app.json/eas/plugins/patches с $OTA_NATIVE_BASE ($DEPS строк) — OTA может не подойти к магазинной сборке runtime $OTA_RUNTIME"
 
 # 2) флаги по умолчанию против снимка
 node - "$SNAPW" "$(cygpath -m "$REPO")" > "$LOGD/flags.txt" 2>&1 <<'JS'

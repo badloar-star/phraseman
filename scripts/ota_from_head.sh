@@ -1,5 +1,5 @@
 #!/bin/bash
-# ota_from_head.sh — подготовка обновления по воздуху на 2.0.2 из HEAD ОДНОЙ командой, до публикации (публикует координатор).
+# ota_from_head.sh — подготовка обновления по воздуху (runtime — OTA_RUNTIME, по умолчанию 2.0.3) из HEAD ОДНОЙ командой, до публикации (публикует координатор).
 #
 # зачем (решение владельца 25.10 через координатора: одно обновление по воздуху на 2.0.2 из HEAD при недельном лимите 95 %; аудит
 # docs/work/release/OTA_COMPAT_AUDIT_2026-10-25.md): повторяет ПРОВЕРЕННУЮ схему OTA-2 — обычный `eas update` на этой машине падал.
@@ -28,6 +28,10 @@ for ARG in "$@"; do
 done
 FULL=$(git -C "$REPO" rev-parse "$REV") || { echo "[OTA-HEAD] ✖ нет ревизии $REV"; exit 2; }
 SHORT=${FULL:0:9}
+# зачем (координатор 26.10: в магазинах полная 2.0.3 (145) — заплатки по воздуху только для неё): runtime и метка публикации заданы
+# здесь, а не вшиты; для 2.0.2 — OTA_RUNTIME=2.0.2. Метка: <runtime>-OTA<N>_from_<хэш>, N — следующий номер для этого runtime.
+OTA_RUNTIME=${OTA_RUNTIME:-2.0.3}
+OTA_LABEL=${OTA_LABEL:-${OTA_RUNTIME}-OTA1}
 SNAP=/c/Temp/claude/ota_head
 LOGD=/c/Temp/claude/ota_head_logs_$(date +%m%d_%H%M)
 mkdir -p "$LOGD"
@@ -44,7 +48,7 @@ echo "$FULL" > "$SNAP/.snapshot_head"
 SNAPW=$(cygpath -m "$SNAP")
 node -e "const a=require('$SNAPW/app.json').expo;console.log('[OTA-HEAD] app.json version='+a.version+' runtimeVersion='+a.runtimeVersion+' versionCode='+a.android.versionCode)" | tee -a "$LOG"
 RT=$(node -e "console.log(require('$SNAPW/app.json').expo.runtimeVersion)")
-[ "$RT" = "2.0.2" ] || step_fail "runtimeVersion = $RT, а не 2.0.2"
+[ "$RT" = "$OTA_RUNTIME" ] || step_fail "runtimeVersion = $RT, а не $OTA_RUNTIME"
 
 # 2) зависимости
 cd "$SNAP" || step_fail "cd снимок"
@@ -103,4 +107,4 @@ say "[OTA-HEAD] Публикация (только координатор, пр�
 # production целиком (branchMappingLogic "true") ведёт в единственную ветку production — публикация та же, но канал идёт за
 # сборками, если его когда-нибудь перенаправят.
 say "[OTA-HEAD] После публикации удалить снимок: rm -rf $SNAP (в нём бандлы и временные файлы сборки)"
-say "  cd $SNAP && EAS_NO_VCS=1 eas update --channel production --environment production --platform all --skip-bundler --input-dir dist-ota --message 2.0.2-OTA3_from_${SHORT} --non-interactive"
+say "  cd $SNAP && EAS_NO_VCS=1 eas update --channel production --environment production --platform all --skip-bundler --input-dir dist-ota --message ${OTA_LABEL}_from_${SHORT} --non-interactive"

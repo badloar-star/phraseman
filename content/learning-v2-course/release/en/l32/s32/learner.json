@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — key",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — key",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i01:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-32:i01:r1",
+            "targetText": "key",
+            "meaningByLocale": {
+              "ru": "Ключ. Повторение знакомого слова.",
+              "uk": "Ключ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key",
+          "definitionByLocale": {
+            "ru": "Ключ. Повторение знакомого слова.",
+            "uk": "Ключ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i02:r1",
+          "text": "The key can't be right."
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i02:r2",
+          "text": "The key can't be old."
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i02:r3",
+          "text": "The key can't be small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i02:audio",
+          "transcript": "The key can't be right."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-32:i02:r1",
+            "targetText": "The key can't be right.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i02:r2",
+            "targetText": "The key can't be old.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i02:r3",
+            "targetText": "The key can't be small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The key can't be right.",
+              "uk": "У записі звучить The key can't be right."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The key can't be right.",
+              "uk": "У записі звучить The key can't be right."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+          "uk": "На ключі вказано номер 12, а ваша кімната — номер 18. Ви впевнені, що вам видали інший ключ. Ключ не може бути потрібним."
+        },
+        "gappedTargetPhrase": "The key can't ___ right.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-32:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+            "feedbackByLocale": {
+              "ru": "После can't здесь нужна форма be.",
+              "uk": "Після can't тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+            "feedbackByLocale": {
+              "ru": "После can't не ставим to.",
+              "uk": "Після can't не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i04:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-32:i04:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Дверь, должно быть, заперта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Дверь, должно быть, заперта.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door must be locked.",
+        "localizedMeaning": {
+          "ru": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Дверь, должно быть, заперта.",
+          "uk": "Ручка повертається, але двері не піддаються, й усередині чути клацання замка. Двері, напевно, замкнені."
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "must",
+          "be",
+          "locked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — note",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — note",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i06:audio",
+          "transcript": "note"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-32:i06:r1",
+            "targetText": "note",
+            "meaningByLocale": {
+              "ru": "Записка. Повторение знакомого слова.",
+              "uk": "Записка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "note",
+          "definitionByLocale": {
+            "ru": "Записка. Повторение знакомого слова.",
+            "uk": "Записка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Записка, которую я написал, короткая. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i07:audio"
+      ],
+      "accessibilityLabel": "Записка, которую я написал, короткая. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i07:audio",
+          "transcript": "The note I wrote is short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The note I wrote is short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i08:r1",
+          "text": "wrote"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i08:r2",
+          "text": "wrote it"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i08:r3",
+          "text": "writing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+          "uk": "Записка, яку я написав, коротка. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The note I ___ is short.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-32:i08:r1",
+            "text": "wrote"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i08:r2",
+            "text": "wrote it"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i08:r3",
+            "text": "writing"
+          }
+        ],
+        "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма wrote.",
+              "uk": "Потрібна минула форма wrote."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The key can't be right.",
+        "localizedMeaning": {
+          "ru": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Ключ не может быть нужным.",
+          "uk": "На ключі вказано номер 12, а ваша кімната — номер 18. Ви впевнені, що вам видали інший ключ. Ключ не може бути потрібним."
+        },
+        "orderedTokens": [
+          "The",
+          "key",
+          "can't",
+          "be",
+          "right"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i10:audio",
+          "transcript": "It must be locked."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be locked.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверь, должно быть, заперта. Выберите форму после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь, должно быть, заперта. Выберите форму после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь, должно быть, заперта. Выберите форму после must.",
+          "uk": "Двері, напевно, замкнені. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The door must ___ locked.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-32:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Дверь, должно быть, заперта. Выберите форму после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Дверь, должно быть, заперта. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Дверь, должно быть, заперта. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i12:audio",
+          "transcript": "room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-32:i12:r1",
+            "targetText": "room",
+            "meaningByLocale": {
+              "ru": "Комната, номер. Повторение знакомого слова.",
+              "uk": "Кімната, номер. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room",
+          "definitionByLocale": {
+            "ru": "Комната, номер. Повторение знакомого слова.",
+            "uk": "Кімната, номер. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i13:r1",
+          "text": "The room may be empty."
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i13:r2",
+          "text": "The room may be dark."
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i13:r3",
+          "text": "The room may be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i13:audio",
+          "transcript": "The room may be empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-32:i13:r1",
+            "targetText": "The room may be empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i13:r2",
+            "targetText": "The room may be dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i13:r3",
+            "targetText": "The room may be cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room may be empty.",
+              "uk": "У записі звучить The room may be empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room may be empty.",
+              "uk": "У записі звучить The room may be empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i14:audio",
+          "transcript": "The room may be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The room may be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы оставили Анне короткую записку о том, что пошли за другим ключом. Покажите предмет: начните с This is, затем назовите the note и уточнение I wrote. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы оставили Анне короткую записку о том, что пошли за другим ключом. Покажите предмет: начните с This is, затем назовите the note и уточнение I wrote. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the note I wrote.",
+        "localizedMeaning": {
+          "ru": "Вы оставили Анне короткую записку о том, что пошли за другим ключом. Покажите предмет: начните с This is, затем назовите the note и уточнение I wrote. Не добавляйте that.",
+          "uk": "Ви залишили Анні коротку записку про те, що пішли по інший ключ. Покажіть предмет: почніть із This is, потім назвіть the note й уточнення I wrote. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "note",
+          "I",
+          "wrote"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Вставьте «поэтому».",
+          "uk": "Двері були замкнені, тому ви зачекали на працівника з потрібним ключем. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The door was locked, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-32:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i16:r2",
+            "correct": false,
+            "testedDimension": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i16:r3",
+            "correct": false,
+            "testedDimension": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Начните с причины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Дверь была заперта, поэтому вы подождали сотрудника с нужным ключом. Начните с причины.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i17:audio",
+          "transcript": "The door was locked, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door was locked, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какое состояние названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i18:r1",
+          "text": "The key can't be right."
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i18:r2",
+          "text": "The key can't be old."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i18:audioA",
+        "en:lesson-32:session-32:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте, какое состояние названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The key can't be right.",
+        "contrastB": "The key can't be old.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-32:i18:audioA",
+          "transcript": "The key can't be right."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-32:i18:audioB",
+          "transcript": "The key can't be old."
+        },
+        "testedPhoneticContrast": "Послушайте, какое состояние названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какое состояние названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит right.",
+              "uk": "Звучить right."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод по признакам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод по признакам.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i19:audio",
+          "transcript": "The door must be locked."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door must be locked.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "must",
+          "be",
+          "locked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-32:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-32:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+          "uk": "Із сусідньої кімнати не чути звуків. Ви не зазирали всередину й припускаєте, що там нікого немає."
+        },
+        "gappedTargetPhrase": "The room could ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-32:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-32:i20:r2",
+            "correct": false,
+            "testedDimension": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+            "feedbackByLocale": {
+              "ru": "После could здесь используем be.",
+              "uk": "Після could тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-32:i20:r3",
+            "correct": false,
+            "testedDimension": "Из соседней комнаты не слышно звуков. Вы не заглядывали внутрь и допускаете, что там никого нет.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-32:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-32:i21:audio"
+      ],
+      "accessibilityLabel": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-32:i21:audio",
+          "transcript": "It can't be right."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can't be right.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "45c5800d7e1794ea4f07e65bee16011d321d7d1cf8e9cc928d6f57296930d0d0"
+}

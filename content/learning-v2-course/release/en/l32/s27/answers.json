@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-27:i01",
+    "correctText": "room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i02",
+    "correctText": "The room can't be empty.",
+    "correctResponseId": "en:lesson-32:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i04",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i05",
+    "correctText": "The coat must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i06",
+    "correctText": "towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i07",
+    "correctText": "The towel I used is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i08",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-32:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i09",
+    "correctText": "The room can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i10",
+    "correctText": "It must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i12",
+    "correctText": "window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i13",
+    "correctText": "The window may be open.",
+    "correctResponseId": "en:lesson-32:session-27:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i14",
+    "correctText": "The window may be open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i15",
+    "correctText": "This is the towel I used.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i17",
+    "correctText": "The door was locked, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i18",
+    "correctText": "The room can't be empty.",
+    "correctResponseId": "en:lesson-32:session-27:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i19",
+    "correctText": "The coat must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-27:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-27:i21",
+    "correctText": "It can't be empty.",
+    "correctResponseId": null
+  }
+]

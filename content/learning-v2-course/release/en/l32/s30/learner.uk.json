@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — suitcase",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — suitcase",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i01:audio",
+          "transcript": "suitcase"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-30:i01:r1",
+            "targetText": "suitcase",
+            "meaningByLocale": {
+              "ru": "Чемодан. Повторение знакомого слова.",
+              "uk": "Валіза. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suitcase",
+          "definitionByLocale": {
+            "ru": "Чемодан. Повторение знакомого слова.",
+            "uk": "Валіза. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i02:r1",
+          "text": "The suitcase can't be mine."
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i02:r2",
+          "text": "The suitcase can't be yours."
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i02:r3",
+          "text": "The suitcase can't be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i02:audio",
+          "transcript": "The suitcase can't be mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-30:i02:r1",
+            "targetText": "The suitcase can't be mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i02:r2",
+            "targetText": "The suitcase can't be yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i02:r3",
+            "targetText": "The suitcase can't be empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The suitcase can't be mine.",
+              "uk": "У записі звучить The suitcase can't be mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The suitcase can't be mine.",
+              "uk": "У записі звучить The suitcase can't be mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваш чемодан красный, а Анна показывает вам чёрный. Вы уверены, что это другая вещь. Чемодан не может быть моим.",
+          "uk": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю."
+        },
+        "gappedTargetPhrase": "The suitcase can't ___ mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-30:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+            "feedbackByLocale": {
+              "ru": "После can't здесь нужна форма be.",
+              "uk": "Після can't тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+            "feedbackByLocale": {
+              "ru": "После can't не ставим to.",
+              "uk": "Після can't не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i04:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-30:i04:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Сумка, напевно, важка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Сумка, напевно, важка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag must be heavy.",
+        "localizedMeaning": {
+          "ru": "Анна с усилием передвигает сумку и просит помочь её поднять. Сумка, должно быть, тяжёлая.",
+          "uk": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Сумка, напевно, важка."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "must",
+          "be",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i06:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-30:i06:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пальто, яке я купив, тепле. Скажіть без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Пальто, яке я купив, тепле. Скажіть без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i07:audio",
+          "transcript": "The coat I bought is warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat I bought is warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пальто, которое я купил, тёплое. Уточните предмет без лишнего местоимения.",
+          "uk": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The coat I ___ is warm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-30:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The suitcase can't be mine.",
+        "localizedMeaning": {
+          "ru": "Ваш чемодан красный, а Анна показывает вам чёрный. Вы уверены, что это другая вещь. Чемодан не может быть моим.",
+          "uk": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Валіза не може бути моєю."
+        },
+        "orderedTokens": [
+          "The",
+          "suitcase",
+          "can't",
+          "be",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i10:audio",
+          "transcript": "It must be heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка, напевно, важка. Виберіть форму після must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка, напевно, важка. Виберіть форму після must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка, должно быть, тяжёлая. Выберите форму после must.",
+          "uk": "Сумка, напевно, важка. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The bag must ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-30:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Сумка, напевно, важка. Виберіть форму після must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Сумка, напевно, важка. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Сумка, напевно, важка. Виберіть форму після must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — book",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — book",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i12:audio",
+          "transcript": "book"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-30:i12:r1",
+            "targetText": "book",
+            "meaningByLocale": {
+              "ru": "Книга. Повторение знакомого слова.",
+              "uk": "Книжка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "book",
+          "definitionByLocale": {
+            "ru": "Книга. Повторение знакомого слова.",
+            "uk": "Книжка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i13:r1",
+          "text": "The book may be heavy."
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i13:r2",
+          "text": "The book may be light."
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i13:r3",
+          "text": "The book may be new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i13:audio",
+          "transcript": "The book may be heavy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-30:i13:r1",
+            "targetText": "The book may be heavy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i13:r2",
+            "targetText": "The book may be light.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i13:r3",
+            "targetText": "The book may be new.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The book may be heavy.",
+              "uk": "У записі звучить The book may be heavy."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The book may be heavy.",
+              "uk": "У записі звучить The book may be heavy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i14:audio",
+          "transcript": "The book may be heavy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The book may be heavy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви дістаєте з багажу куплене перед поїздкою тепле пальто. Покажіть предмет: почніть із This is, потім назвіть the coat й уточнення I bought. Не додавайте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви дістаєте з багажу куплене перед поїздкою тепле пальто. Покажіть предмет: почніть із This is, потім назвіть the coat й уточнення I bought. Не додавайте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the coat I bought.",
+        "localizedMeaning": {
+          "ru": "Вы достаёте из багажа купленное перед поездкой тёплое пальто. Покажите предмет: начните с This is, затем назовите the coat и уточнение I bought. Не добавляйте that.",
+          "uk": "Ви дістаєте з багажу куплене перед поїздкою тепле пальто. Покажіть предмет: почніть із This is, потім назвіть the coat й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "coat",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка была тяжёлая, поэтому вы подождали Анну, чтобы поднять её вместе. Вставьте «поэтому».",
+          "uk": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The bag was heavy, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-30:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i16:r2",
+            "correct": false,
+            "testedDimension": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i16:r3",
+            "correct": false,
+            "testedDimension": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Почніть із причини.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Сумка була важка, тому ви зачекали на Анну, щоб підняти її разом. Почніть із причини.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i17:audio",
+          "transcript": "The bag was heavy, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag was heavy, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте, який стан названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i18:r1",
+          "text": "The suitcase can't be mine."
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i18:r2",
+          "text": "The suitcase can't be yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i18:audioA",
+        "en:lesson-32:session-30:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте, який стан названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The suitcase can't be mine.",
+        "contrastB": "The suitcase can't be yours.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-30:i18:audioA",
+          "transcript": "The suitcase can't be mine."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-30:i18:audioB",
+          "transcript": "The suitcase can't be yours."
+        },
+        "testedPhoneticContrast": "Послухайте, який стан названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте, який стан названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит mine.",
+              "uk": "Звучить mine."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте висновок за ознаками.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте висновок за ознаками.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i19:audio",
+          "transcript": "The bag must be heavy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag must be heavy.",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "must",
+          "be",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-30:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-30:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В сумке лежит большая книга. Вы ещё не брали её в руки; она может быть тяжёлой.",
+          "uk": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою."
+        },
+        "gappedTargetPhrase": "The book could ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-30:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-30:i20:r2",
+            "correct": false,
+            "testedDimension": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+            "feedbackByLocale": {
+              "ru": "После could здесь используем be.",
+              "uk": "Після could тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-30:i20:r3",
+            "correct": false,
+            "testedDimension": "У сумці лежить велика книжка. Ви ще не брали її до рук; вона може бути важкою.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-30:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase займенником It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-30:i21:audio"
+      ],
+      "accessibilityLabel": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase займенником It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-30:i21:audio",
+          "transcript": "It can't be mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can't be mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b84e911ffb41f5541a1e2fae4f01f909a0e69d15b177466db4e010ef3bca4ba2"
+}

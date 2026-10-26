@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-28:intro1:r2": {
+          "ru": "После can't здесь нужна форма be.",
+          "uk": "Після can't тут потрібна форма be."
+        },
+        "en:lesson-32:session-28:intro1:r3": {
+          "ru": "После can't не ставим to.",
+          "uk": "Після can't не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-28:intro2:r2": {
+          "ru": "После must здесь используем be.",
+          "uk": "Після must тут використовуємо be."
+        },
+        "en:lesson-32:session-28:intro2:r3": {
+          "ru": "После must не ставим to.",
+          "uk": "Після must не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-28:intro3:r2": {
+          "ru": "Предмет уже назван: it после washed не нужно.",
+          "uk": "Предмет уже названо: it після washed не потрібне."
+        },
+        "en:lesson-32:session-28:intro3:r3": {
+          "ru": "Для завершённого прошлого действия нужна форма washed.",
+          "uk": "Для завершеної минулої дії потрібна форма washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2285e7b0da06aa6430e1c3f84bac905e5ff0fb881aa904767fddab0c0fa694ce"
+}

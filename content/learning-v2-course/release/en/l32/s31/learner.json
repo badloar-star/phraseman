@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i01:audio",
+          "transcript": "cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-31:i01:r1",
+            "targetText": "cup",
+            "meaningByLocale": {
+              "ru": "Чашка. Повторение знакомого слова.",
+              "uk": "Чашка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cup",
+          "definitionByLocale": {
+            "ru": "Чашка. Повторение знакомого слова.",
+            "uk": "Чашка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i02:r1",
+          "text": "The cup can't be clean."
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i02:r2",
+          "text": "The cup can't be new."
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i02:r3",
+          "text": "The cup can't be empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i02:audio",
+          "transcript": "The cup can't be clean."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-31:i02:r1",
+            "targetText": "The cup can't be clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i02:r2",
+            "targetText": "The cup can't be new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i02:r3",
+            "targetText": "The cup can't be empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cup can't be clean.",
+              "uk": "У записі звучить The cup can't be clean."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cup can't be clean.",
+              "uk": "У записі звучить The cup can't be clean."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+          "uk": "Анна поставила чашку до чистого посуду, але всередині видно старий чай, а на краю сліди помади. Чашка не може бути чистою."
+        },
+        "gappedTargetPhrase": "The cup can't ___ clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-31:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+            "feedbackByLocale": {
+              "ru": "После can't здесь нужна форма be.",
+              "uk": "Після can't тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+            "feedbackByLocale": {
+              "ru": "После can't не ставим to.",
+              "uk": "Після can't не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sink",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sink",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i04:audio",
+          "transcript": "sink"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-31:i04:r1",
+            "targetText": "sink",
+            "meaningByLocale": {
+              "ru": "Раковина. Повторение знакомого слова.",
+              "uk": "Раковина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sink",
+          "definitionByLocale": {
+            "ru": "Раковина. Повторение знакомого слова.",
+            "uk": "Раковина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Раковина, должно быть, засорена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Раковина, должно быть, засорена.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sink must be blocked.",
+        "localizedMeaning": {
+          "ru": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Раковина, должно быть, засорена.",
+          "uk": "Пробку вийнято, але вода вже кілька хвилин не йде з раковини. Раковина, напевно, засмічена."
+        },
+        "orderedTokens": [
+          "The",
+          "sink",
+          "must",
+          "be",
+          "blocked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i06:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-31:i06:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "Полотенце. Повторение знакомого слова.",
+              "uk": "Рушник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "Полотенце. Повторение знакомого слова.",
+            "uk": "Рушник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Полотенце, которым я воспользовался, мокрое. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Полотенце, которым я воспользовался, мокрое. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i07:audio",
+          "transcript": "The towel I used is wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The towel I used is wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i08:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i08:r2",
+          "text": "used it"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i08:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+          "uk": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The towel I ___ is wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-31:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i08:r2",
+            "text": "used it"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i08:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма used.",
+              "uk": "Потрібна минула форма used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cup can't be clean.",
+        "localizedMeaning": {
+          "ru": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Чашка не может быть чистой.",
+          "uk": "Анна поставила чашку до чистого посуду, але всередині видно старий чай, а на краю сліди помади. Чашка не може бути чистою."
+        },
+        "orderedTokens": [
+          "The",
+          "cup",
+          "can't",
+          "be",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i10:audio",
+          "transcript": "It must be blocked."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It must be blocked.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Раковина, должно быть, засорена. Выберите форму после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раковина, должно быть, засорена. Выберите форму после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Раковина, должно быть, засорена. Выберите форму после must.",
+          "uk": "Раковина, напевно, засмічена. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "The sink must ___ blocked.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-31:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Раковина, должно быть, засорена. Выберите форму после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Раковина, должно быть, засорена. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь используем be.",
+              "uk": "Після must тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Раковина, должно быть, засорена. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i12:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-31:i12:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Пол. Повторение знакомого слова.",
+              "uk": "Підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Пол. Повторение знакомого слова.",
+            "uk": "Підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i13:r1",
+          "text": "The floor may be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i13:r2",
+          "text": "The floor may be dry."
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i13:r3",
+          "text": "The floor may be dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i13:audio",
+          "transcript": "The floor may be wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-31:i13:r1",
+            "targetText": "The floor may be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i13:r2",
+            "targetText": "The floor may be dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i13:r3",
+            "targetText": "The floor may be dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor may be wet.",
+              "uk": "У записі звучить The floor may be wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The floor may be wet.",
+              "uk": "У записі звучить The floor may be wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i14:audio",
+          "transcript": "The floor may be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The floor may be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы откладываете полотенце, которым вытирали руки после мытья посуды. Покажите предмет: начните с This is, затем назовите the towel и уточнение I used. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы откладываете полотенце, которым вытирали руки после мытья посуды. Покажите предмет: начните с This is, затем назовите the towel и уточнение I used. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the towel I used.",
+        "localizedMeaning": {
+          "ru": "Вы откладываете полотенце, которым вытирали руки после мытья посуды. Покажите предмет: начните с This is, затем назовите the towel и уточнение I used. Не добавляйте that.",
+          "uk": "Ви відкладаєте рушник, яким витирали руки після миття посуду. Покажіть предмет: почніть із This is, потім назвіть the towel й уточнення I used. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "towel",
+          "I",
+          "used"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Вставьте «поэтому».",
+          "uk": "Підлога була мокра, тому ви зачекали, поки Анна її витре, перш ніж пройти. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The floor was wet, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-31:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i16:r2",
+            "correct": false,
+            "testedDimension": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат: нужен so.",
+              "uk": "Після сполучника названо результат: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i16:r3",
+            "correct": false,
+            "testedDimension": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна связь причины и результата: so.",
+              "uk": "Тут потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Начните с причины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Пол был мокрый, поэтому вы подождали, пока Анна его вытрет, прежде чем пройти. Начните с причины.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i17:audio",
+          "transcript": "The floor was wet, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The floor was wet, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте, какое состояние названо.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i18:r1",
+          "text": "The cup can't be clean."
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i18:r2",
+          "text": "The cup can't be new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i18:audioA",
+        "en:lesson-32:session-31:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте, какое состояние названо.",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The cup can't be clean.",
+        "contrastB": "The cup can't be new.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-31:i18:audioA",
+          "transcript": "The cup can't be clean."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-31:i18:audioB",
+          "transcript": "The cup can't be new."
+        },
+        "testedPhoneticContrast": "Послушайте, какое состояние названо.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте, какое состояние названо.",
+            "feedbackByLocale": {
+              "ru": "Звучит clean.",
+              "uk": "Звучить clean."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод по признакам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод по признакам.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i19:audio",
+          "transcript": "The sink must be blocked."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The sink must be blocked.",
+        "orderedTokens": [
+          "The",
+          "sink",
+          "must",
+          "be",
+          "blocked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-31:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-31:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+          "uk": "Анна переносила повну миску через кухню. Ви припускаєте, що частина води потрапила на підлогу."
+        },
+        "gappedTargetPhrase": "The floor could ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-31:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-31:i20:r2",
+            "correct": false,
+            "testedDimension": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+            "feedbackByLocale": {
+              "ru": "После could здесь используем be.",
+              "uk": "Після could тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-31:i20:r3",
+            "correct": false,
+            "testedDimension": "Анна переносила полную миску через кухню. Вы допускаете, что часть воды попала на пол.",
+            "feedbackByLocale": {
+              "ru": "После could не ставим to.",
+              "uk": "Після could не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-31:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-31:i21:audio"
+      ],
+      "accessibilityLabel": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-31:i21:audio",
+          "transcript": "It can't be clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can't be clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "951b9e50789a6ffbdfa1fc211a69bf08a24956da9b37ea3294a8203e7e687ecc"
+}

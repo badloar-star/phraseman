@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "отвергать невозможный вариант, делать вывод по признакам и уточнять предмет.",
+    "uk": "відкидати неможливий варіант, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Исключаем вариант",
+        "uk": "Відкидаємо варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. The bottle can't be empty. — Бутылка не может быть пустой. Соберите The bottle + can't + be + empty. Здесь описываем состояние: перед empty нужна связка be. Can’t исключает этот вариант по указанным признакам.",
+        "uk": "Ви чуєте, як усередині закритої пляшки хлюпає вода. Анна припустила, що вона порожня. The bottle can't be empty. — Пляшка не може бути порожньою. Складіть The bottle + can't + be + empty. Тут описуємо стан: перед empty потрібна зв’язка be. Can’t відкидає цей варіант за вказаними ознаками."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-26:intro1:r1",
+              "text": "The bottle can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro1:r2",
+              "text": "The bottle can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro1:r3",
+              "text": "The bottle can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-26:intro1:r1",
+              "text": "The bottle can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro1:r2",
+              "text": "The bottle can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro1:r3",
+              "text": "The bottle can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. The bag must be heavy. — Сумка, должно быть, тяжёлая. Соберите The bag + must + be + heavy. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Анна склала в сумку кілька повних пляшок і піднімає її двома руками. The bag must be heavy. — Сумка, напевно, важка. Складіть The bag + must + be + heavy. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-26:intro2:r1",
+              "text": "The bag must be heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro2:r2",
+              "text": "The bag must is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro2:r3",
+              "text": "The bag must to be heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-26:intro2:r1",
+              "text": "The bag must be heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro2:r2",
+              "text": "The bag must is heavy."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro2:r3",
+              "text": "The bag must to be heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне вымытую чашку, которую собираетесь взять с собой. The cup I washed is clean. — Чашка, которую я помыл, чистая. Соберите The cup + I washed + is clean. Часть I washed уточняет cup. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви показуєте Анні вимиту чашку, яку збираєтеся взяти із собою. The cup I washed is clean. — Чашка, яку я помив, чиста. Складіть The cup + I washed + is clean. Частина I washed уточнює cup. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-26:intro3:r1",
+              "text": "The cup I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro3:r2",
+              "text": "The cup I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro3:r3",
+              "text": "The cup I washing is clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-26:intro3:r1",
+              "text": "The cup I washed is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro3:r2",
+              "text": "The cup I washed it is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-26:intro3:r3",
+              "text": "The cup I washing is clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "648a6b3627cfdab3518fc571888ded4e1e34c69bbec958d2e609efe5065a45a4"
+}

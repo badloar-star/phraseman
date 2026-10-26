@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "отвергать невозможный вариант, делать вывод по признакам и уточнять предмет.",
+    "uk": "відкидати неможливий варіант, робити висновок за ознаками й уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Исключаем вариант",
+        "uk": "Відкидаємо варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. The cup can't be clean. — Чашка не может быть чистой. Соберите The cup + can't + be + clean. Здесь описываем состояние: перед clean нужна связка be. Can’t исключает этот вариант по указанным признакам.",
+        "uk": "Анна поставила чашку до чистого посуду, але всередині видно старий чай, а на краю сліди помади. The cup can't be clean. — Чашка не може бути чистою. Складіть The cup + can't + be + clean. Тут описуємо стан: перед clean потрібна зв’язка be. Can’t відкидає цей варіант за вказаними ознаками."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-31:intro1:r1",
+              "text": "The cup can't be clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro1:r2",
+              "text": "The cup can't is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro1:r3",
+              "text": "The cup can't to be clean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-31:intro1:r1",
+              "text": "The cup can't be clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro1:r2",
+              "text": "The cup can't is clean."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro1:r3",
+              "text": "The cup can't to be clean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вывод по признакам",
+        "uk": "Висновок за ознаками"
+      },
+      "bodyByLocale": {
+        "ru": "Пробка вынута, но вода уже несколько минут не уходит из раковины. The sink must be blocked. — Раковина, должно быть, засорена. Соберите The sink + must + be + blocked. Must здесь выражает уверенный вывод по признакам. Be связывает предмет или человека с его состоянием.",
+        "uk": "Пробку вийнято, але вода вже кілька хвилин не йде з раковини. The sink must be blocked. — Раковина, напевно, засмічена. Складіть The sink + must + be + blocked. Must тут виражає впевнений висновок за ознаками. Be пов’язує предмет або людину з його чи її станом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-31:intro2:r1",
+              "text": "The sink must be blocked."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro2:r2",
+              "text": "The sink must is blocked."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro2:r3",
+              "text": "The sink must to be blocked."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-31:intro2:r1",
+              "text": "The sink must be blocked."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro2:r2",
+              "text": "The sink must is blocked."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro2:r3",
+              "text": "The sink must to be blocked."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы откладываете полотенце, которым вытирали руки после мытья посуды. The towel I used is wet. — Полотенце, которым я воспользовался, мокрое. Соберите The towel + I used + is wet. Часть I used уточняет towel. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.",
+        "uk": "Ви відкладаєте рушник, яким витирали руки після миття посуду. The towel I used is wet. — Рушник, яким я скористався, мокрий. Складіть The towel + I used + is wet. Частина I used уточнює towel. That можна опустити: I вже називає того, хто виконав дію з цим предметом."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-31:intro3:r1",
+              "text": "The towel I used is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro3:r2",
+              "text": "The towel I used it is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro3:r3",
+              "text": "The towel I using is wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-31:intro3:r1",
+              "text": "The towel I used is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro3:r2",
+              "text": "The towel I used it is wet."
+            },
+            {
+              "responseId": "en:lesson-32:session-31:intro3:r3",
+              "text": "The towel I using is wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2d07984489715d3e115206c66b32f670de88ada636f1834340a3dff281497d6b"
+}

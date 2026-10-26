@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. The path is wet, so it might be slippery. — Дорожка мокрая, поэтому она, возможно, скользкая. Соберите The path is wet + so + it might be slippery. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием slippery нужна связка be.",
+        "uk": "Ви бачите мокру садову доріжку й припускаєте, що на ній можна посковзнутися. The path is wet, so it might be slippery. — Доріжка мокра, тому вона, можливо, слизька. Складіть The path is wet + so + it might be slippery. До so назвіть спостереження, після so — можливий висновок із might. Перед станом slippery потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-52:intro1:r1",
+              "text": "The path is wet, so it might be slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro1:r2",
+              "text": "The path is wet, so it might is slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro1:r3",
+              "text": "The path is wet, so it might to be slippery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-52:intro1:r1",
+              "text": "The path is wet, so it might be slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro1:r2",
+              "text": "The path is wet, so it might is slippery."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro1:r3",
+              "text": "The path is wet, so it might to be slippery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. The bucket can't be empty. — Ведро не может быть пустым. Соберите The bucket + can’t + be + empty. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед empty здесь нужна связка be.",
+        "uk": "У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. The bucket can't be empty. — Відро не може бути порожнім. Складіть The bucket + can’t + be + empty. Спостереження виключає названий стан. Can’t виражає цей висновок; перед empty тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-52:intro2:r1",
+              "text": "The bucket can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro2:r2",
+              "text": "The bucket can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro2:r3",
+              "text": "The bucket can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-52:intro2:r1",
+              "text": "The bucket can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro2:r2",
+              "text": "The bucket can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro2:r3",
+              "text": "The bucket can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The plant I bought is small. — Растение, которое я купил, маленькое. Соберите The plant + I bought + is small. Часть I bought уточняет plant. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The plant I bought is small. — Рослина, яку я купив, маленька. Складіть The plant + I bought + is small. Частина I bought уточнює plant. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-52:intro3:r1",
+              "text": "The plant I bought is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro3:r2",
+              "text": "The plant I bought it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro3:r3",
+              "text": "The plant I buying is small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-52:intro3:r1",
+              "text": "The plant I bought is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro3:r2",
+              "text": "The plant I bought it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-52:intro3:r3",
+              "text": "The plant I buying is small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d2b15bc31215c46e9b3eea7a5a9478a3dd2d4985dadc4aa65fea2782fdbb92ab"
+}

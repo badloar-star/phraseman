@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — oven",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — oven",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i01:audio",
+          "transcript": "oven"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-56:i01:r1",
+            "targetText": "oven",
+            "meaningByLocale": {
+              "ru": "Духовка. Повторение знакомого слова.",
+              "uk": "Духовка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oven",
+          "definitionByLocale": {
+            "ru": "Духовка. Повторение знакомого слова.",
+            "uk": "Духовка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i02:r1",
+          "text": "The oven is warm, so it might be on."
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i02:r2",
+          "text": "The oven is warm, so it must be on."
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i02:r3",
+          "text": "The oven is warm, so it can't be on."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i02:audio",
+          "transcript": "The oven is warm, so it might be on."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-56:i02:r1",
+            "targetText": "The oven is warm, so it might be on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i02:r2",
+            "targetText": "The oven is warm, so it must be on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i02:r3",
+            "targetText": "The oven is warm, so it can't be on.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The oven is warm, so it might be on.",
+              "uk": "У записі звучить The oven is warm, so it might be on."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The oven is warm, so it might be on.",
+              "uk": "У записі звучить The oven is warm, so it might be on."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена.",
+          "uk": "Біля духовки тепло. Ви ще не перевірили перемикач і припускаєте, що Анна не вимкнула її. Духовка тепла, тому вона, можливо, увімкнена."
+        },
+        "gappedTargetPhrase": "The oven is warm, so it might ___ on.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-56:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i04:audio",
+          "transcript": "cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-56:i04:r1",
+            "targetText": "cup",
+            "meaningByLocale": {
+              "ru": "Чашка. Повторение знакомого слова.",
+              "uk": "Чашка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cup",
+          "definitionByLocale": {
+            "ru": "Чашка. Повторение знакомого слова.",
+            "uk": "Чашка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна считает чашку пустой, но вы видите в ней чай. Чашка не может быть пустой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна считает чашку пустой, но вы видите в ней чай. Чашка не может быть пустой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cup can't be empty.",
+        "localizedMeaning": {
+          "ru": "Анна считает чашку пустой, но вы видите в ней чай. Чашка не может быть пустой.",
+          "uk": "Анна вважає чашку порожньою, але ви бачите в ній чай. Чашка не може бути порожньою."
+        },
+        "orderedTokens": [
+          "The",
+          "cup",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i06:audio",
+          "transcript": "plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-56:i06:r1",
+            "targetText": "plate",
+            "meaningByLocale": {
+              "ru": "Тарелка. Повторение знакомого слова.",
+              "uk": "Тарілка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plate",
+          "definitionByLocale": {
+            "ru": "Тарелка. Повторение знакомого слова.",
+            "uk": "Тарілка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тарелка, которую я помыл, чистая. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Тарелка, которую я помыл, чистая. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i07:audio",
+          "transcript": "The plate I washed is clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The plate I washed is clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Тарелка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i08:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i08:r2",
+          "text": "washed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i08:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тарелка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тарелка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+          "uk": "Тарілка, яку я помив, чиста. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The plate I ___ is clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-56:i08:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i08:r2",
+            "text": "washed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i08:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Тарелка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Тарелка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Тарелка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма washed.",
+              "uk": "Потрібна минула форма washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена. Начните с The oven is warm.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена. Начните с The oven is warm.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The oven is warm, so it might be on.",
+        "localizedMeaning": {
+          "ru": "Возле духовки тепло. Вы ещё не проверили переключатель и допускаете, что Анна не выключила её. Духовка тёплая, поэтому она, возможно, включена. Начните с The oven is warm.",
+          "uk": "Біля духовки тепло. Ви ще не перевірили перемикач і припускаєте, що Анна не вимкнула її. Духовка тепла, тому вона, можливо, увімкнена. Почніть із The oven is warm."
+        },
+        "orderedTokens": [
+          "The",
+          "oven",
+          "is",
+          "warm,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "on"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна считает чашку пустой, но вы видите в ней чай. Скажите вывод, заменив The cup местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i10:audio"
+      ],
+      "accessibilityLabel": "Анна считает чашку пустой, но вы видите в ней чай. Скажите вывод, заменив The cup местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Чашка не может быть пустой. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чашка не может быть пустой. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Чашка не может быть пустой. Выберите форму после can’t.",
+          "uk": "Чашка не може бути порожньою. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The cup can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-56:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Чашка не может быть пустой. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Чашка не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Чашка не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i12:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-56:i12:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода. Повторение знакомого слова.",
+              "uk": "Вода. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода. Повторение знакомого слова.",
+            "uk": "Вода. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i13:r1",
+          "text": "The water must be hot."
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i13:r2",
+          "text": "The water may be hot."
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i13:r3",
+          "text": "The water could be hot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i13:audio",
+          "transcript": "The water must be hot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-56:i13:r1",
+            "targetText": "The water must be hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i13:r2",
+            "targetText": "The water may be hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i13:r3",
+            "targetText": "The water could be hot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The water must be hot.",
+              "uk": "У записі звучить The water must be hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The water must be hot.",
+              "uk": "У записі звучить The water must be hot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i14:audio",
+          "transcript": "The water must be hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The water must be hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the plate и уточнение I washed. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the plate и уточнение I washed. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the plate I washed.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the plate и уточнение I washed. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the plate й уточнення I washed. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "plate",
+          "I",
+          "washed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Духовка тёплая, поэтому она, возможно, включена. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Духовка тёплая, поэтому она, возможно, включена. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Духовка тёплая, поэтому она, возможно, включена. Соедините признак и предположение словом «поэтому».",
+          "uk": "Духовка тепла, тому вона, можливо, увімкнена. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The oven is warm, ___ it might be on.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-56:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Духовка тёплая, поэтому она, возможно, включена. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i16:r2",
+            "correct": false,
+            "testedDimension": "Духовка тёплая, поэтому она, возможно, включена. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i16:r3",
+            "correct": false,
+            "testedDimension": "Духовка тёплая, поэтому она, возможно, включена. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Духовка тёплая, поэтому она, возможно, включена. Ответьте, начиная с The oven is warm.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Духовка тёплая, поэтому она, возможно, включена. Ответьте, начиная с The oven is warm.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i17:audio",
+          "transcript": "The oven is warm, so it might be on."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The oven is warm, so it might be on.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i18:r1",
+          "text": "The oven is warm, so it might be on."
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i18:r2",
+          "text": "The oven is warm, so it must be on."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i18:audioA",
+        "en:lesson-32:session-56:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The oven is warm, so it might be on.",
+        "contrastB": "The oven is warm, so it must be on.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-56:i18:audioA",
+          "transcript": "The oven is warm, so it might be on."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-56:i18:audioB",
+          "transcript": "The oven is warm, so it must be on."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i19:audio",
+          "transcript": "The cup can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The cup can't be empty.",
+        "orderedTokens": [
+          "The",
+          "cup",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-56:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-56:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+          "uk": "Анна щойно налила воду з чайника, що закипів. Ви бачите пару над чашкою. Вода, напевно, гаряча."
+        },
+        "gappedTargetPhrase": "The water must ___ hot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-56:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-56:i20:r2",
+            "correct": false,
+            "testedDimension": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-56:i20:r3",
+            "correct": false,
+            "testedDimension": "Анна только что налила воду из закипевшего чайника. Вы видите пар над чашкой. Вода, должно быть, горячая.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-56:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Духовка тёплая, поэтому она, возможно, включена. Назовите ту же возможность с could вместо might. Начните с The oven is warm.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-56:i21:audio"
+      ],
+      "accessibilityLabel": "Духовка тёплая, поэтому она, возможно, включена. Назовите ту же возможность с could вместо might. Начните с The oven is warm.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-56:i21:audio",
+          "transcript": "The oven is warm, so it could be on."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The oven is warm, so it could be on.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "52b19bbacf64ac9cb8a2e0af44d584bb4e32a2948455cf2d0458770eb088dceb"
+}

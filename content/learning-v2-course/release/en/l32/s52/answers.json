@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-52:i01",
+    "correctText": "path",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i02",
+    "correctText": "The path is wet, so it might be slippery.",
+    "correctResponseId": "en:lesson-32:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i04",
+    "correctText": "bucket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i05",
+    "correctText": "The bucket can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i06",
+    "correctText": "plant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i07",
+    "correctText": "The plant I bought is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-32:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i09",
+    "correctText": "The path is wet, so it might be slippery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i10",
+    "correctText": "It can’t be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i12",
+    "correctText": "soil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i13",
+    "correctText": "The soil must be wet.",
+    "correctResponseId": "en:lesson-32:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i14",
+    "correctText": "The soil must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i15",
+    "correctText": "This is the plant I bought.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-52:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i17",
+    "correctText": "The path is wet, so it might be slippery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i18",
+    "correctText": "The path is wet, so it might be slippery.",
+    "correctResponseId": "en:lesson-32:session-52:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i19",
+    "correctText": "The bucket can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-52:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-52:i21",
+    "correctText": "The path is wet, so it could be slippery.",
+    "correctResponseId": null
+  }
+]

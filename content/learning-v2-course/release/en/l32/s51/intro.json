@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы впервые пришли в кафе и видите много посетителей. Вы предполагаете, что это популярное место. The cafe is busy, so it might be popular. — В кафе много людей, поэтому оно, возможно, популярное. Соберите The cafe is busy + so + it might be popular. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием popular нужна связка be.",
+        "uk": "Ви вперше прийшли до кафе й бачите багато відвідувачів. Ви припускаєте, що це популярне місце. The cafe is busy, so it might be popular. — У кафе багато людей, тому воно, можливо, популярне. Складіть The cafe is busy + so + it might be popular. До so назвіть спостереження, після so — можливий висновок із might. Перед станом popular потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-51:intro1:r1",
+              "text": "The cafe is busy, so it might be popular."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro1:r2",
+              "text": "The cafe is busy, so it might is popular."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro1:r3",
+              "text": "The cafe is busy, so it might to be popular."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-51:intro1:r1",
+              "text": "The cafe is busy, so it might be popular."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro1:r2",
+              "text": "The cafe is busy, so it might is popular."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro1:r3",
+              "text": "The cafe is busy, so it might to be popular."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна считает, что на столе ничего нет, но вы видите на нём чашки и тарелки. The table can't be empty. — Стол не может быть пустым. Соберите The table + can’t + be + empty. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед empty здесь нужна связка be.",
+        "uk": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. The table can't be empty. — Стіл не може бути порожнім. Складіть The table + can’t + be + empty. Спостереження виключає названий стан. Can’t виражає цей висновок; перед empty тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-51:intro2:r1",
+              "text": "The table can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro2:r2",
+              "text": "The table can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro2:r3",
+              "text": "The table can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-51:intro2:r1",
+              "text": "The table can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro2:r2",
+              "text": "The table can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro2:r3",
+              "text": "The table can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The cake I chose is sweet. — Пирог, который я выбрал, сладкий. Соберите The cake + I chose + is sweet. Часть I chose уточняет cake. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The cake I chose is sweet. — Пиріг, який я вибрав, солодкий. Складіть The cake + I chose + is sweet. Частина I chose уточнює cake. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-51:intro3:r1",
+              "text": "The cake I chose is sweet."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro3:r2",
+              "text": "The cake I chose it is sweet."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro3:r3",
+              "text": "The cake I choosing is sweet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-51:intro3:r1",
+              "text": "The cake I chose is sweet."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro3:r2",
+              "text": "The cake I chose it is sweet."
+            },
+            {
+              "responseId": "en:lesson-32:session-51:intro3:r3",
+              "text": "The cake I choosing is sweet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31323e443ac91021670f78abc98286997c234997cfe297f6936f2f1d7882f1fc"
+}

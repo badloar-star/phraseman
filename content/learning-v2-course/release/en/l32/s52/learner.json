@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — path",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — path",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i01:audio",
+          "transcript": "path"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-52:i01:r1",
+            "targetText": "path",
+            "meaningByLocale": {
+              "ru": "Дорожка. Повторение знакомого слова.",
+              "uk": "Доріжка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "path",
+          "definitionByLocale": {
+            "ru": "Дорожка. Повторение знакомого слова.",
+            "uk": "Доріжка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i02:r1",
+          "text": "The path is wet, so it might be slippery."
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i02:r2",
+          "text": "The path is wet, so it must be slippery."
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i02:r3",
+          "text": "The path is wet, so it can't be slippery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i02:audio",
+          "transcript": "The path is wet, so it might be slippery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-52:i02:r1",
+            "targetText": "The path is wet, so it might be slippery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i02:r2",
+            "targetText": "The path is wet, so it must be slippery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i02:r3",
+            "targetText": "The path is wet, so it can't be slippery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The path is wet, so it might be slippery.",
+              "uk": "У записі звучить The path is wet, so it might be slippery."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The path is wet, so it might be slippery.",
+              "uk": "У записі звучить The path is wet, so it might be slippery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая.",
+          "uk": "Ви бачите мокру садову доріжку й припускаєте, що на ній можна посковзнутися. Доріжка мокра, тому вона, можливо, слизька."
+        },
+        "gappedTargetPhrase": "The path is wet, so it might ___ slippery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-52:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bucket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bucket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i04:audio",
+          "transcript": "bucket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-52:i04:r1",
+            "targetText": "bucket",
+            "meaningByLocale": {
+              "ru": "Ведро. Повторение знакомого слова.",
+              "uk": "Відро. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bucket",
+          "definitionByLocale": {
+            "ru": "Ведро. Повторение знакомого слова.",
+            "uk": "Відро. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Ведро не может быть пустым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Ведро не может быть пустым.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bucket can't be empty.",
+        "localizedMeaning": {
+          "ru": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Ведро не может быть пустым.",
+          "uk": "У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Відро не може бути порожнім."
+        },
+        "orderedTokens": [
+          "The",
+          "bucket",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i06:audio",
+          "transcript": "plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-52:i06:r1",
+            "targetText": "plant",
+            "meaningByLocale": {
+              "ru": "Растение. Повторение знакомого слова.",
+              "uk": "Рослина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plant",
+          "definitionByLocale": {
+            "ru": "Растение. Повторение знакомого слова.",
+            "uk": "Рослина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Растение, которое я купил, маленькое. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Растение, которое я купил, маленькое. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i07:audio",
+          "transcript": "The plant I bought is small."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The plant I bought is small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+          "uk": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The plant I ___ is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-52:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая. Начните с The path is wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая. Начните с The path is wet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The path is wet, so it might be slippery.",
+        "localizedMeaning": {
+          "ru": "Вы видите мокрую садовую дорожку и допускаете, что на ней можно поскользнуться. Дорожка мокрая, поэтому она, возможно, скользкая. Начните с The path is wet.",
+          "uk": "Ви бачите мокру садову доріжку й припускаєте, що на ній можна посковзнутися. Доріжка мокра, тому вона, можливо, слизька. Почніть із The path is wet."
+        },
+        "orderedTokens": [
+          "The",
+          "path",
+          "is",
+          "wet,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "slippery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i10:audio"
+      ],
+      "accessibilityLabel": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ведро не может быть пустым. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ведро не может быть пустым. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ведро не может быть пустым. Выберите форму после can’t.",
+          "uk": "Відро не може бути порожнім. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The bucket can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-52:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Ведро не может быть пустым. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Ведро не может быть пустым. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Ведро не может быть пустым. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i12:audio",
+          "transcript": "soil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-52:i12:r1",
+            "targetText": "soil",
+            "meaningByLocale": {
+              "ru": "Почва. Повторение знакомого слова.",
+              "uk": "Ґрунт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soil",
+          "definitionByLocale": {
+            "ru": "Почва. Повторение знакомого слова.",
+            "uk": "Ґрунт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i13:r1",
+          "text": "The soil must be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i13:r2",
+          "text": "The soil may be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i13:r3",
+          "text": "The soil could be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i13:audio",
+          "transcript": "The soil must be wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-52:i13:r1",
+            "targetText": "The soil must be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i13:r2",
+            "targetText": "The soil may be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i13:r3",
+            "targetText": "The soil could be wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soil must be wet.",
+              "uk": "У записі звучить The soil must be wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soil must be wet.",
+              "uk": "У записі звучить The soil must be wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i14:audio",
+          "transcript": "The soil must be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soil must be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the plant и уточнение I bought. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the plant и уточнение I bought. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the plant I bought.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the plant и уточнение I bought. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the plant й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "plant",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дорожка мокрая, поэтому она, возможно, скользкая. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дорожка мокрая, поэтому она, возможно, скользкая. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дорожка мокрая, поэтому она, возможно, скользкая. Соедините признак и предположение словом «поэтому».",
+          "uk": "Доріжка мокра, тому вона, можливо, слизька. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The path is wet, ___ it might be slippery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-52:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Дорожка мокрая, поэтому она, возможно, скользкая. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i16:r2",
+            "correct": false,
+            "testedDimension": "Дорожка мокрая, поэтому она, возможно, скользкая. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i16:r3",
+            "correct": false,
+            "testedDimension": "Дорожка мокрая, поэтому она, возможно, скользкая. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Дорожка мокрая, поэтому она, возможно, скользкая. Ответьте, начиная с The path is wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Дорожка мокрая, поэтому она, возможно, скользкая. Ответьте, начиная с The path is wet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i17:audio",
+          "transcript": "The path is wet, so it might be slippery."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The path is wet, so it might be slippery.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i18:r1",
+          "text": "The path is wet, so it might be slippery."
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i18:r2",
+          "text": "The path is wet, so it must be slippery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i18:audioA",
+        "en:lesson-32:session-52:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The path is wet, so it might be slippery.",
+        "contrastB": "The path is wet, so it must be slippery.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-52:i18:audioA",
+          "transcript": "The path is wet, so it might be slippery."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-52:i18:audioB",
+          "transcript": "The path is wet, so it must be slippery."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i19:audio",
+          "transcript": "The bucket can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bucket can't be empty.",
+        "orderedTokens": [
+          "The",
+          "bucket",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-52:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-52:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+          "uk": "На цю грядку всю ніч лив дощ. Ви ще не торкалися ґрунту. Ґрунт, напевно, мокрий."
+        },
+        "gappedTargetPhrase": "The soil must ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-52:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-52:i20:r2",
+            "correct": false,
+            "testedDimension": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-52:i20:r3",
+            "correct": false,
+            "testedDimension": "На эту грядку всю ночь лил дождь. Вы ещё не трогали почву. Почва, должно быть, мокрая.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-52:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дорожка мокрая, поэтому она, возможно, скользкая. Назовите ту же возможность с could вместо might. Начните с The path is wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-52:i21:audio"
+      ],
+      "accessibilityLabel": "Дорожка мокрая, поэтому она, возможно, скользкая. Назовите ту же возможность с could вместо might. Начните с The path is wet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-52:i21:audio",
+          "transcript": "The path is wet, so it could be slippery."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The path is wet, so it could be slippery.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8fe44c13167fc200f0f7744f8566dfb3dddf0a7cc48a0832118f98f174eaff30"
+}

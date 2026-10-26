@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с Беном не слышите из дома голосов и допускаете, что внутри никого нет. The house is quiet, so it might be empty. — В доме тихо, поэтому он, возможно, пустой. Соберите The house is quiet + so + it might be empty. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием empty нужна связка be.",
+        "uk": "Ви з Беном не чуєте з будинку голосів і припускаєте, що всередині нікого немає. The house is quiet, so it might be empty. — У будинку тихо, тому він, можливо, порожній. Складіть The house is quiet + so + it might be empty. До so назвіть спостереження, після so — можливий висновок із might. Перед станом empty потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-54:intro1:r1",
+              "text": "The house is quiet, so it might be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro1:r2",
+              "text": "The house is quiet, so it might is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro1:r3",
+              "text": "The house is quiet, so it might to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-54:intro1:r1",
+              "text": "The house is quiet, so it might be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro1:r2",
+              "text": "The house is quiet, so it might is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro1:r3",
+              "text": "The house is quiet, so it might to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Бен предполагает, что дверь открыта, но вы видите плотно закрытую дверь перед собой. The door can't be open. — Дверь не может быть открытой. Соберите The door + can’t + be + open. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед open здесь нужна связка be.",
+        "uk": "Бен припускає, що двері відчинені, але ви бачите щільно зачинені двері перед собою. The door can't be open. — Двері не можуть бути відчиненими. Складіть The door + can’t + be + open. Спостереження виключає названий стан. Can’t виражає цей висновок; перед open тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-54:intro2:r1",
+              "text": "The door can't be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro2:r2",
+              "text": "The door can't is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro2:r3",
+              "text": "The door can't to be open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-54:intro2:r1",
+              "text": "The door can't be open."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro2:r2",
+              "text": "The door can't is open."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro2:r3",
+              "text": "The door can't to be open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The gift I brought is small. — Подарок, который я принёс, маленький. Соберите The gift + I brought + is small. Часть I brought уточняет gift. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The gift I brought is small. — Подарунок, який я приніс, маленький. Складіть The gift + I brought + is small. Частина I brought уточнює gift. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-54:intro3:r1",
+              "text": "The gift I brought is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro3:r2",
+              "text": "The gift I brought it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro3:r3",
+              "text": "The gift I bringing is small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-54:intro3:r1",
+              "text": "The gift I brought is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro3:r2",
+              "text": "The gift I brought it is small."
+            },
+            {
+              "responseId": "en:lesson-32:session-54:intro3:r3",
+              "text": "The gift I bringing is small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2914e68e714e8dcc3cc85ef78b41c22f3392870e45a9aa2d88b6362a99b1efbd"
+}

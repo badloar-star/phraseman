@@ -307,7 +307,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
       <Text testID="paywall-fine" style={[S.fine, { color: g.mutedText }]}>{fineText}</Text>
       {restoreVisible || promoVisible ? <View style={S.secondaryActions}>
         {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}
-        {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled}
+        {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled} outerStyle={S.secondaryOuter}
           accessibilityState={{ disabled: restoreDisabled, busy: restoring }} onPress={onRestore}
           style={[S.secondaryAction, { backgroundColor: paywallPlateBg(g), opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
           {restoring ? <ActivityIndicator size="small" color={g.mutedText} /> : null}
@@ -315,7 +315,7 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
           <Text style={[S.secondaryActionText, { color: g.secondary }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
         </V2Pressable> : null}
         {promoVisible ? <V2Pressable testID="paywall-promo-code" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.enterPromo)}
-          accessibilityState={{ disabled: promoDisabled }} withHaptic={false} scaleTo={0.95} disabled={promoDisabled} onPress={onPromo}
+          accessibilityState={{ disabled: promoDisabled }} withHaptic={false} scaleTo={0.95} disabled={promoDisabled} outerStyle={S.secondaryOuter} onPress={onPromo}
           style={[S.secondaryAction, { backgroundColor: paywallPlateBg(g), opacity: promoDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}>
           <Ionicons name="pricetag-outline" size={17} color={g.secondary} />
           <Text style={[S.secondaryActionText, { color: g.secondary }]}>{pick(lang, COPY.enterPromo)}</Text>
@@ -407,7 +407,11 @@ const S = StyleSheet.create({
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
   secondaryActions: { flexDirection: 'row', gap: 8, marginTop: 12 },
-  secondaryAction: { flex: 1, minHeight: 44, borderRadius: 16, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  // зачем (владелец 26.10, «Условия» и «Конфиденциальность» наезжали на плашки): V2Pressable кладёт style на ВНУТРЕННИЙ слой, а flex:1 там давал ему
+  // базу высоты 0 — плашка занимала только minHeight 44, текст в 2–3 строки (крупный шрифт, длинный перевод) вылезал вниз на ссылки.
+  // Место в ряду (flex) — на внешний слой (outerStyle), внутренний слой растёт по содержимому и тянется до высоты соседней плашки.
+  secondaryOuter: { flex: 1, minWidth: 0 },
+  secondaryAction: { flexGrow: 1, minHeight: 44, borderRadius: 16, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   secondaryActionText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },
   restoreRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },

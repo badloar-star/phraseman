@@ -220,6 +220,22 @@ function rejectUnknown(code: string): null {
   return null;
 }
 
+/**
+ * зачем (владелец 26.10, dev-красный «unknown_paywall_source:settings_plus»; сперва логи, потом починка): в dev неизвестный source бросает
+ * исключение в рендере, и до этого в журнале не оставалось НИ СТРОКИ о том, с какими параметрами пришёл вход. Пишем ВСЕ параметры маршрута
+ * до отказа — по префиксу [PAYWALL-ENTRY] видно, кто и что передал (ссылка съёмки, сообщение, код приложения). Только метки воронки, личных данных нет.
+ */
+function logUnknownEntryParams(params: RawPaywallEntryParams): void {
+  const contextRaw = first(params.context) || 'generic';
+  const sourceRaw = first(params.source) || 'direct';
+  const contextKnown = LEGACY_CONTEXT_ALIASES[contextRaw] !== undefined || PREMIUM_CONTEXT_SET.has(contextRaw as PremiumContext);
+  const sourceKnown = PAYWALL_SOURCE_SET.has(sourceRaw);
+  if (contextKnown && sourceKnown) return;
+  const shown: Record<string, string> = {};
+  for (const key of Object.keys(params).slice(0, 12)) shown[key] = first(params[key]).slice(0, 48);
+  console.warn(`[PAYWALL-ENTRY] неизвестный вход: context=${contextRaw} (${contextKnown ? 'известен' : 'НЕТ в списке'}) source=${sourceRaw} (${sourceKnown ? 'известен' : 'НЕТ в списке'}) params=${JSON.stringify(shown)}`);
+}
+
 function parseContext(raw: RawParam): PremiumContext | null {
   const value = first(raw) || 'generic'; // explicit legacy direct-link default
   const alias = LEGACY_CONTEXT_ALIASES[value];
@@ -310,6 +326,7 @@ export function resolvePremiumModalEntry(input: Readonly<{
   }
   if (input.hasPremiumAccess) return { decision: 'dismiss' };
 
+  logUnknownEntryParams(input.params);
   const context = parseContext(input.params.context);
   const source = parseSource(input.params.source);
   if (!context || !source) return { decision: 'dismiss' };

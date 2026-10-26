@@ -24,3 +24,5 @@ docs/design/v2-app/owner-morning-board-2026-10-26.html — одна страни
 git revert коммита (один новый файл).
 
 Governance-ID: TG-40690A70F436
+
+Governance-ID: TG-4D4DECAABD23

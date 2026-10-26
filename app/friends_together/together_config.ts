@@ -69,8 +69,10 @@ export function friendsTogetherClientConfigFromNumbers(numbers: Record<string, u
  * Сборочный выключатель интерфейса «Вместе» 2.0: вкладка «Друзья», строка «Серия вдвоём» на Главной, карточки финала занятия.
  * зачем (координатор 21.10): включается только после «Сверки» эмулятора с макетом docs/design/v2-app/friends-full.html;
  * удалённый friends_together_enabled остаётся аварийным выключателем. Один выключатель на все экраны — экраны не расходятся.
+ * зачем (владелец 26.10 через координатора — «Вместе» в 2.0.3 (146): «функции для друзей … они же готовы все»): включён. Сервер
+ * «Вместе» на бою = HEAD (выложен 25.10 08:22 UTC), remote_config friends_together_enabled = true.
  */
-export const FRIENDS_TOGETHER_UI_ENABLED = false;
+export const FRIENDS_TOGETHER_UI_ENABLED = true;
 
 const FRIENDS_TOGETHER_FLAG_KEY = 'friends_together_enabled';
 
@@ -105,6 +107,15 @@ export function primeFriendsTogetherFlag(): Promise<void> {
 /** Синхронное чтение флага (для не-реактивных мест). Дефолт false до релиза/до прогрева кэша. */
 export function isFriendsTogetherEnabled(): boolean {
   return _cachedEnabled;
+}
+
+/**
+ * Интерфейс «Вместе» виден: сборка включила И удалённый аварийный выключатель не погасил (синхронно, из кэша remote_config).
+ * зачем (26.10, включение в 2.0.3): прежде вкладка, «Моя неделя», экран дуэли и колокольчик смотрели только на сборку — выключенный
+ * friends_together_enabled их не прятал, а сервер при этом отказывал. Реактивным местам — FRIENDS_TOGETHER_UI_ENABLED && policy.enabled.
+ */
+export function isFriendsTogetherUiOn(): boolean {
+  return FRIENDS_TOGETHER_UI_ENABLED && _cachedEnabled;
 }
 
 export function getFriendsTogetherConfig(): FriendsTogetherClientConfig {

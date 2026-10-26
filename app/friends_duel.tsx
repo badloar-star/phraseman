@@ -30,7 +30,7 @@ import { useDuelPlay } from '../hooks/use_duel_play';
 import { triLang } from '../constants/i18n';
 import { maskUid } from './diagnostic_mask';
 import { safeRouterBack } from './navigation_back';
-import { FRIENDS_TOGETHER_UI_ENABLED } from './friends_together/together_config';
+import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from './friends_together/together_config';
 import { DUEL_PHRASES, duelCorrect, duelOutcome, duelOutcomeByScore, type DuelMove, type DuelOutcome } from './friends_together/duel_core';
 import { duelCopy, duelOutcomeLine } from './friends_together/duel_copy';
 import { duelClock, duelPlayCopy, duelProgressLabel } from './friends_together/duel_play_copy';
@@ -310,8 +310,12 @@ function FriendsDuelScreen() {
 }
 
 export default function FriendsDuelRoute() {
-  if (!FRIENDS_TOGETHER_UI_ENABLED) {
-    log(`route: выключатель FRIENDS_TOGETHER_UI_ENABLED=false → вкладка «Друзья»`);
+  const togetherPolicy = useFriendsTogetherEnabled();
+  // зачем (26.10, «Вместе» в 2.0.3): удалённый аварийный выключатель тоже закрывает экран, но только после прогрева кэша —
+  // иначе ссылка из пуша на холодном старте уводила бы с дуэли, пока ключ ещё не прочитан с диска.
+  const remoteOff = togetherPolicy.remoteHydrated && !togetherPolicy.enabled;
+  if (!FRIENDS_TOGETHER_UI_ENABLED || remoteOff) {
+    log(`route: «Вместе» выключен (сборка=${FRIENDS_TOGETHER_UI_ENABLED}, удалённый ключ=${togetherPolicy.enabled}, прогрет=${togetherPolicy.remoteHydrated}) → вкладка «Друзья»`);
     return <Redirect href="/(tabs)/friends" />;
   }
   return (

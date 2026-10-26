@@ -56,6 +56,6 @@ describe('исходники: подключение за выключателе
   it('начисление у друга сообщает финалу; финал и «Сообщения» рисуют строки только при «Вместе»', () => {
     expect(read('app', 'friends_together', 'lesson_together_claim.ts')).toMatch(/toastTogether\(invite\.inviterName\);\s*\n[\s\S]{0,200}noteTogetherCredit\(\{ sessionId: event\.sessionId/);
     expect(read('components', 'learning-v2', 'horizons', 'HorizonSessionResult.tsx')).toContain('friendsSlot={FRIENDS_TOGETHER_UI_ENABLED && !preview ? <View style={{ gap: 10 }}><FinishLessonTogether lessonKey={sessionId} />');
-    expect(read('components', 'NotificationCenterButton.tsx')).toContain('FRIENDS_TOGETHER_UI_ENABLED && !teamDetailOpen ? <BellLessonInviteExpired rows={visibleItems} active={visible} />');
+    expect(read('components', 'NotificationCenterButton.tsx')).toContain('isFriendsTogetherUiOn() && !teamDetailOpen ? <BellLessonInviteExpired rows={visibleItems} active={visible} />');
   });
 });

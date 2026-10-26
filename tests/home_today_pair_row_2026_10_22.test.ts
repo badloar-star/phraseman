@@ -27,7 +27,8 @@ describe('«Сегодня» на Главной: строка «Серия вд
     const hook = readSource('hooks/use_home_friend_pair_row.ts');
     expect(hook).toContain('const on = FRIENDS_TOGETHER_UI_ENABLED && enabled;');
     expect(hook).not.toMatch(/from ['"][^'"]*firestore|getDocs?\(|onSnapshot\(/); // код, не комментарий «ни чтений Firestore»
-    expect(readSource('app/friends_together/together_config.ts')).toContain('export const FRIENDS_TOGETHER_UI_ENABLED = false;');
+    // 26.10 (владелец через координатора): «Вместе» включён в 2.0.3; строку по-прежнему гасит удалённый ключ (`enabled` выше)
+    expect(readSource('app/friends_together/together_config.ts')).toContain('export const FRIENDS_TOGETHER_UI_ENABLED = true;');
   });
 
   it('тексты — ключи Переводчика: «Серия вдвоём · Лидия» и «Занятие сделано · 3 дня подряд»', () => {

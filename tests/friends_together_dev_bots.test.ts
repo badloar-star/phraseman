@@ -116,9 +116,10 @@ describe('friends_together DEV bots', () => {
       : source.indexOf('/>', source.indexOf('<FriendTogetherSheet', togetherDisplayStart));
     const togetherSheet = source.slice(togetherDisplayStart, togetherSheetEnd);
 
-    // зачем (идея 1, 22.10): «Вместе» по-прежнему выключен в релизе — но одним выключателем на вкладку, Главную и финал занятия
-    expect(source).toContain('const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED;');
-    expect(fs.readFileSync(path.join(process.cwd(), 'app/friends_together/together_config.ts'), 'utf8')).toContain('export const FRIENDS_TOGETHER_UI_ENABLED = false;');
+    // зачем (идея 1, 22.10): один выключатель на вкладку, Главную и финал занятия. 26.10 (владелец через координатора): «Вместе»
+    // включён в 2.0.3, вкладка слушает и удалённый аварийный выключатель friends_together_enabled
+    expect(source).toContain('const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED && friendsTogetherPolicy.enabled;');
+    expect(fs.readFileSync(path.join(process.cwd(), 'app/friends_together/together_config.ts'), 'utf8')).toContain('export const FRIENDS_TOGETHER_UI_ENABLED = true;');
     // зачем (Макеты 12.10, community-020): к условию добавлено `!isDevOverlaysOff()` — плашка DEV не попадает в кадры сверки; в разработке она по-прежнему только под ENABLE_DEV_TOOLS
     expect(source).toMatch(/\{ENABLE_DEV_TOOLS\s*&&\s*!isDevOverlaysOff\(\)\s*&&\s*\(\s*<TouchableOpacity[\s\S]*?testID="friends-together-dev-open"/);
     expect(devBotsSource).toContain("import { ENABLE_DEV_TOOLS } from '../config'");

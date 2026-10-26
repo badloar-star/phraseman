@@ -917,8 +917,10 @@ export default function FriendsTabScreen() {
   const [devBotsSheetOpen, setDevBotsSheetOpen] = useState(false);
   const [devBotsState, setDevBotsState] = useState<DevBotsState>({ bots: [] });
   const devBots = devBotsState.bots;
-  // «Вместе» отключён в текущем релизном контуре — один выключатель на вкладку, Главную и финал занятия (together_config).
-  const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED;
+  // «Вместе» — один выключатель на вкладку, Главную и финал занятия (together_config).
+  // зачем (26.10, включение в 2.0.3): плюс удалённый аварийный выключатель — выключенный friends_together_enabled прячет вкладку
+  // «Вместе» так же, как Главную и финал занятия (раньше вкладка его не слушала, а сервер уже отказывал).
+  const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED && friendsTogetherPolicy.enabled;
   // зачем (идея 1, макет «Нет сети»): полоса «Нет сети · список сохранён в …»; NetInfo слушаем, только пока вкладка на экране
   const friendsOffline = useFriendsOffline(friendsRuntimeActive && friendsTogetherUiEnabled);
   // зачем (идея 2): вкладка монтируется на старте — слушатель засчитываний для награды «вместе» живёт с запуска приложения

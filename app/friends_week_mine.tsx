@@ -37,7 +37,7 @@ import {
 } from './friends_together/friend_week_copy';
 import { bothFivesToday, fivesThisWeek, type FriendWeekFive } from './friends_together/friend_week_fives';
 import { readMyFriendWeek, refreshMyFriendWeek, setMyFriendWeekHidden } from './friends_together/friend_week_store';
-import { FRIENDS_TOGETHER_UI_ENABLED } from './friends_together/together_config';
+import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from './friends_together/together_config';
 import { getFriendsTogetherSnapshot } from './friends_together/together_store';
 import { getLocalDayKey } from './local_date';
 import { safeRouterBack } from './navigation_back';
@@ -79,6 +79,15 @@ export default function FriendsWeekMine() {
   const lastWeek = addWeekDays(weekStartOf(todayKey), -7);
   const week = useMemo(() => ownClosedWeek(record, todayKey), [record, todayKey]);
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
+
+  // зачем (26.10, «Вместе» в 2.0.3): удалённый аварийный выключатель friends_together_enabled тоже закрывает экран — после прогрева
+  // кэша (до прогрева ключ ещё не прочитан, уходить рано)
+  const togetherPolicy = useFriendsTogetherEnabled();
+  useEffect(() => {
+    if (!togetherPolicy.remoteHydrated || togetherPolicy.enabled) return; // штатно: ключ не прочитан или включён
+    console.log(`${LOG} Моя неделя: удалённый выключатель «Вместе» выключен → назад в Настройки`); // guard-ok: ранний выход называет причину
+    safeRouterBack(router, '/(tabs)/settings' as never);
+  }, [router, togetherPolicy.remoteHydrated, togetherPolicy.enabled]);
 
   useEffect(() => {
     if (!FRIENDS_TOGETHER_UI_ENABLED) {

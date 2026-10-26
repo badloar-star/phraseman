@@ -38,7 +38,7 @@ import {
 } from '../app/notification_delete_undo';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
-import { FRIENDS_TOGETHER_UI_ENABLED } from '../app/friends_together/together_config';
+import { isFriendsTogetherUiOn } from '../app/friends_together/together_config';
 import BellLessonInviteExpired from './friends_together/BellLessonInviteExpired';
 import { getFriendsTogetherSnapshot } from '../app/friends_together/together_store';
 import { duelResultParams } from '../app/friends_together/duel_routes';
@@ -474,7 +474,8 @@ function NotificationCenterButton({
       }
       // зачем (идея 3): «Итог дуэли» — сразу экран итога из самой строки (0 чтений). Через вкладку «Друзья» строка могла бы
       // успеть стать прочитанной раньше, чем вкладка её найдёт; монета и Plus друга — из снимка «Вместе» на телефоне.
-      if (FRIENDS_TOGETHER_UI_ENABLED && nav.action === 'duel_result' && nav.duelResult) {
+      // зачем (26.10, «Вместе» в 2.0.3): сборка И удалённый аварийный выключатель (isFriendsTogetherUiOn)
+      if (isFriendsTogetherUiOn() && nav.action === 'duel_result' && nav.duelResult) {
         const pair = getFriendsTogetherSnapshot()?.pairs[nav.actorStableUid];
         const friend = { uid: nav.actorStableUid, name: pair?.name || row.fromName || '?', coinRank: pair?.coinRank ?? null, isPlus: pair?.isPlus === true };
         router.push({ pathname: '/friends_duel', params: duelResultParams(friend, nav.duelResult, '') } as never);
@@ -730,7 +731,7 @@ function NotificationCenterButton({
             keyExtractor={(row) => row.id}
             renderItem={renderNotificationRow}
             // зачем (идея 2, макет «Сообщения» утром): «{имя}: приглашение закончилось в полночь» — тихие строки телефона, за выключателем
-            ListHeaderComponent={<>{teamInboxSection}{FRIENDS_TOGETHER_UI_ENABLED && !teamDetailOpen ? <BellLessonInviteExpired rows={visibleItems} active={visible} /> : null}</>}
+            ListHeaderComponent={<>{teamInboxSection}{isFriendsTogetherUiOn() && !teamDetailOpen ? <BellLessonInviteExpired rows={visibleItems} active={visible} /> : null}</>}
             ListFooterComponent={!teamDetailOpen && hasOlder && visibleItems.length > 0 ? (
               <TouchableOpacity
                 testID="notification-center-load-older"

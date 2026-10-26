@@ -53,7 +53,7 @@ import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { type StudyTarget } from '../study_target';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { triLang, type Lang } from '../../constants/i18n';
-import { FRIENDS_TOGETHER_UI_ENABLED } from '../friends_together/together_config';
+import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from '../friends_together/together_config';
 import { weekCopy } from '../friends_together/friend_week_copy';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { warmAuthSignInCallables } from '../cloud_sync';
@@ -284,6 +284,8 @@ export default function SettingsMain() {
     });
   }, []));
 
+  // зачем (26.10, «Вместе» в 2.0.3): строка «Моя неделя» прячется и удалённым аварийным выключателем friends_together_enabled
+  const friendsTogetherPolicy = useFriendsTogetherEnabled();
   const { lang, s } = useLang();
   const L = (
     ru: string,
@@ -1256,7 +1258,7 @@ export default function SettingsMain() {
             onPress={() => router.push('/settings_notifications')}
           />
           {/* зачем (идея 6, макет friends-full.html #week «Настройки → Моя неделя»): как друзья видят твою неделю, кто дал пять, скрыть */}
-          {FRIENDS_TOGETHER_UI_ENABLED ? (
+          {FRIENDS_TOGETHER_UI_ENABLED && friendsTogetherPolicy.enabled ? (
             <SettingsGlassRow
               glass={glass}
               testID="settings-my-week-row"

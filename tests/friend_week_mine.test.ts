@@ -31,7 +31,7 @@ describe('«Моя неделя»: кто дал пять', () => {
     expect(gaveFiveWhen('ru', '9:12', '9:40')).toBe('сегодня в 9:12 и 9:40');
   });
 
-  it('экран и вход: только локальные данные, переключатель с откатом, строка Настроек за выключателем', () => {
+  it('локальный экран сохраняет переключатель; по слову владельца 26.10 входа из Настроек нет', () => {
     const root = path.resolve(__dirname, '..');
     const screen = fs.readFileSync(path.join(root, 'app', 'friends_week_mine.tsx'), 'utf8');
     expect(screen).toContain('readCachedUserNotifications()');
@@ -46,6 +46,9 @@ describe('«Моя неделя»: кто дал пять', () => {
     expect(screen).toMatch(/if \(savingRef\.current\) \{[\s\S]{0,200}return;/);
     expect(screen).toContain("messageEn: \"Didn’t work the first time. Try again\"");
     const settings = fs.readFileSync(path.join(root, 'app', '(tabs)', 'settings.tsx'), 'utf8');
-    expect(settings).toMatch(/FRIENDS_TOGETHER_UI_ENABLED && friendsTogetherPolicy\.enabled \? \([\s\S]{0,400}settings-my-week-row[\s\S]{0,300}friends_week_mine/);
+    expect(settings).not.toContain('settings-my-week-row');
+    expect(settings).not.toContain("router.push('/friends_week_mine'");
+    expect(settings).toContain('settings-notifications-row');
+    expect(settings).toContain('settings-themes-row');
   });
 });

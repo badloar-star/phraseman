@@ -52,5 +52,22 @@ export function serializeFriendPhraseAnswer(answer: FriendPhraseAnswer): string 
   return JSON.stringify({ v: 1, day: answer.day, phraseId: answer.phraseId, optionId: answer.optionId, correct: answer.correct });
 }
 
+export type AnsweredPhraseFriend = Readonly<{ uid: string; name: string; coinRank: number | null; isPlus: boolean }>;
+type PhrasePair = Readonly<{ friendUid: string; name?: string; coinRank?: number | null; isPlus?: boolean; phrase?: unknown }>;
+
+/** Монеты под фразой на Главной: только сегодняшний ответ на ту же фразу, без раскрытия выбора. */
+export function answeredPhraseFriends(
+  pairs: Readonly<Record<string, PhrasePair>>,
+  todayKey: string,
+  phraseId: string,
+): readonly AnsweredPhraseFriend[] {
+  return Object.values(pairs).flatMap((pair) => {
+    if (!pair || typeof pair.friendUid !== 'string' || typeof pair.name !== 'string') return [];
+    const answer = parseFriendPhraseAnswer(pair.phrase);
+    if (!pair.name?.trim() || !friendPhraseAnswerFor(answer, todayKey, phraseId)) return [];
+    return [{ uid: pair.friendUid, name: pair.name, coinRank: pair.coinRank ?? null, isPlus: pair.isPlus === true }];
+  });
+}
+
 /* expo-router: служебный модуль, не экран. */
 export default function __RouteShim() { return null; }

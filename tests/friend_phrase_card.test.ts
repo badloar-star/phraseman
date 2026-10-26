@@ -87,12 +87,14 @@ describe('«Фраза дня вдвоём»: исходники', () => {
   const read = (...p: string[]) => normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', ...p), 'utf8'));
   const code = (src: string) => src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:'"`])\/\/[^\n]*/g, '$1');
 
-  it('вкладка «Друзья»: карточка — первым блоком за выключателем, «Опрос дня» остаётся запасным', () => {
+  it('владелец 26.10: фраза на Главной с монетами друзей; во «Друзьях» остаётся опрос', () => {
     const tab = read('app', '(tabs)', 'friends.tsx');
-    expect(tab).toMatch(/const firstCard = friendsTogetherUiEnabled \? \(\s*<FriendPhraseCard/);
-    expect(tab).toContain('fallback={dailyPollCard}');
-    expect(tab).toContain('onOpenFriend={openFriendSheetByUid}');
+    expect(tab).not.toContain('<FriendPhraseCard');
+    expect(tab).toContain('const firstCard = dailyPollCard;');
     expect(tab).toContain('ListHeaderComponent={<>{firstCard}');
+    const home = read('components', 'DailyPhraseCard.tsx');
+    expect(home).toContain('<DailyPhraseFriendsRow');
+    expect(home).toContain('recordMyPhraseAnswer({ phraseId, optionId, correct })');
   });
 
   it('ответ: сразу на экране, запись на телефоне с откатом, защита от двойного тапа, метка квеста Главной', () => {

@@ -154,7 +154,6 @@ import FriendListRow from '../../components/friends_together/FriendListRow';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
 import FriendWeekRail from '../../components/friends_together/FriendWeekRail';
 import FriendWeekSheet from '../../components/friends_together/FriendWeekSheet';
-import FriendPhraseCard from '../../components/friends_together/FriendPhraseCard';
 import { buildFriendWeekRail, type FriendWeekCard } from '../friends_together/friend_week_rail';
 import { highFiveToastTexts } from '../friends_together/friend_week_copy';
 import FriendPairSheet from '../../components/friends_together/FriendPairSheet';
@@ -2594,11 +2593,6 @@ export default function FriendsTabScreen() {
       new Date(),
     );
   }, [focusTick, friendsTogetherUiEnabled, sortedFriends, togetherSnapshot]);
-  // зачем (идея 8 «Фраза дня вдвоём»): друзья карточки — тот же вид, что у дуэли (имя, монета только из шкалы, настоящий Plus)
-  const phraseFriends = useMemo(
-    () => (friendsTogetherUiEnabled ? sortedFriends.map(duelFriendView) : []),
-    [friendsTogetherUiEnabled, sortedFriends],
-  );
   useEffect(() => {
     if (!FRIENDS_TOGETHER_UI_ENABLED || !friendsRuntimeActive) return;
     void import('../friends_together/friend_week_store')
@@ -2739,17 +2733,8 @@ export default function FriendsTabScreen() {
   // зачем (владелец 2026-09-30): «Опрос дня» по макету COM-04-ACTIVITY — первым блоком вкладки.
   // Опроса на сегодня нет → карточка сама ничего не рисует (без пустой рамки).
   const dailyPollCard = <DailyPollCard active={friendsRuntimeActive} />;
-  // зачем (идея 8, макет friends-full.html #phrase — «на месте «Опроса дня»»): за выключателем «Вместе» первым блоком идёт
-  // «Фраза дня вдвоём»; нет фразы или вариантов для этого языка — карточка сама оставляет «Опрос дня»
-  const firstCard = friendsTogetherUiEnabled ? (
-    <FriendPhraseCard
-      active={friendsRuntimeActive}
-      friends={phraseFriends}
-      pairs={togetherSnapshot?.pairs ?? null}
-      onOpenFriend={openFriendSheetByUid}
-      fallback={dailyPollCard}
-    />
-  ) : dailyPollCard;
+  // зачем (владелец 26.10): фраза дня остаётся на Главной, здесь сохраняется самостоятельный «Опрос дня».
+  const firstCard = dailyPollCard;
 
   // Всё, что на вкладке «Друзья» идёт до строк списка.
   const friendsPreList = (

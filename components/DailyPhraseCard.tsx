@@ -64,6 +64,8 @@ import { HOME_SCENE_V2_ENABLED } from './home/v2/scene/home_scene_flag';
 import HomeSceneTranslucentPlate from './home/v2/scene/HomeSceneTranslucentPlate';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
+import DailyPhraseFriendsRow from './DailyPhraseFriendsRow';
+import { recordMyPhraseAnswer } from '../app/friends_together/friend_phrase_store';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -649,6 +651,8 @@ function DailyPhraseCard({
     markDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(noteSwallowedHandler('DailyPhraseCard:handleQuestOptionPress.markDailyPhraseQuestAnswered'));
 
     const correct = isDailyPhraseQuestAnswerCorrect(questOptions, optionId);
+    // зачем (владелец 26.10): ответ даётся на Главной; друзья увидят монету через существующую синхронизацию профиля.
+    void recordMyPhraseAnswer({ phraseId, optionId, correct }).catch(noteSwallowedHandler('DailyPhraseCard:recordMyPhraseAnswer'));
     if (!correct) {
       runWrongAnswerShake();
       return;
@@ -678,6 +682,7 @@ function DailyPhraseCard({
           <View style={sceneLook ? styles.v2CopyScene : styles.v2Copy}>
             <Text style={[sceneLook ? styles.v2KickerScene : styles.v2Kicker, { color: v2.textSecondary }]}>{sceneLook ? title : title.toUpperCase()}</Text>
             <Text style={[sceneLook ? styles.v2PhraseScene : styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
+            <DailyPhraseFriendsRow phraseId={phrase.id || phrase.date} visible={homeCardVisible} />
             {cardLiteral && !sceneLook ? (
               <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
             ) : null}
@@ -738,6 +743,7 @@ function DailyPhraseCard({
                 <Text style={[styles.homeAdditionalPhrase, { color: chrome.phrase, fontSize: Math.max(22, f.bodyLg), lineHeight: Math.round(Math.max(22, f.bodyLg) * 1.3) }]}>
                   {phrase.english}
                 </Text>
+                <DailyPhraseFriendsRow phraseId={phrase.id || phrase.date} visible={homeCardVisible} />
               </>
             ) : (
               <>

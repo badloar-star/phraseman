@@ -56,8 +56,12 @@ describe('кольцо Plus: 7 мест эталона', () => {
     expect(s).toContain('{isPlus ? <PlusTag testID="account-plus-tag"');
   });
 
-  it('3 · Пик, жители на башне: плоское кольцо без значка у соперников и у стопки на этаже; у своей монеты кольца нет', () => {
-    expect(src('components/spire/SpireTowerRivals.tsx')).toContain('plus={m.isPremium} plusKind="flat"');
+  it('3 · Пик: на самой башне монеты без кольца (замок 25.10); в карточке этажа под башней — плоское кольцо без значка', () => {
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10 (e2be987c1, OWNER_LOCKS.md): «убери обводки фиолетовые вокруг монеток на башне! Пик» — соперники на этажах башни
+    // без кольца Plus во всех темах; этот пункт эталона для башни заменён замком. Сторож замка — tests/owner_locks_tower_coins_2026_10_25.test.ts
+    const rivals = src('components/spire/SpireTowerRivals.tsx');
+    expect(rivals).toContain('<SpireRankCoin rank={m.coinRank} size={size} plus={false} />');
+    expect(rivals).not.toMatch(/plus=\{m\.isPremium\}|plusKind/);
     // ЗАМОК ВЛАДЕЛЬЦА 22.10: «вот тут я сказал убрать обводку!!!!» — у своей монеты на башне кольца Plus нет (для башни заменяет №6)
     expect(src('components/spire/SpireTowerMarker.tsx')).not.toMatch(/myIsPlus|plusKind/);
     expect(src('components/spire/SpireFloorInfo.tsx')).toContain('plus={m.isPremium} plusKind="flat"');

@@ -34,6 +34,12 @@
 7. **4 флага по умолчанию true** (сервер выложен): `dialogue_freeform_translate_enabled`, `account_delete_variant_b_ui_enabled`, `dialogue_coin_intent_host_enabled`, `spire_gold`. В боевом Пульте `spire_gold` уже true с 25.10. → core.md.
 8. **«Вместе» для друзей** — `app/friends_together/together_config.ts:73 FRIENDS_TOGETHER_UI_ENABLED = false` → true, если серверные функции «Вместе» выложены (пакет Ревизора 3fa4965ac от 22.10). Если не выложены — точечная выкладка только по «да» владельца. → vhod.md.
 
+### Статус на 07:45
+
+- ✅ 7 «Нет сети» — `b07d0ca24`; 8 «Вместе» — `e64d29561`; банки 8–11 — `8a04d1092`; ленивая загрузка банков — `006024b34`; эталон флагов 146 — `250176395`; скрипт `scripts/release_146_check.sh` — `3b7be0240`.
+- ⏳ 1–3 (Дизайн: пейвол М, settings_plus, низ пейвола), 4–5 (Learning V2: окна эпизода/интро, l29 c3), 6 (Моменты: Пик из кэша), 4 флага Ядра — на момент записи в рабочем дереве или не закоммичены. Сверь `git log` и `docs/work/handover/{design,learning-v2,moments,core}.md`; если файла хендовера нет — сессия не успела, смотри `git status` и доделай по описанию в разделе 2.
+- Хендоверы в репозитории: core, revizor (+ known red tests), themes, translator, vhod.
+
 ## 3. Сборка и отправка 146 (порядок)
 
 1. Все пункты раздела 2 закоммичены, `tsc` приложения 0, сторожа банков 421/421.

@@ -35,3 +35,29 @@ describe('[HOME-SCROLL]: промежутки между кадрами', () => 
     }
   });
 });
+
+// зачем (Ревизор + координатор 26.10): в сборке для магазина зонд не запускает ни цикл кадров, ни таймер — console.log там вырезан, а работа JS осталась бы на каждой прокрутке Главной.
+describe('[HOME-SCROLL]: сборка для магазина', () => {
+  const flags = globalThis as { __DEV__?: boolean };
+
+  it('вне dev зонд ничего не запускает и ничего не печатает', () => {
+    const before = flags.__DEV__;
+    flags.__DEV__ = false;
+    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    const interval = jest.spyOn(globalThis, 'setInterval');
+    const raf = typeof requestAnimationFrame === 'function' ? jest.spyOn(globalThis, 'requestAnimationFrame') : null;
+    try {
+      startHomeScrollWindow();
+      noteHomeFrameGap(40);
+      endHomeScrollWindow('store');
+      expect(interval).not.toHaveBeenCalled();
+      if (raf) expect(raf).not.toHaveBeenCalled();
+      expect(log.mock.calls.some((call) => call[0] === '[HOME-SCROLL]')).toBe(false);
+    } finally {
+      interval.mockRestore();
+      raf?.mockRestore();
+      log.mockRestore();
+      flags.__DEV__ = before;
+    }
+  });
+});

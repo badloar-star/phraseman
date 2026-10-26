@@ -6,6 +6,12 @@
 
 type CounterKey = 'layout' | 'home' | 'scene';
 
+// зачем (Ревизор + координатор 26.10): в сборке для магазина console.log вырезан (babel.config.js), а цикл кадров и таймер жили бы на каждой прокрутке Главной — лишняя работа JS ровно там, где
+// владелец жалуется на дёрганый скролл, и без пользы. Зонд работает только в dev-сборке. typeof-гард: в тестах без react-native-окружения __DEV__ может не быть — тогда зонд включён.
+function probeEnabled(): boolean {
+  return typeof __DEV__ === 'undefined' || __DEV__ === true;
+}
+
 // зачем (координатор 26.10, «сперва логи» для «скролл стал дёрганым»): счётчики перерисовок не показывают, ЧТО видит человек. Пока окно прокрутки открыто, каждый кадр JS-потока
 // (requestAnimationFrame) меряет промежуток до прошлого: сколько кадров, самый длинный промежуток, сколько кадров дольше 50 и 100 мс. Промежуток > 33 мс = JS не успел отдать кадр.
 // UI-поток этим не виден (его janky меряет Сверка по gfxinfo) — но если провалы JS совпадают с перерисовками, причина найдена. Только числа, раз в секунду, только пока идёт прокрутка.
@@ -60,6 +66,7 @@ function stop(reason: string): void {
 
 /** Окно открывается касанием прокрутки (onScrollBeginDrag) и закрывается остановкой/простоем. */
 export function startHomeScrollWindow(): void {
+  if (!probeEnabled()) return; // сборка магазина: ни кадров, ни таймера (причина — в комментарии к probeEnabled)
   lastActivityAt = Date.now();
   if (active) return;
   active = true;
@@ -88,7 +95,7 @@ export function noteHomeRender(key: CounterKey): void {
 
 /** Прыжок полосы из UI-потока в JS (runOnJS(notifyHomeScrollY)). */
 export function noteHomeScrollHop(): void {
-  if (!active) return;
+  if (!probeEnabled() || !active) return;
   counts.hops += 1;
   lastActivityAt = Date.now();
 }

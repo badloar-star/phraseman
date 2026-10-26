@@ -20,11 +20,9 @@ const ALLOWED = {
   'components/account/NicknameEditModal.tsx': 1,
   'components/CertificateNameModal.tsx': 1,
   'components/CleanOnboarding.tsx': 2,
-  'components/FirstPurchaseSealCelebration.tsx': 1,
   'components/home/HomeMistakesLockedSheet.tsx': 1,
   'components/learning-v2/horizons/LearningV2Horizons.tsx': 1,
   'components/ReportUserModal.tsx': 1,
-  'components/ReviewPromptModal.tsx': 2,
   'components/ui/v2_sheet.tsx': 1,
 };
 const MUST_HAVE = ['components/modal_fx/HybridAlertShell.tsx', 'app/lesson_complete.tsx', 'components/NoEnergyModal.tsx', 'components/ThemedConfirmModal.tsx', 'components/ThemedChoiceModal.tsx'];

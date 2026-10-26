@@ -250,7 +250,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
 
   if (bottomSheet) {
     return (
-      <Modal transparent visible={overlayVisible} animationType="slide" onRequestClose={close}>
+      <Modal transparent visible={overlayVisible} statusBarTranslucent animationType="slide" onRequestClose={close}>
         {/* guard-ok: скрим закрывает sheet по тапу вне него; смысловые элементы внутри. */}
         <Pressable
           onPress={close}
@@ -279,8 +279,9 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
     );
   }
 
+  // зачем (safe-area гейт 26.10): statusBarTranslucent — затемнение под статус-баром на Android; отступ сверху/высота уже от topInset
   return (
-    <Modal transparent visible={overlayVisible} animationType={bottomSheet ? 'slide' : 'fade'} onRequestClose={close}>
+    <Modal transparent visible={overlayVisible} statusBarTranslucent animationType={bottomSheet ? 'slide' : 'fade'} onRequestClose={close}>
       {/* guard-ok: скрим-фон закрывает модалку по тапу вовне, декоративный
           (как в HybridAlertShell) — озвучиваемые элементы внутри панели. */}
       <Pressable

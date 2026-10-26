@@ -278,7 +278,9 @@ function FirstPurchaseSealCelebrationImpl({
   if (!visible) return null;
 
   return (
-    <Modal visible transparent animationType="fade" onRequestClose={onDone}>
+    // зачем (правило владельца «фон под статус-баром», safe-area гейт 26.10): экран празднования непрозрачный (g.bg) — без
+    // statusBarTranslucent на Android под статус-баром оставался прежний экран, цветная полоса; содержимое по центру
+    <Modal visible transparent statusBarTranslucent animationType="fade" onRequestClose={onDone}>
       {/* Тон и глубина вместо обводок — запрет владельца на рамки контейнеров. */}
       <View style={[styles.root, { backgroundColor: g.bg }]}>
         <View style={styles.stage}>

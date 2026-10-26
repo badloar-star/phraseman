@@ -1,0 +1,888 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-09",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eres",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eres",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i01:audio",
+          "transcript": "eres"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i01:r1",
+            "targetText": "eres",
+            "meaningByLocale": {
+              "ru": "форма ser для обращения на «ты»: Eres atento — «Ты внимательный». В такой фразе её нельзя пропустить. 🔊 *eres*",
+              "uk": "форма ser для звертання на «ти»: Eres atento — «Ти уважний». У такій фразі її не можна пропустити. 🔊 *eres*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eres",
+          "definitionByLocale": {
+            "ru": "форма ser для обращения на «ты»: Eres atento — «Ты внимательный». В такой фразе её нельзя пропустить. 🔊 *eres*",
+            "uk": "форма ser для звертання на «ти»: Eres atento — «Ти уважний». У такій фразі її не можна пропустити. 🔊 *eres*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i02:r1",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i02:r2",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i02:audio",
+          "transcript": "eres"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i02:r1",
+            "targetText": "eres",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i02:r2",
+            "targetText": "es",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит eres, форма для обращения на «ты».",
+              "uk": "Звучить eres, форма для звертання на «ти»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — generoso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — generoso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i03:audio",
+          "transcript": "generoso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i03:r1",
+            "targetText": "generoso",
+            "meaningByLocale": {
+              "ru": "щедрый. Женщине говорим generosa. Это формы одного слова. 🔊 *generoso*",
+              "uk": "щедрий. Жінці кажемо generosa. Це форми одного слова. 🔊 *generoso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "generoso",
+          "definitionByLocale": {
+            "ru": "щедрый. Женщине говорим generosa. Это формы одного слова. 🔊 *generoso*",
+            "uk": "щедрий. Жінці кажемо generosa. Це форми одного слова. 🔊 *generoso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг поделился фруктами; скажите «Ты щедрый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i04:r1",
+          "text": "Плитки: generoso"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i04:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i04:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг поделился фруктами; скажите «Ты щедрый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres generoso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг поделился фруктами; скажите «Ты щедрый»",
+          "uk": "Складіть фразу — друг поділився фруктами; скажіть «Ти щедрий»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "generoso"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг поделился фруктами; скажите «Ты щедрый»",
+            "feedbackByLocale": {
+              "ru": "вы обращаетесь к другу, поэтому нужна eres.",
+              "uk": "ви звертаєтеся до друга, тому потрібна eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tú",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tú",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i05:audio",
+          "transcript": "tú"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i05:r1",
+            "targetText": "tú",
+            "meaningByLocale": {
+              "ru": "ты. Пишется со знаком ударения над u: ú. Перед eres это слово можно поставить, чтобы выделить собеседника. 🔊 *tú*",
+              "uk": "ти. Пишеться зі знаком наголосу над u: ú. Перед eres це слово можна поставити, щоб виділити співрозмовника. 🔊 *tú*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tú",
+          "definitionByLocale": {
+            "ru": "ты. Пишется со знаком ударения над u: ú. Перед eres это слово можно поставить, чтобы выделить собеседника. 🔊 *tú*",
+            "uk": "ти. Пишеться зі знаком наголосу над u: ú. Перед eres це слово можна поставити, щоб виділити співрозмовника. 🔊 *tú*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите другу «Ты щедрый», сохранив tú",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i06:r1",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i06:r3",
+          "text": "rápido"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите другу «Ты щедрый», сохранив tú",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите другу «Ты щедрый», сохранив tú",
+          "uk": "Вставте слово — скажіть другові «Ти щедрий», зберігши tú"
+        },
+        "gappedTargetPhrase": "Tú ___ generoso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-09:i06:r1",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i06:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i06:r3",
+            "text": "rápido"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите другу «Ты щедрый», сохранив tú",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите другу «Ты щедрый», сохранив tú",
+            "feedbackByLocale": {
+              "ru": "После tú нужна форма eres.",
+              "uk": "Після tú потрібна форма eres."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите другу «Ты щедрый», сохранив tú",
+            "feedbackByLocale": {
+              "ru": "Это «быстрый»; здесь нужна форма eres между tú и качеством.",
+              "uk": "Це «швидкий»; тут потрібна форма eres між tú та рисою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — atento",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — atento",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i07:audio",
+          "transcript": "atento"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i07:r1",
+            "targetText": "atento",
+            "meaningByLocale": {
+              "ru": "внимательный к другим. Женская форма — atenta. В нашей ситуации друг замечает, что вам нужна помощь. 🔊 *atento*",
+              "uk": "уважний до інших. Жіноча форма — atenta. У нашій ситуації друг помічає, що вам потрібна допомога. 🔊 *atento*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "atento",
+          "definitionByLocale": {
+            "ru": "внимательный к другим. Женская форма — atenta. В нашей ситуации друг замечает, что вам нужна помощь. 🔊 *atento*",
+            "uk": "уважний до інших. Жіноча форма — atenta. У нашій ситуації друг помічає, що вам потрібна допомога. 🔊 *atento*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i08:r1",
+          "text": "Ты внимательный"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i08:r2",
+          "text": "Он внимательный"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i08:r3",
+          "text": "Ты щедрый"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i08:audio",
+          "transcript": "Eres atento."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i08:r1",
+            "targetText": "Ты внимательный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i08:r2",
+            "targetText": "Он внимательный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i08:r3",
+            "targetText": "Ты щедрый",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Для «ты» звучит eres; «он внимательный» было бы Es atento.",
+              "uk": "Для «ти» звучить eres; «він уважний» було б Es atento."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Atento означает «внимательный», щедрый — generoso.",
+              "uk": "Atento означає «уважний», щедрий — generoso."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подруга придержала дверь; скажите «Ты внимательная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i09:r1",
+          "text": "Плитки: atento"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i09:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i09:r3",
+          "text": "atenta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подруга придержала дверь; скажите «Ты внимательная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres atenta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга придержала дверь; скажите «Ты внимательная»",
+          "uk": "Складіть фразу — подруга притримала двері; скажіть «Ти уважна»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "atenta"
+        ],
+        "authoredDistractorTokens": [
+          "atento"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подруга придержала дверь; скажите «Ты внимательная»",
+            "feedbackByLocale": {
+              "ru": "вы обращаетесь к женщине.",
+              "uk": "ви звертаєтеся до жінки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i10:audio",
+          "transcript": "Tú eres atento."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tú eres atento.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i11:r1",
+          "text": "Плитки: generosa"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i11:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i11:audio",
+          "transcript": "Eres generosa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Eres generosa.",
+        "orderedTokens": [
+          "Eres",
+          "generosa"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи звучит eres.",
+              "uk": "у записі звучить eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — подруга поделилась своими фруктами; скажите «Ты щедрая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i12:r1",
+          "text": "generosa"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i12:r2",
+          "text": "generoso"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i12:r3",
+          "text": "rápida"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — подруга поделилась своими фруктами; скажите «Ты щедрая»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подруга поделилась своими фруктами; скажите «Ты щедрая»",
+          "uk": "Вставте слово — подруга поділилася своїми фруктами; скажіть «Ти щедра»"
+        },
+        "gappedTargetPhrase": "Eres ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-09:i12:r1",
+            "text": "generosa"
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i12:r2",
+            "text": "generoso"
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i12:r3",
+            "text": "rápida"
+          }
+        ],
+        "testedDimension": "Вставьте слово — подруга поделилась своими фруктами; скажите «Ты щедрая»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подруга поделилась своими фруктами; скажите «Ты щедрая»",
+            "feedbackByLocale": {
+              "ru": "Вы обращаетесь к женщине: generosa.",
+              "uk": "Ви звертаєтеся до жінки: generosa."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подруга поделилась своими фруктами; скажите «Ты щедрая»",
+            "feedbackByLocale": {
+              "ru": "Это «быстрая», а нужно назвать щедрость.",
+              "uk": "Це «швидка», а треба назвати щедрість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i13:r1",
+          "text": "Он быстрый"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i13:r2",
+          "text": "Ты быстрый"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i13:r3",
+          "text": "Ты внимательный"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i13:audio",
+          "transcript": "Es rápido."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-09:i13:r1",
+            "targetText": "Он быстрый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i13:r2",
+            "targetText": "Ты быстрый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i13:r3",
+            "targetText": "Ты внимательный",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит es. Для «ты быстрый» нужна фраза Eres rápido.",
+              "uk": "Звучить es. Для «ти швидкий» потрібна фраза Eres rápido."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-09:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "В записи rápido — «быстрый»; к собеседнику здесь не обращаются.",
+              "uk": "У записі rápido — «швидкий»; до співрозмовника тут не звертаються."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг быстро донёс свою сумку; скажите ему «Ты быстрый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i14:r1",
+          "text": "Плитки: rápido"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i14:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i14:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг быстро донёс свою сумку; скажите ему «Ты быстрый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres rápido.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг быстро донёс свою сумку; скажите ему «Ты быстрый»",
+          "uk": "Складіть фразу — друг швидко доніс свою сумку; скажіть йому «Ти швидкий»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "rápido"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг быстро донёс свою сумку; скажите ему «Ты быстрый»",
+            "feedbackByLocale": {
+              "ru": "вы говорите другу «ты», поэтому eres.",
+              "uk": "ви кажете другові «ти», тому eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-09:i15:audio",
+          "transcript": "Eres atenta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Eres atenta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подчеркните, что именно подруга заметила тяжёлую сумку: «Ты внимательная», со словом tú",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-09:i16:r1",
+          "text": "Плитки: atenta"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i16:r2",
+          "text": "tú"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i16:r3",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-09:i16:r4",
+          "text": "atento."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подчеркните, что именно подруга заметила тяжёлую сумку: «Ты внимательная», со словом tú",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tú eres atenta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подчеркните, что именно подруга заметила тяжёлую сумку: «Ты внимательная», со словом tú",
+          "uk": "Складіть фразу — підкресліть, що саме подруга помітила важку сумку: «Ти уважна», зі словом tú"
+        },
+        "orderedTokens": [
+          "Tú",
+          "eres",
+          "atenta"
+        ],
+        "authoredDistractorTokens": [
+          "atento"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-09:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подчеркните, что именно подруга заметила тяжёлую сумку: «Ты внимательная», со словом tú",
+            "feedbackByLocale": {
+              "ru": "подруге говорим atenta.",
+              "uk": "подрузі кажемо atenta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7ca6574140be15e2ecc47b57d2e8848c79d948692af4ced06abb7ce32872c0b5"
+}

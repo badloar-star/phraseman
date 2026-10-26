@@ -63,4 +63,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"без готового образца собрать короткую оценку с es, no и нужным окончанием.","uk":"без готового зразка скласти коротку оцінку з es, no та потрібним закінченням."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 9,
+    sourceFingerprint: "6b6eaa89494ac64158d9335372fcca95db4f821f5a856dd20449373b09f1210e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"обратиться к человеку на «ты» и назвать его качество через eres.","uk":"звернутися до людини на «ти» й назвати її рису через eres."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

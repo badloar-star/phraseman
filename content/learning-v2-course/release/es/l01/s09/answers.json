@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-09:i01",
+    "correctText": "eres",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i02",
+    "correctText": "eres",
+    "correctResponseId": "es:lesson-01:session-09:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i03",
+    "correctText": "generoso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i04",
+    "correctText": "Eres generoso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i05",
+    "correctText": "tú",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i06",
+    "correctText": "eres",
+    "correctResponseId": "es:lesson-01:session-09:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i07",
+    "correctText": "atento",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i08",
+    "correctText": "Ты внимательный",
+    "correctResponseId": "es:lesson-01:session-09:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i09",
+    "correctText": "Eres atenta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i10",
+    "correctText": "Tú eres atento.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i11",
+    "correctText": "Eres generosa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i12",
+    "correctText": "generosa",
+    "correctResponseId": "es:lesson-01:session-09:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i13",
+    "correctText": "Он быстрый",
+    "correctResponseId": "es:lesson-01:session-09:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i14",
+    "correctText": "Eres rápido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i15",
+    "correctText": "Eres atenta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-09:i16",
+    "correctText": "Tú eres atenta.",
+    "correctResponseId": null
+  }
+]

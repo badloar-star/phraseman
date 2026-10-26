@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-09:intro1:r2": {
+          "ru": "Это о нём, а нужно обратиться к нему: eres.",
+          "uk": "Це про нього, а треба звернутися до нього: eres."
+        },
+        "es:lesson-01:session-09:intro1:r3": {
+          "ru": "Это «ты быстрый», а вы хотите отметить щедрость.",
+          "uk": "Це «ти швидкий», а ви хочете відзначити щедрість."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-09:intro2:r2": {
+          "ru": "Пропущено eres: одного tú перед качеством недостаточно.",
+          "uk": "Пропущено eres: одного tú перед рисою недостатньо."
+        },
+        "es:lesson-01:session-09:intro2:r3": {
+          "ru": "С tú употребляем eres, не es.",
+          "uk": "З tú вживаємо eres, не es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-09:intro3:r2": {
+          "ru": "Atento здесь относится к мужчине; подруге говорим atenta.",
+          "uk": "Atento тут стосується чоловіка; подрузі кажемо atenta."
+        },
+        "es:lesson-01:session-09:intro3:r3": {
+          "ru": "Так говорят о ней. Для обращения к ней нужна форма eres.",
+          "uk": "Так говорять про неї. Для звертання до неї потрібна форма eres."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4da3a47f0814ca2c7872b26220f721ec82042212ddbe043c0083992c091318d6"
+}

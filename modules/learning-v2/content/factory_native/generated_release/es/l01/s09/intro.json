@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "обратиться к человеку на «ты» и назвать его качество через eres.",
+    "uk": "звернутися до людини на «ти» й назвати її рису через eres."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друг поделился покупками",
+        "uk": "Друг поділився покупками"
+      },
+      "bodyByLocale": {
+        "ru": "Друг отдал вам часть купленных фруктов. Скажите ему: `Eres generoso` — «Ты щедрый». Раньше мы ставили `es`, когда оценивали что-то или говорили о ком-то. Теперь обращаемся прямо к другу на «ты»: нужна форма `eres`. Соберите два кусочка: `eres` + `generoso`. Слово `generoso` означает «щедрый».",
+        "uk": "Друг віддав вам частину куплених фруктів. Скажіть йому: `Eres generoso` — «Ти щедрий». Раніше ми ставили `es`, коли оцінювали щось або говорили про когось. Тепер звертаємося прямо до друга на «ти»: потрібна форма `eres`. Складіть два шматочки: `eres` + `generoso`. Слово `generoso` означає «щедрий»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Ты щедрый».",
+          "uk": "Скажіть другові: «Ти щедрий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-09:intro1:r1",
+              "text": "Eres generoso."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro1:r2",
+              "text": "Es generoso."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro1:r3",
+              "text": "Eres rápido."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-09:intro1:r1",
+              "text": "Eres generoso."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro1:r2",
+              "text": "Es generoso."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro1:r3",
+              "text": "Eres rápido."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Ты щедрый».",
+          "uk": "Скажіть другові: «Ти щедрий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Именно ты заметил тяжёлую сумку",
+        "uk": "Саме ти помітив важку сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Друг сам заметил, что вам тяжело, и взял сумку. `Tú eres atento` — «Ты внимательный». `Atento` здесь значит «внимательный к другим». Можно добавить перед `eres` слово `tú` — «ты»: оно выделяет собеседника. Получается `tú` + `eres` + `atento`. Без `tú` фраза тоже правильная: форма `eres` уже показывает, что речь о «ты». Но `tú` не заменяет `eres`.",
+        "uk": "Друг сам помітив, що вам важко, і взяв сумку. `Tú eres atento` — «Ти уважний». `Atento` тут означає «уважний до інших». Можна додати перед `eres` слово `tú` — «ти»: воно виділяє співрозмовника. Виходить `tú` + `eres` + `atento`. Без `tú` фраза теж правильна: форма `eres` уже показує, що йдеться про «ти». Але `tú` не замінює `eres`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу «Ты внимательный» со словом tú.",
+          "uk": "Оберіть фразу «Ти уважний» зі словом tú."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-09:intro2:r1",
+              "text": "Tú eres atento."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro2:r2",
+              "text": "Tú atento."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro2:r3",
+              "text": "Tú es atento."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-09:intro2:r1",
+              "text": "Tú eres atento."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro2:r2",
+              "text": "Tú atento."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro2:r3",
+              "text": "Tú es atento."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу «Ты внимательный» со словом tú.",
+          "uk": "Оберіть фразу «Ти уважний» зі словом tú."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подруга тоже помогает",
+        "uk": "Подруга теж допомагає"
+      },
+      "bodyByLocale": {
+        "ru": "У подъезда вас встречает подруга и придерживает дверь, пока вы несёте сумки. Скажите ей: `Eres atenta` — «Ты внимательная». Обращение `eres` остаётся тем же. Меняется слово про качество: мужчине — `atento`, женщине — `atenta`. Так же работают `generoso` и `generosa`. Окончание зависит от того, к кому вы обращаетесь, а не от того, кто говорит.",
+        "uk": "Біля під'їзду вас зустрічає подруга й притримує двері, поки ви несете сумки. Скажіть їй: `Eres atenta` — «Ти уважна». Звертання `eres` залишається тим самим. Змінюється слово про рису: чоловікові — `atento`, жінці — `atenta`. Так само працюють `generoso` і `generosa`. Закінчення залежить від того, до кого ви звертаєтеся, а не від того, хто говорить."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите подруге: «Ты внимательная».",
+          "uk": "Скажіть подрузі: «Ти уважна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-09:intro3:r1",
+              "text": "Eres atenta."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro3:r2",
+              "text": "Eres atento."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro3:r3",
+              "text": "Es atenta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-09:intro3:r1",
+              "text": "Eres atenta."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro3:r2",
+              "text": "Eres atento."
+            },
+            {
+              "responseId": "es:lesson-01:session-09:intro3:r3",
+              "text": "Es atenta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите подруге: «Ты внимательная».",
+          "uk": "Скажіть подрузі: «Ти уважна»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5b473a15868d75066a35886513db458a3cd2f3a3d6c81aae0d060d853e373afd"
+}

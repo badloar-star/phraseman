@@ -5,10 +5,12 @@
 // и добавляет друга на экране, но подписки списков (друзья, входящие) приносят снимок сервера, снятый ДО
 // записи, — заявка возвращалась, друг пропадал, потом снова появлялся (прыжок). Пока операция идёт и
 // ещё несколько секунд после успеха, снимки подправляются по локальному решению человека.
+// Тот же приём для УДАЛЕНИЯ и БЛОКИРОВКИ друга (kind 'remove', 26.10, аудит Optimistic UI «Друзья»): человек подтвердил — друг исчезает сразу, а запоздавший снимок списка,
+// снятый до записи, не должен на секунду вернуть его обратно. Откат (отказ сервера) снимает запись — друг возвращается из снимка сам.
 // Чистый модуль без React и сети — поведение проверяется юнит-тестом.
 // ═════════════════════════════════════════════════════════════════════
 
-export type PendingFriendOpKind = 'accept' | 'decline';
+export type PendingFriendOpKind = 'accept' | 'decline' | 'remove';
 
 type Entry<F> = { kind: PendingFriendOpKind; friend: F | null; until: number };
 
@@ -21,7 +23,7 @@ export type PendingFriendOps<F extends { uid: string }, R extends { fromUid: str
   has: (uid: string, nowMs: number) => boolean;
   /** Входящие заявки без тех, что человек уже принял/отклонил. */
   filterRequests: (rows: readonly R[], nowMs: number) => R[];
-  /** Друзья плюс только что принятые, которых в снимке ещё нет. */
+  /** Друзья плюс только что принятые, которых в снимке ещё нет, минус только что удалённые/заблокированные, которые снимок ещё держит. */
   mergeFriends: (rows: readonly F[], nowMs: number) => F[];
 }>;
 
@@ -51,13 +53,14 @@ export function createPendingFriendOps<F extends { uid: string }, R extends { fr
     has: (uid, nowMs) => live(uid, nowMs) !== null,
     filterRequests: (rows, nowMs) => rows.filter((row) => live(row.fromUid, nowMs) === null),
     mergeFriends: (rows, nowMs) => {
-      const have = new Set(rows.map((row) => row.uid));
+      const kept = rows.filter((row) => live(row.uid, nowMs)?.kind !== 'remove');
+      const have = new Set(kept.map((row) => row.uid));
       const extra: F[] = [];
       for (const uid of [...entries.keys()]) {
         const entry = live(uid, nowMs);
         if (entry && entry.kind === 'accept' && entry.friend && !have.has(uid)) extra.push(entry.friend);
       }
-      return extra.length > 0 ? [...rows, ...extra] : [...rows];
+      return extra.length > 0 ? [...kept, ...extra] : kept;
     },
   };
 }

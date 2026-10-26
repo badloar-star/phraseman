@@ -1698,7 +1698,7 @@ export default function FriendsTabScreen() {
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
         const mergedFriends = pendingFriendOpsRef.current.mergeFriends(data, Date.now());
         if (mergedFriends.length !== data.length) {
-          console.log(`[FRIEND-REQUEST] снимок друзей: из сервера ${data.length}, добавлено «в пути» ${mergedFriends.length - data.length}`); // guard-ok: ветка решает значение
+          console.log(`[FRIEND-REQUEST] снимок друзей: из сервера ${data.length}, после «в пути» ${mergedFriends.length} (разница ${mergedFriends.length - data.length})`); // guard-ok: ветка решает значение
         }
         setFriends(mergedFriends);
         if (data.length > 0) {
@@ -2008,7 +2008,8 @@ export default function FriendsTabScreen() {
     // «Заявка отправлена!» появится, когда придёт результат (ветка 'sent' ниже). Ошибка вернёт карточку и покажет причину, как раньше.
     showFeedback(L('Отправляем заявку…', 'Надсилаємо заявку…', 'Sending request…', 'Enviando solicitud…', 'Enviando solicitação…', 'Đang gửi lời mời…', 'Mengirim permintaan…', 'İstek gönderiliyor…', 'Wysyłamy zaproszenie…'), 'pending');
     try {
-      await trackActivity('friends:add_request_start', {
+      // зачем (аудит Optimistic UI «Друзья» 26.10): аналитика не ждёт — раньше `await` держал отправку заявки на чтении id аккаунта; trackActivity сам ловит свои сбои
+      void trackActivity('friends:add_request_start', {
         feature: 'friends',
         screen: 'friends',
         result: 'start',
@@ -2025,7 +2026,7 @@ export default function FriendsTabScreen() {
           // зачем (съёмка R1): подставному другу DEVFND заявка не уходит в сеть — сразу «отправлена».
           : isDevFoundFriendUid(targetUser.uid) ? 'sent'
           : await sendFriendRequest(targetUser.uid);
-      await trackActivity('friends:add_request_result', {
+      void trackActivity('friends:add_request_result', {
         feature: 'friends',
         screen: 'friends',
         result: result === 'sent' ? 'success' : result === 'error' || result === 'network' ? 'error' : 'blocked',
@@ -2195,14 +2196,17 @@ export default function FriendsTabScreen() {
     friendRemovalInFlightRef.current.add(target.uid);
     // Optimistic: друг исчезает сразу; отказ сервера — возвращаем и говорим причину.
     const previousFriend = friends.find(friend => friend.uid === target.uid) ?? null;
+    pendingFriendOpsRef.current.begin(target.uid, 'remove'); // зачем: запоздавший снимок не возвращает заблокированного на секунду
     setFriends(prev => prev.filter(friend => friend.uid !== target.uid));
     setSelectedPlayer(current => (current?.uid === target.uid || current?.friendUid === target.uid ? null : current));
     const rollback = () => {
+      pendingFriendOpsRef.current.settle(target.uid, false, Date.now());
       if (previousFriend) setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);
     };
     void blockUser(target.uid).then((result) => {
       console.log('[FRIEND-BLOCK] ui: block result', JSON.stringify({ uid: target.uid.slice(0, 6), result }));
       if (result === 'ok') {
+        pendingFriendOpsRef.current.settle(target.uid, true, Date.now());
         showFeedback(L('Пользователь заблокирован', 'Користувача заблоковано', 'User blocked', 'Usuario bloqueado', 'Usuário bloqueado', 'Đã chặn người dùng', 'Pengguna diblokir', 'Kullanıcı engellendi', 'Użytkownik zablokowany'));
         if (previousFriend) {
           deleteFriend(target.uid).catch((error: unknown) => {
@@ -3142,6 +3146,8 @@ export default function FriendsTabScreen() {
           } else if (target) {
             friendRemovalInFlightRef.current.add(target.uid);
             const previousFriend = friends.find(friend => friend.uid === target.uid) ?? null;
+            // зачем (аудит Optimistic UI «Друзья» 26.10): запоздавший снимок списка не должен на секунду вернуть удалённого друга
+            pendingFriendOpsRef.current.begin(target.uid, 'remove');
             setFriends(prev => prev.filter(friend => friend.uid !== target.uid));
             setSelectedPlayer(current => (current?.uid === target.uid || current?.friendUid === target.uid ? null : current));
             showFeedback(L('Убираем друга…', 'Прибираємо друга…', 'Removing friend…', 'Quitando amigo…', 'Removendo amigo…', 'Đang gỡ bạn bè…', 'Menghapus teman…', 'Arkadaş kaldırılıyor…', 'Usuwanie znajomego…'));
@@ -3159,6 +3165,7 @@ export default function FriendsTabScreen() {
             });
             deleteFriend(target.uid)
               .then(() => {
+                pendingFriendOpsRef.current.settle(target.uid, true, Date.now());
                 showFeedback(L('Друг убран', 'Друга прибрано', 'Friend removed', 'Amigo quitado', 'Amigo removido', 'Đã gỡ bạn bè', 'Teman dihapus', 'Arkadaş kaldırıldı', 'Znajomy usunięty'));
                 emitAppEvent('action_toast', {
                   type: 'success',
@@ -3174,6 +3181,7 @@ export default function FriendsTabScreen() {
                 });
               })
               .catch((error: unknown) => {
+                pendingFriendOpsRef.current.settle(target.uid, false, Date.now());
                 console.warn('[FRIENDS] remove friend failed — откат', error instanceof Error ? error.message.slice(0, 80) : String(error).slice(0, 80)); // guard-ok: причина отката
                 if (previousFriend) {
                   setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);

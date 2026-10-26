@@ -25,6 +25,10 @@ const attempt: ObjectiveMistakeAttempt = {
   facet: { kind: 'word_order' },
 };
 
+// зачем (ночной прогон Ревизора 26.10: «падает только в общем прогоне»): запись ошибки и скрытие в одну миллисекунду сортируются по номеру
+// события, и «скрыто» могло встать раньше «записано» — тест мигал. В приложении между ними минуты; здесь скрытие явно позже записи.
+const LATER = (): number => Date.now() + 60_000;
+
 describe('hideMistake', () => {
   test('hides an active mistake with one event and keeps the journal intact', async () => {
     const memory = storage();
@@ -32,7 +36,7 @@ describe('hideMistake', () => {
     if (captured.kind !== 'captured') throw new Error('capture failed');
     const before = await loadMistakeEventJournal({ accountScope: 'account-a', studyTarget: 'en', storage: memory });
 
-    const result = await hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: captured.mistakeId, reason: 'known', storage: memory });
+    const result = await hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: captured.mistakeId, reason: 'known', nowMs: LATER(), storage: memory });
     expect(result).toEqual({ ok: true, appended: true });
 
     const after = await loadMistakeEventJournal({ accountScope: 'account-a', studyTarget: 'en', storage: memory });
@@ -44,12 +48,12 @@ describe('hideMistake', () => {
     const memory = storage();
     const captured = await captureObjectiveAttempt(attempt, { storage: memory });
     if (captured.kind !== 'captured') throw new Error('capture failed');
-    await hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: captured.mistakeId, reason: 'removed', storage: memory });
+    await hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: captured.mistakeId, reason: 'removed', nowMs: LATER(), storage: memory });
     const size = (await loadMistakeEventJournal({ accountScope: 'account-a', studyTarget: 'en', storage: memory })).events.length;
 
-    await expect(hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: captured.mistakeId, reason: 'removed', storage: memory }))
+    await expect(hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: captured.mistakeId, reason: 'removed', nowMs: LATER(), storage: memory }))
       .resolves.toEqual({ ok: false, reason: 'already_hidden_or_corrected' });
-    await expect(hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: 'nope', reason: 'known', storage: memory }))
+    await expect(hideMistake({ accountScope: 'account-a', studyTarget: 'en', mistakeId: 'nope', reason: 'known', nowMs: LATER(), storage: memory }))
       .resolves.toEqual({ ok: false, reason: 'not_found' });
     expect((await loadMistakeEventJournal({ accountScope: 'account-a', studyTarget: 'en', storage: memory })).events.length).toBe(size);
   });

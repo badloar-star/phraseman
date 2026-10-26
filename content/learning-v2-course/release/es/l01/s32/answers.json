@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-32:i01",
+    "correctText": "disciplinado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i02",
+    "correctText": "disciplinadas",
+    "correctResponseId": "es:lesson-01:session-32:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i03",
+    "correctText": "Soy",
+    "correctResponseId": "es:lesson-01:session-32:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i04",
+    "correctText": "Eres disciplinada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i05",
+    "correctText": "constante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i06",
+    "correctText": "constantes",
+    "correctResponseId": "es:lesson-01:session-32:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i07",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-32:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i08",
+    "correctText": "Somos disciplinados.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i09",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-32:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i10",
+    "correctText": "Somos disciplinadas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i11",
+    "correctText": "No somos constantes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-32:i12",
+    "correctText": "No soy disciplinada.",
+    "correctResponseId": null
+  }
+]

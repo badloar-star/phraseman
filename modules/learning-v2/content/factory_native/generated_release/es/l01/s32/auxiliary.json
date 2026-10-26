@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-32",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-32:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-32:intro1:r2": {
+          "ru": "Это обращение к собеседнице, а нужно описание себя.",
+          "uk": "Це звернення до співрозмовниці, а потрібен опис себе."
+        },
+        "es:lesson-01:session-32:intro1:r3": {
+          "ru": "Disciplinados описывает нескольких людей, а говорящий один.",
+          "uk": "Disciplinados описує кількох людей, а мовець один."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-32:intro2:r2": {
+          "ru": "Это рассказ о другом человеке, а не обращение на «ты».",
+          "uk": "Це розповідь про іншу людину, а не звернення на «ти»."
+        },
+        "es:lesson-01:session-32:intro2:r3": {
+          "ru": "Это описание себя, а вы обращаетесь к другу.",
+          "uk": "Це опис себе, а ви звертаєтеся до друга."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-32:intro3:r2": {
+          "ru": "Это о них, а вы говорите о нас.",
+          "uk": "Це про них, а ви говорите про нас."
+        },
+        "es:lesson-01:session-32:intro3:r3": {
+          "ru": "Для группы нужна форма constantes.",
+          "uk": "Для групи потрібна форма constantes."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d5507b5ad3faf7eb2b2fff985ba9fef163d8921fda525e45b1c875be0065db7b"
+}

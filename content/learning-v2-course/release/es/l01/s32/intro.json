@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать одну из пяти знакомых форм ser, согласовать описание с человеком или группой и добавить отрицание.",
+    "uk": "обрати одну з п'яти знайомих форм ser, узгодити опис із людиною або групою та додати заперечення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я соблюдаю план",
+        "uk": "Я дотримуюся плану"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете, что умеете придерживаться плана тренировок. Если вы мужчина: `Soy disciplinado` — «Я дисциплинированный». Соберите `soy` + `disciplinado`. Женщина скажет `Soy disciplinada`: форма soy остаётся прежней, меняется окончание описания. Здесь речь о вашей привычке соблюдать план, а не об одной удачной тренировке.",
+        "uk": "Ви розповідаєте, що вмієте дотримуватися плану тренувань. Якщо ви чоловік: `Soy disciplinado` — «Я дисциплінований». Зберіть `soy` + `disciplinado`. Жінка скаже `Soy disciplinada`: форма soy залишається тією самою, змінюється закінчення опису. Тут ідеться про вашу звичку дотримуватися плану, а не про одне вдале тренування."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы женщина. Скажите о себе: «Я дисциплинированная».",
+          "uk": "Ви жінка. Скажіть про себе: «Я дисциплінована»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-32:intro1:r1",
+              "text": "Soy disciplinada."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro1:r2",
+              "text": "Eres disciplinada."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro1:r3",
+              "text": "Soy disciplinados."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-32:intro1:r1",
+              "text": "Soy disciplinada."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro1:r2",
+              "text": "Eres disciplinada."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro1:r3",
+              "text": "Soy disciplinados."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина. Скажите о себе: «Я дисциплинированная».",
+          "uk": "Ви жінка. Скажіть про себе: «Я дисциплінована»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ты не бросаешь начатое",
+        "uk": "Ти не кидаєш розпочатого"
+      },
+      "bodyByLocale": {
+        "ru": "Друг регулярно выходит на тренировку, даже когда прогресс небольшой. `Eres constante` — «Ты настойчив и последователен в занятиях». `Constante` здесь описывает человека, который продолжает заниматься и не бросает начатое. Соберите `eres` + `constante`. Эта форма качества одинакова для мужчины и женщины.",
+        "uk": "Друг регулярно виходить на тренування, навіть коли прогрес невеликий. `Eres constante` — «Ти наполегливий і послідовний у заняттях». `Constante` тут описує людину, яка продовжує займатися й не кидає розпочатого. Зберіть `eres` + `constante`. Ця форма якості однакова для чоловіка й жінки."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Обратитесь к другу на «ты», используя constante.",
+          "uk": "Зверніться до друга на «ти», використовуючи constante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-32:intro2:r1",
+              "text": "Eres constante."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro2:r2",
+              "text": "Es constante."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro2:r3",
+              "text": "Soy constante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-32:intro2:r1",
+              "text": "Eres constante."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro2:r2",
+              "text": "Es constante."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro2:r3",
+              "text": "Soy constante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Обратитесь к другу на «ты», используя constante.",
+          "uk": "Зверніться до друга на «ти», використовуючи constante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нашей компании пока не хватает регулярности",
+        "uk": "Нашій компанії поки бракує регулярності"
+      },
+      "bodyByLocale": {
+        "ru": "Вы честно признаёте, что ваша группа часто бросает тренировки. `No somos constantes` — «Мы непоследовательны в занятиях». Соберите `no` + `somos` + `constantes`: отрицание стоит перед somos, а описание группы получает s. Это всё ещё о нас. Когда описываете другую группу, выбирайте знакомое son.",
+        "uk": "Ви чесно визнаєте, що ваша група часто кидає тренування. `No somos constantes` — «Ми непослідовні в заняттях». Зберіть `no` + `somos` + `constantes`: заперечення стоїть перед somos, а опис групи отримує s. Це все ще про нас. Коли описуєте іншу групу, обирайте знайоме son."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите от своей компании: «Мы непоследовательны в занятиях», используя отрицание и constantes.",
+          "uk": "Скажіть від своєї компанії: «Ми непослідовні в заняттях», використовуючи заперечення й constantes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-32:intro3:r1",
+              "text": "No somos constantes."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro3:r2",
+              "text": "No son constantes."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro3:r3",
+              "text": "No somos constante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-32:intro3:r1",
+              "text": "No somos constantes."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro3:r2",
+              "text": "No son constantes."
+            },
+            {
+              "responseId": "es:lesson-01:session-32:intro3:r3",
+              "text": "No somos constante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите от своей компании: «Мы непоследовательны в занятиях», используя отрицание и constantes.",
+          "uk": "Скажіть від своєї компанії: «Ми непослідовні в заняттях», використовуючи заперечення й constantes."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "35f72d6c72f8553f49978829caa73fee6a2fd33f65004d3cb59ef58dd1953d89"
+}

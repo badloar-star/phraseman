@@ -1,0 +1,693 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-32",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — disciplinado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — disciplinado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-32:i01:audio",
+          "transcript": "disciplinado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-32:i01:r1",
+            "targetText": "disciplinado",
+            "meaningByLocale": {
+              "ru": "дисциплинированный. Женская форма — disciplinada; несколько людей — disciplinados или disciplinadas. 🔊 *disciplinado*",
+              "uk": "дисциплінований. Жіноча форма — disciplinada; кілька людей — disciplinados або disciplinadas. 🔊 *disciplinado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disciplinado",
+          "definitionByLocale": {
+            "ru": "дисциплинированный. Женская форма — disciplinada; несколько людей — disciplinados или disciplinadas. 🔊 *disciplinado*",
+            "uk": "дисциплінований. Жіноча форма — disciplinada; кілька людей — disciplinados або disciplinadas. 🔊 *disciplinado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i02:r1",
+          "text": "disciplinadas"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i02:r2",
+          "text": "disciplinada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-32:i02:audio",
+          "transcript": "disciplinadas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-32:i02:r1",
+            "targetText": "disciplinadas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i02:r2",
+            "targetText": "disciplinada",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит s: disciplinadas.",
+              "uk": "Наприкінці звучить s: disciplinadas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы мужчина; скажите о себе «Я дисциплинированный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i03:r1",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i03:r2",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i03:r3",
+          "text": "Son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы мужчина; скажите о себе «Я дисциплинированный»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы мужчина; скажите о себе «Я дисциплинированный»",
+          "uk": "Вставте слово — ви чоловік; скажіть про себе «Я дисциплінований»"
+        },
+        "gappedTargetPhrase": "___ disciplinado.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-32:i03:r1",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i03:r2",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i03:r3",
+            "text": "Son"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы мужчина; скажите о себе «Я дисциплинированный»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы мужчина; скажите о себе «Я дисциплинированный»",
+            "feedbackByLocale": {
+              "ru": "Это о собеседнике, а нужно о себе.",
+              "uk": "Це про співрозмовника, а потрібно про себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы мужчина; скажите о себе «Я дисциплинированный»",
+            "feedbackByLocale": {
+              "ru": "Это о нескольких других людях.",
+              "uk": "Це про кількох інших людей."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите подруге «Ты дисциплинированная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i04:r1",
+          "text": "Плитки: disciplinada"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i04:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i04:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите подруге «Ты дисциплинированная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres disciplinada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите подруге «Ты дисциплинированная»",
+          "uk": "Зберіть фразу — скажіть подрузі «Ти дисциплінована»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "disciplinada"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите подруге «Ты дисциплинированная»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к подруге.",
+              "uk": "звертаєтеся до подруги."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — constante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — constante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-32:i05:audio",
+          "transcript": "constante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-32:i05:r1",
+            "targetText": "constante",
+            "meaningByLocale": {
+              "ru": "настойчивый и последовательный в занятиях, не бросающий начатое. Для нескольких людей — constantes. 🔊 *constante*",
+              "uk": "наполегливий і послідовний у заняттях, який не кидає розпочатого. Для кількох людей — constantes. 🔊 *constante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "constante",
+          "definitionByLocale": {
+            "ru": "настойчивый и последовательный в занятиях, не бросающий начатое. Для нескольких людей — constantes. 🔊 *constante*",
+            "uk": "наполегливий і послідовний у заняттях, який не кидає розпочатого. Для кількох людей — constantes. 🔊 *constante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i06:r1",
+          "text": "constantes"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i06:r2",
+          "text": "constante"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-32:i06:audio",
+          "transcript": "constantes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-32:i06:r1",
+            "targetText": "constantes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i06:r2",
+            "targetText": "constante",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит s: constantes.",
+              "uk": "Наприкінці звучить s: constantes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — расскажите о подруге, которая регулярно занимается и не сдаётся",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i07:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i07:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i07:r3",
+          "text": "somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — расскажите о подруге, которая регулярно занимается и не сдаётся",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — расскажите о подруге, которая регулярно занимается и не сдаётся",
+          "uk": "Вставте слово — розкажіть про подругу, яка регулярно займається й не здається"
+        },
+        "gappedTargetPhrase": "Ella ___ constante.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-32:i07:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i07:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i07:r3",
+            "text": "somos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — расскажите о подруге, которая регулярно занимается и не сдаётся",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — расскажите о подруге, которая регулярно занимается и не сдаётся",
+            "feedbackByLocale": {
+              "ru": "Это обращение на «ты», а здесь рассказ о ней.",
+              "uk": "Це звернення на «ти», а тут розповідь про неї."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — расскажите о подруге, которая регулярно занимается и не сдаётся",
+            "feedbackByLocale": {
+              "ru": "Это о нас, а здесь одна подруга.",
+              "uk": "Це про нас, а тут одна подруга."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите от своей смешанной компании «Мы дисциплинированные»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i08:r1",
+          "text": "Плитки: disciplinados"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i08:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i08:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите от своей смешанной компании «Мы дисциплинированные»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos disciplinados.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите от своей смешанной компании «Мы дисциплинированные»",
+          "uk": "Зберіть фразу — скажіть від своєї змішаної компанії «Ми дисципліновані»"
+        },
+        "orderedTokens": [
+          "Somos",
+          "disciplinados"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите от своей смешанной компании «Мы дисциплинированные»",
+            "feedbackByLocale": {
+              "ru": "говорите от своей компании.",
+              "uk": "говорите від своєї компанії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — другие друзья регулярно готовятся и не бросают начатое",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i09:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i09:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i09:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — другие друзья регулярно готовятся и не бросают начатое",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — другие друзья регулярно готовятся и не бросают начатое",
+          "uk": "Вставте слово — інші друзі регулярно готуються й не кидають розпочатого"
+        },
+        "gappedTargetPhrase": "Ellos ___ constantes.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-32:i09:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i09:r2",
+            "text": "somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i09:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — другие друзья регулярно готовятся и не бросают начатое",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — другие друзья регулярно готовятся и не бросают начатое",
+            "feedbackByLocale": {
+              "ru": "Это о нас, а вы описываете их.",
+              "uk": "Це про нас, а ви описуєте їх."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — другие друзья регулярно готовятся и не бросают начатое",
+            "feedbackByLocale": {
+              "ru": "Для нескольких людей нужно son.",
+              "uk": "Для кількох людей потрібно son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы входите в компанию только женщин; скажите «Мы дисциплинированные»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы входите в компанию только женщин; скажите «Мы дисциплинированные»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-32:i10:audio",
+          "transcript": "Somos disciplinadas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos disciplinadas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i11:r1",
+          "text": "Плитки: constantes"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i11:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i11:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i11:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-32:i11:audio",
+          "transcript": "No somos constantes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No somos constantes.",
+        "orderedTokens": [
+          "No",
+          "somos",
+          "constantes"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos.",
+              "uk": "звучить somos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-32:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы женщина; отрицаете, что дисциплинированны",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-32:i12:r1",
+          "text": "Плитки: disciplinada"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i12:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i12:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-32:i12:r4",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы женщина; отрицаете, что дисциплинированны",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No soy disciplinada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина; отрицаете, что дисциплинированны",
+          "uk": "Зберіть фразу — ви жінка; заперечуєте, що дисципліновані"
+        },
+        "orderedTokens": [
+          "No",
+          "soy",
+          "disciplinada"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-32:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы женщина; отрицаете, что дисциплинированны",
+            "feedbackByLocale": {
+              "ru": "описываете себя, а не группу.",
+              "uk": "описуєте себе, а не групу."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "87e7aefd2f57fcac8e6db3a4af4a14ec17ee916e3d3d6cc537bf73bc28ee174e"
+}

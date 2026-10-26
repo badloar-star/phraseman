@@ -42,7 +42,7 @@ function hasCompactListPacket(value, { rejectTwoPartPacket = false } = {}) {
 function hasCommaSeparatedIndependentClauses(value) {
   const parts = String(value ?? "").split(/\s*,\s*/u).map(normalizeSpace).filter(Boolean);
   if (parts.length < 2) return false;
-  const tagQuestion = /^(?:right|okay|ok|isn['’]t (?:it|that)|aren['’]t (?:they|we|you)|don['’]t (?:you|they|we)|won['’]t (?:you|they|we))\?$/iu;
+  const tagQuestion = /^(?:right|okay|ok|(?:am|are|is|was|were|do|does|did) (?:i|you|he|she|it|we|they)|isn['’]t (?:it|that)|aren['’]t (?:they|we|you)|don['’]t (?:you|they|we)|won['’]t (?:you|they|we))\?$/iu;
   const finiteVerb = /\b(?:am|are|is|was|were|be|been|being|do|does|did|have|has|had|can|could|will|would|shall|should|may|might|must|[a-z]+(?:s|ed))\b/iu;
   const pronounSubject = /^(?:this|that|these|those|it|i|you|we|they|he|she|there)\b/iu;
   const nounSubject = /^(?:(?:the|a|an|my|your|his|her|our|their)\s+)?\p{L}[\p{L}'’\-]*\s+/u;

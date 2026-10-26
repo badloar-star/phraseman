@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-21",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-21:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-21:intro1:r2": {
+          "ru": "Окончание a не подходит к испанскому libro.",
+          "uk": "Закінчення a не підходить до іспанського libro."
+        },
+        "es:lesson-01:session-21:intro1:r3": {
+          "ru": "Soy описывает вас, а не книгу.",
+          "uk": "Soy описує вас, а не книгу."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-21:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-21:intro2:r2": {
+          "ru": "Это окончание для мужского рода, а casa — женского.",
+          "uk": "Це закінчення для чоловічого роду, а casa — жіночого."
+        },
+        "es:lesson-01:session-21:intro2:r3": {
+          "ru": "Eres обращено к собеседнице, не описывает дом.",
+          "uk": "Eres звернене до співрозмовниці, не описує будинок."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-21:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-21:intro3:r2": {
+          "ru": "В этом задании описываем la casa, поэтому нужна женская форма.",
+          "uk": "У цьому завданні описуємо la casa, тому потрібна жіноча форма."
+        },
+        "es:lesson-01:session-21:intro3:r3": {
+          "ru": "Cara — «дорогая»; нужно сказать о небольшой цене.",
+          "uk": "Cara — «дорога»; потрібно сказати про невелику ціну."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5455eb5c6f91345ea896e637dc0f9bc19d0fd5f4adddaa9b770696677e5a9be6"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-21:i01",
+    "correctText": "el libro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i02",
+    "correctText": "книга",
+    "correctResponseId": "es:lesson-01:session-21:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i03",
+    "correctText": "la casa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i04",
+    "correctText": "дом",
+    "correctResponseId": "es:lesson-01:session-21:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i05",
+    "correctText": "bonito",
+    "correctResponseId": "es:lesson-01:session-21:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i06",
+    "correctText": "Es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i07",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i08",
+    "correctText": "barata",
+    "correctResponseId": "es:lesson-01:session-21:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i09",
+    "correctText": "barata",
+    "correctResponseId": "es:lesson-01:session-21:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i10",
+    "correctText": "Es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i11",
+    "correctText": "Es barata.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i12",
+    "correctText": "caro",
+    "correctResponseId": "es:lesson-01:session-21:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i13",
+    "correctText": "No es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-21:i14",
+    "correctText": "Es barato.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать bonito или bonita по роду испанского названия предмета.",
+    "uk": "обрати bonito або bonita за родом іспанської назви предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга — но окончание o",
+        "uk": "Книга — але закінчення o"
+      },
+      "bodyByLocale": {
+        "ru": "`El libro` — «книга». Запомните название вместе с `el`: это слово мужского рода в испанском, хотя русское «книга» женского. Вы смотрите именно на книгу и говорите: `Es bonito` — «Она красивая». Сборка: `es` + `bonito`. Окончание выбираем по испанскому `libro`, а не по русскому переводу. Здесь `el` без знака над e; знакомое `él` со знаком означает «он».",
+        "uk": "`El libro` — «книга». Запам'ятайте назву разом з `el`: це слово чоловічого роду в іспанській, хоча українське «книга» жіночого. Ви дивитеся саме на книгу й говорите: `Es bonito` — «Вона гарна». Побудова: `es` + `bonito`. Закінчення обираємо за іспанським `libro`, а не за українським перекладом. Тут `el` без знака над e; знайоме `él` зі знаком означає «він»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите книгу на фотографии: «Она красивая».",
+          "uk": "Опишіть книгу на фотографії: «Вона гарна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-21:intro1:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro1:r2",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro1:r3",
+              "text": "Soy bonito."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-21:intro1:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro1:r2",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro1:r3",
+              "text": "Soy bonito."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите книгу на фотографии: «Она красивая».",
+          "uk": "Опишіть книгу на фотографії: «Вона гарна»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дом — но окончание a",
+        "uk": "Будинок — але закінчення a"
+      },
+      "bodyByLocale": {
+        "ru": "На следующей фотографии дом: `la casa`. Запоминайте `casa` вместе с `la`: это женский род в испанском, несмотря на русский мужской род слова «дом». Скажите о нём: `Es bonita` — «Он красивый». Сначала `es`, затем `bonita` с окончанием для `la casa`. Русское «он» не заставляет выбирать испанское окончание o.",
+        "uk": "На наступній фотографії будинок: `la casa`. Запам'ятовуйте `casa` разом із `la`: це жіночий рід в іспанській, попри український чоловічий рід слова «будинок». Скажіть про нього: `Es bonita` — «Він гарний». Спочатку `es`, потім `bonita` із закінченням для `la casa`. Українське «він» не змушує обирати іспанське закінчення o."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите дом на фотографии: «Он красивый».",
+          "uk": "Опишіть будинок на фотографії: «Він гарний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-21:intro2:r1",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro2:r2",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro2:r3",
+              "text": "Eres bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-21:intro2:r1",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro2:r2",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro2:r3",
+              "text": "Eres bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите дом на фотографии: «Он красивый».",
+          "uk": "Опишіть будинок на фотографії: «Він гарний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "То же согласование для цены",
+        "uk": "Те саме узгодження для ціни"
+      },
+      "bodyByLocale": {
+        "ru": "Друг говорит, что дом продаётся недорого. Теперь описываем конкретный дом: `Es barata` — «Он недорогой». Знакомое `barato` меняет o на a, потому что речь о `la casa`. Сборка: `es` + `barata`. Это отличается от общей оценки стоимости `Es barato` из занятия о стоимости: здесь окончание связано с названным испанским предметом.",
+        "uk": "Друг каже, що будинок продається недорого. Тепер описуємо конкретний будинок: `Es barata` — «Він недорогий». Знайоме `barato` змінює o на a, бо йдеться про `la casa`. Побудова: `es` + `barata`. Це відрізняється від загальної оцінки вартості `Es barato` із заняття про вартість: тут закінчення пов'язане з названим іспанським предметом."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о конкретном доме, la casa: «Он недорогой».",
+          "uk": "Скажіть про конкретний будинок, la casa: «Він недорогий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-21:intro3:r1",
+              "text": "Es barata."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro3:r2",
+              "text": "Es barato."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro3:r3",
+              "text": "Es cara."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-21:intro3:r1",
+              "text": "Es barata."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro3:r2",
+              "text": "Es barato."
+            },
+            {
+              "responseId": "es:lesson-01:session-21:intro3:r3",
+              "text": "Es cara."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о конкретном доме, la casa: «Он недорогой».",
+          "uk": "Скажіть про конкретний будинок, la casa: «Він недорогий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2a73cbca8916974718e014b4af43c14a19ae56555991f8435e4d5d9e78d9f24b"
+}

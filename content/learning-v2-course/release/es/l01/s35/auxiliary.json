@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-35",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-35:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-35:intro1:r2": {
+          "ru": "Sencilla нужна со словом женского рода, а manual мужского.",
+          "uk": "Sencilla потрібна зі словом жіночого роду, а manual чоловічого."
+        },
+        "es:lesson-01:session-35:intro1:r3": {
+          "ru": "Здесь одно руководство, поэтому es sencillo.",
+          "uk": "Тут один посібник, тому es sencillo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-35:intro2:r2": {
+          "ru": "Это «простое», а руководство запутанное.",
+          "uk": "Це «простий», а посібник заплутаний."
+        },
+        "es:lesson-01:session-35:intro2:r3": {
+          "ru": "С мужским manual нужна форма complicado.",
+          "uk": "Із чоловічим manual потрібна форма complicado."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-35:intro3:r2": {
+          "ru": "Это о нескольких предметах, а руководство одно.",
+          "uk": "Це про кілька предметів, а посібник один."
+        },
+        "es:lesson-01:session-35:intro3:r3": {
+          "ru": "Без no фраза утверждает, что руководство сложное.",
+          "uk": "Без no фраза стверджує, що посібник складний."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "181583a3c0a0dd1ad546b7195d8073c6e43446d2cd94473aaf50421a169a3328"
+}

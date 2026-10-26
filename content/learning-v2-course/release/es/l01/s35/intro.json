@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "оценить сложность одного руководства с es, не меняя знакомую схему предложения.",
+    "uk": "оцінити складність одного посібника з es, не змінюючи знайому схему речення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коротко и понятно",
+        "uk": "Коротко й зрозуміло"
+      },
+      "bodyByLocale": {
+        "ru": "В первом руководстве всего несколько ясных шагов. `Manual` — «руководство, инструкция»; в испанском это слово мужского рода: `el manual`. Скажите: `El manual es sencillo` — «Руководство простое». Соберите `el manual` + `es` + `sencillo`. `Sencillo` означает «простой, незамысловатый». Окончание o относится к испанскому слову manual, а не к русскому переводу «инструкция».",
+        "uk": "У першому посібнику лише кілька зрозумілих кроків. `Manual` — «посібник, інструкція»; в іспанській це слово чоловічого роду: `el manual`. Скажіть: `El manual es sencillo` — «Посібник простий». Зберіть `el manual` + `es` + `sencillo`. `Sencillo` означає «простий, нескладний». Закінчення o стосується іспанського слова manual, а не українського перекладу «інструкція»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о понятном руководстве: «Руководство простое».",
+          "uk": "Скажіть про зрозумілий посібник: «Посібник простий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-35:intro1:r1",
+              "text": "El manual es sencillo."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro1:r2",
+              "text": "El manual es sencilla."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro1:r3",
+              "text": "El manual son sencillos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-35:intro1:r1",
+              "text": "El manual es sencillo."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro1:r2",
+              "text": "El manual es sencilla."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro1:r3",
+              "text": "El manual son sencillos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о понятном руководстве: «Руководство простое».",
+          "uk": "Скажіть про зрозумілий посібник: «Посібник простий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слишком запутанное описание",
+        "uk": "Надто заплутаний опис"
+      },
+      "bodyByLocale": {
+        "ru": "Во втором руководстве много запутанных объяснений. `El manual es complicado` — «Руководство сложное». `Complicado` означает «сложный, запутанный». Соберите ту же схему: `el manual` + `es` + `complicado`. Вы заменили только оценку; форма es осталась прежней, потому что предмет всё ещё один.",
+        "uk": "У другому посібнику багато заплутаних пояснень. `El manual es complicado` — «Посібник складний». `Complicado` означає «складний, заплутаний». Зберіть ту саму схему: `el manual` + `es` + `complicado`. Ви замінили лише оцінку; форма es залишилася тією самою, тому що предмет усе ще один."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о запутанном руководстве: «Руководство сложное».",
+          "uk": "Скажіть про заплутаний посібник: «Посібник складний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-35:intro2:r1",
+              "text": "El manual es complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro2:r2",
+              "text": "El manual es sencillo."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro2:r3",
+              "text": "El manual es complicada."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-35:intro2:r1",
+              "text": "El manual es complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro2:r2",
+              "text": "El manual es sencillo."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro2:r3",
+              "text": "El manual es complicada."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о запутанном руководстве: «Руководство сложное».",
+          "uk": "Скажіть про заплутаний посібник: «Посібник складний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не сложное",
+        "uk": "Не складний"
+      },
+      "bodyByLocale": {
+        "ru": "Друг опасается, что первое руководство будет трудно понять. Вы уже просмотрели его и отвечаете: `No es complicado` — «Оно не сложное». Соберите `no` + `es` + `complicado`. Название можно опустить: вы оба обсуждаете одно руководство. Отрицание стоит перед es, как в знакомом No es difícil.",
+        "uk": "Друг побоюється, що перший посібник буде важко зрозуміти. Ви вже переглянули його й відповідаєте: `No es complicado` — «Він не складний». Зберіть `no` + `es` + `complicado`. Назву можна опустити: ви обоє обговорюєте один посібник. Заперечення стоїть перед es, як у знайомому No es difícil."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Успокойте друга: «Оно не сложное», используя complicado и не повторяя название.",
+          "uk": "Заспокойте друга: «Він не складний», використовуючи complicado й не повторюючи назву."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-35:intro3:r1",
+              "text": "No es complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro3:r2",
+              "text": "No son complicados."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro3:r3",
+              "text": "Es complicado."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-35:intro3:r1",
+              "text": "No es complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro3:r2",
+              "text": "No son complicados."
+            },
+            {
+              "responseId": "es:lesson-01:session-35:intro3:r3",
+              "text": "Es complicado."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Успокойте друга: «Оно не сложное», используя complicado и не повторяя название.",
+          "uk": "Заспокойте друга: «Він не складний», використовуючи complicado й не повторюючи назву."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7f918717b16abeabc4d814acbbf9dfefa9a79b45858f68cdeaec17910bd1193b"
+}

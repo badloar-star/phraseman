@@ -245,4 +245,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать несколько предметов словами iguales и parecidas.","uk":"описати кілька предметів словами iguales та parecidas."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 35,
+    sourceFingerprint: "69ebfb963624997d180e3cf02280d719eb3eae33af734dd185526bd30d924546",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить сложность одного руководства с es, не меняя знакомую схему предложения.","uk":"оцінити складність одного посібника з es, не змінюючи знайому схему речення."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

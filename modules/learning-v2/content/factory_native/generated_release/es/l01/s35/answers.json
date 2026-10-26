@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-35:i01",
+    "correctText": "manual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i02",
+    "correctText": "manual",
+    "correctResponseId": "es:lesson-01:session-35:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i03",
+    "correctText": "sencillo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i04",
+    "correctText": "sencillo",
+    "correctResponseId": "es:lesson-01:session-35:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i05",
+    "correctText": "El manual es sencillo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i06",
+    "correctText": "El manual es sencillo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i07",
+    "correctText": "complicado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i08",
+    "correctText": "complicado",
+    "correctResponseId": "es:lesson-01:session-35:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i09",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-35:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i10",
+    "correctText": "No es complicado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i11",
+    "correctText": "El manual es complicado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-35:i12",
+    "correctText": "El manual no es sencillo.",
+    "correctResponseId": null
+  }
+]

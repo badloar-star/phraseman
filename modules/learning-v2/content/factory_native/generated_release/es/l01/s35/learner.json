@@ -1,0 +1,697 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-35",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — manual",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — manual",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i01:audio",
+          "transcript": "manual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-35:i01:r1",
+            "targetText": "manual",
+            "meaningByLocale": {
+              "ru": "руководство, инструкция. Мужской род: el manual. 🔊 *manual*",
+              "uk": "посібник, інструкція. Чоловічий рід: el manual. 🔊 *manual*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "manual",
+          "definitionByLocale": {
+            "ru": "руководство, инструкция. Мужской род: el manual. 🔊 *manual*",
+            "uk": "посібник, інструкція. Чоловічий рід: el manual. 🔊 *manual*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i02:r1",
+          "text": "manual"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i02:r2",
+          "text": "auricular"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i02:audio",
+          "transcript": "manual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-35:i02:r1",
+            "targetText": "manual",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i02:r2",
+            "targetText": "auricular",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит manual — руководство, а не auricular — наушник.",
+              "uk": "Звучить manual — посібник, а не auricular — навушник."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sencillo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sencillo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i03:audio",
+          "transcript": "sencillo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-35:i03:r1",
+            "targetText": "sencillo",
+            "meaningByLocale": {
+              "ru": "простой, незамысловатый. Женская форма — sencilla. 🔊 *sencillo*",
+              "uk": "простий, нескладний. Жіноча форма — sencilla. 🔊 *sencillo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sencillo",
+          "definitionByLocale": {
+            "ru": "простой, незамысловатый. Женская форма — sencilla. 🔊 *sencillo*",
+            "uk": "простий, нескладний. Жіноча форма — sencilla. 🔊 *sencillo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — руководство простое и понятное",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i04:r1",
+          "text": "sencillo"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i04:r2",
+          "text": "sencilla"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i04:r3",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — руководство простое и понятное",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — руководство простое и понятное",
+          "uk": "Вставте слово — посібник простий і зрозумілий"
+        },
+        "gappedTargetPhrase": "El manual es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-35:i04:r1",
+            "text": "sencillo"
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i04:r2",
+            "text": "sencilla"
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i04:r3",
+            "text": "difícil"
+          }
+        ],
+        "testedDimension": "Вставьте слово — руководство простое и понятное",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — руководство простое и понятное",
+            "feedbackByLocale": {
+              "ru": "Manual мужского рода, поэтому sencillo.",
+              "uk": "Manual чоловічого роду, тому sencillo."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — руководство простое и понятное",
+            "feedbackByLocale": {
+              "ru": "Это «трудный», а здесь руководство простое.",
+              "uk": "Це «важкий», а тут посібник простий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Руководство простое»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i05:r1",
+          "text": "Плитки: sencillo"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i05:r2",
+          "text": "manual"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i05:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Руководство простое»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El manual es sencillo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Руководство простое»",
+          "uk": "Зберіть фразу — скажіть «Посібник простий»"
+        },
+        "orderedTokens": [
+          "El",
+          "manual",
+          "es",
+          "sencillo"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Руководство простое»",
+            "feedbackByLocale": {
+              "ru": "руководство одно.",
+              "uk": "посібник один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — оцените понятное руководство как простое",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — оцените понятное руководство как простое",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i06:audio",
+          "transcript": "El manual es sencillo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El manual es sencillo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — complicado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — complicado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i07:audio",
+          "transcript": "complicado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-35:i07:r1",
+            "targetText": "complicado",
+            "meaningByLocale": {
+              "ru": "сложный, запутанный. Женская форма — complicada. 🔊 *complicado*",
+              "uk": "складний, заплутаний. Жіноча форма — complicada. 🔊 *complicado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "complicado",
+          "definitionByLocale": {
+            "ru": "сложный, запутанный. Женская форма — complicada. 🔊 *complicado*",
+            "uk": "складний, заплутаний. Жіноча форма — complicada. 🔊 *complicado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i08:r1",
+          "text": "complicado"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i08:r2",
+          "text": "sencillo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i08:audio",
+          "transcript": "complicado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-35:i08:r1",
+            "targetText": "complicado",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i08:r2",
+            "targetText": "sencillo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит complicado — «сложный», а не sencillo.",
+              "uk": "Звучить complicado — «складний», а не sencillo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — второе руководство сложное",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i09:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i09:r3",
+          "text": "eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — второе руководство сложное",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — второе руководство сложное",
+          "uk": "Вставте слово — другий посібник складний"
+        },
+        "gappedTargetPhrase": "El manual ___ complicado.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-35:i09:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i09:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i09:r3",
+            "text": "eres"
+          }
+        ],
+        "testedDimension": "Вставьте слово — второе руководство сложное",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — второе руководство сложное",
+            "feedbackByLocale": {
+              "ru": "Руководство одно, поэтому es.",
+              "uk": "Посібник один, тому es."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — второе руководство сложное",
+            "feedbackByLocale": {
+              "ru": "Eres относится к собеседнику, а не к руководству.",
+              "uk": "Eres стосується співрозмовника, а не посібника."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите о понятном руководстве «Оно не сложное»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i10:r1",
+          "text": "Плитки: complicado"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i10:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите о понятном руководстве «Оно не сложное»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es complicado.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о понятном руководстве «Оно не сложное»",
+          "uk": "Зберіть фразу — скажіть про зрозумілий посібник «Він не складний»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "complicado"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите о понятном руководстве «Оно не сложное»",
+            "feedbackByLocale": {
+              "ru": "обсуждаете одно руководство.",
+              "uk": "обговорюєте один посібник."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i11:r1",
+          "text": "Плитки: complicado"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i11:r3",
+          "text": "manual"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i11:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i11:r5",
+          "text": "sencillo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-35:i11:audio",
+          "transcript": "El manual es complicado."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El manual es complicado.",
+        "orderedTokens": [
+          "El",
+          "manual",
+          "es",
+          "complicado"
+        ],
+        "authoredDistractorTokens": [
+          "sencillo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит complicado.",
+              "uk": "звучить complicado."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-35:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — отрицаете простоту запутанного руководства; назовите его в начале",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-35:i12:r1",
+          "text": "Плитки: sencillo"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i12:r2",
+          "text": "manual"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i12:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i12:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i12:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-35:i12:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — отрицаете простоту запутанного руководства; назовите его в начале",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El manual no es sencillo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — отрицаете простоту запутанного руководства; назовите его в начале",
+          "uk": "Зберіть фразу — заперечуєте простоту заплутаного посібника; назвіть його на початку"
+        },
+        "orderedTokens": [
+          "El",
+          "manual",
+          "no",
+          "es",
+          "sencillo"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-35:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — отрицаете простоту запутанного руководства; назовите его в начале",
+            "feedbackByLocale": {
+              "ru": "описываете одно руководство.",
+              "uk": "описуєте один посібник."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "573d7972ba03056455d72f3afce111dca7d9ee271bcad089582c3f48048eace5"
+}

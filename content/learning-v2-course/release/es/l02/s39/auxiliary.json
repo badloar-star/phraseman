@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-39",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-39:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-39:intro1:r2": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        },
+        "es:lesson-02:session-39:intro1:r3": {
+          "ru": "Libros мужского рода: los.",
+          "uk": "Libros чоловічого роду: los."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-39:intro2:r2": {
+          "ru": "Для bufandas нужен las.",
+          "uk": "Для bufandas потрібен las."
+        },
+        "es:lesson-02:session-39:intro2:r3": {
+          "ru": "Перед именем владельца нужно de.",
+          "uk": "Перед ім'ям власника потрібне de."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-39:intro3:r2": {
+          "ru": "Шарф один: es.",
+          "uk": "Шарф один: es."
+        },
+        "es:lesson-02:session-39:intro3:r3": {
+          "ru": "Для одного шарфа нужна la.",
+          "uk": "Для одного шарфа потрібна la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "53fbedc4cb017c14c94938d1a7d646102d3c6830440ce8a4c2610936441db27f"
+}

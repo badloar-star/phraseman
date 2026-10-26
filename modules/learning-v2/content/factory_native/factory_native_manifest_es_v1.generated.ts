@@ -1327,4 +1327,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l02/s38/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l02/s38/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 39,
+    sourceFingerprint: "de337bcad7e0dcaefe32c06710295cad75bf1b00a970d6a5eef63e9fb90fa50a",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Назовите книги Аны.","Назовите шарфы Аны.","Назовите один шарф Аны."],"uk":["Назвіть книжки Ани.","Назвіть шарфи Ани.","Назвіть один шарф Ани."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Книг несколько: son.","Libros мужского рода: los."],["Для bufandas нужен las.","Перед именем владельца нужно de."],["Шарф один: es.","Для одного шарфа нужна la."]],"uk":[["Книжок кілька: son.","Libros чоловічого роду: los."],["Для bufandas потрібен las.","Перед ім'ям власника потрібне de."],["Шарф один: es.","Для одного шарфа потрібна la."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить несколько предметов и имя владельца через de.","uk":"поєднати кілька предметів та ім'я власника через de."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Вставьте слово — книги Аны"},{"ordinal":2,"title":"Соберите фразу — это книги Аны"},{"ordinal":3,"title":"Вставьте слово — несколько книг"},{"ordinal":4,"title":"Соберите фразу — это шарфы Аны"},{"ordinal":5,"title":"Вставьте слово — шарфы Аны"},{"ordinal":6,"title":"Послушайте и соберите фразу"},{"ordinal":7,"title":"Скажите вслух — это шарфы Аны"},{"ordinal":8,"title":"Соберите фразу — это один шарф Аны"},{"ordinal":9,"title":"Вставьте слово — один шарф"},{"ordinal":10,"title":"Соберите фразу — это одна книга Аны"},{"ordinal":11,"title":"Вставьте слово — снова несколько книг"},{"ordinal":12,"title":"Скажите вслух — это книги Аны"}],"uk":[{"ordinal":1,"title":"Вставте слово — книжки Ани"},{"ordinal":2,"title":"Зберіть фразу — це книжки Ани"},{"ordinal":3,"title":"Вставте слово — кілька книжок"},{"ordinal":4,"title":"Зберіть фразу — це шарфи Ани"},{"ordinal":5,"title":"Вставте слово — шарфи Ани"},{"ordinal":6,"title":"Послухайте й зберіть фразу"},{"ordinal":7,"title":"Скажіть уголос — це шарфи Ани"},{"ordinal":8,"title":"Зберіть фразу — це один шарф Ани"},{"ordinal":9,"title":"Вставте слово — один шарф"},{"ordinal":10,"title":"Зберіть фразу — це одна книжка Ани"},{"ordinal":11,"title":"Вставте слово — знову кілька книжок"},{"ordinal":12,"title":"Скажіть уголос — це книжки Ани"}]}),
+    loadIntro: () => require("./generated_release/es/l02/s39/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l02/s39/learner.uk.json") as unknown : require("./generated_release/es/l02/s39/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l02/s39/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l02/s39/auxiliary.json") as unknown,
+  }),
 ]);

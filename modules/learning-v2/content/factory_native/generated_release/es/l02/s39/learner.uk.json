@@ -1,0 +1,783 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-39",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книжки Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i01:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i01:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i01:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книжки Ани",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги Аны",
+          "uk": "Вставте слово — книжки Ани"
+        },
+        "gappedTargetPhrase": "Son los libros ___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-39:i01:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i01:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i01:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — книжки Ани",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки Ани",
+            "feedbackByLocale": {
+              "ru": "Перед именем владельца нужно de.",
+              "uk": "Перед ім'ям власника потрібне de."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки Ани",
+            "feedbackByLocale": {
+              "ru": "Связь вещей с владельцем выражает de.",
+              "uk": "Зв'язок речей із власником виражає de."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це книжки Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i02:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i02:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i02:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i02:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i02:r5",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i02:r6",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це книжки Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los libros de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это книги Аны",
+          "uk": "Зберіть фразу — це книжки Ани"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "libros",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це книжки Ани",
+            "feedbackByLocale": {
+              "ru": "libros мужского рода.",
+              "uk": "libros чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька книжок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i03:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i03:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька книжок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько книг",
+          "uk": "Вставте слово — кілька книжок"
+        },
+        "gappedTargetPhrase": "___ los libros de Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-39:i03:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i03:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i03:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька книжок",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька книжок",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: son.",
+              "uk": "Книжок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька книжок",
+            "feedbackByLocale": {
+              "ru": "Речь о книгах, не о говорящем: son.",
+              "uk": "Йдеться про книжки, не про мовця: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це шарфи Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i04:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i04:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i04:r3",
+          "text": "bufandas"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i04:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i04:r5",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i04:r6",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це шарфи Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las bufandas de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это шарфы Аны",
+          "uk": "Зберіть фразу — це шарфи Ани"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "bufandas",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це шарфи Ани",
+            "feedbackByLocale": {
+              "ru": "bufandas женского рода.",
+              "uk": "bufandas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — шарфи Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i05:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i05:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i05:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — шарфи Ани",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — шарфы Аны",
+          "uk": "Вставте слово — шарфи Ани"
+        },
+        "gappedTargetPhrase": "Son ___ bufandas de Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-39:i05:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i05:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i05:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставте слово — шарфи Ани",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — шарфи Ани",
+            "feedbackByLocale": {
+              "ru": "Bufandas женского рода: las.",
+              "uk": "Bufandas жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — шарфи Ани",
+            "feedbackByLocale": {
+              "ru": "Шарфов несколько: las.",
+              "uk": "Шарфів кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i06:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i06:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i06:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i06:r4",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i06:r5",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-39:i06:audio",
+          "transcript": "Son los libros de Ana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son los libros de Ana.",
+        "orderedTokens": [
+          "Son",
+          "los",
+          "libros",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son, книг несколько.",
+              "uk": "звучить son, книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це шарфи Ани",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це шарфи Ани",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-39:i07:audio",
+          "transcript": "Son las bufandas de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las bufandas de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це один шарф Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i08:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i08:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i08:r3",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i08:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i08:r6",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це один шарф Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la bufanda de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это один шарф Аны",
+          "uk": "Зберіть фразу — це один шарф Ани"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "bufanda",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це один шарф Ани",
+            "feedbackByLocale": {
+              "ru": "шарф один, нужна la.",
+              "uk": "шарф один, потрібна la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — один шарф",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i09:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i09:r3",
+          "text": "somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — один шарф",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один шарф",
+          "uk": "Вставте слово — один шарф"
+        },
+        "gappedTargetPhrase": "___ la bufanda de Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-39:i09:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i09:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i09:r3",
+            "text": "somos"
+          }
+        ],
+        "testedDimension": "Вставте слово — один шарф",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — один шарф",
+            "feedbackByLocale": {
+              "ru": "Шарф один: es.",
+              "uk": "Шарф один: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — один шарф",
+            "feedbackByLocale": {
+              "ru": "Somos означает «мы», а речь об одном шарфе.",
+              "uk": "Somos означає «ми», а йдеться про один шарф."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це одна книжка Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i10:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i10:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i10:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i10:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i10:r6",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це одна книжка Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el libro de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это одна книга Аны",
+          "uk": "Зберіть фразу — це одна книжка Ани"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "libro",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це одна книжка Ани",
+            "feedbackByLocale": {
+              "ru": "книга одна, нужен el.",
+              "uk": "книжка одна, потрібен el."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — знову кілька книжок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-39:i11:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i11:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-02:session-39:i11:r3",
+          "text": "libras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — знову кілька книжок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — снова несколько книг",
+          "uk": "Вставте слово — знову кілька книжок"
+        },
+        "gappedTargetPhrase": "Son los ___ de Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-39:i11:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i11:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i11:r3",
+            "text": "libras"
+          }
+        ],
+        "testedDimension": "Вставте слово — знову кілька книжок",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — знову кілька книжок",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: libros.",
+              "uk": "Книжок кілька: libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — знову кілька книжок",
+            "feedbackByLocale": {
+              "ru": "Множественное число libro — libros.",
+              "uk": "Множина libro — libros."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-39:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це книжки Ани",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це книжки Ани",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-39:i12:audio",
+          "transcript": "Son los libros de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los libros de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7ed56e69090f446d17d7f595f0ae09503202d53819709c09998fc77c4fab658f"
+}

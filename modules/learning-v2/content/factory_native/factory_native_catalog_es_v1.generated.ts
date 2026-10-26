@@ -665,4 +665,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"проверить название нескольких предметов вопросом ¿Son unos/unas…?","uk":"перевірити назву кількох предметів запитанням ¿Son unos/unas…?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 39,
+    sourceFingerprint: "de337bcad7e0dcaefe32c06710295cad75bf1b00a970d6a5eef63e9fb90fa50a",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить несколько предметов и имя владельца через de.","uk":"поєднати кілька предметів та ім'я власника через de."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-39:i01",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-39:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i02",
+    "correctText": "Son los libros de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i03",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-39:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i04",
+    "correctText": "Son las bufandas de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i05",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-02:session-39:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i06",
+    "correctText": "Son los libros de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i07",
+    "correctText": "Son las bufandas de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i08",
+    "correctText": "Es la bufanda de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i09",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-02:session-39:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i10",
+    "correctText": "Es el libro de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i11",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-02:session-39:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-39:i12",
+    "correctText": "Son los libros de Ana.",
+    "correctResponseId": null
+  }
+]

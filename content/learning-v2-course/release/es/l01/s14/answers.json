@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-14:i01",
+    "correctText": "sí",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i02",
+    "correctText": "flexible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i03",
+    "correctText": "Sí, soy flexible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i04",
+    "correctText": "Да, ты гибкая",
+    "correctResponseId": "es:lesson-01:session-14:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i05",
+    "correctText": "terco",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i06",
+    "correctText": "terca",
+    "correctResponseId": "es:lesson-01:session-14:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i07",
+    "correctText": "Sí, soy terco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i08",
+    "correctText": "Sí, soy flexible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i09",
+    "correctText": "eres",
+    "correctResponseId": "es:lesson-01:session-14:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i10",
+    "correctText": "Sí, soy terca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i11",
+    "correctText": "Sí, eres flexible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-14:i12",
+    "correctText": "Sí, eres flexible.",
+    "correctResponseId": null
+  }
+]

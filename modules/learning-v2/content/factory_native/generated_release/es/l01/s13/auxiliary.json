@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-13:intro1:r2": {
+          "ru": "Так вы назовёте самостоятельным собеседника.",
+          "uk": "Так ви назвете самостійним співрозмовника."
+        },
+        "es:lesson-01:session-13:intro1:r3": {
+          "ru": "Это о другом человеке, а нужно сказать о себе.",
+          "uk": "Це про іншу людину, а треба сказати про себе."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-13:intro2:r2": {
+          "ru": "Пропущена нужная форма soy.",
+          "uk": "Пропущено потрібну форму soy."
+        },
+        "es:lesson-01:session-13:intro2:r3": {
+          "ru": "С yo нужна soy; eres относится к «ты».",
+          "uk": "З yo потрібна soy; eres стосується «ти»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-13:intro3:r2": {
+          "ru": "Reservado выбрал бы мужчина, говорящий о себе.",
+          "uk": "Reservado обрав би чоловік, який говорить про себе."
+        },
+        "es:lesson-01:session-13:intro3:r3": {
+          "ru": "Это обращение к собеседнице, а нужно сказать о себе.",
+          "uk": "Це звертання до співрозмовниці, а треба сказати про себе."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "98e64fd4dd8be4c08c246c4f28184ddc751eeefc9808b2b84ba5ddcac27a6d91"
+}

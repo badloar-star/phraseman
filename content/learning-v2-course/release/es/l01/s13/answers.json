@@ -1,0 +1,77 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-13:i01",
+    "correctText": "soy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i02",
+    "correctText": "soy",
+    "correctResponseId": "es:lesson-01:session-13:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i03",
+    "correctText": "independiente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i04",
+    "correctText": "Soy independiente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i05",
+    "correctText": "yo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i06",
+    "correctText": "soy",
+    "correctResponseId": "es:lesson-01:session-13:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i07",
+    "correctText": "reservado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i08",
+    "correctText": "Я сдержанная",
+    "correctResponseId": "es:lesson-01:session-13:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i09",
+    "correctText": "Soy reservada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i10",
+    "correctText": "Soy independiente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i11",
+    "correctText": "Yo soy reservado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i12",
+    "correctText": "Eres",
+    "correctResponseId": "es:lesson-01:session-13:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i13",
+    "correctText": "Ты сдержанная",
+    "correctResponseId": "es:lesson-01:session-13:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i14",
+    "correctText": "Yo soy independiente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-13:i15",
+    "correctText": "Yo soy reservado.",
+    "correctResponseId": null
+  }
+]

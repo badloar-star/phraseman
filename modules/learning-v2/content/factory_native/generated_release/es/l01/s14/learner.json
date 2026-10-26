@@ -1,0 +1,670 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sí",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sí",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i01:audio",
+          "transcript": "sí"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-14:i01:r1",
+            "targetText": "sí",
+            "meaningByLocale": {
+              "ru": "да. В этом значении пишется со знаком над i: í. 🔊 *sí*",
+              "uk": "так. У цьому значенні пишеться зі знаком над i: í. 🔊 *sí*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sí",
+          "definitionByLocale": {
+            "ru": "да. В этом значении пишется со знаком над i: í. 🔊 *sí*",
+            "uk": "так. У цьому значенні пишеться зі знаком над i: í. 🔊 *sí*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flexible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flexible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i02:audio",
+          "transcript": "flexible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-14:i02:r1",
+            "targetText": "flexible",
+            "meaningByLocale": {
+              "ru": "гибкий, гибкая; здесь — готовый менять планы и договариваться. Одна форма для мужчины и женщины. 🔊 *flexible*",
+              "uk": "гнучкий, гнучка; тут — готовий змінювати плани й домовлятися. Одна форма для чоловіка та жінки. 🔊 *flexible*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flexible",
+          "definitionByLocale": {
+            "ru": "гибкий, гибкая; здесь — готовый менять планы и договариваться. Одна форма для мужчины и женщины. 🔊 *flexible*",
+            "uk": "гнучкий, гнучка; тут — готовий змінювати плани й домовлятися. Одна форма для чоловіка та жінки. 🔊 *flexible*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы готовы выбрать другое место пикника; скажите «Да, я гибкий»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i03:r1",
+          "text": "Плитки: sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i03:r2",
+          "text": "flexible"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i03:r3",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i03:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы готовы выбрать другое место пикника; скажите «Да, я гибкий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, soy flexible.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы готовы выбрать другое место пикника; скажите «Да, я гибкий»",
+          "uk": "Складіть фразу — ви готові обрати інше місце пікніка; скажіть «Так, я гнучкий»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "soy",
+          "flexible"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы готовы выбрать другое место пикника; скажите «Да, я гибкий»",
+            "feedbackByLocale": {
+              "ru": "вы отвечаете о себе, поэтому soy.",
+              "uk": "ви відповідаєте про себе, тому soy."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i04:r1",
+          "text": "Да, ты гибкая"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i04:r2",
+          "text": "Да, я гибкая"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i04:r3",
+          "text": "Да, ты упрямая"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i04:audio",
+          "transcript": "Sí, eres flexible."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-14:i04:r1",
+            "targetText": "Да, ты гибкая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i04:r2",
+            "targetText": "Да, я гибкая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i04:r3",
+            "targetText": "Да, ты упрямая",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит eres — обращение к собеседнице.",
+              "uk": "Звучить eres — звертання до співрозмовниці."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Гибкая — flexible; упрямая — terca.",
+              "uk": "Гнучка — flexible; вперта — terca."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — terco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — terco",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i05:audio",
+          "transcript": "terco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-14:i05:r1",
+            "targetText": "terco",
+            "meaningByLocale": {
+              "ru": "упрямый. Женская форма — terca. Человек упорно держится своего решения. 🔊 *terco*",
+              "uk": "впертий. Жіноча форма — terca. Людина наполегливо тримається свого рішення. 🔊 *terco*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "terco",
+          "definitionByLocale": {
+            "ru": "упрямый. Женская форма — terca. Человек упорно держится своего решения. 🔊 *terco*",
+            "uk": "впертий. Жіноча форма — terca. Людина наполегливо тримається свого рішення. 🔊 *terco*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы женщина; признайте «Да, я упрямая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i06:r1",
+          "text": "terca"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i06:r2",
+          "text": "terco"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i06:r3",
+          "text": "flexible"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы женщина; признайте «Да, я упрямая»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы женщина; признайте «Да, я упрямая»",
+          "uk": "Вставте слово — ви жінка; визнайте «Так, я вперта»"
+        },
+        "gappedTargetPhrase": "Sí, soy ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-14:i06:r1",
+            "text": "terca"
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i06:r2",
+            "text": "terco"
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i06:r3",
+            "text": "flexible"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы женщина; признайте «Да, я упрямая»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы женщина; признайте «Да, я упрямая»",
+            "feedbackByLocale": {
+              "ru": "О себе говорит женщина: terca.",
+              "uk": "Про себе говорить жінка: terca."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы женщина; признайте «Да, я упрямая»",
+            "feedbackByLocale": {
+              "ru": "Это «гибкая», а нужно признать упрямство.",
+              "uk": "Це «гнучка», а треба визнати впертість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i07:r1",
+          "text": "Плитки: soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i07:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i07:r3",
+          "text": "terca"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i07:r4",
+          "text": "terco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i07:audio",
+          "transcript": "Sí, soy terco."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Sí, soy terco.",
+        "orderedTokens": [
+          "Sí,",
+          "soy",
+          "terco"
+        ],
+        "authoredDistractorTokens": [
+          "terca"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи слышно terco.",
+              "uk": "у записі чути terco."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i08:audio",
+          "transcript": "Sí, soy flexible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, soy flexible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — подтвердите подруге «Да, ты гибкая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i09:r1",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i09:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i09:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — подтвердите подруге «Да, ты гибкая»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подтвердите подруге «Да, ты гибкая»",
+          "uk": "Вставте слово — підтвердьте подрузі «Так, ти гнучка»"
+        },
+        "gappedTargetPhrase": "Sí, ___ flexible.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-14:i09:r1",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i09:r2",
+            "text": "soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i09:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — подтвердите подруге «Да, ты гибкая»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подтвердите подруге «Да, ты гибкая»",
+            "feedbackByLocale": {
+              "ru": "Soy означает «я», а вы обращаетесь к подруге.",
+              "uk": "Soy означає «я», а ви звертаєтеся до подруги."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подтвердите подруге «Да, ты гибкая»",
+            "feedbackByLocale": {
+              "ru": "Для обращения на «ты» нужна eres.",
+              "uk": "Для звертання на «ти» потрібна eres."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы женщина; согласитесь с оценкой своего упрямства: «Да, я упрямая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i10:r1",
+          "text": "Плитки: sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i10:r2",
+          "text": "terca"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i10:r3",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i10:r4",
+          "text": "terco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы женщина; согласитесь с оценкой своего упрямства: «Да, я упрямая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, soy terca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина; согласитесь с оценкой своего упрямства: «Да, я упрямая»",
+          "uk": "Складіть фразу — ви жінка; погодьтеся з оцінкою своєї впертості: «Так, я вперта»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "soy",
+          "terca"
+        ],
+        "authoredDistractorTokens": [
+          "terco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы женщина; согласитесь с оценкой своего упрямства: «Да, я упрямая»",
+            "feedbackByLocale": {
+              "ru": "говорящая описывает себя как женщину.",
+              "uk": "жінка описує себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-14:i11:audio",
+          "transcript": "Sí, eres flexible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, eres flexible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подруга легко согласилась изменить план; подтвердите «Да, ты гибкая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-14:i12:r1",
+          "text": "Плитки: eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i12:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i12:r3",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-14:i12:r4",
+          "text": "flexible."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подруга легко согласилась изменить план; подтвердите «Да, ты гибкая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, eres flexible.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга легко согласилась изменить план; подтвердите «Да, ты гибкая»",
+          "uk": "Складіть фразу — подруга легко погодилася змінити план; підтвердьте «Так, ти гнучка»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "eres",
+          "flexible"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-14:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подруга легко согласилась изменить план; подтвердите «Да, ты гибкая»",
+            "feedbackByLocale": {
+              "ru": "вы подтверждаете качество подруги, поэтому eres.",
+              "uk": "ви підтверджуєте рису подруги, тому eres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "86f8a41317da709915d5921445a034ffcee0eed3583c8f293b3160c7172df454"
+}

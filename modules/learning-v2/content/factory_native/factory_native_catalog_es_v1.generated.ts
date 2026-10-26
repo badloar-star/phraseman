@@ -91,4 +91,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задавать вопрос женщине, выбирая окончание качества по собеседнице.","uk":"ставити запитання жінці, обираючи закінчення риси за співрозмовницею."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 13,
+    sourceFingerprint: "e9d24ec0856c41c9a93e77412d4f12de70a1a10de815f16769ce29b50ede0ddc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить о своём качестве через soy; понимать, когда yo можно не произносить.","uk":"говорити про свою рису через soy; розуміти, коли yo можна не вимовляти."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 14,
+    sourceFingerprint: "130f1c3170495436f622d3527d0dd5bdff37db54cddafb0f90679891655ef595",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"подтвердить оценку словом sí и выбрать soy или eres по тому, о ком говорите.","uk":"підтвердити оцінку словом sí й обрати soy або eres за тим, про кого говорите."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

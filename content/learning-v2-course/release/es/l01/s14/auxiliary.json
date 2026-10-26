@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-14:intro1:r2": {
+          "ru": "Это «да, ты гибкий», а вы отвечаете о себе.",
+          "uk": "Це «так, ти гнучкий», а ви відповідаєте про себе."
+        },
+        "es:lesson-01:session-14:intro1:r3": {
+          "ru": "Это оценка другого человека, а не себя.",
+          "uk": "Це оцінка іншої людини, а не себе."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-14:intro2:r2": {
+          "ru": "Terco выбрал бы мужчина, говорящий о себе.",
+          "uk": "Terco обрав би чоловік, який говорить про себе."
+        },
+        "es:lesson-01:session-14:intro2:r3": {
+          "ru": "Это обращение к подруге, а не признание о себе.",
+          "uk": "Це звертання до подруги, а не визнання про себе."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-14:intro3:r2": {
+          "ru": "Soy переводит разговор на вас: «я».",
+          "uk": "Soy переводить розмову на вас: «я»."
+        },
+        "es:lesson-01:session-14:intro3:r3": {
+          "ru": "У слова flexible не меняем e на a.",
+          "uk": "У слова flexible не змінюємо e на a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8bd1061ca332feab863938948fdfb2cec7866cd4fd3c997aa0d3abd135852e67"
+}

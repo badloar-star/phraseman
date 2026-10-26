@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "говорить о своём качестве через soy; понимать, когда yo можно не произносить.",
+    "uk": "говорити про свою рису через soy; розуміти, коли yo можна не вимовляти."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я справлюсь самостоятельно",
+        "uk": "Я впораюся самостійно"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает вести вас по городу, но вы любите сами разбираться с маршрутом. Скажите: `Soy independiente` — «Я самостоятельный» или «Я самостоятельная». Для «ты» мы изучили `eres`; для «я» нужна форма `soy`. Соберите `soy` + `independiente`. Слово `independiente` здесь означает «самостоятельный» и не меняется для мужчины и женщины.",
+        "uk": "Друг пропонує водити вас містом, але ви любите самі розбиратися з маршрутом. Скажіть: `Soy independiente` — «Я самостійний» або «Я самостійна». Для «ти» ми вивчили `eres`; для «я» потрібна форма `soy`. Складіть `soy` + `independiente`. Слово `independiente` тут означає «самостійний» і не змінюється для чоловіка та жінки."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о себе: «Я самостоятельный».",
+          "uk": "Скажіть про себе: «Я самостійний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-13:intro1:r1",
+              "text": "Soy independiente."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro1:r2",
+              "text": "Eres independiente."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro1:r3",
+              "text": "Es independiente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-13:intro1:r1",
+              "text": "Soy independiente."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro1:r2",
+              "text": "Eres independiente."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro1:r3",
+              "text": "Es independiente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о себе: «Я самостоятельный».",
+          "uk": "Скажіть про себе: «Я самостійний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А я обычно сдержанный",
+        "uk": "А я зазвичай стриманий"
+      },
+      "bodyByLocale": {
+        "ru": "Друг легко знакомится с попутчиками, а вы не сразу рассказываете о себе. `Yo soy reservado` — «Я сдержанный». `Yo` означает «я», `reservado` — «сдержанный, не склонный сразу делиться личным». Можно выделить себя словом `yo`: `yo` + `soy` + `reservado`. Можно сказать и `Soy reservado`: форма `soy` уже указывает на «я». Слово `yo` можно убрать, а `soy` в такой фразе оставляем.",
+        "uk": "Друг легко знайомиться з попутниками, а ви не відразу розповідаєте про себе. `Yo soy reservado` — «Я стриманий». `Yo` означає «я», `reservado` — «стриманий, не схильний відразу ділитися особистим». Можна виділити себе словом `yo`: `yo` + `soy` + `reservado`. Можна сказати й `Soy reservado`: форма `soy` уже вказує на «я». Слово `yo` можна прибрати, а `soy` у такій фразі залишаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу «Я сдержанный» со словом yo.",
+          "uk": "Оберіть фразу «Я стриманий» зі словом yo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-13:intro2:r1",
+              "text": "Yo soy reservado."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro2:r2",
+              "text": "Yo reservado."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro2:r3",
+              "text": "Yo eres reservado."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-13:intro2:r1",
+              "text": "Yo soy reservado."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro2:r2",
+              "text": "Yo reservado."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro2:r3",
+              "text": "Yo eres reservado."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу «Я сдержанный» со словом yo.",
+          "uk": "Оберіть фразу «Я стриманий» зі словом yo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если говорящая — женщина",
+        "uk": "Якщо говорить жінка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы женщина и рассказываете другу о своей сдержанности: `Soy reservada` — «Я сдержанная». Форма `soy` остаётся той же. В слове про качество выбираем `a`, потому что сейчас вы описываете себя. Собеседник может быть мужчиной: это не меняет `reservada`. Если о себе говорит мужчина, он выбирает `reservado`.",
+        "uk": "Ви жінка й розповідаєте другові про свою стриманість: `Soy reservada` — «Я стримана». Форма `soy` залишається тією самою. У слові про рису обираємо `a`, бо зараз ви описуєте себе. Співрозмовник може бути чоловіком: це не змінює `reservada`. Якщо про себе говорить чоловік, він обирає `reservado`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы женщина. Скажите о себе: «Я сдержанная».",
+          "uk": "Ви жінка. Скажіть про себе: «Я стримана»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-13:intro3:r1",
+              "text": "Soy reservada."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro3:r2",
+              "text": "Soy reservado."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro3:r3",
+              "text": "Eres reservada."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-13:intro3:r1",
+              "text": "Soy reservada."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro3:r2",
+              "text": "Soy reservado."
+            },
+            {
+              "responseId": "es:lesson-01:session-13:intro3:r3",
+              "text": "Eres reservada."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина. Скажите о себе: «Я сдержанная».",
+          "uk": "Ви жінка. Скажіть про себе: «Я стримана»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "54f7f2ddb77451f9c628260f50017c4d963e9b6ad1e69dac6b4f424c86ee6020"
+}

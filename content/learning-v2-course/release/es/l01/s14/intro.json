@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "подтвердить оценку словом sí и выбрать soy или eres по тому, о ком говорите.",
+    "uk": "підтвердити оцінку словом sí й обрати soy або eres за тим, про кого говорите."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Да, я могу подстроиться",
+        "uk": "Так, я можу пристосуватися"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга спрашивает, легко ли вы соглашаетесь на изменение планов. Ответьте: `Sí, soy flexible` — «Да, я гибкий». Здесь `flexible` означает готовность подстроиться под обстоятельства, а не гибкость тела. `Sí` — «да»; пишем знак над `í`. Соберите `sí` + `soy` + `flexible`. После `sí` в этой фразе ставим запятую. Форма `soy` нужна, потому что вы отвечаете о себе.",
+        "uk": "Подруга запитує, чи легко ви погоджуєтеся на зміну планів. Дайте відповідь: `Sí, soy flexible` — «Так, я гнучкий». Тут `flexible` означає готовність пристосуватися до обставин, а не гнучкість тіла. `Sí` — «так»; пишемо знак над `í`. Складіть `sí` + `soy` + `flexible`. Після `sí` у цій фразі ставимо кому. Форма `soy` потрібна, бо ви відповідаєте про себе."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Подтвердите: «Да, я гибкий».",
+          "uk": "Підтвердьте: «Так, я гнучкий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-14:intro1:r1",
+              "text": "Sí, soy flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro1:r2",
+              "text": "Sí, eres flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro1:r3",
+              "text": "Sí, es flexible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-14:intro1:r1",
+              "text": "Sí, soy flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro1:r2",
+              "text": "Sí, eres flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro1:r3",
+              "text": "Sí, es flexible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите: «Да, я гибкий».",
+          "uk": "Підтвердьте: «Так, я гнучкий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Да, я бываю упрямой",
+        "uk": "Так, я буваю впертою"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга смеётся: любимую поляну вы защищаете особенно настойчиво. Вы женщина и соглашаетесь с её оценкой: `Sí, soy terca` — «Да, я упрямая». `Terco` — «упрямый», женская форма — `terca`. После подтверждения `sí` ставим `soy`, затем качество с окончанием для говорящего. Если о себе говорит мужчина, он выбирает `terco`.",
+        "uk": "Подруга сміється: улюблену галявину ви захищаєте особливо наполегливо. Ви жінка й погоджуєтеся з її оцінкою: `Sí, soy terca` — «Так, я вперта». `Terco` — «впертий», жіноча форма — `terca`. Після підтвердження `sí` ставимо `soy`, потім рису із закінченням для мовця. Якщо про себе говорить чоловік, він обирає `terco`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы женщина. Признайте: «Да, я упрямая».",
+          "uk": "Ви жінка. Визнайте: «Так, я вперта»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-14:intro2:r1",
+              "text": "Sí, soy terca."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro2:r2",
+              "text": "Sí, soy terco."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro2:r3",
+              "text": "Sí, eres terca."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-14:intro2:r1",
+              "text": "Sí, soy terca."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro2:r2",
+              "text": "Sí, soy terco."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro2:r3",
+              "text": "Sí, eres terca."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина. Признайте: «Да, я упрямая».",
+          "uk": "Ви жінка. Визнайте: «Так, я вперта»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Теперь подтверждаем слова подруги",
+        "uk": "Тепер підтверджуємо слова подруги"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга говорит, что сама легко согласится на любое удобное место. Вы подтверждаете её оценку: `Sí, eres flexible` — «Да, ты гибкая». Теперь речь о собеседнице, поэтому после `sí` нужна `eres`, не `soy`. Слово `flexible` одинаково для мужчины и женщины: окончание `e` сохраняется.",
+        "uk": "Подруга каже, що сама легко погодиться на будь-яке зручне місце. Ви підтверджуєте її оцінку: `Sí, eres flexible` — «Так, ти гнучка». Тепер ідеться про співрозмовницю, тому після `sí` потрібна `eres`, не `soy`. Слово `flexible` однакове для чоловіка та жінки: закінчення `e` зберігається."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите подруге: «Да, ты гибкая».",
+          "uk": "Скажіть подрузі: «Так, ти гнучка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-14:intro3:r1",
+              "text": "Sí, eres flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro3:r2",
+              "text": "Sí, soy flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro3:r3",
+              "text": "Sí, eres flexibla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-14:intro3:r1",
+              "text": "Sí, eres flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro3:r2",
+              "text": "Sí, soy flexible."
+            },
+            {
+              "responseId": "es:lesson-01:session-14:intro3:r3",
+              "text": "Sí, eres flexibla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите подруге: «Да, ты гибкая».",
+          "uk": "Скажіть подрузі: «Так, ти гнучка»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a7e025056b23a48632960b2a898fa33a7cb4db6fb20f9ed3bebd14fb45ddd6d1"
+}

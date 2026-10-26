@@ -1,0 +1,837 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-13",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i01:audio",
+          "transcript": "soy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i01:r1",
+            "targetText": "soy",
+            "meaningByLocale": {
+              "ru": "форма ser для «я». Soy independiente — «Я самостоятельный» или «Я самостоятельная». 🔊 *soy*",
+              "uk": "форма ser для «я». Soy independiente — «Я самостійний» або «Я самостійна». 🔊 *soy*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soy",
+          "definitionByLocale": {
+            "ru": "форма ser для «я». Soy independiente — «Я самостоятельный» или «Я самостоятельная». 🔊 *soy*",
+            "uk": "форма ser для «я». Soy independiente — «Я самостійний» або «Я самостійна». 🔊 *soy*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i02:r1",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i02:r2",
+          "text": "eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i02:audio",
+          "transcript": "soy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i02:r1",
+            "targetText": "soy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i02:r2",
+            "targetText": "eres",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит soy — «я», не eres — «ты».",
+              "uk": "Звучить soy — «я», не eres — «ти»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — independiente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — independiente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i03:audio",
+          "transcript": "independiente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i03:r1",
+            "targetText": "independiente",
+            "meaningByLocale": {
+              "ru": "самостоятельный, независимый; самостоятельная, независимая. Одна форма для мужчины и женщины. 🔊 *independiente*",
+              "uk": "самостійний, незалежний; самостійна, незалежна. Одна форма для чоловіка та жінки. 🔊 *independiente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "independiente",
+          "definitionByLocale": {
+            "ru": "самостоятельный, независимый; самостоятельная, независимая. Одна форма для мужчины и женщины. 🔊 *independiente*",
+            "uk": "самостійний, незалежний; самостійна, незалежна. Одна форма для чоловіка та жінки. 🔊 *independiente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы любите сами искать маршрут; скажите «Я независимый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i04:r1",
+          "text": "Плитки: independiente"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i04:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i04:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы любите сами искать маршрут; скажите «Я независимый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy independiente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы любите сами искать маршрут; скажите «Я независимый»",
+          "uk": "Складіть фразу — ви любите самі шукати маршрут; скажіть «Я незалежний»"
+        },
+        "orderedTokens": [
+          "Soy",
+          "independiente"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы любите сами искать маршрут; скажите «Я независимый»",
+            "feedbackByLocale": {
+              "ru": "вы говорите о себе, поэтому soy.",
+              "uk": "ви говорите про себе, тому soy."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — yo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — yo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i05:audio",
+          "transcript": "yo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i05:r1",
+            "targetText": "yo",
+            "meaningByLocale": {
+              "ru": "я. Yo soy independiente — «Я самостоятельный». Перед soy можно не произносить yo: смысл «я» сохраняется. 🔊 *yo*",
+              "uk": "я. Yo soy independiente — «Я самостійний». Перед soy можна не вимовляти yo: значення «я» зберігається. 🔊 *yo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yo",
+          "definitionByLocale": {
+            "ru": "я. Yo soy independiente — «Я самостоятельный». Перед soy можно не произносить yo: смысл «я» сохраняется. 🔊 *yo*",
+            "uk": "я. Yo soy independiente — «Я самостійний». Перед soy можна не вимовляти yo: значення «я» зберігається. 🔊 *yo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите о себе «Я независимая», сохранив yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i06:r1",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i06:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i06:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите о себе «Я независимая», сохранив yo",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о себе «Я независимая», сохранив yo",
+          "uk": "Вставте слово — скажіть про себе «Я незалежна», зберігши yo"
+        },
+        "gappedTargetPhrase": "Yo ___ independiente.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-13:i06:r1",
+            "text": "soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i06:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i06:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите о себе «Я независимая», сохранив yo",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о себе «Я независимая», сохранив yo",
+            "feedbackByLocale": {
+              "ru": "Eres относится к «ты»; с yo нужна soy.",
+              "uk": "Eres стосується «ти»; з yo потрібна soy."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите о себе «Я независимая», сохранив yo",
+            "feedbackByLocale": {
+              "ru": "Es здесь относится к другому человеку, а не к «я».",
+              "uk": "Es тут стосується іншої людини, а не «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reservado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reservado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i07:audio",
+          "transcript": "reservado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i07:r1",
+            "targetText": "reservado",
+            "meaningByLocale": {
+              "ru": "сдержанный, не склонный сразу рассказывать о личном. Женщина говорит о себе reservada. 🔊 *reservado*",
+              "uk": "стриманий, не схильний відразу розповідати про особисте. Жінка каже про себе reservada. 🔊 *reservado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reservado",
+          "definitionByLocale": {
+            "ru": "сдержанный, не склонный сразу рассказывать о личном. Женщина говорит о себе reservada. 🔊 *reservado*",
+            "uk": "стриманий, не схильний відразу розповідати про особисте. Жінка каже про себе reservada. 🔊 *reservado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — говорит женщина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i08:r1",
+          "text": "Я сдержанная"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i08:r2",
+          "text": "Ты сдержанная"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i08:r3",
+          "text": "Я самостоятельная"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — говорит женщина",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i08:audio",
+          "transcript": "Soy reservada."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i08:r1",
+            "targetText": "Я сдержанная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i08:r2",
+            "targetText": "Ты сдержанная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i08:r3",
+            "targetText": "Я самостоятельная",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — говорит женщина",
+            "feedbackByLocale": {
+              "ru": "Звучит soy: женщина описывает себя.",
+              "uk": "Звучить soy: жінка описує себе."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — говорит женщина",
+            "feedbackByLocale": {
+              "ru": "Самостоятельная — independiente, а здесь reservada.",
+              "uk": "Самостійна — independiente, а тут reservada."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы женщина и рассказываете о своей сдержанности: «Я сдержанная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i09:r1",
+          "text": "Плитки: reservado"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i09:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i09:r3",
+          "text": "reservada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы женщина и рассказываете о своей сдержанности: «Я сдержанная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy reservada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина и рассказываете о своей сдержанности: «Я сдержанная»",
+          "uk": "Складіть фразу — ви жінка й розповідаєте про свою стриманість: «Я стримана»"
+        },
+        "orderedTokens": [
+          "Soy",
+          "reservada"
+        ],
+        "authoredDistractorTokens": [
+          "reservado"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы женщина и рассказываете о своей сдержанности: «Я сдержанная»",
+            "feedbackByLocale": {
+              "ru": "говорящая описывает себя как женщину.",
+              "uk": "жінка описує себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i10:audio",
+          "transcript": "Soy independiente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Soy independiente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i11:r1",
+          "text": "Плитки: reservado"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i11:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i11:r3",
+          "text": "yo"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i11:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i11:audio",
+          "transcript": "Yo soy reservado."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Yo soy reservado.",
+        "orderedTokens": [
+          "Yo",
+          "soy",
+          "reservado"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи звучит soy.",
+              "uk": "у записі звучить soy."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — теперь обратитесь к другу: «Ты независимый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i12:r1",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i12:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i12:r3",
+          "text": "Yo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — теперь обратитесь к другу: «Ты независимый»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — теперь обратитесь к другу: «Ты независимый»",
+          "uk": "Вставте слово — тепер зверніться до друга: «Ти незалежний»"
+        },
+        "gappedTargetPhrase": "___ independiente.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-13:i12:r1",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i12:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i12:r3",
+            "text": "Yo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — теперь обратитесь к другу: «Ты независимый»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — теперь обратитесь к другу: «Ты независимый»",
+            "feedbackByLocale": {
+              "ru": "Soy означает «я», а вы говорите другу «ты».",
+              "uk": "Soy означає «я», а ви кажете другові «ти»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — теперь обратитесь к другу: «Ты независимый»",
+            "feedbackByLocale": {
+              "ru": "Yo — «я»; кроме того, перед качеством нужна форма глагола.",
+              "uk": "Yo — «я»; крім того, перед рисою потрібна форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — вы обращаетесь к подруге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i13:r1",
+          "text": "Ты сдержанная"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i13:r2",
+          "text": "Я сдержанная"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i13:r3",
+          "text": "Она сдержанная"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — вы обращаетесь к подруге",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i13:audio",
+          "transcript": "Eres reservada."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-13:i13:r1",
+            "targetText": "Ты сдержанная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i13:r2",
+            "targetText": "Я сдержанная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i13:r3",
+            "targetText": "Она сдержанная",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — вы обращаетесь к подруге",
+            "feedbackByLocale": {
+              "ru": "Для «я» нужна soy, а звучит eres.",
+              "uk": "Для «я» потрібна soy, а звучить eres."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-13:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — вы обращаетесь к подруге",
+            "feedbackByLocale": {
+              "ru": "Для «она» была бы es, а здесь обращение через eres.",
+              "uk": "Для «вона» була б es, а тут звертання через eres."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-13:i14:audio",
+          "transcript": "Yo soy independiente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo soy independiente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-13:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы мужчина и хотите подчеркнуть «я»: «Я сдержанный», со словом yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-13:i15:r1",
+          "text": "Плитки: soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i15:r2",
+          "text": "reservada"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i15:r3",
+          "text": "reservado"
+        },
+        {
+          "responseId": "es:lesson-01:session-13:i15:r4",
+          "text": "yo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы мужчина и хотите подчеркнуть «я»: «Я сдержанный», со словом yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo soy reservado.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы мужчина и хотите подчеркнуть «я»: «Я сдержанный», со словом yo",
+          "uk": "Складіть фразу — ви чоловік і хочете підкреслити «я»: «Я стриманий», зі словом yo"
+        },
+        "orderedTokens": [
+          "Yo",
+          "soy",
+          "reservado"
+        ],
+        "authoredDistractorTokens": [
+          "reservada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-13:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы мужчина и хотите подчеркнуть «я»: «Я сдержанный», со словом yo",
+            "feedbackByLocale": {
+              "ru": "говорящий мужчина описывает себя.",
+              "uk": "чоловік описує себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 15,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dfd40df7523b697c29135f9711f3d23996959c5820421a7c42be30cf1250f902"
+}

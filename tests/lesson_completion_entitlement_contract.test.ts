@@ -9,9 +9,11 @@ const completion = read('lesson_complete.tsx');
 describe('lesson completion entitlement wiring', () => {
   it('verifies active Plus before asking the lock system to persist the next lesson', () => {
     const entitlement = lesson.indexOf('const hasPremiumAccess = noLimits || await getVerifiedPremiumAccessStatus({');
-    const unlock = lesson.indexOf('const didUnlock = await tryUnlockNextLesson(', entitlement);
+    // зачем (aa2bbfc3e, Мастерская фраз): в режиме Мастерской следующий урок не открывается (`workshopActive ? false : await tryUnlockNextLesson(`); проверка Plus по-прежнему идёт ДО запроса открытия.
+    const unlock = lesson.indexOf('await tryUnlockNextLesson(', entitlement);
     expect(entitlement).toBeGreaterThan(-1);
     expect(unlock).toBeGreaterThan(entitlement);
+    expect(lesson).toMatch(/const didUnlock = (?:workshopActive \? false : )?await tryUnlockNextLesson\(/);
     expect(lesson.slice(unlock, unlock + 240)).toContain('hasPremiumAccess');
   });
 

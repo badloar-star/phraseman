@@ -39,7 +39,8 @@ describe('учёт статистики по языку обучения', () =>
 
   it('учёт идёт один раз на событие: фраза — при переходе в «выучено», слово — при завершении слова', () => {
     const lesson1 = read('app/lesson1.tsx');
-    expect(lesson1).toContain("if (!wasLearned) void bumpStatsDaily('phrases_learned', 1, studyTargetRef.current);");
+    // зачем (aa2bbfc3e, Мастерская фраз): сборка фраз уже выученного урока не прибавляет «выучено фраз» — условие «переход в выучено» прежнее, плюс «не Мастерская».
+    expect(lesson1).toMatch(/if \(!wasLearned(?: && !workshopActive)?\) void bumpStatsDaily\('phrases_learned', 1, studyTargetRef\.current\);/);
     const words = read('app/lesson_words.tsx');
     expect(words).toContain("if (wordJustCompleted) {\n          void bumpStatsDaily('words_learned', 1, studyTarget);");
   });

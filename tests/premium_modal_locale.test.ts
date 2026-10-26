@@ -21,7 +21,8 @@ describe('Plus paywall footer locale contract', () => {
     expect(plus).toContain('accessibilityState={{ disabled: ctaDisabled, busy: purchasing }}');
     // зачем (кнопка покупки на фоне g.accent, 11.10): кружок того же цвета, что надпись на кнопке, — g.accentInk (прежний ctaInk был под другую заливку)
     expect(plus).toContain('<ActivityIndicator color={g.ctaFillInk} />');
-    expect(plus).toContain('accessibilityState={{ busy: restoring }}');
+    // зачем (39d9916b3): к состоянию кнопки «Восстановить» добавлено disabled — «идёт восстановление» (busy) показывается по-прежнему.
+    expect(plus).toMatch(/accessibilityState=\{\{[^}]*\bbusy: restoring\b[^}]*\}\}/);
   });
 
   it('does not keep the old premium modal legal/footer renderer alive', () => {

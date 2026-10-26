@@ -27,7 +27,8 @@ describe('lesson list and completion contracts', () => {
     const completion = read('app', 'lesson_complete.tsx');
 
     expect(lesson).toContain("passed: finalScore >= 2.5 ? '1' : '0'");
-    expect(completion).toContain("const isQualifyingLessonPass = params.passed === '1';");
+    // зачем (aa2bbfc3e, Мастерская фраз): повторная сборка фраз пройденного урока — не «первое прохождение», жемчужины за неё не начисляются; условие прохождения прежнее, добавлено «и это не Мастерская».
+    expect(completion).toMatch(/const isQualifyingLessonPass = params\.passed === '1'(?: && !isWorkshopCompletion)?;/);
     expect(completion).toContain('if (!isQualifyingLessonPass) return;');
   });
 

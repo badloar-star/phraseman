@@ -10,7 +10,9 @@ describe('R1_PAYWALL_UX: окно Plus', () => {
   const plus = read('components/paywall/PaywallPlus.tsx');
 
   it('«Восстановить» не блокируется загрузкой цен — только самой оплатой/восстановлением', () => {
-    expect(screen).toContain('restoring={p.restoring} restoreDisabled={checkoutInFlight}');
+    // зачем (39d9916b3, видимость «восстановить» из Пульта): в разметку добавлено restoreVisible, а замок стал `ctaBusy` (= покупка или восстановление) — смысл прежний: загрузка цен кнопку не блокирует.
+    expect(screen).toContain('const ctaBusy = p.purchasing || p.restoring;');
+    expect(screen).toMatch(/restoring=\{p\.restoring\} (?:restoreVisible=\{[^}]+\} )?restoreDisabled=\{(?:checkoutInFlight|ctaBusy)\}/);
     expect(screen).not.toContain("restoreDisabled={checkoutInFlight || state === 'loading'}");
   });
 

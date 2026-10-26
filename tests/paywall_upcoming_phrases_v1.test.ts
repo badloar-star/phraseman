@@ -41,9 +41,13 @@ describe('фразы курса для пейвола М', () => {
   });
 
   it('последний выпущенный урок: следующих уроков нет — из оставшихся занятий текущего урока', () => {
-    const out = upcoming({ currentSessionId: 'lesson-29:session:05', completedCount: 1572, interfaceLocale: 'ru' });
+    // зачем (Ревизор 26.10, NIGHT_BACKLOG §5): урок 29 был последним в манифесте, когда писали проверку; 26.10 выпущен урок 30 — «последний» считаем по манифесту, а не числом
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const rows = (require('../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated') as { FACTORY_NATIVE_MANIFEST_V1: readonly { lessonOrdinal: number; sessionOrdinal: number }[] }).FACTORY_NATIVE_MANIFEST_V1;
+    const lastLesson = Math.max(...rows.map((r) => r.lessonOrdinal));
+    const out = upcoming({ currentSessionId: `lesson-${String(lastLesson).padStart(2, '0')}:session:05`, completedCount: 1572, interfaceLocale: 'ru' });
     expect(out.length).toBeGreaterThan(0);
-    expect(out.every((p) => p.lessonOrdinal === 29 && p.sessionOrdinal > 5)).toBe(true);
+    expect(out.every((p) => p.lessonOrdinal === lastLesson && p.sessionOrdinal > 5)).toBe(true);
     expect(logs.some((l) => l.includes('current_lesson_rest'))).toBe(true);
   });
 

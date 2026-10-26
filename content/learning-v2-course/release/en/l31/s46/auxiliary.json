@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-46:intro1:r2": {
+          "ru": "После to нужна форма invite.",
+          "uk": "Після to потрібна форма invite."
+        },
+        "en:lesson-31:session-46:intro1:r3": {
+          "ru": "Для цели перед invite нужно to.",
+          "uk": "Для мети перед invite потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-46:intro2:r2": {
+          "ru": "Перед целой частью с Ben нужна связка so that.",
+          "uk": "Перед цілою частиною з Ben потрібна сполука so that."
+        },
+        "en:lesson-31:session-46:intro2:r3": {
+          "ru": "После could нужна форма understand.",
+          "uk": "Після could потрібна форма understand."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-46:intro3:r2": {
+          "ru": "В основной части is coming: для уточнения нужен is, здесь isn’t.",
+          "uk": "В основній частині is coming: для уточнення потрібне is, тут isn’t."
+        },
+        "en:lesson-31:session-46:intro3:r3": {
+          "ru": "Имя Ben заменяем на he.",
+          "uk": "Ім’я Ben замінюємо на he."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c1e277e18f234ff415ac382757aa0e28307ddfd2ab76d525123238f85895c831"
+}

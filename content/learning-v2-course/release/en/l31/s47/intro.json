@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять цель списка и говорить, что вы знаете о покупках.",
+    "uk": "пояснювати мету списку й говорити, що ви знаєте про покупки."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Список нужен, чтобы запомнить покупки",
+        "uk": "Список потрібен, щоб запам’ятати покупки"
+      },
+      "bodyByLocale": {
+        "ru": "Перед походом в магазин вы записали покупки: I made a list to remember what we need — я составил список, чтобы помнить, что нам нужно. Соберите I made a list + to + remember what we need. После to стоит начальная форма remember; дальше называем, что нужно помнить.",
+        "uk": "Перед походом до магазину ви записали покупки: I made a list to remember what we need — я склав список, щоб пам’ятати, що нам потрібно. Складіть I made a list + to + remember what we need. Після to стоїть початкова форма remember; далі називаємо, що потрібно пам’ятати."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-47:intro1:r1",
+              "text": "I made a list to remember what we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro1:r2",
+              "text": "I made a list to remembered what we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro1:r3",
+              "text": "I made a list for remember what we need."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-47:intro1:r1",
+              "text": "I made a list to remember what we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro1:r2",
+              "text": "I made a list to remembered what we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro1:r3",
+              "text": "I made a list for remember what we need."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Список поможет Анне купить хлеб",
+        "uk": "Список допоможе Анні купити хліб"
+      },
+      "bodyByLocale": {
+        "ru": "В магазин идёт Анна. Вы дали ей список: I gave Anna the list so that she could buy the bread — я дал Анне список, чтобы она могла купить хлеб. Соберите I gave Anna the list + so that + she could buy the bread. Передали вы, покупает Анна; she после so that указывает на неё.",
+        "uk": "До магазину йде Анна. Ви дали їй список: I gave Anna the list so that she could buy the bread — я дав Анні список, щоб вона могла купити хліб. Складіть I gave Anna the list + so that + she could buy the bread. Передали ви, купує Анна; she після so that вказує на неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-47:intro2:r1",
+              "text": "I gave Anna the list so that she could buy the bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro2:r2",
+              "text": "I gave Anna the list to she buy the bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro2:r3",
+              "text": "I gave Anna the list so that she could bought the bread."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-47:intro2:r1",
+              "text": "I gave Anna the list so that she could buy the bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro2:r2",
+              "text": "I gave Anna the list to she buy the bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro2:r3",
+              "text": "I gave Anna the list so that she could bought the bread."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Знаю, что нам нужно",
+        "uk": "Знаю, що нам потрібно"
+      },
+      "bodyByLocale": {
+        "ru": "Анна уточняет покупки, а вы уже помните список: I know what we need — я знаю, что нам нужно. Соберите I know + what + we need. What вводит содержание вашего знания; после него обычный порядок we need без do.",
+        "uk": "Анна уточнює покупки, а ви вже пам’ятаєте список: I know what we need — я знаю, що нам потрібно. Складіть I know + what + we need. What вводить зміст вашого знання; після нього звичайний порядок we need без do."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-47:intro3:r1",
+              "text": "I know what we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro3:r2",
+              "text": "I know what do we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro3:r3",
+              "text": "I know what we needs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-47:intro3:r1",
+              "text": "I know what we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro3:r2",
+              "text": "I know what do we need."
+            },
+            {
+              "responseId": "en:lesson-31:session-47:intro3:r3",
+              "text": "I know what we needs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0a8892b3e70b193648855f922808b88796faf5f5af07653f72726e53c07215a3"
+}

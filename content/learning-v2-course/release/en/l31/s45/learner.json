@@ -1,0 +1,1058 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i01:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-45:i01:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i02:r1",
+          "text": "The box was packed by Ben."
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i02:r2",
+          "text": "The box was packed by Anna."
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i02:r3",
+          "text": "The box was packed by Tom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i02:audio",
+          "transcript": "The box was packed by Ben."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-45:i02:r1",
+            "targetText": "The box was packed by Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i02:r2",
+            "targetText": "The box was packed by Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i02:r3",
+            "targetText": "The box was packed by Tom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The box was packed by Ben.",
+              "uk": "У записі звучить The box was packed by Ben."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The box was packed by Ben.",
+              "uk": "У записі звучить The box was packed by Ben."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробку упаковал Бен. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i03:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i03:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i03:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробку упаковал Бен. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробку упаковал Бен. Выберите предлог перед его именем.",
+          "uk": "Коробку спакував Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The box was packed ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-45:i03:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i03:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i03:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Коробку упаковал Бен. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Коробку упаковал Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия называем после by.",
+              "uk": "Виконавця дії називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Коробку упаковал Бен. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Бен упаковал коробку: by Ben.",
+              "uk": "Бен спакував коробку: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cups",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cups",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i04:audio",
+          "transcript": "cups"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-45:i04:r1",
+            "targetText": "cups",
+            "meaningByLocale": {
+              "ru": "Чашки. Повторение формы cup.",
+              "uk": "Чашки. Повторення форми cup."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cups",
+          "definitionByLocale": {
+            "ru": "Чашки. Повторение формы cup.",
+            "uk": "Чашки. Повторення форми cup."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы открыли коробку, чтобы найти чашки. Начните с I opened the box.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы открыли коробку, чтобы найти чашки. Начните с I opened the box.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I opened the box to find the cups.",
+        "localizedMeaning": {
+          "ru": "Вы открыли коробку, чтобы найти чашки. Начните с I opened the box.",
+          "uk": "Ви відкрили коробку, щоб знайти чашки. Почніть з I opened the box."
+        },
+        "orderedTokens": [
+          "I",
+          "opened",
+          "the",
+          "box",
+          "to",
+          "find",
+          "the",
+          "cups"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — label",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — label",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i06:audio",
+          "transcript": "label"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-45:i06:r1",
+            "targetText": "label",
+            "meaningByLocale": {
+              "ru": "Этикетка. Повторение знакомого слова.",
+              "uk": "Етикетка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "label",
+          "definitionByLocale": {
+            "ru": "Этикетка. Повторение знакомого слова.",
+            "uk": "Етикетка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что на этикетке ваше имя. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i07:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что на этикетке ваше имя. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i07:audio",
+          "transcript": "I know that my name is on the label."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that my name is on the label.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы открыли коробку с целью найти чашки. Выберите форму после to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i08:r1",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i08:r2",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i08:r3",
+          "text": "finding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы открыли коробку с целью найти чашки. Выберите форму после to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы открыли коробку с целью найти чашки. Выберите форму после to.",
+          "uk": "Ви відкрили коробку, щоб знайти чашки. Виберіть форму після to."
+        },
+        "gappedTargetPhrase": "I opened the box to ___ the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-45:i08:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i08:r2",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i08:r3",
+            "text": "finding"
+          }
+        ],
+        "testedDimension": "Вы открыли коробку с целью найти чашки. Выберите форму после to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы открыли коробку с целью найти чашки. Выберите форму после to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма find.",
+              "uk": "Після to потрібна форма find."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы открыли коробку с целью найти чашки. Выберите форму после to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to find.",
+              "uk": "Мету виражаємо через to find."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы подписали коробку, чтобы Анна нашла чашки. Начните с I labelled the box.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы подписали коробку, чтобы Анна нашла чашки. Начните с I labelled the box.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I labelled the box so that Anna could find the cups.",
+        "localizedMeaning": {
+          "ru": "Вы подписали коробку, чтобы Анна нашла чашки. Начните с I labelled the box.",
+          "uk": "Ви підписали коробку, щоб Анна знайшла чашки. Почніть з I labelled the box."
+        },
+        "orderedTokens": [
+          "I",
+          "labelled",
+          "the",
+          "box",
+          "so",
+          "that",
+          "Anna",
+          "could",
+          "find",
+          "the",
+          "cups"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите, где чашки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите, где чашки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i10:audio",
+          "transcript": "Could you tell me where the cups are?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the cups are?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Бен сказал: «Коробка тяжёлая». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i11:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i11:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Бен сказал: «Коробка тяжёлая». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Коробка тяжёлая». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Коробка важка». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "He said the box ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-45:i11:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i11:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Бен сказал: «Коробка тяжёлая». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Коробка тяжёлая». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Коробка тяжёлая». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shelf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shelf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i12:audio",
+          "transcript": "shelf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-45:i12:r1",
+            "targetText": "shelf",
+            "meaningByLocale": {
+              "ru": "Полка. Повторение знакомого слова.",
+              "uk": "Полиця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shelf",
+          "definitionByLocale": {
+            "ru": "Полка. Повторение знакомого слова.",
+            "uk": "Полиця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i13:r1",
+          "text": "I know that the shelf is empty."
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i13:r2",
+          "text": "I know that the box is empty."
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i13:r3",
+          "text": "I know that the bag is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i13:audio",
+          "transcript": "I know that the shelf is empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-45:i13:r1",
+            "targetText": "I know that the shelf is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i13:r2",
+            "targetText": "I know that the box is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i13:r3",
+            "targetText": "I know that the bag is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the shelf is empty.",
+              "uk": "У записі звучить I know that the shelf is empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the shelf is empty.",
+              "uk": "У записі звучить I know that the shelf is empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Чашки чистые». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Чашки чистые». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i14:audio",
+          "transcript": "He said the cups were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the cups were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна нашла чашки, потому что прочитала этикетку. Начните с Anna found the cups.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна нашла чашки, потому что прочитала этикетку. Начните с Anna found the cups.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Anna found the cups because she read the label.",
+        "localizedMeaning": {
+          "ru": "Анна нашла чашки, потому что прочитала этикетку. Начните с Anna found the cups.",
+          "uk": "Анна знайшла чашки, бо прочитала етикетку. Почніть з Anna found the cups."
+        },
+        "orderedTokens": [
+          "Anna",
+          "found",
+          "the",
+          "cups",
+          "because",
+          "she",
+          "read",
+          "the",
+          "label"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i16:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i16:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i16:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+          "uk": "Підпис має допомогти Анні знайти чашки. Виберіть сполуку перед Anna could find the cups."
+        },
+        "gappedTargetPhrase": "I labelled the box ___ Anna could find the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-45:i16:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i16:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i16:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i16:r2",
+            "correct": false,
+            "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью с Anna нужно so that.",
+              "uk": "Перед цілою частиною з Anna потрібне so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i16:r3",
+            "correct": false,
+            "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+            "feedbackByLocale": {
+              "ru": "Цель с отдельным участником вводим через so that.",
+              "uk": "Мету з окремим учасником вводимо через so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы перенесли коробку, хотя устали. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Вы перенесли коробку, хотя устали. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i17:audio",
+          "transcript": "I carried the box although I was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I carried the box although I was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы открыли коробку, чтобы найти чашки или тарелки?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i18:r1",
+          "text": "I opened the box to find the cups."
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i18:r2",
+          "text": "I opened the box to find the plates."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i18:audioA",
+        "en:lesson-31:session-45:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы открыли коробку, чтобы найти чашки или тарелки?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I opened the box to find the cups.",
+        "contrastB": "I opened the box to find the plates.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-45:i18:audioA",
+          "transcript": "I opened the box to find the cups."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-45:i18:audioB",
+          "transcript": "I opened the box to find the plates."
+        },
+        "testedPhoneticContrast": "Послушайте: вы открыли коробку, чтобы найти чашки или тарелки?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы открыли коробку, чтобы найти чашки или тарелки?",
+            "feedbackByLocale": {
+              "ru": "Звучит cups — чашки.",
+              "uk": "Звучить cups — чашки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, зачем подписали коробку. Начните с I labelled the box.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, зачем подписали коробку. Начните с I labelled the box.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i19:audio",
+          "transcript": "I labelled the box so that Anna could find the cups."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I labelled the box so that Anna could find the cups.",
+        "orderedTokens": [
+          "I",
+          "labelled",
+          "the",
+          "box",
+          "so",
+          "that",
+          "Anna",
+          "could",
+          "find",
+          "the",
+          "cups"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробка не пустая. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-45:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-45:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробка не пустая. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробка не пустая. Добавьте утвердительное уточнение.",
+          "uk": "Коробка не порожня. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The box isn't empty, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-45:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Коробка не пустая. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-45:i20:r2",
+            "correct": false,
+            "testedDimension": "Коробка не пустая. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Одна box требует is.",
+              "uk": "Одна box потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-45:i20:r3",
+            "correct": false,
+            "testedDimension": "Коробка не пустая. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Бен подписал коробку. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-45:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Бен подписал коробку. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-45:i21:audio",
+          "transcript": "I understand why Ben labelled the box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Ben labelled the box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7bdd8ea9739b32093fdfa5c7250a21d5088ea87964e06ad27157387ec440158d"
+}

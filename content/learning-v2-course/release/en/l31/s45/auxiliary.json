@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-45:intro1:r2": {
+          "ru": "После to нужна форма find.",
+          "uk": "Після to потрібна форма find."
+        },
+        "en:lesson-31:session-45:intro1:r3": {
+          "ru": "Перед find для цели нужно to.",
+          "uk": "Перед find для мети потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-45:intro2:r2": {
+          "ru": "Для части с Anna нужна связка so that.",
+          "uk": "Для частини з Anna потрібна сполука so that."
+        },
+        "en:lesson-31:session-45:intro2:r3": {
+          "ru": "После could нужна форма find.",
+          "uk": "Після could потрібна форма find."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-45:intro3:r2": {
+          "ru": "После was нужна форма packed.",
+          "uk": "Після was потрібна форма packed."
+        },
+        "en:lesson-31:session-45:intro3:r3": {
+          "ru": "Одна box требует was.",
+          "uk": "Одна box потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9aeddb0a1ee4ff23390a3e6aa17028a55ca51f0495d7f6d2fb0f3934b1ddba61"
+}

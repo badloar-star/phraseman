@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-46:i01",
+    "correctText": "party",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i02",
+    "correctText": "I know that Ben is coming to the party.",
+    "correctResponseId": "en:lesson-31:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i03",
+    "correctText": "invite",
+    "correctResponseId": "en:lesson-31:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i04",
+    "correctText": "address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i05",
+    "correctText": "Ben wrote down the address to remember it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i06",
+    "correctText": "street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i07",
+    "correctText": "Could you tell me where the street is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i09",
+    "correctText": "I spoke slowly so that Ben could understand me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i10",
+    "correctText": "Ben is coming, isn’t he?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i11",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i12",
+    "correctText": "cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i13",
+    "correctText": "The cake was made by Anna.",
+    "correctResponseId": "en:lesson-31:session-46:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i14",
+    "correctText": "She said the cups were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i15",
+    "correctText": "I repeated the address because Ben didn't hear me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i16",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-46:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i17",
+    "correctText": "Ben came to the party although he was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i18",
+    "correctText": "I spoke slowly so that Ben could understand me.",
+    "correctResponseId": "en:lesson-31:session-46:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i19",
+    "correctText": "I called to invite Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i20",
+    "correctText": "isn't",
+    "correctResponseId": "en:lesson-31:session-46:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-46:i21",
+    "correctText": "I understand why Ben wrote down the address.",
+    "correctResponseId": null
+  }
+]

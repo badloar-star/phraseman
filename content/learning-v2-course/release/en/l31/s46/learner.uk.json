@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — party",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — party",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i01:audio",
+          "transcript": "party"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-46:i01:r1",
+            "targetText": "party",
+            "meaningByLocale": {
+              "ru": "Праздник, вечеринка. Повторение знакомого слова.",
+              "uk": "Свято, вечірка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "party",
+          "definitionByLocale": {
+            "ru": "Праздник, вечеринка. Повторение знакомого слова.",
+            "uk": "Свято, вечірка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i02:r1",
+          "text": "I know that Ben is coming to the party."
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i02:r2",
+          "text": "I know that Tom is coming to the party."
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i02:r3",
+          "text": "I know that Anna is coming to the party."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i02:audio",
+          "transcript": "I know that Ben is coming to the party."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-46:i02:r1",
+            "targetText": "I know that Ben is coming to the party.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i02:r2",
+            "targetText": "I know that Tom is coming to the party.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i02:r3",
+            "targetText": "I know that Anna is coming to the party.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that Ben is coming to the party.",
+              "uk": "У записі звучить I know that Ben is coming to the party."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that Ben is coming to the party.",
+              "uk": "У записі звучить I know that Ben is coming to the party."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зателефонували, щоб запросити Бена. Виберіть форму після to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i03:r1",
+          "text": "invite"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i03:r2",
+          "text": "invited"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i03:r3",
+          "text": "inviting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зателефонували, щоб запросити Бена. Виберіть форму після to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы позвонили с целью пригласить Бена. Выберите форму после to.",
+          "uk": "Ви зателефонували, щоб запросити Бена. Виберіть форму після to."
+        },
+        "gappedTargetPhrase": "I called to ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-46:i03:r1",
+            "text": "invite"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i03:r2",
+            "text": "invited"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i03:r3",
+            "text": "inviting"
+          }
+        ],
+        "testedDimension": "Ви зателефонували, щоб запросити Бена. Виберіть форму після to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви зателефонували, щоб запросити Бена. Виберіть форму після to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма invite.",
+              "uk": "Після to потрібна форма invite."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви зателефонували, щоб запросити Бена. Виберіть форму після to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to invite.",
+              "uk": "Мету виражаємо через to invite."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i04:audio",
+          "transcript": "address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-46:i04:r1",
+            "targetText": "address",
+            "meaningByLocale": {
+              "ru": "Адрес. Повторение знакомого слова.",
+              "uk": "Адреса. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "address",
+          "definitionByLocale": {
+            "ru": "Адрес. Повторение знакомого слова.",
+            "uk": "Адреса. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бен записав адресу, щоб запам’ятати її. Почніть з Ben wrote down the address.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен записав адресу, щоб запам’ятати її. Почніть з Ben wrote down the address.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ben wrote down the address to remember it.",
+        "localizedMeaning": {
+          "ru": "Бен записал адрес, чтобы запомнить его. Начните с Ben wrote down the address.",
+          "uk": "Бен записав адресу, щоб запам’ятати її. Почніть з Ben wrote down the address."
+        },
+        "orderedTokens": [
+          "Ben",
+          "wrote",
+          "down",
+          "the",
+          "address",
+          "to",
+          "remember",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — street",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — street",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i06:audio",
+          "transcript": "street"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-46:i06:r1",
+            "targetText": "street",
+            "meaningByLocale": {
+              "ru": "Улица. Повторение знакомого слова.",
+              "uk": "Вулиця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "street",
+          "definitionByLocale": {
+            "ru": "Улица. Повторение знакомого слова.",
+            "uk": "Вулиця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен ввічливо запитує, де ця вулиця. Повторіть його запитання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Бен ввічливо запитує, де ця вулиця. Повторіть його запитання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i07:audio",
+          "transcript": "Could you tell me where the street is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the street is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Бен сказав: «Я вільний». Перекажіть зі зсувом am у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Бен сказав: «Я вільний». Перекажіть зі зсувом am у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Я свободен». Перескажите со сдвигом am в прошлое.",
+          "uk": "Учора Бен сказав: «Я вільний». Перекажіть зі зсувом am у минуле."
+        },
+        "gappedTargetPhrase": "Ben said he ___ free.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-46:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Бен сказав: «Я вільний». Перекажіть зі зсувом am у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Я вільний». Перекажіть зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Я вільний». Перекажіть зі зсувом am у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви говорили повільно, щоб Бен вас зрозумів. Почніть з I spoke slowly.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорили повільно, щоб Бен вас зрозумів. Почніть з I spoke slowly.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I spoke slowly so that Ben could understand me.",
+        "localizedMeaning": {
+          "ru": "Вы говорили медленно, чтобы Бен вас понял. Начните с I spoke slowly.",
+          "uk": "Ви говорили повільно, щоб Бен вас зрозумів. Почніть з I spoke slowly."
+        },
+        "orderedTokens": [
+          "I",
+          "spoke",
+          "slowly",
+          "so",
+          "that",
+          "Ben",
+          "could",
+          "understand",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підтвердьте, що Бен прийде: «Бен прийде, так?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Підтвердьте, що Бен прийде: «Бен прийде, так?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i10:audio",
+          "transcript": "Ben is coming, isn’t he?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben is coming, isn’t he?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i11:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i11:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i11:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы говорили медленно, чтобы Бен понял вас. Выберите связку перед Ben could understand me.",
+          "uk": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me."
+        },
+        "gappedTargetPhrase": "I spoke slowly ___ Ben could understand me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-46:i11:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i11:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i11:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+            "feedbackByLocale": {
+              "ru": "Перед Ben could understand me нужно so that.",
+              "uk": "Перед Ben could understand me потрібне so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+            "feedbackByLocale": {
+              "ru": "Цель с целой частью вводим через so that.",
+              "uk": "Мету з цілою частиною вводимо через so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i12:audio",
+          "transcript": "cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-46:i12:r1",
+            "targetText": "cake",
+            "meaningByLocale": {
+              "ru": "Торт. Повторение знакомого слова.",
+              "uk": "Торт. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cake",
+          "definitionByLocale": {
+            "ru": "Торт. Повторение знакомого слова.",
+            "uk": "Торт. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i13:r1",
+          "text": "The cake was made by Anna."
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i13:r2",
+          "text": "The cake was made by Ben."
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i13:r3",
+          "text": "The cake was made by Tom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i13:audio",
+          "transcript": "The cake was made by Anna."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-46:i13:r1",
+            "targetText": "The cake was made by Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i13:r2",
+            "targetText": "The cake was made by Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i13:r3",
+            "targetText": "The cake was made by Tom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cake was made by Anna.",
+              "uk": "У записі звучить The cake was made by Anna."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cake was made by Anna.",
+              "uk": "У записі звучить The cake was made by Anna."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Чашки чисті». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Чашки чисті». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i14:audio",
+          "transcript": "She said the cups were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the cups were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви повторили адресу, бо Бен вас не почув. Почніть з I repeated the address.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повторили адресу, бо Бен вас не почув. Почніть з I repeated the address.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I repeated the address because Ben didn't hear me.",
+        "localizedMeaning": {
+          "ru": "Вы повторили адрес, потому что Бен вас не услышал. Начните с I repeated the address.",
+          "uk": "Ви повторили адресу, бо Бен вас не почув. Почніть з I repeated the address."
+        },
+        "orderedTokens": [
+          "I",
+          "repeated",
+          "the",
+          "address",
+          "because",
+          "Ben",
+          "didn't",
+          "hear",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Торт приготувала Анна. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i16:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i16:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i16:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Торт приготувала Анна. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Торт приготовила Анна. Выберите предлог перед её именем.",
+          "uk": "Торт приготувала Анна. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The cake was made ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-46:i16:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i16:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i16:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Торт приготувала Анна. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i16:r2",
+            "correct": false,
+            "testedDimension": "Торт приготувала Анна. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Того, кто приготовил, называем после by.",
+              "uk": "Того, хто приготував, називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i16:r3",
+            "correct": false,
+            "testedDimension": "Торт приготувала Анна. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Анна приготовила торт: by Anna.",
+              "uk": "Анна приготувала торт: by Anna."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен прийшов на свято, хоча втомився. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Бен прийшов на свято, хоча втомився. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i17:audio",
+          "transcript": "Ben came to the party although he was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben came to the party although he was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: ви говорили повільно чи голосно?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i18:r1",
+          "text": "I spoke slowly so that Ben could understand me."
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i18:r2",
+          "text": "I spoke loudly so that Ben could understand me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i18:audioA",
+        "en:lesson-31:session-46:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: ви говорили повільно чи голосно?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I spoke slowly so that Ben could understand me.",
+        "contrastB": "I spoke loudly so that Ben could understand me.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-46:i18:audioA",
+          "transcript": "I spoke slowly so that Ben could understand me."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-46:i18:audioB",
+          "transcript": "I spoke loudly so that Ben could understand me."
+        },
+        "testedPhoneticContrast": "Послухайте: ви говорили повільно чи голосно?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: ви говорили повільно чи голосно?",
+            "feedbackByLocale": {
+              "ru": "Звучит slowly — медленно.",
+              "uk": "Звучить slowly — повільно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте мету дзвінка. Почніть з I called.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте мету дзвінка. Почніть з I called.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i19:audio",
+          "transcript": "I called to invite Ben."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I called to invite Ben.",
+        "orderedTokens": [
+          "I",
+          "called",
+          "to",
+          "invite",
+          "Ben"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен прийде. Додайте заперечне уточнення з he.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-46:i20:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i20:r2",
+          "text": "doesn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-46:i20:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен прийде. Додайте заперечне уточнення з he.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен придёт. Добавьте отрицательное уточнение с he.",
+          "uk": "Бен прийде. Додайте заперечне уточнення з he."
+        },
+        "gappedTargetPhrase": "Ben is coming, ___ he?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-46:i20:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i20:r2",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i20:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Бен прийде. Додайте заперечне уточнення з he.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-46:i20:r2",
+            "correct": false,
+            "testedDimension": "Бен прийде. Додайте заперечне уточнення з he.",
+            "feedbackByLocale": {
+              "ru": "Берём is из is coming: isn’t.",
+              "uk": "Беремо is із is coming: isn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-46:i20:r3",
+            "correct": false,
+            "testedDimension": "Бен прийде. Додайте заперечне уточнення з he.",
+            "feedbackByLocale": {
+              "ru": "С he нужна форма isn’t.",
+              "uk": "З he потрібна форма isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-46:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Бен записав адресу. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-46:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Бен записав адресу. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-46:i21:audio",
+          "transcript": "I understand why Ben wrote down the address."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Ben wrote down the address.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6177db177a7f969ef901a79af433ee9d03d07e7428b74a85bb234632f39d4b19"
+}

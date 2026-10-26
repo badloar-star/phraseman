@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять, зачем вы открыли и подписали коробку, и называть того, кто её упаковал.",
+    "uk": "пояснювати, навіщо ви відкрили й підписали коробку, та називати того, хто її спакував."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Открыл коробку, чтобы найти чашки",
+        "uk": "Відкрив коробку, щоб знайти чашки"
+      },
+      "bodyByLocale": {
+        "ru": "После переезда вы ищете чашки: I opened the box to find the cups — я открыл коробку, чтобы найти чашки. Соберите I opened the box + to + find the cups. Открыл — действие, to find — его цель. После to используем find, а не found.",
+        "uk": "Після переїзду ви шукаєте чашки: I opened the box to find the cups — я відкрив коробку, щоб знайти чашки. Складіть I opened the box + to + find the cups. Відкрив — дія, to find — її мета. Після to використовуємо find, а не found."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-45:intro1:r1",
+              "text": "I opened the box to find the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro1:r2",
+              "text": "I opened the box to found the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro1:r3",
+              "text": "I opened the box for find the cups."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-45:intro1:r1",
+              "text": "I opened the box to find the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro1:r2",
+              "text": "I opened the box to found the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro1:r3",
+              "text": "I opened the box for find the cups."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подписал коробку для Анны",
+        "uk": "Підписав коробку для Анни"
+      },
+      "bodyByLocale": {
+        "ru": "Чтобы Анна позже нашла чашки, вы подписали коробку: I labelled the box so that Anna could find the cups — я подписал коробку, чтобы Анна могла найти чашки. Соберите I labelled the box + so that + Anna could find the cups. Подписали вы; после so that называем Анну и её действие.",
+        "uk": "Щоб Анна згодом знайшла чашки, ви підписали коробку: I labelled the box so that Anna could find the cups — я підписав коробку, щоб Анна могла знайти чашки. Складіть I labelled the box + so that + Anna could find the cups. Підписали ви; після so that називаємо Анну та її дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-45:intro2:r1",
+              "text": "I labelled the box so that Anna could find the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro2:r2",
+              "text": "I labelled the box to Anna find the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro2:r3",
+              "text": "I labelled the box so that Anna could found the cups."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-45:intro2:r1",
+              "text": "I labelled the box so that Anna could find the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro2:r2",
+              "text": "I labelled the box to Anna find the cups."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro2:r3",
+              "text": "I labelled the box so that Anna could found the cups."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коробку упаковал Бен",
+        "uk": "Коробку спакував Бен"
+      },
+      "bodyByLocale": {
+        "ru": "Анна спрашивает, кто упаковал коробку. Начните ответ с коробки: The box was packed by Ben — коробку упаковал Бен. Соберите The box + was packed + by Ben. Was packed сообщает, что сделали с коробкой; by Ben называет того, кто это сделал.",
+        "uk": "Анна запитує, хто спакував коробку. Почніть відповідь із коробки: The box was packed by Ben — коробку спакував Бен. Складіть The box + was packed + by Ben. Was packed повідомляє, що зробили з коробкою; by Ben називає того, хто це зробив."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-45:intro3:r1",
+              "text": "The box was packed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro3:r2",
+              "text": "The box was pack by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro3:r3",
+              "text": "The box were packed by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-45:intro3:r1",
+              "text": "The box was packed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro3:r2",
+              "text": "The box was pack by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-45:intro3:r3",
+              "text": "The box were packed by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed35d60b892765f10dc84f0745cd26f19dfa1feb4a264076abbbb72b55f2ee52"
+}

@@ -46,14 +46,14 @@ describe('YouTube preview layout', () => {
   });
 
   // владелец 18.10: закладка карточки сетки ушла с обложки в правый край строки меты (круг 28), на обложке только длительность
-  test('grid card keeps the bookmark in the meta row, not on the cover', () => {
+  test('grid card keeps the like star in the meta row, not on the cover', () => {
     const coverStart = gridSource.indexOf('<View style={[styles.thumb');
     const metaRowStart = gridSource.indexOf('<View style={styles.metaRow}>');
     const saveIndex = gridSource.indexOf('testID={`video-save-${video.id}`}');
     expect(coverStart).toBeGreaterThan(-1);
     expect(metaRowStart).toBeGreaterThan(coverStart);
     expect(saveIndex).toBeGreaterThan(metaRowStart);
-    expect(gridSource).toContain('bookmark: { width: 28, height: 28, borderRadius: 14');
+    expect(gridSource).toContain('like: { width: 28, height: 28, borderRadius: 14');
     expect(gridSource).not.toContain("position: 'absolute', top: 7, right: 7");
     expect(gridSource).not.toContain('MEDIA_SCRIM');
   });

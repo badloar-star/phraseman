@@ -16,7 +16,6 @@ import { useVideoMediaTones } from '../video/video_media_tones';
 import { VideoPlayBadge } from '../video/VideoGlassKit';
 import { plateBoxShadow, raisedBoxShadow } from '../v2/ShadowSurface';
 import { formatViewCount } from '../video/formatViewCount';
-import { pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
 
 /**
@@ -30,16 +29,15 @@ export function feedThumbUrl(url: string, compact: boolean): string {
   return `${match[1]}${compact ? 'mqdefault' : 'hqdefault'}${match[3]}`;
 }
 
-export default function YoutubeVideoCard({ video, onWatch, highlighted = false, inlinePlayer, belowPlayer, compact = false, saved, saveCount, onToggleSave }: {
+export default function YoutubeVideoCard({ video, onWatch, highlighted = false, inlinePlayer, belowPlayer, compact = false, saved, onToggleSave }: {
   video: YoutubeVideoSnapshot;
   onWatch: () => void;
   highlighted?: boolean;
   inlinePlayer?: React.ReactNode;
   belowPlayer?: React.ReactNode;
   compact?: boolean;
-  /** Избранное (макет video-favorites, вариант A): закладка справа от названия. Нет колбэка — нет кнопки. */
+  /** Личная отметка «Нравится»: звезда справа от названия. Нет колбэка — нет кнопки. */
   saved?: boolean;
-  saveCount?: number;
   onToggleSave?: () => void;
 }) {
   const { lang } = useLang();
@@ -55,19 +53,12 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
       ? triLang(lang, { ru: 'Ожидается премьера', uk: 'Очікується прем’єра', en: 'Premiere upcoming', es: 'Próximo estreno', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Premiera wkrótce' })
       : '';
   const views = formatViewCount(video.viewCount, lang);
-  // зачем (вариант A): «128 сохранили» — в строке под названием, только когда кто-то сохранил.
-  const savedLine = saveCount && saveCount > 0 ? triLang(lang, {
-    ru: `${saveCount} ${pluralWord(lang, saveCount, { one: 'сохранил', few: 'сохранили', many: 'сохранили' })}`,
-    uk: `${saveCount} ${pluralWord(lang, saveCount, { one: 'зберіг', few: 'зберегли', many: 'зберегли' })}`,
-    en: `${saveCount} saved`, es: `${saveCount} guardados`, 'pt-BR': `${saveCount} salvaram`, vi: `${saveCount} đã lưu`,
-    id: `${saveCount} menyimpan`, tr: `${saveCount} kaydetti`, pl: `${saveCount} zapisało`,
-  }) : '';
   const saveLabel = saved
-    ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' })
-    : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' });
+    ? triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' })
+    : triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' });
   // зачем (Сверка video-009, макет «2 дня назад»): дата относительная, по языку интерфейса.
   const duration = formatVideoDuration(video.durationSec);
-  const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views, savedLine].filter(Boolean);
+  const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views].filter(Boolean);
   const content = (
     <>
       <View style={[styles.thumbWrap, { backgroundColor: media.stage }, compactLayout && styles.thumbCompact, inlinePlayer ? styles.thumbInPlayingCard : { boxShadow: highlighted ? raisedBoxShadow(g) : plateBoxShadow(g) }]}>
@@ -99,10 +90,10 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
               accessibilityState={{ selected: !!saved }}
               hitSlop={4}
               onPressIn={() => hapticTap()}
-              onPress={onToggleSave}
-              style={({ pressed }) => [styles.saveBtn, { backgroundColor: g.buttonFill }, pressed && styles.savePressed]}
+              onPress={(event) => { event.stopPropagation(); onToggleSave(); }}
+              style={({ pressed }) => [styles.saveBtn, { backgroundColor: 'transparent' }, pressed && styles.savePressed]}
             >
-              <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={20} color={saved ? g.text : g.secondary} />
+              <Ionicons name={saved ? 'star' : 'star-outline'} size={20} color={saved ? g.accentTextSafe : g.secondary} />
             </Pressable>
           ) : null}
         </View>

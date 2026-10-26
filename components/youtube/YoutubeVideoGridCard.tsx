@@ -10,7 +10,6 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { cleanYoutubeTitle } from '../../app/youtube_title_display';
-import { pluralWord } from '../../constants/plural';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useVideoMediaTones } from '../video/video_media_tones';
 import { plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
@@ -19,19 +18,11 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { feedThumbUrl } from './YoutubeVideoCard';
 import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
-/**
- * Ролик в сетке «2 колонки» — вариант 1 «Сетка» макета video-redesign.html (#c1, владелец 11.10).
- *
- * зачем: за один экран видно шесть роликов вместо одного-двух. Обложка 16:9 (только длительность справа внизу), под ней название ЦЕЛИКОМ
- * (без обрезки, «Methodика…» читается до конца) и строка меты «когда · просмотры» с закладкой в правом краю (круг 28; владелец 18.10 —
- * «Да, убрать плашки с обложки»: закладка больше не лежит на картинке). Содержимое прежнее: обложка и данные из каталога, закладка — то же избранное (оптимистично,
- * откат делает хранилище), тап по ролику открывает экран ролика.
- */
-function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSave, highlighted = false }: {
+/** Отметка «Нравится» остаётся на карточке; общий стор синхронизирует её между экранами. */
+function YoutubeVideoGridCardBase({ video, onWatch, saved, onToggleSave, highlighted = false }: {
   video: YoutubeVideoSnapshot;
   onWatch: () => void;
   saved?: boolean;
-  saveCount?: number;
   onToggleSave?: () => void;
   highlighted?: boolean;
 }) {
@@ -48,19 +39,13 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
     : video.state === 'upcoming'
       ? triLang(lang, { ru: 'Ожидается премьера', uk: 'Очікується прем’єра', en: 'Premiere upcoming', es: 'Próximo estreno', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Wkrótce premiera' })
       : '';
-  const savedLine = saveCount && saveCount > 0 ? triLang(lang, {
-    ru: `${saveCount} ${pluralWord(lang, saveCount, { one: 'сохранил', few: 'сохранили', many: 'сохранили' })}`,
-    uk: `${saveCount} ${pluralWord(lang, saveCount, { one: 'зберіг', few: 'зберегли', many: 'зберегли' })}`,
-    en: `${saveCount} saved`, es: `${saveCount} guardados`, 'pt-BR': `${saveCount} salvaram`, vi: `${saveCount} đã lưu`,
-    id: `${saveCount} menyimpan`, tr: `${saveCount} kaydetti`, pl: `${saveCount} zapisało`,
-  }) : '';
   const saveLabel = saved
-    ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' })
-    : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' });
+    ? triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' })
+    : triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' });
   const duration = formatVideoDuration(video.durationSec);
   const metaParts = stateLabel
     ? [stateLabel]
-    : [formatRelativeVideoDate(video.publishedAt, lang), formatViewCount(video.viewCount, lang), savedLine].filter(Boolean);
+    : [formatRelativeVideoDate(video.publishedAt, lang), formatViewCount(video.viewCount, lang)].filter(Boolean);
 
   return (
     <View testID="lingman-video-card" onLayout={(event) => noteSkeletonGeom('video_grid', 'ready', event.nativeEvent.layout.height)} style={styles.card}>
@@ -80,7 +65,7 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
             место под две строки резервируется всегда — карточки в ряду одной высоты. Мета — 11 приглушённым акцентным тоном темы. */}
         <Text numberOfLines={2} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.title, { color: g.text }]}>{cleanYoutubeTitle(video.title)}</Text>
       </TouchableOpacity>
-      {/* зачем (владелец 18.10): строка меты — «когда · просмотры» слева, закладка в правом краю; тап по тексту меты открывает ролик как и по обложке. */}
+      {/* Звезда меняет только отметку; тап по метаданным открывает ролик. */}
       <View style={styles.metaRow}>
         <Pressable accessible={false} importantForAccessibility="no" onPress={onWatch} style={styles.metaTap}>
           {metaParts.length > 0 ? <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={[styles.meta, { color: g.accentTextSafe }]}>{metaParts.join(' · ')}</Text> : null}
@@ -93,10 +78,10 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
             accessibilityState={{ selected: !!saved }}
             hitSlop={8}
             onPressIn={() => hapticTap()}
-            onPress={onToggleSave}
-            style={({ pressed }) => [styles.bookmark, { backgroundColor: saved ? g.ctaFill : g.buttonFill }, pressed && styles.bookmarkPressed]}
+            onPress={(event) => { event.stopPropagation(); onToggleSave(); }}
+            style={({ pressed }) => [styles.like, { backgroundColor: 'transparent' }, pressed && styles.likePressed]}
           >
-            <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={16} color={saved ? g.ctaFillInk : g.text} />
+            <Ionicons name={saved ? 'star' : 'star-outline'} size={20} color={saved ? g.accentTextSafe : g.secondary} />
           </Pressable>
         ) : null}
       </View>
@@ -104,11 +89,10 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, saveCount, onToggleSa
   );
 }
 
-/** Один ролик — одна и та же ссылка: перерисовка только при смене данных, закладки или счётчика. */
+/** Один ролик — одна и та же ссылка: перерисовка только при смене данных или отметки. */
 export default React.memo(YoutubeVideoGridCardBase, (prev, next) => (
   prev.video === next.video
   && prev.saved === next.saved
-  && prev.saveCount === next.saveCount
   && prev.highlighted === next.highlighted
   && prev.onWatch === next.onWatch
   && prev.onToggleSave === next.onToggleSave
@@ -124,10 +108,9 @@ const baseStyles = StyleSheet.create({
   // `.gmr .bm` (video-redesign.html): круг 28 в правом краю строки меты; строка минимум 28 — карточки одной высоты.
   metaRow: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 28 },
   metaTap: { flex: 1, minWidth: 0 },
-  bookmark: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', flex: 0 },
-  bookmarkPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
+  like: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', flex: 0 },
+  likePressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
   // владелец 11.10: название 13/17 вес 600 (2 строки, минимум две — ряды одной высоты), мета 11/14.
   title: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '600', minHeight: 34 },
-  // зачем ([BLEND-1018B] 18.10): мета accentText ×0,85 давала до 3,80:1 к странице — accentTextSafe без прозрачности (≥ 4,5); закладка: buttonFill (opaqueControl = фон страницы в светлых), сохранённая — ctaFill/ctaFillInk
   meta: { fontSize: 11, lineHeight: 14, fontWeight: '400', minHeight: 14 }, // typo-exempt: владелец 11.10 — мета ролика 11 sp по прямому слову; d145-micro: мета видео 11 sp — прямое слово владельца 11.10
 });

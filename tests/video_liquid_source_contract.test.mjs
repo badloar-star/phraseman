@@ -13,7 +13,7 @@ test('channel tabs are live on the same catalog', () => {
   assert.ok(tabs.includes("['home', 'playlists', 'packs']"), 'three visible tab buttons');
   assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
   // зачем (FINAL_PHASE п.4): ролики Главной вкладки — виртуальный список по реальному каталогу.
-  assert.ok(screen.includes('savedOnly ? savedVideos : allVideos.filter') && screen.includes('data={homeListVideos}'), 'Home renders real catalog data');
+  assert.ok(screen.includes('allVideos.filter') && screen.includes('data={homeListVideos}'), 'Home renders real catalog data');
   assert.ok(card.includes('compact?: boolean'), 'card supports approved compact row (экран плейлиста)');
   assert.ok(card.includes('width: 150'), 'compact row retains 150px thumbnail width');
 });
@@ -26,7 +26,7 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   assert.ok(card.includes('video.thumbnailUrl'), 'real thumbnail source');
   assert.ok(screen.includes('<YoutubeInlinePlayer'), 'real inline player stays wired (премьера)');
   // зачем (Тень 12.10): строка «Сохранённые» — PlateFill + тень плашки, без блика-кромки VideoScreenGlass
-  assert.ok(screen.includes('<PlateFill g={g} radius={14} />') && screen.includes('plateBoxShadow(g)'), 'static screen material');
+  assert.ok(!screen.includes('video-saved-row'), 'likes do not create a saved-video destination');
   assert.ok(!screen.includes('testID="youtube-catalog-error"'), 'владелец 01.10: экрана ошибки нет');
   // зачем: состояния «нет сети / устарел / ошибка» переехали в components/video/VideoGlassKit (макет video.html).
   const kit = readFileSync(new URL('../components/video/VideoGlassKit.tsx', import.meta.url), 'utf8');

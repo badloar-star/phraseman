@@ -7,6 +7,8 @@ import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
+import { useVideoFavorites } from '../hooks/use_video_favorites';
+import { actionToastTri, emitAppEvent } from './events';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -35,6 +37,17 @@ function trustedPlaylistUrl(rawUrl: string, playlistId: string): string | null {
 
 export default function LingmanPlaylistScreen() {
   const router = useRouter();
+  const favorites = useVideoFavorites();
+  const toggleLike = (videoId: string) => {
+    void favorites.toggle(videoId).then((outcome) => {
+      if (outcome === 'ok') return;
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t change the like, please try again',
+        es: 'No se pudo cambiar Me gusta, inténtalo de nuevo', 'pt-BR': 'Não foi possível alterar o gostei, tente de novo', vi: 'Không thể thay đổi lượt thích, hãy thử lại',
+        id: 'Gagal mengubah tanda suka, coba lagi', tr: 'Beğeni değiştirilemedi, tekrar dene', pl: 'Nie udało się zmienić polubienia, spróbuj ponownie',
+      }));
+    });
+  };
   const { playlistId = '', channelId = '' } = useLocalSearchParams<{ playlistId?: string; channelId?: string }>();
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
@@ -177,6 +190,8 @@ export default function LingmanPlaylistScreen() {
                 key={video.id}
                 video={video}
                 compact
+                saved={favorites.isSaved(video.id)}
+                onToggleSave={() => toggleLike(video.id)}
                 onWatch={() => openVideo(video)}
               />
             )) : view === 'content_slow' ? (

@@ -158,8 +158,8 @@ export default function LingmanVideoWatchScreen() {
 
   const copy = {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
-    save: triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Save video', es: 'Guardar vídeo', 'pt-BR': 'Salvar vídeo', vi: 'Lưu video', id: 'Simpan video', tr: 'Videoyu kaydet', pl: 'Zapisz film' }),
-    unsave: triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from saved', es: 'Quitar de guardados', 'pt-BR': 'Remover dos salvos', vi: 'Bỏ lưu', id: 'Hapus dari simpanan', tr: 'Kaydedilenlerden çıkar', pl: 'Usuń z zapisanych' }),
+    save: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
+    unsave: triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' }),
   };
   const meta = [channelName, formatRelativeVideoDate(video?.publishedAt, lang), formatViewCount(video?.viewCount, lang)].filter(Boolean).join(' · ');
   // зачем (макет video-redesign #c1, экран 3): закладка ролика сверху справа — то же избранное, что на карточке в сетке;
@@ -170,9 +170,9 @@ export default function LingmanVideoWatchScreen() {
       if (outcome === 'ok') return;
       console.warn(LOG, 'save:rollback', JSON.stringify({ videoId, outcome })); // guard-ok: откат закладки логируется
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось сохранить, попробуй ещё раз', uk: 'Не вдалося зберегти, спробуй ще раз', en: 'Couldn’t save, please try again',
-        es: 'No se pudo guardar, inténtalo de nuevo', 'pt-BR': 'Não foi possível salvar, tente de novo', vi: 'Không lưu được, hãy thử lại',
-        id: 'Gagal menyimpan, coba lagi', tr: 'Kaydedilemedi, tekrar dene', pl: 'Nie udało się zapisać, spróbuj ponownie',
+        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t change the like, please try again',
+        es: 'No se pudo cambiar Me gusta, inténtalo de nuevo', 'pt-BR': 'Não foi possível alterar o gostei, tente de novo', vi: 'Không thể thay đổi lượt thích, hãy thử lại',
+        id: 'Gagal mengubah tanda suka, coba lagi', tr: 'Beğeni değiştirilemedi, tekrar dene', pl: 'Nie udało się zmienić polubienia, spróbuj ponownie',
       }));
     });
   }, [favorites, videoId]);
@@ -244,9 +244,9 @@ export default function LingmanVideoWatchScreen() {
             accessibilityState={{ selected: savedVideo }}
             onPressIn={() => hapticTap()}
             onPress={toggleSave}
-            style={[styles.topButton, { backgroundColor: savedVideo ? g.ctaFill : g.buttonFill }]}
+            style={[styles.topButton, { backgroundColor: 'transparent' }]}
           >
-            <Ionicons name={savedVideo ? 'bookmark' : 'bookmark-outline'} size={20} color={savedVideo ? g.ctaFillInk : g.text} /* зачем (Ревизор 15.10, «кнопки не сливаются»): значок на заливке ctaFill — ctaInk, не accentInk (пара ctaFill/ctaInk держит контраст во всех темах) */ />
+            <Ionicons name={savedVideo ? 'star' : 'star-outline'} size={20} color={savedVideo ? g.accentTextSafe : g.secondary} />
           </Pressable>
         </View>
         <View style={styles.player}>

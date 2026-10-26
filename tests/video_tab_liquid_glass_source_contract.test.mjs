@@ -17,7 +17,7 @@ const views = read('components/video/formatViewCount.ts');
 test('video-redesign #c1: «Наборы» — третья вкладка, а не плашка сверху', () => {
   // зачем (владелец 11.10): плашка «Наборы из видео» заменена вкладкой; список тот же экран наборов (режим embedded).
   assert.ok(!screen.includes('testID="video-tab-packs-row"'), 'плашки наборов сверху больше нет');
-  assert.ok(screen.includes("tab === 'packs' && !savedOnly") && screen.includes('<FlashcardsVideoPacksScreen embedded'), 'вкладка встраивает экран наборов');
+  assert.ok(screen.includes("tab === 'packs'") && screen.includes('<FlashcardsVideoPacksScreen embedded'), 'вкладка встраивает экран наборов');
   assert.ok(screen.includes('<YoutubeChannelTabs value={tab} onChange={changeTab} />'), 'tabs are drawn in every state');
 });
 

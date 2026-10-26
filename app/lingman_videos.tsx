@@ -45,12 +45,9 @@ import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { useTopFadeScroll } from '../components/TopFadeScrollContext';
 import { V2 } from '../constants/v2Style';
-import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
-import V2Pressable from '../components/v2/V2Pressable';
 import { DebugLogger } from './debug-logger';
-import { useVideoFavorites, useVideoSaveCounts } from '../hooks/use_video_favorites';
+import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { actionToastTri, emitAppEvent } from './events';
-import { pluralWord } from '../constants/plural';
 import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 import {
   getActiveYoutubeChannel,
@@ -120,10 +117,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const tabContentBottomPad = useTabContentBottomPad();
   const { width: windowWidth } = useWindowDimensions();
   const router = useRouter();
-  const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId, saved: savedParam } = useLocalSearchParams<{ videoId?: string; channelId?: string; saved?: string }>();
-  // зачем (макет video-favorites, вариант A): плашка «Сохранённые видео» открывает этот же экран
-  // в режиме списка сохранённых (без вкладок), чтобы не дублировать плеер, фразы и каталог.
-  const savedOnly = !inTab && savedParam === '1';
+  const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId } = useLocalSearchParams<{ videoId?: string; channelId?: string }>();
   const { lang } = useLang();
   const { studyTarget: globalStudyTarget } = useStudyTarget();
   // зачем (владелец 15.10): пилюля языка в «Видео» выбирает язык только для раздела на время захода; в Настройках язык прежний, при возврате на вкладку снова он.
@@ -208,11 +202,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const copy = useMemo(() => ({
     tabTitle: triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Videos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Filmy' }),
     error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
-    noSaved: triLang(lang, {
-      ru: 'Пока нет сохранённых видео', uk: 'Поки немає збережених відео', en: 'No saved videos yet', es: 'Aún no hay vídeos guardados', 'pt-BR': 'Ainda não há vídeos salvos',
-      vi: 'Chưa có video đã lưu', id: 'Belum ada video tersimpan', tr: 'Henüz kayıtlı video yok', pl: 'Brak zapisanych filmów',
-    }),
-    savedVideos: triLang(lang, { ru: 'Сохранённые видео', uk: 'Збережені відео', en: 'Saved videos', es: 'Vídeos guardados', 'pt-BR': 'Vídeos salvos', vi: 'Video đã lưu', id: 'Video tersimpan', tr: 'Kaydedilen videolar', pl: 'Zapisane filmy' }),
     // зачем (паритет с макетом video.html «Ошибка»): текст и кнопка как на кадре; «потянуть вниз» повторяет загрузку.
     catalogFailed: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', en: 'Couldn’t load the catalog. Pull down to retry.', es: 'No se pudo cargar el catálogo. Desliza hacia abajo para reintentar.', 'pt-BR': 'Não foi possível carregar o catálogo. Puxe para baixo para tentar de novo.', vi: 'Không tải được danh mục. Kéo xuống để thử lại.', id: 'Katalog gagal dimuat. Tarik ke bawah untuk mengulang.', tr: 'Katalog yüklenemedi. Tekrar denemek için aşağı çek.', pl: 'Nie udało się wczytać katalogu. Pociągnij w dół, aby ponowić.' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Ulangi', tr: 'Tekrar dene', pl: 'Ponów' }),
@@ -511,38 +500,20 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     return base.filter((playlist) => (counts.get(playlist.id) ?? 0) > 0).map((playlist) => ({ ...playlist, itemCount: counts.get(playlist.id) ?? 0 }));
   }, [allChannel.items, allChannel.playlists, allChannel.status, catalog?.playlists]);
   const favorites = useVideoFavorites();
-  // зачем (Firebase-экономия): счётчики сохранений читаем только для показанных страниц, а не для всех 100 роликов.
-  const shownVideoIds = useMemo(() => allVideos.slice(0, pages * ALL_VIDEOS_PAGE_SIZE).map((video) => video.id), [allVideos, pages]);
-  const saveCountOf = useVideoSaveCounts(shownVideoIds, favorites.state);
-  const savedVideos = useMemo(() => {
-    const byId = new Map(allVideos.map((video) => [video.id, video] as const));
-    return favorites.savedIds.map((id) => byId.get(id)).filter((video): video is YoutubeVideoSnapshot => !!video);
-  }, [allVideos, favorites.savedIds]);
-  // зачем (Макеты R59, 15.10): закладка в сетке добавляла строку «Сохранённые видео» над сеткой — сетка уезжала вниз прямо под пальцем. Пока строка появляется/исчезает, держим прокрутку: смещаем на её высоту (+ отступ 18).
-  const hasSavedRow = !savedOnly && savedVideos.length > 0;
-  const scrollYRef = useRef(0);
   // зачем (координатор 15.10, консистентность): вкладка «Видео» не сообщала прокрутку таб-оболочке — капсула таббара не сжималась, а на остальных четырёх вкладках сжимается (макет tabbar-variants, 24.09).
   // Теперь прокрутка списков во вкладке идёт в TopFadeScrollContext, как у Главной/Обучения/Сообщества/Настроек (верхняя маска и сжатие капсулы).
   const topFadeScroll = useTopFadeScroll();
   const reportTabScroll = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
     if (inTab && screenRuntimeActiveRef.current) topFadeScroll?.onScroll?.(e);
   }, [inTab, topFadeScroll]);
-  const savedRowHRef = useRef(0);
-  const SAVED_ROW_MARGIN = 18;
-  useEffect(() => {
-    if (hasSavedRow || savedRowHRef.current === 0) return;
-    const shift = savedRowHRef.current + SAVED_ROW_MARGIN;
-    savedRowHRef.current = 0;
-    if (scrollYRef.current > 8) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current - shift), animated: false });
-  }, [hasSavedRow]);
   // Optimistic: вид меняется сразу (стор публикует локально), отказ сети — стор откатывает, тут тост.
   const toggleSave = useCallback((videoId: string) => {
     void favorites.toggle(videoId).then((outcome) => {
       if (outcome === 'ok') return;
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось сохранить, попробуй ещё раз', uk: 'Не вдалося зберегти, спробуй ще раз', en: 'Couldn’t save, please try again',
-        es: 'No se pudo guardar, inténtalo de nuevo', 'pt-BR': 'Não foi possível salvar, tente de novo', vi: 'Không lưu được, hãy thử lại',
-        id: 'Gagal menyimpan, coba lagi', tr: 'Kaydedilemedi, tekrar dene', pl: 'Nie udało się zapisać, spróbuj ponownie',
+        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t change the like, please try again',
+        es: 'No se pudo cambiar Me gusta, inténtalo de nuevo', 'pt-BR': 'Não foi possível alterar o gostei, tente de novo', vi: 'Không thể thay đổi lượt thích, hãy thử lại',
+        id: 'Gagal mengubah tanda suka, coba lagi', tr: 'Beğeni değiştirilemedi, tekrar dene', pl: 'Nie udało się zmienić polubienia, spróbuj ponownie',
       }));
     });
   }, [favorites]);
@@ -677,16 +648,16 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   useEffect(() => {
     const trace = JSON.stringify({
       studyTarget: String(studyTarget), catalogLoaded: catalog != null, channel: catalog?.channel?.id ?? null, videos: catalog?.videos?.length ?? 0,
-      activeEvent: catalog?.activeEvent ? { id: catalog.activeEvent.id, state: catalog.activeEvent.state } : null, hero: hero ? hero.state : null, savedOnly, inTab,
+      activeEvent: catalog?.activeEvent ? { id: catalog.activeEvent.id, state: catalog.activeEvent.state } : null, hero: hero ? hero.state : null, inTab,
     });
     if (heroTraceRef.current === trace) return;
     heroTraceRef.current = trace;
     console.log('[VIDEO-TAB] hero', trace); // guard-ok: журнал решения о премьере при смене значений (не на каждый рендер)
-  }, [catalog, hero, inTab, savedOnly, studyTarget]);
+  }, [catalog, hero, inTab, studyTarget]);
   // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
-  const homeListAll = useMemo(() => (savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id)), [allVideos, hero?.id, savedOnly, savedVideos]);
+  const homeListAll = useMemo(() => allVideos.filter((video) => video.id !== hero?.id), [allVideos, hero?.id]);
   // Страницы по 20 (allVideosPage у Ядра = page × 20): список растёт по onEndReached; снимок (20) и «Сохранённые» — целиком.
-  const paged = !savedOnly && !!fullVideos;
+  const paged = !!fullVideos;
   const homeListVideos = useMemo(() => (paged ? homeListAll.slice(0, pages * ALL_VIDEOS_PAGE_SIZE) : homeListAll), [homeListAll, pages, paged]);
   const loadMoreVideos = useCallback(() => {
     if (!paged || pages * ALL_VIDEOS_PAGE_SIZE >= homeListAll.length) return;
@@ -730,12 +701,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         highlighted={item.id === deepLinkedVideoId}
         onWatch={() => openVideoRef.current(item)}
         saved={favorites.isSaved(item.id)}
-        saveCount={saveCountOf(item.id)}
         onToggleSave={() => toggleSave(item.id)}
       />
     </View>
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  ), [deepLinkedVideoId, favorites.savedIds, saveCountOf, lang, catalog]);
+  ), [deepLinkedVideoId, favorites.savedIds, lang, catalog]);
   const renderPlaylist = useCallback(({ item, index }: { item: YoutubePlaylistSnapshot; index: number }) => (
     <View style={index % 2 === 0 ? styles.gridCellLeft : styles.gridCellRight}>
       <YoutubePlaylistGridCard playlist={item} onPress={() => openPlaylist(item.id)} />
@@ -775,41 +745,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.secondary }]}>{copy.noVideos}</Text>
     </ScrollView>
   );
-  const savedRow = hasSavedRow ? (
-    // зачем (аудит 22.10, «V2Pressable на всех управляющих элементах»): строка «Сохранённые» — нажатие как у всех кнопок 2.0 (вдавливание + .86), а не TouchableOpacity .8;
-    // отступ сверху — на внешнем слое: onLayout измеряет саму строку (компенсация сдвига сетки считает SAVED_ROW_MARGIN отдельно)
-    <V2Pressable
-      testID="video-saved-row"
-      hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }} // зачем (аудит Видео 🟡, 15.10): строка 64 dp с отступами — зона нажатия чуть шире
-      onLayout={(e) => {
-        const h = Math.round(e.nativeEvent.layout.height);
-        const prev = savedRowHRef.current;
-        savedRowHRef.current = h;
-        // зачем (Макеты R59, 15.10: закладка сдвигала сетку на ~220 px под пальцем): компенсируем и у верхнего края — строка появляется НАД экраном, сетка остаётся на месте
-        if (prev === 0 && h > 0) homeListRef.current?.scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false });
-      }}
-      accessibilityLabel={copy.savedVideos}
-      scaleTo={0.98}
-      onPress={() => router.push({ pathname: '/lingman_videos', params: { saved: '1' } } as never)}
-      outerStyle={styles.packsRowOuter}
-      style={[styles.packsRow, { boxShadow: plateBoxShadow(g) }]}
-    >
-      {/* зачем (Тень 12.10): строка «Сохранённые» без кромки — заливка PlateFill и тень плашки */}
-      <PlateFill g={g} radius={14} />
-      <View style={[styles.packsIcon, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}><Ionicons name="bookmark-outline" size={20} color={g.text} /></View>
-      <View style={styles.packsCopy}>
-        <Text style={[styles.packsTitle, { color: g.text }]}>{copy.savedVideos}</Text>
-        <Text style={[styles.packsSub, { color: g.secondary }]}>{triLang(lang, {
-          ru: `${savedVideos.length} ${pluralWord(lang, savedVideos.length, { one: 'ролик', few: 'ролика', many: 'роликов' })}`,
-          uk: `${savedVideos.length} ${pluralWord(lang, savedVideos.length, { one: 'ролик', few: 'ролики', many: 'роликів' })}`,
-          en: `${savedVideos.length} videos`, es: `${savedVideos.length} vídeos`, 'pt-BR': `${savedVideos.length} vídeos`, vi: `${savedVideos.length} video`,
-          id: `${savedVideos.length} video`, tr: `${savedVideos.length} video`, pl: `${savedVideos.length} ${pluralWord(lang, savedVideos.length, { one: 'film', few: 'filmy', many: 'filmów' })}`,
-        })}</Text>
-      </View>
-      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-    </V2Pressable>
-  ) : null;
-
   return (
     <ScreenGradient artBackdrop="home">
       {/* зачем (Сверка video-007): во вкладке свой сплошной градиент закрывал общий фон под безопасной зоной — пятна света темы оставались только
@@ -820,7 +755,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader
           channel={!catalog && !pendingChannel ? { ...activeChannel, displayName: '', avatarUrl: undefined } : activeChannel}
-          title={inTab ? copy.tabTitle : savedOnly ? copy.savedVideos : undefined}
+          title={inTab ? copy.tabTitle : undefined}
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
           studyTarget={studyTarget}
@@ -835,11 +770,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             setStudyLanguageSheetVisible(true);
           } : undefined}
         />
-        {savedOnly ? null : <YoutubeChannelTabs value={tab} onChange={changeTab} />}
+        <YoutubeChannelTabs value={tab} onChange={changeTab} />
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        {tab === 'packs' && !savedOnly ? (
+        {tab === 'packs' ? (
           // зачем (владелец 11.10, video-redesign #c1): вкладка «Наборы» показывает тот же список «Наборы из видео», что и
           // раздел «Карточки» (один экран данных, режим embedded); грузится только когда вкладку открыли.
           <FlashcardsVideoPacksScreen embedded bottomPad={inTab ? tabContentBottomPad : 24} />
@@ -877,7 +812,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         ) : (
           <FlashList
             ref={homeListRef}
-            onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; reportTabScroll(e); }}
+            onScroll={reportTabScroll}
             scrollEventThrottle={32}
             decelerationRate="fast"
             testID="lingman-videos-list"
@@ -892,7 +827,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             refreshControl={<HybridRefreshControl refreshing={refreshing || allChannel.refreshing} onRefresh={() => { void loadCatalog(undefined, true); allChannel.refresh(); }} />}
             contentContainerStyle={inTab ? { ...styles.gridList, paddingBottom: tabContentBottomPad } : styles.gridList}
             ListHeaderComponent={<>
-            {hero && !savedOnly ? hero.id === activeVideoId ? (
+            {hero ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer
                   videoId={hero.id}
@@ -903,7 +838,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
                 />
               </View>
             ) : <YoutubePremiereHero video={hero} reminded={remindedIds.includes(hero.id)} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} /> : null}
-            {hero && !savedOnly ? <YoutubeVideoPhrases
+            {hero ? <YoutubeVideoPhrases
               packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
               sourceTitle={activeChannel.displayName}
               videoId={hero.id}
@@ -911,10 +846,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
               testID={`video-phrases-${hero.id}`}
             /> : null}
-            {savedRow}
             </>}
-            // зачем (аудит Видео 🟡, 15.10): «Сохранённые видео» без единого ролика показывали пустое место — теперь короткая подпись
-            ListEmptyComponent={!hero ? (savedOnly ? <Text testID="lingman-videos-empty" style={[styles.unavailableTitle, { color: g.secondary, marginTop: 40 }]}>{copy.noSaved}</Text> : <View testID="lingman-videos-empty" />) : null}
+            ListEmptyComponent={!hero ? <View testID="lingman-videos-empty" /> : null}
           />
         )}
 
@@ -955,19 +888,5 @@ const styles = StyleSheet.create({
   gridSkeletonTitle: { minHeight: 34, gap: 4 }, // название на две строки: 13 + 4 + 13 = 30 → 34 как у карточки
   gridSkeletonMeta: { minHeight: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   gridSkeletonMetaPlain: { minHeight: 16 },
-  packsRow: {
-    minHeight: 64,
-    borderRadius: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 14,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-  },
-  packsRowOuter: { marginTop: 18 },
-  packsIcon: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  packsCopy: { flex: 1, minWidth: 0 },
-  packsTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  packsSub: { fontSize: 13, lineHeight: 18, marginTop: 2 },
   heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' }, // theme-exempt: фон под видео/превью — чёрный в любой теме
 });

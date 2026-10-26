@@ -1,0 +1,598 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-39",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — excelente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — excelente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i01:audio",
+          "transcript": "excelente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-39:i01:r1",
+            "targetText": "excelente",
+            "meaningByLocale": {
+              "ru": "превосходный, отличный. Оценка: es excelente — это превосходно. 🔊 *excelente*",
+              "uk": "чудовий, відмінний. Оцінка: es excelente — це чудово. 🔊 *excelente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "excelente",
+          "definitionByLocale": {
+            "ru": "превосходный, отличный. Оценка: es excelente — это превосходно. 🔊 *excelente*",
+            "uk": "чудовий, відмінний. Оцінка: es excelente — це чудово. 🔊 *excelente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-39:i02:r1",
+          "text": "excelente"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i02:r2",
+          "text": "interesante"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i02:audio",
+          "transcript": "excelente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-39:i02:r1",
+            "targetText": "excelente",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-39:i02:r2",
+            "targetText": "interesante",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит excelente, а не interesante.",
+              "uk": "Звучить excelente, а не interesante."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — дайте оцінку «Це чудово»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-39:i03:r1",
+          "text": "Плитки: excelente"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i03:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — дайте оцінку «Це чудово»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es excelente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — дайте оценку «Это превосходно»",
+          "uk": "Зберіть фразу — дайте оцінку «Це чудово»"
+        },
+        "orderedTokens": [
+          "Es",
+          "excelente"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-39:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — дайте оцінку «Це чудово»",
+            "feedbackByLocale": {
+              "ru": "оцениваете одно выступление.",
+              "uk": "оцінюєте один виступ."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть виступ чудовим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть виступ чудовим",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i04:audio",
+          "transcript": "Es excelente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es excelente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — terrible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — terrible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i05:audio",
+          "transcript": "terrible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-39:i05:r1",
+            "targetText": "terrible",
+            "meaningByLocale": {
+              "ru": "ужасный, очень плохой. Оценка: es terrible — это ужасно. 🔊 *terrible*",
+              "uk": "жахливий, дуже поганий. Оцінка: es terrible — це жахливо. 🔊 *terrible*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "terrible",
+          "definitionByLocale": {
+            "ru": "ужасный, очень плохой. Оценка: es terrible — это ужасно. 🔊 *terrible*",
+            "uk": "жахливий, дуже поганий. Оцінка: es terrible — це жахливо. 🔊 *terrible*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-39:i06:r1",
+          "text": "terrible"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i06:r2",
+          "text": "excelente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i06:audio",
+          "transcript": "terrible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-39:i06:r1",
+            "targetText": "terrible",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-39:i06:r2",
+            "targetText": "excelente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит terrible — «ужасный», а не excelente.",
+              "uk": "Звучить terrible — «жахливий», а не excelente."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — оцініть поганий звук словами «Це жахливо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-39:i07:r1",
+          "text": "terrible"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i07:r2",
+          "text": "excelente"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i07:r3",
+          "text": "bueno"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — оцініть поганий звук словами «Це жахливо»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — оцените плохой звук словами «Это ужасно»",
+          "uk": "Вставте слово — оцініть поганий звук словами «Це жахливо»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-39:i07:r1",
+            "text": "terrible"
+          },
+          {
+            "responseId": "es:lesson-01:session-39:i07:r2",
+            "text": "excelente"
+          },
+          {
+            "responseId": "es:lesson-01:session-39:i07:r3",
+            "text": "bueno"
+          }
+        ],
+        "testedDimension": "Вставте слово — оцініть поганий звук словами «Це жахливо»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-39:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — оцініть поганий звук словами «Це жахливо»",
+            "feedbackByLocale": {
+              "ru": "Это «превосходно», а нужна отрицательная оценка.",
+              "uk": "Це «чудово», а потрібна негативна оцінка."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-39:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — оцініть поганий звук словами «Це жахливо»",
+            "feedbackByLocale": {
+              "ru": "Это «хорошо», а звук ужасный.",
+              "uk": "Це «добре», а звук жахливий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — дайте звуку сильну негативну оцінку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — дайте звуку сильну негативну оцінку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i08:audio",
+          "transcript": "Es terrible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es terrible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — номер дуже цікавий; скажіть «Це дуже цікаво»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-39:i09:r1",
+          "text": "Плитки: interesante"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i09:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i09:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — номер дуже цікавий; скажіть «Це дуже цікаво»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy interesante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — номер очень интересный; скажите «Это очень интересно»",
+          "uk": "Зберіть фразу — номер дуже цікавий; скажіть «Це дуже цікаво»"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "interesante"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-39:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — номер дуже цікавий; скажіть «Це дуже цікаво»",
+            "feedbackByLocale": {
+              "ru": "вы подчёркиваете интерес, не отрицаете его.",
+              "uk": "ви підкреслюєте інтерес, не заперечуєте його."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — висловіть сильний інтерес до номера",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — висловіть сильний інтерес до номера",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i10:audio",
+          "transcript": "Es muy interesante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es muy interesante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-39:i11:r1",
+          "text": "Плитки: terrible"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i11:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-39:i11:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i11:audio",
+          "transcript": "No es terrible."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es terrible.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "terrible"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-39:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — звук виявився не таким поганим; скажіть «Це не жахливо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — звук виявився не таким поганим; скажіть «Це не жахливо»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-39:i12:audio",
+          "transcript": "No es terrible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es terrible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "30360dde8d6afcca482cf27c6f1fb2245bea1b2ef145d0defb37e6e2071f300b"
+}

@@ -1,0 +1,700 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-38",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — muy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — muy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-38:i01:audio",
+          "transcript": "muy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-38:i01:r1",
+            "targetText": "muy",
+            "meaningByLocale": {
+              "ru": "очень; ставится перед признаком: muy caro — очень дорогой. 🔊 *muy*",
+              "uk": "дуже; ставиться перед ознакою: muy caro — дуже дорогий. 🔊 *muy*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muy",
+          "definitionByLocale": {
+            "ru": "очень; ставится перед признаком: muy caro — очень дорогой. 🔊 *muy*",
+            "uk": "дуже; ставиться перед ознакою: muy caro — дуже дорогий. 🔊 *muy*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i02:r1",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i02:r2",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-38:i02:audio",
+          "transcript": "muy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-38:i02:r1",
+            "targetText": "muy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i02:r2",
+            "targetText": "no",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит muy — «очень», а не no.",
+              "uk": "Звучить muy — «дуже», а не no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — цена ремонта очень высокая; скажите «Это очень дорого»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i03:r1",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i03:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i03:r3",
+          "text": "sí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — цена ремонта очень высокая; скажите «Это очень дорого»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — цена ремонта очень высокая; скажите «Это очень дорого»",
+          "uk": "Вставте слово — ціна ремонту дуже висока; скажіть «Це дуже дорого»"
+        },
+        "gappedTargetPhrase": "Es ___ caro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-38:i03:r1",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i03:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i03:r3",
+            "text": "sí"
+          }
+        ],
+        "testedDimension": "Вставьте слово — цена ремонта очень высокая; скажите «Это очень дорого»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — цена ремонта очень высокая; скажите «Это очень дорого»",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно усиление muy; отрицание no ставилось бы перед es.",
+              "uk": "Тут потрібне підсилення muy; заперечення no стояло б перед es."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — цена ремонта очень высокая; скажите «Это очень дорого»",
+            "feedbackByLocale": {
+              "ru": "Sí означает «да», а не «очень».",
+              "uk": "Sí означає «так», а не «дуже»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Это очень дорого»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i04:r1",
+          "text": "Плитки: caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i04:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i04:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Это очень дорого»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy caro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Это очень дорого»",
+          "uk": "Зберіть фразу — скажіть «Це дуже дорого»"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "caro"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Это очень дорого»",
+            "feedbackByLocale": {
+              "ru": "оцениваете один предложенный ремонт.",
+              "uk": "оцінюєте один запропонований ремонт."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — poco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — poco",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-38:i05:audio",
+          "transcript": "poco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-38:i05:r1",
+            "targetText": "poco",
+            "meaningByLocale": {
+              "ru": "мало, в небольшой степени. Перед complicado: poco complicado — не очень сложный. 🔊 *poco*",
+              "uk": "мало, невеликою мірою. Перед complicado: poco complicado — не дуже складний. 🔊 *poco*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poco",
+          "definitionByLocale": {
+            "ru": "мало, в небольшой степени. Перед complicado: poco complicado — не очень сложный. 🔊 *poco*",
+            "uk": "мало, невеликою мірою. Перед complicado: poco complicado — не дуже складний. 🔊 *poco*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i06:r1",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i06:r2",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-38:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-38:i06:audio",
+          "transcript": "poco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-38:i06:r1",
+            "targetText": "poco",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i06:r2",
+            "targetText": "muy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит poco, а не muy.",
+              "uk": "Звучить poco, а не muy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — работа не очень сложная; используйте poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i07:r1",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i07:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i07:r3",
+          "text": "sí"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — работа не очень сложная; используйте poco",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — работа не очень сложная; используйте poco",
+          "uk": "Вставте слово — робота не дуже складна; використайте poco"
+        },
+        "gappedTargetPhrase": "Es ___ complicado.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-38:i07:r1",
+            "text": "poco"
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i07:r2",
+            "text": "muy"
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i07:r3",
+            "text": "sí"
+          }
+        ],
+        "testedDimension": "Вставьте слово — работа не очень сложная; используйте poco",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — работа не очень сложная; используйте poco",
+            "feedbackByLocale": {
+              "ru": "Это «очень сложно», противоположная степень.",
+              "uk": "Це «дуже складно», протилежний ступінь."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — работа не очень сложная; используйте poco",
+            "feedbackByLocale": {
+              "ru": "Sí не обозначает небольшую степень сложности.",
+              "uk": "Sí не позначає невеликого ступеня складності."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Это не очень сложно», используя poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i08:r1",
+          "text": "Плитки: complicado"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i08:r3",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i08:r4",
+          "text": "muy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Это не очень сложно», используя poco",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es poco complicado.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Это не очень сложно», используя poco",
+          "uk": "Зберіть фразу — скажіть «Це не дуже складно», використовуючи poco"
+        },
+        "orderedTokens": [
+          "Es",
+          "poco",
+          "complicado"
+        ],
+        "authoredDistractorTokens": [
+          "muy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Это не очень сложно», используя poco",
+            "feedbackByLocale": {
+              "ru": "нужно ослабить признак словом poco.",
+              "uk": "потрібно послабити ознаку словом poco."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите ремонт очень дорогим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите ремонт очень дорогим",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-38:i09:audio",
+          "transcript": "Es muy caro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es muy caro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите о второй цене «Это не очень дорого»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i10:r1",
+          "text": "Плитки: caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i10:r3",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i10:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i10:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите о второй цене «Это не очень дорого»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es muy caro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о второй цене «Это не очень дорого»",
+          "uk": "Зберіть фразу — скажіть про другу ціну «Це не дуже дорого»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "muy",
+          "caro"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите о второй цене «Это не очень дорого»",
+            "feedbackByLocale": {
+              "ru": "оцениваете один вариант ремонта.",
+              "uk": "оцінюєте один варіант ремонту."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i11:r1",
+          "text": "Плитки: complicado"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i11:r2",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i11:r4",
+          "text": "muy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-38:i11:audio",
+          "transcript": "Es poco complicado."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es poco complicado.",
+        "orderedTokens": [
+          "Es",
+          "poco",
+          "complicado"
+        ],
+        "authoredDistractorTokens": [
+          "muy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит poco.",
+              "uk": "звучить poco."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — после объяснения мастера вы понимаете: работа очень сложная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-38:i12:r1",
+          "text": "Плитки: complicado"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i12:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-38:i12:r4",
+          "text": "poco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — после объяснения мастера вы понимаете: работа очень сложная",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy complicado.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — после объяснения мастера вы понимаете: работа очень сложная",
+          "uk": "Зберіть фразу — після пояснення майстра ви розумієте: робота дуже складна"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "complicado"
+        ],
+        "authoredDistractorTokens": [
+          "poco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-38:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после объяснения мастера вы понимаете: работа очень сложная",
+            "feedbackByLocale": {
+              "ru": "здесь высокая степень сложности.",
+              "uk": "тут високий ступінь складності."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0791e3f524db022a1e207095ddad38a7721e7fc47afaab5cafcc7cba23c888e2"
+}

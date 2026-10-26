@@ -266,4 +266,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить возможность предложенного варианта с es posible и es imposible.","uk":"оцінити можливість запропонованого варіанта з es posible та es imposible."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 38,
+    sourceFingerprint: "9e65587625d14d5550ab790e1f4198214044e791eb09f5ef72d9a540080200ad",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить muy или poco перед знакомым признаком.","uk":"поставити muy або poco перед знайомою ознакою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 39,
+    sourceFingerprint: "edaf0b9cb4debc6c92b1c93f3714262fc21a1fc48955329325822c9fbffb2be9",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"произнести отдельную оценку и усилить знакомое качество словом muy.","uk":"вимовити окрему оцінку й підсилити знайому якість словом muy."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

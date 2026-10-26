@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "произнести отдельную оценку и усилить знакомое качество словом muy.",
+    "uk": "вимовити окрему оцінку й підсилити знайому якість словом muy."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Превосходное выступление",
+        "uk": "Чудовий виступ"
+      },
+      "bodyByLocale": {
+        "ru": "Вы слушаете выступление и очень довольны. Скажите: `Es excelente` — «Это превосходно». `Excelente` означает «превосходный, отличный». Соберите `es` + `excelente`. Само excelente уже выражает высокую оценку; для этой реплики достаточно двух слов. Окончание e не меняется на o или a.",
+        "uk": "Ви слухаєте виступ і дуже задоволені. Скажіть: `Es excelente` — «Це чудово». `Excelente` означає «чудовий, відмінний». Зберіть `es` + `excelente`. Саме excelente вже виражає високу оцінку; для цієї репліки достатньо двох слів. Закінчення e не змінюється на o або a."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Дайте высокую оценку выступлению: «Это превосходно», используя excelente.",
+          "uk": "Дайте високу оцінку виступу: «Це чудово», використовуючи excelente."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-39:intro1:r1",
+              "text": "Es excelente."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro1:r2",
+              "text": "Es malo."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro1:r3",
+              "text": "Son excelentes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-39:intro1:r1",
+              "text": "Es excelente."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro1:r2",
+              "text": "Es malo."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro1:r3",
+              "text": "Son excelentes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дайте высокую оценку выступлению: «Это превосходно», используя excelente.",
+          "uk": "Дайте високу оцінку виступу: «Це чудово», використовуючи excelente."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Плохой звук",
+        "uk": "Поганий звук"
+      },
+      "bodyByLocale": {
+        "ru": "Вдруг начинаются сильные помехи. Вы оцениваете звук, который слышите сейчас: `Es terrible` — «Это ужасно». `Terrible` здесь означает «ужасный, очень плохой». Соберите `es` + `terrible`. Вы даёте короткую оценку услышанному; это не описание своего самочувствия.",
+        "uk": "Раптом починаються сильні перешкоди. Ви оцінюєте звук, який чуєте зараз: `Es terrible` — «Це жахливо». `Terrible` тут означає «жахливий, дуже поганий». Зберіть `es` + `terrible`. Ви даєте коротку оцінку почутому; це не опис свого самопочуття."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Оцените звук: «Это ужасно», используя terrible.",
+          "uk": "Оцініть звук: «Це жахливо», використовуючи terrible."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-39:intro2:r1",
+              "text": "Es terrible."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro2:r2",
+              "text": "Es excelente."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro2:r3",
+              "text": "Eres terrible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-39:intro2:r1",
+              "text": "Es terrible."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro2:r2",
+              "text": "Es excelente."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro2:r3",
+              "text": "Eres terrible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените звук: «Это ужасно», используя terrible.",
+          "uk": "Оцініть звук: «Це жахливо», використовуючи terrible."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Очень интересно",
+        "uk": "Дуже цікаво"
+      },
+      "bodyByLocale": {
+        "ru": "Следующий номер удивляет вас необычной музыкой. Скажите: `Es muy interesante` — «Это очень интересно». Соберите `es` + `muy` + `interesante`. Muy стоит перед качеством interesante и усиливает его. Произнесите всю оценку одной репликой; ничего не добавляйте после interesante.",
+        "uk": "Наступний номер дивує вас незвичною музикою. Скажіть: `Es muy interesante` — «Це дуже цікаво». Зберіть `es` + `muy` + `interesante`. Muy стоїть перед якістю interesante й підсилює її. Вимовте всю оцінку однією реплікою; нічого не додавайте після interesante."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о номере: «Это очень интересно».",
+          "uk": "Скажіть про номер: «Це дуже цікаво»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-39:intro3:r1",
+              "text": "Es muy interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro3:r2",
+              "text": "Es interesante muy."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro3:r3",
+              "text": "No es interesante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-39:intro3:r1",
+              "text": "Es muy interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro3:r2",
+              "text": "Es interesante muy."
+            },
+            {
+              "responseId": "es:lesson-01:session-39:intro3:r3",
+              "text": "No es interesante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о номере: «Это очень интересно».",
+          "uk": "Скажіть про номер: «Це дуже цікаво»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "117932c45c7815c8af67a33fd53683813a55227a692849871da44ac03258b27d"
+}

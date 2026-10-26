@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "поставить muy или poco перед знакомым признаком.",
+    "uk": "поставити muy або poco перед знайомою ознакою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Очень дорого",
+        "uk": "Дуже дорого"
+      },
+      "bodyByLocale": {
+        "ru": "В первой мастерской назвали высокую цену. Вы говорите о предложенном ремонте: `Es muy caro` — «Это очень дорого». `Muy` означает «очень». Соберите `es` + `muy` + `caro`: muy стоит непосредственно перед признаком caro и усиливает его. Слово muy здесь не меняет форму.",
+        "uk": "У першій майстерні назвали високу ціну. Ви говорите про запропонований ремонт: `Es muy caro` — «Це дуже дорого». `Muy` означає «дуже». Зберіть `es` + `muy` + `caro`: muy стоїть безпосередньо перед ознакою caro й підсилює її. Слово muy тут не змінює форму."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Оцените предложенный ремонт: «Это очень дорого».",
+          "uk": "Оцініть запропонований ремонт: «Це дуже дорого»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-38:intro1:r1",
+              "text": "Es muy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro1:r2",
+              "text": "Es caro muy."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro1:r3",
+              "text": "No es caro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-38:intro1:r1",
+              "text": "Es muy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro1:r2",
+              "text": "Es caro muy."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro1:r3",
+              "text": "No es caro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените предложенный ремонт: «Это очень дорого».",
+          "uk": "Оцініть запропонований ремонт: «Це дуже дорого»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работа не слишком сложная",
+        "uk": "Робота не надто складна"
+      },
+      "bodyByLocale": {
+        "ru": "Друг объясняет, что сама работа довольно простая. `Es poco complicado` — «Это не очень сложно». `Poco` перед признаком означает небольшую степень этого качества. Соберите `es` + `poco` + `complicado`. Poco здесь ослабляет complicado. Это не универсальное слово «совсем»: оно не означает полного отсутствия сложности.",
+        "uk": "Друг пояснює, що сама робота доволі проста. `Es poco complicado` — «Це не дуже складно». `Poco` перед ознакою означає невеликий ступінь цієї якості. Зберіть `es` + `poco` + `complicado`. Poco тут послаблює complicado. Це не універсальне слово «зовсім»: воно не означає цілковитої відсутності складності."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о работе: «Это не очень сложно», используя poco.",
+          "uk": "Скажіть про роботу: «Це не дуже складно», використовуючи poco."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-38:intro2:r1",
+              "text": "Es poco complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro2:r2",
+              "text": "Es muy complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro2:r3",
+              "text": "Es complicado poco."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-38:intro2:r1",
+              "text": "Es poco complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro2:r2",
+              "text": "Es muy complicado."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro2:r3",
+              "text": "Es complicado poco."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о работе: «Это не очень сложно», используя poco.",
+          "uk": "Скажіть про роботу: «Це не дуже складно», використовуючи poco."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не очень дорого",
+        "uk": "Не дуже дорого"
+      },
+      "bodyByLocale": {
+        "ru": "Во второй мастерской цена умеренная. `No es muy caro` — «Это не очень дорого». Соберите `no` + `es` + `muy` + `caro`. Отрицание no стоит перед es, а muy остаётся перед caro. Вы отрицаете высокую степень дороговизны; это не обязательно означает, что ремонт дешёвый.",
+        "uk": "У другій майстерні ціна помірна. `No es muy caro` — «Це не дуже дорого». Зберіть `no` + `es` + `muy` + `caro`. Заперечення no стоїть перед es, а muy залишається перед caro. Ви заперечуєте високий ступінь дорожнечі; це не обов'язково означає, що ремонт дешевий."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Оцените второе предложение: «Это не очень дорого».",
+          "uk": "Оцініть другу пропозицію: «Це не дуже дорого»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-38:intro3:r1",
+              "text": "No es muy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro3:r2",
+              "text": "Es muy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro3:r3",
+              "text": "No es caro muy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-38:intro3:r1",
+              "text": "No es muy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro3:r2",
+              "text": "Es muy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-38:intro3:r3",
+              "text": "No es caro muy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените второе предложение: «Это не очень дорого».",
+          "uk": "Оцініть другу пропозицію: «Це не дуже дорого»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "123cb086a49c242ed1182e2438801aeacd7d3733b2c3b881489e093c42b29a19"
+}

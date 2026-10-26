@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-38",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-38:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-38:intro1:r2": {
+          "ru": "Muy нужно поставить перед caro.",
+          "uk": "Muy потрібно поставити перед caro."
+        },
+        "es:lesson-01:session-38:intro1:r3": {
+          "ru": "Это отрицает дороговизну, а вы подчёркиваете высокую цену.",
+          "uk": "Це заперечує дорожнечу, а ви підкреслюєте високу ціну."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-38:intro2:r2": {
+          "ru": "Muy усиливает сложность, а нужно её уменьшить.",
+          "uk": "Muy підсилює складність, а потрібно її зменшити."
+        },
+        "es:lesson-01:session-38:intro2:r3": {
+          "ru": "Poco нужно поставить перед complicado.",
+          "uk": "Poco потрібно поставити перед complicado."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-38:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-38:intro3:r2": {
+          "ru": "Без no получается «очень дорого».",
+          "uk": "Без no виходить «дуже дорого»."
+        },
+        "es:lesson-01:session-38:intro3:r3": {
+          "ru": "Muy остаётся перед caro.",
+          "uk": "Muy залишається перед caro."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3aec5cdff6c9a9caf64a3f73b887aab0cc7035ffbc4a09ce301b22a76ec6283e"
+}

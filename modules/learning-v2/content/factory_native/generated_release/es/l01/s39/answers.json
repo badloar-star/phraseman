@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-39:i01",
+    "correctText": "excelente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i02",
+    "correctText": "excelente",
+    "correctResponseId": "es:lesson-01:session-39:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i03",
+    "correctText": "Es excelente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i04",
+    "correctText": "Es excelente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i05",
+    "correctText": "terrible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i06",
+    "correctText": "terrible",
+    "correctResponseId": "es:lesson-01:session-39:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i07",
+    "correctText": "terrible",
+    "correctResponseId": "es:lesson-01:session-39:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i08",
+    "correctText": "Es terrible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i09",
+    "correctText": "Es muy interesante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i10",
+    "correctText": "Es muy interesante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i11",
+    "correctText": "No es terrible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-39:i12",
+    "correctText": "No es terrible.",
+    "correctResponseId": null
+  }
+]

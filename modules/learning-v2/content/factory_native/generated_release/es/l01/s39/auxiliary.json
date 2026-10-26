@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-39",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-39:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-39:intro1:r2": {
+          "ru": "Это «плохо», противоположная оценка.",
+          "uk": "Це «погано», протилежна оцінка."
+        },
+        "es:lesson-01:session-39:intro1:r3": {
+          "ru": "Это о нескольких предметах, а здесь оценивается одно выступление.",
+          "uk": "Це про кілька предметів, а тут оцінюється один виступ."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-39:intro2:r2": {
+          "ru": "Это высокая положительная оценка, а звук плохой.",
+          "uk": "Це висока позитивна оцінка, а звук поганий."
+        },
+        "es:lesson-01:session-39:intro2:r3": {
+          "ru": "Это обращение к человеку, а вы оцениваете услышанное.",
+          "uk": "Це звернення до людини, а ви оцінюєте почуте."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-39:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-39:intro3:r2": {
+          "ru": "Muy нужно поставить перед interesante.",
+          "uk": "Muy потрібно поставити перед interesante."
+        },
+        "es:lesson-01:session-39:intro3:r3": {
+          "ru": "Это отрицает интерес, а вы его подчёркиваете.",
+          "uk": "Це заперечує інтерес, а ви його підкреслюєте."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c0f696501dfb87e4fc444166ec4ee5a1e25a1c190b3e4b0e8552218e27ae71d4"
+}

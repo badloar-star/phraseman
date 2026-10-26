@@ -40931,7 +40931,7 @@
       "mockup": {
         "file": "docs/design/v2-app/spire-gaps-states.html",
         "phone": 22,
-        "label": "Главный — пилюля «бета»",
+        "label": "Главный экран у es / de / fr / it — без пилюли «бета» (убрана 25.10)",
         "mapping": "by_construction"
       },
       "mockup_pinned": "Аудит покрытия первого выпуска 12.10: кадр дорисован сессией «Макеты» по коду приложения (тексты из кода, стиль «Тень»)",
@@ -40966,7 +40966,14 @@
       },
       "shot_at": "2026-10-13T08:59:02.622Z",
       "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "Пилюля «бета» у заголовка есть."
+      "sverka_verdict": "Пилюля «бета» у заголовка есть.",
+      "prev_mockup": {
+        "file": "docs/design/v2-app/spire-gaps-states.html",
+        "phone": 22,
+        "label": "Главный — пилюля «бета»",
+        "mapping": "by_construction"
+      },
+      "code_note": "2026-10-26 3 · МАКЕТЫ: эталон spire-gaps-states №22 без пилюли «бета» с 90053bf9e (решение владельца 25.10, 4c58c3b1a); в шапке заголовок сцены «Пик» (#spire-scene-title). Шаг dev-ссылки — b38653f9e."
     },
     {
       "id": "cards-gap-001",

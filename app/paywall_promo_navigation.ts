@@ -3,6 +3,7 @@
 // зачем (правило владельца «нет окна внутри окна» + «назад ведёт туда, откуда пришёл»; сторож paywall_v3_source_contract; Ревизор, Макеты, координатор 26.10):
 //   • открытие — router.replace, а не push: промокод встаёт на место пейвола, второго окна над окном Plus нет;
 //   • закрытие промокода, открытого ИЗ пейвола, — снова пейвол тем же replace с теми же context и source (пейвол сам вернёт человека на экран-источник);
+//     куда именно вести — решает чистая проверенная по контракту функция promoCloseTarget (app/paywall_promo_close_target.ts);
 //   • промокод применён — как раньше (Plus активен, итог на экране награды); открыт не из пейвола — как раньше (safeRouterBack).
 // Отдельный файл, а не app/paywall_navigation.ts: тот модуль импортируют тесты с урезанным react-native, а navigation_back тянет конфиг с Platform.
 import { markNextNavigationAsReplace } from './navigation_back';
@@ -28,16 +29,4 @@ export function openPromoCodeFromPaywall(router: PromoRouter, origin: PaywallEnt
     pathname: '/promo_code_entry',
     params: { source: 'paywall', ...(context ? { paywall_context: context } : {}), ...(source ? { paywall_source: source } : {}) },
   });
-}
-
-export type PromoCloseTarget =
-  | Readonly<{ kind: 'paywall'; params: Readonly<{ context: string; source: string }> }>
-  | Readonly<{ kind: 'back' }>;
-
-/** Куда вести по «закрыть» на экране промокода: в пейвол, если пришли из него (и вход известен), иначе обычное «назад». */
-export function promoCloseTarget(input: Readonly<{ source?: RouteParam; paywallContext?: RouteParam; paywallSource?: RouteParam }>): PromoCloseTarget {
-  const context = first(input.paywallContext);
-  const source = first(input.paywallSource);
-  if (first(input.source) === 'paywall' && context && source) return { kind: 'paywall', params: { context, source } };
-  return { kind: 'back' };
 }

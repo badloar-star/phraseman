@@ -44,6 +44,9 @@ const REVIEWED_DYNAMIC_CONTEXTS = new Set([
   // выбор по ФАКТУ остатка реплик (иначе человек с целыми репликами читал
   // «дневной лимит исчерпан»).
   'components/DialogsTabContent.tsx:upsellContext',
+  // 2026-10-26 (Ревизор + координатор, возврат из промокода в пейвол): значения идут из promoCloseTarget (app/paywall_promo_close_target.ts) — он пропускает ТОЛЬКО пару из
+  // PREMIUM_CONTEXT_SET и PAYWALL_SOURCE_VALUES и возвращает их типами PremiumContext / PaywallSource; мусор из параметров маршрута даёт «назад». Тест: paywall_promo_return_2026_10_26.
+  'app/promo_code_entry.tsx:closeTarget.context',
 ]);
 const REVIEWED_DYNAMIC_SOURCES = new Set([
   'app/flashcards/FlashcardsHubScreen.tsx:source',
@@ -57,6 +60,8 @@ const REVIEWED_DYNAMIC_SOURCES = new Set([
   // `useMistakePracticeStartGate(source: PaywallSource)`. Тип параметра уже
   // замкнут контрактом, вызывающая поверхность передаёт литерал из списка.
   'hooks/useMistakePracticeStartGate.ts:source',
+  // 2026-10-26: см. запись closeTarget.context выше — тот же проверенный источник.
+  'app/promo_code_entry.tsx:closeTarget.source',
 ]);
 
 // зачем (координатор и Дизайн 26.10, faf515267): входы dialog_limit строят params помощником dialogLimitPaywallParams('<source>')

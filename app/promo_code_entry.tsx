@@ -25,7 +25,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { redeemPromoCode, normalizePromoCodeInput, type PromoRedeemStatus } from './promo_code_client';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
-import { promoCloseTarget } from './paywall_promo_navigation';
+import { promoCloseTarget } from './paywall_promo_close_target';
 import { forcePremiumAccessCloudRestore, getVerifiedVipStatus, invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
@@ -260,9 +260,10 @@ export default function PromoCodeEntryScreen() {
   const closeTarget = promoCloseTarget({ source, paywallContext, paywallSource });
   const closePromo = useCallback(() => {
     if (closeTarget.kind === 'paywall') {
-      console.log('[PAYWALL-OPEN] промокод закрыт → обратно в пейвол', JSON.stringify(closeTarget.params)); // guard-ok: одна строка на закрытие
+      console.log('[PAYWALL-OPEN] промокод закрыт → обратно в пейвол', JSON.stringify({ context: closeTarget.context, source: closeTarget.source })); // guard-ok: одна строка на закрытие
       markNextNavigationAsReplace();
-      openPremiumPaywall(router, closeTarget.params, 'replace');
+      // зачем (Ревизор 26.10): значения прошли проверку по контракту в promoCloseTarget (типы PremiumContext / PaywallSource) — сторож реестра знает эти два выражения
+      openPremiumPaywall(router, { context: closeTarget.context, source: closeTarget.source }, 'replace');
       return;
     }
     safeRouterBack(router, closeFallback as any);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-55",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-55:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-55:intro1:r2": {
+          "ru": "Так спрашивают о нескольких вещах.",
+          "uk": "Так запитують про кілька речей."
+        },
+        "es:lesson-02:session-55:intro1:r3": {
+          "ru": "Это вопрос о названии вещи, а не о владельце.",
+          "uk": "Це запитання про назву речі, а не про власника."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-55:intro2:r2": {
+          "ru": "Для llaves нужна форма mías.",
+          "uk": "Для llaves потрібна форма mías."
+        },
+        "es:lesson-02:session-55:intro2:r3": {
+          "ru": "Так говорят об одной вещи; ключей несколько.",
+          "uk": "Так говорять про одну річ; ключів кілька."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-55:intro3:r2": {
+          "ru": "Для bolso нужна форма mío.",
+          "uk": "Для bolso потрібна форма mío."
+        },
+        "es:lesson-02:session-55:intro3:r3": {
+          "ru": "Сумка одна: es mío.",
+          "uk": "Сумка одна: es mío."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8c8a69a175452a2cb7fec87e8fa71d7d9aa3178a395b50dc447eeba3bc685a25"
+}

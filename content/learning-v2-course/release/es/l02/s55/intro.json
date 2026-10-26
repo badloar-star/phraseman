@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "спросить владельца и сказать, что вещь не ваша.",
+    "uk": "запитати власника й сказати, що річ не ваша."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто забыл сумку",
+        "uk": "Хто забув сумку"
+      },
+      "bodyByLocale": {
+        "ru": "На стуле осталась сумка. Покажите её участникам и спросите `¿De quién es?` — «Чья она?» Соберите `de quién` + `es`. Вопрос относится к одной вещи, которую все видят. Название сумки повторять не нужно. Для нескольких вещей знакомая форма вопроса — ¿De quién son?",
+        "uk": "На стільці залишилася сумка. Покажіть її учасникам і запитайте `¿De quién es?` — «Чия вона?» Складіть `de quién` + `es`. Запитання стосується однієї речі, яку всі бачать. Назву сумки повторювати не потрібно. Для кількох речей знайома форма запитання — ¿De quién son?"
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, чья сумка.",
+          "uk": "Запитайте, чия сумка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-55:intro1:r1",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro1:r2",
+              "text": "¿De quién son?"
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro1:r3",
+              "text": "¿Qué es esto?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-55:intro1:r1",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro1:r2",
+              "text": "¿De quién son?"
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro1:r3",
+              "text": "¿Qué es esto?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чья сумка.",
+          "uk": "Запитайте, чия сумка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чужие ключи",
+        "uk": "Чужі ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Вам показывают найденные ключи, но ваши ключи уже у вас. Ответьте `No son mías` — «Они не мои». Соберите `no` + `son` + `mías`. Знакомое llaves женского рода во множественном числе, поэтому mías. Форма зависит от ключей, а не от того, мужчина вы или женщина.",
+        "uk": "Вам показують знайдені ключі, але ваші ключі вже у вас. Дайте відповідь `No son mías` — «Вони не мої». Складіть `no` + `son` + `mías`. Знайоме llaves жіночого роду в множині, тому mías. Форма залежить від ключів, а не від того, чоловік ви чи жінка."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что ключи не ваши.",
+          "uk": "Скажіть, що ключі не ваші."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-55:intro2:r1",
+              "text": "No son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro2:r2",
+              "text": "No son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro2:r3",
+              "text": "No es mía."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-55:intro2:r1",
+              "text": "No son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro2:r2",
+              "text": "No son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro2:r3",
+              "text": "No es mía."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что ключи не ваши.",
+          "uk": "Скажіть, що ключі не ваші."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сумка тоже чужая",
+        "uk": "Сумка теж чужа"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вам показывают найденную сумку: el bolso. Она тоже не ваша. Ответьте `No es mío` — «Она не моя». Соберите `no` + `es` + `mío`. Испанское bolso мужского рода и обозначает одну вещь, поэтому mío, хотя русский перевод «сумка» женского рода. О знакомой taza сказали бы No es mía, о guantes — No son míos.",
+        "uk": "Тепер вам показують знайдену сумку: el bolso. Вона теж не ваша. Дайте відповідь `No es mío` — «Вона не моя». Складіть `no` + `es` + `mío`. Іспанське bolso чоловічого роду й позначає одну річ, тому mío, хоча український переклад «сумка» жіночого роду. Про знайому taza сказали б No es mía, про guantes — No son míos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что bolso не ваш.",
+          "uk": "Скажіть, що bolso не ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-55:intro3:r1",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro3:r2",
+              "text": "No es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro3:r3",
+              "text": "No son míos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-55:intro3:r1",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro3:r2",
+              "text": "No es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-55:intro3:r3",
+              "text": "No son míos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что bolso не ваш.",
+          "uk": "Скажіть, що bolso не ваш."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a05e0f4fabbd374ea99969e574d8f47b2f0b01a7c8d299a3e589f55e09f81fcd"
+}

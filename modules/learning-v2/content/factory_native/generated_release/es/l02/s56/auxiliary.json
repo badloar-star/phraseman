@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-56",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-56:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-56:intro1:r2": {
+          "ru": "Taza женского рода: una.",
+          "uk": "Taza жіночого роду: una."
+        },
+        "es:lesson-02:session-56:intro1:r3": {
+          "ru": "Так называют несколько чашек.",
+          "uk": "Так називають кілька чашок."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-56:intro2:r2": {
+          "ru": "Это вопрос о названии предмета.",
+          "uk": "Це запитання про назву предмета."
+        },
+        "es:lesson-02:session-56:intro2:r3": {
+          "ru": "Чашка одна: es.",
+          "uk": "Чашка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-56:intro3:r2": {
+          "ru": "Для taza нужна форма mía.",
+          "uk": "Для taza потрібна форма mía."
+        },
+        "es:lesson-02:session-56:intro3:r3": {
+          "ru": "Чашка одна: es mía.",
+          "uk": "Чашка одна: es mía."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ae01dc580a5430e13a581e1625a2ab5a6ae0214216d438aef398c88b5c158d6a"
+}

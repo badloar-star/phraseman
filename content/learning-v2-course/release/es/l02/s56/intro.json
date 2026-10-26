@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно назвать находку, спросить владельца и ответить о принадлежности.",
+    "uk": "самостійно назвати знахідку, запитати власника й відповісти про належність."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неожиданная находка",
+        "uk": "Несподівана знахідка"
+      },
+      "bodyByLocale": {
+        "ru": "Из коробки достали чашку. Назовите её одной репликой: `Es una taza` — «Это чашка». Соберите `es` + `una` + `taza`: одна вещь, женский род, называете впервые. Когда предметов несколько, понадобятся son и форма артикля во множественном числе. В заданиях выбирайте форму по самой находке.",
+        "uk": "З коробки дістали чашку. Назвіть її однією реплікою: `Es una taza` — «Це чашка». Складіть `es` + `una` + `taza`: одна річ, жіночий рід, називаєте вперше. Коли предметів кілька, знадобляться son і форма артикля в множині. У завданнях вибирайте форму за самою знахідкою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Впервые назовите одну чашку.",
+          "uk": "Уперше назвіть одну чашку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-56:intro1:r1",
+              "text": "Es una taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro1:r2",
+              "text": "Es un taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro1:r3",
+              "text": "Son unas tazas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-56:intro1:r1",
+              "text": "Es una taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro1:r2",
+              "text": "Es un taza."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro1:r3",
+              "text": "Son unas tazas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Впервые назовите одну чашку.",
+          "uk": "Уперше назвіть одну чашку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужно вернуть владельцу",
+        "uk": "Потрібно повернути власнику"
+      },
+      "bodyByLocale": {
+        "ru": "Чашку уже назвали. Теперь отдельно спросите, чья она: `¿De quién es?` — «Чья она?» Соберите `de quién` + `es`. В этой реплике только вопрос о владельце. Если название предмета неизвестно, нужен другой знакомый вопрос: ¿Qué es esto?",
+        "uk": "Чашку вже назвали. Тепер окремо запитайте, чия вона: `¿De quién es?` — «Чия вона?» Складіть `de quién` + `es`. У цій репліці лише запитання про власника. Якщо назва предмета невідома, потрібне інше знайоме запитання: ¿Qué es esto?"
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите владельца одной чашки.",
+          "uk": "Запитайте власника однієї чашки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-56:intro2:r1",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro2:r2",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro2:r3",
+              "text": "¿De quién son?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-56:intro2:r1",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro2:r2",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro2:r3",
+              "text": "¿De quién son?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите владельца одной чашки.",
+          "uk": "Запитайте власника однієї чашки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чашка не ваша",
+        "uk": "Чашка не ваша"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает вас об этой чашке. Ответьте `No es mía` — «Она не моя». Соберите `no` + `es` + `mía`. Выбирайте mía по испанскому taza: женский род, одна вещь. Для нескольких чашек — mías; для одного bolso — mío; для нескольких guantes — míos. Пол говорящего форму не меняет.",
+        "uk": "Друг запитує вас про цю чашку. Дайте відповідь `No es mía` — «Вона не моя». Складіть `no` + `es` + `mía`. Вибирайте mía за іспанським taza: жіночий рід, одна річ. Для кількох чашок — mías; для одного bolso — mío; для кількох guantes — míos. Стать мовця форму не змінює."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашка не ваша.",
+          "uk": "Скажіть, що чашка не ваша."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-56:intro3:r1",
+              "text": "No es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro3:r2",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro3:r3",
+              "text": "No son mías."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-56:intro3:r1",
+              "text": "No es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro3:r2",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-56:intro3:r3",
+              "text": "No son mías."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашка не ваша.",
+          "uk": "Скажіть, що чашка не ваша."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "612679a6d3856f2abdad89876b23d0e2ff4f9c9a9bc972b9798bbcabd7db408a"
+}

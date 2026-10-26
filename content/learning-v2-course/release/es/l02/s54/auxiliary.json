@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-54",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-54:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-54:intro1:r2": {
+          "ru": "Предметов несколько: son.",
+          "uk": "Предметів кілька: son."
+        },
+        "es:lesson-02:session-54:intro1:r3": {
+          "ru": "Lápices мужского рода: los.",
+          "uk": "Lápices чоловічого роду: los."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-54:intro2:r2": {
+          "ru": "Reloj в единственном числе: es.",
+          "uk": "Reloj в однині: es."
+        },
+        "es:lesson-02:session-54:intro2:r3": {
+          "ru": "Los relojes обозначает несколько отдельных часов.",
+          "uk": "Los relojes позначає кілька окремих годинників."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-54:intro3:r2": {
+          "ru": "Огней несколько: son.",
+          "uk": "Вогнів кілька: son."
+        },
+        "es:lesson-02:session-54:intro3:r3": {
+          "ru": "Luces женского рода: las.",
+          "uk": "Luces жіночого роду: las."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5934d43d79339e3daac47285e41b64ef1c75485b50a1ed9f975f773e254eaea3"
+}

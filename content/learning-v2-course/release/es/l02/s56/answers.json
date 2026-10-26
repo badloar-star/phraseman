@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-56:i01",
+    "correctText": "¿Qué es esto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i02",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-56:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i03",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i04",
+    "correctText": "unos",
+    "correctResponseId": "es:lesson-02:session-56:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i05",
+    "correctText": "unas",
+    "correctResponseId": "es:lesson-02:session-56:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i06",
+    "correctText": "¿De quién es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i07",
+    "correctText": "el",
+    "correctResponseId": "es:lesson-02:session-56:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i08",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-56:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i09",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-56:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i10",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-02:session-56:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i11",
+    "correctText": "No es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i12",
+    "correctText": "mío",
+    "correctResponseId": "es:lesson-02:session-56:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i13",
+    "correctText": "mías",
+    "correctResponseId": "es:lesson-02:session-56:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i14",
+    "correctText": "míos",
+    "correctResponseId": "es:lesson-02:session-56:i14:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i15",
+    "correctText": "Es una taza.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i16",
+    "correctText": "¿De quién es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i17",
+    "correctText": "No es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-56:i18",
+    "correctText": "¿De quién son?",
+    "correctResponseId": null
+  }
+]

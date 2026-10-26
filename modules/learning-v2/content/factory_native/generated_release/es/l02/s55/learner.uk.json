@@ -1,0 +1,669 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-55",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чия ця одна річ?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i01:r1",
+          "text": "Плитки: es?"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i01:r2",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i01:r3",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i01:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чия ця одна річ?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чья эта одна вещь?",
+          "uk": "Зберіть фразу — чия ця одна річ?"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чия ця одна річ?",
+            "feedbackByLocale": {
+              "ru": "вещь одна.",
+              "uk": "річ одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i02",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте, чия знайдена сумка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте, чия знайдена сумка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-55:i02:audio",
+          "transcript": "¿De quién es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ключі не мої; не повторюйте назву",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i03:r1",
+          "text": "Плитки: mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i03:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i03:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i03:r4",
+          "text": "míos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ключі не мої; не повторюйте назву",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son mías.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ключи не мои; не повторяйте название",
+          "uk": "Зберіть фразу — ключі не мої; не повторюйте назву"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "mías"
+        ],
+        "authoredDistractorTokens": [
+          "míos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ключі не мої; не повторюйте назву",
+            "feedbackByLocale": {
+              "ru": "llaves женского рода.",
+              "uk": "llaves жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — знайдені llaves не ваші",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i04:r1",
+          "text": "mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i04:r2",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i04:r3",
+          "text": "mía"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — знайдені llaves не ваші",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найденные llaves не ваши",
+          "uk": "Вставте слово — знайдені llaves не ваші"
+        },
+        "gappedTargetPhrase": "No son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-55:i04:r1",
+            "text": "mías"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i04:r2",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i04:r3",
+            "text": "mía"
+          }
+        ],
+        "testedDimension": "Вставте слово — знайдені llaves не ваші",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — знайдені llaves не ваші",
+            "feedbackByLocale": {
+              "ru": "Llaves женского рода: mías.",
+              "uk": "Llaves жіночого роду: mías."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — знайдені llaves не ваші",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: mías.",
+              "uk": "Ключів кілька: mías."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — bolso не мій; не повторюйте назву",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i05:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i05:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i05:r4",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — bolso не мій; не повторюйте назву",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — bolso не мой; не повторяйте название",
+          "uk": "Зберіть фразу — bolso не мій; не повторюйте назву"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — bolso не мій; не повторюйте назву",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — знайдена taza не ваша",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i06:r1",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i06:r2",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i06:r3",
+          "text": "mías"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — знайдена taza не ваша",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найденная taza не ваша",
+          "uk": "Вставте слово — знайдена taza не ваша"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-55:i06:r1",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i06:r2",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i06:r3",
+            "text": "mías"
+          }
+        ],
+        "testedDimension": "Вставте слово — знайдена taza не ваша",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — знайдена taza не ваша",
+            "feedbackByLocale": {
+              "ru": "Taza женского рода: mía.",
+              "uk": "Taza жіночого роду: mía."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — знайдена taza не ваша",
+            "feedbackByLocale": {
+              "ru": "Чашка одна: mía.",
+              "uk": "Чашка одна: mía."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i07:r1",
+          "text": "Плитки: mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i07:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-55:i07:audio",
+          "transcript": "No son mías."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son mías.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "mías"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — знайдені guantes не ваші",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i08:r1",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i08:r2",
+          "text": "mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i08:r3",
+          "text": "mío"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — знайдені guantes не ваші",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найденные guantes не ваши",
+          "uk": "Вставте слово — знайдені guantes не ваші"
+        },
+        "gappedTargetPhrase": "No son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-55:i08:r1",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i08:r2",
+            "text": "mías"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i08:r3",
+            "text": "mío"
+          }
+        ],
+        "testedDimension": "Вставте слово — знайдені guantes не ваші",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — знайдені guantes не ваші",
+            "feedbackByLocale": {
+              "ru": "Guantes мужского рода: míos.",
+              "uk": "Guantes чоловічого роду: míos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — знайдені guantes не ваші",
+            "feedbackByLocale": {
+              "ru": "Перчаток несколько: míos.",
+              "uk": "Рукавичок кілька: míos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — llaves не ваші; не повторюйте назву",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — llaves не ваші; не повторюйте назву",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-55:i09:audio",
+          "transcript": "No son mías."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son mías.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитайте, чиї кілька знайдених речей",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-55:i10:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-55:i10:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитайте, чиї кілька знайдених речей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите, чьи несколько найденных вещей",
+          "uk": "Вставте слово — запитайте, чиї кілька знайдених речей"
+        },
+        "gappedTargetPhrase": "¿De quién ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-55:i10:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i10:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i10:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитайте, чиї кілька знайдених речей",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-55:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте, чиї кілька знайдених речей",
+            "feedbackByLocale": {
+              "ru": "Вещей несколько: son.",
+              "uk": "Речей кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-55:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте, чиї кілька знайдених речей",
+            "feedbackByLocale": {
+              "ru": "Вопрос о вещах, не о говорящем: son.",
+              "uk": "Запитання про речі, не про мовця: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — bolso не ваш; не повторюйте назву",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — bolso не ваш; не повторюйте назву",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-55:i11:audio",
+          "transcript": "No es mío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — guantes не ваші; не повторюйте назву",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — guantes не ваші; не повторюйте назву",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-55:i12:audio",
+          "transcript": "No son míos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son míos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c4463c120f1682b79bc8a65aa7d6f6d1612035538f0f2076bcdabe7dab786d88"
+}

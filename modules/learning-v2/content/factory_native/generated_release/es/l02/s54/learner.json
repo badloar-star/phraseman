@@ -1,0 +1,705 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-54",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найдено несколько нужных карандашей",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i01:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i01:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i01:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найдено несколько нужных карандашей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найдено несколько нужных карандашей",
+          "uk": "Вставте слово — знайдено кілька потрібних олівців"
+        },
+        "gappedTargetPhrase": "___ los lápices.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-54:i01:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i01:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i01:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найдено несколько нужных карандашей",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдено несколько нужных карандашей",
+            "feedbackByLocale": {
+              "ru": "Карандашей несколько: son.",
+              "uk": "Олівців кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдено несколько нужных карандашей",
+            "feedbackByLocale": {
+              "ru": "Речь о предметах: son.",
+              "uk": "Мова про предмети: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это те самые карандаши",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i02:r1",
+          "text": "Плитки: lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i02:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i02:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i02:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это те самые карандаши",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los lápices.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те самые карандаши",
+          "uk": "Зберіть фразу — це ті самі олівці"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это те самые карандаши",
+            "feedbackByLocale": {
+              "ru": "карандашей несколько.",
+              "uk": "олівців кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найдены одни нужные настенные часы",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i03:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i03:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i03:r3",
+          "text": "eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найдены одни нужные настенные часы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найдены одни нужные настенные часы",
+          "uk": "Вставте слово — знайдено один потрібний настінний годинник"
+        },
+        "gappedTargetPhrase": "___ el reloj.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-54:i03:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i03:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i03:r3",
+            "text": "eres"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найдены одни нужные настенные часы",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдены одни нужные настенные часы",
+            "feedbackByLocale": {
+              "ru": "Одни часы — один предмет, el reloj: es.",
+              "uk": "Один годинник — один предмет, el reloj: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдены одни нужные настенные часы",
+            "feedbackByLocale": {
+              "ru": "Речь о предмете, не о собеседнике: es.",
+              "uk": "Мова про предмет, не про співрозмовника: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это те самые настенные часы, один предмет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i04:r1",
+          "text": "Плитки: reloj"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i04:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i04:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это те самые настенные часы, один предмет",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el reloj.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те самые настенные часы, один предмет",
+          "uk": "Зберіть фразу — це той самий настінний годинник, один предмет"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "reloj"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это те самые настенные часы, один предмет",
+            "feedbackByLocale": {
+              "ru": "reloj в единственном числе.",
+              "uk": "reloj в однині."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найдено несколько нужных огней",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i05:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i05:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i05:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найдено несколько нужных огней",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найдено несколько нужных огней",
+          "uk": "Вставте слово — знайдено кілька потрібних вогнів"
+        },
+        "gappedTargetPhrase": "Son ___ luces.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-54:i05:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i05:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i05:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найдено несколько нужных огней",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдено несколько нужных огней",
+            "feedbackByLocale": {
+              "ru": "Luces женского рода: las.",
+              "uk": "Luces жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдено несколько нужных огней",
+            "feedbackByLocale": {
+              "ru": "Огней несколько: las.",
+              "uk": "Вогнів кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это те самые огни",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i06:r1",
+          "text": "Плитки: luces"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i06:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i06:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это те самые огни",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las luces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те самые огни",
+          "uk": "Зберіть фразу — це ті самі вогні"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "luces"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это те самые огни",
+            "feedbackByLocale": {
+              "ru": "luces женского рода.",
+              "uk": "luces жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i07:r1",
+          "text": "Плитки: lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i07:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i07:r4",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-54:i07:audio",
+          "transcript": "Son los lápices."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son los lápices.",
+        "orderedTokens": [
+          "Son",
+          "los",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит los.",
+              "uk": "звучить los."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найдены несколько отдельных часов, которые искали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i08:r1",
+          "text": "relojes"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i08:r2",
+          "text": "reloj"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i08:r3",
+          "text": "lápiz"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найдены несколько отдельных часов, которые искали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найдены несколько отдельных часов, которые искали",
+          "uk": "Вставте слово — знайдено кілька окремих годинників, які шукали"
+        },
+        "gappedTargetPhrase": "Son los ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-54:i08:r1",
+            "text": "relojes"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i08:r2",
+            "text": "reloj"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i08:r3",
+            "text": "lápiz"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найдены несколько отдельных часов, которые искали",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдены несколько отдельных часов, которые искали",
+            "feedbackByLocale": {
+              "ru": "Часов несколько: relojes.",
+              "uk": "Годинників кілька: relojes."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найдены несколько отдельных часов, которые искали",
+            "feedbackByLocale": {
+              "ru": "Lápiz — карандаш; здесь нужны часы.",
+              "uk": "Lápiz — олівець; тут потрібні годинники."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это те самые карандаши",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это те самые карандаши",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-54:i09:audio",
+          "transcript": "Son los lápices."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los lápices.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найден один нужный карандаш",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-54:i10:r1",
+          "text": "lápiz"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i10:r2",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-54:i10:r3",
+          "text": "relojes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найден один нужный карандаш",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найден один нужный карандаш",
+          "uk": "Вставте слово — знайдено один потрібний олівець"
+        },
+        "gappedTargetPhrase": "Es el ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-54:i10:r1",
+            "text": "lápiz"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i10:r2",
+            "text": "lápices"
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i10:r3",
+            "text": "relojes"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найден один нужный карандаш",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-54:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найден один нужный карандаш",
+            "feedbackByLocale": {
+              "ru": "Карандаш один: lápiz.",
+              "uk": "Олівець один: lápiz."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-54:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найден один нужный карандаш",
+            "feedbackByLocale": {
+              "ru": "Это несколько часов, а нужен один карандаш.",
+              "uk": "Це кілька годинників, а потрібен один олівець."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это те самые настенные часы, один предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это те самые настенные часы, один предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-54:i11:audio",
+          "transcript": "Es el reloj."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es el reloj.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это те самые огни",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это те самые огни",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-54:i12:audio",
+          "transcript": "Son las luces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las luces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5bc2933f03394d6048da3ee4075eb7257e06245bc36afd968824bb8a98b70831"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-55:i01",
+    "correctText": "¿De quién es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i02",
+    "correctText": "¿De quién es?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i03",
+    "correctText": "No son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i04",
+    "correctText": "mías",
+    "correctResponseId": "es:lesson-02:session-55:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i05",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i06",
+    "correctText": "mía",
+    "correctResponseId": "es:lesson-02:session-55:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i07",
+    "correctText": "No son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i08",
+    "correctText": "míos",
+    "correctResponseId": "es:lesson-02:session-55:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i09",
+    "correctText": "No son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i10",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-55:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i11",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-55:i12",
+    "correctText": "No son míos.",
+    "correctResponseId": null
+  }
+]

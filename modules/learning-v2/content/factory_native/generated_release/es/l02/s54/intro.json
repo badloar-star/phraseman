@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать es или son по количеству предметов.",
+    "uk": "вибрати es або son за кількістю предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашлись карандаши",
+        "uk": "Знайшлися олівці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы искали карандаши для игры и наконец открыли нужную коробку. Назовите найденное: `Son los lápices` — «Это те самые карандаши». Соберите `son` + `los` + `lápices`. Предметов несколько, поэтому son; карандаши уже обсуждали, поэтому los. У знакомого lápiz во множественном числе z меняется на c: lápices.",
+        "uk": "Ви шукали олівці для гри й нарешті відкрили потрібну коробку. Назвіть знайдене: `Son los lápices` — «Це ті самі олівці». Складіть `son` + `los` + `lápices`. Предметів кілька, тому son; олівці вже обговорювали, тому los. У знайомого lápiz у множині z змінюється на c: lápices."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите найденные карандаши.",
+          "uk": "Назвіть знайдені олівці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-54:intro1:r1",
+              "text": "Son los lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro1:r2",
+              "text": "Es los lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro1:r3",
+              "text": "Son las lápices."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-54:intro1:r1",
+              "text": "Son los lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro1:r2",
+              "text": "Es los lápices."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro1:r3",
+              "text": "Son las lápices."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите найденные карандаши.",
+          "uk": "Назвіть знайдені олівці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одни настенные часы",
+        "uk": "Один настінний годинник"
+      },
+      "bodyByLocale": {
+        "ru": "Для вечера нужны настенные часы. Друг показывает один найденный предмет. Скажите `Es el reloj` — «Это те самые часы». Соберите `es` + `el` + `reloj`. По-русски «часы» — множественное число, но испанское reloj обозначает один предмет: es el reloj. Несколько отдельных часов — relojes, с son los.",
+        "uk": "Для вечора потрібен настінний годинник. Друг показує один знайдений предмет. Скажіть `Es el reloj` — «Це той самий годинник». Складіть `es` + `el` + `reloj`. Іспанське reloj позначає один предмет: es el reloj. Кілька окремих годинників — relojes, із son los."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите одни найденные часы.",
+          "uk": "Назвіть один знайдений годинник."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-54:intro2:r1",
+              "text": "Es el reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro2:r2",
+              "text": "Son el reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro2:r3",
+              "text": "Es los relojes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-54:intro2:r1",
+              "text": "Es el reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro2:r2",
+              "text": "Son el reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro2:r3",
+              "text": "Es los relojes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одни найденные часы.",
+          "uk": "Назвіть один знайдений годинник."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Огни для украшения",
+        "uk": "Вогні для прикрашання"
+      },
+      "bodyByLocale": {
+        "ru": "В другой коробке нашлись огни, которыми собирались украсить комнату. Назовите их: `Son las luces` — «Это те самые огни». Соберите `son` + `las` + `luces`. Знакомая luz во множественном числе становится luces: z меняется на c. Род остаётся женским, поэтому las; огней несколько, поэтому son.",
+        "uk": "В іншій коробці знайшлися вогні, якими збиралися прикрасити кімнату. Назвіть їх: `Son las luces` — «Це ті самі вогні». Складіть `son` + `las` + `luces`. Знайома luz у множині стає luces: z змінюється на c. Рід залишається жіночим, тому las; вогнів кілька, тому son."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите найденные огни.",
+          "uk": "Назвіть знайдені вогні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-54:intro3:r1",
+              "text": "Son las luces."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro3:r2",
+              "text": "Es las luces."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro3:r3",
+              "text": "Son los luces."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-54:intro3:r1",
+              "text": "Son las luces."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro3:r2",
+              "text": "Es las luces."
+            },
+            {
+              "responseId": "es:lesson-02:session-54:intro3:r3",
+              "text": "Son los luces."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите найденные огни.",
+          "uk": "Назвіть знайдені вогні."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ddef0afbdcec19de17279e7f4ba3cc09d72630d57c28cc1f5d7a0a1ed2752d39"
+}

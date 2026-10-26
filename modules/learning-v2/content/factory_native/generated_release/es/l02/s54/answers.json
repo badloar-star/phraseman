@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-54:i01",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-54:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i02",
+    "correctText": "Son los lápices.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i03",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-02:session-54:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i04",
+    "correctText": "Es el reloj.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i05",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-02:session-54:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i06",
+    "correctText": "Son las luces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i07",
+    "correctText": "Son los lápices.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i08",
+    "correctText": "relojes",
+    "correctResponseId": "es:lesson-02:session-54:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i09",
+    "correctText": "Son los lápices.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i10",
+    "correctText": "lápiz",
+    "correctResponseId": "es:lesson-02:session-54:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i11",
+    "correctText": "Es el reloj.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-54:i12",
+    "correctText": "Son las luces.",
+    "correctResponseId": null
+  }
+]

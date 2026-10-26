@@ -1,0 +1,1083 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-56",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — что это?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i01:r1",
+          "text": "Плитки: esto?"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i01:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i01:r3",
+          "text": "¿qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i01:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — что это?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué es esto?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — что это?",
+          "uk": "Зберіть фразу — що це?"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "es",
+          "esto"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — что это?",
+            "feedbackByLocale": {
+              "ru": "с esto нужно es.",
+              "uk": "з esto потрібно es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — впервые называете один cuaderno",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i02:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i02:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i02:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — впервые называете один cuaderno",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — впервые называете один cuaderno",
+          "uk": "Вставте слово — уперше називаєте один cuaderno"
+        },
+        "gappedTargetPhrase": "Es ___ cuaderno.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i02:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i02:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i02:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — впервые называете один cuaderno",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — впервые называете один cuaderno",
+            "feedbackByLocale": {
+              "ru": "Cuaderno мужского рода: un.",
+              "uk": "Cuaderno чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — впервые называете один cuaderno",
+            "feedbackByLocale": {
+              "ru": "Предмет один: un.",
+              "uk": "Предмет один: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это чашка, используйте una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i03:r1",
+          "text": "Плитки: taza"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i03:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это чашка, используйте una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una taza.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это чашка, используйте una",
+          "uk": "Зберіть фразу — це чашка, використайте una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "taza"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это чашка, используйте una",
+            "feedbackByLocale": {
+              "ru": "taza женского рода.",
+              "uk": "taza жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — впервые называете несколько guantes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i04:r1",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i04:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i04:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — впервые называете несколько guantes",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — впервые называете несколько guantes",
+          "uk": "Вставте слово — уперше називаєте кілька guantes"
+        },
+        "gappedTargetPhrase": "Son ___ guantes.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i04:r1",
+            "text": "unos"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i04:r2",
+            "text": "unas"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i04:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — впервые называете несколько guantes",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — впервые называете несколько guantes",
+            "feedbackByLocale": {
+              "ru": "Guantes мужского рода: unos.",
+              "uk": "Guantes чоловічого роду: unos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — впервые называете несколько guantes",
+            "feedbackByLocale": {
+              "ru": "Предметов несколько: unos.",
+              "uk": "Предметів кілька: unos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — впервые называете несколько tazas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i05:r1",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i05:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i05:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — впервые называете несколько tazas",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — впервые называете несколько tazas",
+          "uk": "Вставте слово — уперше називаєте кілька tazas"
+        },
+        "gappedTargetPhrase": "Son ___ tazas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i05:r1",
+            "text": "unas"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i05:r2",
+            "text": "unos"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i05:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — впервые называете несколько tazas",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — впервые называете несколько tazas",
+            "feedbackByLocale": {
+              "ru": "Tazas женского рода: unas.",
+              "uk": "Tazas жіночого роду: unas."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — впервые называете несколько tazas",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: unas.",
+              "uk": "Чашок кілька: unas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чья эта одна вещь?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i06:r1",
+          "text": "Плитки: es?"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i06:r2",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i06:r3",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i06:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чья эта одна вещь?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чья эта одна вещь?",
+          "uk": "Зберіть фразу — чия ця одна річ?"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чья эта одна вещь?",
+            "feedbackByLocale": {
+              "ru": "вещь одна.",
+              "uk": "річ одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нашли тот самый один reloj",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i07:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i07:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i07:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нашли тот самый один reloj",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нашли тот самый один reloj",
+          "uk": "Вставте слово — знайшли той самий один reloj"
+        },
+        "gappedTargetPhrase": "Es ___ reloj.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i07:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i07:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i07:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нашли тот самый один reloj",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли тот самый один reloj",
+            "feedbackByLocale": {
+              "ru": "Reloj мужского рода: el.",
+              "uk": "Reloj чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли тот самый один reloj",
+            "feedbackByLocale": {
+              "ru": "Один предмет: el.",
+              "uk": "Один предмет: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нашли ту самую одну taza",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i08:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i08:r3",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нашли ту самую одну taza",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нашли ту самую одну taza",
+          "uk": "Вставте слово — знайшли ту саму одну taza"
+        },
+        "gappedTargetPhrase": "Es ___ taza.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i08:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i08:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i08:r3",
+            "text": "las"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нашли ту самую одну taza",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли ту самую одну taza",
+            "feedbackByLocale": {
+              "ru": "Taza женского рода: la.",
+              "uk": "Taza жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли ту самую одну taza",
+            "feedbackByLocale": {
+              "ru": "Чашка одна: la.",
+              "uk": "Чашка одна: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нашли те самые lápices",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i09:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i09:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i09:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нашли те самые lápices",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нашли те самые lápices",
+          "uk": "Вставте слово — знайшли ті самі lápices"
+        },
+        "gappedTargetPhrase": "Son ___ lápices.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i09:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i09:r2",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i09:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нашли те самые lápices",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли те самые lápices",
+            "feedbackByLocale": {
+              "ru": "Lápices мужского рода: los.",
+              "uk": "Lápices чоловічого роду: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли те самые lápices",
+            "feedbackByLocale": {
+              "ru": "Карандашей несколько: los.",
+              "uk": "Олівців кілька: los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — нашли те самые llaves",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i10:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i10:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i10:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — нашли те самые llaves",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нашли те самые llaves",
+          "uk": "Вставте слово — знайшли ті самі llaves"
+        },
+        "gappedTargetPhrase": "Son ___ llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i10:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i10:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i10:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставьте слово — нашли те самые llaves",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли те самые llaves",
+            "feedbackByLocale": {
+              "ru": "Llaves женского рода: las.",
+              "uk": "Llaves жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — нашли те самые llaves",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: las.",
+              "uk": "Ключів кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i11:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i11:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i11:r4",
+          "text": "mío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-56:i11:audio",
+          "transcript": "No es mía."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es mía.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mía.",
+              "uk": "звучить mía."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — один найденный bolso не ваш",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i12:r1",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i12:r2",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i12:r3",
+          "text": "míos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — один найденный bolso не ваш",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один найденный bolso не ваш",
+          "uk": "Вставте слово — один знайдений bolso не ваш"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i12:r1",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i12:r2",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i12:r3",
+            "text": "míos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — один найденный bolso не ваш",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один найденный bolso не ваш",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: mío.",
+              "uk": "Bolso чоловічого роду: mío."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — один найденный bolso не ваш",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: mío.",
+              "uk": "Сумка одна: mío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найденные llaves не ваши",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i13:r1",
+          "text": "mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i13:r2",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i13:r3",
+          "text": "mía"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найденные llaves не ваши",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найденные llaves не ваши",
+          "uk": "Вставте слово — знайдені llaves не ваші"
+        },
+        "gappedTargetPhrase": "No son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i13:r1",
+            "text": "mías"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i13:r2",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i13:r3",
+            "text": "mía"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найденные llaves не ваши",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найденные llaves не ваши",
+            "feedbackByLocale": {
+              "ru": "Llaves женского рода: mías.",
+              "uk": "Llaves жіночого роду: mías."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найденные llaves не ваши",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: mías.",
+              "uk": "Ключів кілька: mías."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — найденные guantes ваши",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-56:i14:r1",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i14:r2",
+          "text": "mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-56:i14:r3",
+          "text": "mío"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — найденные guantes ваши",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — найденные guantes ваши",
+          "uk": "Вставте слово — знайдені guantes ваші"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-56:i14:r1",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i14:r2",
+            "text": "mías"
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i14:r3",
+            "text": "mío"
+          }
+        ],
+        "testedDimension": "Вставьте слово — найденные guantes ваши",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-56:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найденные guantes ваши",
+            "feedbackByLocale": {
+              "ru": "Guantes мужского рода: míos.",
+              "uk": "Guantes чоловічого роду: míos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-56:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — найденные guantes ваши",
+            "feedbackByLocale": {
+              "ru": "Перчаток несколько: míos.",
+              "uk": "Рукавичок кілька: míos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите одну чашку, используя una",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите одну чашку, используя una",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-56:i15:audio",
+          "transcript": "Es una taza."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una taza.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — теперь отдельно спросите, чья она; не повторяйте название",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — теперь отдельно спросите, чья она; не повторяйте название",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-56:i16:audio",
+          "transcript": "¿De quién es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эта чашка не ваша; не повторяйте название",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эта чашка не ваша; не повторяйте название",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-56:i17:audio",
+          "transcript": "No es mía."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mía.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-56:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите, чьи несколько найденных вещей; не называйте их",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-56:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите, чьи несколько найденных вещей; не называйте их",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-56:i18:audio",
+          "transcript": "¿De quién son?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién son?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "580967000106d89fa88306b66d1741e570713a8139ca825a6a9909d9efc7743d"
+}

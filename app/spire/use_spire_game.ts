@@ -44,7 +44,7 @@ import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
 import type { SpireRoomLoad } from './spire_room_client';
 import { useSpireRoomSync } from './use_spire_room_sync';
-import { spireFirstFrameRoom } from './spire_load_trace';
+import { spireFirstFrameRoom, spirePeekFirstFrameIds, spirePeekFirstFrameRoomLoad } from './spire_load_trace';
 import { publishSpirePositionFeed } from './spire_position_feed';
 import { useSpireOwnerEpoch } from './spire_owner_epoch';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
@@ -89,8 +89,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     () => (unlocked && lang ? spireOpenLiveGate(config, 'home') : null), // зачем (замер 17.10 [SPIRE-LOAD]): тот же конфиг новым объектом (кэш → сеть) пересоздавал ворота — повторные identity и тройной room:sync
     [unlocked, lang, config ? JSON.stringify(config) : null], // eslint-disable-line react-hooks/exhaustive-deps -- зачем: ворота меняются только при смене содержимого конфига
   );
-  const [ids, setIds] = useState<Readonly<{ uid: string; stableId: string }> | null>(null);
-  const [roomLoad, setRoomLoad] = useState<SpireRoomLoad | null>(null);
+  const [ids, setIds] = useState<Readonly<{ uid: string; stableId: string }> | null>(spirePeekFirstFrameIds); // зачем (владелец 26.10 «Пик всегда прогружен»): память процесса — первый кадр без ожидания uid
+  const [roomLoad, setRoomLoad] = useState<SpireRoomLoad | null>(() => spirePeekFirstFrameRoomLoad(lang));
   useSpireRoomSync({ gate, ids, lang, setRoomLoad }); // [SPIRE-ROOM] владелец 25.10: комната не остаётся пустой до перезахода
   const [friends, setFriends] = useState<readonly SpireFriendChip[]>([]);
   const [weekResult, setWeekResult] = useState<SpireWeekResultView | null>(null);
@@ -137,7 +137,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         DebugLogger.info(LOG, `game: нет идентичности (uid=${uid ? 'есть' : 'нет'}) — сеть Шпиля не трогаем`);
         return;
       }
-      setIds({ uid, stableId }); // зачем (жалоба владельца 17.10, [SPIRE-LOAD]): комната — память, иначе диск этой недели любого возраста; люди и «Играть» сразу, spireSyncRoom ниже освежает
+      setIds((cur) => (cur && cur.uid === uid && cur.stableId === stableId ? cur : { uid, stableId })); // тот же объект — без повторной сети // зачем (жалоба владельца 17.10, [SPIRE-LOAD]): комната — память, иначе диск этой недели любого возраста; люди и «Играть» сразу, spireSyncRoom ниже освежает
       void spireFirstFrameRoom(uid, lang as SpireLang, Date.now() - identityStartedAt).then((first) => { if (alive && first) setRoomLoad((cur) => cur ?? first); });
     })();
     return () => { alive = false; };

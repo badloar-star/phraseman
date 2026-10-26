@@ -280,7 +280,9 @@ describe('скелет подиума и свайп по окну башни', (
     expect(podium).toContain('const SKELETON_PLACES = [2, 1, 3] as const;');
     expect(podium).toContain('const sizes = compact ? PODIUM_SIZES.compact : PODIUM_SIZES.full;');
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('const podiumLoading = members === null && game.live && game.roomLoad === null;');
+    // владелец 26.10 «Пик всегда прогружен»: пока конфиг не прочитан и кэша нет — тоже скелет (не «0» и «—»), под тем же потолком 2,5 с
+    expect(home).toContain('const podiumLoading = members === null && (game.live || config === null) && game.roomLoad === null;');
+    expect(home).toContain('useSpireRoomCeiling({ live: game.live || config === null, roomLoad');
     // зачем (Сверка 18.10 находка 13, вечный скелет подиума у гостя): скелет — только пока комната грузится И не прошёл потолок 2,5 с
     // (use_spire_room_ceiling); колонки подиума и проп loading следуют за podiumSkeleton. Прежнее условие загрузки сохранено.
     expect(home).toContain('const podiumSkeleton = podiumLoading && !roomCeilingPassed; const podiumColumns = podiumSkeleton || (members !== null && members.length > 0);');

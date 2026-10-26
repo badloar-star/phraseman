@@ -17,6 +17,9 @@ import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { getCanonicalUserId } from '../user_id_policy';
 import { asSpireLang } from '../../components/spire/spire_home_week';
+import { CLOUD_SYNC_ENABLED } from '../config';
+import { peekStableId } from '../stable_id';
+import { peekSpireWeekLocal, spireReadWeekLocal } from '../spire_report_client';
 
 let enteredAtMs = Date.now();
 
@@ -59,6 +62,32 @@ export async function spireFirstFrameRoom(uid: string, lang: SpireLang, identity
   }
   spireLoadMark('room:first_frame', { source: 'disk', ageMs: Date.now() - disk.fetchedAtMs, members: disk.members.length, tier: disk.tier, readMs: Date.now() - startedAt });
   return { status: 'cache', room: disk, reason: 'disk_first_frame' };
+}
+
+// ── Первый кадр без ожидания (владелец 26.10, скрин эмулятора: «СДЕЛАЙ, ЧТОБЫ ПИК ВСЕГДА БЫЛ В ПРОГРУЖЕННОМ СОСТОЯНИИ!») ──
+// зачем: комната уже лежала в памяти (прогрев на Главной), но экран ждал асинхронного чтения uid — первый кадр показывал
+// «ступень 0 из 5», «Комната недели 0», «—» и серую «Играть». uid = stableId (user_id_policy), он в памяти процесса — читаем синхронно.
+
+/** uid и stableId из памяти процесса, null — ещё не читались (тогда ждём getCanonicalUserId, как раньше). */
+export function spirePeekFirstFrameIds(): Readonly<{ uid: string; stableId: string }> | null {
+  const stableId = CLOUD_SYNC_ENABLED ? peekStableId() : null;
+  return stableId ? { uid: stableId, stableId } : null;
+}
+
+/** Комната недели из памяти процесса для самого первого кадра; одна строка [SPIRE-LOAD] с источником. */
+export function spirePeekFirstFrameRoomLoad(lang: string | null): SpireRoomLoad | null {
+  const ids = spirePeekFirstFrameIds();
+  const spireLang = asSpireLang(lang);
+  const room = ids && spireLang ? peekSpireRoom(ids.uid, spireLang) : null;
+  // зачем: неделя и конфиг здесь только для строки журнала — их сбой не должен ломать первый кадр
+  const peekSafe = (what: string, f: () => unknown): string => {
+    try { return f() ? 'memory' : 'none'; } catch (e: unknown) { console.warn('[SPIRE]', '[SPIRE-LOAD]', `first_frame:${what}_peek_failed`, e instanceof Error ? e.message : String(e)); return 'error'; } // guard-ok: catch пишет причину
+  };
+  spireLoadMark('first_frame', {
+    ids: ids ? 'memory' : 'none', config: peekSafe('config', peekSpireConfig), week: spireLang ? peekSafe('week', () => peekSpireWeekLocal(spireLang)) : 'none',
+    room: room ? 'memory' : 'none', members: room ? room.members.length : null, reads: 0,
+  });
+  return room ? { status: 'cache', room, reason: 'memory_first_frame' } : null;
 }
 
 type ReadinessInput = Readonly<{
@@ -106,8 +135,13 @@ export async function warmSpireRoomFromDisk(studyTarget: unknown): Promise<'warm
       console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: 'skip', why: 'нет uid' })); // guard-ok: ранний выход
       return 'skip';
     }
-    const room = await spireReadRoomCache(uid, lang);
+    // зачем (владелец 26.10): своя неделя (этаж, ступень) — тоже в память заранее, иначе первый кадр Пика рисует «ступень 0 из N»
+    const [room, week] = await Promise.all([spireReadRoomCache(uid, lang), spireReadWeekLocal(uid, lang).catch((e: unknown) => {
+      console.warn('[SPIRE]', '[SPIRE-LOAD]', 'week:warm_failed', e instanceof Error ? e.message : String(e)); // guard-ok: catch пишет причину
+      return null;
+    })]);
     const fresh = room !== null && room.weekId === spireCurrentWeekKey(Date.now());
+    spireLoadMark('week:warm', { found: week !== null, weekKey: week?.weekKey ?? null, floor: week?.floor ?? null, stepInFloor: week?.stepInFloor ?? null });
     console.log('[SPIRE]', '[SPIRE-LOAD]', 'room:warm', JSON.stringify({ result: fresh ? 'warmed' : 'none', lang, weekId: room?.weekId ?? null, members: room?.members.length ?? null, ms: Date.now() - startedAt })); // guard-ok: итог прогрева
     // зачем (вариант (в) плиток Главной, координатор 17.10): бейдж места на плитке «Пик» — из этой же копии, без сети
     if (fresh && room) void import('./spire_home_place').then((m) => m.refreshSpireHomePlace(uid, lang, room));

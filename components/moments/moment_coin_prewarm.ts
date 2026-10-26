@@ -7,7 +7,6 @@
 // Один раз на ранг и вариант за процесс; сбой — только журнал, окно всё равно загрузит монету само.
 // ═══════════════════════════════════════════════════════════════════════════
 import { PixelRatio } from 'react-native';
-import { Image } from 'expo-image';
 import { coinRankSourceForSize } from '../../app/coin_rank_table_v1';
 
 const LOG = '[MOMENT-COIN-PREWARM]';
@@ -22,12 +21,25 @@ export function prewarmMomentCoin(rank: number | null, reason: string): void {
     console.log(LOG, 'skip', JSON.stringify({ reason, why: 'no_rank' })); // guard-ok: ранний выход с причиной
     return;
   }
+  try {
+    warmRank(rank, reason);
+  } catch (error: unknown) {
+    // зачем: прогрев — только ускорение; любой сбой (нет PixelRatio/expo-image) не должен ронять окно или экран Пика
+    console.warn(LOG, 'failed', JSON.stringify({ reason, rank, stage: 'setup', error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+  }
+}
+
+function warmRank(rank: number, reason: string): void {
   const ratio = PixelRatio.get();
   const picks = new Map<string, ReturnType<typeof coinRankSourceForSize>>();
   for (const size of MOMENT_COIN_PREWARM_SIZES) {
     const pick = coinRankSourceForSize(rank, size, ratio);
     picks.set(`${rank}:${pick.variant}`, pick); // guard-ok: Map в памяти процесса, не запись данных пользователя
   }
+  // зачем (26.10): expo-image берём при первом прогреве, а не при загрузке модуля — модуль импортирует слой окон Пика, и статический
+  // импорт тянул ESM expo-image во все тесты экрана Пика (spire_rise_queue_p17 падал на «Unexpected token export»).
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { Image } = require('expo-image') as typeof import('expo-image');
   for (const [key, pick] of picks) {
     if (warmed.has(key)) continue;
     warmed.add(key);

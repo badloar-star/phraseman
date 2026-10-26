@@ -39,7 +39,7 @@ jest.mock('../app/spire/spire_room_client', () => ({
 }));
 jest.mock('../app/spire/spire_live_gate', () => ({ spireOpenLiveGate: jest.fn(() => ({ where: 'home' })) }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'uid_1') }));
-jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable_1') }));
+jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable_1'), peekStableId: () => null })); // зачем (26.10): первый кадр Пика читает uid из памяти; здесь памяти нет — путь через getStableId, как раньше
 jest.mock('../app/spire/spire_friends_client', () => ({ spireLoadFriendChips: jest.fn(async () => []) }));
 jest.mock('../app/spire/spire_week_result_client', () => ({
   spireLoadWeekResult: jest.fn(async () => null),

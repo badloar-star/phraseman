@@ -1,0 +1,595 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-31",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — discreto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — discreto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i01:audio",
+          "transcript": "discreto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-31:i01:r1",
+            "targetText": "discreto",
+            "meaningByLocale": {
+              "ru": "сдержанный в поведении. Женская форма — discreta; несколько людей — discretos или discretas. 🔊 *discreto*",
+              "uk": "стриманий у поведінці. Жіноча форма — discreta; кілька людей — discretos або discretas. 🔊 *discreto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "discreto",
+          "definitionByLocale": {
+            "ru": "сдержанный в поведении. Женская форма — discreta; несколько людей — discretos или discretas. 🔊 *discreto*",
+            "uk": "стриманий у поведінці. Жіноча форма — discreta; кілька людей — discretos або discretas. 🔊 *discreto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-31:i02:r1",
+          "text": "discretas"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i02:r2",
+          "text": "discretos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i02:audio",
+          "transcript": "discretas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-31:i02:r1",
+            "targetText": "discretas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-31:i02:r2",
+            "targetText": "discretos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание as: discretas.",
+              "uk": "Звучить закінчення as: discretas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть від своєї змішаної компанії «Ми стримані»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-31:i03:r1",
+          "text": "Плитки: discretos"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i03:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i03:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть від своєї змішаної компанії «Ми стримані»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos discretos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите от своей смешанной компании «Мы сдержанные»",
+          "uk": "Зберіть фразу — скажіть від своєї змішаної компанії «Ми стримані»"
+        },
+        "orderedTokens": [
+          "Somos",
+          "discretos"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-31:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть від своєї змішаної компанії «Ми стримані»",
+            "feedbackByLocale": {
+              "ru": "описываете свою компанию.",
+              "uk": "описуєте свою компанію."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — опишіть свою змішану компанію як стриману",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — опишіть свою змішану компанію як стриману",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i04:audio",
+          "transcript": "Somos discretos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos discretos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hablador",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hablador",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i05:audio",
+          "transcript": "hablador"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-31:i05:r1",
+            "targetText": "hablador",
+            "meaningByLocale": {
+              "ru": "разговорчивый. Женская форма — habladora; несколько людей — habladores или habladoras. 🔊 *hablador*",
+              "uk": "балакучий. Жіноча форма — habladora; кілька людей — habladores або habladoras. 🔊 *hablador*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hablador",
+          "definitionByLocale": {
+            "ru": "разговорчивый. Женская форма — habladora; несколько людей — habladores или habladoras. 🔊 *hablador*",
+            "uk": "балакучий. Жіноча форма — habladora; кілька людей — habladores або habladoras. 🔊 *hablador*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-31:i06:r1",
+          "text": "habladores"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i06:r2",
+          "text": "hablador"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i06:audio",
+          "transcript": "habladores"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-31:i06:r1",
+            "targetText": "habladores",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-31:i06:r2",
+            "targetText": "hablador",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит форма для нескольких людей: habladores.",
+              "uk": "Звучить форма для кількох людей: habladores."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — опишіть іншу змішану компанію «Вони балакучі»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-31:i07:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i07:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i07:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — опишіть іншу змішану компанію «Вони балакучі»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — опишите другую смешанную компанию «Они разговорчивые»",
+          "uk": "Вставте слово — опишіть іншу змішану компанію «Вони балакучі»"
+        },
+        "gappedTargetPhrase": "Ellos ___ habladores.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-31:i07:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-31:i07:r2",
+            "text": "somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-31:i07:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — опишіть іншу змішану компанію «Вони балакучі»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-31:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть іншу змішану компанію «Вони балакучі»",
+            "feedbackByLocale": {
+              "ru": "Это о нас, а здесь о них.",
+              "uk": "Це про нас, а тут про них."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-31:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть іншу змішану компанію «Вони балакучі»",
+            "feedbackByLocale": {
+              "ru": "Группа требует son, а не es.",
+              "uk": "Група потребує son, а не es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — розкажіть про інших друзів, які люблять поговорити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — розкажіть про інших друзів, які люблять поговорити",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i08:audio",
+          "transcript": "Ellos son habladores."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellos son habladores.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — опишіть іншу компанію лише жінок «Вони балакучі»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-31:i09:r1",
+          "text": "Плитки: habladoras"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i09:r3",
+          "text": "ellas"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i09:r4",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — опишіть іншу компанію лише жінок «Вони балакучі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ellas son habladoras.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — опишите другую компанию только женщин «Они разговорчивые»",
+          "uk": "Зберіть фразу — опишіть іншу компанію лише жінок «Вони балакучі»"
+        },
+        "orderedTokens": [
+          "Ellas",
+          "son",
+          "habladoras"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-31:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — опишіть іншу компанію лише жінок «Вони балакучі»",
+            "feedbackByLocale": {
+              "ru": "рассказываете о другой компании.",
+              "uk": "розповідаєте про іншу компанію."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — розкажіть про балакучих подруг, не включаючи себе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — розкажіть про балакучих подруг, не включаючи себе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i10:audio",
+          "transcript": "Ellas son habladoras."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ellas son habladoras.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть від своєї компанії жінок «Ми не балакучі»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-31:i11:r1",
+          "text": "Плитки: habladoras"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i11:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i11:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-31:i11:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть від своєї компанії жінок «Ми не балакучі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No somos habladoras.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите от своей компании женщин «Мы не разговорчивые»",
+          "uk": "Зберіть фразу — скажіть від своєї компанії жінок «Ми не балакучі»"
+        },
+        "orderedTokens": [
+          "No",
+          "somos",
+          "habladoras"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-31:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть від своєї компанії жінок «Ми не балакучі»",
+            "feedbackByLocale": {
+              "ru": "говорите от своей компании.",
+              "uk": "говорите від своєї компанії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви входите до компанії лише жінок; опишіть її як стриману",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви входите до компанії лише жінок; опишіть її як стриману",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-31:i12:audio",
+          "transcript": "Somos discretas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos discretas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a566b0e06fbce166a41168ed8780453873038f8ac3974c6531e0b9c1937bb128"
+}

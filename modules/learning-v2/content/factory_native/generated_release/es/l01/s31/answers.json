@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-31:i01",
+    "correctText": "discreto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i02",
+    "correctText": "discretas",
+    "correctResponseId": "es:lesson-01:session-31:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i03",
+    "correctText": "Somos discretos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i04",
+    "correctText": "Somos discretos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i05",
+    "correctText": "hablador",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i06",
+    "correctText": "habladores",
+    "correctResponseId": "es:lesson-01:session-31:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i07",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-31:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i08",
+    "correctText": "Ellos son habladores.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i09",
+    "correctText": "Ellas son habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i10",
+    "correctText": "Ellas son habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i11",
+    "correctText": "No somos habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-31:i12",
+    "correctText": "Somos discretas.",
+    "correctResponseId": null
+  }
+]

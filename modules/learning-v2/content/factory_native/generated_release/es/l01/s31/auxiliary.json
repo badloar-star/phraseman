@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-31",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-31:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-31:intro1:r2": {
+          "ru": "Это «они сдержанные», а вы говорите о нас.",
+          "uk": "Це «вони стримані», а ви говорите про нас."
+        },
+        "es:lesson-01:session-31:intro1:r3": {
+          "ru": "Это об одном говорящем, а нужно обо всей компании.",
+          "uk": "Це про одного мовця, а потрібно про всю компанію."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-31:intro2:r2": {
+          "ru": "Somos относится к «мы», а ellos означает «они».",
+          "uk": "Somos стосується «ми», а ellos означає «вони»."
+        },
+        "es:lesson-01:session-31:intro2:r3": {
+          "ru": "Группа требует son и формы habladores.",
+          "uk": "Група потребує son і форми habladores."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-31:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-31:intro3:r2": {
+          "ru": "Habladora описывает одну женщину, а здесь несколько.",
+          "uk": "Habladora описує одну жінку, а тут кілька."
+        },
+        "es:lesson-01:session-31:intro3:r3": {
+          "ru": "О них нужно son; somos означает «мы».",
+          "uk": "Про них потрібно son; somos означає «ми»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c9c49f3c7ba5ba04fe4163b81132c31cec9475005b8dcaccbed3504e394f0a88"
+}

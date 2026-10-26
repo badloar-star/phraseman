@@ -217,4 +217,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать форму ser по тому, кого описываете, в одной отдельной реплике.","uk":"обрати форму ser за тим, кого описуєте, в одній окремій репліці."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 31,
+    sourceFingerprint: "61add52a36b927b63e16fec24ebfcc8e1b7929a3a0013794fb9afcd592809184",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать вслух, какие мы и какие они, выбирая somos или son.","uk":"сказати вголос, які ми та які вони, обираючи somos або son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

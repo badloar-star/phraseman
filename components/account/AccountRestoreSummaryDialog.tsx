@@ -47,8 +47,8 @@ const AccountRestoreSummaryCard = memo(function AccountRestoreSummaryCard({ titl
             <React.Fragment key={cell.label}>
               {index > 0 ? <View style={[styles.cellDivider, { backgroundColor: glass.mutedText }]} /> : null}
               <View accessible accessibilityLabel={`${cell.value} ${cell.label}`} style={styles.cell}>
-                <Text numberOfLines={1} style={[styles.cellValue, { color: glass.text }]}>{cell.value}</Text>
-                <Text numberOfLines={1} style={[styles.cellLabel, { color: glass.secondary }]}>{cell.label}</Text>
+                <Text style={[styles.cellValue, { color: glass.text }]}>{cell.value}</Text>
+                <Text style={[styles.cellLabel, { color: glass.secondary, textAlign: 'center' }]}>{cell.label}</Text>
               </View>
             </React.Fragment>
           ))}
@@ -76,7 +76,7 @@ const AccountRestoreSummaryCard = memo(function AccountRestoreSummaryCard({ titl
             ]}
           >
             {a.ghost ? null : <ThemeAccentFill glass={glass} radius={25} ink={glass.ctaFillInk} />}
-            <Text numberOfLines={2} style={[styles.ctaText, { color: a.ghost ? glass.text : glass.ctaFillInk }]}>{a.label}</Text>
+            <Text style={[styles.ctaText, { color: a.ghost ? glass.text : glass.ctaFillInk }]}>{a.label}</Text>
           </Pressable>
         ))}
       </View>

@@ -444,7 +444,7 @@ const s = StyleSheet.create({
   statNum: { fontSize: 30, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
   statLabel: { fontSize: 13, fontWeight: '600', marginTop: 4 },
   // зачем (practice.html `.award`): монета → число 14, число 34/700; подпись «монет» в 10 от числа.
-  award: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 14, marginTop: 12, height: 54 },
+  award: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 14, marginTop: 12, minHeight: 54, flexWrap: 'wrap' }, // minHeight + wrap (крайние случаи 26.10): при шрифте ×1,3 число и подпись переносятся, ряд не режется
   awardCoin: { width: 44, height: 44 },
   awardNum: { fontSize: 34, fontWeight: '700', letterSpacing: -0.5, fontVariant: ['tabular-nums'] },
   awardUnit: { fontSize: 16, fontWeight: '600', marginLeft: -4 },

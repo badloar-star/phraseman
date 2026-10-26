@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   actions: { marginTop: 20, gap: 10 },
   pill: { minHeight: 52, borderRadius: 26, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   pillRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  pillLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
+  pillLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center', flexShrink: 1 }, // flexShrink: длинная подпись рядом с индикатором переносится, а не выходит за край кнопки
   link: { alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 12 },
   // зачем (D145, координатор 25.10): ссылка — обычный текст, размер из шкалы 16/13; 16 как у кнопок окна.
   linkLabel: { fontSize: 16, fontWeight: '600', textAlign: 'center' },

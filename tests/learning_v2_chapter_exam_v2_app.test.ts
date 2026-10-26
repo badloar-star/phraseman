@@ -19,8 +19,8 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
 let mockFlag: boolean | undefined;
 jest.mock('../app/remote_flags', () => ({
-  // как в приложении: без значения из «Пульта» — значение по умолчанию (выкл до склейки с макетом, d34be664d)
-  getRemoteBool: () => mockFlag ?? false,
+  // как в приложении: без значения из «Пульта» — значение по умолчанию (вкл в 2.0.3, слово владельца 26.10)
+  getRemoteBool: () => mockFlag ?? true,
   hasRemoteBoolOverride: () => mockFlag !== undefined,
 }));
 jest.mock('../app/premium_theme_progress', () => ({ notePremiumThemeProgress: () => undefined }));
@@ -46,10 +46,15 @@ beforeEach(() => {
 afterEach(() => jest.restoreAllMocks());
 
 describe('выбор экзамена', () => {
-  it('по умолчанию — прежний экзамен; включён из «Пульта» и глава с банком — v2; без банка — прежний', () => {
-    // по умолчанию выключен (нет склейки с макетом) — все главы на прежнем экзамене
-    expect([1, 2, 3, 4].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([false, false, false, false]);
-    // включён удалённо: главы 1–3 урока 1 подключены (владелец 25.10); глава 4 — без банка, прежний экзамен
+  it('по умолчанию (2.0.3) — v2 у глав 1–3 урока 1, у остальных — прежний; выключен из «Пульта» — прежний у всех', () => {
+    // слово владельца 26.10: включено для 3 глав урока 1; банков других глав нет — у них прежний экзамен
+    expect([1, 2, 3, 4, 5].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([true, true, true, false, false]);
+    expect(isChapterExamV2EnabledFor(2, 1)).toBe(false);
+    expect([chapterExamV2BankFor(1, 1), chapterExamV2BankFor(1, 2), chapterExamV2BankFor(1, 3)].every((b) => b !== null)).toBe(true);
+    expect(chapterExamV2BankFor(1, 4)).toBeNull();
+    // выключен удалённо — прежний экзамен у всех глав
+    mockFlag = false;
+    expect([1, 2, 3].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([false, false, false]);
     mockFlag = true;
     expect(isChapterExamV2EnabledFor(1, 1)).toBe(true);
     expect(isChapterExamV2EnabledFor(1, 2)).toBe(true);
@@ -125,13 +130,15 @@ describe('подключение', () => {
   it('маршрут экзамена выбирает v2 по банку и переключателю; прежний экзамен остаётся', () => {
     const route = read('app/learning-v2/chapter-exam.tsx');
     expect(route).toContain('isChapterExamV2EnabledFor(lessonOrdinal, chapterOrdinal)');
+    // обе ветки маршрута: глава с v2 — новый экран, иначе — прежний экзамен; гейт языка — раньше выбора
+    expect(route).toMatch(/if \(isChapterExamV2EnabledFor\(lessonOrdinal, chapterOrdinal\)\) \{\s*return <ChapterExamV2Run [^>]*\/>;\s*\}\s*return <ChapterExamRun \/>;/);
     expect(route).toContain('<ChapterExamV2Run');
     expect(route).toContain('return <ChapterExamRun />;');
   });
-  it('плеер отмечает пройденный эпизод для повтора тем; переключатель «Пульта» по умолчанию выключен и включается из Пульта', () => {
+  it('плеер отмечает пройденный эпизод для повтора тем; переключатель «Пульта» по умолчанию включён (2.0.3) и выключается из Пульта', () => {
     expect(read('app/learning_v2_direct_session_player_v1.tsx')).toContain('noteChapterExamV2EpisodeFinishedV1(accountScopeHash, runSummary.courseSessionId)');
     const flags = read('app/remote_flags.ts');
-    expect(flags).toContain('learning_chapter_exam_v2_enabled: false,');
+    expect(flags).toContain('learning_chapter_exam_v2_enabled: true,');
     // в списке ключей, которые Пульт может менять (соседние ключи других сессий не мешают)
     expect(flags).toMatch(/allowedBools = new Set<RemoteBoolKey>\(\[[\s\S]{0,1200}'learning_chapter_exam_v2_enabled'/);
   });

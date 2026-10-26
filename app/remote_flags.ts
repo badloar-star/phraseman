@@ -269,7 +269,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   learning_cant_speak_enabled: false,
-  learning_chapter_exam_v2_enabled: false, // зачем (координатор + Ревизор 26.10, d34be664d): без склейки экрана с макетом — выкл; после склейки Сверки владелец включает из Пульта без новой OTA
+  learning_chapter_exam_v2_enabled: true, // зачем: владелец 26.10 — включить для 3 глав урока 1 в 2.0.3 (банки 1:1–1:3; остальные главы — прежний экзамен); выключается из Пульта
   dialogue_freeform_translate_enabled: false,
   account_delete_variant_b_ui_enabled: false,
   spire_streak_heart: false,

@@ -59,7 +59,8 @@ function hasCommaSeparatedIndependentClauses(value) {
   const weatherConcession = /^although it (?:rained|snowed)$/iu;
   const coordinatedContrast = /^but (?:i|you|we|they|he|she) (?:bought it|went out|cooked dinner|kept walking|called [a-z]+|can carry it)[.!?]$/iu;
   const coordinatedResult = /^so (?:i|you|we|they|he|she) (?:walked|waited|filled it)[.!?]$/iu;
-  const independentClause = (part) => !copularCondition.test(part) && !helpCondition.test(part) && !weatherConcession.test(part) && !coordinatedContrast.test(part) && !coordinatedResult.test(part) && ((
+  const coordinatedInference = /^so (?:(?:i|you|we|they|he|she|it|someone)|(?:the|a|an|my|your|his|her|our|their) [a-z]+) (?:must|may|might|could|can't|can’t) (?:be|_{2,}) (?:[a-z]+|(?:at|in|on|under|near) (?:the )?[a-z]+)[.!?]$/iu;
+  const independentClause = (part) => !copularCondition.test(part) && !helpCondition.test(part) && !weatherConcession.test(part) && !coordinatedContrast.test(part) && !coordinatedResult.test(part) && !coordinatedInference.test(part) && ((
     (pronounSubject.test(part) || nounSubject.test(part)) && finiteVerb.test(part)
   ) || imperative.test(part));
   return parts.filter((part) => !tagQuestion.test(part)).filter(independentClause).length >= 2;

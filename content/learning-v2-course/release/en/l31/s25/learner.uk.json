@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — home",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — home",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i01:audio",
+          "transcript": "home"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-25:i01:r1",
+            "targetText": "home",
+            "meaningByLocale": {
+              "ru": "Дома; домой. Повторение знакомого слова.",
+              "uk": "Вдома; додому. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "home",
+          "definitionByLocale": {
+            "ru": "Дома; домой. Повторение знакомого слова.",
+            "uk": "Вдома; додому. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i02:r1",
+          "text": "I stayed home because it was cold."
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i02:r2",
+          "text": "I stayed home because it was hot."
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i02:r3",
+          "text": "I stayed home because it was dark."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i02:audio",
+          "transcript": "I stayed home because it was cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-25:i02:r1",
+            "targetText": "I stayed home because it was cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i02:r2",
+            "targetText": "I stayed home because it was hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i02:r3",
+            "targetText": "I stayed home because it was dark.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I stayed home because it was cold.",
+              "uk": "У записі звучить I stayed home because it was cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I stayed home because it was cold.",
+              "uk": "У записі звучить I stayed home because it was cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i03:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-25:i03:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "Уставший. Повторение знакомого слова.",
+              "uk": "Втомлений. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "Уставший. Повторение знакомого слова.",
+            "uk": "Втомлений. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i04:r1",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i04:r2",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i04:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы остались дома, потому что устали. Выберите связку перед I was tired.",
+          "uk": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired."
+        },
+        "gappedTargetPhrase": "I stayed home ___ I was tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-25:i04:r1",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i04:r2",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i04:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью I was tired используем because без of.",
+              "uk": "Перед цілою частиною I was tired використовуємо because без of."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+            "feedbackByLocale": {
+              "ru": "Of само по себе не связывает эти части.",
+              "uk": "Of саме по собі не пов’язує ці частини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть, що залишилися вдома, бо втомилися. Почніть з I stayed home.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть, що залишилися вдома, бо втомилися. Почніть з I stayed home.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I stayed home because I was tired.",
+        "localizedMeaning": {
+          "ru": "Объясните, что остались дома, потому что устали. Начните с I stayed home.",
+          "uk": "Поясніть, що залишилися вдома, бо втомилися. Почніть з I stayed home."
+        },
+        "orderedTokens": [
+          "I",
+          "stayed",
+          "home",
+          "because",
+          "I",
+          "was",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i06:audio",
+          "transcript": "rain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-25:i06:r1",
+            "targetText": "rain",
+            "meaningByLocale": {
+              "ru": "Дождь. Повторение знакомого слова.",
+              "uk": "Дощ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rain",
+          "definitionByLocale": {
+            "ru": "Дождь. Повторение знакомого слова.",
+            "uk": "Дощ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що залишилися вдома через дощ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що залишилися вдома через дощ.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i07:audio",
+          "transcript": "I stayed home because of the rain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I stayed home because of the rain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Причину названо словами the rain. Виберіть сполуку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i08:r1",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i08:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i08:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Причину названо словами the rain. Виберіть сполуку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Причина названа словами the rain. Выберите связку.",
+          "uk": "Причину названо словами the rain. Виберіть сполуку."
+        },
+        "gappedTargetPhrase": "I stayed home ___ the rain.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-25:i08:r1",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i08:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i08:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Причину названо словами the rain. Виберіть сполуку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Причину названо словами the rain. Виберіть сполуку.",
+            "feedbackByLocale": {
+              "ru": "Перед названием причины the rain нужно because of.",
+              "uk": "Перед назвою причини the rain потрібне because of."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Причину названо словами the rain. Виберіть сполуку.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная связка because of.",
+              "uk": "Потрібна повна сполука because of."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i09:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-25:i09:r1",
+            "targetText": "bus",
+            "meaningByLocale": {
+              "ru": "Автобус. Повторение знакомого слова.",
+              "uk": "Автобус. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus",
+          "definitionByLocale": {
+            "ru": "Автобус. Повторение знакомого слова.",
+            "uk": "Автобус. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви запізнилися, бо автобус запізнився. Почніть з I was late.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви запізнилися, бо автобус запізнився. Почніть з I was late.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was late because the bus was late.",
+        "localizedMeaning": {
+          "ru": "Вы опоздали, потому что автобус опоздал. Начните с I was late.",
+          "uk": "Ви запізнилися, бо автобус запізнився. Почніть з I was late."
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "late",
+          "because",
+          "the",
+          "bus",
+          "was",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви пішли додому, бо втомилися. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Ви пішли додому, бо втомилися. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i11:audio",
+          "transcript": "I went home because I was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I went home because I was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i12:r1",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i12:r2",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i12:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Объясните опоздание задержкой автобуса. Выберите связку перед the bus was late.",
+          "uk": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late."
+        },
+        "gappedTargetPhrase": "I was late ___ the bus was late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-25:i12:r1",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i12:r2",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i12:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью the bus was late нужно because.",
+              "uk": "Перед цілою частиною the bus was late потрібне because."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+            "feedbackByLocale": {
+              "ru": "Of не связывает эти части.",
+              "uk": "Of не пов’язує ці частини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i13:r1",
+          "text": "I stayed home because of the rain."
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i13:r2",
+          "text": "I stayed home because of the snow."
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i13:r3",
+          "text": "I stayed home because of the noise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i13:audio",
+          "transcript": "I stayed home because of the rain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-25:i13:r1",
+            "targetText": "I stayed home because of the rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i13:r2",
+            "targetText": "I stayed home because of the snow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i13:r3",
+            "targetText": "I stayed home because of the noise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I stayed home because of the rain.",
+              "uk": "У записі звучить I stayed home because of the rain."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I stayed home because of the rain.",
+              "uk": "У записі звучить I stayed home because of the rain."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви втомилися й сіли. Скажіть, чому сіли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Ви втомилися й сіли. Скажіть, чому сіли.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i14:audio",
+          "transcript": "I sat down because I was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I sat down because I was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви взяли парасольку через дощ. Почніть з I took an umbrella.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви взяли парасольку через дощ. Почніть з I took an umbrella.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I took an umbrella because of the rain.",
+        "localizedMeaning": {
+          "ru": "Вы взяли зонт из-за дождя. Начните с I took an umbrella.",
+          "uk": "Ви взяли парасольку через дощ. Почніть з I took an umbrella."
+        },
+        "orderedTokens": [
+          "I",
+          "took",
+          "an",
+          "umbrella",
+          "because",
+          "of",
+          "the",
+          "rain"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви залишилися вдома, бо було холодно. Завершіть причину після because.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i16:r1",
+          "text": "it was cold"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i16:r2",
+          "text": "of it was cold"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i16:r3",
+          "text": "it cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви залишилися вдома, бо було холодно. Завершіть причину після because.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы остались дома, потому что было холодно. Завершите причину после because.",
+          "uk": "Ви залишилися вдома, бо було холодно. Завершіть причину після because."
+        },
+        "gappedTargetPhrase": "I stayed home because ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-25:i16:r1",
+            "text": "it was cold"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i16:r2",
+            "text": "of it was cold"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i16:r3",
+            "text": "it cold"
+          }
+        ],
+        "testedDimension": "Ви залишилися вдома, бо було холодно. Завершіть причину після because.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви залишилися вдома, бо було холодно. Завершіть причину після because.",
+            "feedbackByLocale": {
+              "ru": "После because уже идёт целая часть без of.",
+              "uk": "Після because вже йде ціла частина без of."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви залишилися вдома, бо було холодно. Завершіть причину після because.",
+            "feedbackByLocale": {
+              "ru": "Для состояния нужно was.",
+              "uk": "Для стану потрібне was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви зачинили вікно, бо було холодно. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Ви зачинили вікно, бо було холодно. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i17:audio",
+          "transcript": "I closed the window because it was cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I closed the window because it was cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець залишився вдома через дощ чи сніг?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i18:r1",
+          "text": "I stayed home because of the rain."
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i18:r2",
+          "text": "I stayed home because of the snow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i18:audioA",
+        "en:lesson-31:session-25:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець залишився вдома через дощ чи сніг?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I stayed home because of the rain.",
+        "contrastB": "I stayed home because of the snow.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-25:i18:audioA",
+          "transcript": "I stayed home because of the rain."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-25:i18:audioB",
+          "transcript": "I stayed home because of the snow."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець залишився вдома через дощ чи сніг?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець залишився вдома через дощ чи сніг?",
+            "feedbackByLocale": {
+              "ru": "Звучит rain — дождь.",
+              "uk": "Звучить rain — дощ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте пояснення, чому людина залишилася вдома. Почніть з I stayed home.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте пояснення, чому людина залишилася вдома. Почніть з I stayed home.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i19:audio",
+          "transcript": "I stayed home because I was tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I stayed home because I was tired.",
+        "orderedTokens": [
+          "I",
+          "stayed",
+          "home",
+          "because",
+          "I",
+          "was",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-25:i20:r1",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i20:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-25:i20:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Перед словами the rain пропущена часть связки because of. Вставьте её.",
+          "uk": "Перед словами the rain пропущено частину сполуки because of. Вставте її."
+        },
+        "gappedTargetPhrase": "I stayed home because ___ the rain.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-25:i20:r1",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i20:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i20:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-25:i20:r2",
+            "correct": false,
+            "testedDimension": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+            "feedbackByLocale": {
+              "ru": "Нужна связка because of.",
+              "uk": "Потрібна сполука because of."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-25:i20:r3",
+            "correct": false,
+            "testedDimension": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+            "feedbackByLocale": {
+              "ru": "Нужна связка because of.",
+              "uk": "Потрібна сполука because of."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-25:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви взяли таксі, бо запізнювалися. Поясніть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-25:i21:audio"
+      ],
+      "accessibilityLabel": "Ви взяли таксі, бо запізнювалися. Поясніть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-25:i21:audio",
+          "transcript": "I took a taxi because I was late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I took a taxi because I was late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e81f856a2a01fc92708db253d1891c191bf2077d079a1b60af786530cf336bed"
+}

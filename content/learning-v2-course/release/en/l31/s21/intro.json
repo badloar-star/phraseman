@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "сообщать, что знаете, уточнять места и говорить о купленных билетах.",
+    "uk": "повідомляти, що знаєте, уточнювати місця й говорити про куплені квитки."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, когда начинается фильм",
+        "uk": "Я знаю, коли починається фільм"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом пришли в кино. Вы посмотрели время на билете и говорите: I know when the film starts — я знаю, когда начинается фильм. Соберите I know + when + the film + starts. После when стоит обычный порядок the film starts; вспомогательное does не нужно.",
+        "uk": "Ви з другом прийшли в кіно. Ви подивилися час на квитку й кажете: I know when the film starts — я знаю, коли починається фільм. Складіть I know + when + the film + starts. Після when стоїть звичайний порядок the film starts; допоміжне does не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-21:intro1:r1",
+              "text": "I know when the film starts."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro1:r2",
+              "text": "I know when does the film start."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro1:r3",
+              "text": "I know when the film start."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-21:intro1:r1",
+              "text": "I know when the film starts."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro1:r2",
+              "text": "I know when does the film start."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro1:r3",
+              "text": "I know when the film start."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У нас верные места?",
+        "uk": "У нас правильні місця?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли два свободных места и сверяете их с билетами: These are our seats, aren’t they? — это наши места, правда? Соберите These are our seats + aren’t + they. После утвердительного are здесь нужно отрицательное aren’t; несколько мест заменяем на they.",
+        "uk": "Ви знайшли два вільні місця й звіряєте їх із квитками: These are our seats, aren’t they? — це наші місця, правда? Складіть These are our seats + aren’t + they. Після стверджувального are тут потрібне заперечне aren’t; кілька місць замінюємо на they."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-21:intro2:r1",
+              "text": "These are our seats, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro2:r2",
+              "text": "These are our seats, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro2:r3",
+              "text": "These are our seats, aren't it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-21:intro2:r1",
+              "text": "These are our seats, aren't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro2:r2",
+              "text": "These are our seats, isn't they?"
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro2:r3",
+              "text": "These are our seats, aren't it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто купил билеты",
+        "uk": "Хто купив квитки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о билетах. Их купила Анна. Начните с билетов: The tickets were bought by Anna — билеты купила Анна. Соберите The tickets + were + bought + by Anna. Для нескольких билетов берём were, затем bought — форму buy для этой конструкции. By вводит человека, который совершил действие.",
+        "uk": "Друг запитує про квитки. Їх купила Анна. Почніть із квитків: The tickets were bought by Anna — квитки купила Анна. Складіть The tickets + were + bought + by Anna. Для кількох квитків беремо were, потім bought — форму buy для цієї конструкції. By вводить людину, яка виконала дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-21:intro3:r1",
+              "text": "The tickets were bought by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro3:r2",
+              "text": "The tickets was bought by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro3:r3",
+              "text": "The tickets were buy by Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-21:intro3:r1",
+              "text": "The tickets were bought by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro3:r2",
+              "text": "The tickets was bought by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-21:intro3:r3",
+              "text": "The tickets were buy by Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "51fe26a40ff477ad10f09a5bba03232da4925e3b0e49984d67d62a96c7afa2e7"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-21:intro1:r2": {
+          "ru": "Внутри сообщения не ставим does перед film.",
+          "uk": "Усередині повідомлення не ставимо does перед film."
+        },
+        "en:lesson-31:session-21:intro1:r3": {
+          "ru": "С одним film здесь нужна форма starts.",
+          "uk": "З одним film тут потрібна форма starts."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-21:intro2:r2": {
+          "ru": "С are здесь нужно aren’t.",
+          "uk": "З are тут потрібне aren’t."
+        },
+        "en:lesson-31:session-21:intro2:r3": {
+          "ru": "Несколько мест — they.",
+          "uk": "Кілька місць — they."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-21:intro3:r2": {
+          "ru": "Несколько tickets требуют were.",
+          "uk": "Кілька tickets потребують were."
+        },
+        "en:lesson-31:session-21:intro3:r3": {
+          "ru": "Здесь нужна форма bought.",
+          "uk": "Тут потрібна форма bought."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "99a2fbdc4beb89f315b5ae6ba7a0baeace6ebbcfd616c98f4ea65c5c36bffdb9"
+}

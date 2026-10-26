@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-27:intro1:r2": {
+          "ru": "Перед I was ill нужен because без of.",
+          "uk": "Перед I was ill потрібне because без of."
+        },
+        "en:lesson-31:session-27:intro1:r3": {
+          "ru": "Для состояния в прошлом нужно was ill.",
+          "uk": "Для стану в минулому потрібне was ill."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-27:intro2:r2": {
+          "ru": "После why порядок Anna is in bed.",
+          "uk": "Після why порядок Anna is in bed."
+        },
+        "en:lesson-31:session-27:intro2:r3": {
+          "ru": "С Anna нужна форма is.",
+          "uk": "З Anna потрібна форма is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-27:intro3:r2": {
+          "ru": "Tea здесь требует was.",
+          "uk": "Tea тут потребує was."
+        },
+        "en:lesson-31:session-27:intro3:r3": {
+          "ru": "Здесь нужна форма made.",
+          "uk": "Тут потрібна форма made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6f7ca943fd9c4e3b84b906f562038ab4acf7422f4e83faff5ca268713705e622"
+}

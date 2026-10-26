@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "сообщать, что знаете и понимаете, уточнять детали и называть исполнителя работы.",
+    "uk": "повідомляти, що знаєте й розумієте, уточнювати деталі та називати виконавця роботи."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, что цветам нужна вода",
+        "uk": "Я знаю, що квітам потрібна вода"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помогаете другу в саду и видите сухую землю. Скажите: I know that the flowers need water — я знаю, что цветам нужна вода. Соберите I know + that + the flowers + need water. That вводит то, что вы знаете; дальше идёт обычное утверждение the flowers need water.",
+        "uk": "Ви допомагаєте другові в саду й бачите суху землю. Скажіть: I know that the flowers need water — я знаю, що квітам потрібна вода. Складіть I know + that + the flowers + need water. That вводить те, що ви знаєте; далі йде звичайне твердження the flowers need water."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-24:intro1:r1",
+              "text": "I know that the flowers need water."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro1:r2",
+              "text": "I know that do the flowers need water."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro1:r3",
+              "text": "I know that the flowers needs water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-24:intro1:r1",
+              "text": "I know that the flowers need water."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro1:r2",
+              "text": "I know that do the flowers need water."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro1:r3",
+              "text": "I know that the flowers needs water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Почему скамейка мокрая",
+        "uk": "Чому лавка мокра"
+      },
+      "bodyByLocale": {
+        "ru": "Друг только что вымыл скамейку. Теперь вы понимаете, почему на неё нельзя садиться: I understand why the bench is wet — я понимаю, почему скамейка мокрая. Соберите I understand + why + the bench + is wet. После why сохраняем порядок the bench is wet.",
+        "uk": "Друг щойно помив лавку. Тепер ви розумієте, чому на неї не можна сідати: I understand why the bench is wet — я розумію, чому лавка мокра. Складіть I understand + why + the bench + is wet. Після why зберігаємо порядок the bench is wet."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-24:intro2:r1",
+              "text": "I understand why the bench is wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro2:r2",
+              "text": "I understand why is the bench wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro2:r3",
+              "text": "I understand why the bench are wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-24:intro2:r1",
+              "text": "I understand why the bench is wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro2:r2",
+              "text": "I understand why is the bench wet."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro2:r3",
+              "text": "I understand why the bench are wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто покрасил калитку",
+        "uk": "Хто пофарбував хвіртку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы замечаете свежую краску на калитке. Друг говорит, что её покрасил Бен. Начните с калитки: The gate was painted by Ben — калитку покрасил Бен. Соберите The gate + was + painted + by Ben. Was painted показывает, что сделали с калиткой; by Ben называет исполнителя.",
+        "uk": "Ви помічаєте свіжу фарбу на хвіртці. Друг каже, що її пофарбував Бен. Почніть із хвіртки: The gate was painted by Ben — хвіртку пофарбував Бен. Складіть The gate + was + painted + by Ben. Was painted показує, що зробили з хвірткою; by Ben називає виконавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-24:intro3:r1",
+              "text": "The gate was painted by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro3:r2",
+              "text": "The gate were painted by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro3:r3",
+              "text": "The gate was paint by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-24:intro3:r1",
+              "text": "The gate was painted by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro3:r2",
+              "text": "The gate were painted by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-24:intro3:r3",
+              "text": "The gate was paint by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "50908c28074cf0e08e8f36faf6cc193ec8d3e8280db51d881e3b7ada0ba807b8"
+}

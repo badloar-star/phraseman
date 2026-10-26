@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-27:i01",
+    "correctText": "ill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i02",
+    "correctText": "I stayed home because I was ill.",
+    "correctResponseId": "en:lesson-31:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i03",
+    "correctText": "because",
+    "correctResponseId": "en:lesson-31:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i04",
+    "correctText": "bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i05",
+    "correctText": "I understand why Anna is in bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i06",
+    "correctText": "tea",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i07",
+    "correctText": "The tea was made by Ben.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i09",
+    "correctText": "Could you tell me where the tea is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i10",
+    "correctText": "I know that Anna is in bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i12",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i13",
+    "correctText": "I know why the door is closed.",
+    "correctResponseId": "en:lesson-31:session-27:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i14",
+    "correctText": "He said he was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i15",
+    "correctText": "The tea is hot, isn't it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i16",
+    "correctText": "Anna is",
+    "correctResponseId": "en:lesson-31:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i17",
+    "correctText": "I closed the window because of the noise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i18",
+    "correctText": "I stayed home because I was ill.",
+    "correctResponseId": "en:lesson-31:session-27:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i19",
+    "correctText": "I stayed home because I was ill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-27:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-27:i21",
+    "correctText": "The door was closed by Ben.",
+    "correctResponseId": null
+  }
+]

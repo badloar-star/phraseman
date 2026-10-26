@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i01:audio",
+          "transcript": "dog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-23:i01:r1",
+            "targetText": "dog",
+            "meaningByLocale": {
+              "ru": "Собака. Повторение знакомого слова.",
+              "uk": "Собака. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dog",
+          "definitionByLocale": {
+            "ru": "Собака. Повторение знакомого слова.",
+            "uk": "Собака. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i02:r1",
+          "text": "I understand why the dog is waiting."
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i02:r2",
+          "text": "I understand why the dog is sleeping."
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i02:r3",
+          "text": "I understand why the cat is waiting."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i02:audio",
+          "transcript": "I understand why the dog is waiting."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-23:i02:r1",
+            "targetText": "I understand why the dog is waiting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i02:r2",
+            "targetText": "I understand why the dog is sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i02:r3",
+            "targetText": "I understand why the cat is waiting.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I understand why the dog is waiting.",
+              "uk": "У записі звучить I understand why the dog is waiting."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I understand why the dog is waiting.",
+              "uk": "У записі звучить I understand why the dog is waiting."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви розумієте, чому собака чекає. Завершіть повідомлення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i03:r1",
+          "text": "the dog is waiting"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i03:r2",
+          "text": "is the dog waiting"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i03:r3",
+          "text": "the dog are waiting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розумієте, чому собака чекає. Завершіть повідомлення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы понимаете, почему собака ждёт. Завершите сообщение.",
+          "uk": "Ви розумієте, чому собака чекає. Завершіть повідомлення."
+        },
+        "gappedTargetPhrase": "I understand why ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-23:i03:r1",
+            "text": "the dog is waiting"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i03:r2",
+            "text": "is the dog waiting"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i03:r3",
+            "text": "the dog are waiting"
+          }
+        ],
+        "testedDimension": "Ви розумієте, чому собака чекає. Завершіть повідомлення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви розумієте, чому собака чекає. Завершіть повідомлення.",
+            "feedbackByLocale": {
+              "ru": "После why порядок the dog is waiting.",
+              "uk": "Після why порядок the dog is waiting."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви розумієте, чому собака чекає. Завершіть повідомлення.",
+            "feedbackByLocale": {
+              "ru": "С dog нужно is.",
+              "uk": "З dog потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — park",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — park",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i04:audio",
+          "transcript": "park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-23:i04:r1",
+            "targetText": "park",
+            "meaningByLocale": {
+              "ru": "Парк. Повторение знакомого слова.",
+              "uk": "Парк. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "park",
+          "definitionByLocale": {
+            "ru": "Парк. Повторение знакомого слова.",
+            "uk": "Парк. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де парк.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де парк.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the park is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где парк.",
+          "uk": "Ввічливо запитайте, де парк."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "park",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна нагодувала собаку. Почніть із собаки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Анна нагодувала собаку. Почніть із собаки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i06:audio",
+          "transcript": "The dog was fed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog was fed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Собака голодний». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Собака голодний». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Собака голодная». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Собака голодний». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the dog ___ hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-23:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Собака голодний». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Собака голодний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Собака голодний». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i08:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-23:i08:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Двері зачинені. Додайте заперечне уточнення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Двері зачинені. Додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door is closed, isn't it?",
+        "localizedMeaning": {
+          "ru": "Дверь закрыта. Добавьте отрицательное уточнение.",
+          "uk": "Двері зачинені. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "is",
+          "closed,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що двері зачинені. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що двері зачинені. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i10:audio",
+          "transcript": "I know that the door is closed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the door is closed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна нагодувала собаку. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна нагодувала собаку. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна покормила собаку. Выберите предлог перед её именем.",
+          "uk": "Анна нагодувала собаку. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The dog was fed ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-23:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна нагодувала собаку. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна нагодувала собаку. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна нагодувала собаку. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i12:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-23:i12:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода. Повторение знакомого слова.",
+              "uk": "Вода. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода. Повторение знакомого слова.",
+            "uk": "Вода. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i13:r1",
+          "text": "I know where the water is."
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i13:r2",
+          "text": "I know where the food is."
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i13:r3",
+          "text": "I know where the dog is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i13:audio",
+          "transcript": "I know where the water is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-23:i13:r1",
+            "targetText": "I know where the water is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i13:r2",
+            "targetText": "I know where the food is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i13:r3",
+            "targetText": "I know where the dog is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the water is.",
+              "uk": "У записі звучить I know where the water is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the water is.",
+              "uk": "У записі звучить I know where the water is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала про себе та свого брата: «Ми готові». Вас у цій групі не було. Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала про себе та свого брата: «Ми готові». Вас у цій групі не було. Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i14:audio",
+          "transcript": "She said they were ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said they were ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте, де собака.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте, де собака.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the dog is.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, где собака.",
+          "uk": "Скажіть, що знаєте, де собака."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "dog",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друга, чи знає він, чи відчинений парк.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i16:r1",
+          "text": "the park is"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i16:r2",
+          "text": "is the park"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i16:r3",
+          "text": "the park are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи відчинений парк.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, открыт ли парк.",
+          "uk": "Запитайте друга, чи знає він, чи відчинений парк."
+        },
+        "gappedTargetPhrase": "Do you know if ___ open?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-23:i16:r1",
+            "text": "the park is"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i16:r2",
+            "text": "is the park"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i16:r3",
+            "text": "the park are"
+          }
+        ],
+        "testedDimension": "Запитайте друга, чи знає він, чи відчинений парк.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи відчинений парк.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the park is.",
+              "uk": "Після if порядок the park is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи відчинений парк.",
+            "feedbackByLocale": {
+              "ru": "Один park требует is.",
+              "uk": "Один park потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна зачинила двері. Почніть із дверей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Анна зачинила двері. Почніть із дверей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i17:audio",
+          "transcript": "The door was closed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door was closed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець знає, де вода чи їжа?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i18:r1",
+          "text": "I know where the water is."
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i18:r2",
+          "text": "I know where the food is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i18:audioA",
+        "en:lesson-31:session-23:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець знає, де вода чи їжа?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I know where the water is.",
+        "contrastB": "I know where the food is.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-23:i18:audioA",
+          "transcript": "I know where the water is."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-23:i18:audioB",
+          "transcript": "I know where the food is."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець знає, де вода чи їжа?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець знає, де вода чи їжа?",
+            "feedbackByLocale": {
+              "ru": "Звучит water — вода.",
+              "uk": "Звучить water — вода."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте повідомлення про собаку, що чекає.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте повідомлення про собаку, що чекає.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i19:audio",
+          "transcript": "I understand why the dog is waiting."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I understand why the dog is waiting.",
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "the",
+          "dog",
+          "is",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Собака не голодний. Додайте стверджувальне уточнення про нього.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-23:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-23:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Собака не голодний. Додайте стверджувальне уточнення про нього.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Собака не голодная. Добавьте утвердительное уточнение о ней.",
+          "uk": "Собака не голодний. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The dog isn't hungry, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-23:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Собака не голодний. Додайте стверджувальне уточнення про нього.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-23:i20:r2",
+            "correct": false,
+            "testedDimension": "Собака не голодний. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "С dog нужно is.",
+              "uk": "З dog потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-23:i20:r3",
+            "correct": false,
+            "testedDimension": "Собака не голодний. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-23:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що в парку тихо. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-23:i21:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що в парку тихо. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-23:i21:audio",
+          "transcript": "I know that the park is quiet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the park is quiet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "768796d4b621e12244a80c5b77b740ab2ac5cba241edca5b13bcf997e8823672"
+}

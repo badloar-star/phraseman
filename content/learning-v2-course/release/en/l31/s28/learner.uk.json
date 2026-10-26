@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i01:audio",
+          "transcript": "shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-28:i01:r1",
+            "targetText": "shoes",
+            "meaningByLocale": {
+              "ru": "Обувь, туфли. Повторение знакомого слова.",
+              "uk": "Взуття, туфлі. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoes",
+          "definitionByLocale": {
+            "ru": "Обувь, туфли. Повторение знакомого слова.",
+            "uk": "Взуття, туфлі. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i02:r1",
+          "text": "I took the shoes back because they were too small."
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i02:r2",
+          "text": "I took the shoes back because they were too big."
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i02:r3",
+          "text": "I took the shoes back because they were too expensive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i02:audio",
+          "transcript": "I took the shoes back because they were too small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-28:i02:r1",
+            "targetText": "I took the shoes back because they were too small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i02:r2",
+            "targetText": "I took the shoes back because they were too big.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i02:r3",
+            "targetText": "I took the shoes back because they were too expensive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took the shoes back because they were too small.",
+              "uk": "У записі звучить I took the shoes back because they were too small."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took the shoes back because they were too small.",
+              "uk": "У записі звучить I took the shoes back because they were too small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i03:r1",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i03:r2",
+          "text": "because of"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i03:r3",
+          "text": "of"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вернули обувь, потому что она была мала. Выберите связку.",
+          "uk": "Ви повернули взуття, бо воно було замале. Виберіть сполучник."
+        },
+        "gappedTargetPhrase": "I took the shoes back ___ they were too small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-28:i03:r1",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i03:r2",
+            "text": "because of"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i03:r3",
+            "text": "of"
+          }
+        ],
+        "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью they were too small нужен because.",
+              "uk": "Перед цілою частиною they were too small потрібне because."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+            "feedbackByLocale": {
+              "ru": "Of не связывает эти части.",
+              "uk": "Of не пов’язує ці частини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — receipt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — receipt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i04:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-28:i04:r1",
+            "targetText": "receipt",
+            "meaningByLocale": {
+              "ru": "Чек. Повторение знакомого слова.",
+              "uk": "Чек. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receipt",
+          "definitionByLocale": {
+            "ru": "Чек. Повторение знакомого слова.",
+            "uk": "Чек. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що знаєте, де чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що знаєте, де чек.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know where the receipt is.",
+        "localizedMeaning": {
+          "ru": "Скажите, что знаете, где чек.",
+          "uk": "Скажіть, що знаєте, де чек."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "receipt",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна надрукувала чек. Почніть із чека.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i06:audio"
+      ],
+      "accessibilityLabel": "Анна надрукувала чек. Почніть із чека.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i06:audio",
+          "transcript": "The receipt was printed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The receipt was printed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i07:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i07:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i07:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Обувь мала». Перескажите со сдвигом are в прошлое.",
+          "uk": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле."
+        },
+        "gappedTargetPhrase": "She said the shoes ___ too small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-28:i07:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i07:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле.",
+            "feedbackByLocale": {
+              "ru": "Are не выполняет заданный сдвиг.",
+              "uk": "Are не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле.",
+            "feedbackByLocale": {
+              "ru": "Множественное shoes требует were.",
+              "uk": "Множина shoes потребує were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i08:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-28:i08:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте друга, де коробка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте друга, де коробка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the box is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите друга, где коробка.",
+          "uk": "Ввічливо запитайте друга, де коробка."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "box",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, що чек у коробці. Скажіть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, що чек у коробці. Скажіть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i10:audio",
+          "transcript": "I know that the receipt is in the box."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that the receipt is in the box.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна распечатала чек. Выберите предлог перед её именем.",
+          "uk": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The receipt was printed ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-28:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна надрукувала чек. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i12:audio",
+          "transcript": "shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-28:i12:r1",
+            "targetText": "shop",
+            "meaningByLocale": {
+              "ru": "Магазин. Повторение знакомого слова.",
+              "uk": "Крамниця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shop",
+          "definitionByLocale": {
+            "ru": "Магазин. Повторение знакомого слова.",
+            "uk": "Крамниця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i13:r1",
+          "text": "I know when the shop opens."
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i13:r2",
+          "text": "I know when the shop closes."
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i13:r3",
+          "text": "I know when the bus leaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i13:audio",
+          "transcript": "I know when the shop opens."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-28:i13:r1",
+            "targetText": "I know when the shop opens.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i13:r2",
+            "targetText": "I know when the shop closes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i13:r3",
+            "targetText": "I know when the bus leaves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know when the shop opens.",
+              "uk": "У записі звучить I know when the shop opens."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know when the shop opens.",
+              "uk": "У записі звучить I know when the shop opens."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Крамниця відчинена». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Крамниця відчинена». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i14:audio",
+          "transcript": "She said the shop was open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the shop was open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Крамниця відчинена. Додайте заперечне уточнення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Крамниця відчинена. Додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shop is open, isn't it?",
+        "localizedMeaning": {
+          "ru": "Магазин открыт. Добавьте отрицательное уточнение.",
+          "uk": "Крамниця відчинена. Додайте заперечне уточнення."
+        },
+        "orderedTokens": [
+          "The",
+          "shop",
+          "is",
+          "open,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друга, чи знає він, чи відчинена крамниця.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i16:r1",
+          "text": "the shop is"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i16:r2",
+          "text": "is the shop"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i16:r3",
+          "text": "the shop are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друга, чи знає він, чи відчинена крамниця.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друга, знает ли он, открыт ли магазин.",
+          "uk": "Запитайте друга, чи знає він, чи відчинена крамниця."
+        },
+        "gappedTargetPhrase": "Do you know if ___ open?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-28:i16:r1",
+            "text": "the shop is"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i16:r2",
+            "text": "is the shop"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i16:r3",
+            "text": "the shop are"
+          }
+        ],
+        "testedDimension": "Запитайте друга, чи знає він, чи відчинена крамниця.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи відчинена крамниця.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the shop is.",
+              "uk": "Після if порядок the shop is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друга, чи знає він, чи відчинена крамниця.",
+            "feedbackByLocale": {
+              "ru": "Один shop требует is.",
+              "uk": "Один shop потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дорогою до крамниці ви взяли таксі через дощ. Поясніть це другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Дорогою до крамниці ви взяли таксі через дощ. Поясніть це другові.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i17:audio",
+          "transcript": "I took a taxi because of the rain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I took a taxi because of the rain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: мовець знає, де чек чи коробка?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i18:r1",
+          "text": "I know where the receipt is."
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i18:r2",
+          "text": "I know where the box is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i18:audioA",
+        "en:lesson-31:session-28:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: мовець знає, де чек чи коробка?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I know where the receipt is.",
+        "contrastB": "I know where the box is.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-28:i18:audioA",
+          "transcript": "I know where the receipt is."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-28:i18:audioB",
+          "transcript": "I know where the box is."
+        },
+        "testedPhoneticContrast": "Послухайте: мовець знає, де чек чи коробка?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: мовець знає, де чек чи коробка?",
+            "feedbackByLocale": {
+              "ru": "Звучит receipt — чек.",
+              "uk": "Звучить receipt — чек."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте причину повернення. Почніть з I took the shoes back.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте причину повернення. Почніть з I took the shoes back.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i19:audio",
+          "transcript": "I took the shoes back because they were too small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I took the shoes back because they were too small.",
+        "orderedTokens": [
+          "I",
+          "took",
+          "the",
+          "shoes",
+          "back",
+          "because",
+          "they",
+          "were",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Взуття незручне. Додайте стверджувальне уточнення про нього.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-28:i20:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-28:i20:r3",
+          "text": "do"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Взуття незручне. Додайте стверджувальне уточнення про нього.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Обувь неудобная. Добавьте утвердительное уточнение о ней.",
+          "uk": "Взуття незручне. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The shoes aren't comfortable, ___ they?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-28:i20:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i20:r3",
+            "text": "do"
+          }
+        ],
+        "testedDimension": "Взуття незручне. Додайте стверджувальне уточнення про нього.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-28:i20:r2",
+            "correct": false,
+            "testedDimension": "Взуття незручне. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "Множественное shoes требует are.",
+              "uk": "Множина shoes потребує are."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-28:i20:r3",
+            "correct": false,
+            "testedDimension": "Взуття незручне. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "Берём are из aren’t.",
+              "uk": "Беремо are із aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-28:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна повернула взуття. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-28:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна повернула взуття. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-28:i21:audio",
+          "transcript": "I understand why Anna took the shoes back."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna took the shoes back.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8bb953cc32d4a18a5dbc649bc50d32494e073c0513f89b36a3743a8b727315fb"
+}

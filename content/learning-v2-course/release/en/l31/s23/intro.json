@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "говорить о понятной причине, вежливо уточнять дорогу и проверять, всё ли готово.",
+    "uk": "говорити про зрозумілу причину, ввічливо уточнювати дорогу й перевіряти, чи все готово."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я понимаю, почему собака ждёт",
+        "uk": "Я розумію, чому собака чекає"
+      },
+      "bodyByLocale": {
+        "ru": "Вы берёте куртку, и собака ждёт у двери: она хочет гулять. Скажите: I understand why the dog is waiting — я понимаю, почему собака ждёт. Соберите I understand + why + the dog + is waiting. После why сохраняем порядок the dog is waiting; is не переходит перед the dog.",
+        "uk": "Ви берете куртку, і собака чекає біля дверей: він хоче гуляти. Скажіть: I understand why the dog is waiting — я розумію, чому собака чекає. Складіть I understand + why + the dog + is waiting. Після why зберігаємо порядок the dog is waiting; is не переходить перед the dog."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-23:intro1:r1",
+              "text": "I understand why the dog is waiting."
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro1:r2",
+              "text": "I understand why is the dog waiting."
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro1:r3",
+              "text": "I understand why the dog are waiting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-23:intro1:r1",
+              "text": "I understand why the dog is waiting."
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro1:r2",
+              "text": "I understand why is the dog waiting."
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro1:r3",
+              "text": "I understand why the dog are waiting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточним дорогу в парк",
+        "uk": "Уточнімо дорогу до парку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы гуляете с собакой в незнакомом районе и спрашиваете прохожего: Could you tell me where the park is? — не подскажете, где парк? Соберите Could you tell me + where + the park + is. После вежливого начала и where ставим the park is, как в утверждении.",
+        "uk": "Ви гуляєте із собакою в незнайомому районі й запитуєте перехожого: Could you tell me where the park is? — чи не підкажете, де парк? Складіть Could you tell me + where + the park + is. Після ввічливого початку й where ставимо the park is, як у твердженні."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-23:intro2:r1",
+              "text": "Could you tell me where the park is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro2:r2",
+              "text": "Could you tell me where is the park?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro2:r3",
+              "text": "Could you tell me where the park are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-23:intro2:r1",
+              "text": "Could you tell me where the park is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro2:r2",
+              "text": "Could you tell me where is the park?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro2:r3",
+              "text": "Could you tell me where the park are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дверь закрыта, правда?",
+        "uk": "Двері зачинені, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вышли на прогулку и хотите убедиться, что друг закрыл дверь: The door is closed, isn’t it? — дверь закрыта, правда? Соберите The door is closed + isn’t + it. После утвердительного is добавляем отрицательное isn’t; дверь заменяем словом it.",
+        "uk": "Ви вийшли на прогулянку й хочете переконатися, що друг зачинив двері: The door is closed, isn’t it? — двері зачинені, правда? Складіть The door is closed + isn’t + it. Після стверджувального is додаємо заперечне isn’t; англійське door замінюємо словом it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-23:intro3:r1",
+              "text": "The door is closed, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro3:r2",
+              "text": "The door is closed, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro3:r3",
+              "text": "The door is closed, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-23:intro3:r1",
+              "text": "The door is closed, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro3:r2",
+              "text": "The door is closed, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-23:intro3:r3",
+              "text": "The door is closed, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9be658b19539443713869d938b728ca2a212f2c5bc57a8f35bc22cd44566f363"
+}

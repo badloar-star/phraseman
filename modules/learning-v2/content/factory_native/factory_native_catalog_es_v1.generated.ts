@@ -399,4 +399,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно использовать soy, eres, es, somos и son в отдельных репликах.","uk":"самостійно використовувати soy, eres, es, somos та son в окремих репліках."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 1,
+    sourceFingerprint: "6d8d69e855d34a292b7846c9ee69443de3001311e018d078ade49a024a023063",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать один предмет мужского рода с un.","uk":"назвати один предмет чоловічого роду з un."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

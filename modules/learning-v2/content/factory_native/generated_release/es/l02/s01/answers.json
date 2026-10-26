@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-01:i01",
+    "correctText": "un",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i02",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-01:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i03",
+    "correctText": "cuaderno",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i04",
+    "correctText": "cuaderno",
+    "correctResponseId": "es:lesson-02:session-01:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-01:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i06",
+    "correctText": "Es un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i07",
+    "correctText": "Es un cuaderno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i08",
+    "correctText": "Es un cuaderno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-02:session-01:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i10",
+    "correctText": "No es un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i11",
+    "correctText": "Es un cuaderno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i12",
+    "correctText": "No es un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i13",
+    "correctText": "libro",
+    "correctResponseId": "es:lesson-02:session-01:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-01:i14",
+    "correctText": "Es un cuaderno.",
+    "correctResponseId": null
+  }
+]

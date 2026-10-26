@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-01:intro1:r2": {
+          "ru": "Когда называете один предмет таким образом, перед libro нужно un.",
+          "uk": "Коли називаєте один предмет таким чином, перед libro потрібне un."
+        },
+        "es:lesson-02:session-01:intro1:r3": {
+          "ru": "Eres обращено к человеку, а вы называете предмет.",
+          "uk": "Eres звернено до людини, а ви називаєте предмет."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-01:intro2:r2": {
+          "ru": "Перед названием предмета здесь нужно un.",
+          "uk": "Перед назвою предмета тут потрібне un."
+        },
+        "es:lesson-02:session-01:intro2:r3": {
+          "ru": "Libro — книга, а здесь тетрадь для записей.",
+          "uk": "Libro — книга, а тут зошит для записів."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-01:intro3:r2": {
+          "ru": "Для названия одного предмета здесь сохраняется un.",
+          "uk": "Для назви одного предмета тут зберігається un."
+        },
+        "es:lesson-02:session-01:intro3:r3": {
+          "ru": "Это подтверждение ошибочного названия, а нужно возразить.",
+          "uk": "Це підтвердження помилкової назви, а потрібно заперечити."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "83647664a82de250f12289b7af2e66d228aaead0472e2a905ba3a936247e39be"
+}

@@ -1,0 +1,791 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-01",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — un",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — un",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i01:audio",
+          "transcript": "un"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-01:i01:r1",
+            "targetText": "un",
+            "meaningByLocale": {
+              "ru": "слово перед названием одного предмета мужского рода: un libro — книга. 🔊 *un*",
+              "uk": "слово перед назвою одного предмета чоловічого роду: un libro — книга. 🔊 *un*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "un",
+          "definitionByLocale": {
+            "ru": "слово перед названием одного предмета мужского рода: un libro — книга. 🔊 *un*",
+            "uk": "слово перед назвою одного предмета чоловічого роду: un libro — книга. 🔊 *un*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i02:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i02:r2",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i02:audio",
+          "transcript": "un"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-01:i02:r1",
+            "targetText": "un",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i02:r2",
+            "targetText": "el",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит un, а не el.",
+              "uk": "Звучить un, а не el."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cuaderno",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cuaderno",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i03:audio",
+          "transcript": "cuaderno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-01:i03:r1",
+            "targetText": "cuaderno",
+            "meaningByLocale": {
+              "ru": "тетрадь. Мужской род: el cuaderno; при назывании предмета — un cuaderno. 🔊 *cuaderno*",
+              "uk": "зошит. Чоловічий рід: el cuaderno; під час називання предмета — un cuaderno. 🔊 *cuaderno*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuaderno",
+          "definitionByLocale": {
+            "ru": "тетрадь. Мужской род: el cuaderno; при назывании предмета — un cuaderno. 🔊 *cuaderno*",
+            "uk": "зошит. Чоловічий рід: el cuaderno; під час називання предмета — un cuaderno. 🔊 *cuaderno*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i04:r1",
+          "text": "cuaderno"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i04:r2",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i04:audio",
+          "transcript": "cuaderno"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-01:i04:r1",
+            "targetText": "cuaderno",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i04:r2",
+            "targetText": "libro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cuaderno — тетрадь.",
+              "uk": "Звучить cuaderno — зошит."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите предмет тетрадью",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i05:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите предмет тетрадью",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите предмет тетрадью",
+          "uk": "Вставте слово — назвіть предмет зошитом"
+        },
+        "gappedTargetPhrase": "Es ___ cuaderno.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-01:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i05:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i05:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите предмет тетрадью",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите предмет тетрадью",
+            "feedbackByLocale": {
+              "ru": "Es уже стоит в начале; перед cuaderno нужно un.",
+              "uk": "Es уже стоїть на початку; перед cuaderno потрібне un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите предмет тетрадью",
+            "feedbackByLocale": {
+              "ru": "No ставится перед es для отрицания, а вы называете предмет.",
+              "uk": "No ставиться перед es для заперечення, а ви називаєте предмет."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «Это книга» при назывании предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i06:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i06:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «Это книга» при назывании предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «Это книга» при назывании предмета",
+          "uk": "Зберіть фразу — «Це книга» під час називання предмета"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «Это книга» при назывании предмета",
+            "feedbackByLocale": {
+              "ru": "речь о предмете.",
+              "uk": "йдеться про предмет."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «Это тетрадь» при назывании предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i07:r1",
+          "text": "Плитки: cuaderno"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i07:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «Это тетрадь» при назывании предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un cuaderno.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «Это тетрадь» при назывании предмета",
+          "uk": "Зберіть фразу — «Це зошит» під час називання предмета"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "cuaderno"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «Это тетрадь» при назывании предмета",
+            "feedbackByLocale": {
+              "ru": "вы подтверждаете название.",
+              "uk": "ви підтверджуєте назву."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите предмет для записей тетрадью",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите предмет для записей тетрадью",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i08:audio",
+          "transcript": "Es un cuaderno."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un cuaderno.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — возразите «Это не книга»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i09:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i09:r2",
+          "text": "Un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i09:r3",
+          "text": "El"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — возразите «Это не книга»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — возразите «Это не книга»",
+          "uk": "Вставте слово — заперечте «Це не книга»"
+        },
+        "gappedTargetPhrase": "___ es un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-01:i09:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i09:r2",
+            "text": "Un"
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i09:r3",
+            "text": "El"
+          }
+        ],
+        "testedDimension": "Вставьте слово — возразите «Это не книга»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — возразите «Это не книга»",
+            "feedbackByLocale": {
+              "ru": "Un уже стоит перед libro; в начале нужно отрицание no.",
+              "uk": "Un уже стоїть перед libro; на початку потрібне заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — возразите «Это не книга»",
+            "feedbackByLocale": {
+              "ru": "El не отрицает название.",
+              "uk": "El не заперечує назву."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите, что это не книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i10:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i10:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i10:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i10:r5",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите, что это не книга",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите, что это не книга",
+          "uk": "Зберіть фразу — скажіть, що це не книга"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите, что это не книга",
+            "feedbackByLocale": {
+              "ru": "отрицаете название предмета.",
+              "uk": "заперечуєте назву предмета."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i11:r1",
+          "text": "Плитки: cuaderno"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i11:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i11:audio",
+          "transcript": "Es un cuaderno."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es un cuaderno.",
+        "orderedTokens": [
+          "Es",
+          "un",
+          "cuaderno"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи нет отрицания.",
+              "uk": "у записі немає заперечення."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг ошибся, назвав тетрадь книгой; возразите",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг ошибся, назвав тетрадь книгой; возразите",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i12:audio",
+          "transcript": "No es un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i13:r1",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i13:r2",
+          "text": "cuaderno"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-01:i13:audio",
+          "transcript": "libro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-01:i13:r1",
+            "targetText": "libro",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-01:i13:r2",
+            "targetText": "cuaderno",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит libro — книга.",
+              "uk": "Звучить libro — книга."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-01:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите предмет с чистыми страницами тетрадью",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-01:i14:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i14:r2",
+          "text": "cuaderno"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i14:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-01:i14:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите предмет с чистыми страницами тетрадью",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un cuaderno.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите предмет с чистыми страницами тетрадью",
+          "uk": "Зберіть фразу — назвіть предмет із чистими сторінками зошитом"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "cuaderno"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-01:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите предмет с чистыми страницами тетрадью",
+            "feedbackByLocale": {
+              "ru": "называете предмет, не собеседника.",
+              "uk": "називаєте предмет, не співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4a752125ae6560582c6d5d9d9e70d76a706268ea6a59eeb224c80f52d5fa720f"
+}

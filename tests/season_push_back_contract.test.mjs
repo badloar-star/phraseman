@@ -13,8 +13,13 @@ const view = read('components/learning-v2/season/SeasonCourseView.tsx');
 const slider = read('app/TabSlider.tsx');
 const oldMap = read('components/learning-v2/LearningV2ChaptersCourse.tsx');
 
-test('push-маршрут /learning-v2/course — тот же экран «Уроки» поверх вкладок (таббара нет)', () => {
-  assert.match(course, /<LessonsTab presentation="push" initialPage="v2" \/>/);
+test('ссылка /learning-v2/course возвращает во вкладку с таббаром, сохраняя параметры', () => {
+  assert.match(course, /dismissToTabRoute\(router, '\/\(tabs\)\/lessons'/);
+  assert.doesNotMatch(course, /<LessonsTab/);
+  assert.match(course, /forwarded.append\(key, item\)/);
+  assert.match(course, /forwarded.set\("courseEntry", "v2"\)/);
+  assert.match(lessons, /courseEntry === "v2" && learningV2CanOpen\) \{\s*setPageRaw\("v2"\)/);
+  assert.match(lessons, /router.setParams\(\{ courseEntry: undefined \}\)/);
 });
 
 test('вкладка: TabSlider помечает страницу вкладки (там таббар) — по этому Сезон отличает вкладку от push', () => {

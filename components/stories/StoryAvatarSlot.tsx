@@ -3,7 +3,7 @@
 //
 // зачем (владелец 14.10: «на Главной иконка аватарки с кругом, как история в Instagram, когда есть хоть одно событие»): один компонент вместо прежней разметки кнопки в home.tsx.
 // Событий нет или флаг выключен → ровно прежняя кнопка (те же testID, тот же обработчик, тап ведёт в профиль) — поведение «как раньше» гарантировано. Есть непросмотренные →
-// кольцо вокруг монеты, тап открывает просмотр; всё просмотрено, но за 7 дней события есть → кольца нет, тап открывает просмотр недавних. Просмотр живёт отдельно от кольца: когда события просмотрены, кольцо гаснет, а открытый просмотр дорабатывает до конца.
+// кольцо вокруг монеты, тап открывает просмотр; всё просмотрено → тап открывает визитку, удержание 2 секунды повторяет истории. Просмотр живёт отдельно от кольца: когда события просмотрены, кольцо гаснет, а открытый просмотр дорабатывает до конца.
 // Данные — useStoryEvents() Ядра (память процесса, первый кадр синхронно, сети нет). Логи: [STORY-RING] (что решило: кольцо/профиль, откуда origin).
 // Холодный старт (координатор 14.10): StoryRing (Svg + Reanimated) и StoryViewer (жесты, Modal, слайды) подключаются через require ВНУТРИ функций — только когда кольцо нужно (есть непросмотренное)
 // или человек тапнул по аватару с событиями. Флаг выключен / событий нет → слот не грузит ни одного модуля сторис, кроме лёгких констант, строк и хука данных.
@@ -64,8 +64,8 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
   const ring = enabled && unseenCount > 0;
-  // зачем (владелец 24.10: «истории должны открываться»; решение координатора 24.10, меняет R21 15.10): тап по аватару ВСЕГДА открывает истории, если есть живые слайды —
-  // сначала непросмотренные (кольцо горит), иначе все живые от старых к новым (список Ядра — новые первыми, поэтому переворачиваем); в профиль тап ведёт только когда историй нет (или флаг выключен).
+  // Владелец 26.10: новые истории — обычным тапом; просмотренные повторяются удержанием.
+  // Повтор идёт от старых к новым: список хранилища отдаёт новые первыми.
   const queue = useMemo<StoryEventList>(() => (ring ? playback : enabled ? [...stories].reverse() : []), [enabled, playback, ring, stories]);
   const opensStories = queue.length > 0;
   // зачем (аудит Optimistic UI 24.10, п.2 «кольцо открывает истории сразу»): просмотр подключается лениво (холодный старт), и первое нажатие платило за загрузку Reanimated-жестов — задержка перед раскрытием.
@@ -82,7 +82,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   const decisionLoggedRef = useRef('');
   if (decisionLoggedRef.current !== decisionKey) {
     decisionLoggedRef.current = decisionKey;
-    DebugLogger.info('[STORIES]', `кольцо: флаг=${String(enabled)} непросмотрено=${unseenCount} очередь=${queue.length} к просмотру=${playback.length} живых=${stories.length} → ${ring ? 'кольцо горит' : 'кольца нет'}, тап ведёт ${opensStories ? (ring ? 'в просмотр непросмотренных' : 'в просмотр с первого слайда') : 'в профиль'}`);
+    DebugLogger.info('[STORIES]', `кольцо: флаг=${String(enabled)} непросмотрено=${unseenCount} очередь=${queue.length} к просмотру=${playback.length} живых=${stories.length} → ${ring ? 'кольцо горит' : 'кольца нет'}, тап ведёт ${ring && opensStories ? 'в просмотр непросмотренных' : 'в профиль'}`);
   }
 
   const open = useCallback(() => {
@@ -139,9 +139,14 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   }, []);
   const onPress = useCallback(() => {
     if (pressRef.current) pressRef.current.pressed = true;
-    DebugLogger.info(AVATAR_LOG, `onPress #${pressRef.current?.seq ?? '?'} → ${opensStories ? 'просмотр сторис' : 'профиль'} +${sinceMount()} мс с монтажа`);
-    if (opensStories) open(); else onOpenProfile();
-  }, [onOpenProfile, open, opensStories]);
+    DebugLogger.info(AVATAR_LOG, `onPress #${pressRef.current?.seq ?? '?'} → ${ring && opensStories ? 'просмотр сторис' : 'профиль'} +${sinceMount()} мс с монтажа`);
+    if (ring && opensStories) open(); else onOpenProfile();
+  }, [onOpenProfile, open, opensStories, ring]);
+
+  const onLongPress = useCallback(() => {
+    if (pressRef.current) pressRef.current.pressed = true;
+    if (opensStories) open();
+  }, [open, opensStories]);
 
   const coin = (size: number): React.ReactElement => (coinSource ? (
     <Image testID="home-avatar-coin-rank" source={coinSource} style={{ width: size, height: size }} contentFit="contain" />
@@ -161,6 +166,8 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
           testID="home-hero-avatar-button"
           activeOpacity={0.82}
           onPress={onPress}
+          onLongPress={opensStories ? onLongPress : undefined}
+          delayLongPress={2000}
           onPressIn={onPressIn}
           onPressOut={onPressOut}
           onLayout={onButtonLayout}

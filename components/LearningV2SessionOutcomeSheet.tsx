@@ -35,6 +35,8 @@ interface LearningV2SessionOutcomeSheetProps {
   sessionOrdinal?: number;
   title: string;
   message: string;
+  kicker?: string;
+  icon?: React.ComponentProps<typeof Ionicons>["name"];
   primaryLabel: string;
   actionsDisabled?: boolean;
   onPrimaryPress: () => void;
@@ -72,6 +74,8 @@ export default function LearningV2SessionOutcomeSheet({
   sessionOrdinal = 1,
   title,
   message,
+  kicker,
+  icon,
   primaryLabel,
   actionsDisabled = false,
   onPrimaryPress,
@@ -245,11 +249,11 @@ export default function LearningV2SessionOutcomeSheet({
               </View>
               {/* зачем (Сверка ib_light_sheet, 18.10): круг залит g.text, значок — цветом листа (g.opaqueSheet) = инверсия круга; прежний g.ctaInk в светлых темах почти сливался с кругом */}
               <View style={[sx.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.text }]}>
-                <Ionicons name={locked ? "lock-closed" : checkpoint ? "trophy" : "play"} size={38} color={locked ? g.secondary : g.opaqueSheet} />
+                <Ionicons name={icon ?? (locked ? "lock-closed" : checkpoint ? "trophy" : "play")} size={38} color={locked ? g.secondary : g.opaqueSheet} />
               </View>
             </Animated.View>
             <Animated.View style={detailsStyle}>
-              <Text testID="learning-v2-session-modal-kicker" style={[sx.kicker, { color: g.secondary }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
+              <Text testID="learning-v2-session-modal-kicker" style={[sx.kicker, { color: g.secondary }]}>{kicker ?? `${sessionLabel.toUpperCase()} ${sessionOrdinal} · ${chapterLabel.toUpperCase()} ${chapterOrdinal}`}</Text>
               <Text style={[sx.title, { color: g.text, fontSize: layout.headingSize, lineHeight: lh(31) }]}>{title}</Text>
               {/* зачем (сверка с learning-v2.html, 04.10): цель занятия приходит из текста курса с разметкой `код` —
                   человеку показывались сами обратные кавычки («`I am + слово о себе`»). Показываем текст без разметки. */}

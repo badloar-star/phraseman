@@ -70,9 +70,9 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
     expect(wire).not.toContain('learningV2ChapterExamPassFrom');
     expect(wire).toContain("energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null");
     const card = readSource('components/learning-v2/season/SeasonExpandedCard.tsx');
-    expect(card).toContain('testID="season-exam-facts"');
-    expect(card).toContain('testID="season-exam-energy"');
-    expect(card).toContain('testID="season-exam-plus"');
+    expect(card).toContain('p.exam?.facts');
+    expect(card).toContain('p.exam?.energyBadge');
+    expect(card).toContain('p.exam?.plusLine');
   });
 });
 

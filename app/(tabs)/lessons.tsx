@@ -45,7 +45,7 @@ import Svg, {
   Stop,
 } from "react-native-svg";
 import TapScale from "../../components/TapScale";
-import { useFocusEffect, useRouter } from "expo-router";
+import { useFocusEffect, useGlobalSearchParams, useRouter } from "expo-router";
 import { useIsFocused } from "@react-navigation/native";
 import { useFeatureAccess, usePremium } from "../../components/PremiumContext";
 import {
@@ -2619,6 +2619,14 @@ export default function LessonsTab({
   // и нужно увидеть, тот ли экземпляр получил тап, что виден на экране.
   // R08: navFocused — фокус экрана вкладок в корневом стеке (freezeOnBlur замораживает нативный кадр расфокусированного экрана)
   const navFocused = useIsFocused();
+  const { courseEntry } = useGlobalSearchParams<{ courseEntry?: string }>();
+  useEffect(() => {
+    // Legacy course links must select V2 even when the retained tab last showed the classic list.
+    if (isRetainedTab && lessonsTabVisible && navFocused && courseEntry === "v2" && learningV2CanOpen) {
+      setPageRaw("v2");
+      router.setParams({ courseEntry: undefined });
+    }
+  }, [courseEntry, isRetainedTab, lessonsTabVisible, navFocused, learningV2CanOpen, router]);
   useEffect(() => {
     console.log("[V2-MAP] page:commit", JSON.stringify({ instanceId: instanceIdRef.current, page, branch: page === "v2" ? "v2_map" : page === "dialogs" ? "dialogs" : "legacy_list", presentation, runtimeOwnerId, visible: lessonsTabVisible, navFocused, atMs: Date.now() }));
   }, [page, presentation, runtimeOwnerId, lessonsTabVisible, navFocused]);

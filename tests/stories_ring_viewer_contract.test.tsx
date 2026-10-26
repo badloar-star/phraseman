@@ -124,14 +124,18 @@ describe('аватар в шапке Главной (D192)', () => {
     expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
   });
 
-  // владелец 24.10 «истории должны открываться» (решение координатора 24.10, меняет R21 15.10): всё просмотрено, но живые события есть → кольца нет, а тап ВСЁ РАВНО открывает просмотр (от старых к новым), профиль не открывается
-  it('всё просмотрено, но за 7 дней события есть → кольца нет, тап открывает просмотр с первого слайда', async () => {
+  // Владелец 26.10: просмотренные истории доступны удержанием, обычный тап открывает визитку.
+  it('просмотренные истории: тап открывает профиль, удержание 2 секунды повторяет истории', async () => {
     mockStories = { enabled: true, unseenCount: 0, playback: [], stories: [STREAK, WEEK] }; // новые первыми, как отдаёт Ядро
     const props = slotProps();
     await render(<StoryAvatarSlot {...props} />);
     expect(screen.queryByTestId('story-ring')).toBeNull();
     await fireEvent.press(screen.getByTestId('home-hero-avatar-button'));
-    expect(props.onOpenProfile).not.toHaveBeenCalled();
+    expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
+    expect(screen.queryByTestId('story-viewer')).toBeNull();
+    expect(screen.getByTestId('home-hero-avatar-button').props.delayLongPress).toBe(2000);
+    await fireEvent(screen.getByTestId('home-hero-avatar-button'), 'longPress');
+    expect(props.onOpenProfile).toHaveBeenCalledTimes(1);
     expect(screen.getByTestId('story-viewer')).toBeTruthy();
     expect(mockMarkSeen).toHaveBeenCalledWith(WEEK.id); // WEEK старше STREAK → показывается первым
   });

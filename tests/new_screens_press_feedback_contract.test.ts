@@ -50,9 +50,10 @@ describe('новые экраны: отклик нажатия на кнопка
     expect(heroSrc).toContain('<HeroTile icon="albums-outline" label={seasonText(lang, \'words\')} onPress={props.onWords} dark={dark} testID="season-words" />');
     expect(heroSrc).toContain('<HeroTile icon="book-outline" label={seasonText(lang, \'theory\')} onPress={props.onTheory} dark={dark} testID="season-theory" />');
     expect(heroSrc).toMatch(/function HeroTile[\s\S]*?<V2Pressable/);
-    const expanded = viaV2('components/learning-v2/season/SeasonExpandedCard.tsx');
+    const expanded = readSource('components/learning-v2/season/SeasonExpandedCard.tsx');
     // ЗАМОК ВЛАДЕЛЬЦА 22.10: закрытая карта не раскрывается (крестика «просмотра» больше нет)
-    for (const id of ['season-expanded-primary', 'season-expanded-secondary']) expect(expanded).toContain(id);
+    expect(expanded).toContain('<LearningV2SessionOutcomeSheet');
+    expect(readSource('components/LearningV2SessionOutcomeSheet.tsx')).toContain('activeOpacity={0.8}');
     // зачем (владелец 22.10, макет lesson-hub-final.html): плитки и строки списков — тоже через V2Pressable
     const tiles = readSource('components/learning-v2/season/SeasonNavTiles.tsx');
     expect(tiles).toContain('<V2Pressable');

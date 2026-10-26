@@ -8,6 +8,7 @@ module.exports = {
   // зачем (03.10): запись про удалённый tests/learning_v2_rune_flight_lifecycle.test.tsx убрана — раннер искал несуществующий файл,
   // а tests/text_integrity_primitives.test.tsx (сторож «каждая запись существует») из-за этого был красным.
   testMatch: [
+    '<rootDir>/tests/season_shared_modal.test.tsx',
     '<rootDir>/tests/spire_all_members_profile.test.tsx',
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/survey_offer_render.test.tsx',

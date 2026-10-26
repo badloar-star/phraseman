@@ -45,8 +45,8 @@ describe('окно экзамена: состояния «сдан» и «пау
 
   it('карточка: значок плитки задаётся состоянием (по умолчанию трофей), ✕ у экзамена остаётся', () => {
     expect(card).toContain('sealIcon?: IonName;');
-    expect(card).toContain("name={p.sealIcon ?? 'trophy'}");
-    expect(card).toContain('testID="season-expanded-close"');
+    expect(card).toContain("icon={p.sealIcon ?? (p.kind === 'exam' ? 'trophy' : 'play')}");
+    expect(card).toContain('onClose={p.onClose}');
   });
 
   it('журнал состояния окна без кириллицы в литералах', () => {

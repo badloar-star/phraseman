@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-37",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-37:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-37:intro1:r2": {
+          "ru": "Это «трудно», а нужно сказать «возможно».",
+          "uk": "Це «важко», а потрібно сказати «можливо»."
+        },
+        "es:lesson-01:session-37:intro1:r3": {
+          "ru": "No отрицает возможность, а вариант подходит.",
+          "uk": "No заперечує можливість, а варіант підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-37:intro2:r2": {
+          "ru": "Это противоположное: «возможно».",
+          "uk": "Це протилежне: «можливо»."
+        },
+        "es:lesson-01:session-37:intro2:r3": {
+          "ru": "«Трудно» не передаёт, что присутствовать в двух городах одновременно невозможно.",
+          "uk": "«Важко» не передає, що бути у двох містах одночасно неможливо."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-37:intro3:r2": {
+          "ru": "Это вопрос «Это невозможно?», а вы спрашиваете о возможности.",
+          "uk": "Це запитання «Це неможливо?», а ви питаєте про можливість."
+        },
+        "es:lesson-01:session-37:intro3:r3": {
+          "ru": "Eres относится к собеседнику; здесь оценивается вариант встречи.",
+          "uk": "Eres стосується співрозмовника; тут оцінюється варіант зустрічі."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d02156c3bbc2d0c0ad76686e5c169ed910477f59886d60fb9b2d18d38e5820dc"
+}

@@ -252,4 +252,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить сложность одного руководства с es, не меняя знакомую схему предложения.","uk":"оцінити складність одного посібника з es, не змінюючи знайому схему речення."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 36,
+    sourceFingerprint: "6af1e234fbd008878cfc1df3ba8378e9a382370c79763f74daf54aa6e2deaae6",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать возраст вещи, согласуя окончание с испанским названием предмета.","uk":"описати вік речі, узгоджуючи закінчення з іспанською назвою предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 37,
+    sourceFingerprint: "212dbfb8af1eb87b4f22c0d9b6f551e14589420c7a804dbfc3203436e03f18fb",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить возможность предложенного варианта с es posible и es imposible.","uk":"оцінити можливість запропонованого варіанта з es posible та es imposible."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

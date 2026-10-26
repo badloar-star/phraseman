@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-37:i01",
+    "correctText": "posible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i02",
+    "correctText": "posible",
+    "correctResponseId": "es:lesson-01:session-37:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i03",
+    "correctText": "posible",
+    "correctResponseId": "es:lesson-01:session-37:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i04",
+    "correctText": "Sí, es posible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i05",
+    "correctText": "imposible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i06",
+    "correctText": "imposible",
+    "correctResponseId": "es:lesson-01:session-37:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i07",
+    "correctText": "imposible",
+    "correctResponseId": "es:lesson-01:session-37:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i08",
+    "correctText": "Es imposible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i09",
+    "correctText": "¿Es posible?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i10",
+    "correctText": "No es posible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i11",
+    "correctText": "¿Es posible?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-37:i12",
+    "correctText": "Es imposible.",
+    "correctResponseId": null
+  }
+]

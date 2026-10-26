@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "оценить возможность предложенного варианта с es posible и es imposible.",
+    "uk": "оцінити можливість запропонованого варіанта з es posible та es imposible."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подходящее время",
+        "uk": "Зручний час"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает встретиться после ваших дел. Это осуществимо: `Es posible` — «Это возможно». `Posible` означает «возможный». Соберите `es` + `posible`. Вы оцениваете предложенную встречу целиком; повторять предложение друга не нужно. Форма posible одинакова для мужского и женского рода; менять e на o или a не нужно.",
+        "uk": "Друг пропонує зустрітися після ваших справ. Це здійсненно: `Es posible` — «Це можливо». `Posible` означає «можливий». Зберіть `es` + `posible`. Ви оцінюєте запропоновану зустріч загалом; повторювати пропозицію друга не потрібно. Форма posible однакова для чоловічого й жіночого роду; змінювати e на o або a не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте на осуществимое предложение: «Это возможно».",
+          "uk": "Дайте відповідь на здійсненну пропозицію: «Це можливо»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-37:intro1:r1",
+              "text": "Es posible."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro1:r2",
+              "text": "Es difícil."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro1:r3",
+              "text": "No es posible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-37:intro1:r1",
+              "text": "Es posible."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro1:r2",
+              "text": "Es difícil."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro1:r3",
+              "text": "No es posible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте на осуществимое предложение: «Это возможно».",
+          "uk": "Дайте відповідь на здійсненну пропозицію: «Це можливо»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два места в один час",
+        "uk": "Два місця в одну годину"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вам предлагают две личные встречи в разных городах в один и тот же час. Вы не можете присутствовать на обеих: `Es imposible` — «Это невозможно». Соберите `es` + `imposible`. `Imposible` означает «невозможный», а не просто «трудный». В этой ситуации вы отрицаете саму возможность выполнить оба условия.",
+        "uk": "Тепер вам пропонують дві особисті зустрічі в різних містах в одну й ту саму годину. Ви не можете бути присутні на обох: `Es imposible` — «Це неможливо». Зберіть `es` + `imposible`. `Imposible` означає «неможливий», а не просто «важкий». У цій ситуації ви заперечуєте саму можливість виконати обидві умови."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Оцените присутствие на обеих встречах одновременно: «Это невозможно».",
+          "uk": "Оцініть присутність на обох зустрічах одночасно: «Це неможливо»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-37:intro2:r1",
+              "text": "Es imposible."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro2:r2",
+              "text": "Es posible."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro2:r3",
+              "text": "Es difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-37:intro2:r1",
+              "text": "Es imposible."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro2:r2",
+              "text": "Es posible."
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro2:r3",
+              "text": "Es difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените присутствие на обеих встречах одновременно: «Это невозможно».",
+          "uk": "Оцініть присутність на обох зустрічах одночасно: «Це неможливо»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверяем другой вариант",
+        "uk": "Перевіряємо інший варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Вы предлагаете перенести одну встречу и хотите узнать, получится ли это. Спросите: `¿Es posible?` — «Это возможно?» Соберите те же слова `es` + `posible`, но произнесите вопрос. В записи нужны знаки ¿ и ?. Новый порядок слов не требуется.",
+        "uk": "Ви пропонуєте перенести одну зустріч і хочете дізнатися, чи вийде це. Запитайте: `¿Es posible?` — «Це можливо?» Зберіть ті самі слова `es` + `posible`, але вимовте запитання. На письмі потрібні знаки ¿ та ?. Новий порядок слів не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о предложенном переносе: «Это возможно?»",
+          "uk": "Запитайте про запропоноване перенесення: «Це можливо?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-37:intro3:r1",
+              "text": "¿Es posible?"
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro3:r2",
+              "text": "¿Es imposible?"
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro3:r3",
+              "text": "¿Eres posible?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-37:intro3:r1",
+              "text": "¿Es posible?"
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro3:r2",
+              "text": "¿Es imposible?"
+            },
+            {
+              "responseId": "es:lesson-01:session-37:intro3:r3",
+              "text": "¿Eres posible?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о предложенном переносе: «Это возможно?»",
+          "uk": "Запитайте про запропоноване перенесення: «Це можливо?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1c16e9a756ea448c9ac62c4d1e6a295f4b9867117e9140c9668c654a562a1add"
+}

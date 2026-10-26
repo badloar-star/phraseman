@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-36",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-36:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-36:intro1:r2": {
+          "ru": "В испанском libro мужского рода: viejo.",
+          "uk": "В іспанській libro чоловічого роду: viejo."
+        },
+        "es:lesson-01:session-36:intro1:r3": {
+          "ru": "Здесь одна книга, поэтому es viejo.",
+          "uk": "Тут одна книжка, тому es viejo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-36:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-36:intro2:r2": {
+          "ru": "Это женская форма слова «старый»; здесь нужно nuevo.",
+          "uk": "Це жіноча форма слова «старий»; тут потрібно nuevo."
+        },
+        "es:lesson-01:session-36:intro2:r3": {
+          "ru": "Libro мужского рода, поэтому nuevo.",
+          "uk": "Libro чоловічого роду, тому nuevo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-36:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-36:intro3:r2": {
+          "ru": "С мужским libro нужно antiguo.",
+          "uk": "Із чоловічим libro потрібно antiguo."
+        },
+        "es:lesson-01:session-36:intro3:r3": {
+          "ru": "Книга одна, поэтому es antiguo.",
+          "uk": "Книжка одна, тому es antiguo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df2c6e08e07396f8b140efac886c01846191d2ba11528fb385d312149b26abf2"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-36:i01",
+    "correctText": "viejo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i02",
+    "correctText": "viejo",
+    "correctResponseId": "es:lesson-01:session-36:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i03",
+    "correctText": "viejo",
+    "correctResponseId": "es:lesson-01:session-36:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i04",
+    "correctText": "nuevo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i05",
+    "correctText": "nuevo",
+    "correctResponseId": "es:lesson-01:session-36:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i06",
+    "correctText": "El libro es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i07",
+    "correctText": "antiguo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-36:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i09",
+    "correctText": "El libro es antiguo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i10",
+    "correctText": "Son viejos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i11",
+    "correctText": "El libro no es nuevo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-36:i12",
+    "correctText": "Son nuevos.",
+    "correctResponseId": null
+  }
+]

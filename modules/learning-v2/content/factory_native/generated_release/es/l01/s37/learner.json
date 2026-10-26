@@ -1,0 +1,657 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-37",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — posible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — posible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i01:audio",
+          "transcript": "posible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-37:i01:r1",
+            "targetText": "posible",
+            "meaningByLocale": {
+              "ru": "возможный; es posible — это возможно. 🔊 *posible*",
+              "uk": "можливий; es posible — це можливо. 🔊 *posible*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "posible",
+          "definitionByLocale": {
+            "ru": "возможный; es posible — это возможно. 🔊 *posible*",
+            "uk": "можливий; es posible — це можливо. 🔊 *posible*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i02:r1",
+          "text": "posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i02:r2",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i02:audio",
+          "transcript": "posible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-37:i02:r1",
+            "targetText": "posible",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i02:r2",
+            "targetText": "difícil",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит posible — «возможный», а не difícil.",
+              "uk": "Звучить posible — «можливий», а не difícil."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — предложенный вариант осуществим; скажите «Это возможно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i03:r1",
+          "text": "posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i03:r2",
+          "text": "imposible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i03:r3",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — предложенный вариант осуществим; скажите «Это возможно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — предложенный вариант осуществим; скажите «Это возможно»",
+          "uk": "Вставте слово — запропонований варіант здійсненний; скажіть «Це можливо»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-37:i03:r1",
+            "text": "posible"
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i03:r2",
+            "text": "imposible"
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i03:r3",
+            "text": "difícil"
+          }
+        ],
+        "testedDimension": "Вставьте слово — предложенный вариант осуществим; скажите «Это возможно»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — предложенный вариант осуществим; скажите «Это возможно»",
+            "feedbackByLocale": {
+              "ru": "Это «невозможно», противоположная оценка.",
+              "uk": "Це «неможливо», протилежна оцінка."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — предложенный вариант осуществим; скажите «Это возможно»",
+            "feedbackByLocale": {
+              "ru": "Это «трудно», а нужно «возможно».",
+              "uk": "Це «важко», а потрібно «можливо»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подтвердите «Да, это возможно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i04:r1",
+          "text": "Плитки: posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i04:r3",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i04:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подтвердите «Да, это возможно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, es posible.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите «Да, это возможно»",
+          "uk": "Зберіть фразу — підтвердьте «Так, це можливо»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "es",
+          "posible"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подтвердите «Да, это возможно»",
+            "feedbackByLocale": {
+              "ru": "подтверждаете возможность.",
+              "uk": "підтверджуєте можливість."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — imposible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — imposible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i05:audio",
+          "transcript": "imposible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-37:i05:r1",
+            "targetText": "imposible",
+            "meaningByLocale": {
+              "ru": "невозможный; es imposible — это невозможно. 🔊 *imposible*",
+              "uk": "неможливий; es imposible — це неможливо. 🔊 *imposible*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "imposible",
+          "definitionByLocale": {
+            "ru": "невозможный; es imposible — это невозможно. 🔊 *imposible*",
+            "uk": "неможливий; es imposible — це неможливо. 🔊 *imposible*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i06:r1",
+          "text": "imposible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i06:r2",
+          "text": "posible"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i06:audio",
+          "transcript": "imposible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-37:i06:r1",
+            "targetText": "imposible",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i06:r2",
+            "targetText": "posible",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В начале слышно im: imposible.",
+              "uk": "На початку чути im: imposible."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — присутствовать в двух городах одновременно невозможно",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i07:r1",
+          "text": "imposible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i07:r2",
+          "text": "posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i07:r3",
+          "text": "fácil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — присутствовать в двух городах одновременно невозможно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — присутствовать в двух городах одновременно невозможно",
+          "uk": "Вставте слово — бути у двох містах одночасно неможливо"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-37:i07:r1",
+            "text": "imposible"
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i07:r2",
+            "text": "posible"
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i07:r3",
+            "text": "fácil"
+          }
+        ],
+        "testedDimension": "Вставьте слово — присутствовать в двух городах одновременно невозможно",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — присутствовать в двух городах одновременно невозможно",
+            "feedbackByLocale": {
+              "ru": "Это утверждает возможность, а условия несовместимы.",
+              "uk": "Це стверджує можливість, а умови несумісні."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-37:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — присутствовать в двух городах одновременно невозможно",
+            "feedbackByLocale": {
+              "ru": "Это «легко», а нужно «невозможно».",
+              "uk": "Це «легко», а потрібно «неможливо»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — отклоните несовместимые условия словами «Это невозможно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — отклоните несовместимые условия словами «Это невозможно»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i08:audio",
+          "transcript": "Es imposible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es imposible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, возможен ли предложенный перенос",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i09:r1",
+          "text": "Плитки: posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i09:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i09:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, возможен ли предложенный перенос",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es posible?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, возможен ли предложенный перенос",
+          "uk": "Зберіть фразу — запитайте, чи можливе запропоноване перенесення"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "posible"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, возможен ли предложенный перенос",
+            "feedbackByLocale": {
+              "ru": "спрашиваете о варианте, не описываете собеседника.",
+              "uk": "питаєте про варіант, не описуєте співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i10:r1",
+          "text": "Плитки: posible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i10:r4",
+          "text": "sí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i10:audio",
+          "transcript": "No es posible."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es posible.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "posible"
+        ],
+        "authoredDistractorTokens": [
+          "sí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит отрицание no.",
+              "uk": "звучить заперечення no."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — уточните возможность другого времени встречи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — уточните возможность другого времени встречи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-37:i11:audio",
+          "transcript": "¿Es posible?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es posible?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-37:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — отвергните вариант словами «Это невозможно», используя imposible",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-37:i12:r1",
+          "text": "Плитки: imposible"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-37:i12:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — отвергните вариант словами «Это невозможно», используя imposible",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es imposible.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — отвергните вариант словами «Это невозможно», используя imposible",
+          "uk": "Зберіть фразу — відхиліть варіант словами «Це неможливо», використовуючи imposible"
+        },
+        "orderedTokens": [
+          "Es",
+          "imposible"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-37:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — отвергните вариант словами «Это невозможно», используя imposible",
+            "feedbackByLocale": {
+              "ru": "оцениваете возможность варианта.",
+              "uk": "оцінюєте можливість варіанта."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a6e5b3352f916183a70931e8ea832df88fff5a37657e09b90060f4a277867a71"
+}

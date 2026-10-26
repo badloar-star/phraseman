@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Наборы сообщества — новый вид</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Друзья → Наборы» (Сообщество) — 3 варианта нового вида, 26.10 ─────────
+   зачем (слово владельца через координатора 26.10: «Разработай макеты нового раздела, чтобы выглядело более красиво и удобно!
+   Это неудобно и некрасиво, и фильтрация ужасная»): только макет. Всё, что умеет экран сейчас (app/flashcards_packs.tsx +
+   app/flashcards/FlashcardsCategoryHub.tsx), сохранено в каждом варианте — список в разделе 1. Цвета — токены тем кода
+   (constants/liquidGlassThemeVariants.ts, уровень max), те же, что в friends-full.html: «Сумерки» th-ink (светлая), «Океан» th-marine (тёмная).
+   Контейнеры без обводок (стиль «Тень»), подписей мелким шрифтом под названием нет, «назад» — общий круг 48. Свои классы — с префиксом cs-. */
+.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --bgb: #ECE4F7; --tx: #17181E; --sec: #595A63; --mut: #5E5F67; --card: #FCFCFF; --ctl: #DBDDEC; --sheet: #FBFBFE;
+  --sh: 0 14px 26px -14px #32325757, 0 1px 3px #3232570F; --nsh: 0 5px 10px -5px #32325747; --sel: rgba(42, 43, 65, .08);
+  --acc: #5F5CB1; --acct: #4A47A8; --acc-ink: #FFFFFF; --good: #2B8A5E; --bad: #C2413B; --dim: rgba(23, 24, 30, .38); --skel: #E3E4F1; }
+.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --bgb: #001B17; --tx: #F6FBFD; --sec: #B8CFD6; --mut: #98ACB1; --card: #002027; --ctl: #123037; --sheet: #03171C;
+  --sh: 0 16px 28px -14px rgba(0, 0, 0, .75); --nsh: 0 6px 12px -6px rgba(0, 0, 0, .6); --sel: rgba(85, 201, 228, .20);
+  --acc: #5CCFEB; --acct: #5CCFEB; --acc-ink: #001A22; --good: #4CC98C; --bad: #F2766B; --dim: rgba(0, 0, 0, .58); --skel: #0F2A30; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: #0E0F14; color: #E9EAF2; font: 15px/1.45 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+.cs-page { max-width: 1320px; margin: 0 auto; padding: 32px 20px 80px; }
+.cs-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.02em; }
+.cs-page h2 { font-size: 22px; line-height: 28px; margin: 48px 0 6px; letter-spacing: -.01em; }
+.cs-page p { color: #B9BBC8; max-width: 860px; margin: 6px 0; }
+.cs-lead { font-size: 16px; }
+.cs-inv { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 24px; margin: 16px 0 0; padding: 0; list-style: none; }
+.cs-inv li { color: #D3D5E0; padding-left: 18px; position: relative; }
+.cs-inv li::before { content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 4px; background: #7D7BD6; }
+.cs-inv li.new::before { background: #E2A55A; }
+.cs-key { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; color: #9FA1AF; font-size: 13px; }
+.cs-key i { display: inline-block; width: 8px; height: 8px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; }
+.cs-row { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 18px; align-items: flex-start; }
+.cs-cap { font-size: 13px; color: #9FA1AF; margin: 10px 0 0; max-width: 390px; }
+.cs-cap b { color: #E9EAF2; font-weight: 600; }
+.cs-pros { margin: 10px 0 0; padding: 0 0 0 18px; color: #C9CBD6; max-width: 860px; }
+
+/* ── телефон 390 × 844 ── */
+.cs-ph { width: 390px; height: 844px; border-radius: 46px; overflow: hidden; position: relative; background: var(--bg); color: var(--tx); box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); flex: none; }
+.cs-ph.cs-real { background: #000; }
+.cs-ph.cs-real img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.cs-ph .cs-missing { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 40px; color: #9FA1AF; background: #15161C; }
+.cs-sb { height: 47px; display: flex; justify-content: space-between; align-items: center; padding: 6px 30px 0; font-weight: 600; font-size: 15px; }
+.cs-sb .cs-sys { display: flex; gap: 6px; align-items: center; }
+.cs-sb .cs-bat { width: 24px; height: 12px; border-radius: 3px; border: 1.5px solid currentColor; opacity: .9; position: relative; }
+.cs-sb .cs-bat::after { content: ""; position: absolute; inset: 1.5px; right: 5px; background: currentColor; border-radius: 1px; }
+.cs-ph p { color: inherit; max-width: none; margin: 0; }
+.cs-scr { position: absolute; top: 47px; left: 0; right: 0; bottom: 0; overflow: hidden; padding: 0 16px; }
+
+/* шапка раздела: «назад» круг 48, вкладки Пик / Друзья / Наборы, язык */
+.cs-top { display: flex; align-items: center; gap: 10px; height: 60px; }
+.cs-back { width: 48px; height: 48px; border-radius: 24px; background: var(--card); box-shadow: var(--nsh); display: grid; place-items: center; flex: none; }
+.cs-back svg { width: 22px; height: 22px; stroke: var(--tx); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.cs-tabs { display: flex; gap: 18px; font-size: 17px; font-weight: 600; color: var(--sec); flex: 1; }
+.cs-tabs span.on { color: var(--tx); position: relative; }
+.cs-tabs span.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -9px; height: 3px; border-radius: 2px; background: var(--acc); }
+.cs-lang { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--card); box-shadow: var(--nsh); display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; }
+.cs-flag { width: 20px; height: 14px; border-radius: 3px; background: linear-gradient(180deg, #2D4FA8 0 33%, #F4F4F4 33% 66%, #C9373B 66%); }
+
+.cs-h1row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.cs-h1 { font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.cs-plus { width: 44px; height: 44px; border-radius: 22px; background: var(--acc); color: var(--acc-ink); display: grid; place-items: center; font-size: 26px; font-weight: 500; box-shadow: var(--nsh); }
+.cs-search { height: 46px; border-radius: 23px; background: var(--card); box-shadow: var(--nsh); display: flex; align-items: center; gap: 10px; padding: 0 16px; color: var(--mut); margin-top: 12px; font-size: 16px; }
+.cs-search svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+
+/* сегменты и чипы */
+.cs-seg { display: flex; background: var(--ctl); border-radius: 14px; padding: 3px; margin-top: 12px; }
+.cs-seg span { flex: 1; text-align: center; height: 34px; line-height: 34px; border-radius: 11px; font-size: 14px; font-weight: 600; color: var(--sec); }
+.cs-seg span.on { background: var(--card); color: var(--tx); box-shadow: var(--nsh); }
+.cs-chips { display: flex; gap: 8px; margin-top: 12px; white-space: nowrap; overflow: hidden; }
+.cs-chip { height: 34px; padding: 0 14px; border-radius: 17px; background: var(--card); box-shadow: var(--nsh); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--tx); flex: none; }
+.cs-chip.on { background: var(--acc); color: var(--acc-ink); }
+.cs-chip.ghost { background: var(--sel); box-shadow: none; }
+.cs-chip .cs-x { opacity: .8; font-weight: 500; }
+.cs-chip .cs-caret { font-size: 10px; opacity: .7; }
+.cs-badge { min-width: 20px; height: 20px; border-radius: 10px; background: var(--acc-ink); color: var(--acc); font-size: 12px; display: inline-grid; place-items: center; padding: 0 5px; }
+.cs-sec { display: flex; justify-content: space-between; align-items: baseline; margin: 18px 2px 10px; }
+.cs-sec b { font-size: 19px; letter-spacing: -.01em; }
+.cs-sec span { color: var(--acct); font-weight: 600; font-size: 14px; }
+
+/* обложка: цвет темы набора (как обложки полок хаба — градиент из категории набора) */
+.cv-business { --c1: #3B4A8C; --c2: #1E2654; }
+.cv-travel { --c1: #1F7A8C; --c2: #0E3A4A; }
+.cv-daily { --c1: #8C5A2E; --c2: #4A2A14; }
+.cv-exam { --c1: #6B3F8C; --c2: #33194A; }
+.cv-slang { --c1: #A2445A; --c2: #4E1A2A; }
+.cv-verbs { --c1: #2E7A55; --c2: #123D29; }
+.cs-cov { background: radial-gradient(120% 90% at 0% 0%, rgba(255,255,255,.22), transparent 55%), linear-gradient(150deg, var(--c1), var(--c2)); color: #fff; position: relative; overflow: hidden; }
+.cs-cov .cs-topic { font-size: 12px; font-weight: 700; letter-spacing: .02em; opacity: .9; }
+.cs-cov .cs-lvl { position: absolute; top: 10px; right: 10px; height: 24px; padding: 0 8px; border-radius: 12px; background: rgba(0,0,0,.28); font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+
+/* карточка набора — вариант А */
+.cs-card { background: var(--card); border-radius: 22px; box-shadow: var(--sh); overflow: hidden; margin-bottom: 12px; }
+.cs-card .cs-cov { height: 92px; padding: 12px 14px; display: flex; flex-direction: column; justify-content: flex-end; }
+.cs-card .cs-cov .cs-words { display: flex; gap: 6px; flex-wrap: wrap; }
+.cs-word { height: 26px; padding: 0 10px; border-radius: 13px; background: rgba(255,255,255,.18); font-size: 13px; font-weight: 600; display: inline-grid; place-items: center; }
+.cs-body { padding: 12px 14px 12px; }
+.cs-ttl { font-size: 17px; line-height: 22px; font-weight: 700; margin: 0; }
+.cs-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; color: var(--sec); font-size: 14px; }
+.cs-ava { width: 24px; height: 24px; border-radius: 12px; background: radial-gradient(circle at 35% 30%, #F4C27A, #B8641F); flex: none; }
+.cs-ava.s2 { background: radial-gradient(circle at 35% 30%, #CFE3F4, #6C8DB0); }
+.cs-ava.s3 { background: radial-gradient(circle at 35% 30%, #F3D9A0, #B08A2E); }
+.cs-count { font-weight: 700; color: var(--tx); }
+.cs-dot { width: 3px; height: 3px; border-radius: 2px; background: var(--mut); }
+.cs-act { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.cs-like { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--sel); display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
+.cs-like svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+.cs-like.on { color: var(--bad); }
+.cs-like.on svg { fill: currentColor; stroke: none; }
+.cs-com { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--sel); display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--sec); }
+.cs-add { margin-left: auto; height: 36px; padding: 0 16px; border-radius: 18px; background: var(--acc); color: var(--acc-ink); display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
+.cs-add.own { background: var(--sel); color: var(--good); }
+
+/* вариант Б — полки и плитки 2 в ряд */
+.cs-shelf { display: flex; gap: 10px; overflow: hidden; }
+.cs-tile { width: 168px; flex: none; background: var(--card); border-radius: 20px; box-shadow: var(--sh); overflow: hidden; }
+.cs-tile .cs-cov { height: 118px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.cs-tile .cs-big { font-size: 30px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.cs-tile .cs-big small { font-size: 13px; font-weight: 600; opacity: .9; letter-spacing: 0; margin-left: 4px; }
+.cs-tile .cs-body { padding: 10px 12px 12px; }
+.cs-tile .cs-ttl { font-size: 15px; line-height: 20px; height: 40px; overflow: hidden; }
+.cs-tile .cs-meta { margin-top: 8px; justify-content: space-between; }
+.cs-heart { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--sec); }
+.cs-heart svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; }
+.cs-heart.on { color: var(--bad); }
+.cs-heart.on svg { fill: currentColor; stroke: none; }
+.cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cs-grid .cs-tile { width: auto; }
+
+/* вариант В — строка списка с квадратной обложкой */
+.cs-line { display: flex; gap: 12px; align-items: center; background: var(--card); border-radius: 20px; box-shadow: var(--sh); padding: 10px; margin-bottom: 10px; }
+.cs-line .cs-cov { width: 76px; height: 76px; border-radius: 16px; flex: none; display: grid; place-items: center; }
+.cs-line .cs-cov .cs-n { font-size: 24px; font-weight: 800; line-height: 1; text-align: center; }
+.cs-line .cs-cov .cs-n small { display: block; font-size: 11px; font-weight: 600; opacity: .9; margin-top: 2px; }
+.cs-line .cs-mid { flex: 1; min-width: 0; }
+.cs-line .cs-ttl { font-size: 16px; line-height: 21px; }
+.cs-line .cs-meta { margin-top: 4px; font-size: 13px; gap: 8px; }
+.cs-line .cs-tags { display: flex; gap: 6px; margin-top: 6px; }
+.cs-tag { height: 22px; padding: 0 8px; border-radius: 11px; background: var(--sel); font-size: 12px; font-weight: 700; color: var(--sec); display: inline-grid; place-items: center; }
+.cs-line .cs-side { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.cs-round { width: 40px; height: 40px; border-radius: 20px; background: var(--acc); color: var(--acc-ink); display: grid; place-items: center; font-size: 22px; }
+.cs-round.own { background: var(--sel); color: var(--good); font-size: 18px; }
+
+/* шторка фильтров */
+.cs-scrim { position: absolute; inset: 0; background: var(--dim); }
+.cs-sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--sheet); border-radius: 30px 30px 0 0; padding: 10px 18px 28px; box-shadow: 0 -10px 30px rgba(0,0,0,.25); }
+.cs-grab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto 12px; }
+.cs-sheet h3 { margin: 0 0 4px; font-size: 22px; letter-spacing: -.01em; }
+.cs-flabel { font-size: 15px; font-weight: 700; margin: 16px 0 8px; }
+.cs-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.cs-sheetbtns { display: flex; gap: 10px; margin-top: 22px; }
+.cs-btn { flex: 1; height: 52px; border-radius: 26px; display: grid; place-items: center; font-weight: 700; font-size: 16px; background: var(--sel); color: var(--tx); }
+.cs-btn.pri { background: var(--acc); color: var(--acc-ink); flex: 1.6; }
+
+/* состояния */
+.cs-skel { background: var(--skel); border-radius: 12px; }
+.cs-empty { text-align: center; padding: 48px 20px 0; }
+.cs-empty .cs-eico { width: 72px; height: 72px; border-radius: 36px; background: var(--card); box-shadow: var(--nsh); margin: 0 auto 16px; display: grid; place-items: center; }
+.cs-empty .cs-eico svg { width: 30px; height: 30px; stroke: var(--sec); fill: none; stroke-width: 2.2; }
+.cs-empty b { display: block; font-size: 20px; margin-bottom: 6px; }
+.cs-empty span { color: var(--sec); }
+.cs-empty .cs-btn { margin: 20px auto 0; max-width: 220px; }
+.cs-draft { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: 18px; box-shadow: var(--sh); padding: 12px 14px; margin-top: 12px; font-weight: 700; }
+.cs-draft .cs-round { width: 36px; height: 36px; font-size: 18px; }
+.cs-menu { position: absolute; right: 20px; top: 330px; width: 250px; background: var(--sheet); border-radius: 18px; box-shadow: 0 20px 40px rgba(0,0,0,.35); overflow: hidden; }
+.cs-menu div { padding: 14px 16px; font-weight: 600; }
+.cs-menu div + div { box-shadow: inset 0 1px 0 var(--sel); }
+.cs-menu .red { color: var(--bad); }
+.cs-spin { width: 16px; height: 16px; border-radius: 8px; border: 2.5px solid rgba(255,255,255,.35); border-top-color: currentColor; display: inline-block; }
+.cs-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 110px; background: linear-gradient(180deg, transparent, var(--bgb)); pointer-events: none; }
+.cs-nav { position: absolute; left: 14px; right: 14px; bottom: 18px; height: 64px; border-radius: 32px; background: var(--card); box-shadow: var(--sh); display: flex; justify-content: space-around; align-items: center; }
+.cs-nav i { width: 26px; height: 26px; border-radius: 8px; background: var(--ctl); display: block; }
+.cs-nav i.on { background: var(--acc); }
+</style>
+</head>
+<body>
+<div class="cs-page">
+  <h1>Наборы сообщества — новый вид</h1>
+  <p class="cs-lead">Слово владельца (26.10): «Разработай макеты нового раздела, чтобы выглядело более красиво и удобно! Это неудобно и некрасиво, и фильтрация ужасная». Ниже — что умеет экран сейчас, настоящий кадр и три варианта. В каждом варианте сохранено всё, что есть сегодня; новое помечено отдельно. Светлая тема — «Сумерки», тёмная — «Океан».</p>
+
+  <h2>1. Что умеет экран сейчас — сохраняется во всех вариантах</h2>
+  <ul class="cs-inv">
+    <li>Вкладки Пик · Друзья · Наборы, «назад» кругом 48 (вход по ссылке)</li>
+    <li>Заголовок «Сообщество» и круглая «+» — «Создать набор»</li>
+    <li>Язык каталога (EN и ещё 4) — переключатель в шапке</li>
+    <li>Поиск «Наборы и авторы», крестик «Очистить поиск»</li>
+    <li>Сортировка «Популярные» / «Новые» (по ссылке ?sort=popular — сразу «Популярные»)</li>
+    <li>Уровни A1…C2 — только те, что есть в каталоге</li>
+    <li>Карточка набора: название, автор (монета ранга, Plus), число карточек, слова-превью, лайки</li>
+    <li>Тап — открыть набор до добавления (просмотр), долгий тап — меню</li>
+    <li>«Добавить себе» (+), уже добавленный или свой набор отмечен</li>
+    <li>Открытие набора после тапа — кружок на карточке</li>
+    <li>Меню: «Добавить себе», «Пожаловаться на набор», «Не показывать мне»</li>
+    <li>Комментарии к набору (шторка), число комментариев</li>
+    <li>«Продолжить создание набора» — черновик</li>
+    <li>Загрузка каталога — скелетоны той же высоты, что строки</li>
+    <li>Пусто: «На этом языке пока нет наборов»; поиск: «Ничего не нашли» · «Попробуй другое слово» · «Сбросить поиск»</li>
+    <li>Нет сети — тихий пустой каталог и повтор загрузки</li>
+    <li class="new">Новое: фильтр по теме — Работа, Путешествия, Каждый день, Экзамены, Сленг, Глаголы (поле category уже есть у каждого набора)</li>
+    <li class="new">Новое: «Добавленные» и «Мои» — отдельный выбор (списки своих и добавленных наборов приложение уже знает)</li>
+  </ul>
+  <div class="cs-key"><span><i style="background:#7D7BD6"></i>есть сейчас</span><span><i style="background:#E2A55A"></i>новое — нужна правка кода, данные уже есть</span></div>
+
+  <h2>2. Сейчас — настоящий кадр</h2>
+  <p>Что мешает: сортировка и уровни перемешаны в одной ленте чипов (выбор уровня молча переключает на «Популярные»), при вводе в поиск чипы пропадают, нет фильтра по теме, свои и добавленные наборы не найти, лайк спрятан, «N карточек» теряется в строке.</p>
+  <div class="cs-row">
+    <div><div class="cs-ph cs-real"><img src="assets/real/community_packs_now_light.png" alt="Наборы сейчас — светлая" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'cs-missing',textContent:'Кадр «Наборы» (светлая) — ждёт съёмки Сверки'}))"></div><p class="cs-cap"><b>Сейчас · светлая</b> — кадр эмулятора 1080×2400.</p></div>
+    <div><div class="cs-ph cs-real"><img src="assets/real/community_packs_now_dark.png" alt="Наборы сейчас — тёмная" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'cs-missing',textContent:'Кадр «Наборы» (тёмная) — ждёт съёмки Сверки'}))"></div><p class="cs-cap"><b>Сейчас · тёмная</b> — кадр эмулятора 1080×2400.</p></div>
+  </div>
+
+  <div id="cs-variants"></div>
+</div>
+
+<script>
+// зачем: три варианта × две темы — одна разметка экрана на вариант, тема меняется классом телефона
+const BACK = '<div class="cs-back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>';
+const SEARCH = '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>';
+const HEART = '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
+const BUBBLE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg>';
+const sb = '<div class="cs-sb"><span>9:41</span><span class="cs-sys"><span class="cs-bat"></span></span></div>';
+const topBar = () => `<div class="cs-top">${BACK}<div class="cs-tabs"><span>Пик</span><span>Друзья</span><span class="on">Наборы</span></div><span class="cs-lang"><span class="cs-flag"></span>EN</span></div>`;
+const head = () => `<div class="cs-h1row"><h3 class="cs-h1">Сообщество</h3><span class="cs-plus">+</span></div><div class="cs-search">${SEARCH}<span>Наборы и авторы</span></div>`;
+const PACKS = [
+  { t: 'Разговор на ресепшене отеля', cat: 'travel', topic: 'Путешествия', lvl: 'A2', n: 24, a: 'Марина К.', av: '', likes: 128, liked: true, com: 14, words: ['check-in', 'room key', 'luggage'] },
+  { t: 'Созвоны и письма на работе', cat: 'business', topic: 'Работа', lvl: 'B1', n: 40, a: 'Den', av: 's2', likes: 96, liked: false, com: 6, words: ['deadline', 'follow up', 'agenda'], own: true },
+  { t: 'Фразовые глаголы на каждый день', cat: 'verbs', topic: 'Глаголы', lvl: 'B1', n: 32, a: 'Olha', av: 's3', likes: 210, liked: false, com: 22, words: ['give up', 'run out', 'look after'] },
+  { t: 'Сленг из сериалов', cat: 'slang', topic: 'Сленг', lvl: 'B2', n: 18, a: 'Tim', av: '', likes: 74, liked: false, com: 9, words: ['no cap', 'low-key', 'vibe'] },
+];
+const cardsWord = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'карточка' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'карточки' : 'карточек');
+const cardA = (p, opt = {}) => `<div class="cs-card"><div class="cs-cov cv-${p.cat}"><span class="cs-lvl">${p.lvl}</span><div class="cs-words">${p.words.map((w) => `<span class="cs-word">${w}</span>`).join('')}</div></div>
+  <div class="cs-body"><p class="cs-ttl">${p.t}</p><div class="cs-meta"><span class="cs-count">${p.n} ${cardsWord(p.n)}</span><span class="cs-dot"></span><span>${p.topic}</span><span class="cs-dot"></span><span class="cs-ava ${p.av}"></span><span>${p.a}</span></div>
+  <div class="cs-act"><span class="cs-like ${p.liked ? 'on' : ''}">${HEART}${p.likes}</span><span class="cs-com">${BUBBLE}${p.com}</span>${opt.opening ? '<span class="cs-add"><span class="cs-spin"></span>Открываем</span>' : p.own ? '<span class="cs-add own">✓ Добавлен</span>' : '<span class="cs-add">+ Добавить</span>'}</div></div></div>`;
+const tile = (p) => `<div class="cs-tile"><div class="cs-cov cv-${p.cat}"><span class="cs-topic">${p.topic}</span><span class="cs-lvl">${p.lvl}</span><span class="cs-big">${p.n}<small>${cardsWord(p.n)}</small></span></div><div class="cs-body"><p class="cs-ttl">${p.t}</p><div class="cs-meta"><span style="display:flex;gap:6px;align-items:center"><span class="cs-ava ${p.av}"></span>${p.a}</span><span class="cs-heart ${p.liked ? 'on' : ''}">${HEART}${p.likes}</span></div></div></div>`;
+const line = (p) => `<div class="cs-line"><div class="cs-cov cv-${p.cat}"><span class="cs-n">${p.n}<small>${cardsWord(p.n)}</small></span></div><div class="cs-mid"><p class="cs-ttl">${p.t}</p><div class="cs-meta"><span class="cs-ava ${p.av}"></span>${p.a}<span class="cs-heart ${p.liked ? 'on' : ''}">${HEART}${p.likes}</span></div><div class="cs-tags"><span class="cs-tag">${p.lvl}</span><span class="cs-tag">${p.topic}</span></div></div><div class="cs-side">${p.own ? '<span class="cs-round own">✓</span>' : '<span class="cs-round">+</span>'}</div></div>`;
+const nav = '<div class="cs-fade"></div><div class="cs-nav"><i></i><i></i><i></i><i class="on"></i><i></i></div>';
+
+const SCREENS = {
+  A: () => `${topBar()}${head()}<div class="cs-seg"><span class="on">Все</span><span>Добавленные</span><span>Мои</span></div>
+    <div class="cs-chips"><span class="cs-chip on">Популярные <span class="cs-caret">▼</span></span><span class="cs-chip">Уровень · A2 <span class="cs-x">✕</span></span><span class="cs-chip">Тема <span class="cs-caret">▼</span></span><span class="cs-chip ghost">Сбросить</span></div>
+    <div style="height:12px"></div>${cardA(PACKS[0])}${cardA(PACKS[1])}${nav}`,
+  B: () => `${topBar()}${head()}<div class="cs-chips"><span class="cs-chip on">Фильтры <span class="cs-badge">2</span></span><span class="cs-chip">Популярные</span><span class="cs-chip">Новые</span><span class="cs-chip">Мои</span></div>
+    <div class="cs-sec"><b>Популярное на неделе</b><span>Все</span></div><div class="cs-shelf">${tile(PACKS[2])}${tile(PACKS[0])}${tile(PACKS[3])}</div>
+    <div class="cs-sec"><b>Для твоего уровня · B1</b><span>Все</span></div><div class="cs-grid">${tile(PACKS[1])}${tile(PACKS[2])}</div>${nav}`,
+  C: () => `${topBar()}${head()}<div class="cs-chips"><span class="cs-chip on">Все темы</span><span class="cs-chip">Путешествия</span><span class="cs-chip">Работа</span><span class="cs-chip">Сленг</span><span class="cs-chip">Глаголы</span></div>
+    <div class="cs-chips"><span class="cs-chip ghost">Популярные <span class="cs-caret">▼</span></span><span class="cs-chip ghost">Любой уровень <span class="cs-caret">▼</span></span><span class="cs-chip ghost">Мои и добавленные</span></div>
+    <div style="height:12px"></div>${PACKS.map(line).join('')}${nav}`,
+};
+const SHEET = `<div class="cs-scrim"></div><div class="cs-sheet"><div class="cs-grab"></div><h3>Фильтры</h3>
+  <div class="cs-flabel">Сначала</div><div class="cs-wrap"><span class="cs-chip on">Популярные</span><span class="cs-chip">Новые</span></div>
+  <div class="cs-flabel">Уровень</div><div class="cs-wrap"><span class="cs-chip">A1</span><span class="cs-chip on">A2</span><span class="cs-chip">B1</span><span class="cs-chip">B2</span></div>
+  <div class="cs-flabel">Тема</div><div class="cs-wrap"><span class="cs-chip on">Путешествия</span><span class="cs-chip">Работа</span><span class="cs-chip">Каждый день</span><span class="cs-chip">Экзамены</span><span class="cs-chip">Сленг</span><span class="cs-chip">Глаголы</span></div>
+  <div class="cs-flabel">Показать</div><div class="cs-wrap"><span class="cs-chip on">Все</span><span class="cs-chip">Добавленные</span><span class="cs-chip">Мои</span></div>
+  <div class="cs-sheetbtns"><span class="cs-btn">Сбросить</span><span class="cs-btn pri">Показать 37 наборов</span></div></div>`;
+const STATES = {
+  loading: () => `${topBar()}${head()}<div class="cs-seg"><span class="on">Все</span><span>Добавленные</span><span>Мои</span></div><div class="cs-chips"><span class="cs-chip on">Популярные <span class="cs-caret">▼</span></span><span class="cs-chip">Уровень <span class="cs-caret">▼</span></span><span class="cs-chip">Тема <span class="cs-caret">▼</span></span></div><div style="height:12px"></div>
+    ${[0, 1].map(() => '<div class="cs-card"><div class="cs-skel" style="height:92px;border-radius:0"></div><div class="cs-body"><div class="cs-skel" style="height:18px;width:70%"></div><div class="cs-skel" style="height:14px;width:55%;margin-top:10px"></div><div class="cs-skel" style="height:36px;width:100%;margin-top:12px;border-radius:18px"></div></div></div>').join('')}${nav}`,
+  emptySearch: () => `${topBar()}<div class="cs-h1row"><h3 class="cs-h1">Сообщество</h3><span class="cs-plus">+</span></div><div class="cs-search" style="color:var(--tx)">${SEARCH}<span style="flex:1">кулинария</span><span>✕</span></div>
+    <div class="cs-seg"><span class="on">Все</span><span>Добавленные</span><span>Мои</span></div><div class="cs-chips"><span class="cs-chip on">Популярные <span class="cs-caret">▼</span></span><span class="cs-chip">Уровень · A2 <span class="cs-x">✕</span></span></div>
+    <div class="cs-empty"><div class="cs-eico">${SEARCH}</div><b>Ничего не нашли</b><span>Попробуй другое слово</span><span class="cs-btn">Сбросить поиск</span></div>${nav}`,
+  menuLike: () => `${topBar()}${head()}<div class="cs-draft"><span class="cs-round">+</span>Продолжить создание набора</div><div style="height:12px"></div>${cardA({ ...PACKS[2], liked: true, likes: 211 })}${cardA(PACKS[3], { opening: true })}<div class="cs-scrim" style="opacity:.6"></div>
+    <div class="cs-menu"><div>Добавить себе</div><div>Пожаловаться на набор</div><div class="red">Не показывать мне</div></div>${nav}`,
+};
+const phone = (theme, inner, extra = '') => `<div class="cs-ph ${theme}">${sb}<div class="cs-scr">${inner}</div>${extra}</div>`;
+const VARIANTS = [
+  { id: 'A', name: 'Вариант А — «Полка» (рекомендую)', what: 'Сверху три понятных раздела: Все · Добавленные · Мои. Под ними одна строка фильтров, каждый — отдельный: сортировка, уровень, тема; выбранный уровень виден чипом с крестиком, «Сбросить» — одним тапом. Карточка крупная: обложка цвета темы со словами-превью и уровнем, «24 карточки» жирным, тема и автор в одной строке, лайк и комментарии — кнопками, «Добавить» — справа.',
+    pros: ['Сортировка больше не смешана с уровнями: выбор уровня не сбрасывает «Новые».', 'Фильтры не пропадают при поиске — ищем внутри выбранного.', 'Свои и добавленные наборы — в один тап.', 'Лайк одним тапом: сердце закрашивается сразу, число +1 до ответа сервера; ошибка — откат и короткое сообщение.'] },
+  { id: 'B', name: 'Вариант Б — «Витрина»', what: 'Как магазин: полки «Популярное на неделе», «Для твоего уровня», плитки 2 в ряд с крупным числом карточек на обложке. Все фильтры — в шторке «Фильтры» со счётчиком и кнопкой «Показать N наборов».', pros: ['Красивее всего, больше наборов за экран.', 'Шторка вмещает все фильтры без тесноты.', 'Минус: до фильтров два тапа; слова-превью не видны.'], sheet: true },
+  { id: 'C', name: 'Вариант В — «Список»', what: 'Плотная лента: тема — первый ряд чипов (главный фильтр), сортировка и уровень — два меню во втором ряду, «Мои и добавленные» — переключатель. Строка набора: квадрат-обложка с числом карточек, название, автор, лайк, уровень и тема, «+» справа.', pros: ['Больше всего наборов на экране, удобно листать.', 'Тема — главный вход: так ищут чаще всего.', 'Минус: слова-превью не помещаются, обложка мелкая.'] },
+];
+document.getElementById('cs-variants').innerHTML = VARIANTS.map((v, i) => `<h2>${i + 3}. ${v.name}</h2><p>${v.what}</p><ul class="cs-pros">${v.pros.map((x) => `<li>${x}</li>`).join('')}</ul>
+  <div class="cs-row"><div>${phone('th-ink', SCREENS[v.id]())}<p class="cs-cap"><b>Светлая · «Сумерки»</b></p></div><div>${phone('th-marine', SCREENS[v.id]())}<p class="cs-cap"><b>Тёмная · «Океан»</b></p></div>
+  ${v.sheet ? `<div>${phone('th-ink', SCREENS.B(), SHEET)}<p class="cs-cap"><b>Шторка «Фильтры»</b> — сортировка, уровень, тема, показать. «Показать 37 наборов» считается на телефоне по уже загруженному каталогу.</p></div>` : ''}</div>`).join('')
+  + `<h2>6. Состояния варианта А</h2><p>Те же состояния, что есть сейчас, в новом виде: загрузка — скелетоны той же высоты, что карточки (без прыжка); пустой поиск с выбранными фильтрами; черновик «Продолжить создание набора», меню долгого тапа, кружок «Открываем» на открываемом наборе, лайк уже закрашен.</p>
+  <div class="cs-row"><div>${phone('th-ink', STATES.loading())}<p class="cs-cap"><b>Загрузка каталога</b></p></div><div>${phone('th-marine', STATES.emptySearch())}<p class="cs-cap"><b>Ничего не нашли</b> — фильтры остаются видны, «Сбросить поиск».</p></div><div>${phone('th-ink', STATES.menuLike())}<p class="cs-cap"><b>Черновик, меню долгого тапа, открытие набора</b></p></div></div>
+  <h2>7. Цена и скорость</h2><p>Тема, уровень, «Мои» и «Добавленные» считаются на телефоне по уже загруженному списку — новых запросов к серверу нет, как и сейчас с уровнями. Лайк — мгновенно на экране, запись догоняет фоном (одна запись, как сейчас); при ошибке сердце возвращается и появляется короткое сообщение.</p>`;
+</script>
+</body>
+</html>

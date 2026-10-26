@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { navigationRoutePolicyForAudit } from '../app/navigation_back';
+import { navigationFallbackForPath, navigationRoutePolicyForAudit } from '../app/navigation_back';
 
 const ROOT = path.join(__dirname, '..');
 const baseline: string[] = JSON.parse(fs.readFileSync(path.join(ROOT, 'config/back_nav_registry_baseline.json'), 'utf8'));
@@ -68,6 +68,13 @@ describe('экраны с «назад» — в реестре ролей нав
     const backs = session.match(/safeRouterBack\(router, '([^']+)'/g) ?? [];
     expect(backs.length).toBeGreaterThan(0);
     expect(backs.every((call) => call.endsWith("'/ai_dialog_home'"))).toBe(true);
+  });
+
+  // зачем (координатор 26.10): запасной выход «Обучения» — вкладка '/(tabs)/lessons', а не '/lessons_list' (вторая копия вкладки)
+  it('раздел «Обучение»: запасной выход — вкладка «Уроки», не её копия /lessons_list', () => {
+    for (const route of ['/lesson_menu', '/lesson_words', '/combined_lesson_pick', '/hint']) {
+      expect([route, navigationFallbackForPath(route)]).toEqual([route, '/(tabs)/lessons']);
+    }
   });
 
   it('пункт А аудита: тема, свободный диалог, друзья, «Сегодня» — в разделах; память — портал; «Сообщество» — корень', () => {

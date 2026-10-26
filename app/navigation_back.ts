@@ -681,7 +681,9 @@ export function dismissPaywallModal(
 
 function fallbackForSection(section: NavigationSection | null): string {
   switch (section) {
-    case 'lessons': return '/lessons_list';
+    // зачем (координатор 26.10): '/lessons_list' — вторая копия вкладки «Уроки» поверх стека (та же петля, что закрыта в
+    // 99bc0fa02); запасной выход раздела — сама вкладка
+    case 'lessons': return '/(tabs)/lessons';
     case 'practice': return '/flashcards_collection';
     /**
      * FIX (владелец, 2026-08-16): разделы карточек были зациклены сами на себя.

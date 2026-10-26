@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i01:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-10:i01:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i02:r1",
+          "text": "The bag might be at home."
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i02:r2",
+          "text": "The bag might be at work."
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i02:r3",
+          "text": "The bag might be at school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i02:audio",
+          "transcript": "The bag might be at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-10:i02:r1",
+            "targetText": "The bag might be at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i02:r2",
+            "targetText": "The bag might be at work.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i02:r3",
+            "targetText": "The bag might be at school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag might be at home.",
+              "uk": "У записі звучить The bag might be at home."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bag might be at home.",
+              "uk": "У записі звучить The bag might be at home."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы лишь допускаете, что сумка дома. Завершите фразу с might.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы лишь допускаете, что сумка дома. Завершите фразу с might.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы лишь допускаете, что сумка дома. Завершите фразу с might.",
+          "uk": "Ви лише припускаєте, що сумка вдома. Завершіть фразу з might."
+        },
+        "gappedTargetPhrase": "The bag might ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-10:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы лишь допускаете, что сумка дома. Завершите фразу с might.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы лишь допускаете, что сумка дома. Завершите фразу с might.",
+            "feedbackByLocale": {
+              "ru": "После might здесь нужна форма be.",
+              "uk": "Після might тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы лишь допускаете, что сумка дома. Завершите фразу с might.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — car",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — car",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i04:audio",
+          "transcript": "car"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-10:i04:r1",
+            "targetText": "car",
+            "meaningByLocale": {
+              "ru": "Машина. Повторение знакомого слова.",
+              "uk": "Машина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car",
+          "definitionByLocale": {
+            "ru": "Машина. Повторение знакомого слова.",
+            "uk": "Машина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна помнит, что оставила сумку в машине. Скажите о сумке: она, должно быть, в машине.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна помнит, что оставила сумку в машине. Скажите о сумке: она, должно быть, в машине.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It must be in the car.",
+        "localizedMeaning": {
+          "ru": "Анна помнит, что оставила сумку в машине. Скажите о сумке: она, должно быть, в машине.",
+          "uk": "Анна пам’ятає, що залишила сумку в машині. Скажіть про сумку: вона, напевно, у машині."
+        },
+        "orderedTokens": [
+          "It",
+          "must",
+          "be",
+          "in",
+          "the",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i06:audio",
+          "transcript": "seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-10:i06:r1",
+            "targetText": "seat",
+            "meaningByLocale": {
+              "ru": "Сиденье. Повторение знакомого слова.",
+              "uk": "Сидіння. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seat",
+          "definitionByLocale": {
+            "ru": "Сиденье. Повторение знакомого слова.",
+            "uk": "Сидіння. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не заглянули под сиденье. Возможно, сумка там.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не заглянули под сиденье. Возможно, сумка там.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i07:audio",
+          "transcript": "The bag may be under the seat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag may be under the seat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
+          "uk": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The bag I ___ is blue.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-10:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Не повторяем bag местоимением it.",
+              "uk": "Не повторюємо bag займенником it."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна уточняет: сумка, которую она купила, синяя. Скажите от её лица без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна уточняет: сумка, которую она купила, синяя. Скажите от её лица без that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag I bought is blue.",
+        "localizedMeaning": {
+          "ru": "Анна уточняет: сумка, которую она купила, синяя. Скажите от её лица без that.",
+          "uk": "Анна уточнює: сумка, яку вона купила, синя. Скажіть від її імені без that."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "I",
+          "bought",
+          "is",
+          "blue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна ещё не вспомнила о машине. Вы допускаете, что сумка дома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Анна ещё не вспомнила о машине. Вы допускаете, что сумка дома.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i10:audio",
+          "transcript": "The bag might be at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bag might be at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна вспомнила, что оставила сумку в машине. Завершите уверенный вывод.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна вспомнила, что оставила сумку в машине. Завершите уверенный вывод.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна вспомнила, что оставила сумку в машине. Завершите уверенный вывод.",
+          "uk": "Анна згадала, що залишила сумку в машині. Завершіть упевнений висновок."
+        },
+        "gappedTargetPhrase": "It must ___ in the car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-10:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Анна вспомнила, что оставила сумку в машине. Завершите уверенный вывод.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна вспомнила, что оставила сумку в машине. Завершите уверенный вывод.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна вспомнила, что оставила сумку в машине. Завершите уверенный вывод.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keys",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keys",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i12:audio",
+          "transcript": "keys"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-10:i12:r1",
+            "targetText": "keys",
+            "meaningByLocale": {
+              "ru": "Ключи. Повторение знакомого слова.",
+              "uk": "Ключі. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keys",
+          "definitionByLocale": {
+            "ru": "Ключи. Повторение знакомого слова.",
+            "uk": "Ключі. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i13:r1",
+          "text": "The keys may be in the bag."
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i13:r2",
+          "text": "The keys may be in the car."
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i13:r3",
+          "text": "The keys may be in the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i13:audio",
+          "transcript": "The keys may be in the bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-10:i13:r1",
+            "targetText": "The keys may be in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i13:r2",
+            "targetText": "The keys may be in the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i13:r3",
+            "targetText": "The keys may be in the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The keys may be in the bag.",
+              "uk": "У записі звучить The keys may be in the bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The keys may be in the bag.",
+              "uk": "У записі звучить The keys may be in the bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна не помнит, где ключи. Возможно, они в сумке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Анна не помнит, где ключи. Возможно, они в сумке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i14:audio",
+          "transcript": "The keys may be in the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The keys may be in the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не проверили дом. Возможно, сумка дома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не проверили дом. Возможно, сумка дома.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag might be at home.",
+        "localizedMeaning": {
+          "ru": "Вы не проверили дом. Возможно, сумка дома.",
+          "uk": "Ви не перевірили дім. Можливо, сумка вдома."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "might",
+          "be",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Машина была закрыта, поэтому вы ждали Анну. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина была закрыта, поэтому вы ждали Анну. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Машина была закрыта, поэтому вы ждали Анну. Вставьте «поэтому».",
+          "uk": "Машина була зачинена, тому ви чекали на Анну. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The car was locked, ___ I waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-10:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Машина была закрыта, поэтому вы ждали Анну. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i16:r2",
+            "correct": false,
+            "testedDimension": "Машина была закрыта, поэтому вы ждали Анну. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки назван результат, нужен so.",
+              "uk": "Після сполучника названо результат, потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i16:r3",
+            "correct": false,
+            "testedDimension": "Машина была закрыта, поэтому вы ждали Анну. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужна связь причины и результата: so.",
+              "uk": "Потрібен зв’язок причини й результату: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ждали, потому что машина была закрыта. Начните с причины.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Вы ждали, потому что машина была закрыта. Начните с причины.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i17:audio",
+          "transcript": "The car was locked, so I waited."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The car was locked, so I waited.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: сумка синяя или зелёная?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i18:r1",
+          "text": "The bag I bought is blue."
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i18:r2",
+          "text": "The bag I bought is green."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i18:audioA",
+        "en:lesson-32:session-10:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: сумка синяя или зелёная?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The bag I bought is blue.",
+        "contrastB": "The bag I bought is green.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-10:i18:audioA",
+          "transcript": "The bag I bought is blue."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-10:i18:audioB",
+          "transcript": "The bag I bought is green."
+        },
+        "testedPhoneticContrast": "Послушайте: сумка синяя или зелёная?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: сумка синяя или зелёная?",
+            "feedbackByLocale": {
+              "ru": "Звучит blue — синяя.",
+              "uk": "Звучить blue — синя."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вывод о сумке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вывод о сумке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i19:audio",
+          "transcript": "It must be in the car."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It must be in the car.",
+        "orderedTokens": [
+          "It",
+          "must",
+          "be",
+          "in",
+          "the",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Возможно, ключи в сумке. Выберите форму после may.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-10:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-32:session-10:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возможно, ключи в сумке. Выберите форму после may.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Возможно, ключи в сумке. Выберите форму после may.",
+          "uk": "Можливо, ключі в сумці. Виберіть форму після may."
+        },
+        "gappedTargetPhrase": "The keys may ___ in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-10:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Возможно, ключи в сумке. Выберите форму после may.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-10:i20:r2",
+            "correct": false,
+            "testedDimension": "Возможно, ключи в сумке. Выберите форму после may.",
+            "feedbackByLocale": {
+              "ru": "После may здесь используем be.",
+              "uk": "Після may тут використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-10:i20:r3",
+            "correct": false,
+            "testedDimension": "Возможно, ключи в сумке. Выберите форму после may.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-10:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна нашла сумку. Она показывает вам найденные ключи: они её. Скажите от лица Анны без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-10:i21:audio"
+      ],
+      "accessibilityLabel": "Анна нашла сумку. Она показывает вам найденные ключи: они её. Скажите от лица Анны без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-10:i21:audio",
+          "transcript": "The keys I found are mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The keys I found are mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "776ccbaa47ba8c09d7d39e2325280de997ed43f9984a5463a7dc991b389e945a"
+}

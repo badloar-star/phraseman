@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-11:i01",
+    "correctText": "towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i02",
+    "correctText": "The towel might be dry.",
+    "correctResponseId": "en:lesson-32:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i04",
+    "correctText": "shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i05",
+    "correctText": "The shirt must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i06",
+    "correctText": "coat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i07",
+    "correctText": "The coat I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i09",
+    "correctText": "The towel might be dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i10",
+    "correctText": "The shirt must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i12",
+    "correctText": "floor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i13",
+    "correctText": "The floor may be wet.",
+    "correctResponseId": "en:lesson-32:session-11:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i14",
+    "correctText": "The floor may be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i15",
+    "correctText": "The coat I washed is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-11:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i17",
+    "correctText": "The floor was wet, so I waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i18",
+    "correctText": "The towel might be dry.",
+    "correctResponseId": "en:lesson-32:session-11:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i19",
+    "correctText": "The shirt must be wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-11:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-11:i21",
+    "correctText": "The coat might be dry.",
+    "correctResponseId": null
+  }
+]

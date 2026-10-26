@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i01:audio",
+          "transcript": "rain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-09:i01:r1",
+            "targetText": "rain",
+            "meaningByLocale": {
+              "ru": "Дождь; идти (о дожде). Повторение знакомого слова.",
+              "uk": "Дощ; іти (про дощ). Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rain",
+          "definitionByLocale": {
+            "ru": "Дождь; идти (о дожде). Повторение знакомого слова.",
+            "uk": "Дощ; іти (про дощ). Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i02:r1",
+          "text": "It may rain later."
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i02:r2",
+          "text": "It may snow later."
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i02:r3",
+          "text": "It may rain tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i02:audio",
+          "transcript": "It may rain later."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-09:i02:r1",
+            "targetText": "It may rain later.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i02:r2",
+            "targetText": "It may snow later.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i02:r3",
+            "targetText": "It may rain tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It may rain later.",
+              "uk": "У записі звучить It may rain later."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It may rain later.",
+              "uk": "У записі звучить It may rain later."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Возможен дождь. Выберите форму после may.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i03:r1",
+          "text": "rain"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i03:r2",
+          "text": "rains"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i03:r3",
+          "text": "to rain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возможен дождь. Выберите форму после may.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Возможен дождь. Выберите форму после may.",
+          "uk": "Можливий дощ. Виберіть форму після may."
+        },
+        "gappedTargetPhrase": "It may ___ later.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-09:i03:r1",
+            "text": "rain"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i03:r2",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i03:r3",
+            "text": "to rain"
+          }
+        ],
+        "testedDimension": "Возможен дождь. Выберите форму после may.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Возможен дождь. Выберите форму после may.",
+            "feedbackByLocale": {
+              "ru": "После may глагол без s.",
+              "uk": "Після may дієслово без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Возможен дождь. Выберите форму после may.",
+            "feedbackByLocale": {
+              "ru": "После may не ставим to.",
+              "uk": "Після may не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — park",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — park",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i04:audio",
+          "transcript": "park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-09:i04:r1",
+            "targetText": "park",
+            "meaningByLocale": {
+              "ru": "Парк. Повторение знакомого слова.",
+              "uk": "Парк. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "park",
+          "definitionByLocale": {
+            "ru": "Парк. Повторение знакомого слова.",
+            "uk": "Парк. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бен ещё не решил, но, возможно, придёт в парк.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен ещё не решил, но, возможно, придёт в парк.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ben might come to the park.",
+        "localizedMeaning": {
+          "ru": "Бен ещё не решил, но, возможно, придёт в парк.",
+          "uk": "Бен іще не вирішив, але, можливо, прийде до парку."
+        },
+        "orderedTokens": [
+          "Ben",
+          "might",
+          "come",
+          "to",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — umbrella",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — umbrella",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i06:audio",
+          "transcript": "umbrella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-09:i06:r1",
+            "targetText": "umbrella",
+            "meaningByLocale": {
+              "ru": "Зонт. Повторение знакомого слова.",
+              "uk": "Парасоля. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "umbrella",
+          "definitionByLocale": {
+            "ru": "Зонт. Повторение знакомого слова.",
+            "uk": "Парасоля. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Прогноз неясный. Возможно, вам понадобится зонт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Прогноз неясный. Возможно, вам понадобится зонт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i07:audio",
+          "transcript": "I may need an umbrella."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I may need an umbrella.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен, возможно, придёт в парк. Выберите форму глагола.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i08:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i08:r2",
+          "text": "comes"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i08:r3",
+          "text": "coming"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен, возможно, придёт в парк. Выберите форму глагола.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен, возможно, придёт в парк. Выберите форму глагола.",
+          "uk": "Бен, можливо, прийде до парку. Виберіть форму дієслова."
+        },
+        "gappedTargetPhrase": "Ben might ___ to the park.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-09:i08:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i08:r2",
+            "text": "comes"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i08:r3",
+            "text": "coming"
+          }
+        ],
+        "testedDimension": "Бен, возможно, придёт в парк. Выберите форму глагола.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Бен, возможно, придёт в парк. Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма come без s.",
+              "uk": "Після might потрібна форма come без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Бен, возможно, придёт в парк. Выберите форму глагола.",
+            "feedbackByLocale": {
+              "ru": "После might нужна начальная форма come.",
+              "uk": "Після might потрібна початкова форма come."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Бен не отвечает. Возможно, он занят.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен не отвечает. Возможно, он занят.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He might be busy.",
+        "localizedMeaning": {
+          "ru": "Бен не отвечает. Возможно, он занят.",
+          "uk": "Бен не відповідає. Можливо, він зайнятий."
+        },
+        "orderedTokens": [
+          "He",
+          "might",
+          "be",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Прогноз обещает возможный дождь позже. Скажите с may.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Прогноз обещает возможный дождь позже. Скажите с may.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i10:audio",
+          "transcript": "It may rain later."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It may rain later.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы допускаете, что Бен занят. Завершите фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i11:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы допускаете, что Бен занят. Завершите фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы допускаете, что Бен занят. Завершите фразу.",
+          "uk": "Ви припускаєте, що Бен зайнятий. Завершіть фразу."
+        },
+        "gappedTargetPhrase": "He might ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-09:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i11:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы допускаете, что Бен занят. Завершите фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы допускаете, что Бен занят. Завершите фразу.",
+            "feedbackByLocale": {
+              "ru": "После might перед busy ставим be.",
+              "uk": "Після might перед busy ставимо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы допускаете, что Бен занят. Завершите фразу.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i12:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-09:i12:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i13:r1",
+          "text": "I might take my coat."
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i13:r2",
+          "text": "I might take my bag."
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i13:r3",
+          "text": "I might take my umbrella."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i13:audio",
+          "transcript": "I might take my coat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-09:i13:r1",
+            "targetText": "I might take my coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i13:r2",
+            "targetText": "I might take my bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i13:r3",
+            "targetText": "I might take my umbrella.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I might take my coat.",
+              "uk": "У записі звучить I might take my coat."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I might take my coat.",
+              "uk": "У записі звучить I might take my coat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ещё не решили, брать ли пальто. Скажите «возможно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Вы ещё не решили, брать ли пальто. Скажите «возможно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i14:audio",
+          "transcript": "I might take my coat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I might take my coat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Возможно, вам понадобится зонт. Скажите с may.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возможно, вам понадобится зонт. Скажите с may.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I may need an umbrella.",
+        "localizedMeaning": {
+          "ru": "Возможно, вам понадобится зонт. Скажите с may.",
+          "uk": "Можливо, вам знадобиться парасоля. Скажіть із may."
+        },
+        "orderedTokens": [
+          "I",
+          "may",
+          "need",
+          "an",
+          "umbrella"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Возможно, вы возьмёте пальто. Выберите форму после might.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i16:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i16:r2",
+          "text": "takes"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i16:r3",
+          "text": "to take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возможно, вы возьмёте пальто. Выберите форму после might.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Возможно, вы возьмёте пальто. Выберите форму после might.",
+          "uk": "Можливо, ви візьмете пальто. Виберіть форму після might."
+        },
+        "gappedTargetPhrase": "I might ___ my coat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-09:i16:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i16:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i16:r3",
+            "text": "to take"
+          }
+        ],
+        "testedDimension": "Возможно, вы возьмёте пальто. Выберите форму после might.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i16:r2",
+            "correct": false,
+            "testedDimension": "Возможно, вы возьмёте пальто. Выберите форму после might.",
+            "feedbackByLocale": {
+              "ru": "Используем take без s.",
+              "uk": "Використовуємо take без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i16:r3",
+            "correct": false,
+            "testedDimension": "Возможно, вы возьмёте пальто. Выберите форму после might.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен ещё не подтвердил участие. Скажите, что он, возможно, придёт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Бен ещё не подтвердил участие. Скажите, что он, возможно, придёт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i17:audio",
+          "transcript": "Ben might come."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben might come.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: возможно, пойдёт дождь или снег?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i18:r1",
+          "text": "It may rain later."
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i18:r2",
+          "text": "It may snow later."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i18:audioA",
+        "en:lesson-32:session-09:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: возможно, пойдёт дождь или снег?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "It may rain later.",
+        "contrastB": "It may snow later.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-09:i18:audioA",
+          "transcript": "It may rain later."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-09:i18:audioB",
+          "transcript": "It may snow later."
+        },
+        "testedPhoneticContrast": "Послушайте: возможно, пойдёт дождь или снег?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: возможно, пойдёт дождь или снег?",
+            "feedbackByLocale": {
+              "ru": "Звучит rain — идти (о дожде).",
+              "uk": "Звучить rain — іти (про дощ)."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте фразу о возможной занятости Бена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте фразу о возможной занятости Бена.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i19:audio",
+          "transcript": "He might be busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He might be busy.",
+        "orderedTokens": [
+          "He",
+          "might",
+          "be",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Возможно, вам понадобится зонт. Выберите форму need.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-09:i20:r1",
+          "text": "need"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i20:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-32:session-09:i20:r3",
+          "text": "be need"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Возможно, вам понадобится зонт. Выберите форму need.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Возможно, вам понадобится зонт. Выберите форму need.",
+          "uk": "Можливо, вам знадобиться парасоля. Виберіть форму need."
+        },
+        "gappedTargetPhrase": "I may ___ an umbrella.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-09:i20:r1",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i20:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i20:r3",
+            "text": "be need"
+          }
+        ],
+        "testedDimension": "Возможно, вам понадобится зонт. Выберите форму need.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-09:i20:r2",
+            "correct": false,
+            "testedDimension": "Возможно, вам понадобится зонт. Выберите форму need.",
+            "feedbackByLocale": {
+              "ru": "После may используем need без s.",
+              "uk": "Після may використовуємо need без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-09:i20:r3",
+            "correct": false,
+            "testedDimension": "Возможно, вам понадобится зонт. Выберите форму need.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом need связка be не нужна.",
+              "uk": "Перед дієсловом need зв’язка be не потрібна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не знаете, где Бен. Возможно, он дома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-09:i21:audio"
+      ],
+      "accessibilityLabel": "Вы не знаете, где Бен. Возможно, он дома.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-09:i21:audio",
+          "transcript": "He may be at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He may be at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a3bf04ffd63056eb20c707ca37ab96c04503983201ca33caaa884d4c128157d1"
+}

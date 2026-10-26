@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-09:intro1:r2": {
+          "ru": "После may нужна форма rain без s.",
+          "uk": "Після may потрібна форма rain без s."
+        },
+        "en:lesson-32:session-09:intro1:r3": {
+          "ru": "После may не ставим to.",
+          "uk": "Після may не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-09:intro2:r2": {
+          "ru": "После might используем come без s.",
+          "uk": "Після might використовуємо come без s."
+        },
+        "en:lesson-32:session-09:intro2:r3": {
+          "ru": "Нужна начальная форма come.",
+          "uk": "Потрібна початкова форма come."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-09:intro3:r2": {
+          "ru": "Перед busy здесь нужна связка be.",
+          "uk": "Перед busy тут потрібна зв’язка be."
+        },
+        "en:lesson-32:session-09:intro3:r3": {
+          "ru": "После might используем be, не is.",
+          "uk": "Після might використовуємо be, не is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "26bd579ca83c8c4d71b415610cb6a72d13eaae95237ac13483ddc65802061503"
+}

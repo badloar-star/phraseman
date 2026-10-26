@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать между возможным объяснением и уверенным выводом.",
+    "uk": "обирати між можливим поясненням і впевненим висновком."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возможно, сумка дома",
+        "uk": "Можливо, сумка вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Перед прогулкой Анна не находит сумку. Вы не знаете, где она: The bag might be at home — возможно, сумка дома. Соберите The bag + might + be + at home. Перед указанием места at home здесь нужна связка be. Might показывает, что вы допускаете этот вариант.",
+        "uk": "Перед прогулянкою Анна не знаходить сумку. Ви не знаєте, де вона: The bag might be at home — можливо, сумка вдома. Складіть The bag + might + be + at home. Перед указівкою місця at home тут потрібна зв’язка be. Might показує, що ви припускаєте цей варіант."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-10:intro1:r1",
+              "text": "The bag might be at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro1:r2",
+              "text": "The bag might at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro1:r3",
+              "text": "The bag might is at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-10:intro1:r1",
+              "text": "The bag might be at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro1:r2",
+              "text": "The bag might at home."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro1:r3",
+              "text": "The bag might is at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка, которую я купила",
+        "uk": "Сумка, яку я купила"
+      },
+      "bodyByLocale": {
+        "ru": "Анна уточняет, какую сумку ищет: The bag I bought is blue — сумка, которую я купила, синяя. Соберите The bag + I bought + is blue. I bought уточняет bag. That можно опустить: внутри уточнения уже есть I, человек, который купил сумку.",
+        "uk": "Анна уточнює, яку сумку шукає: The bag I bought is blue — сумка, яку я купила, синя. Складіть The bag + I bought + is blue. I bought уточнює bag. That можна опустити: усередині уточнення вже є I, людина, яка купила сумку."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-10:intro2:r1",
+              "text": "The bag I bought is blue."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro2:r2",
+              "text": "The bag I bought it is blue."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro2:r3",
+              "text": "The bag I buying is blue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-10:intro2:r1",
+              "text": "The bag I bought is blue."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro2:r2",
+              "text": "The bag I bought it is blue."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro2:r3",
+              "text": "The bag I buying is blue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Должно быть, в машине",
+        "uk": "Напевно, у машині"
+      },
+      "bodyByLocale": {
+        "ru": "Анна вспоминает, что положила сумку в машину и после этого её не брала. Теперь у неё веская причина сделать вывод: It must be in the car — она, должно быть, в машине. Соберите It + must + be + in the car. It заменяет bag. Must здесь выражает уверенный вывод по воспоминанию.",
+        "uk": "Анна згадує, що поклала сумку в машину й після цього її не брала. Тепер у неї вагома причина зробити висновок: It must be in the car — вона, напевно, у машині. Складіть It + must + be + in the car. It замінює bag. Must тут виражає впевнений висновок зі спогаду."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-10:intro3:r1",
+              "text": "It must be in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro3:r2",
+              "text": "It must in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro3:r3",
+              "text": "It must is in the car."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-10:intro3:r1",
+              "text": "It must be in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro3:r2",
+              "text": "It must in the car."
+            },
+            {
+              "responseId": "en:lesson-32:session-10:intro3:r3",
+              "text": "It must is in the car."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7bc3f5474315f7f282106c0c2f3c691e25ef517cc0820433ef00a2d9bb7f8e17"
+}

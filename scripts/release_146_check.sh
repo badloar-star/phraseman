@@ -58,7 +58,7 @@ const missing=want.filter(k=>!keys.includes(k)),dup=keys.filter((k,i)=>keys.inde
 console.log(!missing.length&&!dup.length?'OK '+(keys.length-extra.length)+'/'+want.length+' глав с занятиями в манифесте сборки (уроки 1–'+last+')'+(extra.length?' · заметка: подключены банки глав без занятий в этой сборке (безвредно) — '+extra.join(','):''):'BAD wired='+keys.length+'/'+want.length+' missing='+missing.slice(0,20).join(',')+(missing.length>20?'…(+'+(missing.length-20)+')':'')+' dup='+dup.join(',')+' extra='+extra.join(','))" > $O/banks.txt
 grep -q '^OK' $O/banks.txt && ok "банки подключены: $(cut -c4- $O/banks.txt)" || bad "банки: $(cut -c5- $O/banks.txt)"
 echo "[REL-146] дешёвые проверки готовы: FAIL=$FAIL" | tee -a $O/verdict.txt
-[ -n "$CHEAP_ONLY" ] && exit 0
+[ -n "$CHEAP_ONLY" ] && exit "$FAIL"
 
 # 5) настоящая установка + tsc + тесты + экспорт (всё тяжёлое — одним заходом светофора)
 TESTS="tests/learning_v2_chapter_exam_v2_banks_rules.test.ts tests/owner_locks_exam_episode_words_2026_10_25.test.ts tests/learning_v2_chapter_exam_v2_app.test.ts tests/learning_v2_chapter_exam_v2.test.ts tests/chapter_exam_v2_ui_lang_gate_2026_10_25.test.ts tests/learning_v2_exam_chapter_credit_parity.test.ts tests/paywall_entry_callsite_registry_contract.test.ts tests/paywall_entry_contract.test.ts tests/paywall_entry_points_whitelist_contract.test.ts tests/paywall_entry_pipeline.test.ts"
@@ -90,3 +90,4 @@ for P in ios android; do
   else bad "бандл $P: $EX $GX маркеров=$M — $(tail -4 $O/export_$P.txt | tr '\n' ' ' | cut -c1-240)"; fi
 done
 [ "$FAIL" = "0" ] && echo "[REL-146] ВЕРДИКТ ${REV:0:9}: 🟢 к магазинной сборке 2.0.3 ($BUILD)" | tee -a $O/verdict.txt || echo "[REL-146] ВЕРДИКТ ${REV:0:9}: 🔴 СТОП" | tee -a $O/verdict.txt
+exit "$FAIL"

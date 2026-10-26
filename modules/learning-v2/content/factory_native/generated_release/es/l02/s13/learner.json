@@ -1,0 +1,897 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-13",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plato",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plato",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i01:audio",
+          "transcript": "plato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i01:r1",
+            "targetText": "plato",
+            "meaningByLocale": {
+              "ru": "тарелка. В испанском мужской род; несколько — platos. 🔊 *plato*",
+              "uk": "тарілка. В іспанській чоловічий рід; кілька — platos. 🔊 *plato*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plato",
+          "definitionByLocale": {
+            "ru": "тарелка. В испанском мужской род; несколько — platos. 🔊 *plato*",
+            "uk": "тарілка. В іспанській чоловічий рід; кілька — platos. 🔊 *plato*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i02:r1",
+          "text": "plato"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i02:r2",
+          "text": "vaso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i02:audio",
+          "transcript": "plato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i02:r1",
+            "targetText": "plato",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i02:r2",
+            "targetText": "vaso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит plato — тарелка.",
+              "uk": "Звучить plato — тарілка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — los",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — los",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i03:audio",
+          "transcript": "los"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i03:r1",
+            "targetText": "los",
+            "meaningByLocale": {
+              "ru": "форма el перед несколькими известными предметами мужского рода. 🔊 *los*",
+              "uk": "форма el перед кількома відомими предметами чоловічого роду. 🔊 *los*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "los",
+          "definitionByLocale": {
+            "ru": "форма el перед несколькими известными предметами мужского рода. 🔊 *los*",
+            "uk": "форма el перед кількома відомими предметами чоловічого роду. 🔊 *los*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i04:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i04:r2",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i04:audio",
+          "transcript": "los"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i04:r1",
+            "targetText": "los",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i04:r2",
+            "targetText": "las",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит los с o.",
+              "uk": "Звучить los з o."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — botella",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — botella",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i05:audio",
+          "transcript": "botella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i05:r1",
+            "targetText": "botella",
+            "meaningByLocale": {
+              "ru": "бутылка. Женский род; несколько — botellas. 🔊 *botella*",
+              "uk": "пляшка. Жіночий рід; кілька — botellas. 🔊 *botella*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "botella",
+          "definitionByLocale": {
+            "ru": "бутылка. Женский род; несколько — botellas. 🔊 *botella*",
+            "uk": "пляшка. Жіночий рід; кілька — botellas. 🔊 *botella*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i06:r1",
+          "text": "botella"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i06:r2",
+          "text": "bolsa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i06:audio",
+          "transcript": "botella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i06:r1",
+            "targetText": "botella",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i06:r2",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит botella — бутылка.",
+              "uk": "Звучить botella — пляшка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — las",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — las",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i07:audio",
+          "transcript": "las"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i07:r1",
+            "targetText": "las",
+            "meaningByLocale": {
+              "ru": "форма la перед несколькими известными предметами женского рода. 🔊 *las*",
+              "uk": "форма la перед кількома відомими предметами жіночого роду. 🔊 *las*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "las",
+          "definitionByLocale": {
+            "ru": "форма la перед несколькими известными предметами женского рода. 🔊 *las*",
+            "uk": "форма la перед кількома відомими предметами жіночого роду. 🔊 *las*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i08:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i08:r2",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i08:audio",
+          "transcript": "las"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-13:i08:r1",
+            "targetText": "las",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i08:r2",
+            "targetText": "los",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит las с a.",
+              "uk": "Звучить las з a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это те самые тарелки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i09:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i09:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i09:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это те самые тарелки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это те самые тарелки",
+          "uk": "Вставте слово — це ті самі тарілки"
+        },
+        "gappedTargetPhrase": "Son ___ platos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-13:i09:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i09:r2",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i09:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это те самые тарелки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это те самые тарелки",
+            "feedbackByLocale": {
+              "ru": "Platos мужского рода: los.",
+              "uk": "Platos чоловічого роду: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это те самые тарелки",
+            "feedbackByLocale": {
+              "ru": "Тарелок несколько: los.",
+              "uk": "Тарілок кілька: los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подтвердите: это те самые тарелки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i10:r1",
+          "text": "Плитки: platos"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i10:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i10:r4",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подтвердите: это те самые тарелки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los platos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите: это те самые тарелки",
+          "uk": "Зберіть фразу — підтвердьте: це ті самі тарілки"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "platos"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подтвердите: это те самые тарелки",
+            "feedbackByLocale": {
+              "ru": "platos мужского рода.",
+              "uk": "platos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это те самые бутылки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i11:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i11:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i11:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это те самые бутылки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это те самые бутылки",
+          "uk": "Вставте слово — це ті самі пляшки"
+        },
+        "gappedTargetPhrase": "Son ___ botellas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-13:i11:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i11:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i11:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это те самые бутылки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это те самые бутылки",
+            "feedbackByLocale": {
+              "ru": "Botellas женского рода: las.",
+              "uk": "Botellas жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это те самые бутылки",
+            "feedbackByLocale": {
+              "ru": "Бутылок несколько: las.",
+              "uk": "Пляшок кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подтвердите: это те самые бутылки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i12:r1",
+          "text": "Плитки: botellas"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i12:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i12:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i12:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подтвердите: это те самые бутылки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las botellas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите: это те самые бутылки",
+          "uk": "Зберіть фразу — підтвердьте: це ті самі пляшки"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "botellas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подтвердите: это те самые бутылки",
+            "feedbackByLocale": {
+              "ru": "botellas женского рода.",
+              "uk": "botellas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i13:r1",
+          "text": "Плитки: platos"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i13:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i13:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i13:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i13:audio",
+          "transcript": "Son los platos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son los platos.",
+        "orderedTokens": [
+          "Son",
+          "los",
+          "platos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это та самая одна тарелка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i14:r1",
+          "text": "Плитки: plato"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i14:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i14:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i14:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это та самая одна тарелка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el plato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это та самая одна тарелка",
+          "uk": "Зберіть фразу — це та сама одна тарілка"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "plato"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это та самая одна тарелка",
+            "feedbackByLocale": {
+              "ru": "предмет один, нужен el.",
+              "uk": "предмет один, потрібен el."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите, что это те самые бутылки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите, что это те самые бутылки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-13:i15:audio",
+          "transcript": "Son las botellas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las botellas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг нашёл нужные тарелки; подтвердите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-13:i16:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i16:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i16:r3",
+          "text": "platos"
+        },
+        {
+          "responseId": "es:lesson-02:session-13:i16:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг нашёл нужные тарелки; подтвердите",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los platos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг нашёл нужные тарелки; подтвердите",
+          "uk": "Зберіть фразу — друг знайшов потрібні тарілки; підтвердьте"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "platos"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-13:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг нашёл нужные тарелки; подтвердите",
+            "feedbackByLocale": {
+              "ru": "тарелок несколько, нужен los.",
+              "uk": "тарілок кілька, потрібен los."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2e58c0f38824cd80dcf403b60b61af81f90a963bfcd58ec8b4fb91c3a25b0a60"
+}

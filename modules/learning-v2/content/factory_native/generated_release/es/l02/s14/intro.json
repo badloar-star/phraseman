@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "различать unos и los: просто назвать предметы или указать на уже известные.",
+    "uk": "розрізняти unos і los: просто назвати предмети або вказати на вже відомі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что в пакете",
+        "uk": "Що в пакеті"
+      },
+      "bodyByLocale": {
+        "ru": "Друг открывает незнакомый пакет с приборами. `Tenedor` — «вилка», по-испански мужского рода: el tenedor. Несколько вилок — tenedores: после конечной r добавляем -es. Просто назовите содержимое: `Son unos tenedores` — «Это какие-то вилки». Соберите `son` + `unos` + `tenedores`. Unos не указывает на заранее выбранный набор.",
+        "uk": "Друг відкриває незнайомий пакет із приборами. `Tenedor` — «виделка», іспанською чоловічого роду: el tenedor. Кілька виделок — tenedores: після кінцевої r додаємо -es. Просто назвіть вміст: `Son unos tenedores` — «Це якісь виделки». Зберіть `son` + `unos` + `tenedores`. Unos не вказує на заздалегідь вибраний набір."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите вилки из незнакомого пакета, используя unos.",
+          "uk": "Назвіть виделки з незнайомого пакета, використовуючи unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-14:intro1:r1",
+              "text": "Son unos tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro1:r2",
+              "text": "Son unas tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro1:r3",
+              "text": "Son unos tenedor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-14:intro1:r1",
+              "text": "Son unos tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro1:r2",
+              "text": "Son unas tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro1:r3",
+              "text": "Son unos tenedor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите вилки из незнакомого пакета, используя unos.",
+          "uk": "Назвіть виделки з незнайомого пакета, використовуючи unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужный набор",
+        "uk": "Потрібний набір"
+      },
+      "bodyByLocale": {
+        "ru": "До этого вы договорились взять определённые вилки. Друг нашёл их и показывает вам. Подтвердите: `Son los tenedores` — «Это те самые вилки». Соберите `son` + `los` + `tenedores`. Меняется только артикль: unos tenedores — какие-то вилки; los tenedores — вилки, которые вы оба имеете в виду.",
+        "uk": "До цього ви домовилися взяти певні виделки. Друг знайшов їх і показує вам. Підтвердьте: `Son los tenedores` — «Це ті самі виделки». Зберіть `son` + `los` + `tenedores`. Змінюється лише артикль: unos tenedores — якісь виделки; los tenedores — виделки, які ви обоє маєте на увазі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что найден именно выбранный набор, используя los.",
+          "uk": "Підтвердьте, що знайдено саме вибраний набір, використовуючи los."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-14:intro2:r1",
+              "text": "Son los tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro2:r2",
+              "text": "Son las tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro2:r3",
+              "text": "Son el tenedores."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-14:intro2:r1",
+              "text": "Son los tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro2:r2",
+              "text": "Son las tenedores."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro2:r3",
+              "text": "Son el tenedores."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что найден именно выбранный набор, используя los.",
+          "uk": "Підтвердьте, що знайдено саме вибраний набір, використовуючи los."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ножи для корзины",
+        "uk": "Ножі для кошика"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежат ножи, которые вы тоже заранее выбрали. `Cuchillo` — «нож», слово мужского рода: el cuchillo; несколько ножей — cuchillos. Подтвердите: `Son los cuchillos` — «Это те самые ножи». Соберите `son` + `los` + `cuchillos`. Если бы вы просто впервые называли какие-то ножи, можно было бы сказать Son unos cuchillos. Здесь нужны именно обсуждённые ножи, поэтому los.",
+        "uk": "Поруч лежать ножі, які ви теж заздалегідь вибрали. `Cuchillo` — «ніж», слово чоловічого роду: el cuchillo; кілька ножів — cuchillos. Підтвердьте: `Son los cuchillos` — «Це ті самі ножі». Зберіть `son` + `los` + `cuchillos`. Якби ви просто вперше називали якісь ножі, можна було б сказати Son unos cuchillos. Тут потрібні саме обговорені ножі, тому los."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите заранее выбранные ножи с los.",
+          "uk": "Назвіть заздалегідь вибрані ножі з los."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-14:intro3:r1",
+              "text": "Son los cuchillos."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro3:r2",
+              "text": "Son las cuchillos."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro3:r3",
+              "text": "Son los cuchillo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-14:intro3:r1",
+              "text": "Son los cuchillos."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro3:r2",
+              "text": "Son las cuchillos."
+            },
+            {
+              "responseId": "es:lesson-02:session-14:intro3:r3",
+              "text": "Son los cuchillo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите заранее выбранные ножи с los.",
+          "uk": "Назвіть заздалегідь вибрані ножі з los."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b04de74313baeccfc535624a6e6b91e1c4c07ced9b742dc4366834829fae966d"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-14:i01",
+    "correctText": "tenedor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i02",
+    "correctText": "tenedor",
+    "correctResponseId": "es:lesson-02:session-14:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i03",
+    "correctText": "cuchillo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i04",
+    "correctText": "cuchillo",
+    "correctResponseId": "es:lesson-02:session-14:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i05",
+    "correctText": "unos",
+    "correctResponseId": "es:lesson-02:session-14:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i06",
+    "correctText": "Son unos tenedores.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i07",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-14:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i08",
+    "correctText": "Son los tenedores.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i09",
+    "correctText": "cuchillos",
+    "correctResponseId": "es:lesson-02:session-14:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i10",
+    "correctText": "Son los cuchillos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i11",
+    "correctText": "Son unos tenedores.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i12",
+    "correctText": "Son los cuchillos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i13",
+    "correctText": "Son las cucharas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-14:i14",
+    "correctText": "Son unas cucharas.",
+    "correctResponseId": null
+  }
+]

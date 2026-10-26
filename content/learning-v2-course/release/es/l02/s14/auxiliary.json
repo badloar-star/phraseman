@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-14:intro1:r2": {
+          "ru": "Tenedores мужского рода: unos.",
+          "uk": "Tenedores чоловічого роду: unos."
+        },
+        "es:lesson-02:session-14:intro1:r3": {
+          "ru": "Для нескольких вилок нужна tenedores.",
+          "uk": "Для кількох виделок потрібна tenedores."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-14:intro2:r2": {
+          "ru": "Tenedores мужского рода: los.",
+          "uk": "Tenedores чоловічого роду: los."
+        },
+        "es:lesson-02:session-14:intro2:r3": {
+          "ru": "Для нескольких вилок нужна los.",
+          "uk": "Для кількох виделок потрібна los."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-14:intro3:r2": {
+          "ru": "Cuchillos мужского рода: los.",
+          "uk": "Cuchillos чоловічого роду: los."
+        },
+        "es:lesson-02:session-14:intro3:r3": {
+          "ru": "Ножей несколько: cuchillos.",
+          "uk": "Ножів кілька: cuchillos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ed1bb24686e816ee19c3e83dacc54675f5659e134a9dc5a6317a3e9b9edf0e0b"
+}

@@ -1,0 +1,725 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-15",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toalla",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toalla",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i01:audio",
+          "transcript": "toalla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-15:i01:r1",
+            "targetText": "toalla",
+            "meaningByLocale": {
+              "ru": "полотенце. Женский род; несколько — toallas. 🔊 *toalla*",
+              "uk": "рушник. Жіночий рід; кілька — toallas. 🔊 *toalla*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toalla",
+          "definitionByLocale": {
+            "ru": "полотенце. Женский род; несколько — toallas. 🔊 *toalla*",
+            "uk": "рушник. Жіночий рід; кілька — toallas. 🔊 *toalla*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i02:r1",
+          "text": "toalla"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i02:r2",
+          "text": "botella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i02:audio",
+          "transcript": "toalla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-15:i02:r1",
+            "targetText": "toalla",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-15:i02:r2",
+            "targetText": "botella",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит toalla — полотенце.",
+              "uk": "Звучить toalla — рушник."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — jabón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jabón",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i03:audio",
+          "transcript": "jabón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-15:i03:r1",
+            "targetText": "jabón",
+            "meaningByLocale": {
+              "ru": "мыло. Мужской род; un jabón здесь один кусок. 🔊 *jabón*",
+              "uk": "мило. Чоловічий рід; un jabón тут один шматок. 🔊 *jabón*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jabón",
+          "definitionByLocale": {
+            "ru": "мыло. Мужской род; un jabón здесь один кусок. 🔊 *jabón*",
+            "uk": "мило. Чоловічий рід; un jabón тут один шматок. 🔊 *jabón*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i04:r1",
+          "text": "jabón"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i04:r2",
+          "text": "zapato"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i04:audio",
+          "transcript": "jabón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-15:i04:r1",
+            "targetText": "jabón",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-15:i04:r2",
+            "targetText": "zapato",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит jabón — мыло.",
+              "uk": "Звучить jabón — мило."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть один рушник",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i05:r1",
+          "text": "Плитки: toalla"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть один рушник",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una toalla.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите одно полотенце",
+          "uk": "Зберіть фразу — назвіть один рушник"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "toalla"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть один рушник",
+            "feedbackByLocale": {
+              "ru": "toalla женского рода.",
+              "uk": "toalla жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть один рушник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть один рушник",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i06:audio",
+          "transcript": "Es una toalla."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una toalla.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — рушників кілька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i07:r1",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i07:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i07:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — рушників кілька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — полотенец несколько",
+          "uk": "Вставте слово — рушників кілька"
+        },
+        "gappedTargetPhrase": "___ unas toallas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-15:i07:r1",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-02:session-15:i07:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-02:session-15:i07:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — рушників кілька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — рушників кілька",
+            "feedbackByLocale": {
+              "ru": "Для нескольких предметов нужна son.",
+              "uk": "Для кількох предметів потрібна son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-15:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — рушників кілька",
+            "feedbackByLocale": {
+              "ru": "Soy — о себе; здесь несколько предметов.",
+              "uk": "Soy — про себе; тут кілька предметів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кілька рушників з unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i08:r1",
+          "text": "Плитки: toallas"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i08:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кілька рушників з unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas toallas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько полотенец с unas",
+          "uk": "Зберіть фразу — назвіть кілька рушників з unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "toallas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кілька рушників з unas",
+            "feedbackByLocale": {
+              "ru": "предметов несколько, нужна unas.",
+              "uk": "предметів кілька, потрібна unas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть кілька рушників з unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть кілька рушників з unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i09:audio",
+          "transcript": "Son unas toallas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas toallas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть один шматок мила",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i10:r1",
+          "text": "Плитки: jabón"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i10:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i10:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть один шматок мила",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un jabón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите один кусок мыла",
+          "uk": "Зберіть фразу — назвіть один шматок мила"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "jabón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть один шматок мила",
+            "feedbackByLocale": {
+              "ru": "jabón мужского рода.",
+              "uk": "jabón чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть один шматок мила",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть один шматок мила",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i11:audio",
+          "transcript": "Es un jabón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un jabón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i12:r1",
+          "text": "Плитки: toallas"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i12:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i12:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i12:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i12:audio",
+          "transcript": "Son las toallas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son las toallas.",
+        "orderedTokens": [
+          "Son",
+          "las",
+          "toallas"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит las.",
+              "uk": "у записі звучить las."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це саме заздалегідь вибрані рушники",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-15:i13:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i13:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i13:r3",
+          "text": "toallas"
+        },
+        {
+          "responseId": "es:lesson-02:session-15:i13:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це саме заздалегідь вибрані рушники",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las toallas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это именно заранее выбранные полотенца",
+          "uk": "Зберіть фразу — це саме заздалегідь вибрані рушники"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "toallas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-15:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це саме заздалегідь вибрані рушники",
+            "feedbackByLocale": {
+              "ru": "toallas женского рода.",
+              "uk": "toallas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — підтвердьте: це ті самі рушники",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — підтвердьте: це ті самі рушники",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-15:i14:audio",
+          "transcript": "Son las toallas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las toallas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9521f415e63f770e39763ec8300dedb731cf6853afc281ea8496e3d966a0d49b"
+}

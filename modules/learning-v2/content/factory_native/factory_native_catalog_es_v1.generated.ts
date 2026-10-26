@@ -483,4 +483,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"заменить конечную z на ces во множественном числе.","uk":"замінити кінцеву z на ces у множині."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 13,
+    sourceFingerprint: "67ccb2fd0a0c3b14f293a7bd48b9ef9b8cf7417570b692d55dae661c350701f7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать los или las для нескольких известных собеседникам предметов.","uk":"вибрати los або las для кількох відомих співрозмовникам предметів."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 14,
+    sourceFingerprint: "80a09ed7395b4280d54605f9c1d77e1f6e00e4af3cfe05f7105040b246338183",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать unos и los: просто назвать предметы или указать на уже известные.","uk":"розрізняти unos і los: просто назвати предмети або вказати на вже відомі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 15,
+    sourceFingerprint: "6eeb032026fe729ddd8d436e5243faf0e6567eb808227012aae5dd06882a8ab9",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"вслух переключаться между одним и несколькими предметами.","uk":"уголос перемикатися між одним і кількома предметами."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 16,
+    sourceFingerprint: "10f27909db1f3f0accb697e46f2a5f335b7200ba8052aecdf883f8c349056d88",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать число и артикль, когда называете упаковку или узнаёте нужную.","uk":"вибрати число й артикль, коли називаєте упаковку або впізнаєте потрібну."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

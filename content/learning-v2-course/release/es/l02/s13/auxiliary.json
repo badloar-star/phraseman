@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-13:intro1:r2": {
+          "ru": "Plato мужского рода: el.",
+          "uk": "Plato чоловічого роду: el."
+        },
+        "es:lesson-02:session-13:intro1:r3": {
+          "ru": "Один предмет требует es.",
+          "uk": "Один предмет потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-13:intro2:r2": {
+          "ru": "Platos мужского рода: los.",
+          "uk": "Platos чоловічого роду: los."
+        },
+        "es:lesson-02:session-13:intro2:r3": {
+          "ru": "Для нескольких предметов el меняется на los.",
+          "uk": "Для кількох предметів el змінюється на los."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-13:intro3:r2": {
+          "ru": "Botellas женского рода: las.",
+          "uk": "Botellas жіночого роду: las."
+        },
+        "es:lesson-02:session-13:intro3:r3": {
+          "ru": "Для нескольких предметов нужна las.",
+          "uk": "Для кількох предметів потрібна las."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c593aa61e78fce5165ea30a1035c81d868c75b8187ea14a8d8ea8202f7354f9e"
+}

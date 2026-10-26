@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-13:i01",
+    "correctText": "plato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i02",
+    "correctText": "plato",
+    "correctResponseId": "es:lesson-02:session-13:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i03",
+    "correctText": "los",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i04",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-13:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i05",
+    "correctText": "botella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i06",
+    "correctText": "botella",
+    "correctResponseId": "es:lesson-02:session-13:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i07",
+    "correctText": "las",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i08",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-02:session-13:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i09",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-02:session-13:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i10",
+    "correctText": "Son los platos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i11",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-02:session-13:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i12",
+    "correctText": "Son las botellas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i13",
+    "correctText": "Son los platos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i14",
+    "correctText": "Es el plato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i15",
+    "correctText": "Son las botellas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-13:i16",
+    "correctText": "Son los platos.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1018 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-16",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — caja",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i01:audio",
+          "transcript": "caja"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-16:i01:r1",
+            "targetText": "caja",
+            "meaningByLocale": {
+              "ru": "коробка. Женский род; несколько — cajas. 🔊 *caja*",
+              "uk": "коробка. Жіночий рід; кілька — cajas. 🔊 *caja*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "caja",
+          "definitionByLocale": {
+            "ru": "коробка. Женский род; несколько — cajas. 🔊 *caja*",
+            "uk": "коробка. Жіночий рід; кілька — cajas. 🔊 *caja*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i02:r1",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i02:r2",
+          "text": "cama"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i02:audio",
+          "transcript": "caja"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-16:i02:r1",
+            "targetText": "caja",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i02:r2",
+            "targetText": "cama",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит caja — коробка.",
+              "uk": "Звучить caja — коробка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sobre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sobre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i03:audio",
+          "transcript": "sobre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-16:i03:r1",
+            "targetText": "sobre",
+            "meaningByLocale": {
+              "ru": "конверт. Мужской род; несколько — sobres. 🔊 *sobre*",
+              "uk": "конверт. Чоловічий рід; кілька — sobres. 🔊 *sobre*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sobre",
+          "definitionByLocale": {
+            "ru": "конверт. Мужской род; несколько — sobres. 🔊 *sobre*",
+            "uk": "конверт. Чоловічий рід; кілька — sobres. 🔊 *sobre*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i04:r1",
+          "text": "sobre"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i04:r2",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i04:audio",
+          "transcript": "sobre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-16:i04:r1",
+            "targetText": "sobre",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i04:r2",
+            "targetText": "libro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sobre — конверт.",
+              "uk": "Звучить sobre — конверт."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть одну коробку з una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i05:r1",
+          "text": "Плитки: caja"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть одну коробку з una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una caja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите одну коробку с una",
+          "uk": "Зберіть фразу — назвіть одну коробку з una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть одну коробку з una",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це ті самі коробки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i06:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i06:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i06:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це ті самі коробки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это те самые коробки",
+          "uk": "Вставте слово — це ті самі коробки"
+        },
+        "gappedTargetPhrase": "Son ___ cajas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-16:i06:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i06:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i06:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставте слово — це ті самі коробки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це ті самі коробки",
+            "feedbackByLocale": {
+              "ru": "Cajas женского рода: las.",
+              "uk": "Cajas жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це ті самі коробки",
+            "feedbackByLocale": {
+              "ru": "Коробок несколько: las.",
+              "uk": "Коробок кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть один конверт",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i07:r1",
+          "text": "Плитки: sobre"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть один конверт",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un sobre.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите один конверт",
+          "uk": "Зберіть фразу — назвіть один конверт"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "sobre"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть один конверт",
+            "feedbackByLocale": {
+              "ru": "sobre мужского рода.",
+              "uk": "sobre чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — конвертів кілька",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i08:r1",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i08:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i08:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — конвертів кілька",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — конвертов несколько",
+          "uk": "Вставте слово — конвертів кілька"
+        },
+        "gappedTargetPhrase": "___ unos sobres.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-16:i08:r1",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i08:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i08:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — конвертів кілька",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — конвертів кілька",
+            "feedbackByLocale": {
+              "ru": "Для нескольких предметов нужна son.",
+              "uk": "Для кількох предметів потрібна son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — конвертів кілька",
+            "feedbackByLocale": {
+              "ru": "Это форма «я», а речь о конвертах.",
+              "uk": "Це форма «я», а йдеться про конверти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кілька коробок з unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i09:r1",
+          "text": "Плитки: cajas"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i09:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i09:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i09:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кілька коробок з unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas cajas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько коробок с unas",
+          "uk": "Зберіть фразу — назвіть кілька коробок з unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "cajas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кілька коробок з unas",
+            "feedbackByLocale": {
+              "ru": "коробок несколько, нужна unas.",
+              "uk": "коробок кілька, потрібна unas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i10:r1",
+          "text": "Плитки: sobres"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i10:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i10:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i10:audio",
+          "transcript": "Son los sobres."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son los sobres.",
+        "orderedTokens": [
+          "Son",
+          "los",
+          "sobres"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит los.",
+              "uk": "у записі звучить los."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — підтвердьте: це вибрані конверти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — підтвердьте: це вибрані конверти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i11:audio",
+          "transcript": "Son los sobres."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los sobres.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це саме та одна коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i12:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i12:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i12:r3",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це саме та одна коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это именно та одна коробка",
+          "uk": "Вставте слово — це саме та одна коробка"
+        },
+        "gappedTargetPhrase": "Es ___ caja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-16:i12:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i12:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i12:r3",
+            "text": "las"
+          }
+        ],
+        "testedDimension": "Вставте слово — це саме та одна коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме та одна коробка",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: la.",
+              "uk": "Caja жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме та одна коробка",
+            "feedbackByLocale": {
+              "ru": "Одна коробка требует la.",
+              "uk": "Одна коробка потребує la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це ті самі коробки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i13:r1",
+          "text": "Плитки: cajas"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i13:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i13:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i13:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це ті самі коробки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las cajas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те самые коробки",
+          "uk": "Зберіть фразу — це ті самі коробки"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "cajas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це ті самі коробки",
+            "feedbackByLocale": {
+              "ru": "cajas женского рода.",
+              "uk": "cajas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це саме той один конверт",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i14:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i14:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i14:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це саме той один конверт",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это именно тот один конверт",
+          "uk": "Вставте слово — це саме той один конверт"
+        },
+        "gappedTargetPhrase": "Es ___ sobre.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-16:i14:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i14:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i14:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставте слово — це саме той один конверт",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме той один конверт",
+            "feedbackByLocale": {
+              "ru": "Sobre мужского рода: el.",
+              "uk": "Sobre чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме той один конверт",
+            "feedbackByLocale": {
+              "ru": "Один конверт требует el.",
+              "uk": "Один конверт потребує el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вперше назвіть кілька конвертів з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i15:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i15:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i15:r3",
+          "text": "sobres"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i15:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вперше назвіть кілька конвертів з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos sobres.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — впервые назовите несколько конвертов с unos",
+          "uk": "Зберіть фразу — вперше назвіть кілька конвертів з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "sobres"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вперше назвіть кілька конвертів з unos",
+            "feedbackByLocale": {
+              "ru": "sobres мужского рода.",
+              "uk": "sobres чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть одну коробку з una",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть одну коробку з una",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i16:audio",
+          "transcript": "Es una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-16:i17:r1",
+          "text": "sobres"
+        },
+        {
+          "responseId": "es:lesson-02:session-16:i17:r2",
+          "text": "sobre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i17:audio",
+          "transcript": "sobres"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-16:i17:r1",
+            "targetText": "sobres",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-16:i17:r2",
+            "targetText": "sobre",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-16:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание -s: sobres.",
+              "uk": "Звучить закінчення -s: sobres."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — підтвердьте, що це вибрані коробки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-16:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — підтвердьте, що це вибрані коробки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-16:i18:audio",
+          "transcript": "Son las cajas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las cajas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fa54c7f19424826d62498704ba56ec8a3cbed9567f2e337d76c9f9e941ec56fe"
+}

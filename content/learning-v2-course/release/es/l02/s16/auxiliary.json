@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-16",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-16:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-16:intro1:r2": {
+          "ru": "Caja женского рода: una.",
+          "uk": "Caja жіночого роду: una."
+        },
+        "es:lesson-02:session-16:intro1:r3": {
+          "ru": "Один предмет требует es.",
+          "uk": "Один предмет потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-16:intro2:r2": {
+          "ru": "Cajas женского рода: las.",
+          "uk": "Cajas жіночого роду: las."
+        },
+        "es:lesson-02:session-16:intro2:r3": {
+          "ru": "Несколько предметов требуют son.",
+          "uk": "Кілька предметів потребують son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-16:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-16:intro3:r2": {
+          "ru": "Sobres мужского рода: los.",
+          "uk": "Sobres чоловічого роду: los."
+        },
+        "es:lesson-02:session-16:intro3:r3": {
+          "ru": "Конвертов несколько: sobres.",
+          "uk": "Конвертів кілька: sobres."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "636626834377f077c771d2a5df57a05caafc3e9710cad8c92625af9ba12d98d9"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-15:intro1:r2": {
+          "ru": "Toalla женского рода: una.",
+          "uk": "Toalla жіночого роду: una."
+        },
+        "es:lesson-02:session-15:intro1:r3": {
+          "ru": "Один предмет требует es.",
+          "uk": "Один предмет потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-15:intro2:r2": {
+          "ru": "Toallas женского рода: unas.",
+          "uk": "Toallas жіночого роду: unas."
+        },
+        "es:lesson-02:session-15:intro2:r3": {
+          "ru": "Для нескольких полотенец нужна toallas.",
+          "uk": "Для кількох рушників потрібна toallas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-15:intro3:r2": {
+          "ru": "Jabón мужского рода: un.",
+          "uk": "Jabón чоловічого роду: un."
+        },
+        "es:lesson-02:session-15:intro3:r3": {
+          "ru": "Один кусок требует es.",
+          "uk": "Один шматок потребує es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c995ca662e07deaa507ed655c8261ae6d069a9df212d6657d315f84c9090a6ce"
+}

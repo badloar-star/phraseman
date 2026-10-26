@@ -1,0 +1,797 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tenedor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tenedor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i01:audio",
+          "transcript": "tenedor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-14:i01:r1",
+            "targetText": "tenedor",
+            "meaningByLocale": {
+              "ru": "вилка. Мужской род; несколько — tenedores. 🔊 *tenedor*",
+              "uk": "виделка. Чоловічий рід; кілька — tenedores. 🔊 *tenedor*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tenedor",
+          "definitionByLocale": {
+            "ru": "вилка. Мужской род; несколько — tenedores. 🔊 *tenedor*",
+            "uk": "виделка. Чоловічий рід; кілька — tenedores. 🔊 *tenedor*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i02:r1",
+          "text": "tenedor"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i02:r2",
+          "text": "cuchara"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i02:audio",
+          "transcript": "tenedor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-14:i02:r1",
+            "targetText": "tenedor",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i02:r2",
+            "targetText": "cuchara",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tenedor — вилка.",
+              "uk": "Звучить tenedor — виделка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cuchillo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cuchillo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i03:audio",
+          "transcript": "cuchillo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-14:i03:r1",
+            "targetText": "cuchillo",
+            "meaningByLocale": {
+              "ru": "нож. Мужской род; несколько — cuchillos. 🔊 *cuchillo*",
+              "uk": "ніж. Чоловічий рід; кілька — cuchillos. 🔊 *cuchillo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuchillo",
+          "definitionByLocale": {
+            "ru": "нож. Мужской род; несколько — cuchillos. 🔊 *cuchillo*",
+            "uk": "ніж. Чоловічий рід; кілька — cuchillos. 🔊 *cuchillo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i04:r1",
+          "text": "cuchillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i04:r2",
+          "text": "tenedor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i04:audio",
+          "transcript": "cuchillo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-14:i04:r1",
+            "targetText": "cuchillo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i04:r2",
+            "targetText": "tenedor",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cuchillo — нож.",
+              "uk": "Звучить cuchillo — ніж."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите какие-то вилки с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i05:r1",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i05:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i05:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите какие-то вилки с unos",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите какие-то вилки с unos",
+          "uk": "Вставте слово — назвіть якісь виделки з unos"
+        },
+        "gappedTargetPhrase": "Son ___ tenedores.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-14:i05:r1",
+            "text": "unos"
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i05:r2",
+            "text": "unas"
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i05:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите какие-то вилки с unos",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите какие-то вилки с unos",
+            "feedbackByLocale": {
+              "ru": "Tenedores мужского рода: unos.",
+              "uk": "Tenedores чоловічого роду: unos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите какие-то вилки с unos",
+            "feedbackByLocale": {
+              "ru": "Вилок несколько: unos.",
+              "uk": "Виделок кілька: unos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — впервые назовите вилки, используя unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i06:r1",
+          "text": "Плитки: tenedores"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i06:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i06:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — впервые назовите вилки, используя unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos tenedores.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — впервые назовите вилки, используя unos",
+          "uk": "Зберіть фразу — вперше назвіть виделки, використовуючи unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "tenedores"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — впервые назовите вилки, используя unos",
+            "feedbackByLocale": {
+              "ru": "tenedores мужского рода.",
+              "uk": "tenedores чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — подтвердите: это те самые вилки; нужен los",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i07:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i07:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i07:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — подтвердите: это те самые вилки; нужен los",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подтвердите: это те самые вилки; нужен los",
+          "uk": "Вставте слово — підтвердьте: це ті самі виделки; потрібен los"
+        },
+        "gappedTargetPhrase": "Son ___ tenedores.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-14:i07:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i07:r2",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i07:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставьте слово — подтвердите: это те самые вилки; нужен los",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подтвердите: это те самые вилки; нужен los",
+            "feedbackByLocale": {
+              "ru": "Tenedores мужского рода: los.",
+              "uk": "Tenedores чоловічого роду: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подтвердите: это те самые вилки; нужен los",
+            "feedbackByLocale": {
+              "ru": "Для нескольких вилок нужна los.",
+              "uk": "Для кількох виделок потрібна los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это заранее выбранные вилки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i08:r1",
+          "text": "Плитки: tenedores"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i08:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i08:r4",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это заранее выбранные вилки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los tenedores.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это заранее выбранные вилки",
+          "uk": "Зберіть фразу — це заздалегідь вибрані виделки"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "tenedores"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это заранее выбранные вилки",
+            "feedbackByLocale": {
+              "ru": "tenedores мужского рода.",
+              "uk": "tenedores чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите выбранные ножи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i09:r1",
+          "text": "cuchillos"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i09:r2",
+          "text": "cuchillo"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i09:r3",
+          "text": "cucharas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите выбранные ножи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите выбранные ножи",
+          "uk": "Вставте слово — назвіть вибрані ножі"
+        },
+        "gappedTargetPhrase": "Son los ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-14:i09:r1",
+            "text": "cuchillos"
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i09:r2",
+            "text": "cuchillo"
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i09:r3",
+            "text": "cucharas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите выбранные ножи",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите выбранные ножи",
+            "feedbackByLocale": {
+              "ru": "Ножей несколько: cuchillos.",
+              "uk": "Ножів кілька: cuchillos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите выбранные ножи",
+            "feedbackByLocale": {
+              "ru": "Это ложки, а нужны ножи; кроме того, здесь los для мужского рода.",
+              "uk": "Це ложки, а потрібні ножі; крім того, тут los для чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это те самые ножи",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i10:r1",
+          "text": "Плитки: cuchillos"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i10:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i10:r4",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это те самые ножи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los cuchillos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это те самые ножи",
+          "uk": "Зберіть фразу — це ті самі ножі"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "cuchillos"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это те самые ножи",
+            "feedbackByLocale": {
+              "ru": "cuchillos мужского рода.",
+              "uk": "cuchillos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i11:r1",
+          "text": "Плитки: tenedores"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i11:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i11:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i11:audio",
+          "transcript": "Son unos tenedores."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unos tenedores.",
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "tenedores"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит unos.",
+              "uk": "у записі звучить unos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите, что это заранее выбранные ножи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите, что это заранее выбранные ножи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i12:audio",
+          "transcript": "Son los cuchillos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son los cuchillos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите уже обсуждённые ложки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-14:i13:r1",
+          "text": "Плитки: cucharas"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i13:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i13:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-14:i13:r4",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите уже обсуждённые ложки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son las cucharas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите уже обсуждённые ложки",
+          "uk": "Зберіть фразу — назвіть уже обговорені ложки"
+        },
+        "orderedTokens": [
+          "Son",
+          "las",
+          "cucharas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-14:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите уже обсуждённые ложки",
+            "feedbackByLocale": {
+              "ru": "cucharas женского рода.",
+              "uk": "cucharas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-14:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — впервые назовите несколько ложек с unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — впервые назовите несколько ложек с unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-14:i14:audio",
+          "transcript": "Son unas cucharas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas cucharas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d715d331ca109ee2b50acbaaa463062ec09e5cfacf9f705695552bb42e6a7f36"
+}

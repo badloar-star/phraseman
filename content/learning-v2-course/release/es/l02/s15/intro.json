@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "вслух переключаться между одним и несколькими предметами.",
+    "uk": "уголос перемикатися між одним і кількома предметами."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно полотенце",
+        "uk": "Один рушник"
+      },
+      "bodyByLocale": {
+        "ru": "Друг достаёт полотенце. `Toalla` — «полотенце», по-испански женского рода: la toalla. Назовите его: `Es una toalla` — «Это полотенце». Соберите `es` + `una` + `toalla`. Для одного предмета нужна es, а una выбирайте по испанскому женскому роду.",
+        "uk": "Друг дістає рушник. `Toalla` — «рушник», іспанською жіночого роду: la toalla. Назвіть його: `Es una toalla` — «Це рушник». Зберіть `es` + `una` + `toalla`. Для одного предмета потрібна es, а una вибирайте за іспанським жіночим родом."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одно полотенце.",
+          "uk": "Назвіть один рушник."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-15:intro1:r1",
+              "text": "Es una toalla."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro1:r2",
+              "text": "Es un toalla."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro1:r3",
+              "text": "Son una toalla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-15:intro1:r1",
+              "text": "Es una toalla."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro1:r2",
+              "text": "Es un toalla."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro1:r3",
+              "text": "Son una toalla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одно полотенце.",
+          "uk": "Назвіть один рушник."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько полотенец",
+        "uk": "Кілька рушників"
+      },
+      "bodyByLocale": {
+        "ru": "На полке уже несколько полотенец. Скажите `Son unas toallas` — «Это несколько полотенец». Соберите `son` + `unas` + `toallas`: es меняется на son, una — на unas, к toalla добавляется -s. Если речь именно о полотенцах, которые вы заранее выбрали, скажите Son las toallas — «Это те самые полотенца». Дальше внимательно слушайте, какие предметы нужно назвать.",
+        "uk": "На полиці вже кілька рушників. Скажіть `Son unas toallas` — «Це кілька рушників». Зберіть `son` + `unas` + `toallas`: es змінюється на son, una — на unas, до toalla додається -s. Якщо йдеться саме про рушники, які ви заздалегідь вибрали, скажіть Son las toallas — «Це ті самі рушники». Далі уважно слухайте, які предмети потрібно назвати."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько полотенец, используя unas.",
+          "uk": "Назвіть кілька рушників, використовуючи unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-15:intro2:r1",
+              "text": "Son unas toallas."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro2:r2",
+              "text": "Son unos toallas."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro2:r3",
+              "text": "Son unas toalla."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-15:intro2:r1",
+              "text": "Son unas toallas."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro2:r2",
+              "text": "Son unos toallas."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro2:r3",
+              "text": "Son unas toalla."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько полотенец, используя unas.",
+          "uk": "Назвіть кілька рушників, використовуючи unas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кусок мыла",
+        "uk": "Шматок мила"
+      },
+      "bodyByLocale": {
+        "ru": "Остался один упакованный кусок мыла. `Jabón` — «мыло», слово мужского рода: el jabón. Здесь называете один отдельный предмет: `Es un jabón` — «Это мыло», один кусок. Соберите `es` + `un` + `jabón`. Произнесите jabón с ударением на последнем слоге: ja-bón; на письме сохраняйте знак над ó. Un здесь относится к одному куску, а не к мылу вообще.",
+        "uk": "Залишився один упакований шматок мила. `Jabón` — «мило», слово чоловічого роду: el jabón. Тут називаєте один окремий предмет: `Es un jabón` — «Це мило», один шматок. Зберіть `es` + `un` + `jabón`. Вимовте jabón з наголосом на останньому складі: ja-bón; на письмі зберігайте знак над ó. Un тут стосується одного шматка, а не мила взагалі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите один кусок мыла.",
+          "uk": "Назвіть один шматок мила."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-15:intro3:r1",
+              "text": "Es un jabón."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro3:r2",
+              "text": "Es una jabón."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro3:r3",
+              "text": "Son un jabón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-15:intro3:r1",
+              "text": "Es un jabón."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro3:r2",
+              "text": "Es una jabón."
+            },
+            {
+              "responseId": "es:lesson-02:session-15:intro3:r3",
+              "text": "Son un jabón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один кусок мыла.",
+          "uk": "Назвіть один шматок мила."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "690b75db094a250c39f8af2c579f89dcda912bdb05122920640a8c2a84314cf0"
+}

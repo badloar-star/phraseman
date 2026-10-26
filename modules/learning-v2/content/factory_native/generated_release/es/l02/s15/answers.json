@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-15:i01",
+    "correctText": "toalla",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i02",
+    "correctText": "toalla",
+    "correctResponseId": "es:lesson-02:session-15:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i03",
+    "correctText": "jabón",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i04",
+    "correctText": "jabón",
+    "correctResponseId": "es:lesson-02:session-15:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i05",
+    "correctText": "Es una toalla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i06",
+    "correctText": "Es una toalla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i07",
+    "correctText": "Son",
+    "correctResponseId": "es:lesson-02:session-15:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i08",
+    "correctText": "Son unas toallas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i09",
+    "correctText": "Son unas toallas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i10",
+    "correctText": "Es un jabón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i11",
+    "correctText": "Es un jabón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i12",
+    "correctText": "Son las toallas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i13",
+    "correctText": "Son las toallas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-15:i14",
+    "correctText": "Son las toallas.",
+    "correctResponseId": null
+  }
+]

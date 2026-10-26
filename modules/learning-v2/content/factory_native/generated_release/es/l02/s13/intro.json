@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать los или las для нескольких известных собеседникам предметов.",
+    "uk": "вибрати los або las для кількох відомих співрозмовникам предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тарелка из набора",
+        "uk": "Тарілка з набору"
+      },
+      "bodyByLocale": {
+        "ru": "На столе несколько наборов посуды. `Plato` — «тарелка», по-испански мужского рода: el plato. Несколько тарелок — platos. Друг показывает одну тарелку из вашего набора. Подтвердите: `Es el plato` — «Это та самая тарелка». Соберите `es` + `el` + `plato`. Здесь el указывает на определённую тарелку, о которой вы оба знаете.",
+        "uk": "На столі кілька наборів посуду. `Plato` — «тарілка», іспанською чоловічого роду: el plato. Кілька тарілок — platos. Друг показує одну тарілку з вашого набору. Підтвердьте: `Es el plato` — «Це та сама тарілка». Зберіть `es` + `el` + `plato`. Тут el указує на певну тарілку, про яку ви обоє знаєте."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что это именно та тарелка.",
+          "uk": "Підтвердьте, що це саме та тарілка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-13:intro1:r1",
+              "text": "Es el plato."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro1:r2",
+              "text": "Es la plato."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro1:r3",
+              "text": "Son el plato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-13:intro1:r1",
+              "text": "Es el plato."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro1:r2",
+              "text": "Es la plato."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro1:r3",
+              "text": "Son el plato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что это именно та тарелка.",
+          "uk": "Підтвердьте, що це саме та тарілка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Весь набор тарелок",
+        "uk": "Увесь набір тарілок"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг указывает на несколько тарелок из вашего набора. Скажите `Son los platos` — «Это те самые тарелки». Для нескольких мужских предметов el меняется на los: `son` + `los` + `platos`. Unos platos просто называет какие-то тарелки; los platos указывает на конкретные тарелки, которые вы оба имеете в виду.",
+        "uk": "Тепер друг указує на кілька тарілок із вашого набору. Скажіть `Son los platos` — «Це ті самі тарілки». Для кількох чоловічих предметів el змінюється на los: `son` + `los` + `platos`. Unos platos просто називає якісь тарілки; los platos указує на конкретні тарілки, які ви обоє маєте на увазі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что это те самые тарелки, используя los.",
+          "uk": "Підтвердьте, що це ті самі тарілки, використовуючи los."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-13:intro2:r1",
+              "text": "Son los platos."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro2:r2",
+              "text": "Son las platos."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro2:r3",
+              "text": "Son el platos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-13:intro2:r1",
+              "text": "Son los platos."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro2:r2",
+              "text": "Son las platos."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro2:r3",
+              "text": "Son el platos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что это те самые тарелки, используя los.",
+          "uk": "Підтвердьте, що це ті самі тарілки, використовуючи los."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бутылки с праздника",
+        "uk": "Пляшки зі свята"
+      },
+      "bodyByLocale": {
+        "ru": "Осталось забрать бутылки. `Botella` — «бутылка», слово женского рода: la botella. Несколько бутылок — botellas. Друг нашёл именно ваши, уже обсуждённые бутылки. Подтвердите: `Son las botellas` — «Это те самые бутылки». Соберите `son` + `las` + `botellas`: для нескольких известных женских предметов la меняется на las. Las само по себе не означает «наши»: какие именно бутылки, понятно из разговора.",
+        "uk": "Залишилося забрати пляшки. `Botella` — «пляшка», слово жіночого роду: la botella. Кілька пляшок — botellas. Друг знайшов саме ваші, уже обговорені пляшки. Підтвердьте: `Son las botellas` — «Це ті самі пляшки». Зберіть `son` + `las` + `botellas`: для кількох відомих жіночих предметів la змінюється на las. Las саме по собі не означає «наші»: які саме пляшки, зрозуміло з розмови."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что это те самые бутылки, используя las.",
+          "uk": "Підтвердьте, що це ті самі пляшки, використовуючи las."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-13:intro3:r1",
+              "text": "Son las botellas."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro3:r2",
+              "text": "Son los botellas."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro3:r3",
+              "text": "Son la botellas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-13:intro3:r1",
+              "text": "Son las botellas."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro3:r2",
+              "text": "Son los botellas."
+            },
+            {
+              "responseId": "es:lesson-02:session-13:intro3:r3",
+              "text": "Son la botellas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что это те самые бутылки, используя las.",
+          "uk": "Підтвердьте, що це ті самі пляшки, використовуючи las."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "82cb772fddef91fbf702a243a04138cf764b5f1c905ccaeb90d58f59a0a51979"
+}

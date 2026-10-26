@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать число и артикль, когда называете упаковку или узнаёте нужную.",
+    "uk": "вибрати число й артикль, коли називаєте упаковку або впізнаєте потрібну."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна коробка",
+        "uk": "Одна коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг подаёт вам пустую упаковку. `Caja` — «коробка», слово женского рода: la caja. Просто назовите её: `Es una caja` — «Это коробка». Соберите `es` + `una` + `caja`. Если подтверждаете, что это именно коробка, которую выбрали раньше, скажите Es la caja — «Это та самая коробка». Una называет предмет, la помогает узнать уже обсуждённый.",
+        "uk": "Друг подає вам порожню упаковку. `Caja` — «коробка», слово жіночого роду: la caja. Просто назвіть її: `Es una caja` — «Це коробка». Зберіть `es` + `una` + `caja`. Якщо підтверджуєте, що це саме коробка, яку вибрали раніше, скажіть Es la caja — «Це та сама коробка». Una називає предмет, la допомагає впізнати вже обговорений."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Просто назовите одну коробку с una.",
+          "uk": "Просто назвіть одну коробку з una."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-16:intro1:r1",
+              "text": "Es una caja."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro1:r2",
+              "text": "Es un caja."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro1:r3",
+              "text": "Son una caja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-16:intro1:r1",
+              "text": "Es una caja."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro1:r2",
+              "text": "Es un caja."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro1:r3",
+              "text": "Son una caja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Просто назовите одну коробку с una.",
+          "uk": "Просто назвіть одну коробку з una."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько коробок",
+        "uk": "Кілька коробок"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь на столе несколько коробок. Назовите их: `Son unas cajas` — «Это несколько коробок»: `son` + `unas` + `cajas`. Es меняется на son, una — на unas, к caja добавляется -s. Чтобы указать на конкретные коробки, которые вы оба уже выбрали, замените unas на las: Son las cajas — «Это те самые коробки».",
+        "uk": "Тепер на столі кілька коробок. Назвіть їх: `Son unas cajas` — «Це кілька коробок»: `son` + `unas` + `cajas`. Es змінюється на son, una — на unas, до caja додається -s. Щоб указати на конкретні коробки, які ви обоє вже вибрали, замініть unas на las: Son las cajas — «Це ті самі коробки»."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что это именно выбранные коробки, с las.",
+          "uk": "Підтвердьте, що це саме вибрані коробки, з las."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-16:intro2:r1",
+              "text": "Son las cajas."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro2:r2",
+              "text": "Son los cajas."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro2:r3",
+              "text": "Es las cajas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-16:intro2:r1",
+              "text": "Son las cajas."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro2:r2",
+              "text": "Son los cajas."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro2:r3",
+              "text": "Es las cajas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что это именно выбранные коробки, с las.",
+          "uk": "Підтвердьте, що це саме вибрані коробки, з las."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Конверты для открыток",
+        "uk": "Конверти для листівок"
+      },
+      "bodyByLocale": {
+        "ru": "Для открыток нужны конверты. `Sobre` — «конверт», слово мужского рода: el sobre. Один конверт — un sobre, несколько — unos sobres. Друг нашёл уже выбранные конверты. Подтвердите: `Son los sobres` — «Это те самые конверты». Соберите `son` + `los` + `sobres`. Конечная e не делает слово женским: запоминайте el sobre, поэтому для нескольких известных конвертов нужен los.",
+        "uk": "Для листівок потрібні конверти. `Sobre` — «конверт», слово чоловічого роду: el sobre. Один конверт — un sobre, кілька — unos sobres. Друг знайшов уже вибрані конверти. Підтвердьте: `Son los sobres` — «Це ті самі конверти». Зберіть `son` + `los` + `sobres`. Кінцева e не робить слово жіночим: запам'ятовуйте el sobre, тому для кількох відомих конвертів потрібен los."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что это выбранные конверты, с los.",
+          "uk": "Підтвердьте, що це вибрані конверти, з los."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-16:intro3:r1",
+              "text": "Son los sobres."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro3:r2",
+              "text": "Son las sobres."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro3:r3",
+              "text": "Son los sobre."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-16:intro3:r1",
+              "text": "Son los sobres."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro3:r2",
+              "text": "Son las sobres."
+            },
+            {
+              "responseId": "es:lesson-02:session-16:intro3:r3",
+              "text": "Son los sobre."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что это выбранные конверты, с los.",
+          "uk": "Підтвердьте, що це вибрані конверти, з los."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b84a58dadb760b019ff34be71b0f2f982a1c0ec080a0febe981d51d0d61f1a20"
+}
